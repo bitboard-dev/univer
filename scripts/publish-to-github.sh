@@ -44,10 +44,9 @@ fi
 
 echo "✓ GitHub token found"
 
-# Create .npmrc for publishing
+# Create .npmrc for publishing (only auth, don't redirect registry during install)
 echo "Setting up npm authentication..."
 cat > .npmrc << EOF
-@univerjs:registry=https://npm.pkg.github.com
 //npm.pkg.github.com/:_authToken=\${UNIVER_PUBLISH_TOKEN}
 EOF
 
