@@ -19,10 +19,11 @@ fi
 
 echo "✓ On branch: $CURRENT_BRANCH"
 
-# Check for uncommitted changes
-if [[ -n $(git status --porcelain) ]]; then
+# Check for uncommitted changes (excluding .npmrc which is temporary)
+UNCOMMITTED=$(git status --porcelain | grep -v "^?? .npmrc" || true)
+if [[ -n "$UNCOMMITTED" ]]; then
     echo "❌ Error: You have uncommitted changes"
-    git status --short
+    echo "$UNCOMMITTED"
     echo ""
     echo "Please commit or stash your changes first"
     exit 1
@@ -47,51 +48,19 @@ echo "✓ GitHub token found"
 # Create .npmrc for publishing (only auth, don't redirect registry during install)
 echo "Setting up npm authentication..."
 cat > .npmrc << EOF
-//npm.pkg.github.com/:_authToken=\${UNIVER_PUBLISH_TOKEN}
+//npm.pkg.github.com/:_authToken=${UNIVER_PUBLISH_TOKEN}
 EOF
 
 echo "✓ .npmrc configured"
 
-# Update all package.json files to use GitHub Packages registry
-echo ""
-echo "Configuring packages for GitHub Packages..."
-PACKAGE_COUNT=$(find packages -name "package.json" | wc -l | tr -d ' ')
-echo "Found $PACKAGE_COUNT packages to configure"
-
-# Add registry to publishConfig in all packages
-node << 'ENDNODE'
-const fs = require('fs');
-const path = require('path');
-const { execSync } = require('child_process');
-
-// Find all package.json files
-const packageFiles = execSync('find packages -name "package.json"', { encoding: 'utf-8' })
-  .trim()
-  .split('\n')
-  .filter(Boolean);
-
-let updated = 0;
-packageFiles.forEach(file => {
-  const content = JSON.parse(fs.readFileSync(file, 'utf-8'));
-
-  if (content.private === true) {
-    console.log(`Skipping private package: ${content.name}`);
-    return;
-  }
-
-  if (!content.publishConfig) {
-    content.publishConfig = {};
-  }
-
-  // Add registry to publishConfig
-  content.publishConfig.registry = 'https://npm.pkg.github.com';
-
-  fs.writeFileSync(file, JSON.stringify(content, null, 2) + '\n');
-  updated++;
-});
-
-console.log(`✓ Updated ${updated} package.json files`);
-ENDNODE
+# Cleanup function to remove .npmrc on exit
+cleanup() {
+    echo ""
+    echo "Cleaning up..."
+    rm -f .npmrc
+    echo "✓ .npmrc removed"
+}
+trap cleanup EXIT
 
 # Install dependencies
 echo ""
