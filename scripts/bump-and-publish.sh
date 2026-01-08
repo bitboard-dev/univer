@@ -117,18 +117,18 @@ echo "✓ Version committed"
 
 # Ask if should publish
 echo ""
-read -p "Publish to GitHub Packages now? (y/N): " -n 1 -r
+read -p "Publish to Verdaccio now? (y/N): " -n 1 -r
 echo ""
 
 if [[ ! $REPLY =~ ^[Yy]$ ]]; then
     echo "Version bumped but not published"
-    echo "Run ./scripts/publish-to-github.sh when ready"
+    echo "Run ./scripts/publish-to-verdaccio.sh when ready"
     exit 0
 fi
 
 # Run publish script
 echo ""
-./scripts/publish-to-github.sh
+./scripts/publish-to-verdaccio.sh
 
 echo ""
 echo "========================================"

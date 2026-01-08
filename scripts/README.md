@@ -4,50 +4,56 @@ Scripts for managing and publishing the Bitboard custom Univer fork.
 
 ## Setup
 
-### 1. Create GitHub Personal Access Token
-
-Create a token with `write:packages` permission:
-https://github.com/settings/tokens/new
-
-Permissions needed:
-- ✅ `write:packages` - Upload packages to GitHub Package Registry
-- ✅ `read:packages` - Download packages from GitHub Package Registry
-
-### 2. Export Token
+### 1. Install Verdaccio
 
 ```bash
-export UNIVER_PUBLISH_TOKEN=your_token_here
+npm install -g verdaccio
 ```
 
-Add to your shell profile (~/.zshrc, ~/.bashrc) for persistence:
+### 2. Start Verdaccio
+
 ```bash
-echo 'export UNIVER_PUBLISH_TOKEN=your_token_here' >> ~/.zshrc
+verdaccio
 ```
+
+Verdaccio will start on `http://localhost:4873`. Keep this terminal open.
+
+### 3. Create User (First Time Only)
+
+In a new terminal:
+```bash
+npm adduser --registry http://localhost:4873
+```
+
+Enter any username/password/email (for local dev).
 
 ## Scripts
 
-### publish-to-github.sh
+### publish-to-verdaccio.sh
 
-**Purpose:** Publish current version to GitHub Packages
+**Purpose:** Publish current version to Verdaccio registry
 
 **Usage:**
 ```bash
-./scripts/publish-to-github.sh
+./scripts/publish-to-verdaccio.sh
 ```
 
 **What it does:**
 1. Validates you're on a bitboard branch
 2. Checks for uncommitted changes
-3. Configures packages for GitHub Packages
+3. Verifies Verdaccio is reachable
 4. Installs dependencies
 5. Builds all packages
 6. Shows what will be published
-7. Publishes to GitHub Packages
+7. Publishes to Verdaccio
 
 **When to use:**
 - First time publishing
 - After manually making changes and bumping version
 - Re-publishing after a failed publish
+
+**Environment Variables:**
+- `VERDACCIO_URL` - Registry URL (default: http://localhost:4873)
 
 ### bump-and-publish.sh
 
@@ -81,14 +87,17 @@ echo 'export UNIVER_PUBLISH_TOKEN=your_token_here' >> ~/.zshrc
 #### First Time Publishing
 
 ```bash
+# Start Verdaccio (in separate terminal)
+verdaccio
+
+# Create user (first time only)
+npm adduser --registry http://localhost:4873
+
 # Ensure you're on the right branch
 git checkout bitboard-v0.10.14
 
-# Export GitHub token
-export UNIVER_PUBLISH_TOKEN=ghp_xxxxxxxxxxxx
-
 # Publish
-./scripts/publish-to-github.sh
+./scripts/publish-to-verdaccio.sh
 ```
 
 #### Making a Change and Republishing
@@ -133,16 +142,22 @@ git commit -m "chore: upgrade to v0.11.0 with Bitboard customizations"
 
 ## Troubleshooting
 
-### "UNIVER_PUBLISH_TOKEN not set"
-Export your GitHub token:
+### "Cannot reach Verdaccio"
+Make sure Verdaccio is running:
 ```bash
-export UNIVER_PUBLISH_TOKEN=ghp_xxxxxxxxxxxx
+verdaccio
 ```
 
-### "403 Forbidden" during publish
-- Check token has `write:packages` permission
-- Verify you have access to bitboard-dev org
-- Check token hasn't expired
+Or set custom URL:
+```bash
+export VERDACCIO_URL=https://your-verdaccio.com
+```
+
+### "401 Unauthorized" during publish
+Re-authenticate with Verdaccio:
+```bash
+npm adduser --registry http://localhost:4873
+```
 
 ### Build fails
 ```bash
@@ -160,13 +175,12 @@ GitHub Packages doesn't allow overwriting versions. Bump the version:
 
 ## Files Modified by Scripts
 
-- `packages/*/package.json` - Adds GitHub registry to publishConfig
-- `.npmrc` - Created temporarily for authentication
-- `package.json` - Version updates
+- `.npmrc` - Created temporarily during publish (auto-cleaned)
+- `package.json` - Version updates by bump-and-publish.sh
 
-## Security Notes
+## Important Notes
 
-- Never commit `.npmrc` with tokens to git (it's in .gitignore)
-- Use environment variables for UNIVER_PUBLISH_TOKEN
-- Rotate tokens periodically
-- Use fine-grained tokens when possible
+- Verdaccio must be running for publish to work
+- Published packages are stored in `~/.local/share/verdaccio/storage` on Mac
+- `.npmrc` is automatically cleaned up after publish
+- For production, see `VERDACCIO_SETUP.md` for deployment options
