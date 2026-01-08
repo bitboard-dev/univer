@@ -16,12 +16,12 @@ Permissions needed:
 ### 2. Export Token
 
 ```bash
-export GITHUB_TOKEN=your_token_here
+export UNIVER_PUBLISH_TOKEN=your_token_here
 ```
 
 Add to your shell profile (~/.zshrc, ~/.bashrc) for persistence:
 ```bash
-echo 'export GITHUB_TOKEN=your_token_here' >> ~/.zshrc
+echo 'export UNIVER_PUBLISH_TOKEN=your_token_here' >> ~/.zshrc
 ```
 
 ## Scripts
@@ -85,7 +85,7 @@ echo 'export GITHUB_TOKEN=your_token_here' >> ~/.zshrc
 git checkout bitboard-v0.10.14
 
 # Export GitHub token
-export GITHUB_TOKEN=ghp_xxxxxxxxxxxx
+export UNIVER_PUBLISH_TOKEN=ghp_xxxxxxxxxxxx
 
 # Publish
 ./scripts/publish-to-github.sh
@@ -133,10 +133,10 @@ git commit -m "chore: upgrade to v0.11.0 with Bitboard customizations"
 
 ## Troubleshooting
 
-### "GITHUB_TOKEN not set"
+### "UNIVER_PUBLISH_TOKEN not set"
 Export your GitHub token:
 ```bash
-export GITHUB_TOKEN=ghp_xxxxxxxxxxxx
+export UNIVER_PUBLISH_TOKEN=ghp_xxxxxxxxxxxx
 ```
 
 ### "403 Forbidden" during publish
@@ -167,6 +167,6 @@ GitHub Packages doesn't allow overwriting versions. Bump the version:
 ## Security Notes
 
 - Never commit `.npmrc` with tokens to git (it's in .gitignore)
-- Use environment variables for GITHUB_TOKEN
+- Use environment variables for UNIVER_PUBLISH_TOKEN
 - Rotate tokens periodically
 - Use fine-grained tokens when possible

@@ -31,14 +31,14 @@ fi
 echo "✓ No uncommitted changes"
 
 # Check for GitHub token
-if [[ -z "$GITHUB_TOKEN" ]]; then
-    echo "❌ Error: GITHUB_TOKEN environment variable not set"
+if [[ -z "$UNIVER_PUBLISH_TOKEN" ]]; then
+    echo "❌ Error: UNIVER_PUBLISH_TOKEN environment variable not set"
     echo ""
     echo "Create a GitHub token with 'write:packages' permission:"
     echo "  https://github.com/settings/tokens/new"
     echo ""
     echo "Then export it:"
-    echo "  export GITHUB_TOKEN=your_token_here"
+    echo "  export UNIVER_PUBLISH_TOKEN=your_token_here"
     exit 1
 fi
 
@@ -48,7 +48,7 @@ echo "✓ GitHub token found"
 echo "Setting up npm authentication..."
 cat > .npmrc << EOF
 @univerjs:registry=https://npm.pkg.github.com
-//npm.pkg.github.com/:_authToken=\${GITHUB_TOKEN}
+//npm.pkg.github.com/:_authToken=\${UNIVER_PUBLISH_TOKEN}
 EOF
 
 echo "✓ .npmrc configured"
@@ -149,6 +149,6 @@ echo "  https://github.com/orgs/bitboard-dev/packages"
 echo ""
 echo "To use in Bitboard, add to .npmrc:"
 echo "  @univerjs:registry=https://npm.pkg.github.com"
-echo "  //npm.pkg.github.com/:_authToken=\${GITHUB_TOKEN}"
+echo "  //npm.pkg.github.com/:_authToken=\${UNIVER_PUBLISH_TOKEN}"
 echo ""
 echo "Then update package.json dependencies to: $VERSION"
