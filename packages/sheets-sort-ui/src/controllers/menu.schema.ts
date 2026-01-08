@@ -15,7 +15,7 @@
  */
 
 import type { MenuSchemaType } from '@univerjs/ui';
-import { ContextMenuGroup, ContextMenuPosition, RibbonDataGroup } from '@univerjs/ui';
+import { ContextMenuGroup, ContextMenuPosition, RibbonStartGroup } from '@univerjs/ui';
 import {
     SortRangeAscCommand,
     SortRangeAscExtCommand,
@@ -46,7 +46,7 @@ import {
 } from './sheets-sort.menu';
 
 export const menuSchema: MenuSchemaType = {
-    [RibbonDataGroup.ORGANIZATION]: {
+    [RibbonStartGroup.OTHERS]: {
         [SHEETS_SORT_MENU_ID]: {
             order: 3,
             menuItemFactory: sortRangeMenuFactory,

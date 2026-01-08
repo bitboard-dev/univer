@@ -1,6 +1,6 @@
 {
     "name": "@univerjs/ui-adapter-vue3",
-    "version": "0.10.14",
+    "version": "0.10.14-bitboard.1",
     "private": false,
     "description": "Vue adapter for Univer UI",
     "author": "DreamNum <developer@univer.ai>",
