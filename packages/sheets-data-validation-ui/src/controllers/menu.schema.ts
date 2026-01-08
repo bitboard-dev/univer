@@ -15,7 +15,7 @@
  */
 
 import type { MenuSchemaType } from '@univerjs/ui';
-import { RibbonDataGroup } from '@univerjs/ui';
+import { RibbonStartGroup } from '@univerjs/ui';
 import { AddSheetDataValidationAndOpenCommand } from '../commands/commands/data-validation-ui.command';
 import { OpenValidationPanelOperation } from '../commands/operations/data-validation.operation';
 import {
@@ -26,7 +26,7 @@ import {
 } from './dv.menu';
 
 export const menuSchema: MenuSchemaType = {
-    [RibbonDataGroup.RULES]: {
+    [RibbonStartGroup.OTHERS]: {
         [DATA_VALIDATION_MENU_ID]: {
             order: 0,
             menuItemFactory: dataValidationMenuFactory,
