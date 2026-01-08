@@ -21,10 +21,32 @@
         "univer"
     ],
     "exports": {
-        ".": "./src/index.ts",
-        "./*": "./src/*",
-        "./locale/*": "./src/locale/*.ts",
-        "./facade": "./src/facade/index.ts"
+        ".": {
+            "types": "./lib/types/index.d.ts",
+            "import": "./lib/es/index.js",
+            "require": "./lib/cjs/index.js"
+        },
+        "./*": {
+            "types": "./lib/types/index.d.ts",
+            "import": "./lib/es/*",
+            "require": "./lib/cjs/*"
+        },
+        "./locale/*": {
+            "types": "./lib/types/locale/*.d.ts",
+            "import": "./lib/es/locale/*.js",
+            "require": "./lib/cjs/locale/*.js"
+        },
+        "./facade": {
+            "types": "./lib/types/facade/index.d.ts",
+            "import": "./lib/es/facade.js",
+            "require": "./lib/cjs/facade.js"
+        },
+        "./lib/facade": {
+            "types": "./lib/types/facade/index.d.ts",
+            "import": "./lib/es/facade.js",
+            "require": "./lib/cjs/facade.js"
+        },
+        "./lib/*": "./lib/*"
     },
     "main": "./src/index.ts",
     "types": "./lib/types/index.d.ts",

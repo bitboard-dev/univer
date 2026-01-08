@@ -23,10 +23,22 @@
         "table"
     ],
     "exports": {
-        ".": "./src/index.ts",
-        "./*": "./src/*",
-        "./facade": "./src/facade/index.ts",
-        "./locale/*": "./src/locale/*.ts"
+        ".": {
+            "types": "./lib/types/index.d.ts",
+            "import": "./lib/es/index.js",
+            "require": "./lib/cjs/index.js"
+        },
+        "./*": {
+            "types": "./lib/types/index.d.ts",
+            "import": "./lib/es/*",
+            "require": "./lib/cjs/*"
+        },
+        "./locale/*": {
+            "types": "./lib/types/locale/*.d.ts",
+            "import": "./lib/es/locale/*.js",
+            "require": "./lib/cjs/locale/*.js"
+        },
+        "./lib/*": "./lib/*"
     },
     "main": "./src/index.ts",
     "types": "./lib/types/index.d.ts",

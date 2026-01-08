@@ -22,8 +22,17 @@
         "theme"
     ],
     "exports": {
-        ".": "./src/index.ts",
-        "./*": "./src/*"
+        ".": {
+            "types": "./lib/types/index.d.ts",
+            "import": "./lib/es/index.js",
+            "require": "./lib/cjs/index.js"
+        },
+        "./*": {
+            "types": "./lib/types/index.d.ts",
+            "import": "./lib/es/*",
+            "require": "./lib/cjs/*"
+        },
+        "./lib/*": "./lib/*"
     },
     "main": "./src/index.ts",
     "types": "./lib/types/index.d.ts",
