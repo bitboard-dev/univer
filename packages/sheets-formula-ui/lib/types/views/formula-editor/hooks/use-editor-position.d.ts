@@ -4,4 +4,4 @@ export declare function useEditorPosition(editorId: string, ready: boolean, deps
     top: number;
     right: number;
     bottom: number;
-}>, () => DOMRect | undefined];
+}>, () => any];
