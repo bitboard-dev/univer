@@ -1,8 +1,8 @@
 var Ku = Object.defineProperty;
 var Xu = (i, a, e) => a in i ? Ku(i, a, { enumerable: !0, configurable: !0, writable: !0, value: e }) : i[a] = e;
 var A = (i, a, e) => Xu(i, typeof a != "symbol" ? a + "" : a, e);
-import { ObjectMatrix as Ce, CommandType as Fe, RANGE_TYPE as et, AbsoluteRefType as we, Tools as qe, createIdentifier as Ze, Disposable as Ne, IUniverInstanceService as Yn, LRUMap as Zu, hashAlgorithm as zu, moveRangeByOffset as aa, isValidRange as Ju, isFormulaString as dt, isFormulaId as Nt, Rectangle as Za, cellToRange as ec, Inject as ye, UniverInstanceType as fr, BooleanNumber as qi, LocaleService as tc, LocaleType as mt, numfmt as At, BuildTextUtils as rc, isRealNum as W, getNumfmtParseValueFilter as nc, CellValueType as Vt, isTextFormat as sc, RichTextBuilder as ac, toDisposable as ic, Injector as Ki, generateRandomId as oc, sortRules as uc, RTree as Os, IConfigService as ia, AsyncLock as cc, requestImmediateMacroTask as lc, ICommandService as ir, DataStreamTreeTokenType as Te, DisposableCollection as fc, Optional as hc, Plugin as mc, merge as gc, touchDependencies as cs } from "@univerjs/core";
-import { Subject as hr, BehaviorSubject as Xi, distinctUntilChanged as Zi, combineLatest as dc, map as Cc, Observable as _c, shareReplay as Ac } from "rxjs";
+import { ObjectMatrix as Ce, CommandType as Fe, RANGE_TYPE as Je, AbsoluteRefType as we, Tools as qe, createIdentifier as Ze, Disposable as Ne, IUniverInstanceService as Yn, LRUMap as Zu, hashAlgorithm as zu, moveRangeByOffset as aa, isValidRange as Ju, isFormulaString as dt, isFormulaId as Nt, Rectangle as Za, cellToRange as ec, Inject as ye, UniverInstanceType as hr, BooleanNumber as qi, LocaleService as tc, LocaleType as mt, numfmt as At, BuildTextUtils as rc, isRealNum as W, getNumfmtParseValueFilter as nc, CellValueType as Vt, isTextFormat as sc, RichTextBuilder as ac, toDisposable as ic, Injector as Ki, generateRandomId as oc, sortRules as uc, RTree as Os, IConfigService as ia, AsyncLock as cc, requestImmediateMacroTask as lc, ICommandService as ir, DataStreamTreeTokenType as Te, DisposableCollection as fc, Optional as hc, Plugin as mc, merge as gc, touchDependencies as cs } from "@univerjs/core";
+import { Subject as mr, BehaviorSubject as Xi, distinctUntilChanged as Zi, combineLatest as dc, map as Cc, Observable as _c, shareReplay as Ac } from "rxjs";
 import { DataSyncPrimaryController as Ec } from "@univerjs/rpc";
 var rr = /* @__PURE__ */ ((i) => (i.FALSE = "FALSE", i.TRUE = "TRUE", i))(rr || {}), Ut = /* @__PURE__ */ ((i) => (i[i.SUCCESS = 0] = "SUCCESS", i[i.ERROR = 1] = "ERROR", i))(Ut || {}), ct = /* @__PURE__ */ ((i) => (i[i.FRONT = 0] = "FRONT", i[i.BACK = 1] = "BACK", i))(ct || {});
 function bc(i, a, e, t, r) {
@@ -42,7 +42,7 @@ const sn = /* @__PURE__ */ new Map([
   "<="
   /* LESS_THAN_OR_EQUAL */
 ]);
-var K = /* @__PURE__ */ ((i) => (i.OPEN_BRACKET = "(", i.CLOSE_BRACKET = ")", i.COMMA = ",", i.SINGLE_QUOTATION = "'", i.DOUBLE_QUOTATION = '"', i.OPEN_BRACES = "{", i.CLOSE_BRACES = "}", i.COLON = ":", i.OPEN_SQUARE_BRACKET = "[", i.CLOSE_SQUARE_BRACKET = "]", i))(K || {}), tt = /* @__PURE__ */ ((i) => (i.PERCENTAGE = "%", i.POUND = "#", i))(tt || {});
+var K = /* @__PURE__ */ ((i) => (i.OPEN_BRACKET = "(", i.CLOSE_BRACKET = ")", i.COMMA = ",", i.SINGLE_QUOTATION = "'", i.DOUBLE_QUOTATION = '"', i.OPEN_BRACES = "{", i.CLOSE_BRACES = "}", i.COLON = ":", i.OPEN_SQUARE_BRACKET = "[", i.CLOSE_SQUARE_BRACKET = "]", i))(K || {}), et = /* @__PURE__ */ ((i) => (i.PERCENTAGE = "%", i.POUND = "#", i))(et || {});
 const ls = /* @__PURE__ */ new Set([
   "%",
   "#"
@@ -53,7 +53,7 @@ const pc = " ", zi = [
   ...Object.values(k),
   ...Object.values(X),
   ...Object.values(K),
-  ...Object.values(tt),
+  ...Object.values(et),
   ...Object.values(Me)
 ];
 function an(i) {
@@ -111,13 +111,13 @@ const Mc = /* @__PURE__ */ new Set([
   K.COLON,
   K.OPEN_BRACES,
   K.OPEN_SQUARE_BRACKET,
-  tt.PERCENTAGE,
-  tt.POUND
+  et.PERCENTAGE,
+  et.POUND
 ]);
 function wc(i) {
   return Mc.has(i);
 }
-const Ji = '\\[([^\\[\\]\\/?:"<>|*\\\\]+)\\]', Ja = new RegExp(Ji), Sc = "((?![\\[\\]\\/?*\\\\]).)*!", It = "$", oa = "\\s*?:\\s*?", dn = "[A-Za-z]+", Cn = "[1-9][0-9]*", Vr = `'?(${Ji})?(${Sc})?'?`, Ms = `\\${It}?${dn}\\${It}?${Cn}`, Dc = `^(${Me.AT})?${Vr}${Ms}${oa}${Ms}$`, ei = new RegExp(Dc), Lc = `^${Vr}\\s*?${Ms}(${tt.POUND})?$`, ti = new RegExp(Lc), Pc = `^${Vr}\\${It}?${Cn}${oa}\\${It}?${Cn}$`, ri = new RegExp(Pc), xc = `^${Vr}\\${It}?${dn}${oa}\\${It}?${dn}$`, ni = new RegExp(xc), jc = `^${Vr}\\s*?\\${It}?${Cn}$`, si = new RegExp(jc), Uc = `^${Vr}\\s*?\\${It}?${dn}$`, ai = new RegExp(Uc), vc = "{.*?}", ii = new RegExp(vc, "g");
+const Ji = '\\[([^\\[\\]\\/?:"<>|*\\\\]+)\\]', Ja = new RegExp(Ji), Sc = "((?![\\[\\]\\/?*\\\\]).)*!", It = "$", oa = "\\s*?:\\s*?", dn = "[A-Za-z]+", Cn = "[1-9][0-9]*", Nr = `'?(${Ji})?(${Sc})?'?`, Ms = `\\${It}?${dn}\\${It}?${Cn}`, Dc = `^(${Me.AT})?${Nr}${Ms}${oa}${Ms}$`, ei = new RegExp(Dc), Lc = `^${Nr}\\s*?${Ms}(${et.POUND})?$`, ti = new RegExp(Lc), Pc = `^${Nr}\\${It}?${Cn}${oa}\\${It}?${Cn}$`, ri = new RegExp(Pc), xc = `^${Nr}\\${It}?${dn}${oa}\\${It}?${dn}$`, ni = new RegExp(xc), jc = `^${Nr}\\s*?\\${It}?${Cn}$`, si = new RegExp(jc), Uc = `^${Nr}\\s*?\\${It}?${dn}$`, ai = new RegExp(Uc), vc = "{.*?}", ii = new RegExp(vc, "g");
 function Br(i) {
   return ti.lastIndex = 0, ti.test(i);
 }
@@ -209,13 +209,13 @@ function Ft(i) {
     endRow: r,
     startAbsoluteRefType: n,
     endAbsoluteRefType: s,
-    rangeType: o = et.NORMAL
+    rangeType: o = Je.NORMAL
   } = i, u = oi(n), c = oi(s);
-  if (o === et.ROW || o === et.ALL) {
+  if (o === Je.ROW || o === Je.ALL) {
     const h = `${u.rowAbsoluteString}${e + 1}`, d = `${c.rowAbsoluteString}${r + 1}`;
     return `${h}:${d}`;
   }
-  if (o === et.COLUMN) {
+  if (o === Je.COLUMN) {
     const h = `${u.columnAbsoluteString}${qe.chatAtABC(a)}`, d = `${c.columnAbsoluteString}${qe.chatAtABC(t)}`;
     return `${h}:${d}`;
   }
@@ -270,8 +270,8 @@ function Dr(i) {
     };
   }
   const n = a.substring(0, r), s = a.substring(r + 1), o = fs(n), u = fs(s), c = o.row > u.row ? u.row : o.row, l = o.column > u.column ? u.column : o.column, f = o.row > u.row ? o.row : u.row, h = o.column > u.column ? o.column : u.column;
-  let d = et.NORMAL;
-  return Number.isNaN(c) && Number.isNaN(f) ? d = et.COLUMN : Number.isNaN(l) && Number.isNaN(h) && (d = et.ROW), {
+  let d = Je.NORMAL;
+  return Number.isNaN(c) && Number.isNaN(f) ? d = Je.COLUMN : Number.isNaN(l) && Number.isNaN(h) && (d = Je.ROW), {
     unitId: t,
     sheetName: e,
     range: {
@@ -357,7 +357,7 @@ let Ps = class extends Ne {
     A(this, "_definedNameMap", {});
     A(this, "_nameCacheMap", {});
     // Cache for name-to-definition mapping
-    A(this, "_update$", new hr());
+    A(this, "_update$", new mr());
     A(this, "update$", this._update$.asObservable());
     A(this, "_currentRange", {
       unitId: "",
@@ -369,9 +369,9 @@ let Ps = class extends Ne {
         endColumn: 0
       }
     });
-    A(this, "_currentRange$", new hr());
+    A(this, "_currentRange$", new mr());
     A(this, "currentRange$", this._currentRange$.asObservable());
-    A(this, "_focusRange$", new hr());
+    A(this, "_focusRange$", new mr());
     A(this, "focusRange$", this._focusRange$.asObservable());
     this._univerInstanceService = a;
   }
@@ -451,10 +451,10 @@ let Ps = class extends Ne {
 Ps = zc([
   Jc(0, Yn)
 ], Ps);
-const Nr = Ze("univer.formula.defined-names.service"), Jb = (i, a) => {
+const Or = Ze("univer.formula.defined-names.service"), Jb = (i, a) => {
   const { unitId: e, id: t } = a;
   return {
-    ...i.get(Nr).getValueById(e, t),
+    ...i.get(Or).getValueById(e, t),
     unitId: e
   };
 }, ca = {
@@ -463,7 +463,7 @@ const Nr = Ze("univer.formula.defined-names.service"), Jb = (i, a) => {
   handler: (i, a) => {
     if (a == null)
       return !1;
-    const e = i.get(Nr), { id: t, unitId: r, name: n, formulaOrRefString: s, comment: o, hidden: u, localSheetId: c } = a;
+    const e = i.get(Or), { id: t, unitId: r, name: n, formulaOrRefString: s, comment: o, hidden: u, localSheetId: c } = a;
     return e.registerDefinedName(r, {
       id: t,
       name: n.trim(),
@@ -479,7 +479,7 @@ const Nr = Ze("univer.formula.defined-names.service"), Jb = (i, a) => {
   handler: (i, a) => {
     if (a == null)
       return !1;
-    const e = i.get(Nr), { unitId: t, id: r } = a;
+    const e = i.get(Or), { unitId: t, id: r } = a;
     return e.removeDefinedName(t, r), !0;
   }
 }, la = {
@@ -557,8 +557,8 @@ class wt {
     return a.length <= 64 ? a : zu(a).toString();
   }
 }
-const gt = "P_1", Tt = "R_1", dr = "L_1", Ir = "LR_1", mo = "LO_1", rl = "LET", Lr = "LAMBDA", nl = "CUBE", sl = /* @__PURE__ */ new Set(["RAND", "RANDBETWEEN", "NOW", "TODAY"]), xs = new wt(1e5);
-function Cr(i) {
+const gt = "P_1", Tt = "R_1", Cr = "L_1", Ir = "LR_1", mo = "LO_1", rl = "LET", Lr = "LAMBDA", nl = "CUBE", sl = /* @__PURE__ */ new Set(["RAND", "RANDBETWEEN", "NOW", "TODAY"]), xs = new wt(1e5);
+function _r(i) {
   const a = xs.get(i);
   if (a)
     return a;
@@ -802,7 +802,7 @@ class ga extends Ne {
     for (let u = 0, c = s.length; u < c; u++) {
       const l = s[u];
       if (typeof l != "string" && l.nodeType === $e.REFERENCE) {
-        const { token: f, endIndex: h } = l, d = Cr(f);
+        const { token: f, endIndex: h } = l, d = _r(f);
         if (d == null)
           continue;
         const { range: _, sheetName: C, unitId: E } = d, b = {
@@ -838,7 +838,7 @@ class ga extends Ne {
         o.push(l);
         continue;
       }
-      const { token: f } = l, h = Cr(f), { sheetName: d, unitId: _ } = h;
+      const { token: f } = l, h = _r(f), { sheetName: d, unitId: _ } = h;
       let C = h.range;
       if (!n && C.startAbsoluteRefType === we.ALL && C.endAbsoluteRefType === we.ALL) {
         o.push(l);
@@ -1180,7 +1180,7 @@ class ga extends Ne {
     var r, n, s, o, u, c;
     const e = (r = this._currentLexerNode) == null ? void 0 : r.getParent();
     let t = !1;
-    if (e && e.getToken() === dr) {
+    if (e && e.getToken() === Cr) {
       if ((n = e == null ? void 0 : e.getParent()) != null && n.getParent()) {
         const l = (o = (s = this._currentLexerNode.getParent()) == null ? void 0 : s.getParent()) == null ? void 0 : o.getParent();
         l && (this._currentLexerNode = l), t = !0;
@@ -1298,7 +1298,7 @@ class ga extends Ne {
   }
   _checkSimilarErrorToken(e, t, r) {
     let n = t;
-    if (e !== tt.POUND)
+    if (e !== et.POUND)
       return !0;
     let s = r[++n];
     for (; s === " "; )
@@ -1328,7 +1328,7 @@ class ga extends Ne {
       const c = s[u];
       if (r === u)
         return [this._currentLexerNode, c];
-      if (c === tt.POUND && this.isSingleQuotationClose() && this.isDoubleQuotationClose() && this.isBracesClose() && this.isSquareBracketClose() && this._checkIfErrorObject(u, s)) {
+      if (c === et.POUND && this.isSingleQuotationClose() && this.isDoubleQuotationClose() && this.isBracesClose() && this.isSquareBracketClose() && this._checkIfErrorObject(u, s)) {
         const l = this._findErrorObject(u, s);
         if (l == null)
           return m.VALUE;
@@ -1367,7 +1367,7 @@ class ga extends Ne {
           if (f && f === K.OPEN_BRACKET) {
             if (!this._setParentCurrentLexerNode() && u !== o - 1)
               return m.VALUE;
-            this._newAndPushCurrentLexerNode(dr, u, !0), this._openLambda();
+            this._newAndPushCurrentLexerNode(Cr, u, !0), this._openLambda();
           } else if (!this._setAncestorCurrentLexerNode() && u !== o - 1)
             return m.VALUE;
         } else
@@ -1558,7 +1558,7 @@ var ul = Object.getOwnPropertyDescriptor, cl = (i, a, e, t) => {
     (s = i[n]) && (r = s(r) || r);
   return r;
 }, li = (i, a) => (e, t) => a(e, t, i);
-let _r = class extends Ne {
+let Ar = class extends Ne {
   constructor(a, e) {
     super();
     A(this, "_arrayFormulaRange", {});
@@ -1618,7 +1618,7 @@ let _r = class extends Ne {
     });
   }
   getFormulaData() {
-    const a = {}, e = this._univerInstanceService.getAllUnitsForType(fr.UNIVER_SHEET);
+    const a = {}, e = this._univerInstanceService.getAllUnitsForType(hr.UNIVER_SHEET);
     return e.length === 0 || e.forEach((t) => {
       const r = t.getUnitId();
       a[r] = {}, t.getSheets().forEach((s) => {
@@ -1673,7 +1673,7 @@ let _r = class extends Ne {
     s.getValue(t, r) && (s.realDeleteValue(t, r), this._arrayFormulaRange[a] && (this._arrayFormulaRange[a][e] = s.getData()));
   }
   getCalculateData() {
-    const a = this._univerInstanceService.getAllUnitsForType(fr.UNIVER_SHEET), e = {}, t = {}, r = {};
+    const a = this._univerInstanceService.getAllUnitsForType(hr.UNIVER_SHEET), e = {}, t = {}, r = {};
     for (const n of a) {
       const s = n.getUnitId(), o = n.getSheets(), u = {}, c = {};
       for (const l of o) {
@@ -1702,7 +1702,7 @@ let _r = class extends Ne {
    * For formulas that are sensitive to hidden rows.
    */
   getHiddenRowsFiltered() {
-    const a = this._univerInstanceService.getAllUnitsForType(fr.UNIVER_SHEET), e = {};
+    const a = this._univerInstanceService.getAllUnitsForType(hr.UNIVER_SHEET), e = {};
     for (const t of a) {
       const r = t.getUnitId(), n = t.getSheets();
       e[r] = {};
@@ -1828,7 +1828,7 @@ let _r = class extends Ne {
                 unitId: t,
                 sheetId: s,
                 range: {
-                  rangeType: et.NORMAL,
+                  rangeType: Je.NORMAL,
                   startRow: d.startRow,
                   endRow: d.endRow,
                   // Use endRow as the inclusive end row
@@ -1855,10 +1855,10 @@ let _r = class extends Ne {
     }), t;
   }
 };
-_r = cl([
+Ar = cl([
   li(0, Yn),
   li(1, ye(ga))
-], _r);
+], Ar);
 function fi(i, a, e, t) {
   i[a] || (i[a] = {}), i[a][e] || (i[a][e] = {});
   const r = /* @__PURE__ */ new Map(), n = new Ce(i[a][e]);
@@ -2508,7 +2508,7 @@ let Us = class extends Ne {
     return this._localeService.getCurrentLocale();
   }
   getSheetsInfo() {
-    const a = this._univerInstanceService.getCurrentUnitForType(fr.UNIVER_SHEET), { id: e, sheetOrder: t } = a.getSnapshot();
+    const a = this._univerInstanceService.getCurrentUnitForType(hr.UNIVER_SHEET), { id: e, sheetOrder: t } = a.getSnapshot();
     return {
       sheetOrder: t,
       sheetNameMap: this._sheetIdToNameMap[e]
@@ -2625,7 +2625,7 @@ let Us = class extends Ne {
     });
   }
   _loadSheetData() {
-    const a = this._univerInstanceService.getCurrentUnitForType(fr.UNIVER_SHEET), e = a == null ? void 0 : a.getActiveSheet();
+    const a = this._univerInstanceService.getCurrentUnitForType(hr.UNIVER_SHEET), e = a == null ? void 0 : a.getActiveSheet();
     return this._executeUnitId = a == null ? void 0 : a.getUnitId(), this._executeSubUnitId = e == null ? void 0 : e.getSheetId(), this._formulaDataModel.getCalculateData();
   }
   /**
@@ -2648,7 +2648,7 @@ let Us = class extends Ne {
 Us = gl([
   Xr(0, Yn),
   Xr(1, ye(tc)),
-  Xr(2, ye(_r)),
+  Xr(2, ye(Ar)),
   Xr(3, ye(_o))
 ], Us);
 const Yt = Ze(
@@ -2659,7 +2659,7 @@ var dl = Object.getOwnPropertyDescriptor, Cl = (i, a, e, t) => {
     (s = i[n]) && (r = s(r) || r);
   return r;
 }, gs = (i, a) => (e, t) => a(e, t, i);
-let Ar = class extends Ne {
+let Er = class extends Ne {
   constructor(i, a, e) {
     super(), this._definedNamesService = i, this._lexerTreeBuilder = a, this._formulaCurrentConfigService = e;
   }
@@ -2722,11 +2722,11 @@ let Ar = class extends Ne {
     };
   }
 };
-Ar = Cl([
-  gs(0, Nr),
+Er = Cl([
+  gs(0, Or),
   gs(1, ye(ga)),
   gs(2, Yt)
-], Ar);
+], Er);
 function cn(i) {
   if (i == null)
     return !0;
@@ -3488,7 +3488,7 @@ I.hyperbolicCosine = I.cosh = function() {
   var i, a, e, t, r, n = this, s = n.constructor, o = new s(1);
   if (!n.isFinite()) return new s(n.s ? 1 / 0 : NaN);
   if (n.isZero()) return o;
-  e = s.precision, t = s.rounding, s.precision = e + Math.max(n.e, n.sd()) + 4, s.rounding = 1, r = n.d.length, r < 32 ? (i = Math.ceil(r / 3), a = (1 / Wn(4, i)).toString()) : (i = 16, a = "2.3283064365386962890625e-10"), n = Er(s, 1, n.times(a), new s(1), !0);
+  e = s.precision, t = s.rounding, s.precision = e + Math.max(n.e, n.sd()) + 4, s.rounding = 1, r = n.d.length, r < 32 ? (i = Math.ceil(r / 3), a = (1 / Wn(4, i)).toString()) : (i = 16, a = "2.3283064365386962890625e-10"), n = br(s, 1, n.times(a), new s(1), !0);
   for (var u, c = i, l = new s(8); c--; )
     u = n.times(n), n = o.minus(u.times(l.minus(u.times(l))));
   return J(n, s.precision = e, s.rounding = t, !0);
@@ -3497,9 +3497,9 @@ I.hyperbolicSine = I.sinh = function() {
   var i, a, e, t, r = this, n = r.constructor;
   if (!r.isFinite() || r.isZero()) return new n(r);
   if (a = n.precision, e = n.rounding, n.precision = a + Math.max(r.e, r.sd()) + 4, n.rounding = 1, t = r.d.length, t < 3)
-    r = Er(n, 2, r, r, !0);
+    r = br(n, 2, r, r, !0);
   else {
-    i = 1.4 * Math.sqrt(t), i = i > 16 ? 16 : i | 0, r = r.times(1 / Wn(5, i)), r = Er(n, 2, r, r, !0);
+    i = 1.4 * Math.sqrt(t), i = i > 16 ? 16 : i | 0, r = r.times(1 / Wn(5, i)), r = br(n, 2, r, r, !0);
     for (var s, o = new n(5), u = new n(16), c = new n(20); i--; )
       s = r.times(r), r = r.times(o.plus(s.times(u.times(s).plus(c))));
   }
@@ -3823,7 +3823,7 @@ function ln(i, a, e) {
 function vl(i, a) {
   var e, t, r;
   if (a.isZero()) return a;
-  t = a.d.length, t < 32 ? (e = Math.ceil(t / 3), r = (1 / Wn(4, e)).toString()) : (e = 16, r = "2.3283064365386962890625e-10"), i.precision += e, a = Er(i, 1, a.times(r), new i(1));
+  t = a.d.length, t < 32 ? (e = Math.ceil(t / 3), r = (1 / Wn(4, e)).toString()) : (e = 16, r = "2.3283064365386962890625e-10"), i.precision += e, a = br(i, 1, a.times(r), new i(1));
   for (var n = e; n--; ) {
     var s = a.times(a);
     a = s.times(s).minus(s).times(8).plus(1);
@@ -4062,13 +4062,13 @@ function Tl(i, a) {
 function Bl(i, a) {
   var e, t = a.d.length;
   if (t < 3)
-    return a.isZero() ? a : Er(i, 2, a, a);
-  e = 1.4 * Math.sqrt(t), e = e > 16 ? 16 : e | 0, a = a.times(1 / Wn(5, e)), a = Er(i, 2, a, a);
+    return a.isZero() ? a : br(i, 2, a, a);
+  e = 1.4 * Math.sqrt(t), e = e > 16 ? 16 : e | 0, a = a.times(1 / Wn(5, e)), a = br(i, 2, a, a);
   for (var r, n = new i(5), s = new i(16), o = new i(20); e--; )
     r = a.times(a), a = a.times(n.plus(r.times(s.times(r).minus(o))));
   return a;
 }
-function Er(i, a, e, t, r) {
+function br(i, a, e, t, r) {
   var n, s, o, u, c = i.precision, l = Math.ceil(c / te);
   for (oe = !1, u = e.times(e), o = new i(t); ; ) {
     if (s = Ve(o.times(u), new i(a++ * a++), c, 1), o = r ? t.plus(s) : t.minus(s), t = Ve(s.times(u), new i(a++ * a++), c, 1), s = o.plus(t), s.d[l] !== void 0) {
@@ -4373,7 +4373,7 @@ function Of(i, a) {
   const e = i - a;
   return Number.isSafeInteger(e) ? e : new P(i).sub(a).toNumber();
 }
-function Or(i, a) {
+function Mr(i, a) {
   const e = i * a;
   return Number.isSafeInteger(e) ? e : new P(i).mul(a).toNumber();
 }
@@ -4383,18 +4383,18 @@ function Mf(i, a) {
 }
 function Bt(i, a) {
   const e = 10 ** Math.trunc(a), t = qn(i, e);
-  return Math.round(Or(i, e) + t) / e;
+  return Math.round(Mr(i, e) + t) / e;
 }
 function Ke(i, a) {
   const e = 10 ** Math.trunc(a), t = qn(i, e);
-  return Math.floor(Or(i, e) + t) / e;
+  return Math.floor(Mr(i, e) + t) / e;
 }
 function Ye(i, a) {
   const e = 10 ** Math.trunc(a), t = qn(i, e);
-  return Math.ceil(Or(i, e) - t) / e;
+  return Math.ceil(Mr(i, e) - t) / e;
 }
 function qn(i, a) {
-  return Number.EPSILON * Math.max(1, Math.abs(Or(i, a)));
+  return Number.EPSILON * Math.max(1, Math.abs(Mr(i, a)));
 }
 function Ei(i, a) {
   return i - a * Math.floor(i / a);
@@ -4846,7 +4846,7 @@ class y extends Ht {
       return g.create(m.VALUE);
     if (!Number.isFinite(t) || !Number.isFinite(r))
       return g.create(m.NUM);
-    const n = Or(t, r);
+    const n = Mr(t, r);
     return Number.isFinite(n) ? y.create(n) : g.create(m.NUM);
   }
   dividedBy(e) {
@@ -6727,7 +6727,7 @@ class pn extends Xn {
 class ya extends Xn {
   constructor(a) {
     super(a);
-    const e = Cr(a);
+    const e = _r(a);
     this.setForcedUnitIdDirect(e.unitId), this.setForcedSheetName(e.sheetName), this.setRangeData(e.range);
   }
   isCell() {
@@ -6766,7 +6766,7 @@ class ya extends Xn {
 class Ra extends Xn {
   constructor(a) {
     super(a);
-    const e = Cr(a);
+    const e = _r(a);
     this.setForcedUnitIdDirect(e.unitId), this.setForcedSheetName(e.sheetName);
     const t = {
       ...e.range,
@@ -6774,7 +6774,7 @@ class Ra extends Xn {
       startRow: Number.NaN,
       endColumn: e.range.endColumn,
       endRow: Number.NaN,
-      rangeType: et.COLUMN
+      rangeType: Je.COLUMN
     };
     this.setRangeData(t);
   }
@@ -6791,13 +6791,13 @@ class Ra extends Xn {
     if (n >= t.startColumn && n <= t.endColumn)
       return this;
     const s = t.startColumn;
-    return n > s ? t.endColumn = n : (t.startColumn = n, t.endColumn = s), r.startAbsoluteRefType && (t.endAbsoluteRefType = r.startAbsoluteRefType), t.rangeType = et.COLUMN, this.setToken(`${this.getToken()}${K.COLON}${e.getToken()}`), this;
+    return n > s ? t.endColumn = n : (t.startColumn = n, t.endColumn = s), r.startAbsoluteRefType && (t.endAbsoluteRefType = r.startAbsoluteRefType), t.rangeType = Je.COLUMN, this.setToken(`${this.getToken()}${K.COLON}${e.getToken()}`), this;
   }
 }
 class pa extends Xn {
   constructor(a) {
     super(a);
-    const e = Cr(a);
+    const e = _r(a);
     this.setForcedUnitIdDirect(e.unitId), this.setForcedSheetName(e.sheetName);
     const t = {
       ...e.range,
@@ -6805,7 +6805,7 @@ class pa extends Xn {
       startRow: e.range.startRow,
       endColumn: Number.NaN,
       endRow: e.range.endRow,
-      rangeType: et.ROW
+      rangeType: Je.ROW
     };
     this.setRangeData(t);
   }
@@ -6822,7 +6822,7 @@ class pa extends Xn {
     if (n >= t.startRow && n <= t.endRow)
       return this;
     const s = t.startRow;
-    return n > s ? t.endRow = n : (t.startRow = n, t.endRow = s), r.startAbsoluteRefType && (t.endAbsoluteRefType = r.startAbsoluteRefType), t.rangeType = et.ROW, this.setToken(`${this.getToken()}${K.COLON}${e.getToken()}`), this;
+    return n > s ? t.endRow = n : (t.startRow = n, t.endRow = s), r.startAbsoluteRefType && (t.endAbsoluteRefType = r.startAbsoluteRefType), t.rangeType = Je.ROW, this.setToken(`${this.getToken()}${K.COLON}${e.getToken()}`), this;
   }
 }
 function O(i, a, e, t) {
@@ -7118,7 +7118,7 @@ let Qs = class extends Ne {
       };
     let e = i;
     if (i.startsWith("#") && so(i.slice(1))) {
-      const { unitId: t, sheetName: r, range: n } = Dr(i.slice(1)), s = this._univerInstanceService.getCurrentUnitOfType(fr.UNIVER_SHEET);
+      const { unitId: t, sheetName: r, range: n } = Dr(i.slice(1)), s = this._univerInstanceService.getCurrentUnitOfType(hr.UNIVER_SHEET);
       if (t === "" || t === s.getUnitId())
         if (r === "")
           e = `#gid=${s.getActiveSheet().getSheetId()}&range=${Ft(n)}`;
@@ -7142,7 +7142,7 @@ var eh = Object.getOwnPropertyDescriptor, th = (i, a, e, t) => {
   for (var r = t > 1 ? void 0 : t ? eh(a, e) : a, n = i.length - 1, s; n >= 0; n--)
     (s = i[n]) && (r = s(r) || r);
   return r;
-}, pi = (i, a) => (e, t) => a(e, t, i), Je = /* @__PURE__ */ ((i) => (i[i.IDLE = 0] = "IDLE", i[i.START = 1] = "START", i[i.START_DEPENDENCY = 2] = "START_DEPENDENCY", i[i.START_CALCULATION = 3] = "START_CALCULATION", i[i.CURRENTLY_CALCULATING = 4] = "CURRENTLY_CALCULATING", i[i.START_DEPENDENCY_ARRAY_FORMULA = 5] = "START_DEPENDENCY_ARRAY_FORMULA", i[i.START_CALCULATION_ARRAY_FORMULA = 6] = "START_CALCULATION_ARRAY_FORMULA", i[i.CURRENTLY_CALCULATING_ARRAY_FORMULA = 7] = "CURRENTLY_CALCULATING_ARRAY_FORMULA", i[i.CALCULATION_COMPLETED = 8] = "CALCULATION_COMPLETED", i))(Je || {}), Sr = /* @__PURE__ */ ((i) => (i[i.INITIAL = 0] = "INITIAL", i[i.STOP_EXECUTION = 1] = "STOP_EXECUTION", i[i.NOT_EXECUTED = 2] = "NOT_EXECUTED", i[i.SUCCESS = 3] = "SUCCESS", i))(Sr || {});
+}, pi = (i, a) => (e, t) => a(e, t, i), ut = /* @__PURE__ */ ((i) => (i[i.IDLE = 0] = "IDLE", i[i.START = 1] = "START", i[i.START_DEPENDENCY = 2] = "START_DEPENDENCY", i[i.START_CALCULATION = 3] = "START_CALCULATION", i[i.CURRENTLY_CALCULATING = 4] = "CURRENTLY_CALCULATING", i[i.START_DEPENDENCY_ARRAY_FORMULA = 5] = "START_DEPENDENCY_ARRAY_FORMULA", i[i.START_CALCULATION_ARRAY_FORMULA = 6] = "START_CALCULATION_ARRAY_FORMULA", i[i.CURRENTLY_CALCULATING_ARRAY_FORMULA = 7] = "CURRENTLY_CALCULATING_ARRAY_FORMULA", i[i.CALCULATION_COMPLETED = 8] = "CALCULATION_COMPLETED", i))(ut || {}), fr = /* @__PURE__ */ ((i) => (i[i.INITIAL = 0] = "INITIAL", i[i.STOP_EXECUTION = 1] = "STOP_EXECUTION", i[i.NOT_EXECUTED = 2] = "NOT_EXECUTED", i[i.SUCCESS = 3] = "SUCCESS", i))(fr || {});
 let Ws = class extends Ne {
   constructor(a, e) {
     super();
@@ -8040,16 +8040,16 @@ On = uh([
   ur(0, Qt),
   ur(1, Yt),
   ur(2, St),
-  ur(3, Nr),
+  ur(3, Or),
   ur(4, ye(Ki)),
-  ur(5, ye(_r))
+  ur(5, ye(Ar))
 ], On);
 var fh = Object.getOwnPropertyDescriptor, hh = (i, a, e, t) => {
   for (var r = t > 1 ? void 0 : t ? fh(a, e) : a, n = i.length - 1, s; n >= 0; n--)
     (s = i[n]) && (r = s(r) || r);
   return r;
 }, mh = (i, a) => (e, t) => a(e, t, i);
-let br = class extends Ne {
+let yr = class extends Ne {
   constructor(i) {
     super(), this._runtimeService = i;
   }
@@ -8118,11 +8118,11 @@ let br = class extends Ne {
     return i.nodeType === ie.REFERENCE && i.setRefOffset(a, e), i.execute(), Ut.SUCCESS;
   }
 };
-br = hh([
+yr = hh([
   mh(0, St)
-], br);
+], yr);
 function Uo(i) {
-  return i instanceof ae ? i.getToken() === dr : !1;
+  return i instanceof ae ? i.getToken() === Cr : !1;
 }
 function gh(i) {
   return i instanceof ae ? i.getToken() === mo : !1;
@@ -8291,7 +8291,7 @@ let Mn = class extends pt {
     const r = a[a.length - 1];
     if (!(e instanceof ae && r instanceof ae))
       return xe.create(m.NAME);
-    if (e.getToken() === dr) {
+    if (e.getToken() === Cr) {
       const o = e.getChildren();
       if (t.length !== o.length)
         return xe.create(m.VALUE);
@@ -8318,7 +8318,7 @@ let Mn = class extends pt {
 };
 Mn = _h([
   Mi(0, St),
-  Mi(1, ye(br))
+  Mi(1, ye(yr))
 ], Mn);
 function To(i) {
   if (!i)
@@ -8509,7 +8509,7 @@ class wi extends Ge {
       this.setValue(g.create(m.ERROR));
       return;
     }
-    if (this._operatorString === tt.PERCENTAGE) {
+    if (this._operatorString === et.PERCENTAGE) {
       if (e.isReferenceObject() && (e = e.toArrayValueObject()), t = this._functionExecutor.calculate(
         e,
         y.create(100)
@@ -8517,7 +8517,7 @@ class wi extends Ge {
         const n = Number(t.getValue());
         t = y.create(n, "0.00%");
       }
-    } else this._operatorString === tt.POUND ? t = this._handlerPound(e) : t = g.create(m.VALUE);
+    } else this._operatorString === et.POUND ? t = this._handlerPound(e) : t = g.create(m.VALUE);
     this.setValue(t);
   }
   _handlerPound(a) {
@@ -8542,16 +8542,16 @@ let Dn = class extends pt {
     if (a.charAt(0) === '"' && a.charAt(a.length - 1) === '"')
       return;
     let e = "";
-    if (a === tt.PERCENTAGE)
+    if (a === et.PERCENTAGE)
       e = Be.DIVIDED;
-    else return a === tt.POUND ? new wi(this._currentConfigService, this._lexer, a) : void 0;
+    else return a === et.POUND ? new wi(this._currentConfigService, this._lexer, a) : void 0;
     const t = this._functionService.getExecutor(e);
     return t ? new wi(this._currentConfigService, this._lexer, a, t) : (console.error(`No function ${i}`), xe.create(m.NAME));
   }
 };
 Dn = wh([
   Es(0, Qt),
-  Es(1, ye(Ar)),
+  Es(1, ye(Er)),
   Es(2, Yt)
 ], Dn);
 var Sh = Object.getOwnPropertyDescriptor, Dh = (i, a, e, t) => {
@@ -8642,7 +8642,7 @@ var jh = Object.getOwnPropertyDescriptor, Uh = (i, a, e, t) => {
   for (var r = t > 1 ? void 0 : t ? jh(a, e) : a, n = i.length - 1, s; n >= 0; n--)
     (s = i[n]) && (r = s(r) || r);
   return r;
-}, ut = (i, a) => (e, t) => a(e, t, i);
+}, ot = (i, a) => (e, t) => a(e, t, i);
 let Ur = class extends Ne {
   constructor(a, e, t, r, n, s, o, u, c, l, f) {
     super();
@@ -8683,7 +8683,7 @@ let Ur = class extends Ne {
     const r = new ae();
     r.setToken(Lr);
     const n = new ae();
-    n.setToken(dr);
+    n.setToken(Cr);
     const s = [...e];
     for (let u = 0; u < t; u++) {
       const c = s[u];
@@ -8709,7 +8709,7 @@ let Ur = class extends Ne {
       if (s = e, r === 0)
         return new bh(Tt).setParent(e), s;
     } else {
-      if (o === dr) {
+      if (o === Cr) {
         let f = this._lambdaParameterHandler(a, e);
         return f === !1 && (f = xe.create(m.ERROR)), f;
       }
@@ -8816,17 +8816,17 @@ let Ur = class extends Ne {
   }
 };
 Ur = Uh([
-  ut(0, St),
-  ut(1, ye(Po)),
-  ut(2, ye(On)),
-  ut(3, ye(Mn)),
-  ut(4, ye(Bo)),
-  ut(5, ye(wn)),
-  ut(6, ye(Nn)),
-  ut(7, ye(Sn)),
-  ut(8, ye(Dn)),
-  ut(9, ye(Ln)),
-  ut(10, ye(Io))
+  ot(0, St),
+  ot(1, ye(Po)),
+  ot(2, ye(On)),
+  ot(3, ye(Mn)),
+  ot(4, ye(Bo)),
+  ot(5, ye(wn)),
+  ot(6, ye(Nn)),
+  ot(7, ye(Sn)),
+  ot(8, ye(Dn)),
+  ot(9, ye(Ln)),
+  ot(10, ye(Io))
 ], Ur);
 class vh extends Ne {
   constructor() {
@@ -9180,7 +9180,7 @@ class Bh extends Ne {
     super(...arguments);
     A(this, "_referenceExecutorMap", /* @__PURE__ */ new Map());
     // unitId -> subUnitId -> featureId -> IFeatureCalculationManagerParam
-    A(this, "_onChanged$", new hr());
+    A(this, "_onChanged$", new mr());
     A(this, "onChanged$", this._onChanged$.asObservable());
   }
   dispose() {
@@ -9876,7 +9876,7 @@ let Zs = class extends Ne {
     n == null && (n = [], r.set(e, n)), n.push(t);
   }
   _isPreCalculateNode(a) {
-    return a.nodeType === ie.UNION || a.nodeType === ie.PREFIX && a.getToken() === Me.AT || a.nodeType === ie.SUFFIX && a.getToken() === tt.POUND;
+    return a.nodeType === ie.UNION || a.nodeType === ie.PREFIX && a.getToken() === Me.AT || a.nodeType === ie.SUFFIX && a.getToken() === et.POUND;
   }
   _nodeTraversalRef(a, e) {
     const t = a.getChildren(), r = t.length;
@@ -10179,9 +10179,9 @@ Zs = kh([
   Pt(1, St),
   Pt(2, Ma),
   Pt(3, vr),
-  Pt(4, ye(br)),
+  Pt(4, ye(yr)),
   Pt(5, ye(Ur)),
-  Pt(6, ye(Ar)),
+  Pt(6, ye(Er)),
   Pt(7, Jn)
 ], Zs);
 var $h = Object.getOwnPropertyDescriptor, Yh = (i, a, e, t) => {
@@ -10193,9 +10193,9 @@ const Hh = 500, zs = Ze("engine-formula.calculate-formula.service");
 let Js = class extends Ne {
   constructor(a, e, t, r, n, s, o) {
     super();
-    A(this, "_executionInProgressListener$", new hr());
+    A(this, "_executionInProgressListener$", new mr());
     A(this, "executionInProgressListener$", this._executionInProgressListener$.asObservable());
-    A(this, "_executionCompleteListener$", new hr());
+    A(this, "_executionCompleteListener$", new mr());
     A(this, "executionCompleteListener$", this._executionCompleteListener$.asObservable());
     A(this, "_executeLock", new cc());
     this._configService = a, this._lexer = e, this._currentConfigService = t, this._runtimeService = r, this._formulaDependencyGenerator = n, this._interpreter = s, this._astTreeBuilder = o;
@@ -10223,12 +10223,12 @@ let Js = class extends Ne {
     this._runtimeService.setRuntimeFeatureRange(a, e);
   }
   async execute(a) {
-    this._runtimeService.setFormulaExecuteStage(Je.START), this._executionInProgressListener$.next(this._runtimeService.getRuntimeState()), this._currentConfigService.load(a), this._runtimeService.reset();
+    this._runtimeService.setFormulaExecuteStage(ut.START), this._executionInProgressListener$.next(this._runtimeService.getRuntimeState()), this._currentConfigService.load(a), this._runtimeService.reset();
     const e = a.maxIteration || Co;
     this._executeLock.acquire("FORMULA_EXECUTION_LOCK", async () => {
       for (let t = 0; t < e && (this._runtimeService.setFormulaCycleIndex(t), await this._executeStep(), Rn.clear(), !!this._runtimeService.isCycleDependency()); t++)
         ;
-      this._runtimeService.setFormulaExecuteStage(Je.CALCULATION_COMPLETED), this._executionInProgressListener$.next(this._runtimeService.getRuntimeState()), this._executionCompleteListener$.next(this._runtimeService.getAllRuntimeData()), We.clear(), this._runtimeService.reset();
+      this._runtimeService.setFormulaExecuteStage(ut.CALCULATION_COMPLETED), this._executionInProgressListener$.next(this._runtimeService.getRuntimeState()), this._executionCompleteListener$.next(this._runtimeService.getAllRuntimeData()), We.clear(), this._runtimeService.reset();
     });
   }
   async _executeStep() {
@@ -10274,9 +10274,9 @@ let Js = class extends Ne {
   }
   // eslint-disable-next-line max-lines-per-function
   async _apply(a = !1) {
-    a ? this._runtimeService.setFormulaExecuteStage(Je.START_DEPENDENCY_ARRAY_FORMULA) : this._runtimeService.setFormulaExecuteStage(Je.START_DEPENDENCY), this._executionInProgressListener$.next(this._runtimeService.getRuntimeState());
+    a ? this._runtimeService.setFormulaExecuteStage(ut.START_DEPENDENCY_ARRAY_FORMULA) : this._runtimeService.setFormulaExecuteStage(ut.START_DEPENDENCY), this._executionInProgressListener$.next(this._runtimeService.getRuntimeState());
     const e = (await this._formulaDependencyGenerator.generate()).reverse(), t = this._interpreter;
-    a ? (this._runtimeService.setFormulaExecuteStage(Je.START_CALCULATION_ARRAY_FORMULA), this._runtimeService.setTotalArrayFormulasToCalculate(e.length)) : (this._runtimeService.setFormulaExecuteStage(Je.START_CALCULATION), this._runtimeService.setTotalFormulasToCalculate(e.length)), this._executionInProgressListener$.next(this._runtimeService.getRuntimeState());
+    a ? (this._runtimeService.setFormulaExecuteStage(ut.START_CALCULATION_ARRAY_FORMULA), this._runtimeService.setTotalArrayFormulasToCalculate(e.length)) : (this._runtimeService.setFormulaExecuteStage(ut.START_CALCULATION), this._runtimeService.setTotalFormulasToCalculate(e.length)), this._executionInProgressListener$.next(this._runtimeService.getRuntimeState());
     let r = [];
     const n = this._configService.getConfig(Ca), s = (n == null ? void 0 : n.intervalCount) || Hh, o = e.length;
     for (let u = 0; u < o; u++) {
@@ -10285,9 +10285,9 @@ let Js = class extends Ne {
         const _ = lc(d);
         r.push(_);
       }), a ? (this._runtimeService.setFormulaExecuteStage(
-        Je.CURRENTLY_CALCULATING_ARRAY_FORMULA
-      ), this._runtimeService.setCompletedArrayFormulasCount(u + 1)) : (this._runtimeService.setFormulaExecuteStage(Je.CURRENTLY_CALCULATING), this._runtimeService.setCompletedFormulasCount(u + 1)), this._executionInProgressListener$.next(this._runtimeService.getRuntimeState()), this._runtimeService.isStopExecution() || l == null && f == null)) {
-        this._runtimeService.setFormulaExecuteStage(Je.IDLE), this._runtimeService.markedAsStopFunctionsExecuted(), this._executionCompleteListener$.next(this._runtimeService.getAllRuntimeData());
+        ut.CURRENTLY_CALCULATING_ARRAY_FORMULA
+      ), this._runtimeService.setCompletedArrayFormulasCount(u + 1)) : (this._runtimeService.setFormulaExecuteStage(ut.CURRENTLY_CALCULATING), this._runtimeService.setCompletedFormulasCount(u + 1)), this._executionInProgressListener$.next(this._runtimeService.getRuntimeState()), this._runtimeService.isStopExecution() || l == null && f == null)) {
+        this._runtimeService.setFormulaExecuteStage(ut.IDLE), this._runtimeService.markedAsStopFunctionsExecuted(), this._executionCompleteListener$.next(this._runtimeService.getAllRuntimeData());
         return;
       }
       this._runtimeService.setCurrent(
@@ -10316,11 +10316,11 @@ let Js = class extends Ne {
 };
 Js = Yh([
   qt(0, ia),
-  qt(1, ye(Ar)),
+  qt(1, ye(Er)),
   qt(2, Yt),
   qt(3, St),
   qt(4, Xs),
-  qt(5, ye(br)),
+  qt(5, ye(yr)),
   qt(6, ye(Ur))
 ], Js);
 var Gh = Object.getOwnPropertyDescriptor, Qh = (i, a, e, t) => {
@@ -10371,17 +10371,17 @@ let Pn = class extends Ne {
   }
   // Notification
   _initialExecuteFormulaListener() {
-    this._calculateFormulaService.executionCompleteListener$.subscribe((i) => {
+    this._calculateFormulaService.executionCompleteListener$.subscribe(async (i) => {
       const a = i.functionsExecutedState;
       switch (a) {
-        case Sr.NOT_EXECUTED:
+        case fr.NOT_EXECUTED:
           break;
-        case Sr.STOP_EXECUTION:
+        case fr.STOP_EXECUTION:
           break;
-        case Sr.SUCCESS:
-          this._applyResult(i);
+        case fr.SUCCESS:
+          await this._applyResult(i);
           break;
-        case Sr.INITIAL:
+        case fr.INITIAL:
           break;
       }
       this._commandService.executeCommand(
@@ -10435,7 +10435,7 @@ let Pn = class extends Ne {
 Pn = Qh([
   ys(0, ir),
   ys(1, zs),
-  ys(2, ye(_r))
+  ys(2, ye(Ar))
 ], Pn);
 const Di = /[\[\]]/g;
 function Li(i, a) {
@@ -10931,7 +10931,7 @@ const Zh = [
   [Kh, ea.ARRAY_CONSTRAIN],
   [Xh, ea.FLATTEN]
 ];
-var yr;
+var Rr;
 ((i) => {
   const a = 0.636619772;
   function e(n, s) {
@@ -11070,7 +11070,7 @@ var yr;
     }
     return r(o, l, 2, 1);
   })();
-})(yr || (yr = {}));
+})(Rr || (Rr = {}));
 function wa(i) {
   return /^[01]{1,10}$/.test(i);
 }
@@ -11139,7 +11139,7 @@ function zh(i) {
   }
   return i < 1 ? t : -t;
 }
-function mr(i, a = 1) {
+function gr(i, a = 1) {
   let e = Math.floor(i);
   if (i < 0)
     return Number.NaN;
@@ -11197,7 +11197,7 @@ function tm(i) {
     }
   return e;
 }
-function gr(i, a) {
+function dr(i, a) {
   return i.map((e) => a[0].map(
     (t, r) => e.reduce((n, s, o) => n + s * a[o][r], 0)
   ));
@@ -11291,7 +11291,7 @@ function sm(i) {
   const { matrixU: e, matrixS: t, matrixV: r } = a, n = Ct(e), s = Array.from({ length: t.length }, () => new Array(i[0].length).fill(0)), o = Math.max(i.length, i[0].length) * Number.EPSILON * t[0];
   for (let u = 0; u < t.length; u++)
     Math.abs(t[u]) > o && (s[u][u] = 1 / t[u]);
-  return gr(r, gr(s, n));
+  return dr(r, dr(s, n));
 }
 function am(i) {
   const a = Ct(i), e = a.length, t = a[0].length;
@@ -11769,7 +11769,7 @@ function bm(i, a) {
   return e;
 }
 function Xo(i, a) {
-  return Math.exp(-a) * a ** i / mr(i);
+  return Math.exp(-a) * a ** i / gr(i);
 }
 function Gr(i, a) {
   const e = 0.5 * es(a / (i ** 2 + a), a / 2, 0.5);
@@ -11783,7 +11783,7 @@ function rs(i, a) {
   let e = xa(2 * Math.min(i, 1 - i), 0.5 * a, 0.5);
   return e = Math.sqrt(a * (1 - e) / e), i > 0.5 ? e : -e;
 }
-function rt(i, a, e, t, r) {
+function tt(i, a, e, t, r) {
   const n = [], s = [];
   let o = !0;
   for (let u = 0; u < e; u++) {
@@ -11929,11 +11929,11 @@ function is(i, a, e, t, r) {
   r && (s = i.map((C) => C.map((E) => Math.log(E))));
   let o = a, u = e;
   n && (s = Ct(s), o = Ct(o), u = Ct(u)), t && (o = o.map((C) => [...C, 1]));
-  const c = Ct(o), l = gr(c, o), f = gr(c, s);
+  const c = Ct(o), l = dr(c, o), f = dr(c, s);
   let h = rm(l);
   if (!h && (h = sm(l), !h))
     return g.create(m.NA);
-  let d = gr(h, f);
+  let d = dr(h, f);
   t || d.push([0]), d = Ct(d);
   const _ = d[0].pop();
   if (d[0].reverse(), d[0].push(_), r)
@@ -12147,7 +12147,7 @@ class ru extends V {
       array1Values: h,
       array2Values: d,
       noCalculate: _
-    } = rt(
+    } = tt(
       e,
       t,
       r * n,
@@ -12228,7 +12228,7 @@ class su extends V {
       array1Values: h,
       array2Values: d,
       noCalculate: _
-    } = rt(
+    } = tt(
       e,
       t,
       r * n,
@@ -12990,7 +12990,7 @@ class pu extends V {
       array1Values: h,
       array2Values: d,
       noCalculate: _
-    } = rt(
+    } = tt(
       e,
       t,
       r * n,
@@ -13513,7 +13513,7 @@ class ny extends jm {
     return !0;
   }
 }
-function nt(i) {
+function rt(i) {
   const a = [];
   if (i.isError())
     return {
@@ -13551,7 +13551,7 @@ function nt(i) {
     databaseValues: a
   };
 }
-function st(i, a) {
+function nt(i, a) {
   let e = -1;
   if (i.isError())
     return {
@@ -13588,7 +13588,7 @@ function st(i, a) {
     fieldIndex: e
   };
 }
-function at(i) {
+function st(i) {
   const a = [];
   if (i.isError())
     return {
@@ -13630,7 +13630,7 @@ function at(i) {
     criteriaValues: a
   };
 }
-function it(i, a, e) {
+function at(i, a, e) {
   const t = i.length, r = i[0].length, n = {};
   let s = !1;
   for (let o = 1; o < t; o++) {
@@ -13674,19 +13674,19 @@ class Um extends V {
     A(this, "maxParams", 3);
   }
   calculate(e, t, r) {
-    const { isError: n, errorObject: s, databaseValues: o } = nt(e);
+    const { isError: n, errorObject: s, databaseValues: o } = rt(e);
     if (n)
       return s;
-    const { isError: u, errorObject: c, fieldIndex: l } = st(t, o);
+    const { isError: u, errorObject: c, fieldIndex: l } = nt(t, o);
     if (u)
       return c;
-    const { isError: f, errorObject: h, criteriaValues: d } = at(r);
+    const { isError: f, errorObject: h, criteriaValues: d } = st(r);
     if (f)
       return h;
     let _ = 0, C = 0;
     for (let E = 1; E < o.length; E++) {
       const b = o[E][l];
-      typeof b == "number" && it(d, o, E) && (_ += b, C++);
+      typeof b == "number" && at(d, o, E) && (_ += b, C++);
     }
     return C === 0 ? g.create(m.DIV_BY_ZERO) : y.create(_ / C);
   }
@@ -13698,18 +13698,18 @@ class vm extends V {
     A(this, "maxParams", 3);
   }
   calculate(e, t, r) {
-    const { isError: n, errorObject: s, databaseValues: o } = nt(e);
+    const { isError: n, errorObject: s, databaseValues: o } = rt(e);
     if (n)
       return s;
-    const { isError: u, errorObject: c, fieldIndex: l } = st(t, o);
+    const { isError: u, errorObject: c, fieldIndex: l } = nt(t, o);
     if (u)
       return c;
-    const { isError: f, errorObject: h, criteriaValues: d } = at(r);
+    const { isError: f, errorObject: h, criteriaValues: d } = st(r);
     if (f)
       return h;
     let _ = 0;
     for (let C = 1; C < o.length; C++)
-      typeof o[C][l] == "number" && it(d, o, C) && _++;
+      typeof o[C][l] == "number" && at(d, o, C) && _++;
     return y.create(_);
   }
 }
@@ -13720,19 +13720,19 @@ class Tm extends V {
     A(this, "maxParams", 3);
   }
   calculate(e, t, r) {
-    const { isError: n, errorObject: s, databaseValues: o } = nt(e);
+    const { isError: n, errorObject: s, databaseValues: o } = rt(e);
     if (n)
       return s;
-    const { isError: u, errorObject: c, fieldIndex: l } = st(t, o);
+    const { isError: u, errorObject: c, fieldIndex: l } = nt(t, o);
     if (u)
       return c;
-    const { isError: f, errorObject: h, criteriaValues: d } = at(r);
+    const { isError: f, errorObject: h, criteriaValues: d } = st(r);
     if (f)
       return h;
     let _ = 0;
     for (let C = 1; C < o.length; C++) {
       const E = o[C][l];
-      E != null && it(d, o, C) && _++;
+      E != null && at(d, o, C) && _++;
     }
     return y.create(_);
   }
@@ -13744,19 +13744,19 @@ class Bm extends V {
     A(this, "maxParams", 3);
   }
   calculate(e, t, r) {
-    const { isError: n, errorObject: s, databaseValues: o } = nt(e);
+    const { isError: n, errorObject: s, databaseValues: o } = rt(e);
     if (n)
       return s;
-    const { isError: u, errorObject: c, fieldIndex: l } = st(t, o);
+    const { isError: u, errorObject: c, fieldIndex: l } = nt(t, o);
     if (u)
       return c;
-    const { isError: f, errorObject: h, criteriaValues: d } = at(r);
+    const { isError: f, errorObject: h, criteriaValues: d } = st(r);
     if (f)
       return h;
     let _ = 0, C = 0;
     for (let E = 1; E < o.length; E++) {
       const b = o[E][l];
-      b != null && it(d, o, E) && (_++, C = E);
+      b != null && at(d, o, E) && (_++, C = E);
     }
     return _ === 0 ? g.create(m.VALUE) : _ > 1 ? g.create(m.NUM) : e.get(C, l);
   }
@@ -13768,19 +13768,19 @@ class Im extends V {
     A(this, "maxParams", 3);
   }
   calculate(e, t, r) {
-    const { isError: n, errorObject: s, databaseValues: o } = nt(e);
+    const { isError: n, errorObject: s, databaseValues: o } = rt(e);
     if (n)
       return s;
-    const { isError: u, errorObject: c, fieldIndex: l } = st(t, o);
+    const { isError: u, errorObject: c, fieldIndex: l } = nt(t, o);
     if (u)
       return c;
-    const { isError: f, errorObject: h, criteriaValues: d } = at(r);
+    const { isError: f, errorObject: h, criteriaValues: d } = st(r);
     if (f)
       return h;
     let _ = -1 / 0, C = 0;
     for (let E = 1; E < o.length; E++) {
       const b = o[E][l];
-      typeof b == "number" && it(d, o, E) && (_ = Math.max(_, b), C++);
+      typeof b == "number" && at(d, o, E) && (_ = Math.max(_, b), C++);
     }
     return C === 0 ? y.create(0) : y.create(_);
   }
@@ -13792,19 +13792,19 @@ class Fm extends V {
     A(this, "maxParams", 3);
   }
   calculate(e, t, r) {
-    const { isError: n, errorObject: s, databaseValues: o } = nt(e);
+    const { isError: n, errorObject: s, databaseValues: o } = rt(e);
     if (n)
       return s;
-    const { isError: u, errorObject: c, fieldIndex: l } = st(t, o);
+    const { isError: u, errorObject: c, fieldIndex: l } = nt(t, o);
     if (u)
       return c;
-    const { isError: f, errorObject: h, criteriaValues: d } = at(r);
+    const { isError: f, errorObject: h, criteriaValues: d } = st(r);
     if (f)
       return h;
     let _ = 1 / 0, C = 0;
     for (let E = 1; E < o.length; E++) {
       const b = o[E][l];
-      typeof b == "number" && it(d, o, E) && (_ = Math.min(_, b), C++);
+      typeof b == "number" && at(d, o, E) && (_ = Math.min(_, b), C++);
     }
     return C === 0 ? y.create(0) : y.create(_);
   }
@@ -13816,19 +13816,19 @@ class km extends V {
     A(this, "maxParams", 3);
   }
   calculate(e, t, r) {
-    const { isError: n, errorObject: s, databaseValues: o } = nt(e);
+    const { isError: n, errorObject: s, databaseValues: o } = rt(e);
     if (n)
       return s;
-    const { isError: u, errorObject: c, fieldIndex: l } = st(t, o);
+    const { isError: u, errorObject: c, fieldIndex: l } = nt(t, o);
     if (u)
       return c;
-    const { isError: f, errorObject: h, criteriaValues: d } = at(r);
+    const { isError: f, errorObject: h, criteriaValues: d } = st(r);
     if (f)
       return h;
     let _ = 1, C = 0;
     for (let E = 1; E < o.length; E++) {
       const b = o[E][l];
-      typeof b == "number" && it(d, o, E) && (_ *= b, C++);
+      typeof b == "number" && at(d, o, E) && (_ *= b, C++);
     }
     return C === 0 ? y.create(0) : y.create(_);
   }
@@ -13840,20 +13840,20 @@ class $m extends V {
     A(this, "maxParams", 3);
   }
   calculate(e, t, r) {
-    const { isError: n, errorObject: s, databaseValues: o } = nt(e);
+    const { isError: n, errorObject: s, databaseValues: o } = rt(e);
     if (n)
       return s;
-    const { isError: u, errorObject: c, fieldIndex: l } = st(t, o);
+    const { isError: u, errorObject: c, fieldIndex: l } = nt(t, o);
     if (u)
       return c;
-    const { isError: f, errorObject: h, criteriaValues: d } = at(r);
+    const { isError: f, errorObject: h, criteriaValues: d } = st(r);
     if (f)
       return h;
     const _ = [];
     let C = 0, E = 0;
     for (let N = 1; N < o.length; N++) {
       const M = o[N][l];
-      typeof M == "number" && it(d, o, N) && (_.push(M), C += M, E++);
+      typeof M == "number" && at(d, o, N) && (_.push(M), C += M, E++);
     }
     if (E <= 1)
       return g.create(m.DIV_BY_ZERO);
@@ -13872,20 +13872,20 @@ class Ym extends V {
     A(this, "maxParams", 3);
   }
   calculate(e, t, r) {
-    const { isError: n, errorObject: s, databaseValues: o } = nt(e);
+    const { isError: n, errorObject: s, databaseValues: o } = rt(e);
     if (n)
       return s;
-    const { isError: u, errorObject: c, fieldIndex: l } = st(t, o);
+    const { isError: u, errorObject: c, fieldIndex: l } = nt(t, o);
     if (u)
       return c;
-    const { isError: f, errorObject: h, criteriaValues: d } = at(r);
+    const { isError: f, errorObject: h, criteriaValues: d } = st(r);
     if (f)
       return h;
     const _ = [];
     let C = 0, E = 0;
     for (let N = 1; N < o.length; N++) {
       const M = o[N][l];
-      typeof M == "number" && it(d, o, N) && (_.push(M), C += M, E++);
+      typeof M == "number" && at(d, o, N) && (_.push(M), C += M, E++);
     }
     if (E === 0)
       return g.create(m.DIV_BY_ZERO);
@@ -13904,19 +13904,19 @@ class Hm extends V {
     A(this, "maxParams", 3);
   }
   calculate(e, t, r) {
-    const { isError: n, errorObject: s, databaseValues: o } = nt(e);
+    const { isError: n, errorObject: s, databaseValues: o } = rt(e);
     if (n)
       return s;
-    const { isError: u, errorObject: c, fieldIndex: l } = st(t, o);
+    const { isError: u, errorObject: c, fieldIndex: l } = nt(t, o);
     if (u)
       return c;
-    const { isError: f, errorObject: h, criteriaValues: d } = at(r);
+    const { isError: f, errorObject: h, criteriaValues: d } = st(r);
     if (f)
       return h;
     let _ = 0;
     for (let C = 1; C < o.length; C++) {
       const E = o[C][l];
-      typeof E == "number" && it(d, o, C) && (_ += E);
+      typeof E == "number" && at(d, o, C) && (_ += E);
     }
     return y.create(_);
   }
@@ -13928,20 +13928,20 @@ class Gm extends V {
     A(this, "maxParams", 3);
   }
   calculate(e, t, r) {
-    const { isError: n, errorObject: s, databaseValues: o } = nt(e);
+    const { isError: n, errorObject: s, databaseValues: o } = rt(e);
     if (n)
       return s;
-    const { isError: u, errorObject: c, fieldIndex: l } = st(t, o);
+    const { isError: u, errorObject: c, fieldIndex: l } = nt(t, o);
     if (u)
       return c;
-    const { isError: f, errorObject: h, criteriaValues: d } = at(r);
+    const { isError: f, errorObject: h, criteriaValues: d } = st(r);
     if (f)
       return h;
     const _ = [];
     let C = 0, E = 0;
     for (let N = 1; N < o.length; N++) {
       const M = o[N][l];
-      typeof M == "number" && it(d, o, N) && (_.push(M), C += M, E++);
+      typeof M == "number" && at(d, o, N) && (_.push(M), C += M, E++);
     }
     if (E <= 1)
       return g.create(m.DIV_BY_ZERO);
@@ -13960,20 +13960,20 @@ class Qm extends V {
     A(this, "maxParams", 3);
   }
   calculate(e, t, r) {
-    const { isError: n, errorObject: s, databaseValues: o } = nt(e);
+    const { isError: n, errorObject: s, databaseValues: o } = rt(e);
     if (n)
       return s;
-    const { isError: u, errorObject: c, fieldIndex: l } = st(t, o);
+    const { isError: u, errorObject: c, fieldIndex: l } = nt(t, o);
     if (u)
       return c;
-    const { isError: f, errorObject: h, criteriaValues: d } = at(r);
+    const { isError: f, errorObject: h, criteriaValues: d } = st(r);
     if (f)
       return h;
     const _ = [];
     let C = 0, E = 0;
     for (let N = 1; N < o.length; N++) {
       const M = o[N][l];
-      typeof M == "number" && it(d, o, N) && (_.push(M), C += M, E++);
+      typeof M == "number" && at(d, o, N) && (_.push(M), C += M, E++);
     }
     if (E === 0)
       return g.create(m.DIV_BY_ZERO);
@@ -14233,13 +14233,13 @@ function Du(i, a) {
       return -1;
   }
 }
-function Rr(i, a, e) {
+function pr(i, a, e) {
   return Wr(i, a) === e;
 }
-function pr(i, a) {
+function Vr(i, a) {
   let e = i.getUTCFullYear(), t = i.getUTCMonth();
   const r = i.getUTCDate();
-  return Rr(e, t, r) ? (i.setUTCDate(1), i.setUTCMonth(i.getUTCMonth() + a), e = i.getUTCFullYear(), t = i.getUTCMonth(), i.setUTCDate(Wr(e, t))) : i.setUTCMonth(i.getUTCMonth() + a), i;
+  return pr(e, t, r) ? (i.setUTCDate(1), i.setUTCMonth(i.getUTCMonth() + a), e = i.getUTCFullYear(), t = i.getUTCMonth(), i.setUTCDate(Wr(e, t))) : i.setUTCMonth(i.getUTCMonth() + a), i;
 }
 class sg extends V {
   constructor() {
@@ -15327,7 +15327,7 @@ class Pg extends V {
       return g.create(m.VALUE);
     if (l < 0)
       return g.create(m.NUM);
-    const f = yr.besseli(c, l);
+    const f = Rr.besseli(c, l);
     return Number.isNaN(f) || !Number.isFinite(f) ? g.create(m.NUM) : y.create(f);
   }
 }
@@ -15348,7 +15348,7 @@ class xg extends V {
       return g.create(m.VALUE);
     if (l < 0)
       return g.create(m.NUM);
-    const f = yr.besselj(c, l);
+    const f = Rr.besselj(c, l);
     return Number.isNaN(f) || !Number.isFinite(f) ? g.create(m.NUM) : y.create(f);
   }
 }
@@ -15369,7 +15369,7 @@ class jg extends V {
       return g.create(m.VALUE);
     if (l < 0)
       return g.create(m.NUM);
-    const f = yr.besselk(c, l);
+    const f = Rr.besselk(c, l);
     return Number.isNaN(f) || !Number.isFinite(f) ? g.create(m.NUM) : y.create(f);
   }
 }
@@ -15390,7 +15390,7 @@ class Ug extends V {
       return g.create(m.VALUE);
     if (l < 0)
       return g.create(m.NUM);
-    const f = yr.bessely(c, l);
+    const f = Rr.bessely(c, l);
     return Number.isNaN(f) || !Number.isFinite(f) ? g.create(m.NUM) : y.create(f);
   }
 }
@@ -17352,7 +17352,7 @@ function Xe(i, a, e, t) {
   if (t === 1) {
     const n = $t(i, a, e);
     let s = re(n);
-    s = pr(s, 12 / e);
+    s = Vr(s, 12 / e);
     const o = Re(s);
     n < 0 && e === 1 ? r = 365 : r = o - n;
   } else t === 3 ? r = 365 / e : r = 360 / e;
@@ -17362,22 +17362,22 @@ function Lu(i, a, e) {
   const t = re(i);
   let r = re(a);
   for (r.setUTCFullYear(t.getUTCFullYear()), r < t && r.setUTCFullYear(r.getUTCFullYear() + 1); r > t; )
-    r = pr(r, -12 / e);
-  return r = pr(r, 12 / e), Re(r);
+    r = Vr(r, -12 / e);
+  return r = Vr(r, 12 / e), Re(r);
 }
 function sr(i, a, e) {
   let t = 0;
   const r = re(i);
   let n = re(a);
   for (; n > r; )
-    n = pr(n, -12 / e), t++;
+    n = Vr(n, -12 / e), t++;
   return t;
 }
 function $t(i, a, e) {
   const t = re(i);
   let r = re(a);
   for (r.setUTCFullYear(t.getUTCFullYear()), r < t && r.setUTCFullYear(r.getUTCFullYear() + 1); r > t; )
-    r = pr(r, -12 / e);
+    r = Vr(r, -12 / e);
   return Re(r);
 }
 function Pu(i, a, e, t, r, n) {
@@ -17488,22 +17488,22 @@ function Zt(i, a, e) {
   return i < a ? t : 0;
 }
 function vu(i, a, e) {
-  const t = re(i), r = t.getUTCFullYear(), n = t.getUTCMonth(), s = t.getUTCDate(), o = Rr(r, n, s), u = re(a), c = u.getUTCFullYear(), l = u.getUTCMonth(), f = u.getUTCDate(), h = Rr(c, l, f);
+  const t = re(i), r = t.getUTCFullYear(), n = t.getUTCMonth(), s = t.getUTCDate(), o = pr(r, n, s), u = re(a), c = u.getUTCFullYear(), l = u.getUTCMonth(), f = u.getUTCDate(), h = pr(c, l, f);
   return !(s !== f && !(o && h) || Math.abs((c - r) * 12 + (l - n)) % (12 / e) !== 0);
 }
-function Mr(i, a, e) {
+function wr(i, a, e) {
   return $t(i, a, e) >= 0;
 }
 function tr(i, a, e) {
   let t = re(i);
-  if (t = pr(t, a), e) {
+  if (t = Vr(t, a), e) {
     const r = t.getUTCFullYear(), n = t.getUTCMonth(), s = Wr(r, n);
     t.setUTCDate(s);
   }
   return Re(t);
 }
 function B1(i, a, e, t) {
-  const r = re(i), n = re(a), s = r.getUTCFullYear(), o = r.getUTCMonth(), u = r.getUTCDate(), c = n.getUTCFullYear(), l = n.getUTCMonth(), f = n.getUTCDate(), h = Rr(s, o, u), d = !h && o !== 1 && u > 28 && u < Wr(s, o) ? Rr(c, l, f) : h, _ = tr(a, 0, d);
+  const r = re(i), n = re(a), s = r.getUTCFullYear(), o = r.getUTCMonth(), u = r.getUTCDate(), c = n.getUTCFullYear(), l = n.getUTCMonth(), f = n.getUTCDate(), h = pr(s, o, u), d = !h && o !== 1 && u > 28 && u < Wr(s, o) ? pr(c, l, f) : h, _ = tr(a, 0, d);
   let C = 1 + +(a < _), E = tr(_, e, d);
   for (; !(e > 0 ? E >= a : E <= a); )
     E = tr(E, e, d), C++;
@@ -17591,7 +17591,7 @@ class F1 extends V {
     if (l <= 0)
       return y.create(0);
     l = $t(r, t, o);
-    const f = 12 / o, h = re(t), d = h.getUTCFullYear(), _ = h.getUTCMonth(), C = h.getUTCDate(), E = Rr(d, _, C);
+    const f = 12 / o, h = re(t), d = h.getUTCFullYear(), _ = h.getUTCMonth(), C = h.getUTCDate(), E = pr(d, _, C);
     let b = tr(t, -f, E);
     if (r > t && c)
       for (b = t; b < r; )
@@ -18200,8 +18200,8 @@ class o0 extends V {
       const [ne, z, G, ge, de, Ee] = Q, pe = +ne.getValue(), me = +z.getValue(), ve = +G.getValue(), ht = +ge.getValue(), Dt = +de.getValue(), Lt = +Ee.getValue();
       if (me < 1 || Math.floor(me) > Math.ceil(ve))
         return g.create(m.NUM);
-      const ot = xu(pe, me, ve, ht, Dt, Lt ? 1 : 0);
-      return Number.isNaN(ot) || !Number.isFinite(ot) ? g.create(m.NUM) : N === 0 && M === 0 ? y.create(ot, ze(this.getLocale())) : y.create(ot);
+      const it = xu(pe, me, ve, ht, Dt, Lt ? 1 : 0);
+      return Number.isNaN(it) || !Number.isFinite(it) ? g.create(m.NUM) : N === 0 && M === 0 ? y.create(it, ze(this.getLocale())) : y.create(it);
     });
     return l === 1 && f === 1 ? R.get(0, 0) : R;
   }
@@ -18567,7 +18567,7 @@ class d0 extends V {
     return y.create(ge);
   }
   _validDate(e, t, r, n, s) {
-    return this._getDateCorrectOrder(e, t, r, n) && vu(e, t, s) && Mr(n, e, s);
+    return this._getDateCorrectOrder(e, t, r, n) && vu(e, t, s) && wr(n, e, s);
   }
   _getDateCorrectOrder(e, t, r, n) {
     return Math.floor(e) > Math.floor(t) && Math.floor(t) > Math.floor(r) && Math.floor(r) > Math.floor(n);
@@ -18601,7 +18601,7 @@ class C0 extends V {
     return Number.isNaN(F) || Number.isNaN(Q) || Number.isNaN(ne) || Number.isNaN(z) || Number.isNaN(G) ? g.create(m.VALUE) : F < 0 || Q <= 0 || ne <= 0 || ![1, 2, 4].includes(z) || G < 0 || G > 4 || !this._validDate(L, x, D, U, z) ? g.create(m.NUM) : this._getResult(D, L, U, x, F, Q, ne, z, G);
   }
   _validDate(e, t, r, n, s) {
-    return this._getDateCorrectOrder(e, t, r, n) && vu(e, t, s) && Mr(n, e, s);
+    return this._getDateCorrectOrder(e, t, r, n) && vu(e, t, s) && wr(n, e, s);
   }
   _getDateCorrectOrder(e, t, r, n) {
     return Math.floor(e) > Math.floor(t) && Math.floor(t) > Math.floor(r) && Math.floor(r) > Math.floor(n);
@@ -18645,7 +18645,7 @@ class _0 extends V {
     return y.create(ne);
   }
   _validDate(e, t, r, n) {
-    return Math.floor(e) > Math.floor(t) && Math.floor(t) > Math.floor(r) && Mr(r, e, n);
+    return Math.floor(e) > Math.floor(t) && Math.floor(t) > Math.floor(r) && wr(r, e, n);
   }
   _getResult(e, t, r, n, s, o, u, c) {
     const l = this._getCoupDate(t, r, u), f = this._getFrac(r, e, l, u, c), h = this._getFrac(r, t, l, u, c), d = this._getFrac(e, t, l, u, c);
@@ -18708,7 +18708,7 @@ class A0 extends V {
     return y.create(ne);
   }
   _validDate(e, t, r, n) {
-    return Math.floor(e) > Math.floor(t) && Math.floor(t) > Math.floor(r) && Mr(r, e, n);
+    return Math.floor(e) > Math.floor(t) && Math.floor(t) > Math.floor(r) && wr(r, e, n);
   }
   _getResult(e, t, r, n, s, o, u, c) {
     const l = this._getCoupDate(t, r, u), f = this._getFrac(r, e, l, u, c), h = this._getFrac(r, t, l, u, c), d = this._getFrac(e, t, l, u, c);
@@ -18831,8 +18831,8 @@ class y0 extends V {
       const [ne, z, G, ge, de, Ee] = Q, pe = +ne.getValue(), me = +z.getValue(), ve = +G.getValue(), ht = +ge.getValue(), Dt = +de.getValue(), Lt = +Ee.getValue();
       if (me < 1 || Math.floor(me) > Math.ceil(ve) || me - ve >= 1)
         return g.create(m.NUM);
-      const ot = qr(pe, ve, ht, Dt, Lt ? 1 : 0) - xu(pe, me, ve, ht, Dt, Lt ? 1 : 0);
-      return Number.isNaN(ot) || !Number.isFinite(ot) ? g.create(m.NUM) : N === 0 && M === 0 ? y.create(ot, ze(this.getLocale())) : y.create(ot);
+      const it = qr(pe, ve, ht, Dt, Lt ? 1 : 0) - xu(pe, me, ve, ht, Dt, Lt ? 1 : 0);
+      return Number.isNaN(it) || !Number.isFinite(it) ? g.create(m.NUM) : N === 0 && M === 0 ? y.create(it, ze(this.getLocale())) : y.create(it);
     });
     return l === 1 && f === 1 ? R.get(0, 0) : R;
   }
@@ -18858,7 +18858,7 @@ class R0 extends V {
     const w = +C.getValue(), S = +E.getValue(), D = +b.getValue(), L = Math.floor(+R.getValue()), U = Math.floor(+p.getValue());
     if (Number.isNaN(w) || Number.isNaN(S) || Number.isNaN(D) || Number.isNaN(L) || Number.isNaN(U))
       return g.create(m.VALUE);
-    if (w < 0 || S < 0 || D <= 0 || ![1, 2, 4].includes(L) || U < 0 || U > 4 || N >= M || !Mr(N, M, L))
+    if (w < 0 || S < 0 || D <= 0 || ![1, 2, 4].includes(L) || U < 0 || U > 4 || N >= M || !wr(N, M, L))
       return g.create(m.NUM);
     const x = gn(N, M, w, S, D, L, U);
     return y.create(x);
@@ -18985,8 +18985,8 @@ class O0 extends V {
         return Q;
       const [z, G, ge, de, Ee, pe] = ne, me = +z.getValue(), ve = +G.getValue(), ht = +ge.getValue(), Dt = +de.getValue();
       let Lt = +Ee.getValue();
-      const ot = +pe.getValue();
-      return Lt = Lt ? 1 : 0, me <= 0 || ve >= 0 && ht >= 0 && Dt >= 0 || ve <= 0 && ht <= 0 && Dt <= 0 ? g.create(m.NUM) : this._getResult(me, ve, ht, Dt, Lt, ot, M, w);
+      const it = +pe.getValue();
+      return Lt = Lt ? 1 : 0, me <= 0 || ve >= 0 && ht >= 0 && Dt >= 0 || ve <= 0 && ht <= 0 && Dt <= 0 ? g.create(m.NUM) : this._getResult(me, ve, ht, Dt, Lt, it, M, w);
     });
     return f === 1 && h === 1 ? p.get(0, 0) : p;
   }
@@ -19625,7 +19625,7 @@ class T0 extends V {
     const w = +C.getValue(), S = +E.getValue(), D = +b.getValue(), L = Math.floor(+R.getValue()), U = Math.floor(+p.getValue());
     if (Number.isNaN(w) || Number.isNaN(S) || Number.isNaN(D) || Number.isNaN(L) || Number.isNaN(U))
       return g.create(m.VALUE);
-    if (w < 0 || S <= 0 || D <= 0 || ![1, 2, 4].includes(L) || U < 0 || U > 4 || N >= M || !Mr(N, M, L))
+    if (w < 0 || S <= 0 || D <= 0 || ![1, 2, 4].includes(L) || U < 0 || U > 4 || N >= M || !wr(N, M, L))
       return g.create(m.NUM);
     const x = this._getResult(N, M, w, S, D, L, U);
     return y.create(x);
@@ -21630,7 +21630,7 @@ class Wd extends V {
       return this._setDefault(new pa(n));
     if (to(n))
       return this._setDefault(new Ra(n));
-    const s = Cr(n), { range: o, sheetName: u, unitId: c } = s;
+    const s = _r(n), { range: o, sheetName: u, unitId: c } = s;
     if (Number.isNaN(o.startRow) || o.endRow + 1 > 1048576 || Number.isNaN(o.startColumn) || o.endColumn + 1 > 16384)
       return g.create(m.REF);
     const l = new pn(o);
@@ -23468,7 +23468,7 @@ class FC extends V {
     let t = e;
     if (t.isString() && (t = t.convertToNumberObjectValue()), t.isError())
       return t;
-    const r = Math.floor(+t.getValue()), n = mr(r);
+    const r = Math.floor(+t.getValue()), n = gr(r);
     return Number.isNaN(n) || !Number.isFinite(n) ? g.create(m.NUM) : y.create(n);
   }
 }
@@ -23492,7 +23492,7 @@ class kC extends V {
     let t = e;
     if (t.isString() && (t = t.convertToNumberObjectValue()), t.isError())
       return t;
-    const r = Math.floor(+t.getValue()), n = mr(r, 2);
+    const r = Math.floor(+t.getValue()), n = gr(r, 2);
     return Number.isNaN(n) || !Number.isFinite(n) ? g.create(m.NUM) : y.create(n);
   }
 }
@@ -23859,7 +23859,7 @@ class JC extends V {
       return u;
     if (c instanceof g)
       return c;
-    const l = gr(u, c);
+    const l = dr(u, c);
     return q.createByArray(l);
   }
   _getMatrix(e, t, r) {
@@ -23955,7 +23955,7 @@ class r_ extends V {
               return u = !0, c = h, !1;
             if (t += d, t > 170)
               return u = !0, c = g.create(m.NUM), !1;
-            r *= mr(d);
+            r *= gr(d);
           }), u)
             return c;
         } else {
@@ -23964,10 +23964,10 @@ class r_ extends V {
             return c;
           if (t += l, t > 170)
             return g.create(m.NUM);
-          r *= mr(l);
+          r *= gr(l);
         }
     }
-    const n = mr(t) / r;
+    const n = gr(t) / r;
     return y.create(n);
   }
   _handleSingleObject(e) {
@@ -25261,7 +25261,7 @@ class B_ extends V {
         return _;
       if (d.isString() && (d = d.convertToNumberObjectValue()), d.isError())
         return d;
-      const C = +_.getValue(), E = +d.getValue(), b = 10 ** Math.trunc(E), R = qn(C, b), p = Math.trunc(Or(C, b) + R) / b;
+      const C = +_.getValue(), E = +d.getValue(), b = 10 ** Math.trunc(E), R = qn(C, b), p = Math.trunc(Mr(C, b) + R) / b;
       return y.create(p);
     });
     return n === 1 && s === 1 ? c.get(0, 0) : c;
@@ -25933,7 +25933,7 @@ class aA extends V {
       array1Values: h,
       array2Values: d,
       noCalculate: _
-    } = rt(
+    } = tt(
       e,
       t,
       r * n,
@@ -26100,7 +26100,7 @@ class hA extends V {
       array1Values: h,
       array2Values: d,
       noCalculate: _
-    } = rt(
+    } = tt(
       e,
       t,
       r * n,
@@ -26314,7 +26314,7 @@ class Ti extends V {
       array1Values: d,
       array2Values: _,
       noCalculate: C
-    } = rt(
+    } = tt(
       t,
       r,
       n * s,
@@ -26676,7 +26676,7 @@ class NA extends V {
       array1Values: h,
       array2Values: d,
       noCalculate: _
-    } = rt(
+    } = tt(
       e,
       t,
       r * n,
@@ -27454,7 +27454,7 @@ class $A extends V {
       array1Values: h,
       array2Values: d,
       noCalculate: _
-    } = rt(
+    } = tt(
       e,
       t,
       r * n,
@@ -27735,7 +27735,7 @@ class qA extends V {
       array1Values: h,
       array2Values: d,
       noCalculate: _
-    } = rt(
+    } = tt(
       e,
       t,
       r * n,
@@ -27959,7 +27959,7 @@ class zA extends V {
       array1Values: h,
       array2Values: d,
       noCalculate: _
-    } = rt(
+    } = tt(
       e,
       t,
       r * n,
@@ -28103,7 +28103,7 @@ class tE extends V {
       array1Values: h,
       array2Values: d,
       noCalculate: _
-    } = rt(
+    } = tt(
       e,
       t,
       r * n,
@@ -28244,7 +28244,7 @@ class iE extends V {
       array1Values: h,
       array2Values: d,
       noCalculate: _
-    } = rt(
+    } = tt(
       e,
       t,
       r * n,
@@ -29316,7 +29316,7 @@ class BE extends V {
     return j.create(C);
   }
 }
-const wr = ["〇", "一", "二", "三", "四", "五", "六", "七", "八", "九"], tn = ["零", "壹", "贰", "叁", "肆", "伍", "陆", "柒", "捌", "玖"], IE = ["", "十", "百", "千"], FE = ["", "拾", "佰", "仟"], kE = ["", "万", "亿", "兆"];
+const Sr = ["〇", "一", "二", "三", "四", "五", "六", "七", "八", "九"], tn = ["零", "壹", "贰", "叁", "肆", "伍", "陆", "柒", "捌", "玖"], IE = ["", "十", "百", "千"], FE = ["", "拾", "佰", "仟"], kE = ["", "万", "亿", "兆"];
 class $E extends V {
   constructor() {
     super(...arguments);
@@ -29354,19 +29354,19 @@ class $E extends V {
     for (let h = 0; h < c; h++) {
       const d = Number(u[h]);
       if (c === 1 && d === 0) {
-        l += o === 2 ? tn[0] : wr[0];
+        l += o === 2 ? tn[0] : Sr[0];
         break;
       }
       if (o === 3) {
-        l += wr[d];
+        l += Sr[d];
         continue;
       }
       const _ = c - h - 1, C = _ % 4, E = Math.trunc(_ / 4);
       if (c >= 17 && E > 2) {
-        if (l += o === 1 ? wr[d] : tn[d], E > 3)
+        if (l += o === 1 ? Sr[d] : tn[d], E > 3)
           continue;
       } else
-        d === 0 ? f = C !== 0 : (f && (l += o === 1 ? wr[0] : tn[0], f = !1), l += o === 1 ? wr[d] + IE[C] : tn[d] + FE[C]);
+        d === 0 ? f = C !== 0 : (f && (l += o === 1 ? Sr[0] : tn[0], f = !1), l += o === 1 ? Sr[d] + IE[C] : tn[d] + FE[C]);
       C === 0 && E > 0 && u.slice(Math.max(0, h - 3), h + 1) !== "0000" && (l += kE[E]);
     }
     return j.create(l);
@@ -31055,10 +31055,10 @@ let sa = class extends Ne {
       this._commandService.onCommandExecuted((e) => {
         if (e.id !== _n.id) return;
         const t = e.params;
+        if (t.functionsExecutedState !== void 0)
+          return a.next(t.functionsExecutedState === fr.SUCCESS);
         if (t.stageInfo)
-          return a.next(
-            t.stageInfo.stage === Je.IDLE || t.stageInfo.stage === Je.CALCULATION_COMPLETED
-          );
+          return a.next(t.stageInfo.stage === ut.IDLE);
       });
     }).pipe(
       Zi(),
@@ -31414,14 +31414,14 @@ let Wi = (Ns = class extends mc {
     const i = !this._config.notExecuteFormula, a = [
       // Services
       [Qt, { useClass: sh }],
-      [Nr, { useClass: Ps }],
+      [Or, { useClass: Ps }],
       [kb, { useClass: Fb }],
       [Lo, { useClass: Qs }],
       [_o, { useClass: hl }],
       [Qu, { useClass: Nb }],
       [qu],
       // Models
-      [_r],
+      [Ar],
       // Engine
       [ga],
       //Controllers
@@ -31441,9 +31441,9 @@ let Wi = (Ns = class extends mc {
       [Bn],
       [In],
       // Calculation engine
-      [br],
+      [yr],
       [Ur],
-      [Ar],
+      [Er],
       // AstNode factory
       [Po],
       [On],
@@ -31512,13 +31512,13 @@ export {
   Wu as FUNCTION_NAMES_WEB,
   Bh as FeatureCalculationManagerService,
   Us as FormulaCurrentConfigService,
-  _r as FormulaDataModel,
+  Ar as FormulaDataModel,
   Zs as FormulaDependencyGenerator,
   bs as FormulaDependencyTree,
   Ks as FormulaDependencyTreeType,
   Si as FormulaDependencyTreeVirtual,
-  Je as FormulaExecuteStageType,
-  Sr as FormulaExecutedStateType,
+  ut as FormulaExecuteStageType,
+  fr as FormulaExecutedStateType,
   Ws as FormulaRuntimeService,
   On as FunctionNodeFactory,
   sh as FunctionService,
@@ -31527,7 +31527,7 @@ export {
   Qs as HyperlinkEngineFormulaService,
   kb as IActiveDirtyManagerService,
   zs as ICalculateFormulaService,
-  Nr as IDefinedNamesService,
+  Or as IDefinedNamesService,
   Jn as IDependencyManagerService,
   vr as IFeatureCalculationManagerService,
   Yt as IFormulaCurrentConfigService,
@@ -31538,11 +31538,11 @@ export {
   Ma as IOtherFormulaManagerService,
   _o as ISheetRowFilteredService,
   Qu as ISuperTableService,
-  br as Interpreter,
+  yr as Interpreter,
   Mn as LambdaNodeFactory,
   Bo as LambdaParameterNodeFactory,
   Oa as LambdaValueObjectObject,
-  Ar as Lexer,
+  Er as Lexer,
   ae as LexerNode,
   ga as LexerTreeBuilder,
   ue as NullValueObject,
@@ -31581,7 +31581,7 @@ export {
   Ic as convertUnitDataToRuntime,
   Wh as deserializeRangeForR1C1,
   Dr as deserializeRangeWithSheet,
-  Cr as deserializeRangeWithSheetWithCache,
+  _r as deserializeRangeWithSheetWithCache,
   ry as extractFormulaError,
   Zh as functionArray,
   Lm as functionCompatibility,

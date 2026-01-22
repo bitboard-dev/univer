@@ -20,7 +20,7 @@ import { Disposable, DisposableCollection, ICommandService, Inject } from '@univ
 import { BehaviorSubject, distinctUntilChanged, Observable, shareReplay } from 'rxjs';
 import { SetFormulaCalculationNotificationMutation } from '../commands/mutations/set-formula-calculation.mutation';
 import { GlobalComputingStatusService } from '../services/global-computing-status.service';
-import { FormulaExecuteStageType } from '../services/runtime.service';
+import { FormulaExecutedStateType, FormulaExecuteStageType } from '../services/runtime.service';
 
 // TODO@wzhudev: move logics in Facade to this place.
 
@@ -36,11 +36,16 @@ export class ComputingStatusReporterController extends Disposable {
             if (command.id !== SetFormulaCalculationNotificationMutation.id) return;
 
             const params = command.params as ISetFormulaCalculationNotificationMutation;
+
+            // When functionsExecutedState is present, it means calculation AND writeback are complete
+            if (params.functionsExecutedState !== undefined) {
+                return observe.next(params.functionsExecutedState === FormulaExecutedStateType.SUCCESS);
+            }
+
+            // stageInfo tracks calculation progress - only IDLE means truly complete
+            // CALCULATION_COMPLETED means formulas computed but values not yet written back
             if (params.stageInfo) {
-                return observe.next(
-                    params.stageInfo.stage === FormulaExecuteStageType.IDLE
-                    || params.stageInfo.stage === FormulaExecuteStageType.CALCULATION_COMPLETED
-                );
+                return observe.next(params.stageInfo.stage === FormulaExecuteStageType.IDLE);
             }
         });
     }).pipe(

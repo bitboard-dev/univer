@@ -1,18 +1,18 @@
 var Ka = Object.defineProperty;
 var ka = (a, e, n) => e in a ? Ka(a, e, { enumerable: !0, configurable: !0, writable: !0, value: n }) : a[e] = n;
 var W = (a, e, n) => ka(a, typeof e != "symbol" ? e + "" : e, n);
-import { CommandType as yt, ICommandService as fe, ObjectMatrix as G, generateRandomId as da, IUniverInstanceService as Se, Rectangle as me, sequenceExecuteAsync as Qa, Inject as X, LifecycleService as $a, Disposable as ne, ILogService as ja, IConfigService as Ae, LocaleService as qt, isFormulaString as Me, isFormulaId as pa, cellToRange as La, Tools as Xe, Direction as Ke, getIntersectRange as We, RANGE_TYPE as Y, UniverInstanceType as ae, Injector as ut, InterceptorEffectEnum as za, CellValueType as wt, isRealNum as Za, createIdentifier as gt, toDisposable as oe, moveRangeByOffset as St, DisposableCollection as ke, AbsoluteRefType as Qe, Optional as Ja, DependentOn as Pa, Plugin as Ta, merge as Ea, touchDependencies as Fe, isNodeEnv as Yt } from "@univerjs/core";
-import { SetRangeValuesCommand as Ia, SheetsSelectionsService as en, getSheetCommandTarget as tn, findFirstNonEmptyCell as an, alignToMergedCellsBorders as st, expandToContinuousRange as nn, SetSelectionsOperation as rn, SetRangeValuesMutation as z, SetStyleCommand as ht, SetBorderCommand as Na, ClearSelectionFormatCommand as Ra, handleMoveCols as Sa, EffectRefRangId as H, runRefRangeMutations as w, handleMoveRows as Aa, handleMoveRange as Ca, handleInsertRangeMoveRight as Da, handleInsertRangeMoveDown as ba, handleDeleteRangeMoveUp as Oa, handleDeleteRangeMoveLeft as Ma, handleIRemoveCol as xa, handleIRemoveRow as _a, handleInsertCol as ya, handleInsertRow as qa, RemoveDefinedNameCommand as ga, SetDefinedNameCommand as ha, RemoveSheetCommand as on, SetWorksheetNameCommand as un, DeleteRangeMoveLeftCommand as mn, DeleteRangeMoveUpCommand as fn, RemoveColCommand as cn, RemoveRowCommand as ln, InsertRangeMoveDownCommand as sn, InsertRangeMoveRightCommand as dn, InsertColCommand as pn, InsertRowCommand as Ln, MoveColsCommand as Pn, MoveRowsCommand as Tn, MoveRangeCommand as En, SheetInterceptorService as Ut, RemoveSheetMutation as At, InsertSheetMutation as Ct, MoveRangeMutation as Xt, MoveRowsMutation as Wt, MoveColsMutation as Kt, ReorderRangeMutation as kt, RemoveRowMutation as Qt, RemoveColMutation as $t, InsertColMutation as jt, InsertRowMutation as zt, SetRowHiddenMutation as Zt, SetRowVisibleMutation as Jt, INTERCEPTOR_POINT as In, SetWorksheetActiveOperation as Nn, SCOPE_WORKBOOK_VALUE_DEFINED_NAME as dt, RefRangeService as Rn, handleDefaultRangeChangeWithEffectRefCommands as ea, getSeparateEffectedRangesOnCommand as Sn, handleCommonDefaultRangeChangeWithEffectRefCommands as An, UniverSheetsPlugin as Cn } from "@univerjs/sheets";
-import { serializeRange as _e, IActiveDirtyManagerService as Ft, SetFormulaCalculationResultMutation as Dn, RemoveOtherFormulaMutation as bn, SetOtherFormulaMutation as On, FormulaDataModel as mt, SetFormulaCalculationStartMutation as Ee, SetFormulaCalculationStopMutation as ta, ENGINE_FORMULA_CYCLE_REFERENCE_COUNT as aa, SetFormulaCalculationNotificationMutation as Mn, FormulaExecuteStageType as Be, FormulaExecutedStateType as De, sequenceNodeType as te, deserializeRangeWithSheetWithCache as Le, serializeRangeToRefString as ft, ErrorType as Q, IDefinedNamesService as Bt, LexerTreeBuilder as vt, generateStringWithSequence as $e, SetDefinedNameMutation as ye, SetFormulaDataMutation as ve, SetArrayFormulaDataMutation as Dt, initSheetFormulaData as na, RemoveDefinedNameMutation as bt, stripErrorMargin as xn, FunctionType as t, FUNCTION_NAMES_ARRAY as ia, FUNCTION_NAMES_COMPATIBILITY as x, FUNCTION_NAMES_CUBE as de, FUNCTION_NAMES_DATABASE as k, FUNCTION_NAMES_DATE as v, FUNCTION_NAMES_ENGINEERING as C, FUNCTION_NAMES_FINANCIAL as D, FUNCTION_NAMES_INFORMATION as V, FUNCTION_NAMES_LOGICAL as K, FUNCTION_NAMES_LOOKUP as y, FUNCTION_NAMES_MATH as T, FUNCTION_NAMES_STATISTICAL as l, FUNCTION_NAMES_TEXT as b, FUNCTION_NAMES_WEB as pt, IFunctionService as Vt, isReferenceStrings as _n, functionArray as yn, functionCompatibility as qn, functionCube as gn, functionDatabase as hn, functionDate as Un, functionEngineering as Fn, functionFinancial as Bn, functionInformation as vn, functionLogical as Vn, functionLookup as Gn, functionMath as Hn, functionMeta as wn, functionStatistical as Yn, functionText as Xn, functionUniver as Wn, functionWeb as Kn, serializeRangeWithSpreadsheet as ra, serializeRangeWithSheet as oa, CustomFunction as Ot, AsyncCustomFunction as Ua, UniverFormulaEnginePlugin as Fa, IFormulaCurrentConfigService as kn, Lexer as Qn, AstTreeBuilder as $n, Interpreter as jn, generateExecuteAstNodeData as zn, getObjectValue as Zn } from "@univerjs/engine-formula";
-import { Subject as ua, BehaviorSubject as Ba, bufferWhen as Jn, filter as ma, map as ei } from "rxjs";
-import { IRPCChannelService as va, fromModule as ti, toModule as ai } from "@univerjs/rpc";
-const ni = {
+import { CommandType as qt, ICommandService as ce, ObjectMatrix as G, generateRandomId as pa, IUniverInstanceService as Se, Rectangle as fe, sequenceExecuteAsync as Qa, Inject as X, LifecycleService as $a, Disposable as ne, ILogService as ja, IConfigService as Ae, LocaleService as gt, isFormulaString as Me, isFormulaId as La, cellToRange as Pa, Tools as Xe, Direction as Ke, getIntersectRange as We, RANGE_TYPE as Y, UniverInstanceType as ae, Injector as ut, InterceptorEffectEnum as za, CellValueType as Yt, isRealNum as Za, createIdentifier as ht, toDisposable as oe, moveRangeByOffset as St, DisposableCollection as ke, AbsoluteRefType as Qe, Optional as Ja, DependentOn as Ta, Plugin as Ea, merge as Ia, touchDependencies as Fe, isNodeEnv as Xt } from "@univerjs/core";
+import { SetRangeValuesCommand as Na, SheetsSelectionsService as en, getSheetCommandTarget as tn, findFirstNonEmptyCell as an, alignToMergedCellsBorders as st, expandToContinuousRange as nn, SetSelectionsOperation as rn, SetRangeValuesMutation as z, SetStyleCommand as Ut, SetBorderCommand as Ra, ClearSelectionFormatCommand as Sa, handleMoveCols as Aa, EffectRefRangId as H, runRefRangeMutations as w, handleMoveRows as Ca, handleMoveRange as Da, handleInsertRangeMoveRight as ba, handleInsertRangeMoveDown as Oa, handleDeleteRangeMoveUp as Ma, handleDeleteRangeMoveLeft as xa, handleIRemoveCol as _a, handleIRemoveRow as ya, handleInsertCol as qa, handleInsertRow as ga, RemoveDefinedNameCommand as ha, SetDefinedNameCommand as Ua, RemoveSheetCommand as on, SetWorksheetNameCommand as un, DeleteRangeMoveLeftCommand as mn, DeleteRangeMoveUpCommand as fn, RemoveColCommand as cn, RemoveRowCommand as ln, InsertRangeMoveDownCommand as sn, InsertRangeMoveRightCommand as dn, InsertColCommand as pn, InsertRowCommand as Ln, MoveColsCommand as Pn, MoveRowsCommand as Tn, MoveRangeCommand as En, SheetInterceptorService as Ft, RemoveSheetMutation as At, InsertSheetMutation as Ct, MoveRangeMutation as Wt, MoveRowsMutation as Kt, MoveColsMutation as kt, ReorderRangeMutation as Qt, RemoveRowMutation as $t, RemoveColMutation as jt, InsertColMutation as zt, InsertRowMutation as Zt, SetRowHiddenMutation as Jt, SetRowVisibleMutation as ea, INTERCEPTOR_POINT as In, SetWorksheetActiveOperation as Nn, SCOPE_WORKBOOK_VALUE_DEFINED_NAME as dt, RefRangeService as Rn, handleDefaultRangeChangeWithEffectRefCommands as ta, getSeparateEffectedRangesOnCommand as Sn, handleCommonDefaultRangeChangeWithEffectRefCommands as An, UniverSheetsPlugin as Cn } from "@univerjs/sheets";
+import { serializeRange as _e, IActiveDirtyManagerService as Bt, SetFormulaCalculationResultMutation as Dn, RemoveOtherFormulaMutation as bn, SetOtherFormulaMutation as On, FormulaDataModel as mt, GlobalComputingStatusService as Mn, SetFormulaCalculationStartMutation as Ee, SetFormulaCalculationStopMutation as aa, ENGINE_FORMULA_CYCLE_REFERENCE_COUNT as na, SetFormulaCalculationNotificationMutation as xn, FormulaExecuteStageType as Be, FormulaExecutedStateType as De, sequenceNodeType as te, deserializeRangeWithSheetWithCache as Le, serializeRangeToRefString as ft, ErrorType as Q, IDefinedNamesService as vt, LexerTreeBuilder as Vt, generateStringWithSequence as $e, SetDefinedNameMutation as ye, SetFormulaDataMutation as ve, SetArrayFormulaDataMutation as Dt, initSheetFormulaData as ia, RemoveDefinedNameMutation as bt, stripErrorMargin as _n, FunctionType as t, FUNCTION_NAMES_ARRAY as ra, FUNCTION_NAMES_COMPATIBILITY as x, FUNCTION_NAMES_CUBE as pe, FUNCTION_NAMES_DATABASE as k, FUNCTION_NAMES_DATE as v, FUNCTION_NAMES_ENGINEERING as C, FUNCTION_NAMES_FINANCIAL as D, FUNCTION_NAMES_INFORMATION as V, FUNCTION_NAMES_LOGICAL as K, FUNCTION_NAMES_LOOKUP as y, FUNCTION_NAMES_MATH as T, FUNCTION_NAMES_STATISTICAL as l, FUNCTION_NAMES_TEXT as b, FUNCTION_NAMES_WEB as pt, IFunctionService as Gt, isReferenceStrings as yn, functionArray as qn, functionCompatibility as gn, functionCube as hn, functionDatabase as Un, functionDate as Fn, functionEngineering as Bn, functionFinancial as vn, functionInformation as Vn, functionLogical as Gn, functionLookup as Hn, functionMath as wn, functionMeta as Yn, functionStatistical as Xn, functionText as Wn, functionUniver as Kn, functionWeb as kn, serializeRangeWithSpreadsheet as oa, serializeRangeWithSheet as ua, CustomFunction as Ot, AsyncCustomFunction as Fa, UniverFormulaEnginePlugin as Ba, IFormulaCurrentConfigService as Qn, Lexer as $n, AstTreeBuilder as jn, Interpreter as zn, generateExecuteAstNodeData as Zn, getObjectValue as Jn } from "@univerjs/engine-formula";
+import { Subject as ma, BehaviorSubject as Mt, bufferWhen as ei, filter as fa, map as ti } from "rxjs";
+import { IRPCChannelService as va, fromModule as ai, toModule as ni } from "@univerjs/rpc";
+const ii = {
   id: "formula.command.insert-function",
-  type: yt.COMMAND,
+  type: qt.COMMAND,
   handler: async (a, e) => {
-    const { list: n, listOfRangeHasNumber: i } = e, r = a.get(fe), o = new G();
+    const { list: n, listOfRangeHasNumber: i } = e, r = a.get(ce), o = new G();
     n.forEach((f) => {
-      const { range: m, primary: c, formula: d } = f, { row: P, column: E } = c, p = da(6);
+      const { range: m, primary: c, formula: d } = f, { row: P, column: E } = c, p = pa(6);
       o.setValue(P, E, {
         f: d,
         si: p
@@ -32,11 +32,11 @@ const ni = {
     const u = {
       value: o.getData()
     };
-    return r.executeCommand(Ia.id, u);
+    return r.executeCommand(Na.id, u);
   }
-}, ii = {
+}, ri = {
   id: "sheets-formula.command.quick-sum",
-  type: yt.COMMAND,
+  type: qt.COMMAND,
   handler: async (a) => {
     const n = a.get(en).getCurrentLastSelection();
     if (!n) return !1;
@@ -57,7 +57,7 @@ const ni = {
       startColumn: m.startColumn,
       endColumn: m.endColumn
     }, u);
-    if (!me.equals(d, m))
+    if (!fe.equals(d, m))
       for (const p of u.iterateByColumn(d))
         (!p.value || !u.cellHasValue(p.value)) && c.setValue(p.row, p.col, {
           f: `=SUM(${_e({
@@ -73,7 +73,7 @@ const ni = {
       endRow: m.endRow,
       endColumn: m.endColumn
     }, u);
-    if (!me.equals(P, m))
+    if (!fe.equals(P, m))
       for (const p of u.iterateByRow(P))
         (!p.value || !u.cellHasValue(p.value)) && c.setValue(p.row, p.col, {
           f: `=SUM(${_e({
@@ -83,10 +83,10 @@ const ni = {
             endRow: p.row
           })})`
         });
-    const E = a.get(fe);
+    const E = a.get(ce);
     return (await Qa([
       {
-        id: Ia.id,
+        id: Na.id,
         params: {
           range: m,
           value: c.getMatrix()
@@ -99,7 +99,7 @@ const ni = {
           subUnitId: r.subUnitId,
           selections: [{
             range: m,
-            primary: me.contains(m, n.primary) ? n.primary : { ...f, actualRow: f.startRow, actualColumn: f.startColumn },
+            primary: fe.contains(m, n.primary) ? n.primary : { ...f, actualRow: f.startRow, actualColumn: f.startColumn },
             style: null
           }]
         }
@@ -107,16 +107,16 @@ const ni = {
     ], E)).result;
   }
 }, Oe = {
-  type: yt.MUTATION,
+  type: qt.MUTATION,
   id: "sheet.mutation.data-validation-formula-mark-dirty",
   handler() {
     return !0;
   }
 }, ge = "sheets-formula.base.config";
 var Pe = /* @__PURE__ */ ((a) => (a[a.FORCED = 0] = "FORCED", a[a.WHEN_EMPTY = 1] = "WHEN_EMPTY", a[a.NO_CALCULATION = 2] = "NO_CALCULATION", a))(Pe || {});
-const fa = {}, ri = "sheets-formula.remote.config", ca = {};
-var Ie = /* @__PURE__ */ ((a) => (a[a.NOT_REGISTER = 1] = "NOT_REGISTER", a[a.SUCCESS = 2] = "SUCCESS", a[a.WAIT = 3] = "WAIT", a[a.ERROR = 4] = "ERROR", a))(Ie || {}), oi = Object.getOwnPropertyDescriptor, ui = (a, e, n, i) => {
-  for (var r = i > 1 ? void 0 : i ? oi(e, n) : e, o = a.length - 1, u; o >= 0; o--)
+const ca = {}, oi = "sheets-formula.remote.config", la = {};
+var Ie = /* @__PURE__ */ ((a) => (a[a.NOT_REGISTER = 1] = "NOT_REGISTER", a[a.SUCCESS = 2] = "SUCCESS", a[a.WAIT = 3] = "WAIT", a[a.ERROR = 4] = "ERROR", a))(Ie || {}), ui = Object.getOwnPropertyDescriptor, mi = (a, e, n, i) => {
+  for (var r = i > 1 ? void 0 : i ? ui(e, n) : e, o = a.length - 1, u; o >= 0; o--)
     (u = a[o]) && (r = u(r) || r);
   return r;
 }, Lt = (a, e) => (n, i) => e(n, i, a);
@@ -124,12 +124,12 @@ let je = class extends ne {
   constructor(e, n, i) {
     super();
     W(this, "_formulaCacheMap", /* @__PURE__ */ new Map());
-    W(this, "_formulaChangeWithRange$", new ua());
+    W(this, "_formulaChangeWithRange$", new ma());
     W(this, "formulaChangeWithRange$", this._formulaChangeWithRange$.asObservable());
     // FIXME: this design could be improved.
-    W(this, "_formulaResult$", new ua());
+    W(this, "_formulaResult$", new ma());
     W(this, "formulaResult$", this._formulaResult$.asObservable());
-    W(this, "calculateStarted$", new Ba(!1));
+    W(this, "calculateStarted$", new Mt(!1));
     this._commandService = e, this._activeDirtyManagerService = n, this._lifecycleService = i, this._initFormulaRegister(), this._initFormulaCalculationResultChange();
   }
   dispose() {
@@ -142,7 +142,7 @@ let je = class extends ne {
     return r || (r = /* @__PURE__ */ new Map(), i.set(n, r)), r;
   }
   _createFormulaId(e, n) {
-    return `formula.${e}_${n}_${da(8)}`;
+    return `formula.${e}_${n}_${pa(8)}`;
   }
   _initFormulaRegister() {
     this._activeDirtyManagerService.register(
@@ -178,9 +178,9 @@ let je = class extends ne {
       });
     };
     this.disposeWithMe(
-      this._formulaChangeWithRange$.pipe(Jn(() => this.calculateStarted$.pipe(ma((n) => n)))).subscribe((n) => n.forEach(e))
+      this._formulaChangeWithRange$.pipe(ei(() => this.calculateStarted$.pipe(fa((n) => n)))).subscribe((n) => n.forEach(e))
     ), this.disposeWithMe(
-      this._formulaChangeWithRange$.pipe(ma(() => this.calculateStarted$.getValue())).subscribe(e)
+      this._formulaChangeWithRange$.pipe(fa(() => this.calculateStarted$.getValue())).subscribe(e)
     );
   }
   _initFormulaCalculationResultChange() {
@@ -259,19 +259,19 @@ let je = class extends ne {
     ));
   }
 };
-je = ui([
-  Lt(0, fe),
-  Lt(1, Ft),
+je = mi([
+  Lt(0, ce),
+  Lt(1, Bt),
   Lt(2, X($a))
 ], je);
-var mi = Object.getOwnPropertyDescriptor, fi = (a, e, n, i) => {
-  for (var r = i > 1 ? void 0 : i ? mi(e, n) : e, o = a.length - 1, u; o >= 0; o--)
+var fi = Object.getOwnPropertyDescriptor, ci = (a, e, n, i) => {
+  for (var r = i > 1 ? void 0 : i ? fi(e, n) : e, o = a.length - 1, u; o >= 0; o--)
     (u = a[o]) && (r = u(r) || r);
   return r;
-}, pe = (a, e) => (n, i) => e(n, i, a);
-const la = { done: 0, count: 0 }, Pt = { onlyLocal: !0 };
+}, ue = (a, e) => (n, i) => e(n, i, a);
+const sa = { done: 0, count: 0 }, Pt = { onlyLocal: !0 };
 let xe = class extends ne {
-  constructor(e, n, i, r, o, u, f) {
+  constructor(e, n, i, r, o, u, f, m) {
     super();
     W(this, "_waitingCommandQueue", []);
     W(this, "_executingDirtyData", {
@@ -284,6 +284,11 @@ let xe = class extends ne {
       clearDependencyTreeCache: {}
     });
     W(this, "_setTimeoutKey", -1);
+    /**
+     * Tracks whether formula calculation (including debounce) is pending.
+     * Set to false when commands are queued, true when calculation completes.
+     */
+    W(this, "_computingStatus$", new Mt(!0));
     W(this, "_startExecutionTime", 0);
     W(this, "_totalCalculationTaskCount", 0);
     W(this, "_doneCalculationTaskCount", 0);
@@ -293,9 +298,9 @@ let xe = class extends ne {
      * The mark of forced calculation. If a new mutation triggers dirty area calculation during the forced calculation process, forced calculation is still required.
      */
     W(this, "_forceCalculating", !1);
-    W(this, "_progress$", new Ba(la));
+    W(this, "_progress$", new Mt(sa));
     W(this, "progress$", this._progress$.asObservable());
-    this._commandService = e, this._activeDirtyManagerService = n, this._logService = i, this._configService = r, this._formulaDataModel = o, this._localeService = u, this._registerOtherFormulaService = f, this._commandExecutedListener(), this._initialExecuteFormulaProcessListener(), this._initialExecuteFormula();
+    this._commandService = e, this._activeDirtyManagerService = n, this._logService = i, this._configService = r, this._formulaDataModel = o, this._localeService = u, this._registerOtherFormulaService = f, this._globalComputingStatusService = m, this.disposeWithMe(this._globalComputingStatusService.pushComputingStatusSubject(this._computingStatus$)), this._commandExecutedListener(), this._initialExecuteFormulaProcessListener(), this._initialExecuteFormula();
   }
   _emitProgress(e) {
     this._progress$.next({ done: this._doneCalculationTaskCount, count: this._totalCalculationTaskCount, label: e });
@@ -322,7 +327,7 @@ let xe = class extends ne {
     this._doneCalculationTaskCount = 0, this._totalCalculationTaskCount = 0, this._emitProgress();
   }
   dispose() {
-    super.dispose(), this._progress$.next(la), this._progress$.complete(), clearTimeout(this._setTimeoutKey);
+    super.dispose(), this._progress$.next(sa), this._progress$.complete(), this._computingStatus$.next(!0), this._computingStatus$.complete(), clearTimeout(this._setTimeoutKey);
   }
   _getCalculationMode() {
     var n;
@@ -342,12 +347,12 @@ let xe = class extends ne {
         if (this._activeDirtyManagerService.get(e.id)) {
           if (e.id === z.id) {
             const i = e.params;
-            if (n && n.onlyLocal === !0 || i.trigger === ht.id || i.trigger === Na.id || i.trigger === Ra.id)
+            if (n && n.onlyLocal === !0 || i.trigger === Ut.id || i.trigger === Ra.id || i.trigger === Sa.id)
               return;
           }
-          this._waitingCommandQueue.push(e), clearTimeout(this._setTimeoutKey), this._setTimeoutKey = setTimeout(() => {
+          this._waitingCommandQueue.push(e), this._computingStatus$.next(!1), clearTimeout(this._setTimeoutKey), this._setTimeoutKey = setTimeout(() => {
             const i = this._generateDirty(this._waitingCommandQueue);
-            this._executingDirtyData = this._mergeDirty(this._executingDirtyData, i), this._executionInProgressParams == null ? this._commandService.executeCommand(Ee.id, { ...this._executingDirtyData }, Pt) : (this._restartCalculation = !0, this._commandService.executeCommand(ta.id, {})), this._waitingCommandQueue = [];
+            this._executingDirtyData = this._mergeDirty(this._executingDirtyData, i), this._executionInProgressParams == null ? this._commandService.executeCommand(Ee.id, { ...this._executingDirtyData }, Pt) : (this._restartCalculation = !0, this._commandService.executeCommand(aa.id, {})), this._waitingCommandQueue = [];
           }, 100);
         }
       })
@@ -370,7 +375,7 @@ let xe = class extends ne {
       dirtyUnitOtherFormulaMap: u,
       forceCalculation: !1,
       clearDependencyTreeCache: f,
-      maxIteration: this._configService.getConfig(aa)
+      maxIteration: this._configService.getConfig(na)
       // numfmtItemMap,
     };
   }
@@ -434,8 +439,8 @@ let xe = class extends ne {
         if (i.id === Ee.id) {
           const { forceCalculation: o = !1 } = i.params;
           o && (this._forceCalculating = !0);
-        } else i.id === ta.id && this.clearProgress();
-        if (i.id !== Mn.id)
+        } else i.id === aa.id && this.clearProgress();
+        if (i.id !== xn.id)
           return;
         const r = i.params;
         if (r.stageInfo != null) {
@@ -483,7 +488,7 @@ let xe = class extends ne {
               ...this._executingDirtyData
             },
             Pt
-          )) : this._executionInProgressParams = null, this._logService.debug("[TriggerCalculationController]", u);
+          )) : (this._executionInProgressParams = null, this._computingStatus$.next(!0)), this._logService.debug("[TriggerCalculationController]", u);
         }
       })
     );
@@ -513,20 +518,21 @@ let xe = class extends ne {
       dirtyUnitFeatureMap: {},
       dirtyUnitOtherFormulaMap: {},
       clearDependencyTreeCache: {},
-      maxIteration: this._configService.getConfig(aa)
+      maxIteration: this._configService.getConfig(na)
     };
   }
 };
-xe = fi([
-  pe(0, fe),
-  pe(1, Ft),
-  pe(2, ja),
-  pe(3, Ae),
-  pe(4, X(mt)),
-  pe(5, X(qt)),
-  pe(6, X(je))
+xe = ci([
+  ue(0, ce),
+  ue(1, Bt),
+  ue(2, ja),
+  ue(3, Ae),
+  ue(4, X(mt)),
+  ue(5, X(gt)),
+  ue(6, X(je)),
+  ue(7, X(Mn))
 ], xe);
-function ci(a, e, n) {
+function li(a, e, n) {
   var i;
   return a == null || a[e] == null || ((i = a[e]) == null ? void 0 : i[n]) == null;
 }
@@ -545,18 +551,18 @@ function Tt(a, e, n) {
     };
 }
 var _ = /* @__PURE__ */ ((a) => (a[a.MoveRange = 0] = "MoveRange", a[a.MoveRows = 1] = "MoveRows", a[a.MoveCols = 2] = "MoveCols", a[a.InsertRow = 3] = "InsertRow", a[a.InsertColumn = 4] = "InsertColumn", a[a.RemoveRow = 5] = "RemoveRow", a[a.RemoveColumn = 6] = "RemoveColumn", a[a.DeleteMoveLeft = 7] = "DeleteMoveLeft", a[a.DeleteMoveUp = 8] = "DeleteMoveUp", a[a.InsertMoveDown = 9] = "InsertMoveDown", a[a.InsertMoveRight = 10] = "InsertMoveRight", a[a.SetName = 11] = "SetName", a[a.RemoveSheet = 12] = "RemoveSheet", a[a.SetDefinedName = 13] = "SetDefinedName", a[a.RemoveDefinedName = 14] = "RemoveDefinedName", a))(_ || {});
-const li = [
+const si = [
   11,
   12,
   13,
   14
   /* RemoveDefinedName */
 ];
-function si(a, e, n) {
+function di(a, e, n) {
   const { type: i } = n;
-  return li.includes(i) ? di(a, e) : pi(a, e, n);
+  return si.includes(i) ? pi(a, e) : Li(a, e, n);
 }
-function di(a, e) {
+function pi(a, e) {
   const n = [], i = [];
   return Object.keys(e).forEach((r) => {
     const o = e[r], u = a[r];
@@ -595,8 +601,8 @@ function di(a, e) {
     redos: i
   };
 }
-function pi(a, e, n) {
-  const { redoFormulaData: i, undoFormulaData: r } = Li(a, e, n), o = [], u = [];
+function Li(a, e, n) {
+  const { redoFormulaData: i, undoFormulaData: r } = Pi(a, e, n), o = [], u = [];
   return Object.keys(i).forEach((f) => {
     Object.keys(i[f]).forEach((m) => {
       if (Object.keys(i[f][m]).length !== 0) {
@@ -630,10 +636,10 @@ function pi(a, e, n) {
     redos: o
   };
 }
-function Li(a, e, n) {
+function Pi(a, e, n) {
   const i = {}, r = {}, { unitId: o, sheetId: u } = n;
   return (/* @__PURE__ */ new Set([...Object.keys(a), ...Object.keys(e)])).forEach((m) => {
-    if (ci(a, m, u))
+    if (li(a, m, u))
       return;
     (/* @__PURE__ */ new Set([
       ...Object.keys(a[m] || {}),
@@ -642,8 +648,8 @@ function Li(a, e, n) {
       var A, N;
       const P = (A = a[m]) == null ? void 0 : A[d], E = (N = e[m]) == null ? void 0 : N[d], p = new G(P || {}), I = new G(E || {});
       let S = [];
-      m !== o || d !== u ? S = Ti(I) : S = Pi(p, I, n);
-      const R = yi(S, p, I), s = qi(S, p);
+      m !== o || d !== u ? S = Ei(I) : S = Ti(p, I, n);
+      const R = qi(S, p, I), s = gi(S, p);
       i[m] || (i[m] = {}), r[m] || (r[m] = {}), i[m][d] = {
         ...i[m][d],
         ...R
@@ -657,11 +663,11 @@ function Li(a, e, n) {
     undoFormulaData: r
   };
 }
-function Pi(a, e, n) {
+function Ti(a, e, n) {
   const { type: i, from: r, to: o, range: u } = n, f = [];
   return a.forValue((m, c, d) => {
     if (d == null || !Va(d)) return !0;
-    const P = La(m, c);
+    const P = Pa(m, c);
     let E = null, p = !1;
     if ([
       0,
@@ -669,9 +675,9 @@ function Pi(a, e, n) {
       2
       /* MoveCols */
     ].includes(i))
-      E = Ei(i, r, o, P);
+      E = Ii(i, r, o, P);
     else if (u != null) {
-      const I = Ii(P, n);
+      const I = Ni(P, n);
       E = I.newCell, p = I.isReverse;
     }
     if (Xe.diffValue(P, E) && !e.getValue(m, c))
@@ -679,61 +685,61 @@ function Pi(a, e, n) {
     p ? f.unshift({ oldCell: P, newCell: E }) : f.push({ oldCell: P, newCell: E });
   }), f;
 }
-function Ti(a) {
+function Ei(a) {
   const e = [];
   return a.forValue((n, i, r) => {
     if (r == null || !Va(r)) return !0;
-    const o = La(n, i);
+    const o = Pa(n, i);
     e.push({ oldCell: o, newCell: o });
   }), e;
 }
-function Ei(a, e, n, i) {
+function Ii(a, e, n, i) {
   if (e == null || n == null)
     return null;
   switch (a) {
     case 0:
-      return Ni(e, n, i);
-    case 1:
       return Ri(e, n, i);
-    case 2:
+    case 1:
       return Si(e, n, i);
+    case 2:
+      return Ai(e, n, i);
     default:
       return null;
   }
 }
-function Ii(a, e) {
+function Ni(a, e) {
   const { type: n, rangeFilteredRows: i } = e, r = e.range;
   let o = null, u = !1;
   switch (n) {
     case 3:
-      o = Ai(r, a), u = !0;
-      break;
-    case 4:
       o = Ci(r, a), u = !0;
       break;
+    case 4:
+      o = Di(r, a), u = !0;
+      break;
     case 5:
-      o = Di(r, a, i);
+      o = bi(r, a, i);
       break;
     case 6:
-      o = bi(r, a);
-      break;
-    case 7:
       o = Oi(r, a);
       break;
-    case 8:
+    case 7:
       o = Mi(r, a);
       break;
+    case 8:
+      o = xi(r, a);
+      break;
     case 9:
-      o = xi(r, a), u = !0;
+      o = _i(r, a), u = !0;
       break;
     case 10:
-      o = _i(r, a), u = !0;
+      o = yi(r, a), u = !0;
       break;
   }
   return { newCell: o, isReverse: u };
 }
-function Ni(a, e, n) {
-  const i = Ca(
+function Ri(a, e, n) {
+  const i = Da(
     {
       id: H.MoveRangeCommandId,
       params: { toRange: e, fromRange: a }
@@ -742,8 +748,8 @@ function Ni(a, e, n) {
   );
   return w(i, n);
 }
-function Ri(a, e, n) {
-  const i = Aa(
+function Si(a, e, n) {
+  const i = Ca(
     {
       id: H.MoveRowsCommandId,
       params: { toRange: e, fromRange: a }
@@ -752,8 +758,8 @@ function Ri(a, e, n) {
   );
   return w(i, n);
 }
-function Si(a, e, n) {
-  const i = Sa(
+function Ai(a, e, n) {
+  const i = Aa(
     {
       id: H.MoveColsCommandId,
       params: { toRange: e, fromRange: a }
@@ -762,8 +768,8 @@ function Si(a, e, n) {
   );
   return w(i, n);
 }
-function Ai(a, e) {
-  const n = qa(
+function Ci(a, e) {
+  const n = ga(
     {
       id: H.InsertRowCommandId,
       params: { range: a, unitId: "", subUnitId: "", direction: Ke.DOWN }
@@ -772,8 +778,8 @@ function Ai(a, e) {
   );
   return w(n, e);
 }
-function Ci(a, e) {
-  const n = ya(
+function Di(a, e) {
+  const n = qa(
     {
       id: H.InsertColCommandId,
       params: { range: a, unitId: "", subUnitId: "", direction: Ke.RIGHT }
@@ -782,8 +788,8 @@ function Ci(a, e) {
   );
   return w(n, e);
 }
-function Di(a, e, n) {
-  const i = _a(
+function bi(a, e, n) {
+  const i = ya(
     {
       id: H.RemoveRowCommandId,
       params: { range: a }
@@ -793,8 +799,8 @@ function Di(a, e, n) {
   );
   return w(i, e);
 }
-function bi(a, e) {
-  const n = xa(
+function Oi(a, e) {
+  const n = _a(
     {
       id: H.RemoveColCommandId,
       params: { range: a }
@@ -803,8 +809,8 @@ function bi(a, e) {
   );
   return w(n, e);
 }
-function Oi(a, e) {
-  const n = Ma(
+function Mi(a, e) {
+  const n = xa(
     {
       id: H.DeleteRangeMoveLeftCommandId,
       params: { range: a }
@@ -813,8 +819,8 @@ function Oi(a, e) {
   );
   return w(n, e);
 }
-function Mi(a, e) {
-  const n = Oa(
+function xi(a, e) {
+  const n = Ma(
     {
       id: H.DeleteRangeMoveUpCommandId,
       params: { range: a }
@@ -823,8 +829,8 @@ function Mi(a, e) {
   );
   return w(n, e);
 }
-function xi(a, e) {
-  const n = ba(
+function _i(a, e) {
+  const n = Oa(
     {
       id: H.InsertRangeMoveDownCommandId,
       params: { range: a }
@@ -833,8 +839,8 @@ function xi(a, e) {
   );
   return w(n, e);
 }
-function _i(a, e) {
-  const n = Da(
+function yi(a, e) {
+  const n = ba(
     {
       id: H.InsertRangeMoveRightCommandId,
       params: { range: a }
@@ -843,7 +849,7 @@ function _i(a, e) {
   );
   return w(n, e);
 }
-function yi(a, e, n) {
+function qi(a, e, n) {
   var r, o, u;
   const i = new G({});
   for (let f = 0; f < a.length; f++) {
@@ -855,7 +861,7 @@ function yi(a, e, n) {
   }
   return i.getMatrix();
 }
-function qi(a, e) {
+function gi(a, e) {
   const n = new G({});
   for (let i = a.length - 1; i >= 0; i--) {
     const { oldCell: r, newCell: o } = a[i], u = e.getValue(r.startRow, r.startColumn), f = qe(u);
@@ -869,7 +875,7 @@ function qi(a, e) {
 function qe(a) {
   if (a == null)
     return;
-  const { f: e, si: n, x: i = 0, y: r = 0 } = a, o = Me(e), u = pa(n);
+  const { f: e, si: n, x: i = 0, y: r = 0 } = a, o = Me(e), u = La(n);
   if (!o && !u)
     return {
       f: null,
@@ -878,7 +884,7 @@ function qe(a) {
   const f = {};
   return u && (f.si = n), o && i === 0 && r === 0 && (f.f = e), f.f === void 0 && (f.f = null), f.si === void 0 && (f.si = null), f;
 }
-function gi(a) {
+function hi(a) {
   const e = new G({});
   return new G(a).forValue((i, r, o) => {
     const u = qe(o);
@@ -886,7 +892,7 @@ function gi(a) {
   }), e.getMatrix();
 }
 function Va(a) {
-  const e = (a == null ? void 0 : a.f) || "", n = (a == null ? void 0 : a.si) || "", i = Me(e), r = pa(n);
+  const e = (a == null ? void 0 : a.f) || "", n = (a == null ? void 0 : a.si) || "", i = Me(e), r = La(n);
   return !!(i || r);
 }
 function Ga(a, e, n, i, r, o) {
@@ -905,7 +911,7 @@ function Ha(a, e, n = 0, i = 0) {
       r.push(f);
       continue;
     }
-    const { token: m } = f, c = Le(m), { range: d, sheetName: P, unitId: E } = c, p = me.moveOffset(d, n, i);
+    const { token: m } = f, c = Le(m), { range: d, sheetName: P, unitId: E } = c, p = fe.moveOffset(d, n, i);
     r.push({
       ...f,
       token: ft({
@@ -935,7 +941,7 @@ function wa(a, e, n, i) {
     E
   ))
     return;
-  const s = me.moveOffset(P, S, R);
+  const s = fe.moveOffset(P, S, R);
   let A = null;
   if (r === _.MoveRange) {
     if (m == null || c == null)
@@ -943,7 +949,7 @@ function wa(a, e, n, i) {
     const N = It(s, m), L = We(s, m);
     if (L == null || N !== 4)
       return;
-    const g = Ca(
+    const g = Da(
       { id: H.MoveRangeCommandId, params: { toRange: c, fromRange: m } },
       L
     ), q = w(g, L);
@@ -964,7 +970,7 @@ function wa(a, e, n, i) {
       endColumn: s.endColumn,
       rangeType: Y.NORMAL
     });
-    const g = Aa(
+    const g = Ca(
       { id: H.MoveRowsCommandId, params: { toRange: c, fromRange: m } },
       L
     ), q = w(g, L);
@@ -985,7 +991,7 @@ function wa(a, e, n, i) {
       endColumn: s.endColumn,
       rangeType: Y.NORMAL
     });
-    const g = Sa(
+    const g = Aa(
       { id: H.MoveColsCommandId, params: { toRange: c, fromRange: m } },
       L
     ), q = w(g, L);
@@ -995,7 +1001,7 @@ function wa(a, e, n, i) {
   }
   if (f != null) {
     if (r === _.InsertRow) {
-      const N = qa(
+      const N = ga(
         {
           id: H.InsertRowCommandId,
           params: { range: f, unitId: "", subUnitId: "", direction: Ke.DOWN }
@@ -1009,7 +1015,7 @@ function wa(a, e, n, i) {
         ...L
       };
     } else if (r === _.InsertColumn) {
-      const N = ya(
+      const N = qa(
         {
           id: H.InsertColCommandId,
           params: { range: f, unitId: "", subUnitId: "", direction: Ke.RIGHT }
@@ -1023,7 +1029,7 @@ function wa(a, e, n, i) {
         ...L
       };
     } else if (r === _.RemoveRow) {
-      const N = _a(
+      const N = ya(
         {
           id: H.RemoveRowCommandId,
           params: { range: f }
@@ -1038,7 +1044,7 @@ function wa(a, e, n, i) {
         ...L
       };
     } else if (r === _.RemoveColumn) {
-      const N = xa(
+      const N = _a(
         {
           id: H.RemoveColCommandId,
           params: { range: f }
@@ -1052,7 +1058,7 @@ function wa(a, e, n, i) {
         ...L
       };
     } else if (r === _.DeleteMoveLeft) {
-      const N = Ma(
+      const N = xa(
         {
           id: H.DeleteRangeMoveLeftCommandId,
           params: { range: f }
@@ -1066,7 +1072,7 @@ function wa(a, e, n, i) {
         ...L
       };
     } else if (r === _.DeleteMoveUp) {
-      const N = Oa(
+      const N = Ma(
         {
           id: H.DeleteRangeMoveUpCommandId,
           params: { range: f }
@@ -1080,7 +1086,7 @@ function wa(a, e, n, i) {
         ...L
       };
     } else if (r === _.InsertMoveDown) {
-      const N = ba(
+      const N = Oa(
         {
           id: H.InsertRangeMoveDownCommandId,
           params: { range: f }
@@ -1094,7 +1100,7 @@ function wa(a, e, n, i) {
         ...L
       };
     } else if (r === _.InsertMoveRight) {
-      const N = Da(
+      const N = ba(
         {
           id: H.InsertRangeMoveRightCommandId,
           params: { range: f }
@@ -1135,14 +1141,14 @@ function Et(a, e, n, i, r, o) {
     endColumn: B,
     rangeType: J = Y.NORMAL
   } = be(r), O = { ...r };
-  function ce() {
+  function le() {
     return d === Y.COLUMN && J === Y.COLUMN ? !0 : m >= F && c <= B;
   }
   function ee() {
     return d === Y.ROW && J === Y.ROW ? !0 : u >= h && f <= M;
   }
   if (a === 0)
-    if (ce())
+    if (le())
       if (u < h)
         O.startRow = u;
       else if (u >= M)
@@ -1152,7 +1158,7 @@ function Et(a, e, n, i, r, o) {
     else
       return;
   else if (a === 1)
-    if (ce())
+    if (le())
       if (f > M)
         O.endRow = f;
       else if (f <= h)
@@ -1218,49 +1224,49 @@ function Ya(a, e) {
   let i = null;
   switch (n) {
     case En.id:
-      i = hi(e, a);
-      break;
-    case Tn.id:
       i = Ui(e, a);
       break;
-    case Pn.id:
+    case Tn.id:
       i = Fi(e, a);
       break;
-    case Ln.id:
-      i = Bi(e);
+    case Pn.id:
+      i = Bi(e, a);
       break;
-    case pn.id:
+    case Ln.id:
       i = vi(e);
       break;
-    case dn.id:
-      i = Vi(e, a);
+    case pn.id:
+      i = Vi(e);
       break;
-    case sn.id:
+    case dn.id:
       i = Gi(e, a);
       break;
-    case ln.id:
+    case sn.id:
       i = Hi(e, a);
       break;
-    case cn.id:
+    case ln.id:
       i = wi(e, a);
       break;
-    case fn.id:
+    case cn.id:
       i = Yi(e, a);
       break;
-    case mn.id:
+    case fn.id:
       i = Xi(e, a);
       break;
-    case un.id:
+    case mn.id:
       i = Wi(e, a);
       break;
-    case on.id:
+    case un.id:
       i = Ki(e, a);
       break;
-    case ha.id:
+    case on.id:
       i = ki(e, a);
       break;
-    case ga.id:
+    case Ua.id:
       i = Qi(e, a);
+      break;
+    case ha.id:
+      i = $i(e, a);
       break;
   }
   return i;
@@ -1273,7 +1279,7 @@ function Z(a) {
     sheetId: n
   };
 }
-function hi(a, e) {
+function Ui(a, e) {
   const { params: n } = a;
   if (!n) return null;
   const { fromRange: i, toRange: r } = n;
@@ -1287,7 +1293,7 @@ function hi(a, e) {
     sheetId: u
   };
 }
-function Ui(a, e) {
+function Fi(a, e) {
   const { params: n } = a;
   if (!n) return null;
   const {
@@ -1316,7 +1322,7 @@ function Ui(a, e) {
     sheetId: c
   };
 }
-function Fi(a, e) {
+function Bi(a, e) {
   const { params: n } = a;
   if (!n) return null;
   const {
@@ -1345,7 +1351,7 @@ function Fi(a, e) {
     sheetId: c
   };
 }
-function Bi(a) {
+function vi(a) {
   const { params: e } = a;
   if (!e) return null;
   const { range: n, unitId: i, subUnitId: r } = e;
@@ -1356,7 +1362,7 @@ function Bi(a) {
     sheetId: r
   };
 }
-function vi(a) {
+function Vi(a) {
   const { params: e } = a;
   if (!e) return null;
   const { range: n, unitId: i, subUnitId: r } = e;
@@ -1367,7 +1373,7 @@ function vi(a) {
     sheetId: r
   };
 }
-function Vi(a, e) {
+function Gi(a, e) {
   const { params: n } = a;
   if (!n) return null;
   const { range: i } = n, { unitId: r, sheetId: o } = Z(e);
@@ -1378,7 +1384,7 @@ function Vi(a, e) {
     sheetId: o
   };
 }
-function Gi(a, e) {
+function Hi(a, e) {
   const { params: n } = a;
   if (!n) return null;
   const { range: i } = n, { unitId: r, sheetId: o } = Z(e);
@@ -1389,7 +1395,7 @@ function Gi(a, e) {
     sheetId: o
   };
 }
-function Hi(a, e) {
+function wi(a, e) {
   var u, f;
   const { params: n } = a;
   if (!n) return null;
@@ -1402,7 +1408,7 @@ function Hi(a, e) {
     rangeFilteredRows: (f = (u = e.getSheetBySheetId(o)) == null ? void 0 : u.getRangeFilterRows(i)) != null ? f : []
   };
 }
-function wi(a, e) {
+function Yi(a, e) {
   const { params: n } = a;
   if (!n) return null;
   const { range: i } = n, { unitId: r, sheetId: o } = Z(e);
@@ -1413,7 +1419,7 @@ function wi(a, e) {
     sheetId: o
   };
 }
-function Yi(a, e) {
+function Xi(a, e) {
   const { params: n } = a;
   if (!n) return null;
   const { range: i } = n, { unitId: r, sheetId: o } = Z(e);
@@ -1424,7 +1430,7 @@ function Yi(a, e) {
     sheetId: o
   };
 }
-function Xi(a, e) {
+function Wi(a, e) {
   const { params: n } = a;
   if (!n) return null;
   const { range: i } = n, { unitId: r, sheetId: o } = Z(e);
@@ -1435,7 +1441,7 @@ function Xi(a, e) {
     sheetId: o
   };
 }
-function Wi(a, e) {
+function Ki(a, e) {
   const { params: n } = a;
   if (!n) return null;
   const { unitId: i, subUnitId: r, name: o } = n, { unitId: u, sheetId: f } = Z(e);
@@ -1446,7 +1452,7 @@ function Wi(a, e) {
     sheetName: o
   };
 }
-function Ki(a, e) {
+function ki(a, e) {
   const { params: n } = a;
   if (!n) return null;
   const { unitId: i, subUnitId: r } = n, { unitId: o, sheetId: u } = Z(e);
@@ -1456,7 +1462,7 @@ function Ki(a, e) {
     sheetId: r || u
   };
 }
-function ki(a, e) {
+function Qi(a, e) {
   const { params: n } = a;
   if (!n) return null;
   const { unitId: i, name: r, id: o } = n, { sheetId: u } = Z(e);
@@ -1468,7 +1474,7 @@ function ki(a, e) {
     definedNameId: o
   };
 }
-function Qi(a, e) {
+function $i(a, e) {
   const { params: n } = a;
   if (!n) return null;
   const { unitId: i, name: r, id: o } = n, { sheetId: u } = Z(e);
@@ -1480,8 +1486,8 @@ function Qi(a, e) {
     definedNameId: o
   };
 }
-var $i = Object.getOwnPropertyDescriptor, ji = (a, e, n, i) => {
-  for (var r = i > 1 ? void 0 : i ? $i(e, n) : e, o = a.length - 1, u; o >= 0; o--)
+var ji = Object.getOwnPropertyDescriptor, zi = (a, e, n, i) => {
+  for (var r = i > 1 ? void 0 : i ? ji(e, n) : e, o = a.length - 1, u; o >= 0; o--)
     (u = a[o]) && (r = u(r) || r);
   return r;
 }, Ve = (a, e) => (n, i) => e(n, i, a);
@@ -1496,7 +1502,7 @@ let ze = class extends ne {
     this.disposeWithMe(
       this._sheetInterceptorService.interceptCommand({
         getMutations: (a) => {
-          if (a.id === ha.id || a.id === ga.id)
+          if (a.id === Ua.id || a.id === ha.id)
             return {
               redos: [],
               undos: []
@@ -1601,17 +1607,17 @@ let ze = class extends ne {
     return ((o = this._definedNamesService.getWorksheetByRef(e, i)) == null ? void 0 : o.getSheetId()) === n ? Q.REF : null;
   }
 };
-ze = ji([
-  Ve(0, Bt),
+ze = zi([
+  Ve(0, vt),
   Ve(1, Se),
-  Ve(2, X(Ut)),
-  Ve(3, X(vt))
+  Ve(2, X(Ft)),
+  Ve(3, X(Vt))
 ], ze);
-var zi = Object.getOwnPropertyDescriptor, Zi = (a, e, n, i) => {
-  for (var r = i > 1 ? void 0 : i ? zi(e, n) : e, o = a.length - 1, u; o >= 0; o--)
+var Zi = Object.getOwnPropertyDescriptor, Ji = (a, e, n, i) => {
+  for (var r = i > 1 ? void 0 : i ? Zi(e, n) : e, o = a.length - 1, u; o >= 0; o--)
     (u = a[o]) && (r = u(r) || r);
   return r;
-}, ue = (a, e) => (n, i) => e(n, i, a);
+}, me = (a, e) => (n, i) => e(n, i, a);
 let Ze = class extends ne {
   constructor(a, e, n, i, r, o, u, f) {
     super(), this._univerInstanceService = a, this._commandService = e, this._lexerTreeBuilder = n, this._formulaDataModel = i, this._sheetInterceptorService = r, this._definedNamesService = o, this._configService = u, this._injector = f, this._commandExecutedListener();
@@ -1631,12 +1637,12 @@ let Ze = class extends ne {
       this._commandService.beforeCommandExecuted((a, e) => {
         if (a.id === z.id) {
           const n = a.params;
-          if (e && e.onlyLocal === !0 || n.trigger === ht.id || n.trigger === Na.id || n.trigger === Ra.id)
+          if (e && e.onlyLocal === !0 || n.trigger === Ut.id || n.trigger === Ra.id || n.trigger === Sa.id)
             return;
           this._handleSetRangeValuesMutation(n);
         }
       })
-    ), this.disposeWithMe(this._univerInstanceService.getTypeOfUnitAdded$(ae.UNIVER_SHEET).subscribe((a) => this._handleWorkbookAdded(a))), this.disposeWithMe(this._univerInstanceService.getTypeOfUnitDisposed$(ae.UNIVER_SHEET).pipe(ei((a) => a.getUnitId())).subscribe((a) => this._handleWorkbookDisposed(a)));
+    ), this.disposeWithMe(this._univerInstanceService.getTypeOfUnitAdded$(ae.UNIVER_SHEET).subscribe((a) => this._handleWorkbookAdded(a))), this.disposeWithMe(this._univerInstanceService.getTypeOfUnitDisposed$(ae.UNIVER_SHEET).pipe(ti((a) => a.getUnitId())).subscribe((a) => this._handleWorkbookDisposed(a)));
   }
   _handleSetRangeValuesMutation(a) {
     const { subUnitId: e, unitId: n, cellValue: i } = a;
@@ -1652,7 +1658,7 @@ let Ze = class extends ne {
       {
         unitId: n,
         subUnitId: e,
-        cellValue: gi(r)
+        cellValue: hi(r)
       },
       {
         onlyLocal: !0,
@@ -1701,7 +1707,7 @@ let Ze = class extends ne {
     );
   }
   _handleInsertSheetMutation(a) {
-    const { sheet: e, unitId: n } = a, i = this._formulaDataModel.getFormulaData(), { id: r, cellData: o } = e, u = new G(o), f = na(i, n, r, u);
+    const { sheet: e, unitId: n } = a, i = this._formulaDataModel.getFormulaData(), { id: r, cellData: o } = e, u = new G(o), f = ia(i, n, r, u);
     this._commandService.executeCommand(
       ve.id,
       {
@@ -1717,7 +1723,7 @@ let Ze = class extends ne {
     const e = {}, n = a.getUnitId(), i = { [n]: {} };
     a.getSheets().forEach((c) => {
       var p;
-      const d = c.getCellMatrix(), P = c.getSheetId(), E = na(e, n, P, d);
+      const d = c.getCellMatrix(), P = c.getSheetId(), E = ia(e, n, P, d);
       i[n][P] = (p = E[n]) == null ? void 0 : p[P];
     }), this._commandService.executeCommand(ve.id, { formulaData: i }, { onlyLocal: !0 });
     const o = this._configService.getConfig(ge), u = (m = o == null ? void 0 : o.initialFormulaComputing) != null ? m : Pe.WHEN_EMPTY, f = this._getDirtyDataByCalculationMode(u);
@@ -1748,7 +1754,7 @@ let Ze = class extends ne {
         r,
         i,
         n
-      ), { undos: u, redos: f } = si(r, o, n);
+      ), { undos: u, redos: f } = di(r, o, n);
       return {
         undos: u,
         redos: f
@@ -1785,13 +1791,13 @@ let Ze = class extends ne {
             const O = L[B];
             if (typeof O == "string")
               continue;
-            const { token: ce, nodeType: ee } = O;
+            const { token: le, nodeType: ee } = O;
             if ((U === _.SetDefinedName || U === _.RemoveDefinedName) && (ee === te.DEFINED_NAME || ee === te.FUNCTION)) {
               const { definedNameId: Ue, definedName: Te } = n;
               if (Ue === void 0 || Te === void 0)
                 continue;
-              const se = this._definedNamesService.getValueById(u, Ue);
-              if (se == null || se.name !== ce)
+              const de = this._definedNamesService.getValueById(u, Ue);
+              if (de == null || de.name !== le)
                 continue;
               L[B] = {
                 ...O,
@@ -1800,7 +1806,7 @@ let Ze = class extends ne {
               continue;
             } else if (ee !== te.REFERENCE)
               continue;
-            const le = Le(ce), { range: $, sheetName: ie, unitId: re } = le, he = re == null || re.length === 0 ? u : re, j = ((F = e == null ? void 0 : e[he]) == null ? void 0 : F[ie]) || "";
+            const se = Le(le), { range: $, sheetName: ie, unitId: re } = se, he = re == null || re.length === 0 ? u : re, j = ((F = e == null ? void 0 : e[he]) == null ? void 0 : F[ie]) || "";
             if (!Ga(
               n.unitId,
               n.sheetId,
@@ -1823,20 +1829,20 @@ let Ze = class extends ne {
               const {
                 unitId: Ue,
                 sheetId: Te,
-                sheetName: se
+                sheetName: de
               } = n;
-              if (se == null || j == null || j.length === 0 || Te !== j)
+              if (de == null || j == null || j.length === 0 || Te !== j)
                 continue;
               Ce = ft({
                 range: $,
-                sheetName: se,
+                sheetName: de,
                 unitId: re
               });
             } else if (U === _.RemoveSheet) {
               const {
                 unitId: Ue,
                 sheetId: Te,
-                sheetName: se
+                sheetName: de
               } = n;
               if (j == null || j.length === 0 || Te !== j)
                 continue;
@@ -1870,19 +1876,19 @@ let Ze = class extends ne {
     return { newFormulaData: o };
   }
 };
-Ze = Zi([
-  ue(0, Se),
-  ue(1, fe),
-  ue(2, X(vt)),
-  ue(3, X(mt)),
-  ue(4, X(Ut)),
-  ue(5, Bt),
-  ue(6, Ae),
-  ue(7, X(ut))
+Ze = Ji([
+  me(0, Se),
+  me(1, ce),
+  me(2, X(Vt)),
+  me(3, X(mt)),
+  me(4, X(Ft)),
+  me(5, vt),
+  me(6, Ae),
+  me(7, X(ut))
 ], Ze);
-const Ji = "SHEETS_FORMULA_PLUGIN";
-var er = Object.getOwnPropertyDescriptor, tr = (a, e, n, i) => {
-  for (var r = i > 1 ? void 0 : i ? er(e, n) : e, o = a.length - 1, u; o >= 0; o--)
+const er = "SHEETS_FORMULA_PLUGIN";
+var tr = Object.getOwnPropertyDescriptor, ar = (a, e, n, i) => {
+  for (var r = i > 1 ? void 0 : i ? tr(e, n) : e, o = a.length - 1, u; o >= 0; o--)
     (u = a[o]) && (r = u(r) || r);
   return r;
 }, Nt = (a, e) => (n, i) => e(n, i, a);
@@ -1898,15 +1904,15 @@ let Je = class extends ne {
       commandId: z.id,
       getDirtyData: (a) => {
         const e = a.params;
-        return e.trigger === ht.id ? {} : {
+        return e.trigger === Ut.id ? {} : {
           dirtyRanges: this._getSetRangeValuesMutationDirtyRange(e)
         };
       }
     }), this._initialMove(), this._initialRowAndColumn(), this._initialHideRow(), this._initialSheet(), this._initialDefinedName();
   }
   _initialMove() {
-    this._activeDirtyManagerService.register(Xt.id, {
-      commandId: Xt.id,
+    this._activeDirtyManagerService.register(Wt.id, {
+      commandId: Wt.id,
       getDirtyData: (a) => {
         const e = a.params;
         return {
@@ -1915,19 +1921,6 @@ let Je = class extends ne {
             [e.unitId]: {
               [e.to.subUnitId]: "1",
               [e.from.subUnitId]: "1"
-            }
-          }
-        };
-      }
-    }), this._activeDirtyManagerService.register(Wt.id, {
-      commandId: Wt.id,
-      getDirtyData: (a) => {
-        const e = a.params;
-        return {
-          dirtyRanges: this._getMoveRowsMutationDirtyRange(e),
-          clearDependencyTreeCache: {
-            [e.unitId]: {
-              [e.subUnitId]: "1"
             }
           }
         };
@@ -1950,6 +1943,19 @@ let Je = class extends ne {
       getDirtyData: (a) => {
         const e = a.params;
         return {
+          dirtyRanges: this._getMoveRowsMutationDirtyRange(e),
+          clearDependencyTreeCache: {
+            [e.unitId]: {
+              [e.subUnitId]: "1"
+            }
+          }
+        };
+      }
+    }), this._activeDirtyManagerService.register(Qt.id, {
+      commandId: Qt.id,
+      getDirtyData: (a) => {
+        const e = a.params;
+        return {
           dirtyRanges: this._getReorderRangeMutationDirtyRange(e),
           clearDependencyTreeCache: {
             [e.unitId]: {
@@ -1961,25 +1967,12 @@ let Je = class extends ne {
     });
   }
   _initialRowAndColumn() {
-    this._activeDirtyManagerService.register(Qt.id, {
-      commandId: Qt.id,
-      getDirtyData: (a) => {
-        const e = a.params;
-        return {
-          dirtyRanges: this._getRemoveRowOrColumnMutation(e, !0),
-          clearDependencyTreeCache: {
-            [e.unitId]: {
-              [e.subUnitId]: "1"
-            }
-          }
-        };
-      }
-    }), this._activeDirtyManagerService.register($t.id, {
+    this._activeDirtyManagerService.register($t.id, {
       commandId: $t.id,
       getDirtyData: (a) => {
         const e = a.params;
         return {
-          dirtyRanges: this._getRemoveRowOrColumnMutation(e, !1),
+          dirtyRanges: this._getRemoveRowOrColumnMutation(e, !0),
           clearDependencyTreeCache: {
             [e.unitId]: {
               [e.subUnitId]: "1"
@@ -1992,6 +1985,7 @@ let Je = class extends ne {
       getDirtyData: (a) => {
         const e = a.params;
         return {
+          dirtyRanges: this._getRemoveRowOrColumnMutation(e, !1),
           clearDependencyTreeCache: {
             [e.unitId]: {
               [e.subUnitId]: "1"
@@ -2011,11 +2005,23 @@ let Je = class extends ne {
           }
         };
       }
+    }), this._activeDirtyManagerService.register(Zt.id, {
+      commandId: Zt.id,
+      getDirtyData: (a) => {
+        const e = a.params;
+        return {
+          clearDependencyTreeCache: {
+            [e.unitId]: {
+              [e.subUnitId]: "1"
+            }
+          }
+        };
+      }
     });
   }
   _initialHideRow() {
-    this._activeDirtyManagerService.register(Zt.id, {
-      commandId: Zt.id,
+    this._activeDirtyManagerService.register(Jt.id, {
+      commandId: Jt.id,
       getDirtyData: (a) => {
         const e = a.params;
         return {
@@ -2027,8 +2033,8 @@ let Je = class extends ne {
           }
         };
       }
-    }), this._activeDirtyManagerService.register(Jt.id, {
-      commandId: Jt.id,
+    }), this._activeDirtyManagerService.register(ea.id, {
+      commandId: ea.id,
       getDirtyData: (a) => {
         const e = a.params;
         return {
@@ -2180,13 +2186,13 @@ let Je = class extends ne {
     return i;
   }
 };
-Je = tr([
-  Nt(0, Ft),
+Je = ar([
+  Nt(0, Bt),
   Nt(1, Se),
   Nt(2, X(mt))
 ], Je);
-var ar = Object.getOwnPropertyDescriptor, nr = (a, e, n, i) => {
-  for (var r = i > 1 ? void 0 : i ? ar(e, n) : e, o = a.length - 1, u; o >= 0; o--)
+var nr = Object.getOwnPropertyDescriptor, ir = (a, e, n, i) => {
+  for (var r = i > 1 ? void 0 : i ? nr(e, n) : e, o = a.length - 1, u; o >= 0; o--)
     (u = a[o]) && (r = u(r) || r);
   return r;
 }, Ge = (a, e) => (n, i) => e(n, i, a);
@@ -2248,21 +2254,21 @@ let et = class extends ne {
           var d, P, E;
           let i = a;
           const { unitId: r, subUnitId: o, row: u, col: f } = e, m = this._formulaDataModel.getArrayFormulaCellData(), c = (E = (P = (d = m == null ? void 0 : m[r]) == null ? void 0 : d[o]) == null ? void 0 : P[u]) == null ? void 0 : E[f];
-          return c == null ? n(i) : ((!i || i === e.rawData) && (i = { ...e.rawData }), c.v == null && c.t == null ? (i.v = 0, i.t = wt.NUMBER, n(i)) : (i == null ? void 0 : i.t) === wt.NUMBER && i.v !== void 0 && i.v !== null && Za(i.v) ? (i.v = xn(Number(i.v)), n(i)) : (i.v = c.v, i.t = c.t, n(i)));
+          return c == null ? n(i) : ((!i || i === e.rawData) && (i = { ...e.rawData }), c.v == null && c.t == null ? (i.v = 0, i.t = Yt.NUMBER, n(i)) : (i == null ? void 0 : i.t) === Yt.NUMBER && i.v !== void 0 && i.v !== null && Za(i.v) ? (i.v = _n(Number(i.v)), n(i)) : (i.v = c.v, i.t = c.t, n(i)));
         }
       })
     );
   }
 };
-et = nr([
-  Ge(0, fe),
+et = ir([
+  Ge(0, ce),
   Ge(1, Ae),
-  Ge(2, X(Ut)),
+  Ge(2, X(Ft)),
   Ge(3, X(mt))
 ], et);
-const ir = [
+const rr = [
   {
-    functionName: ia.ARRAY_CONSTRAIN,
+    functionName: ra.ARRAY_CONSTRAIN,
     functionType: t.Array,
     description: "formula.functionList.ARRAY_CONSTRAIN.description",
     abstract: "formula.functionList.ARRAY_CONSTRAIN.abstract",
@@ -2291,7 +2297,7 @@ const ir = [
     ]
   },
   {
-    functionName: ia.FLATTEN,
+    functionName: ra.FLATTEN,
     functionType: t.Array,
     description: "formula.functionList.FLATTEN.description",
     abstract: "formula.functionList.FLATTEN.abstract",
@@ -2312,7 +2318,7 @@ const ir = [
       }
     ]
   }
-], rr = [
+], or = [
   {
     functionName: x.BETADIST,
     functionType: t.Compatibility,
@@ -3366,9 +3372,9 @@ const ir = [
       }
     ]
   }
-], or = [
+], ur = [
   {
-    functionName: de.CUBEKPIMEMBER,
+    functionName: pe.CUBEKPIMEMBER,
     functionType: t.Cube,
     description: "formula.functionList.CUBEKPIMEMBER.description",
     abstract: "formula.functionList.CUBEKPIMEMBER.abstract",
@@ -3390,7 +3396,7 @@ const ir = [
     ]
   },
   {
-    functionName: de.CUBEMEMBER,
+    functionName: pe.CUBEMEMBER,
     functionType: t.Cube,
     description: "formula.functionList.CUBEMEMBER.description",
     abstract: "formula.functionList.CUBEMEMBER.abstract",
@@ -3412,7 +3418,7 @@ const ir = [
     ]
   },
   {
-    functionName: de.CUBEMEMBERPROPERTY,
+    functionName: pe.CUBEMEMBERPROPERTY,
     functionType: t.Cube,
     description: "formula.functionList.CUBEMEMBERPROPERTY.description",
     abstract: "formula.functionList.CUBEMEMBERPROPERTY.abstract",
@@ -3434,7 +3440,7 @@ const ir = [
     ]
   },
   {
-    functionName: de.CUBERANKEDMEMBER,
+    functionName: pe.CUBERANKEDMEMBER,
     functionType: t.Cube,
     description: "formula.functionList.CUBERANKEDMEMBER.description",
     abstract: "formula.functionList.CUBERANKEDMEMBER.abstract",
@@ -3456,7 +3462,7 @@ const ir = [
     ]
   },
   {
-    functionName: de.CUBESET,
+    functionName: pe.CUBESET,
     functionType: t.Cube,
     description: "formula.functionList.CUBESET.description",
     abstract: "formula.functionList.CUBESET.abstract",
@@ -3478,7 +3484,7 @@ const ir = [
     ]
   },
   {
-    functionName: de.CUBESETCOUNT,
+    functionName: pe.CUBESETCOUNT,
     functionType: t.Cube,
     description: "formula.functionList.CUBESETCOUNT.description",
     abstract: "formula.functionList.CUBESETCOUNT.abstract",
@@ -3500,7 +3506,7 @@ const ir = [
     ]
   },
   {
-    functionName: de.CUBEVALUE,
+    functionName: pe.CUBEVALUE,
     functionType: t.Cube,
     description: "formula.functionList.CUBEVALUE.description",
     abstract: "formula.functionList.CUBEVALUE.abstract",
@@ -3521,7 +3527,7 @@ const ir = [
       }
     ]
   }
-], ur = [
+], mr = [
   {
     functionName: k.DAVERAGE,
     functionType: t.Database,
@@ -3870,7 +3876,7 @@ const ir = [
       }
     ]
   }
-], mr = [
+], fr = [
   {
     functionName: v.DATE,
     functionType: t.Date,
@@ -4442,7 +4448,7 @@ const ir = [
       }
     ]
   }
-], fr = [
+], cr = [
   {
     functionName: C.BESSELI,
     functionType: t.Engineering,
@@ -5515,7 +5521,7 @@ const ir = [
       }
     ]
   }
-], cr = [
+], lr = [
   {
     functionName: D.ACCRINT,
     functionType: t.Financial,
@@ -7776,7 +7782,7 @@ const ir = [
       }
     ]
   }
-], lr = [
+], sr = [
   {
     functionName: V.CELL,
     functionType: t.Information,
@@ -8185,7 +8191,7 @@ const ir = [
       }
     ]
   }
-], sr = [
+], dr = [
   {
     functionName: K.AND,
     functionType: t.Logical,
@@ -8659,7 +8665,7 @@ const ir = [
       }
     ]
   }
-], dr = [
+], pr = [
   {
     functionName: y.ADDRESS,
     functionType: t.Lookup,
@@ -9691,7 +9697,7 @@ const ir = [
       }
     ]
   }
-], pr = [
+], Lr = [
   {
     functionName: T.ABS,
     functionType: t.Math,
@@ -11329,7 +11335,7 @@ const ir = [
       }
     ]
   }
-], Lr = [
+], Pr = [
   {
     functionName: l.AVEDEV,
     functionType: t.Statistical,
@@ -14271,7 +14277,7 @@ const ir = [
       }
     ]
   }
-], Pr = [
+], Tr = [
   {
     functionName: b.ASC,
     functionType: t.Text,
@@ -15485,7 +15491,7 @@ const ir = [
       }
     ]
   }
-], Tr = [], Er = [
+], Er = [], Ir = [
   {
     functionName: pt.ENCODEURL,
     functionType: t.Web,
@@ -15545,34 +15551,34 @@ const ir = [
       }
     ]
   }
-], Ir = [
-  ...cr,
-  ...mr,
-  ...pr,
-  ...Lr,
-  ...dr,
-  ...ur,
-  ...Pr,
-  ...sr,
+], Nr = [
   ...lr,
   ...fr,
+  ...Lr,
+  ...Pr,
+  ...pr,
+  ...mr,
+  ...Tr,
+  ...dr,
+  ...sr,
+  ...cr,
+  ...ur,
   ...or,
+  ...Ir,
   ...rr,
-  ...Er,
-  ...ir,
-  ...Tr
+  ...Er
 ];
-function Nr(a, e) {
+function Rr(a, e) {
   let n = "";
   return a.aliasFunctionName ? (n = e.t(a.aliasFunctionName), n === a.aliasFunctionName && (n = a.functionName)) : n = a.functionName, n;
 }
-var Rr = Object.getOwnPropertyDescriptor, Sr = (a, e, n, i) => {
-  for (var r = i > 1 ? void 0 : i ? Rr(e, n) : e, o = a.length - 1, u; o >= 0; o--)
+var Sr = Object.getOwnPropertyDescriptor, Ar = (a, e, n, i) => {
+  for (var r = i > 1 ? void 0 : i ? Sr(e, n) : e, o = a.length - 1, u; o >= 0; o--)
     (u = a[o]) && (r = u(r) || r);
   return r;
 }, Rt = (a, e) => (n, i) => e(n, i, a);
-const Gt = gt("formula.description-service");
-let Mt = class {
+const Ht = ht("formula.description-service");
+let xt = class {
   constructor(a, e, n) {
     W(this, "_descriptions", []);
     this._functionService = a, this._localeService = e, this._configService = n, this._initialize();
@@ -15630,7 +15636,7 @@ let Mt = class {
     if (e.length === 0)
       return !1;
     const n = e[0].description;
-    return !_n(n);
+    return !yn(n);
   }
   _initialize() {
     this._localeService.localeChanged$.subscribe(() => {
@@ -15640,7 +15646,6 @@ let Mt = class {
   _initDescription() {
     var i;
     const a = [
-      ...yn,
       ...qn,
       ...gn,
       ...hn,
@@ -15655,13 +15660,14 @@ let Mt = class {
       ...Yn,
       ...Xn,
       ...Wn,
-      ...Kn
-    ].map((r) => r[1]), e = Ir.filter((r) => a.includes(r.functionName)), n = this._configService.getConfig(ge);
+      ...Kn,
+      ...kn
+    ].map((r) => r[1]), e = Nr.filter((r) => a.includes(r.functionName)), n = this._configService.getConfig(ge);
     this._descriptions = e.concat((i = n == null ? void 0 : n.description) != null ? i : []);
   }
   _registerDescriptions() {
     const a = this._localeService, e = this._descriptions.map((n) => ({
-      functionName: Nr(n, a),
+      functionName: Rr(n, a),
       functionType: n.functionType,
       description: a.t(n.description),
       abstract: a.t(n.abstract),
@@ -15676,13 +15682,13 @@ let Mt = class {
     this._functionService.registerDescriptions(...e);
   }
 };
-Mt = Sr([
-  Rt(0, Vt),
-  Rt(1, X(qt)),
+xt = Ar([
+  Rt(0, Gt),
+  Rt(1, X(gt)),
   Rt(2, Ae)
-], Mt);
-var Ar = Object.getOwnPropertyDescriptor, Cr = (a, e, n, i) => {
-  for (var r = i > 1 ? void 0 : i ? Ar(e, n) : e, o = a.length - 1, u; o >= 0; o--)
+], xt);
+var Cr = Object.getOwnPropertyDescriptor, Dr = (a, e, n, i) => {
+  for (var r = i > 1 ? void 0 : i ? Cr(e, n) : e, o = a.length - 1, u; o >= 0; o--)
     (u = a[o]) && (r = u(r) || r);
   return r;
 }, He = (a, e) => (n, i) => e(n, i, a);
@@ -15798,35 +15804,35 @@ let tt = class extends ne {
     }), this._descriptionService.unregisterDescriptions(r);
   }
 };
-tt = Cr([
-  He(0, Gt),
-  He(1, Bt),
+tt = Dr([
+  He(0, Ht),
+  He(1, vt),
   He(2, Se),
-  He(3, fe)
+  He(3, ce)
 ], tt);
-var Dr = Object.getOwnPropertyDescriptor, br = (a, e, n, i) => {
-  for (var r = i > 1 ? void 0 : i ? Dr(e, n) : e, o = a.length - 1, u; o >= 0; o--)
+var br = Object.getOwnPropertyDescriptor, Or = (a, e, n, i) => {
+  for (var r = i > 1 ? void 0 : i ? br(e, n) : e, o = a.length - 1, u; o >= 0; o--)
     (u = a[o]) && (r = u(r) || r);
   return r;
-}, Or = (a, e) => (n, i) => e(n, i, a);
+}, Mr = (a, e) => (n, i) => e(n, i, a);
 let at = class extends ne {
   constructor(a) {
     super(), this._commandService = a, [
-      ni,
       ii,
+      ri,
       Oe
     ].forEach((e) => this._commandService.registerCommand(e));
   }
 };
-at = br([
-  Or(0, fe)
+at = Or([
+  Mr(0, ce)
 ], at);
-var Mr = Object.getOwnPropertyDescriptor, xr = (a, e, n, i) => {
-  for (var r = i > 1 ? void 0 : i ? Mr(e, n) : e, o = a.length - 1, u; o >= 0; o--)
+var xr = Object.getOwnPropertyDescriptor, _r = (a, e, n, i) => {
+  for (var r = i > 1 ? void 0 : i ? xr(e, n) : e, o = a.length - 1, u; o >= 0; o--)
     (u = a[o]) && (r = u(r) || r);
   return r;
 }, we = (a, e) => (n, i) => e(n, i, a);
-function sa(a, e, n, i) {
+function da(a, e, n, i) {
   const r = a.sequenceNodesBuilder(e);
   if (r == null)
     return e;
@@ -15845,7 +15851,7 @@ function sa(a, e, n, i) {
   }
   return o.map((u) => `${u.unitId}!${u.sheetName}!${u.range.startRow}!${u.range.endRow}!${u.range.startColumn}!${u.range.endColumn}`).join("|");
 }
-let xt = class extends ne {
+let _t = class extends ne {
   constructor(a, e, n, i) {
     super(), this._refRangeService = a, this._lexerTreeBuilder = e, this._univerInstanceService = n, this._injector = i;
   }
@@ -15858,11 +15864,11 @@ let xt = class extends ne {
         const s = S.getUnitId(), A = R.getSheetId();
         if (s !== f || A !== m)
           return d;
-        const N = ea(E, i);
+        const N = ta(E, i);
         let L = "";
         if (N) {
           const g = N.startColumn - E.startColumn, q = N.startRow - E.startRow, U = St(E, g, q);
-          p && I ? L = ra(p, I, U) : I ? L = oa(I, U) : L = _e(U);
+          p && I ? L = oa(p, I, U) : I ? L = ua(I, U) : L = _e(U);
         } else
           L = Q.REF;
         return {
@@ -15881,11 +15887,11 @@ let xt = class extends ne {
           const R = r.get(S.token);
           if (R.unitId !== P || R.subUnitId !== E)
             return S;
-          const s = ea(R.range, m);
+          const s = ta(R.range, m);
           let A = "";
           if (s) {
             const N = s.startColumn - R.range.startColumn, L = s.startRow - R.range.startRow, g = St(R.range, N, L);
-            R.unitId && R.sheetName ? A = ra(R.unitId, R.sheetName, g) : R.sheetName ? A = oa(R.sheetName, g) : A = _e(g);
+            R.unitId && R.sheetName ? A = oa(R.unitId, R.sheetName, g) : R.sheetName ? A = ua(R.sheetName, g) : A = _e(g);
           } else
             A = Q.REF;
           return {
@@ -15957,29 +15963,29 @@ let xt = class extends ne {
           );
         }
       if (E.length > 0) {
-        const I = me.splitIntoGrid([...E.flat()]), S = me.subtractMulti(n, I);
+        const I = fe.splitIntoGrid([...E.flat()]), S = fe.subtractMulti(n, I);
         S.sort((L, g) => L.startRow - g.startRow || L.startColumn - g.startColumn);
         const R = /* @__PURE__ */ new Map();
         for (let L = 0; L < I.length; L++) {
           const g = I[L], q = g.startRow, U = g.startColumn, h = q - c, M = U - d, F = An(g, m).sort(($, ie) => $.startRow - ie.startRow || $.startColumn - ie.startColumn);
           if (!F.length)
             continue;
-          const B = F[0].startRow, J = F[0].startColumn, O = B - c, ce = J - d, ee = [];
+          const B = F[0].startRow, J = F[0].startColumn, O = B - c, le = J - d, ee = [];
           for (let $ = 0; $ < i.length; $++) {
-            const ie = i[$], re = Me(ie), he = re ? this._lexerTreeBuilder.moveFormulaRefOffset(ie, M, h) : ie, j = re ? this.transformFormulaByEffectCommand(a, e, he, m) : he, lt = sa(this._lexerTreeBuilder, j, -ce, -O);
+            const ie = i[$], re = Me(ie), he = re ? this._lexerTreeBuilder.moveFormulaRefOffset(ie, M, h) : ie, j = re ? this.transformFormulaByEffectCommand(a, e, he, m) : he, lt = da(this._lexerTreeBuilder, j, -le, -O);
             ee.push({
               newFormula: j,
               orginFormula: lt
             });
           }
-          const le = {
+          const se = {
             formulas: ee,
             ranges: F,
             key: ee.map(($) => $.orginFormula).join("_")
           };
-          R.has(le.key) ? R.get(le.key).push(le) : R.set(le.key, [le]);
+          R.has(se.key) ? R.get(se.key).push(se) : R.set(se.key, [se]);
         }
-        const s = i.map((L) => sa(this._lexerTreeBuilder, L, 0, 0)).join("_");
+        const s = i.map((L) => da(this._lexerTreeBuilder, L, 0, 0)).join("_");
         if (S.length > 0) {
           const L = S[0].startRow, g = S[0].startColumn, q = [];
           for (let h = 0; h < i.length; h++) {
@@ -16001,7 +16007,7 @@ let xt = class extends ne {
           const g = N[L], q = R.get(g).sort((M, F) => M.ranges[0].startRow - F.ranges[0].startRow || M.ranges[0].startColumn - F.ranges[0].startColumn), U = [];
           for (let M = 0; M < q[0].formulas.length; M++)
             U.push(q[0].formulas[M].newFormula);
-          const h = me.mergeRanges(q.map((M) => M.ranges).flat());
+          const h = fe.mergeRanges(q.map((M) => M.ranges).flat());
           h.sort((M, F) => M.startRow - F.startRow || M.startColumn - F.startColumn), A.push({
             formulas: U,
             ranges: h
@@ -16025,54 +16031,54 @@ let xt = class extends ne {
     }), o;
   }
 };
-xt = xr([
+_t = _r([
   we(0, X(Rn)),
-  we(1, X(vt)),
+  we(1, X(Vt)),
   we(2, Se),
   we(3, X(ut))
-], xt);
-var _r = Object.getOwnPropertyDescriptor, yr = (a, e, n, i) => {
-  for (var r = i > 1 ? void 0 : i ? _r(e, n) : e, o = a.length - 1, u; o >= 0; o--)
+], _t);
+var yr = Object.getOwnPropertyDescriptor, qr = (a, e, n, i) => {
+  for (var r = i > 1 ? void 0 : i ? yr(e, n) : e, o = a.length - 1, u; o >= 0; o--)
     (u = a[o]) && (r = u(r) || r);
   return r;
-}, qr = (a, e) => (n, i) => e(n, i, a);
-const Ht = "sheets-formula.remote-register-function.service", Xa = gt(Ht);
+}, gr = (a, e) => (n, i) => e(n, i, a);
+const wt = "sheets-formula.remote-register-function.service", Xa = ht(wt);
 let nt = class {
   constructor(a) {
     this._functionService = a;
   }
   async registerFunctions(a) {
-    const e = a.map(([n, i]) => gr(n, i));
+    const e = a.map(([n, i]) => hr(n, i));
     this._functionService.registerExecutors(...e);
   }
   async registerAsyncFunctions(a) {
-    const e = a.map(([n, i]) => hr(n, i));
+    const e = a.map(([n, i]) => Ur(n, i));
     this._functionService.registerExecutors(...e);
   }
   async unregisterFunctions(a) {
     this._functionService.unregisterExecutors(...a), this._functionService.unregisterDescriptions(...a), this._functionService.deleteFormulaAstCacheKey(...a);
   }
 };
-nt = yr([
-  qr(0, Vt)
+nt = qr([
+  gr(0, Gt)
 ], nt);
-function gr(a, e) {
+function hr(a, e) {
   const n = new Ot(e), i = new Function(`return ${a}`)();
   return n.calculateCustom = i, n;
 }
-function hr(a, e) {
-  const n = new Ua(e), i = new Function(`return ${a}`)();
+function Ur(a, e) {
+  const n = new Fa(e), i = new Function(`return ${a}`)();
   return n.calculateCustom = i, n;
 }
-var Ur = Object.getOwnPropertyDescriptor, Fr = (a, e, n, i) => {
-  for (var r = i > 1 ? void 0 : i ? Ur(e, n) : e, o = a.length - 1, u; o >= 0; o--)
+var Fr = Object.getOwnPropertyDescriptor, Br = (a, e, n, i) => {
+  for (var r = i > 1 ? void 0 : i ? Fr(e, n) : e, o = a.length - 1, u; o >= 0; o--)
     (u = a[o]) && (r = u(r) || r);
   return r;
 }, Ye = (a, e) => (n, i) => e(n, i, a);
-const Br = gt(
+const vr = ht(
   "sheets-formula.register-function-service"
 );
-let _t = class extends ne {
+let yt = class extends ne {
   constructor(a, e, n, i) {
     super(), this._localeService = a, this._descriptionService = e, this._functionService = n, this._remoteRegisterFunctionService = i;
   }
@@ -16113,7 +16119,7 @@ let _t = class extends ne {
       u.add(this._descriptionService.registerDescriptions([m]));
     } else
       u.add(this._descriptionService.registerDescriptions([i]));
-    const f = o ? new Ua(e) : new Ot(e);
+    const f = o ? new Fa(e) : new Ot(e);
     return f.calculateCustom = n, this._functionService.registerExecutors(f), u.add(oe(() => this._functionService.unregisterExecutors(e))), u.add(oe(() => this._functionService.unregisterDescriptions(e))), u.add(oe(() => this._functionService.deleteFormulaAstCacheKey(e))), this._remoteRegisterFunctionService && (this._remoteRegisterFunctionService.registerAsyncFunctions([[n.toString(), e]]), u.add(
       oe(() => this._remoteRegisterFunctionService.unregisterFunctions([e]))
     )), u;
@@ -16130,57 +16136,57 @@ let _t = class extends ne {
     return this._remoteRegisterFunctionService.registerFunctions(n), oe(() => this._remoteRegisterFunctionService.unregisterFunctions(e));
   }
 };
-_t = Fr([
-  Ye(0, X(qt)),
-  Ye(1, X(Gt)),
-  Ye(2, Vt),
+yt = Br([
+  Ye(0, X(gt)),
+  Ye(1, X(Ht)),
+  Ye(2, Gt),
   Ye(3, Ja(Xa))
-], _t);
-var vr = Object.defineProperty, Vr = Object.getOwnPropertyDescriptor, Gr = (a, e, n) => e in a ? vr(a, e, { enumerable: !0, configurable: !0, writable: !0, value: n }) : a[e] = n, Wa = (a, e, n, i) => {
-  for (var r = i > 1 ? void 0 : i ? Vr(e, n) : e, o = a.length - 1, u; o >= 0; o--)
+], yt);
+var Vr = Object.defineProperty, Gr = Object.getOwnPropertyDescriptor, Hr = (a, e, n) => e in a ? Vr(a, e, { enumerable: !0, configurable: !0, writable: !0, value: n }) : a[e] = n, Wa = (a, e, n, i) => {
+  for (var r = i > 1 ? void 0 : i ? Gr(e, n) : e, o = a.length - 1, u; o >= 0; o--)
     (u = a[o]) && (r = u(r) || r);
   return r;
-}, it = (a, e) => (n, i) => e(n, i, a), ct = (a, e, n) => Gr(a, typeof e != "symbol" ? e + "" : e, n);
-let rt = class extends Ta {
-  constructor(a = ca, e, n) {
+}, it = (a, e) => (n, i) => e(n, i, a), ct = (a, e, n) => Hr(a, typeof e != "symbol" ? e + "" : e, n);
+let rt = class extends Ea {
+  constructor(a = la, e, n) {
     super(), this._config = a, this._injector = e, this._configService = n;
-    const { ...i } = Ea(
+    const { ...i } = Ia(
       {},
-      ca,
+      la,
       this._config
     );
-    this._configService.setConfig(ri, i);
+    this._configService.setConfig(oi, i);
   }
   onStarting() {
     this._injector.add([nt]), this._injector.get(va).registerChannel(
-      Ht,
-      ti(this._injector.get(nt))
+      wt,
+      ai(this._injector.get(nt))
     );
   }
 };
 ct(rt, "pluginName", "SHEET_FORMULA_REMOTE_PLUGIN");
 ct(rt, "type", ae.UNIVER_SHEET);
 rt = Wa([
-  Pa(Fa),
+  Ta(Ba),
   it(1, X(ut)),
   it(2, Ae)
 ], rt);
-let ot = class extends Ta {
-  constructor(a = fa, e, n) {
+let ot = class extends Ea {
+  constructor(a = ca, e, n) {
     super(), this._config = a, this._injector = e, this._configService = n;
-    const { ...i } = Ea(
+    const { ...i } = Ia(
       {},
-      fa,
+      ca,
       this._config
     );
     this._configService.setConfig(ge, i, { merge: !0 });
   }
   onStarting() {
     const a = this._injector, e = [
-      [Br, { useClass: _t }],
-      [Gt, { useClass: Mt }],
+      [vr, { useClass: yt }],
+      [Ht, { useClass: xt }],
       [at],
-      [xt],
+      [_t],
       [je],
       [et],
       [xe],
@@ -16192,7 +16198,7 @@ let ot = class extends Ta {
     if (this._config.notExecuteFormula) {
       const n = a.get(va);
       e.push([Xa, {
-        useFactory: () => ai(n.requestChannel(Ht))
+        useFactory: () => ni(n.requestChannel(wt))
       }]);
     }
     e.forEach((n) => a.add(n));
@@ -16204,27 +16210,27 @@ let ot = class extends Ta {
       [et],
       [Ze],
       [ze]
-    ]), Yt() && Fe(this._injector, [
+    ]), Xt() && Fe(this._injector, [
       [xe]
     ]);
   }
   onRendered() {
     Fe(this._injector, [
       [tt]
-    ]), Yt() || Fe(this._injector, [
+    ]), Xt() || Fe(this._injector, [
       [xe]
     ]);
   }
 };
-ct(ot, "pluginName", Ji);
+ct(ot, "pluginName", er);
 ct(ot, "type", ae.UNIVER_SHEET);
 ot = Wa([
-  Pa(Fa, Cn),
+  Ta(Ba, Cn),
   it(1, X(ut)),
   it(2, Ae)
 ], ot);
-function kr(a, e, n, i) {
-  const r = a.get(kn), o = a.get(Qn), u = a.get($n), f = a.get(jn);
+function Qr(a, e, n, i) {
+  const r = a.get(Qn), o = a.get($n), u = a.get(jn), f = a.get(zn);
   r.load({
     formulaData: {},
     arrayFormulaCellData: {},
@@ -16240,21 +16246,21 @@ function kr(a, e, n, i) {
     },
     dirtyUnitOtherFormulaMap: {}
   });
-  const m = o.treeBuilder(e), c = u.parse(m), d = f.execute(zn(c));
-  return Zn(d);
+  const m = o.treeBuilder(e), c = u.parse(m), d = f.execute(Zn(c));
+  return Jn(d);
 }
 export {
   Pe as CalculationMode,
-  Mt as DescriptionService,
-  xt as FormulaRefRangeService,
-  Gt as IDescriptionService,
-  Br as IRegisterFunctionService,
+  xt as DescriptionService,
+  _t as FormulaRefRangeService,
+  Ht as IDescriptionService,
+  vr as IRegisterFunctionService,
   Xa as IRemoteRegisterFunctionService,
-  ni as InsertFunctionCommand,
+  ii as InsertFunctionCommand,
   Oe as OtherFormulaMarkDirty,
   ge as PLUGIN_CONFIG_KEY_BASE,
-  ii as QuickSumCommand,
-  _t as RegisterFunctionService,
+  ri as QuickSumCommand,
+  yt as RegisterFunctionService,
   je as RegisterOtherFormulaService,
   nt as RemoteRegisterFunctionService,
   xe as TriggerCalculationController,
@@ -16262,5 +16268,5 @@ export {
   ot as UniverSheetsFormulaPlugin,
   ze as UpdateDefinedNameController,
   Ze as UpdateFormulaController,
-  kr as calculateFormula
+  Qr as calculateFormula
 };
