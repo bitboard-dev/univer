@@ -1,5 +1,5 @@
 import { Disposable, ICommandService, IConfigService, ILogService, LocaleService } from '@univerjs/core';
-import { FormulaDataModel, IActiveDirtyManagerService } from '@univerjs/engine-formula';
+import { FormulaDataModel, GlobalComputingStatusService, IActiveDirtyManagerService } from '@univerjs/engine-formula';
 import { RegisterOtherFormulaService } from '../services/register-other-formula.service';
 /**
  * This interface is for the progress bar to display the calculation progress.
@@ -20,9 +20,15 @@ export declare class TriggerCalculationController extends Disposable {
     private readonly _formulaDataModel;
     private readonly _localeService;
     private readonly _registerOtherFormulaService;
+    private readonly _globalComputingStatusService;
     private _waitingCommandQueue;
     private _executingDirtyData;
     private _setTimeoutKey;
+    /**
+     * Tracks whether formula calculation (including debounce) is pending.
+     * Set to false when commands are queued, true when calculation completes.
+     */
+    private readonly _computingStatus$;
     private _startExecutionTime;
     private _totalCalculationTaskCount;
     private _doneCalculationTaskCount;
@@ -39,7 +45,7 @@ export declare class TriggerCalculationController extends Disposable {
     private _calculateProgress;
     private _completeProgress;
     clearProgress(): void;
-    constructor(_commandService: ICommandService, _activeDirtyManagerService: IActiveDirtyManagerService, _logService: ILogService, _configService: IConfigService, _formulaDataModel: FormulaDataModel, _localeService: LocaleService, _registerOtherFormulaService: RegisterOtherFormulaService);
+    constructor(_commandService: ICommandService, _activeDirtyManagerService: IActiveDirtyManagerService, _logService: ILogService, _configService: IConfigService, _formulaDataModel: FormulaDataModel, _localeService: LocaleService, _registerOtherFormulaService: RegisterOtherFormulaService, _globalComputingStatusService: GlobalComputingStatusService);
     dispose(): void;
     private _getCalculationMode;
     private _commandExecutedListener;

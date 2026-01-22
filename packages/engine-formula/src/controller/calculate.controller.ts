@@ -103,7 +103,7 @@ export class CalculateController extends Disposable {
         /**
          * Assignment operation after formula calculation.
          */
-        this._calculateFormulaService.executionCompleteListener$.subscribe((data) => {
+        this._calculateFormulaService.executionCompleteListener$.subscribe(async (data) => {
             const functionsExecutedState = data.functionsExecutedState;
             switch (functionsExecutedState) {
                 case FormulaExecutedStateType.NOT_EXECUTED:
@@ -111,7 +111,7 @@ export class CalculateController extends Disposable {
                 case FormulaExecutedStateType.STOP_EXECUTION:
                     break;
                 case FormulaExecutedStateType.SUCCESS:
-                    this._applyResult(data);
+                    await this._applyResult(data);
                     break;
                 case FormulaExecutedStateType.INITIAL:
                     break;

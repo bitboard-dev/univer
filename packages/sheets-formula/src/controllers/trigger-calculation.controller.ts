@@ -32,6 +32,7 @@ import {
     FormulaDataModel,
     FormulaExecutedStateType,
     FormulaExecuteStageType,
+    GlobalComputingStatusService,
     IActiveDirtyManagerService,
     SetFormulaCalculationNotificationMutation,
     SetFormulaCalculationStartMutation,
@@ -77,6 +78,12 @@ export class TriggerCalculationController extends Disposable {
     };
 
     private _setTimeoutKey: NodeJS.Timeout | number = -1;
+
+    /**
+     * Tracks whether formula calculation (including debounce) is pending.
+     * Set to false when commands are queued, true when calculation completes.
+     */
+    private readonly _computingStatus$ = new BehaviorSubject<boolean>(true);
 
     private _startExecutionTime: number = 0;
 
@@ -143,9 +150,13 @@ export class TriggerCalculationController extends Disposable {
         @IConfigService private readonly _configService: IConfigService,
         @Inject(FormulaDataModel) private readonly _formulaDataModel: FormulaDataModel,
         @Inject(LocaleService) private readonly _localeService: LocaleService,
-        @Inject(RegisterOtherFormulaService) private readonly _registerOtherFormulaService: RegisterOtherFormulaService
+        @Inject(RegisterOtherFormulaService) private readonly _registerOtherFormulaService: RegisterOtherFormulaService,
+        @Inject(GlobalComputingStatusService) private readonly _globalComputingStatusService: GlobalComputingStatusService
     ) {
         super();
+
+        // Register our computing status with the global service
+        this.disposeWithMe(this._globalComputingStatusService.pushComputingStatusSubject(this._computingStatus$));
 
         this._commandExecutedListener();
         this._initialExecuteFormulaProcessListener();
@@ -157,6 +168,8 @@ export class TriggerCalculationController extends Disposable {
 
         this._progress$.next(NilProgress);
         this._progress$.complete();
+        this._computingStatus$.next(true);
+        this._computingStatus$.complete();
         // clear timer when disposed
         clearTimeout(this._setTimeoutKey);
     }
@@ -198,6 +211,9 @@ export class TriggerCalculationController extends Disposable {
                 }
 
                 this._waitingCommandQueue.push(command);
+
+                // Signal that calculation is pending (debounce started)
+                this._computingStatus$.next(false);
 
                 clearTimeout(this._setTimeoutKey);
 
@@ -504,6 +520,8 @@ export class TriggerCalculationController extends Disposable {
                         );
                     } else {
                         this._executionInProgressParams = null;
+                        // Signal that calculation is complete (values have been written)
+                        this._computingStatus$.next(true);
                     }
 
                     this._logService.debug('[TriggerCalculationController]', result);
