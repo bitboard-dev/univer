@@ -138,7 +138,9 @@ describe('Test commands used for change selections', () => {
             await commandService.executeCommand(SetRowFrozenCommand.id);
 
             const config = getFreeze();
-            expect(config?.startRow === 2 && config.startColumn === -1).toBeTruthy();
+            // startRow is selectRow + 1 because the selected row should be included in the frozen area.
+            // The startRow value represents the first scrollable row.
+            expect(config?.startRow === 3 && config.startColumn === -1).toBeTruthy();
         });
 
         it('Should freeze current column', async () => {
@@ -147,7 +149,9 @@ describe('Test commands used for change selections', () => {
             await commandService.executeCommand(SetColumnFrozenCommand.id);
 
             const config = getFreeze();
-            expect(config?.startRow === -1 && config.startColumn === 2).toBeTruthy();
+            // startColumn is selectColumn + 1 because the selected column should be included in the frozen area.
+            // The startColumn value represents the first scrollable column.
+            expect(config?.startRow === -1 && config.startColumn === 3).toBeTruthy();
         });
 
         it('xSplit or ySplit must bigger than 0 if row or column was set', async () => {
@@ -156,14 +160,17 @@ describe('Test commands used for change selections', () => {
             let config: IFreeze | undefined;
             await commandService.executeCommand(SetColumnFrozenCommand.id);
             config = getFreeze();
-            expect(config?.startRow === -1 && config.startColumn === 2).toBeTruthy();
+            // startColumn = selectColumn + 1 = 3 (first scrollable column)
+            expect(config?.startRow === -1 && config.startColumn === 3).toBeTruthy();
             expect(config?.xSplit).toBe(1);
 
             await commandService.executeCommand(SetRowFrozenCommand.id);
             config = getFreeze();
-            expect(config?.startRow === 2 && config.startColumn === -1).toBeTruthy();
+            // startRow = selectRow + 1 = 3 (first scrollable row)
+            expect(config?.startRow === 3 && config.startColumn === -1).toBeTruthy();
             expect(config?.ySplit).toBe(1);
 
+            // SetSelectionFrozenCommand with RANGE_TYPE.NORMAL still uses selectRow/selectColumn directly
             await commandService.executeCommand(SetSelectionFrozenCommand.id);
             config = getFreeze();
             expect(config?.startRow === 2 && config.startColumn === 2).toBeTruthy();
