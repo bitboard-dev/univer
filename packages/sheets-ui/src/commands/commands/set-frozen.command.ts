@@ -62,17 +62,21 @@ export const SetSelectionFrozenCommand: ICommand<ISetSelectionFrozenCommandParam
         let freezedColCount;
         const { startRow: selectRow, startColumn: selectColumn, rangeType } = range;
         // Frozen to Row
+        // When freezing by row selection, include the selected row in the frozen area.
+        // startRow represents the first scrollable row, so we add 1 to freeze up through selectRow.
         if (rangeType === RANGE_TYPE.ROW || type === SetSelectionFrozenType.Row) {
-            startRow = selectRow;
-            freezedRowCount = selectRow - sheetViewStartRow;
+            startRow = selectRow + 1;
+            freezedRowCount = (selectRow + 1) - sheetViewStartRow;
             startColumn = -1;
             freezedColCount = 0;
             // Frozen to Column
+            // When freezing by column selection, include the selected column in the frozen area.
+            // startColumn represents the first scrollable column, so we add 1 to freeze up through selectColumn.
         } else if (rangeType === RANGE_TYPE.COLUMN || type === SetSelectionFrozenType.Column) {
             startRow = -1;
             freezedRowCount = 0;
-            startColumn = selectColumn;
-            freezedColCount = selectColumn - sheetViewStartColumn;
+            startColumn = selectColumn + 1;
+            freezedColCount = (selectColumn + 1) - sheetViewStartColumn;
             // Frozen to Range
         } else if (rangeType === RANGE_TYPE.NORMAL) {
             startRow = selectRow;
