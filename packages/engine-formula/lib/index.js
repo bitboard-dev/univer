@@ -413,19 +413,19 @@ let Ps = class extends Ne {
     return this._definedNameMap[a];
   }
   getValueByName(a, e) {
-    const t = this._nameCacheMap[a];
-    if (t)
-      return t[e] || null;
-    const r = this._definedNameMap[a];
-    if (r === void 0)
+    const t = e.trim(), r = this._nameCacheMap[a];
+    if (r && t in r)
+      return r[t];
+    const n = this._definedNameMap[a];
+    if (n === void 0)
       return null;
-    let n = null;
-    for (const s of Object.values(r))
-      if (s.name === e) {
-        n = s;
+    let s = null;
+    for (const o of Object.values(n))
+      if (o.name === t) {
+        s = o;
         break;
       }
-    return n && (this._nameCacheMap[a] = this._nameCacheMap[a] || {}, this._nameCacheMap[a][e] = n), n;
+    return s && (this._nameCacheMap[a] = this._nameCacheMap[a] || {}, this._nameCacheMap[a][t] = s), s;
   }
   getValueById(a, e) {
     var t;
