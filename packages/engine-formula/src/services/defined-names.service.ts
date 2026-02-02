@@ -176,13 +176,16 @@ export class DefinedNamesService extends Disposable implements IDefinedNamesServ
     }
 
     getValueByName(unitId: string, name: string) {
-        // Check cache first
+        // Trim the name to handle tokens with trailing spaces from the lexer
+        const trimmedName = name.trim();
+
+        // Check cache first - but only return if the name is actually in the cache
         const cachedMap = this._nameCacheMap[unitId];
-        if (cachedMap) {
-            return cachedMap[name] || null;
+        if (cachedMap && trimmedName in cachedMap) {
+            return cachedMap[trimmedName];
         }
 
-        // If not in cache, traverse the nameMap
+        // If not in cache (or cache doesn't have this name), traverse the nameMap
         const nameMap = this._definedNameMap[unitId];
         if (nameMap === undefined) {
             return null;
@@ -190,16 +193,16 @@ export class DefinedNamesService extends Disposable implements IDefinedNamesServ
 
         let result = null;
         for (const item of Object.values(nameMap)) {
-            if (item.name === name) {
+            if (item.name === trimmedName) {
                 result = item;
                 break;
             }
         }
 
-        // Cache the result if found
+        // Cache the result if found (using trimmed name for consistent cache keys)
         if (result) {
             this._nameCacheMap[unitId] = this._nameCacheMap[unitId] || {};
-            this._nameCacheMap[unitId][name] = result;
+            this._nameCacheMap[unitId][trimmedName] = result;
         }
 
         return result;
