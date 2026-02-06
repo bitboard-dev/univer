@@ -1,38 +1,38 @@
-var Ci = Object.defineProperty;
-var pi = (n, e, t) => e in n ? Ci(n, e, { enumerable: !0, configurable: !0, writable: !0, value: t }) : n[e] = t;
-var R = (n, e, t) => pi(n, typeof e != "symbol" ? e + "" : e, t);
-import { CellValueType as re, isTextFormat as mo, isRealNum as No, isBooleanString as Ps, willLoseNumericPrecision as Si, CommandType as v, IUniverInstanceService as M, Tools as A, createInterceptorKey as ft, Disposable as ue, UniverInstanceType as B, InterceptorEffectEnum as he, InterceptorManager as Oo, toDisposable as Ne, remove as je, composeInterceptors as wi, DisposableCollection as Et, BooleanNumber as te, HorizontalAlign as Do, BorderStyleTypes as Ns, Inject as $, IResourceManagerService as Rn, RTree as Ii, generateRandomId as Ut, insertMatrixArray as Tn, ObjectMatrix as Y, Rectangle as N, moveMatrixArray as Os, sliceMatrixArray as Ds, concatMatrixArray as As, spliceArray as xs, Range as X, normalizeTextRuns as vi, isSafeNumeric as Mi, RANGE_TYPE as j, createRowColIter as _i, ICommandService as E, IUndoRedoService as V, RxDisposable as $s, sequenceExecute as L, selectionToArray as yi, createIdentifier as Ao, IContextService as Ws, ErrorService as Vt, LocaleService as it, cellToRange as Vs, PermissionStatus as q, IPermissionService as Ze, isICellData as Ls, mapObjectMatrix as bi, Dimension as Re, getArrayLength as Hs, Direction as pe, Injector as so, queryObjectMatrix as at, CellModeEnum as Ei, mergeWorksheetSnapshotWithDefault as Ui, BorderType as de, FontWeight as ki, FontItalic as Ti, ILogService as Fs, DocumentDataModel as Pi, BuildTextUtils as Ni, TextX as Oi, IConfigService as xo, CustomCommandExecutionError as Di, IAuthzIoService as Ai, UserManagerService as xi, LRUMap as $i, Optional as Wi, isDefaultFormat as Vi, DependentOn as Li, Plugin as Hi, merge as Fi, IS_ROW_STYLE_PRECEDE_COLUMN_STYLE as Bi, AUTO_HEIGHT_FOR_MERGED_CELLS as ji, registerDependencies as zi, mergeOverrideWithDependencies as Gi, touchDependencies as vn } from "@univerjs/core";
-import { Subject as De, BehaviorSubject as gt, merge as jt, shareReplay as Ki, takeUntil as et, switchMap as tt, of as Ie, distinctUntilChanged as Ji, skip as Bs, map as yo, first as qi, filter as os } from "rxjs";
-import { SetDefinedNameMutation as en, RemoveDefinedNameMutation as Pn, SetDefinedNameMutationFactory as Yi, IDefinedNamesService as js, LexerTreeBuilder as Xi, operatorToken as Zi, deserializeRangeWithSheet as Qi, sequenceNodeType as ea, deserializeRangeWithSheetWithCache as ta, SetFormulaCalculationResultMutation as na, handleNumfmtInCell as oa, stripErrorMargin as sa, UniverFormulaEnginePlugin as ra } from "@univerjs/engine-formula";
-import { takeUntil as ss, filter as rs, map as ia } from "rxjs/operators";
-import { DataSyncPrimaryController as aa } from "@univerjs/rpc";
-function ua(n, e, t) {
+var pi = Object.defineProperty;
+var Si = (n, e, t) => e in n ? pi(n, e, { enumerable: !0, configurable: !0, writable: !0, value: t }) : n[e] = t;
+var R = (n, e, t) => Si(n, typeof e != "symbol" ? e + "" : e, t);
+import { CellValueType as ie, isTextFormat as fo, isRealNum as Oo, isBooleanString as Ns, willLoseNumericPrecision as wi, CommandType as v, IUniverInstanceService as M, Tools as A, createInterceptorKey as Rt, Disposable as ue, UniverInstanceType as B, InterceptorEffectEnum as de, InterceptorManager as Do, toDisposable as Pe, remove as je, composeInterceptors as Ii, DisposableCollection as Ut, BooleanNumber as te, HorizontalAlign as Ao, BorderStyleTypes as Os, Inject as $, IResourceManagerService as Cn, RTree as vi, generateRandomId as kt, insertMatrixArray as Pn, ObjectMatrix as q, Rectangle as N, moveMatrixArray as Ds, sliceMatrixArray as As, concatMatrixArray as xs, spliceArray as $s, Range as Y, normalizeTextRuns as Mi, isSafeNumeric as _i, RANGE_TYPE as j, createRowColIter as yi, ICommandService as E, IUndoRedoService as V, RxDisposable as Ws, sequenceExecute as L, selectionToArray as bi, createIdentifier as xo, IContextService as Vs, ErrorService as Lt, LocaleService as it, cellToRange as Ls, PermissionStatus as J, IPermissionService as Ze, isICellData as Hs, mapObjectMatrix as Ei, Dimension as Re, getArrayLength as Fs, Direction as pe, Injector as ro, queryObjectMatrix as at, CellModeEnum as Ui, mergeWorksheetSnapshotWithDefault as ki, BorderType as ce, FontWeight as Ti, FontItalic as Pi, ILogService as Bs, DocumentDataModel as Ni, BuildTextUtils as Oi, TextX as Di, IConfigService as $o, CustomCommandExecutionError as Ai, IAuthzIoService as xi, UserManagerService as $i, LRUMap as Wi, Optional as Vi, isDefaultFormat as Li, DependentOn as Hi, Plugin as Fi, merge as Bi, IS_ROW_STYLE_PRECEDE_COLUMN_STYLE as ji, AUTO_HEIGHT_FOR_MERGED_CELLS as zi, registerDependencies as Gi, mergeOverrideWithDependencies as Ki, touchDependencies as Mn } from "@univerjs/core";
+import { Subject as Oe, BehaviorSubject as mt, merge as zt, shareReplay as Ji, takeUntil as et, switchMap as tt, of as we, distinctUntilChanged as qi, skip as js, map as bo, first as Yi, filter as ss } from "rxjs";
+import { SetDefinedNameMutation as tn, RemoveDefinedNameMutation as Nn, SetDefinedNameMutationFactory as Xi, IDefinedNamesService as zs, LexerTreeBuilder as Zi, operatorToken as Qi, deserializeRangeWithSheet as ea, sequenceNodeType as ta, deserializeRangeWithSheetWithCache as na, SetFormulaCalculationResultMutation as oa, handleNumfmtInCell as sa, stripErrorMargin as ra, UniverFormulaEnginePlugin as ia } from "@univerjs/engine-formula";
+import { takeUntil as rs, filter as is, map as aa } from "rxjs/operators";
+import { DataSyncPrimaryController as ua } from "@univerjs/rpc";
+function la(n, e, t) {
   var r, i, a;
   if (e.t) return e.t;
   if (e.v === null) return null;
   const o = n.getStyleByCell(e), s = n.getStyleByCell(t);
-  if (t.t === re.FORCE_STRING) {
-    if (!mo((r = s == null ? void 0 : s.n) == null ? void 0 : r.pattern) && e.v !== void 0) {
-      if (No(e.v))
-        return re.NUMBER;
-      if (Ps(`${e.v}`))
-        return re.BOOLEAN;
+  if (t.t === ie.FORCE_STRING) {
+    if (!fo((r = s == null ? void 0 : s.n) == null ? void 0 : r.pattern) && e.v !== void 0) {
+      if (Oo(e.v))
+        return ie.NUMBER;
+      if (Ns(`${e.v}`))
+        return ie.BOOLEAN;
     }
-    return re.FORCE_STRING;
+    return ie.FORCE_STRING;
   }
-  return la(o) ? mo((i = o == null ? void 0 : o.n) == null ? void 0 : i.pattern) ? re.STRING : is(e, t) : mo((a = s == null ? void 0 : s.n) == null ? void 0 : a.pattern) ? re.STRING : is(e, t);
+  return ca(o) ? fo((i = o == null ? void 0 : o.n) == null ? void 0 : i.pattern) ? ie.STRING : as(e, t) : fo((a = s == null ? void 0 : s.n) == null ? void 0 : a.pattern) ? ie.STRING : as(e, t);
 }
-function is(n, e) {
-  return n.v !== void 0 ? as(n.v, n.t) : as(e.v, e.t);
+function as(n, e) {
+  return n.v !== void 0 ? us(n.v, n.t) : us(e.v, e.t);
 }
-function la(n) {
+function ca(n) {
   var e;
   return !!((e = n == null ? void 0 : n.n) != null && e.pattern);
 }
-function as(n, e) {
-  return n === null ? null : typeof n == "string" ? No(n) ? (+n == 0 || +n == 1) && e === re.BOOLEAN ? re.BOOLEAN : e !== re.STRING && e !== re.FORCE_STRING && Si(n) ? re.FORCE_STRING : re.NUMBER : Ps(n) ? re.BOOLEAN : re.STRING : typeof n == "number" ? (n === 0 || n === 1) && e === re.BOOLEAN ? re.BOOLEAN : re.NUMBER : typeof n == "boolean" ? re.BOOLEAN : re.FORCE_STRING;
+function us(n, e) {
+  return n === null ? null : typeof n == "string" ? Oo(n) ? (+n == 0 || +n == 1) && e === ie.BOOLEAN ? ie.BOOLEAN : e !== ie.STRING && e !== ie.FORCE_STRING && wi(n) ? ie.FORCE_STRING : ie.NUMBER : Ns(n) ? ie.BOOLEAN : ie.STRING : typeof n == "number" ? (n === 0 || n === 1) && e === ie.BOOLEAN ? ie.BOOLEAN : ie.NUMBER : typeof n == "boolean" ? ie.BOOLEAN : ie.FORCE_STRING;
 }
-const We = (n, e) => {
+const $e = (n, e) => {
   if (n.get(M).getUniverSheetInstance(e.unitId) == null)
     throw new Error("universheet is null error!");
   return {
@@ -40,7 +40,7 @@ const We = (n, e) => {
     subUnitId: e.subUnitId,
     ranges: A.deepClone(e.ranges)
   };
-}, ne = {
+}, oe = {
   id: "sheet.mutation.add-worksheet-merge",
   type: v.MUTATION,
   handler: (n, e) => {
@@ -54,18 +54,18 @@ const We = (n, e) => {
       i.push(a[u]);
     return s.getSpanModel().rebuild(i), !0;
   }
-}, ca = ft("CELL_CONTENT"), da = ft("ROW_FILTERED"), ht = {
-  CELL_CONTENT: ca,
-  ROW_FILTERED: da
+}, da = Rt("CELL_CONTENT"), ha = Rt("ROW_FILTERED"), gt = {
+  CELL_CONTENT: da,
+  ROW_FILTERED: ha
 };
-var ha = /* @__PURE__ */ ((n) => (n[n.DATA_VALIDATION = 9] = "DATA_VALIDATION", n[n.NUMFMT = 10] = "NUMFMT", n[n.CELL_IMAGE = 11] = "CELL_IMAGE", n))(ha || {});
-const zs = "sheet.interceptor.range-theme-id", us = "sheet.interceptor.ignore-range-theme";
-var ga = Object.getOwnPropertyDescriptor, ma = (n, e, t, o) => {
-  for (var s = o > 1 ? void 0 : o ? ga(e, t) : e, r = n.length - 1, i; r >= 0; r--)
+var ga = /* @__PURE__ */ ((n) => (n[n.DATA_VALIDATION = 9] = "DATA_VALIDATION", n[n.NUMFMT = 10] = "NUMFMT", n[n.CELL_IMAGE = 11] = "CELL_IMAGE", n))(ga || {});
+const Gs = "sheet.interceptor.range-theme-id", ls = "sheet.interceptor.ignore-range-theme";
+var ma = Object.getOwnPropertyDescriptor, fa = (n, e, t, o) => {
+  for (var s = o > 1 ? void 0 : o ? ma(e, t) : e, r = n.length - 1, i; r >= 0; r--)
     (i = n[r]) && (s = i(s) || s);
   return s;
-}, fa = (n, e) => (t, o) => e(t, o, n);
-const ls = ft("BEFORE_CELL_EDIT"), fo = ft("AFTER_CELL_EDIT"), Ro = ft("VALIDATE_CELL");
+}, Ra = (n, e) => (t, o) => e(t, o, n);
+const cs = Rt("BEFORE_CELL_EDIT"), Ro = Rt("AFTER_CELL_EDIT"), Co = Rt("VALIDATE_CELL");
 let G = class extends ue {
   /** @ignore */
   constructor(e) {
@@ -80,26 +80,26 @@ let G = class extends ue {
     R(this, "_worksheetDisposables", /* @__PURE__ */ new Map());
     R(this, "_interceptorsDirty", !1);
     R(this, "_composedInterceptorByKey", /* @__PURE__ */ new Map());
-    R(this, "writeCellInterceptor", new Oo({
-      BEFORE_CELL_EDIT: ls,
-      AFTER_CELL_EDIT: fo,
-      VALIDATE_CELL: Ro
+    R(this, "writeCellInterceptor", new Do({
+      BEFORE_CELL_EDIT: cs,
+      AFTER_CELL_EDIT: Ro,
+      VALIDATE_CELL: Co
     }));
     this._univerInstanceService = e, this.disposeWithMe(this._univerInstanceService.getTypeOfUnitAdded$(B.UNIVER_SHEET).subscribe((t) => {
       this._interceptWorkbook(t);
     })), this.disposeWithMe(this._univerInstanceService.getTypeOfUnitDisposed$(B.UNIVER_SHEET).subscribe(
       (t) => this._disposeWorkbookInterceptor(t)
-    )), this.intercept(ht.CELL_CONTENT, {
+    )), this.intercept(gt.CELL_CONTENT, {
       priority: -1,
-      effect: he.Style | he.Value,
+      effect: de.Style | de.Value,
       handler: (t) => t
-    }), this.disposeWithMe(this.writeCellInterceptor.intercept(fo, {
-      priority: -1,
-      handler: (t) => t
-    })), this.disposeWithMe(this.writeCellInterceptor.intercept(ls, {
+    }), this.disposeWithMe(this.writeCellInterceptor.intercept(Ro, {
       priority: -1,
       handler: (t) => t
-    })), this.disposeWithMe(this.writeCellInterceptor.intercept(Ro, {
+    })), this.disposeWithMe(this.writeCellInterceptor.intercept(cs, {
+      priority: -1,
+      handler: (t) => t
+    })), this.disposeWithMe(this.writeCellInterceptor.intercept(Co, {
       priority: -1,
       handler: (t) => t
     }));
@@ -122,7 +122,7 @@ let G = class extends ue {
     return this._commandInterceptors.push(e), this._commandInterceptors.sort((t, o) => {
       var s, r;
       return ((s = o.priority) != null ? s : 0) - ((r = t.priority) != null ? r : 0);
-    }), this.disposeWithMe(Ne(() => je(this._commandInterceptors, e)));
+    }), this.disposeWithMe(Pe(() => je(this._commandInterceptors, e)));
   }
   /**
    * When command is executing, call this method to gether undo redo mutations from upper features.
@@ -150,7 +150,7 @@ let G = class extends ue {
     return this._afterCommandInterceptors.push(e), this._afterCommandInterceptors.sort((t, o) => {
       var s, r;
       return ((s = o.priority) != null ? s : 0) - ((r = t.priority) != null ? r : 0);
-    }), this.disposeWithMe(Ne(() => je(this._afterCommandInterceptors, e)));
+    }), this.disposeWithMe(Pe(() => je(this._afterCommandInterceptors, e)));
   }
   afterCommandExecute(e) {
     const t = this._afterCommandInterceptors.map((o) => o.getMutations(e));
@@ -165,7 +165,7 @@ let G = class extends ue {
     return this._autoHeightInterceptors.push(e), this._autoHeightInterceptors.sort((t, o) => {
       var s, r;
       return ((s = o.priority) != null ? s : 0) - ((r = t.priority) != null ? r : 0);
-    }), this.disposeWithMe(Ne(() => je(this._autoHeightInterceptors, e)));
+    }), this.disposeWithMe(Pe(() => je(this._autoHeightInterceptors, e)));
   }
   generateMutationsOfAutoHeight(e) {
     const t = this._autoHeightInterceptors.map((o) => o.getMutations(e));
@@ -197,7 +197,7 @@ let G = class extends ue {
     return this._beforeCommandInterceptor.push(e), this._beforeCommandInterceptor.sort((t, o) => {
       var s, r;
       return ((s = o.priority) != null ? s : 0) - ((r = t.priority) != null ? r : 0);
-    }), this.disposeWithMe(Ne(() => je(this._beforeCommandInterceptor, e)));
+    }), this.disposeWithMe(Pe(() => je(this._beforeCommandInterceptor, e)));
   }
   /**
    * before command execute, call this method to get the flag of whether it can be executed the command，
@@ -220,7 +220,7 @@ let G = class extends ue {
     return this._rangeInterceptors.push(e), this._rangeInterceptors.sort((t, o) => {
       var s, r;
       return ((s = o.priority) != null ? s : 0) - ((r = t.priority) != null ? r : 0);
-    }), this.disposeWithMe(Ne(() => je(this._rangeInterceptors, e)));
+    }), this.disposeWithMe(Pe(() => je(this._rangeInterceptors, e)));
   }
   generateMutationsByRanges(e) {
     const t = this._rangeInterceptors.map((o) => o.getMutations(e));
@@ -249,7 +249,7 @@ let G = class extends ue {
       col: s,
       origin: A.deepClone(r)
     };
-    return this.writeCellInterceptor.fetchThroughInterceptors(fo)(r, i);
+    return this.writeCellInterceptor.fetchThroughInterceptors(Ro)(r, i);
   }
   // #endregion
   onValidateCell(e, t, o, s) {
@@ -261,7 +261,7 @@ let G = class extends ue {
       row: o,
       col: s
     };
-    return this.writeCellInterceptor.fetchThroughInterceptors(Ro)(Promise.resolve(!0), r);
+    return this.writeCellInterceptor.fetchThroughInterceptors(Co)(Promise.resolve(!0), r);
   }
   intercept(e, t) {
     const o = e;
@@ -272,40 +272,40 @@ let G = class extends ue {
       var u, l;
       return ((u = a.priority) != null ? u : 0) - ((l = i.priority) != null ? l : 0);
     });
-    if (this._interceptorsDirty = !0, o === ht.CELL_CONTENT) {
-      const i = he.Style | he.Value;
+    if (this._interceptorsDirty = !0, o === gt.CELL_CONTENT) {
+      const i = de.Style | de.Value;
       this._interceptorsByName.set(`${o}-${i}`, r);
-      const a = he.Style | he.Value;
+      const a = de.Style | de.Value;
       return this._interceptorsByName.set(
-        `${o}-${he.Style}`,
-        r.filter((u) => ((u.effect || a) & he.Style) > 0)
+        `${o}-${de.Style}`,
+        r.filter((u) => ((u.effect || a) & de.Style) > 0)
       ), this._interceptorsByName.set(
-        `${o}-${he.Value}`,
-        r.filter((u) => ((u.effect || a) & he.Value) > 0)
-      ), this.disposeWithMe(Ne(() => {
-        je(this._interceptorsByName.get(o), t), je(this._interceptorsByName.get(`${o}-${i}`), t), je(this._interceptorsByName.get(`${o}-${he.Style}`), t), je(this._interceptorsByName.get(`${o}-${he.Value}`), t);
+        `${o}-${de.Value}`,
+        r.filter((u) => ((u.effect || a) & de.Value) > 0)
+      ), this.disposeWithMe(Pe(() => {
+        je(this._interceptorsByName.get(o), t), je(this._interceptorsByName.get(`${o}-${i}`), t), je(this._interceptorsByName.get(`${o}-${de.Style}`), t), je(this._interceptorsByName.get(`${o}-${de.Value}`), t);
       }));
     } else
-      return this._interceptorsByName.set(o, r), this.disposeWithMe(Ne(() => je(this._interceptorsByName.get(o), t)));
+      return this._interceptorsByName.set(o, r), this.disposeWithMe(Pe(() => je(this._interceptorsByName.get(o), t)));
   }
   fetchThroughInterceptors(e, t, o, s) {
     const r = t === void 0 ? e : `${e}-${t}`, i = o != null ? o : r;
     let a = this._composedInterceptorByKey.get(i);
     if (!a || this._interceptorsDirty) {
       let u = this._interceptorsByName.get(r);
-      u && s && (u = u.filter(s)), a = wi(u || []), this._composedInterceptorByKey.set(i, a);
+      u && s && (u = u.filter(s)), a = Ii(u || []), this._composedInterceptorByKey.set(i, a);
     }
     return a;
   }
   _interceptWorkbook(e) {
-    const t = new Et(), o = e.getUnitId(), s = this, r = (i) => {
+    const t = new Ut(), o = e.getUnitId(), s = this, r = (i) => {
       const a = i.getSheetId();
       i.__interceptViewModel((u) => {
-        const l = new Et();
-        s._worksheetDisposables.set(cs(o, i), l), l.add(u.registerCellContentInterceptor({
+        const l = new Ut();
+        s._worksheetDisposables.set(ds(o, i), l), l.add(u.registerCellContentInterceptor({
           getCell(c, d, h, g, m) {
             const f = i.getCellRaw(c, d);
-            return s.fetchThroughInterceptors(ht.CELL_CONTENT, h, g, m)(
+            return s.fetchThroughInterceptors(gt.CELL_CONTENT, h, g, m)(
               f,
               {
                 unitId: o,
@@ -320,7 +320,7 @@ let G = class extends ue {
           }
         })), l.add(u.registerRowFilteredInterceptor({
           getRowFiltered(c) {
-            return !!s.fetchThroughInterceptors(ht.ROW_FILTERED)(
+            return !!s.fetchThroughInterceptors(gt.ROW_FILTERED)(
               !1,
               {
                 unitId: o,
@@ -334,28 +334,28 @@ let G = class extends ue {
         }));
       });
     };
-    e.getSheets().forEach((i) => r(i)), t.add(e.sheetCreated$.subscribe((i) => r(i))), t.add(Ne(() => e.getSheets().forEach((i) => this._disposeSheetInterceptor(o, i)))), t.add(e.sheetDisposed$.subscribe((i) => this._disposeSheetInterceptor(o, i))), this._workbookDisposables.set(o, t);
+    e.getSheets().forEach((i) => r(i)), t.add(e.sheetCreated$.subscribe((i) => r(i))), t.add(Pe(() => e.getSheets().forEach((i) => this._disposeSheetInterceptor(o, i)))), t.add(e.sheetDisposed$.subscribe((i) => this._disposeSheetInterceptor(o, i))), this._workbookDisposables.set(o, t);
   }
   _disposeWorkbookInterceptor(e) {
     const t = e.getUnitId(), o = this._workbookDisposables.get(t);
     o && (o.dispose(), this._workbookDisposables.delete(t));
   }
   _disposeSheetInterceptor(e, t) {
-    const o = cs(e, t), s = this._worksheetDisposables.get(o);
+    const o = ds(e, t), s = this._worksheetDisposables.get(o);
     s && (s.dispose(), this._worksheetDisposables.delete(o));
   }
 };
-G = ma([
-  fa(0, M)
+G = fa([
+  Ra(0, M)
 ], G);
-function cs(n, e) {
+function ds(n, e) {
   return `${n}|${e.getSheetId()}`;
 }
-const ge = (n) => {
+const he = (n) => {
   const e = {};
   return n.bg && (e.bg = { ...n.bg }), n.ol && (e.ol = { ...n.ol }), n.bd && (e.bd = { ...n.bd }), n.cl && (e.cl = { ...n.cl }), n.ht && (e.ht = n.ht), n.vt && (e.vt = n.vt), n.bl !== void 0 && (e.bl = n.bl), e;
 };
-function Ra(n) {
+function Ca(n) {
   const e = {};
   if (n.length === 1)
     return n[0];
@@ -363,7 +363,7 @@ function Ra(n) {
     t.bg && (e.bg = t.bg), t.ol && (e.ol = t.ol), t.bd && (e.bd = { ...e.bd, ...t.bd }), t.cl && (e.cl = t.cl), t.ht && (e.ht = t.ht), t.vt && (e.vt = t.vt), t.bl !== void 0 && (e.bl = t.bl);
   return e;
 }
-const ce = {
+const le = {
   wholeStyle: 1,
   headerRowStyle: 2,
   headerColumnStyle: 4,
@@ -374,7 +374,7 @@ const ce = {
   secondColumnStyle: 256,
   lastColumnStyle: 512
 };
-class Rt {
+class Ct {
   /**
    * @constructor
    * @param {string} name The name of the range theme style, it used to identify the range theme style.
@@ -487,7 +487,7 @@ class Rt {
   }
   getStyle(e, t, o, s, r) {
     let i = 0;
-    return o && (i = i | ce.lastRowStyle), s && (i = i | ce.lastColumnStyle), e >= 0 && t >= 0 && (i = i | ce.wholeStyle), e % 2 === 1 && (i = i | (r ? ce.secondRowStyle : ce.firstRowStyle)), e % 2 === 0 && (i = i | (r ? ce.firstRowStyle : ce.secondRowStyle)), e === 0 && (i = i | ce.headerRowStyle), t === 0 && (i = i | ce.headerColumnStyle), t % 2 === 1 && (i = i | ce.firstColumnStyle), t % 2 === 0 && (i = i | ce.secondColumnStyle), i === 0 ? null : this._getMergeStyle(i);
+    return o && (i = i | le.lastRowStyle), s && (i = i | le.lastColumnStyle), e >= 0 && t >= 0 && (i = i | le.wholeStyle), e % 2 === 1 && (i = i | (r ? le.secondRowStyle : le.firstRowStyle)), e % 2 === 0 && (i = i | (r ? le.firstRowStyle : le.secondRowStyle)), e === 0 && (i = i | le.headerRowStyle), t === 0 && (i = i | le.headerColumnStyle), t % 2 === 1 && (i = i | le.firstColumnStyle), t % 2 === 0 && (i = i | le.secondColumnStyle), i === 0 ? null : this._getMergeStyle(i);
   }
   _getMergeStyle(e) {
     let t = this._mergeCacheMap.get(e);
@@ -495,7 +495,7 @@ class Rt {
   }
   _mergeStyle(e) {
     const t = [];
-    return this.wholeStyle && e & ce.wholeStyle && t.push(this.wholeStyle), this.firstColumnStyle && e & ce.firstColumnStyle && t.push(this.firstColumnStyle), this.secondColumnStyle && e & ce.secondColumnStyle && t.push(this.secondColumnStyle), this.firstRowStyle && e & ce.firstRowStyle && t.push(this.firstRowStyle), this.secondRowStyle && e & ce.secondRowStyle && t.push(this.secondRowStyle), this.headerColumnStyle && e & ce.headerColumnStyle && t.push(this.headerColumnStyle), this.lastColumnStyle && e & ce.lastColumnStyle && t.push(this.lastColumnStyle), this.headerRowStyle && e & ce.headerRowStyle && t.push(this.headerRowStyle), this.lastRowStyle && e & ce.lastRowStyle && t.push(this.lastRowStyle), Ra(t);
+    return this.wholeStyle && e & le.wholeStyle && t.push(this.wholeStyle), this.firstColumnStyle && e & le.firstColumnStyle && t.push(this.firstColumnStyle), this.secondColumnStyle && e & le.secondColumnStyle && t.push(this.secondColumnStyle), this.firstRowStyle && e & le.firstRowStyle && t.push(this.firstRowStyle), this.secondRowStyle && e & le.secondRowStyle && t.push(this.secondRowStyle), this.headerColumnStyle && e & le.headerColumnStyle && t.push(this.headerColumnStyle), this.lastColumnStyle && e & le.lastColumnStyle && t.push(this.lastColumnStyle), this.headerRowStyle && e & le.headerRowStyle && t.push(this.headerRowStyle), this.lastRowStyle && e & le.lastRowStyle && t.push(this.lastRowStyle), Ca(t);
   }
   _resetStyleCache() {
     this._mergeCacheMap.clear();
@@ -504,16 +504,16 @@ class Rt {
     const e = {
       name: this._name
     };
-    return this.wholeStyle && (e.wholeStyle = ge(this.wholeStyle)), this.headerRowStyle && (e.headerRowStyle = ge(this.headerRowStyle)), this.headerColumnStyle && (e.headerColumnStyle = ge(this.headerColumnStyle)), this.firstRowStyle && (e.firstRowStyle = ge(this.firstRowStyle)), this.secondRowStyle && (e.secondRowStyle = ge(this.secondRowStyle)), this.lastRowStyle && (e.lastRowStyle = ge(this.lastRowStyle)), this.firstColumnStyle && (e.firstColumnStyle = ge(this.firstColumnStyle)), this.secondColumnStyle && (e.secondColumnStyle = ge(this.secondColumnStyle)), this.lastColumnStyle && (e.lastColumnStyle = ge(this.lastColumnStyle)), e;
+    return this.wholeStyle && (e.wholeStyle = he(this.wholeStyle)), this.headerRowStyle && (e.headerRowStyle = he(this.headerRowStyle)), this.headerColumnStyle && (e.headerColumnStyle = he(this.headerColumnStyle)), this.firstRowStyle && (e.firstRowStyle = he(this.firstRowStyle)), this.secondRowStyle && (e.secondRowStyle = he(this.secondRowStyle)), this.lastRowStyle && (e.lastRowStyle = he(this.lastRowStyle)), this.firstColumnStyle && (e.firstColumnStyle = he(this.firstColumnStyle)), this.secondColumnStyle && (e.secondColumnStyle = he(this.secondColumnStyle)), this.lastColumnStyle && (e.lastColumnStyle = he(this.lastColumnStyle)), e;
   }
   fromJson(e) {
-    this._name = e.name, e.wholeStyle && (this.wholeStyle = ge(e.wholeStyle)), e.headerRowStyle && (this.headerRowStyle = ge(e.headerRowStyle)), e.headerColumnStyle && (this.headerColumnStyle = ge(e.headerColumnStyle)), e.firstRowStyle && (this.firstRowStyle = ge(e.firstRowStyle)), e.secondRowStyle && (this.secondRowStyle = ge(e.secondRowStyle)), e.lastRowStyle && (this.lastRowStyle = ge(e.lastRowStyle)), e.firstColumnStyle && (this.firstColumnStyle = ge(e.firstColumnStyle)), e.secondColumnStyle && (this.secondColumnStyle = ge(e.secondColumnStyle)), e.lastColumnStyle && (this.lastColumnStyle = ge(e.lastColumnStyle));
+    this._name = e.name, e.wholeStyle && (this.wholeStyle = he(e.wholeStyle)), e.headerRowStyle && (this.headerRowStyle = he(e.headerRowStyle)), e.headerColumnStyle && (this.headerColumnStyle = he(e.headerColumnStyle)), e.firstRowStyle && (this.firstRowStyle = he(e.firstRowStyle)), e.secondRowStyle && (this.secondRowStyle = he(e.secondRowStyle)), e.lastRowStyle && (this.lastRowStyle = he(e.lastRowStyle)), e.firstColumnStyle && (this.firstColumnStyle = he(e.firstColumnStyle)), e.secondColumnStyle && (this.secondColumnStyle = he(e.secondColumnStyle)), e.lastColumnStyle && (this.lastColumnStyle = he(e.lastColumnStyle));
   }
   dispose() {
     this._mergeCacheMap.clear();
   }
 }
-const Ca = (n, e, t) => new Rt(`light-${n}`, {
+const pa = (n, e, t) => new Ct(`light-${n}`, {
   headerRowStyle: {
     bg: {
       rgb: e
@@ -534,7 +534,7 @@ const Ca = (n, e, t) => new Rt(`light-${n}`, {
       rgb: e
     }
   }
-}), pa = (n, e, t) => new Rt(`middle-${n}`, {
+}), Sa = (n, e, t) => new Ct(`middle-${n}`, {
   headerRowStyle: {
     bg: {
       rgb: e
@@ -560,7 +560,7 @@ const Ca = (n, e, t) => new Rt(`light-${n}`, {
       rgb: t
     }
   }
-}), Sa = (n, e, t, o) => new Rt(`dark-${n}`, {
+}), wa = (n, e, t, o) => new Ct(`dark-${n}`, {
   headerRowStyle: {
     bg: {
       rgb: e
@@ -568,7 +568,7 @@ const Ca = (n, e, t) => new Rt(`light-${n}`, {
     cl: {
       rgb: "rgb(255, 255, 255)"
     },
-    ht: Do.CENTER,
+    ht: Ao.CENTER,
     bl: te.TRUE
   },
   firstRowStyle: {
@@ -586,7 +586,7 @@ const Ca = (n, e, t) => new Rt(`light-${n}`, {
       rgb: e
     }
   }
-}), wa = [
+}), Ia = [
   {
     baseName: "blue",
     header: "rgb(164, 202, 254)",
@@ -637,7 +637,7 @@ const Ca = (n, e, t) => new Rt(`light-${n}`, {
     header: "rgb(248, 180, 217)",
     color: "rgb(252, 232, 243)"
   }
-], Ia = [
+], va = [
   {
     baseName: "blue",
     rowHeader: "rgb(63, 131, 248)",
@@ -688,7 +688,7 @@ const Ca = (n, e, t) => new Rt(`light-${n}`, {
     rowHeader: "rgb(231, 70, 148)",
     colHeader: "rgb(250, 209, 232)"
   }
-], va = [
+], Ma = [
   {
     baseName: "blue",
     rowHeader: "rgb(30, 66, 159)",
@@ -749,11 +749,11 @@ const Ca = (n, e, t) => new Rt(`light-${n}`, {
     firstRow: "rgb(250, 209, 232)",
     secondRow: "rgb(241, 126, 184)"
   }
-], Ma = wa.map(({ baseName: n, header: e, color: t }) => Ca(n, e, t)), _a = Ia.map(({ baseName: n, rowHeader: e, colHeader: t }) => pa(n, e, t)), ya = va.map(({ baseName: n, rowHeader: e, firstRow: t, secondRow: o }) => Sa(n, e, t, o)), ba = [
-  ...Ma,
+], _a = Ia.map(({ baseName: n, header: e, color: t }) => pa(n, e, t)), ya = va.map(({ baseName: n, rowHeader: e, colHeader: t }) => Sa(n, e, t)), ba = Ma.map(({ baseName: n, rowHeader: e, firstRow: t, secondRow: o }) => wa(n, e, t, o)), Ea = [
   ..._a,
-  ...ya
-], Gs = {
+  ...ya,
+  ...ba
+], Ks = {
   headerRowStyle: {
     bg: {
       rgb: "rgb(68,114,196)"
@@ -761,7 +761,7 @@ const Ca = (n, e, t) => new Rt(`light-${n}`, {
     cl: {
       rgb: "rgb(255,255,255)"
     },
-    ht: Do.CENTER,
+    ht: Ao.CENTER,
     bl: te.TRUE
   },
   firstRowStyle: {
@@ -769,22 +769,22 @@ const Ca = (n, e, t) => new Rt(`light-${n}`, {
       rgb: "rgb(217,225,242)"
     }
   }
-}, Ea = new Rt("default", Gs), Ua = new Rt("default-last-row", {
-  ...Gs,
+}, Ua = new Ct("default", Ks), ka = new Ct("default-last-row", {
+  ...Ks,
   lastRowStyle: {
     bd: {
       t: {
-        s: Ns.THIN,
+        s: Os.THIN,
         cl: {
           rgb: "rgb(68,114,196)"
         }
       }
     },
-    ht: Do.CENTER,
+    ht: Ao.CENTER,
     bl: te.TRUE
   }
 });
-class ka {
+class Ta {
   constructor() {
     R(this, "_toggleRanges", []);
   }
@@ -834,13 +834,13 @@ class ka {
     return !1;
   }
 }
-var Ta = Object.getOwnPropertyDescriptor, Pa = (n, e, t, o) => {
-  for (var s = o > 1 ? void 0 : o ? Ta(e, t) : e, r = n.length - 1, i; r >= 0; r--)
+var Pa = Object.getOwnPropertyDescriptor, Na = (n, e, t, o) => {
+  for (var s = o > 1 ? void 0 : o ? Pa(e, t) : e, r = n.length - 1, i; r >= 0; r--)
     (i = n[r]) && (s = i(s) || s);
   return s;
-}, Co = (n, e) => (t, o) => e(t, o, n);
-const Na = "SHEET_RANGE_THEME_MODEL_PLUGIN";
-let ve = class extends ue {
+}, po = (n, e) => (t, o) => e(t, o, n);
+const Oa = "SHEET_RANGE_THEME_MODEL_PLUGIN";
+let Ie = class extends ue {
   constructor(e, t, o) {
     super();
     R(this, "_rangeThemeStyleMap", /* @__PURE__ */ new Map());
@@ -852,13 +852,13 @@ let ve = class extends ue {
      */
     R(this, "_zebraCrossingCacheMap", /* @__PURE__ */ new Map());
     R(this, "_rowVisibleFuncSet", /* @__PURE__ */ new Map());
-    R(this, "_rangeThemeMapChanged$", new De());
+    R(this, "_rangeThemeMapChanged$", new Oe());
     R(this, "rangeThemeMapChange$", this._rangeThemeMapChanged$.asObservable());
     this._sheetInterceptorService = e, this._resourceManagerService = t, this._univerInstanceService = o, this._registerIntercept(), this._initSnapshot(), this._initDefaultTheme();
   }
   _initDefaultTheme() {
-    this.registerDefaultRangeTheme(Ea), this.registerDefaultRangeTheme(Ua);
-    for (const e of ba)
+    this.registerDefaultRangeTheme(Ua), this.registerDefaultRangeTheme(ka);
+    for (const e of Ea)
       this.registerDefaultRangeTheme(e);
   }
   _ensureRangeThemeStyleMap(e) {
@@ -868,7 +868,7 @@ let ve = class extends ue {
     return this._rangeThemeStyleRuleMap.has(e) || this._rangeThemeStyleRuleMap.set(e, /* @__PURE__ */ new Map()), this._rangeThemeStyleRuleMap.get(e);
   }
   _ensureRTreeCollection(e) {
-    return this._rTreeCollection.has(e) || this._rTreeCollection.set(e, new Ii()), this._rTreeCollection.get(e);
+    return this._rTreeCollection.has(e) || this._rTreeCollection.set(e, new vi()), this._rTreeCollection.get(e);
   }
   getDefaultRangeThemeStyle(e) {
     return this._defaultRangeThemeMap.get(e);
@@ -903,7 +903,7 @@ let ve = class extends ue {
     const s = this._zebraCrossingCacheMap.get(e);
     s.has(t) || s.set(t, /* @__PURE__ */ new Map());
     const r = s.get(t);
-    return r.has(o) || r.set(o, new ka()), r.get(o);
+    return r.has(o) || r.set(o, new Ta()), r.get(o);
   }
   /**
    * Register range theme styles
@@ -911,7 +911,7 @@ let ve = class extends ue {
    * @param {IRangeThemeRangeInfo} rangeInfo
    */
   registerRangeThemeRule(e, t) {
-    const { unitId: o, subUnitId: s, range: r } = t, i = Ut(), a = this._ensureRangeThemeStyleRuleMap(o), u = this._ensureRTreeCollection(o);
+    const { unitId: o, subUnitId: s, range: r } = t, i = kt(), a = this._ensureRangeThemeStyleRuleMap(o), u = this._ensureRTreeCollection(o);
     a.set(i, { rangeInfo: t, themeName: e }), u.insert({ unitId: o, sheetId: s, range: r, id: i }), this._getSheetRowVisibleHasInit(o, s) || this.refreshSheetRowVisibleFuncSet(o, s);
     const l = this._ensureZebraCrossingCache(o, s, i), c = this._getSheetRowVisibleFuncSet(o, s);
     l.refresh(r, (d) => !c.has(d));
@@ -997,9 +997,9 @@ let ve = class extends ue {
     }
   }
   _registerIntercept() {
-    this.disposeWithMe(this._sheetInterceptorService.intercept(ht.CELL_CONTENT, {
-      id: zs,
-      effect: he.Style,
+    this.disposeWithMe(this._sheetInterceptorService.intercept(gt.CELL_CONTENT, {
+      id: Gs,
+      effect: de.Style,
       handler: (e, t, o) => {
         const { row: s, col: r, unitId: i, subUnitId: a } = t, u = this.getCellStyle(i, a, s, r);
         if (u) {
@@ -1032,7 +1032,7 @@ let ve = class extends ue {
       const i = o[r], { themeName: a, rangeInfo: u } = i;
       a.startsWith("table") || (this.registerRangeThemeRule(a, u), this._ensureRTreeCollection(u.unitId).insert({ unitId: r, sheetId: u.subUnitId, range: u.range, id: r }));
     }), s && Object.keys(s).forEach((r) => {
-      const i = s[r], a = new Rt(i.name);
+      const i = s[r], a = new Ct(i.name);
       a.fromJson(i), this._ensureRangeThemeStyleMap(e).set(a.getName(), a);
     });
   }
@@ -1052,7 +1052,7 @@ let ve = class extends ue {
         }
       },
       businesses: [B.UNIVER_SHEET],
-      pluginName: Na,
+      pluginName: Oa,
       onLoad: (e, t) => {
         this.fromJSON(e, t);
       },
@@ -1065,12 +1065,12 @@ let ve = class extends ue {
     super.dispose(), this._rangeThemeStyleMap.clear(), this._rangeThemeStyleRuleMap.clear(), this._defaultRangeThemeMap.clear(), this._rTreeCollection.clear(), this._zebraCrossingCacheMap.clear(), this._rowVisibleFuncSet.clear();
   }
 };
-ve = Pa([
-  Co(0, $(G)),
-  Co(1, $(Rn)),
-  Co(2, $(M))
-], ve);
-function Ks(n, e) {
+Ie = Na([
+  po(0, $(G)),
+  po(1, $(Cn)),
+  po(2, $(M))
+], Ie);
+function Js(n, e) {
   const { unitId: t } = e, o = t ? n.getUnit(t, B.UNIVER_SHEET) : n.getCurrentUnitOfType(B.UNIVER_SHEET);
   return o ? {
     workbook: o,
@@ -1097,14 +1097,14 @@ function Qe(n, e) {
     workbook: s
   } : null;
 }
-const tn = {
+const nn = {
   id: "sheet.mutation.set-worksheet-range-theme-style",
   type: v.MUTATION,
   handler: (n, e) => {
-    const { unitId: t, subUnitId: o, range: s, themeName: r } = e, i = n.get(M), a = P(i), u = n.get(ve);
+    const { unitId: t, subUnitId: o, range: s, themeName: r } = e, i = n.get(M), a = P(i), u = n.get(Ie);
     return a ? (u.registerRangeThemeRule(r, { range: s, unitId: t, subUnitId: o }), !0) : !1;
   }
-}, Oa = (n, e) => {
+}, Da = (n, e) => {
   const t = Qe(n.get(M), e);
   if (!t)
     throw new Error("[SetWorksheetRangeThemeStyleMutation]: worksheet is null error!");
@@ -1115,14 +1115,14 @@ const tn = {
     range: e.range,
     themeName: e.themeName
   };
-}, nn = {
+}, on = {
   id: "sheet.mutation.remove-worksheet-range-theme-style",
   type: v.MUTATION,
   handler: (n, e) => {
-    const { unitId: t, subUnitId: o, range: s, themeName: r } = e, i = n.get(M), a = P(i), u = n.get(ve);
+    const { unitId: t, subUnitId: o, range: s, themeName: r } = e, i = n.get(M), a = P(i), u = n.get(Ie);
     return a ? (u.removeRangeThemeRule(r, { range: s, unitId: t, subUnitId: o }), !0) : !1;
   }
-}, Da = (n, e) => {
+}, Aa = (n, e) => {
   const t = Qe(n.get(M), e);
   if (!t)
     throw new Error("[DeleteWorksheetRangeThemeStyleMutationFactory]: worksheet is null error!");
@@ -1133,7 +1133,7 @@ const tn = {
     range: e.range,
     themeName: e.themeName
   };
-}, $o = (n, e) => {
+}, Wo = (n, e) => {
   if (n.get(M).getUniverSheetInstance(e.unitId) == null)
     throw new Error("universheet is null error!");
   return {
@@ -1141,7 +1141,7 @@ const tn = {
     subUnitId: e.subUnitId,
     range: e.range
   };
-}, Ue = {
+}, Ee = {
   id: "sheet.mutation.insert-row",
   type: v.MUTATION,
   handler: (n, e) => {
@@ -1157,10 +1157,10 @@ const tn = {
       hd: 0
     }, d = s.startRow, h = s.endRow - s.startRow + 1;
     for (let f = d; f < d + h; f++)
-      r ? Tn(f, (m = r[f - s.startRow]) != null ? m : c, l) : Tn(f, c, l);
+      r ? Pn(f, (m = r[f - s.startRow]) != null ? m : c, l) : Pn(f, c, l);
     return u.setRowCount(u.getRowCount() + h), u.getCellMatrix().insertRows(s.startRow, h), !0;
   }
-}, ro = (n, e) => {
+}, io = (n, e) => {
   if (n.get(M).getUniverSheetInstance(e.unitId) == null)
     throw new Error("universheet is null error!");
   return {
@@ -1168,7 +1168,7 @@ const tn = {
     subUnitId: e.subUnitId,
     range: e.range
   };
-}, ke = {
+}, Ue = {
   id: "sheet.mutation.insert-col",
   type: v.MUTATION,
   handler: (n, e) => {
@@ -1184,11 +1184,11 @@ const tn = {
         w: h,
         hd: 0
       };
-      a ? Tn(f, (m = a[f - i.startColumn]) != null ? m : C, l) : Tn(f, C, l);
+      a ? Pn(f, (m = a[f - i.startColumn]) != null ? m : C, l) : Pn(f, C, l);
     }
     return s.setColumnCount(s.getColumnCount() + i.endColumn - i.startColumn + 1), s.getCellMatrix().insertColumns(i.startColumn, d), !0;
   }
-}, wt = {
+}, It = {
   id: "sheet.mutation.move-range",
   type: v.MUTATION,
   handler: (n, e) => {
@@ -1202,14 +1202,14 @@ const tn = {
     if (!i || !a)
       return !1;
     const u = i.getCellMatrix(), l = a.getCellMatrix();
-    return new Y(t.value).forValue((c, d, h) => {
+    return new q(t.value).forValue((c, d, h) => {
       h == null ? u.realDeleteValue(c, d) : u.setValue(c, d, h);
-    }), new Y(o.value).forValue((c, d, h) => {
+    }), new q(o.value).forValue((c, d, h) => {
       h == null ? l.realDeleteValue(c, d) : l.setValue(c, d, h);
     }), !0;
   }
 };
-function Aa(n, e) {
+function xa(n, e) {
   const { unitId: t, subUnitId: o, sourceRange: s, targetRange: r } = e, i = s.startRow > r.startRow, a = s.endRow - s.startRow + 1;
   return i ? {
     unitId: t,
@@ -1242,10 +1242,10 @@ const Je = {
     if (!u)
       throw new Error("[MoveRowMutation] worksheet is null!");
     const l = s.startRow, c = s.endRow - s.startRow + 1, d = r.startRow, h = u.getRowManager().getRowData();
-    return Os(l, c, d, h), u.getCellMatrix().moveRows(l, c, d), !0;
+    return Ds(l, c, d, h), u.getCellMatrix().moveRows(l, c, d), !0;
   }
 };
-function xa(n, e) {
+function $a(n, e) {
   const { unitId: t, subUnitId: o, sourceRange: s, targetRange: r } = e, i = s.startColumn > r.startColumn, a = s.endColumn - s.startColumn + 1;
   return i ? {
     unitId: t,
@@ -1278,17 +1278,17 @@ const qe = {
     if (!u)
       throw new Error("[MoveColumnMutation] worksheet is null!");
     const l = s.startColumn, c = s.endColumn - s.startColumn + 1, d = r.startColumn, h = u.getColumnManager().getColumnData();
-    return Os(l, c, d, h), u.getCellMatrix().moveColumns(l, c, d), !0;
+    return Ds(l, c, d, h), u.getCellMatrix().moveColumns(l, c, d), !0;
   }
-}, $a = (n, e) => {
-  const s = e.getRowManager().getRowData(), r = {}, i = n.range, a = Ds(i.startRow, i.endRow, s), u = As(r, a);
+}, Wa = (n, e) => {
+  const s = e.getRowManager().getRowData(), r = {}, i = n.range, a = As(i.startRow, i.endRow, s), u = xs(r, a);
   return {
     unitId: n.unitId,
     subUnitId: n.subUnitId,
     range: n.range,
     rowInfo: u
   };
-}, Te = {
+}, ke = {
   id: "sheet.mutation.remove-rows",
   type: v.MUTATION,
   handler: (n, e) => {
@@ -1301,23 +1301,23 @@ const qe = {
     for (let c = r.startRow; c <= r.endRow; c++)
       s.getRowFiltered(c);
     const u = r.endRow - r.startRow + 1;
-    return xs(r.startRow, u, a), s.getCellMatrix().removeRows(r.startRow, u), s.setRowCount(s.getRowCount() - u), !0;
+    return $s(r.startRow, u, a), s.getCellMatrix().removeRows(r.startRow, u), s.setRowCount(s.getRowCount() - u), !0;
   }
-}, Wa = (n, e) => {
+}, Va = (n, e) => {
   const o = n.get(M).getUniverSheetInstance(e.unitId);
   if (o == null)
     throw new Error("universheet is null error!");
   const s = o.getSheetBySheetId(e.subUnitId);
   if (s == null)
     throw new Error("worksheet is null error!");
-  const a = s.getColumnManager().getColumnData(), u = {}, l = e.range, c = Ds(l.startColumn, l.endColumn, a), d = As(u, c);
+  const a = s.getColumnManager().getColumnData(), u = {}, l = e.range, c = As(l.startColumn, l.endColumn, a), d = xs(u, c);
   return {
     unitId: e.unitId,
     subUnitId: e.subUnitId,
     range: e.range,
     colInfo: d
   };
-}, Me = {
+}, ve = {
   id: "sheet.mutation.remove-col",
   type: v.MUTATION,
   handler: (n, e) => {
@@ -1327,9 +1327,9 @@ const qe = {
     const s = o.getSheetBySheetId(e.subUnitId);
     if (!s) return !1;
     const r = e.range, a = s.getColumnManager().getColumnData(), u = r.endColumn - r.startColumn + 1;
-    return xs(r.startColumn, u, a), s.setColumnCount(s.getColumnCount() - u), s.getCellMatrix().removeColumns(r.startColumn, u), !0;
+    return $s(r.startColumn, u, a), s.setColumnCount(s.getColumnCount() - u), s.getCellMatrix().removeColumns(r.startColumn, u), !0;
   }
-}, ye = (n, e) => {
+}, _e = (n, e) => {
   const o = n.get(M).getUniverSheetInstance(e.unitId);
   if (o == null)
     throw new Error("universheet is null error!");
@@ -1347,7 +1347,7 @@ const qe = {
     subUnitId: e.subUnitId,
     ranges: u
   };
-}, oe = {
+}, se = {
   id: "sheet.mutation.remove-worksheet-merge",
   type: v.MUTATION,
   handler: (n, e) => {
@@ -1364,7 +1364,7 @@ const qe = {
       }
     return s.getSpanModel().rebuild(i), !0;
   }
-}, Va = (n) => {
+}, La = (n) => {
   const { order: e } = n, t = {};
   return Object.keys(e).forEach((o) => {
     t[e[Number(o)]] = Number(o);
@@ -1372,15 +1372,15 @@ const qe = {
     ...n,
     order: t
   };
-}, Nn = {
+}, On = {
   id: "sheet.mutation.reorder-range",
   type: v.MUTATION,
   handler: (n, e) => {
     const { subUnitId: t, unitId: o, range: s, order: r } = e, u = n.get(M).getUnit(o).getSheetBySheetId(t);
     if (!u)
       return !1;
-    const l = new Y();
-    X.foreach(s, (d, h) => {
+    const l = new q();
+    Y.foreach(s, (d, h) => {
       if (r.hasOwnProperty(d)) {
         const g = r[d], m = A.deepClone(u.getCellRaw(g, h));
         l.setValue(d, h, m);
@@ -1392,7 +1392,7 @@ const qe = {
     }), !0;
   }
 };
-function La(n, e) {
+function Ha(n, e) {
   if (n == null)
     return n;
   const t = A.deepClone(n);
@@ -1401,7 +1401,7 @@ function La(n, e) {
   const o = {};
   return "h" in e && (o.h = t.h), "ia" in e && (o.ia = t.ia), "ah" in e && (o.ah = t.ah), "hd" in e && (o.hd = t.hd), "s" in e && (o.s = t.s), "custom" in e && (o.custom = t.custom), o;
 }
-function Ha(n, e) {
+function Fa(n, e) {
   if (n == null)
     return n;
   const t = A.deepClone(n);
@@ -1410,18 +1410,18 @@ function Ha(n, e) {
   const o = {};
   return "w" in e && (o.w = t.w), "hd" in e && (o.hd = t.hd), "s" in e && (o.s = t.s), "custom" in e && (o.custom = t.custom), o;
 }
-const Fa = (n, e) => {
+const Ba = (n, e) => {
   const { unitId: t, subUnitId: o, columnData: s } = n, r = {}, i = e.getColumnManager();
   for (const a in s) {
     const u = s[a], l = i.getColumn(Number(a));
-    r[a] = Ha(l, u);
+    r[a] = Fa(l, u);
   }
   return {
     unitId: t,
     subUnitId: o,
     columnData: r
   };
-}, zt = {
+}, Gt = {
   id: "sheet.mutation.set-col-data",
   type: v.MUTATION,
   handler: (n, e) => {
@@ -1439,7 +1439,7 @@ const Fa = (n, e) => {
     }
     return !0;
   }
-}, Ba = (n, e) => {
+}, ja = (n, e) => {
   if (n.get(M).getUniverSheetInstance(e.unitId) == null)
     throw new Error("universheet is null error!");
   return {
@@ -1447,7 +1447,7 @@ const Fa = (n, e) => {
     subUnitId: e.subUnitId,
     ranges: e.ranges
   };
-}, on = {
+}, sn = {
   id: "sheet.mutation.set-col-hidden",
   type: v.MUTATION,
   handler: (n, e) => {
@@ -1464,7 +1464,7 @@ const Fa = (n, e) => {
     }
     return !0;
   }
-}, ja = (n, e) => {
+}, za = (n, e) => {
   if (n.get(M).getUniverSheetInstance(e.unitId) == null)
     throw new Error("universheet is null error!");
   return {
@@ -1472,7 +1472,7 @@ const Fa = (n, e) => {
     subUnitId: e.subUnitId,
     ranges: e.ranges
   };
-}, sn = {
+}, rn = {
   id: "sheet.mutation.set-col-visible",
   type: v.MUTATION,
   handler: (n, e) => {
@@ -1489,7 +1489,7 @@ const Fa = (n, e) => {
     }
     return !0;
   }
-}, Gt = {
+}, Kt = {
   id: "sheet.mutation.set-gridlines-color",
   type: v.MUTATION,
   handler: (n, e) => {
@@ -1499,34 +1499,34 @@ const Fa = (n, e) => {
     return s.gridlinesColor = e.color, !0;
   }
 };
-function za(n, e, t) {
+function Ga(n, e, t) {
   var i;
   const o = n.getStyleByCell(e);
   o == null && delete e.s, typeof t.s == "string" && (t.s = n.get(t.s));
-  const s = En(o, t.s ? t.s : null);
+  const s = Un(o, t.s ? t.s : null);
   s && (A.removeNull(s), Object.entries(s).forEach(([a, u]) => {
     typeof u == "object" && u !== null && Object.keys(u).length === 0 && delete s[a];
   })), A.isEmptyObject(s) ? delete e.s : e.s = n.setValue(s);
   const r = t.v ? `${t.v}\r
 ` : "";
-  !t.p && e.p && (r && r !== ((i = e.p.body) == null ? void 0 : i.dataStream) ? delete e.p : Ja(e.p, t.s ? t.s : null));
+  !t.p && e.p && (r && r !== ((i = e.p.body) == null ? void 0 : i.dataStream) ? delete e.p : qa(e.p, t.s ? t.s : null));
 }
-function Ga(n, e) {
+function Ka(n, e) {
   if (!e || !Object.keys(e).length)
     return n;
   const t = A.deepClone(n != null ? n : {});
   for (const o in e)
-    o === "bd" ? t[o] = Ka(t[o] || {}, e[o]) : o in t || (t[o] = null);
+    o === "bd" ? t[o] = Ja(t[o] || {}, e[o]) : o in t || (t[o] = null);
   return t;
 }
-function Ka(n, e) {
+function Ja(n, e) {
   if (!e || !Object.keys(e).length)
     return n;
   for (const t in e)
     t in n || (n[t] = null);
   return n;
 }
-function En(n, e, t = !1) {
+function Un(n, e, t = !1) {
   if (e === null) return e;
   if (e === void 0) return n;
   const o = A.deepClone(n) || {};
@@ -1534,10 +1534,10 @@ function En(n, e, t = !1) {
     t && ["bd", "tr", "td", "ht", "vt", "tb", "pd", "bg"].includes(s) || (s in o && s === "bd" ? o[s] = Object.assign(o[s], e[s]) : o[s] = e[s]);
   return "cl" in o && ("ul" in o && o.ul && (o.ul.cl = o.cl), "ol" in o && o.ol && (o.ol.cl = o.cl), "st" in o && o.st && (o.st.cl = o.cl)), o;
 }
-function Js(n, e) {
-  return n.some((t) => t.startIndex === e) ? Js(n, e + 1) : e;
+function qs(n, e) {
+  return n.some((t) => t.startIndex === e) ? qs(n, e + 1) : e;
 }
-function Ja(n, e) {
+function qa(n, e) {
   var i;
   if (n.body == null)
     return;
@@ -1550,11 +1550,11 @@ function Ja(n, e) {
       const h = {
         st: t,
         ed: u
-      }, g = En({}, e, !0);
+      }, g = Un({}, e, !0);
       g && A.removeNull(g), A.isEmptyObject(g) || (h.ts = g), o.push(h);
     }
-    const d = En(c, e, !0);
-    d && A.removeNull(d), A.isEmptyObject(d) ? delete a.ts : a.ts = d, o.push(a), t = Js(s, l);
+    const d = Un(c, e, !0);
+    d && A.removeNull(d), A.isEmptyObject(d) ? delete a.ts : a.ts = d, o.push(a), t = qs(s, l);
   }
   const r = n.body.dataStream.endsWith(`\r
 `) ? n.body.dataStream.length - 2 : n.body.dataStream.length;
@@ -1562,21 +1562,21 @@ function Ja(n, e) {
     const a = {
       st: t,
       ed: r
-    }, u = En({}, e, !0);
+    }, u = Un({}, e, !0);
     u && A.removeNull(u), A.isEmptyObject(u) || (a.ts = u), o.push(a);
   }
-  n.body.textRuns = vi(o);
+  n.body.textRuns = Mi(o);
 }
-function ds(n, e) {
-  return e.v === void 0 || e.v === null ? e.v : n === re.NUMBER ? Number(e.v) : n === re.BOOLEAN ? qa(e.v) ? 1 : 0 : n === re.STRING || n === re.FORCE_STRING ? `${e.v}` : e.v;
+function hs(n, e) {
+  return e.v === void 0 || e.v === null ? e.v : n === ie.NUMBER ? Number(e.v) : n === ie.BOOLEAN ? Ya(e.v) ? 1 : 0 : n === ie.STRING || n === ie.FORCE_STRING ? `${e.v}` : e.v;
 }
-function qa(n) {
+function Ya(n) {
   if (typeof n == "string") {
     if (n.toUpperCase() === "TRUE")
       return !0;
     if (n.toUpperCase() === "FALSE")
       return !1;
-    if (Mi(n)) {
+    if (_i(n)) {
       if (Number(n) === 0)
         return !1;
       if (Number(n) === 1)
@@ -1591,20 +1591,20 @@ function qa(n) {
   }
   return typeof n == "boolean" ? n : null;
 }
-function Ya(n) {
+function Xa(n) {
   return n == null ? null : (n.f === void 0 && (n.f = null), n.si === void 0 && (n.si = null), n.p === void 0 && (n.p = null), n.v === void 0 && (n.v = null), n.t === void 0 && (n.t = null), n.s === void 0 && (n.s = null), n.custom === void 0 && (n.custom = null), n);
 }
-const Ae = (n, e) => {
+const De = (n, e) => {
   const { unitId: t, subUnitId: o, cellValue: s } = e, i = n.get(M).getUniverSheetInstance(t);
   if (i == null)
     throw new Error("workbook is null error!");
   const a = i.getSheetBySheetId(o);
   if (a == null)
     throw new Error("worksheet is null error!");
-  const u = a.getCellMatrix(), l = i.getStyles(), c = new Y();
-  return new Y(s).forValue((h, g, m) => {
+  const u = a.getCellMatrix(), l = i.getStyles(), c = new q();
+  return new q(s).forValue((h, g, m) => {
     const f = A.deepClone(u == null ? void 0 : u.getValue(h, g)) || {}, C = l.getStyleByCell(f), p = l.getStyleByCell(m);
-    f.s = Ga(C, p), c.setValue(h, g, Ya(f));
+    f.s = Ka(C, p), c.setValue(h, g, Xa(f));
   }), {
     ...e,
     options: {},
@@ -1621,41 +1621,41 @@ const Ae = (n, e) => {
     if (!a)
       return !1;
     const u = a.getCellMatrix(), l = i.getStyles();
-    return new Y(t).forValue((d, h, g) => {
+    return new q(t).forValue((d, h, g) => {
       if (!g)
         u.realDeleteValue(d, h);
       else {
         let m = u.getValue(d, h) || {};
-        m = Za(g, m, l), A.isEmptyObject(m) ? u.realDeleteValue(d, h) : u.setValue(d, h, m);
+        m = Qa(g, m, l), A.isEmptyObject(m) ? u.realDeleteValue(d, h) : u.setValue(d, h, m);
       }
     }), !0;
   }
-}, Xa = /* @__PURE__ */ new Set(["f", "p", "si", "custom", "ref"]);
-function Za(n, e, t) {
-  const o = ua(t, n, e);
+}, Za = /* @__PURE__ */ new Set(["f", "p", "si", "custom", "ref"]);
+function Qa(n, e, t) {
+  const o = la(t, n, e);
   return Object.keys(n).forEach((s) => {
     const r = s;
-    if (Xa.has(r)) {
+    if (Za.has(r)) {
       const i = n[r];
-      Qa(e, r, i);
-    } else r === "v" ? n.v !== void 0 && (e.v = ds(o, n)) : r === "s" && za(t, e, n);
-  }), e.v !== void 0 && (e.t = o, e.v = ds(o, e)), e.v === null && (delete e.t, delete e.v), e;
+      eu(e, r, i);
+    } else r === "v" ? n.v !== void 0 && (e.v = hs(o, n)) : r === "s" && Ga(t, e, n);
+  }), e.v !== void 0 && (e.t = o, e.v = hs(o, e)), e.v === null && (delete e.t, delete e.v), e;
 }
-function Qa(n, e, t) {
+function eu(n, e, t) {
   t === void 0 || (t === null ? delete n[e] : n[e] = t);
 }
-const eu = (n, e) => {
+const tu = (n, e) => {
   const { unitId: t, subUnitId: o, rowData: s } = n, r = {}, i = e.getRowManager();
   for (const a in s) {
     const u = s[a], l = i.getRow(Number(a));
-    r[a] = La(l, u);
+    r[a] = Ha(l, u);
   }
   return {
     unitId: t,
     subUnitId: o,
     rowData: r
   };
-}, Kt = {
+}, Jt = {
   id: "sheet.mutation.set-row-data",
   type: v.MUTATION,
   handler: (n, e) => {
@@ -1673,7 +1673,7 @@ const eu = (n, e) => {
     }
     return !0;
   }
-}, tu = (n, e) => {
+}, nu = (n, e) => {
   if (n.get(M).getUniverSheetInstance(e.unitId) == null)
     throw new Error("universheet is null error!");
   return {
@@ -1681,7 +1681,7 @@ const eu = (n, e) => {
     subUnitId: e.subUnitId,
     ranges: e.ranges
   };
-}, kt = {
+}, Tt = {
   id: "sheet.mutation.set-row-visible",
   type: v.MUTATION,
   handler: (n, e) => {
@@ -1698,7 +1698,7 @@ const eu = (n, e) => {
     }
     return !0;
   }
-}, nu = (n, e) => {
+}, ou = (n, e) => {
   if (n.get(M).getUniverSheetInstance(e.unitId) == null)
     throw new Error("universheet is null error!");
   return {
@@ -1706,7 +1706,7 @@ const eu = (n, e) => {
     subUnitId: e.subUnitId,
     ranges: e.ranges
   };
-}, Tt = {
+}, Pt = {
   id: "sheet.mutation.set-row-hidden",
   type: v.MUTATION,
   handler: (n, e) => {
@@ -1723,7 +1723,7 @@ const eu = (n, e) => {
     }
     return !0;
   }
-}, qs = (n, e) => {
+}, Ys = (n, e) => {
   const { unitId: t, subUnitId: o, ranges: s } = n, r = {}, i = e.getColumnManager();
   for (let a = 0; a < s.length; a++) {
     const u = s[a];
@@ -1736,7 +1736,7 @@ const eu = (n, e) => {
     ranges: s,
     colWidth: r
   };
-}, mt = {
+}, ft = {
   id: "sheet.mutation.set-worksheet-col-width",
   type: v.MUTATION,
   handler: (n, e) => {
@@ -1750,7 +1750,7 @@ const eu = (n, e) => {
     }
     return !0;
   }
-}, ou = (n, e) => {
+}, su = (n, e) => {
   const t = Qe(n.get(M), e);
   if (!t)
     throw new Error("[SetWorksheetColumnCountUndoMutationFactory]: worksheet is null error!");
@@ -1759,14 +1759,14 @@ const eu = (n, e) => {
     subUnitId: e.subUnitId,
     columnCount: t.worksheet.getColumnCount()
   };
-}, Jt = {
+}, qt = {
   id: "sheet.mutation.set-worksheet-column-count",
   type: v.MUTATION,
   handler: (n, e) => {
     const t = n.get(M), o = Qe(t, e);
     return o ? (o.worksheet.setColumnCount(e.columnCount), !0) : !1;
   }
-}, qt = {
+}, Yt = {
   id: "sheet.mutation.set-worksheet-default-style",
   type: v.MUTATION,
   handler: (n, e) => {
@@ -1775,7 +1775,7 @@ const eu = (n, e) => {
     const { worksheet: r } = s;
     return r ? (r.setDefaultCellStyle(t), !0) : !1;
   }
-}, su = (n, e) => {
+}, ru = (n, e) => {
   const t = Qe(n.get(M), e);
   if (!t)
     throw new Error("[SetWorksheetDefaultStyleMutationFactory]: worksheet is null error!");
@@ -1785,7 +1785,7 @@ const eu = (n, e) => {
     subUnitId: o.getSheetId(),
     defaultStyle: o.getDefaultCellStyle()
   };
-}, ru = (n, e) => {
+}, iu = (n, e) => {
   const t = Qe(n.get(M), e);
   if (!t)
     throw new Error("[SetWorksheetRowCountUndoMutationFactory]: worksheet is null error!");
@@ -1794,14 +1794,14 @@ const eu = (n, e) => {
     subUnitId: e.subUnitId,
     rowCount: t.worksheet.getRowCount()
   };
-}, Yt = {
+}, Xt = {
   id: "sheet.mutation.set-worksheet-row-count",
   type: v.MUTATION,
   handler: (n, e) => {
     const t = n.get(M), o = Qe(t, e);
     return o ? (o.worksheet.setRowCount(e.rowCount), !0) : !1;
   }
-}, Ys = (n, e) => {
+}, Xs = (n, e) => {
   var a, u;
   const { unitId: t, subUnitId: o, ranges: s } = n, r = {}, i = e.getRowManager();
   for (const { startRow: l, endRow: c } of s)
@@ -1813,7 +1813,7 @@ const eu = (n, e) => {
     ranges: s,
     rowHeight: r
   };
-}, Wo = (n, e) => {
+}, Vo = (n, e) => {
   var a;
   const { unitId: t, subUnitId: o, ranges: s } = n, r = {}, i = e.getRowManager();
   for (const { startRow: u, endRow: l } of s)
@@ -1825,7 +1825,7 @@ const eu = (n, e) => {
     ranges: s,
     autoHeightInfo: r
   };
-}, gh = (n, e) => {
+}, mh = (n, e) => {
   var a, u;
   const { unitId: t, subUnitId: o, rowsAutoHeightInfo: s } = n, r = [], i = e.getRowManager();
   for (const l of s) {
@@ -1852,7 +1852,7 @@ const eu = (n, e) => {
         typeof o == "number" ? a.setRowHeight(c, o) : A.isDefine(o[c]) && a.setRowHeight(c, o[c]);
     return !0;
   }
-}, Fe = {
+}, He = {
   id: "sheet.mutation.set-worksheet-row-is-auto-height",
   type: v.MUTATION,
   handler: (n, e) => {
@@ -1867,7 +1867,7 @@ const eu = (n, e) => {
       }
     return !0;
   }
-}, Xs = {
+}, Zs = {
   id: "sheet.mutation.set-worksheet-row-auto-height",
   type: v.MUTATION,
   handler: (n, e) => {
@@ -1880,7 +1880,7 @@ const eu = (n, e) => {
     }
     return !0;
   }
-}, Xt = {
+}, Zt = {
   id: "sheet.mutation.toggle-gridlines",
   type: v.MUTATION,
   handler: (n, e) => {
@@ -1889,7 +1889,7 @@ const eu = (n, e) => {
     const { worksheet: o } = t, s = o.getConfig();
     return s.showGridlines = e.showGridlines, !0;
   }
-}, Cn = {
+}, pn = {
   id: "sheet.operation.set-worksheet-active",
   type: v.OPERATION,
   handler: (n, e) => {
@@ -1902,43 +1902,43 @@ const eu = (n, e) => {
     return !1;
   }
 };
-var iu = /* @__PURE__ */ ((n) => (n.SET_WORKSHEET_ROW_HEIGHT = "sheet.mutation.set-worksheet-row-height", n.SET_WORKSHEET_ROW_IS_AUTO_HEIGHT = "sheet.mutation.set-worksheet-row-is-auto-height", n.SET_WORKSHEET_ROW_AUTO_HEIGHT = "sheet.mutation.set-worksheet-row-auto-height", n.SET_WORKSHEET_COL_WIDTH = "sheet.mutation.set-worksheet-col-width", n.SET_WORKSHEET_ACTIVE = "sheet.operation.set-worksheet-active", n.MOVE_ROWS = "sheet.mutation.move-rows", n.MOVE_COLUMNS = "sheet.mutation.move-columns", n.SET_COL_HIDDEN = "sheet.mutation.set-col-hidden", n.SET_COL_VISIBLE = "sheet.mutation.set-col-visible", n.SET_ROW_HIDDEN = "sheet.mutation.set-row-hidden", n.SET_ROW_VISIBLE = "sheet.mutation.set-row-visible", n.INSERT_COL = "sheet.mutation.insert-col", n.INSERT_ROW = "sheet.mutation.insert-row", n.REMOVE_COL = "sheet.mutation.remove-col", n.REMOVE_ROW = "sheet.mutation.remove-rows", n.TOGGLE_GRIDLINES = "sheet.mutation.toggle-gridlines", n.SET_GRIDLINES_COLOR = "sheet.mutation.set-gridlines-color", n))(iu || {}), au = /* @__PURE__ */ ((n) => (n.SET_RANGE_VALUES = "sheet.mutation.set-range-values", n.MOVE_RANGE = "sheet.mutation.move-range", n.REMOVE_WORKSHEET_MERGE = "sheet.mutation.remove-worksheet-merge", n.ADD_WORKSHEET_MERGE = "sheet.mutation.add-worksheet-merge", n.REORDER_RANGE = "sheet.mutation.reorder-range", n.SET_WORKSHEET_DEFAULT_STYLE = "sheet.mutation.set-worksheet-default-style", n.SET_ROW_DATA = "sheet.mutation.set-row-data", n.SET_COL_DATA = "sheet.mutation.set-col-data", n.SET_WORKSHEET_RANGE_THEME_STYLE = "sheet.mutation.set-worksheet-range-theme-style", n.DELETE_WORKSHEET_RANGE_THEME_STYLE = "sheet.mutation.delete-worksheet-range-theme-style", n))(au || {});
-const mh = [
+var au = /* @__PURE__ */ ((n) => (n.SET_WORKSHEET_ROW_HEIGHT = "sheet.mutation.set-worksheet-row-height", n.SET_WORKSHEET_ROW_IS_AUTO_HEIGHT = "sheet.mutation.set-worksheet-row-is-auto-height", n.SET_WORKSHEET_ROW_AUTO_HEIGHT = "sheet.mutation.set-worksheet-row-auto-height", n.SET_WORKSHEET_COL_WIDTH = "sheet.mutation.set-worksheet-col-width", n.SET_WORKSHEET_ACTIVE = "sheet.operation.set-worksheet-active", n.MOVE_ROWS = "sheet.mutation.move-rows", n.MOVE_COLUMNS = "sheet.mutation.move-columns", n.SET_COL_HIDDEN = "sheet.mutation.set-col-hidden", n.SET_COL_VISIBLE = "sheet.mutation.set-col-visible", n.SET_ROW_HIDDEN = "sheet.mutation.set-row-hidden", n.SET_ROW_VISIBLE = "sheet.mutation.set-row-visible", n.INSERT_COL = "sheet.mutation.insert-col", n.INSERT_ROW = "sheet.mutation.insert-row", n.REMOVE_COL = "sheet.mutation.remove-col", n.REMOVE_ROW = "sheet.mutation.remove-rows", n.TOGGLE_GRIDLINES = "sheet.mutation.toggle-gridlines", n.SET_GRIDLINES_COLOR = "sheet.mutation.set-gridlines-color", n))(au || {}), uu = /* @__PURE__ */ ((n) => (n.SET_RANGE_VALUES = "sheet.mutation.set-range-values", n.MOVE_RANGE = "sheet.mutation.move-range", n.REMOVE_WORKSHEET_MERGE = "sheet.mutation.remove-worksheet-merge", n.ADD_WORKSHEET_MERGE = "sheet.mutation.add-worksheet-merge", n.REORDER_RANGE = "sheet.mutation.reorder-range", n.SET_WORKSHEET_DEFAULT_STYLE = "sheet.mutation.set-worksheet-default-style", n.SET_ROW_DATA = "sheet.mutation.set-row-data", n.SET_COL_DATA = "sheet.mutation.set-col-data", n.SET_WORKSHEET_RANGE_THEME_STYLE = "sheet.mutation.set-worksheet-range-theme-style", n.DELETE_WORKSHEET_RANGE_THEME_STYLE = "sheet.mutation.delete-worksheet-range-theme-style", n))(uu || {});
+const fh = [
   nt.id,
-  Fe.id,
-  Xs.id,
-  mt.id,
-  Cn.id,
+  He.id,
+  Zs.id,
+  ft.id,
+  pn.id,
   Je.id,
   qe.id,
-  on.id,
   sn.id,
+  rn.id,
+  Pt.id,
   Tt.id,
-  kt.id,
-  ke.id,
   Ue.id,
-  Me.id,
-  Te.id,
-  Xt.id,
-  Gt.id,
-  Yt.id,
-  Jt.id
-], fh = [
-  ee.id,
-  wt.id,
-  oe.id,
-  ne.id,
-  Nn.id,
-  qt.id,
+  Ee.id,
+  ve.id,
+  ke.id,
+  Zt.id,
   Kt.id,
-  zt.id,
-  tn.id,
-  nn.id
+  Xt.id,
+  qt.id
+], Rh = [
+  ee.id,
+  It.id,
+  se.id,
+  oe.id,
+  On.id,
+  Yt.id,
+  Jt.id,
+  Gt.id,
+  nn.id,
+  on.id
 ];
-function Rh(n) {
+function Ch(n) {
   switch (n.id) {
     case "sheet.mutation.set-range-values": {
-      const e = n.params, t = new Y(e.cellValue).getDataRange();
+      const e = n.params, t = new q(e.cellValue).getDataRange();
       return t.endRow === -1 ? [] : e.cellValue ? [{
         unitId: e.unitId,
         subUnitId: e.subUnitId,
@@ -1950,11 +1950,11 @@ function Rh(n) {
       return [{
         unitId: e.unitId,
         subUnitId: e.from.subUnitId,
-        range: new Y(e.from.value).getRange()
+        range: new q(e.from.value).getRange()
       }, {
         unitId: e.unitId,
         subUnitId: e.to.subUnitId,
-        range: new Y(e.to.value).getRange()
+        range: new q(e.to.value).getRange()
       }];
     }
     case "sheet.mutation.remove-worksheet-merge": {
@@ -2028,7 +2028,7 @@ function Rh(n) {
       return [];
   }
 }
-function Ch(n, e) {
+function ph(n, e) {
   switch (n.id) {
     case "sheet.mutation.set-worksheet-row-height":
     case "sheet.mutation.set-worksheet-row-is-auto-height": {
@@ -2156,20 +2156,20 @@ function Ch(n, e) {
       return [];
   }
 }
-function hs(n) {
+function gs(n) {
   return n == null ? !1 : n.v !== void 0 && n.v !== null && n.v !== "" || n.p !== void 0;
 }
-function io(n, e) {
-  return n && n.spanAnchor ? hs(e.getValue(n.spanAnchor.startRow, n.spanAnchor.startColumn)) : hs(n);
+function ao(n, e) {
+  return n && n.spanAnchor ? gs(e.getValue(n.spanAnchor.startRow, n.spanAnchor.startColumn)) : gs(n);
 }
-function uu(n, e, t, o, s) {
-  const r = n.getCellMatrix(), i = n.getSpanModel().getMergedCellRange(e, t, o, s), a = new Y();
+function lu(n, e, t, o, s) {
+  const r = n.getCellMatrix(), i = n.getSpanModel().getMergedCellRange(e, t, o, s), a = new q();
   return r.forValue((u, l) => {
     const c = r.getValue(u, l);
     c && a.setValue(u, l, c);
   }), i.forEach((u) => {
     const { startColumn: l, startRow: c, endColumn: d, endRow: h } = u;
-    _i(c, h, l, d).forEach((g, m) => {
+    yi(c, h, l, d).forEach((g, m) => {
       g === c && m === l && a.setValue(g, m, {
         ...r.getValue(g, m),
         spanAnchor: { startRow: c, endRow: h, startColumn: l, endColumn: d }
@@ -2179,12 +2179,12 @@ function uu(n, e, t, o, s) {
     });
   }), a;
 }
-function lu(n, e, t, o) {
+function cu(n, e, t, o) {
   const { startRow: s, startColumn: r, endRow: i } = n;
   let a = null, u = !1;
   for (let l = s; l <= i; l++) {
     const c = e.getValue(l, r - t);
-    if (u = u || io(c, e), !o && u)
+    if (u = u || ao(c, e), !o && u)
       break;
     c && c.spanAnchor && (a ? a = {
       startRow: Math.min(c.spanAnchor.startRow, a.startRow),
@@ -2208,12 +2208,12 @@ function lu(n, e, t, o) {
     range: n
   };
 }
-function cu(n, e, t, o) {
+function du(n, e, t, o) {
   const { startRow: s, endColumn: r, endRow: i } = n;
   let a = null, u = !1;
   for (let l = s; l <= i; l++) {
     const c = e.getValue(l, r + t);
-    if (u = u || io(c, e), !o && u)
+    if (u = u || ao(c, e), !o && u)
       break;
     c && c.spanAnchor && (a ? a = {
       startRow: Math.min(c.spanAnchor.startRow, a.startRow),
@@ -2237,12 +2237,12 @@ function cu(n, e, t, o) {
     range: n
   };
 }
-function du(n, e, t, o) {
+function hu(n, e, t, o) {
   const { startRow: s, startColumn: r, endColumn: i } = n;
   let a = null, u = !1;
   for (let l = r; l <= i; l++) {
     const c = e.getValue(s - t, l);
-    if (u = u || io(c, e), !o && u)
+    if (u = u || ao(c, e), !o && u)
       break;
     c && c.spanAnchor && (a ? a = {
       startRow: Math.min(c.spanAnchor.startRow, a.startRow),
@@ -2266,12 +2266,12 @@ function du(n, e, t, o) {
     range: n
   };
 }
-function hu(n, e, t, o) {
+function gu(n, e, t, o) {
   const { startColumn: s, endColumn: r, endRow: i } = n;
   let a = null, u = !1;
   for (let l = s; l <= r; l++) {
     const c = e.getValue(i + t, l);
-    if (u = u || io(c, e), !o && u)
+    if (u = u || ao(c, e), !o && u)
       break;
     c && c.spanAnchor && (a ? a = {
       startRow: Math.min(c.spanAnchor.startRow, a.startRow),
@@ -2295,34 +2295,34 @@ function hu(n, e, t, o) {
     range: n
   };
 }
-function ph(n, e, t) {
-  const o = t.getMaxRows(), s = t.getMaxColumns(), r = uu(t, 0, 0, o - 1, s - 1), i = t.getSnapshot().mergeData.length > 0, { left: a, right: u, up: l, down: c } = e;
+function Sh(n, e, t) {
+  const o = t.getMaxRows(), s = t.getMaxColumns(), r = lu(t, 0, 0, o - 1, s - 1), i = t.getSnapshot().mergeData.length > 0, { left: a, right: u, up: l, down: c } = e;
   let d = !0, h = { ...n };
   const g = [];
   for (; d; ) {
     if (d = !1, l && h.startRow !== 0) {
-      const { hasValue: m, range: f, spanAnchor: C } = du(h, r, 1, i);
-      if (C && g.push(C), m) {
-        h = f, d = !0;
-        continue;
-      }
-    }
-    if (c && h.endRow !== o - 1) {
       const { hasValue: m, range: f, spanAnchor: C } = hu(h, r, 1, i);
       if (C && g.push(C), m) {
         h = f, d = !0;
         continue;
       }
     }
+    if (c && h.endRow !== o - 1) {
+      const { hasValue: m, range: f, spanAnchor: C } = gu(h, r, 1, i);
+      if (C && g.push(C), m) {
+        h = f, d = !0;
+        continue;
+      }
+    }
     if (a && h.startColumn !== 0) {
-      const { hasValue: m, range: f, spanAnchor: C } = lu(h, r, 1, i);
+      const { hasValue: m, range: f, spanAnchor: C } = cu(h, r, 1, i);
       if (C && g.push(C), m) {
         h = f, d = !0;
         continue;
       }
     }
     if (u && h.endColumn !== s - 1) {
-      const { hasValue: m, range: f, spanAnchor: C } = cu(h, r, 1, i);
+      const { hasValue: m, range: f, spanAnchor: C } = du(h, r, 1, i);
       if (C && g.push(C), m) {
         h = f, d = !0;
         continue;
@@ -2331,23 +2331,23 @@ function ph(n, e, t) {
   }
   return g.length > 0 && (h = N.union(h, ...g)), h;
 }
-const gu = (n) => {
-  const e = new Y();
+const mu = (n) => {
+  const e = new q();
   return n.forEach((t) => {
-    X.foreach(t, (o, s) => {
+    Y.foreach(t, (o, s) => {
       e.setValue(o, s, 1);
     });
   }), e.forValue((t, o) => {
     const s = e.getValue(t - 1, o);
     s && e.setValue(t, o, s + 1);
   }), e;
-}, mu = (n) => {
+}, fu = (n) => {
   const e = n;
   return e.forValue((t, o) => {
     const s = n.getValue(t - 1, o);
     s && e.setValue(t, o, s + 1);
   }), e;
-}, gs = (n) => {
+}, ms = (n) => {
   const e = {
     area: 0
   }, t = (o, s) => e.area < o ? (e.area = o, e.range = s, !0) : !1;
@@ -2371,8 +2371,8 @@ const gu = (n) => {
       u.startColumn = l, u.startRow = o - a + 1, t(c, u);
     }
   }), e;
-}, fu = (n, e) => {
-  X.foreach(e, (t, o) => {
+}, Ru = (n, e) => {
+  Y.foreach(e, (t, o) => {
     n.realDeleteValue(t, o);
   });
   for (let t = e.startColumn; t <= e.endColumn; t++) {
@@ -2385,41 +2385,41 @@ const gu = (n) => {
     }
   }
   return n;
-}, Zs = (n) => {
-  const e = [];
-  let t = gs(n);
-  for (; t.area > 0; )
-    t.range && (e.push(t.range), fu(n, t.range)), t = gs(n);
-  return e;
 }, Qs = (n) => {
-  const e = gu(n);
-  return Zs(e);
+  const e = [];
+  let t = ms(n);
+  for (; t.area > 0; )
+    t.range && (e.push(t.range), Ru(n, t.range)), t = ms(n);
+  return e;
+}, er = (n) => {
+  const e = mu(n);
+  return Qs(e);
 };
-class Sh {
+class wh {
   constructor() {
-    R(this, "_matrix", new Y());
+    R(this, "_matrix", new q());
   }
   add(...e) {
     return e.forEach((t) => {
-      X.foreach(t, (o, s) => {
+      Y.foreach(t, (o, s) => {
         this._matrix.setValue(o, s, 1);
       });
     }), this;
   }
   subtract(...e) {
     return e.forEach((t) => {
-      X.foreach(t, (o, s) => {
+      Y.foreach(t, (o, s) => {
         this._matrix.realDeleteValue(o, s);
       });
     }), this;
   }
   merge() {
-    const e = mu(this._matrix);
-    return Zs(e);
+    const e = fu(this._matrix);
+    return Qs(e);
   }
 }
-const wh = 1.5, Ih = "rgba(255, 255, 255, 0.01)";
-function vh(n) {
+const Ih = 1.5, vh = "rgba(255, 255, 255, 0.01)";
+function Mh(n) {
   const { rangeWithCoord: e, primaryWithCoord: t, style: o } = n, s = {
     range: {
       startRow: e.startRow,
@@ -2433,9 +2433,9 @@ function vh(n) {
     primary: null,
     style: o
   };
-  return t != null && (s.primary = Ru(t)), s;
+  return t != null && (s.primary = Cu(t)), s;
 }
-function Ru(n) {
+function Cu(n) {
   const { actualRow: e, actualColumn: t, isMerged: o, isMergedMainCell: s } = n, { startRow: r, startColumn: i, endRow: a, endColumn: u } = n.mergeInfo;
   return {
     actualRow: e,
@@ -2448,8 +2448,8 @@ function Ru(n) {
     endColumn: u
   };
 }
-var Cu = /* @__PURE__ */ ((n) => (n[n.Tab = 1] = "Tab", n[n.Comma = 2] = "Comma", n[n.Semicolon = 4] = "Semicolon", n[n.Space = 8] = "Space", n[n.Custom = 16] = "Custom", n))(Cu || {});
-class pu {
+var pu = /* @__PURE__ */ ((n) => (n[n.Tab = 1] = "Tab", n[n.Comma = 2] = "Comma", n[n.Semicolon = 4] = "Semicolon", n[n.Space = 8] = "Space", n[n.Custom = 16] = "Custom", n))(pu || {});
+class Su {
   constructor() {
     R(this, "_tabCount", 0);
     R(this, "_commaCount", 0);
@@ -2480,44 +2480,44 @@ class pu {
     return e === 0 || e === this._tabCount ? 1 : e === this._commaCount ? 2 : e === this._semicolonCount ? 4 : e === this._spaceCount ? 8 : 1;
   }
 }
-function Su(n, e, t) {
+function wu(n, e, t) {
   const o = [];
   t !== void 0 && (n & 16) > 0 && o.push(t), (n & 1) > 0 && o.push("	"), (n & 2) > 0 && o.push(","), (n & 4) > 0 && o.push(";"), (n & 8) > 0 && o.push(" ");
   let s = "";
   for (const i of o)
-    s += wu(i);
+    s += Iu(i);
   let r = "[".concat(s, "]");
   return e && (r += "+"), new RegExp(r);
 }
-function wu(n) {
+function Iu(n) {
   return n.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
-const Iu = (n) => {
+const vu = (n) => {
   var t;
   return ((t = n.body) == null ? void 0 : t.dataStream.replace(/\r\n$/, "")) || "";
 };
-function vu(n) {
+function Mu(n) {
   if (n != null) {
     if (n.p)
-      return Iu(n.p);
+      return vu(n.p);
     if (n.v && typeof n.v == "string")
       return n.v;
-    if (n.t && (n.t === re.FORCE_STRING || n.t === re.STRING))
+    if (n.t && (n.t === ie.FORCE_STRING || n.t === ie.STRING))
       return String(n.v);
   }
 }
-function Mu(n, e, t, o, s = !1) {
-  const r = X.transformRange(e, n), { startColumn: i, startRow: a, endColumn: u, endRow: l } = r;
+function _u(n, e, t, o, s = !1) {
+  const r = Y.transformRange(e, n), { startColumn: i, startRow: a, endColumn: u, endRow: l } = r;
   if (i !== u)
     throw new Error("The range must be in the same column.");
   if (t && (t & 16) > 0 && (o === void 0 || o.length !== 1))
     throw new Error("The custom delimiter must a character.");
-  const c = t === void 0, d = c ? new pu() : null, h = [];
+  const c = t === void 0, d = c ? new Su() : null, h = [];
   for (let I = a; I <= l; I++) {
-    const S = n.getCell(I, i), y = vu(S);
+    const S = n.getCell(I, i), y = Mu(S);
     h.push(y), d && d.update(y);
   }
-  const g = c ? d.getDelimiter() : t, m = Su(g, s, o);
+  const g = c ? d.getDelimiter() : t, m = wu(g, s, o);
   let f = -1, C = 0, p = 0;
   const w = [];
   for (const I of h) {
@@ -2534,32 +2534,32 @@ function Mu(n, e, t, o, s = !1) {
     lastRow: C
   };
 }
-const _u = (n, e, t = "") => n.reduce(
+const yu = (n, e, t = "") => n.reduce(
   (o, s) => {
     const r = s && s[e];
     return typeof r != "string" ? (console.warn(s, `${e} is not string`), o) : (r ? (o[r] || (o[r] = []), o[r].push(s)) : o[t].push(s), o);
   },
   {}
-), yu = (n = 0) => {
+), bu = (n = 0) => {
   let e = n;
   return function() {
     return e++;
   };
 };
-function bu(n) {
+function Eu(n) {
   return n == null ? !1 : n.v !== void 0 && n.v !== null && n.v !== "" || n.p !== void 0;
 }
-function Mh(n, e) {
+function _h(n, e) {
   for (let t = n.startRow; t <= n.endRow; t++)
     for (let o = n.startColumn; o <= n.endColumn; o++) {
       const s = e.getCell(t, o);
-      if (bu(s))
+      if (Eu(s))
         return { startRow: t, startColumn: o, endRow: t, endColumn: o };
     }
   return null;
 }
-function er(n) {
-  const e = new Y();
+function tr(n) {
+  const e = new q();
   return n.forEach((t) => {
     const { startRow: o, startColumn: s, endRow: r, endColumn: i } = t;
     for (let a = o; a <= r; a++)
@@ -2567,8 +2567,8 @@ function er(n) {
         e.setValue(a, u, null);
   }), e.clone();
 }
-function Eu(n) {
-  const e = new Y();
+function Uu(n) {
+  const e = new q();
   return n.forEach((t) => {
     const { startRow: o, startColumn: s, endRow: r, endColumn: i } = t;
     for (let a = o; a <= r; a++)
@@ -2582,8 +2582,8 @@ function Eu(n) {
         });
   }), e.clone();
 }
-function Uu(n) {
-  const e = new Y();
+function ku(n) {
+  const e = new q();
   return n.forEach((t) => {
     const { startRow: o, startColumn: s, endRow: r, endColumn: i } = t;
     for (let a = o; a <= r; a++)
@@ -2593,7 +2593,7 @@ function Uu(n) {
         });
   }), e.clone();
 }
-function ku(n, e, t, o) {
+function Tu(n, e, t, o) {
   const s = e.get(M), r = t ? s.getUnit(t, B.UNIVER_SHEET) : s.getCurrentUnitForType(B.UNIVER_SHEET), i = o ? r == null ? void 0 : r.getSheetBySheetId(o) : r == null ? void 0 : r.getActiveSheet();
   if (!i)
     return null;
@@ -2607,10 +2607,10 @@ function ku(n, e, t, o) {
     cols: h
   };
 }
-function ao(n, e, t, o) {
+function uo(n, e, t, o) {
   const s = [], r = [];
   for (const h of n) {
-    const g = ku(h, e, t, o);
+    const g = Tu(h, e, t, o);
     g && (s.push(...g.rows), r.push(...g.cols));
   }
   const i = Array.from(new Set(s)).sort((h, g) => h - g), a = Array.from(new Set(r)).sort((h, g) => h - g), u = [];
@@ -2632,18 +2632,18 @@ function ao(n, e, t, o) {
       });
   return u;
 }
-var Tu = /* @__PURE__ */ ((n) => (n.OthersCanView = "othersCanView", n.NoOneElseCanView = "noOneElseCanView", n))(Tu || {}), Pu = /* @__PURE__ */ ((n) => (n.DesignedUserCanEdit = "designedUserCanEdit", n.OnlyMe = "onlyMe", n))(Pu || {});
-class me {
+var Pu = /* @__PURE__ */ ((n) => (n.OthersCanView = "othersCanView", n.NoOneElseCanView = "noOneElseCanView", n))(Pu || {}), Nu = /* @__PURE__ */ ((n) => (n.DesignedUserCanEdit = "designedUserCanEdit", n.OnlyMe = "onlyMe", n))(Nu || {});
+class ge {
   constructor() {
     /**
      * Map<unitId, Map<subUnitId, Map<ruleId, IRangeProtectionRule>>>
      */
     R(this, "_model", /* @__PURE__ */ new Map());
-    R(this, "_ruleChange$", new De());
+    R(this, "_ruleChange$", new Oe());
     R(this, "ruleChange$", this._ruleChange$.asObservable());
-    R(this, "_ruleRefresh$", new De());
+    R(this, "_ruleRefresh$", new Oe());
     R(this, "ruleRefresh$", this._ruleRefresh$.asObservable());
-    R(this, "_rangeRuleInitStateChange", new gt(!1));
+    R(this, "_rangeRuleInitStateChange", new mt(!1));
     R(this, "rangeRuleInitStateChange$", this._rangeRuleInitStateChange.asObservable());
   }
   dispose() {
@@ -2714,10 +2714,10 @@ class me {
     this._model.delete(e);
   }
   createRuleId(e, t) {
-    let o = Ut(4);
+    let o = kt(4);
     const s = this._ensureRuleMap(e, t);
     for (; s.has(o); )
-      o = Ut(4);
+      o = kt(4);
     return o;
   }
   getTargetByPermissionId(e, t) {
@@ -2730,37 +2730,37 @@ class me {
     return null;
   }
 }
-const _h = (n, e) => {
-  const t = n.get(me), o = e.ruleIds.map((r) => t.getRule(e.unitId, e.subUnitId, r)).filter((r) => !!r);
-  return { id: Be.id, params: { subUnitId: e.subUnitId, unitId: e.unitId, rules: o } };
+const yh = (n, e) => {
+  const t = n.get(ge), o = e.ruleIds.map((r) => t.getRule(e.unitId, e.subUnitId, r)).filter((r) => !!r);
+  return { id: Fe.id, params: { subUnitId: e.subUnitId, unitId: e.unitId, rules: o } };
 }, st = {
   id: "sheet.mutation.delete-range-protection",
   type: v.MUTATION,
   handler: (n, e) => {
-    const { unitId: t, subUnitId: o, ruleIds: s } = e, r = n.get(me);
+    const { unitId: t, subUnitId: o, ruleIds: s } = e, r = n.get(ge);
     return s.forEach((i) => {
       r.deleteRule(t, o, i);
     }), !0;
   }
-}, yh = (n) => {
+}, bh = (n) => {
   const e = { ...n, ruleIds: n.rules.map((t) => t.id) };
   return { id: st.id, params: e };
-}, Be = {
+}, Fe = {
   id: "sheet.mutation.add-range-protection",
   type: v.MUTATION,
   handler: (n, e) => {
-    const { unitId: t, subUnitId: o, rules: s } = e, r = n.get(me);
+    const { unitId: t, subUnitId: o, rules: s } = e, r = n.get(ge);
     return s.forEach((i) => {
       r.addRule(t, o, i);
     }), !0;
   }
-}, Nu = {
+}, Ou = {
   type: v.COMMAND,
   id: "sheet.command.add-range-protection",
   async handler(n, e) {
     if (!e)
       return !1;
-    const t = n.get(E), o = n.get(V), s = n.get(me), { rule: r, permissionId: i } = e, { unitId: a, subUnitId: u, ranges: l, description: c, viewState: d, editState: h } = r, g = [{
+    const t = n.get(E), o = n.get(V), s = n.get(ge), { rule: r, permissionId: i } = e, { unitId: a, subUnitId: u, ranges: l, description: c, viewState: d, editState: h } = r, g = [{
       ranges: l,
       permissionId: i,
       id: s.createRuleId(a, u),
@@ -2771,12 +2771,12 @@ const _h = (n, e) => {
       viewState: d,
       editState: h
     }];
-    if (await t.executeCommand(Be.id, {
+    if (await t.executeCommand(Fe.id, {
       unitId: a,
       subUnitId: u,
       rules: g
     })) {
-      const f = [{ id: Be.id, params: { unitId: a, subUnitId: u, rules: g } }], C = [{ id: st.id, params: { unitId: a, subUnitId: u, ruleIds: g.map((p) => p.id) } }];
+      const f = [{ id: Fe.id, params: { unitId: a, subUnitId: u, rules: g } }], C = [{ id: st.id, params: { unitId: a, subUnitId: u, ruleIds: g.map((p) => p.id) } }];
       o.pushUndoRedo({
         unitID: a,
         redoMutations: f,
@@ -2786,26 +2786,26 @@ const _h = (n, e) => {
     return !0;
   }
 };
-var we = /* @__PURE__ */ ((n) => (n[n.MOVE_START = 0] = "MOVE_START", n[n.MOVING = 1] = "MOVING", n[n.MOVE_END = 2] = "MOVE_END", n[n.ONLY_SET = 3] = "ONLY_SET", n))(we || {});
-class Ou extends ue {
+var Se = /* @__PURE__ */ ((n) => (n[n.MOVE_START = 0] = "MOVE_START", n[n.MOVING = 1] = "MOVING", n[n.MOVE_END = 2] = "MOVE_END", n[n.ONLY_SET = 3] = "ONLY_SET", n))(Se || {});
+class Du extends ue {
   constructor(t) {
     super();
     /**
      * Selection data model for each worksheet.
      */
     R(this, "_worksheetSelections", /* @__PURE__ */ new Map());
-    R(this, "_selectionMoveStart$", new De());
+    R(this, "_selectionMoveStart$", new Oe());
     R(this, "selectionMoveStart$", this._selectionMoveStart$.asObservable());
-    R(this, "_selectionMoving$", new De());
+    R(this, "_selectionMoving$", new Oe());
     R(this, "selectionMoving$", this._selectionMoving$.asObservable());
-    R(this, "_selectionMoveEnd$", new gt([]));
+    R(this, "_selectionMoveEnd$", new mt([]));
     R(this, "selectionMoveEnd$", this._selectionMoveEnd$.asObservable());
-    R(this, "_selectionSet$", new gt([]));
+    R(this, "_selectionSet$", new mt([]));
     R(this, "selectionSet$", this._selectionSet$.asObservable());
     R(this, "selectionChanged$");
-    R(this, "_beforeSelectionMoveEnd$", new gt([]));
+    R(this, "_beforeSelectionMoveEnd$", new mt([]));
     R(this, "beforeSelectionMoveEnd$", this._beforeSelectionMoveEnd$.asObservable());
-    this._workbook = t, this.selectionChanged$ = jt(this._selectionMoveEnd$, this._selectionSet$);
+    this._workbook = t, this.selectionChanged$ = zt(this._selectionMoveEnd$, this._selectionSet$);
   }
   dispose() {
     super.dispose(), this._beforeSelectionMoveEnd$.complete(), this._selectionMoveEnd$.complete(), this._selectionMoving$.complete(), this._selectionMoveStart$.complete(), this._selectionSet$.complete(), this._workbook = null;
@@ -2822,16 +2822,16 @@ class Ou extends ue {
    */
   setSelections(t, o = [], s) {
     switch (this.setSelectionsOfWorksheet(t, o), s) {
-      case we.MOVE_START:
+      case Se.MOVE_START:
         this._selectionMoveStart$.next(o);
         break;
-      case we.MOVING:
+      case Se.MOVING:
         this._selectionMoving$.next(o);
         break;
-      case we.MOVE_END:
+      case Se.MOVE_END:
         this._beforeSelectionMoveEnd$.next(o), this._selectionMoveEnd$.next(o);
         break;
-      case we.ONLY_SET: {
+      case Se.ONLY_SET: {
         this._selectionSet$.next(o);
         break;
       }
@@ -2872,12 +2872,12 @@ class Ou extends ue {
     return t[t.length - 1];
   }
 }
-var Du = Object.getOwnPropertyDescriptor, Au = (n, e, t, o) => {
-  for (var s = o > 1 ? void 0 : o ? Du(e, t) : e, r = n.length - 1, i; r >= 0; r--)
+var Au = Object.getOwnPropertyDescriptor, xu = (n, e, t, o) => {
+  for (var s = o > 1 ? void 0 : o ? Au(e, t) : e, r = n.length - 1, i; r >= 0; r--)
     (i = n[r]) && (s = i(s) || s);
   return s;
-}, xu = (n, e) => (t, o) => e(t, o, n);
-let z = class extends $s {
+}, $u = (n, e) => (t, o) => e(t, o, n);
+let z = class extends Ws {
   constructor(e) {
     super();
     /**
@@ -2917,10 +2917,10 @@ let z = class extends $s {
     return this._currentSelectionPos;
   }
   _init() {
-    const e = this._instanceSrv.getCurrentTypeOfUnit$(B.UNIVER_SHEET).pipe(Ki(1), et(this.dispose$));
-    this.selectionMoveStart$ = e.pipe().pipe(tt((t) => t ? this._ensureWorkbookSelection(t.getUnitId()).selectionMoveStart$ : Ie())).pipe(et(this.dispose$)), this.selectionMoving$ = e.pipe(tt((t) => t ? this._ensureWorkbookSelection(t.getUnitId()).selectionMoving$ : Ie())).pipe(et(this.dispose$)), this.selectionMoveEnd$ = e.pipe(tt((t) => t ? this._ensureWorkbookSelection(t.getUnitId()).selectionMoveEnd$ : Ie([]))).pipe(et(this.dispose$)), this.selectionSet$ = e.pipe(tt((t) => t ? this._ensureWorkbookSelection(t.getUnitId()).selectionSet$ : Ie([]))).pipe(et(this.dispose$)), this.selectionChanged$ = e.pipe(tt((t) => t ? this._ensureWorkbookSelection(t.getUnitId()).selectionChanged$ : Ie([]))).pipe(
-      Ji((t, o) => t.length !== o.length ? !1 : t.length === 0 && o.length === 0 ? !0 : t.every((s, r) => JSON.stringify(s) === JSON.stringify(o[r]))),
-      Bs(1)
+    const e = this._instanceSrv.getCurrentTypeOfUnit$(B.UNIVER_SHEET).pipe(Ji(1), et(this.dispose$));
+    this.selectionMoveStart$ = e.pipe().pipe(tt((t) => t ? this._ensureWorkbookSelection(t.getUnitId()).selectionMoveStart$ : we())).pipe(et(this.dispose$)), this.selectionMoving$ = e.pipe(tt((t) => t ? this._ensureWorkbookSelection(t.getUnitId()).selectionMoving$ : we())).pipe(et(this.dispose$)), this.selectionMoveEnd$ = e.pipe(tt((t) => t ? this._ensureWorkbookSelection(t.getUnitId()).selectionMoveEnd$ : we([]))).pipe(et(this.dispose$)), this.selectionSet$ = e.pipe(tt((t) => t ? this._ensureWorkbookSelection(t.getUnitId()).selectionSet$ : we([]))).pipe(et(this.dispose$)), this.selectionChanged$ = e.pipe(tt((t) => t ? this._ensureWorkbookSelection(t.getUnitId()).selectionChanged$ : we([]))).pipe(
+      qi((t, o) => t.length !== o.length ? !1 : t.length === 0 && o.length === 0 ? !0 : t.every((s, r) => JSON.stringify(s) === JSON.stringify(o[r]))),
+      js(1)
     ).pipe(et(this.dispose$)), this.disposeWithMe(
       this._instanceSrv.getTypeOfUnitDisposed$(B.UNIVER_SHEET).pipe(et(this.dispose$)).subscribe((t) => {
         this._removeWorkbookSelection(t.getUnitId());
@@ -2932,7 +2932,7 @@ let z = class extends $s {
     );
   }
   dispose() {
-    super.dispose(), this._cellStylesCache.clear(), this._workbookSelections.forEach((e) => e.dispose()), this._workbookSelections.clear(), this.selectionMoveStart$ = Ie(null), this.selectionMoving$ = Ie(null), this.selectionMoveEnd$ = Ie([]), this.selectionSet$ = Ie(null), this.selectionChanged$ = Ie(null);
+    super.dispose(), this._cellStylesCache.clear(), this._workbookSelections.forEach((e) => e.dispose()), this._workbookSelections.clear(), this.selectionMoveStart$ = we(null), this.selectionMoving$ = we(null), this.selectionMoveEnd$ = we([]), this.selectionSet$ = we(null), this.selectionChanged$ = we(null);
   }
   /**
    * Clear all selections in all workbooks.
@@ -2965,7 +2965,7 @@ let z = class extends $s {
       this._ensureWorkbookSelection(u).setSelections(
         t,
         o || [],
-        s != null ? s : we.ONLY_SET
+        s != null ? s : Se.ONLY_SET
       );
       return;
     }
@@ -2974,7 +2974,7 @@ let z = class extends $s {
       throw new Error("[SheetsSelectionsService]: cannot find current selection position!");
     const { unitId: i, sheetId: a } = r;
     if (typeof e == "object") {
-      const u = e != null ? e : o, l = t != null ? t : we.ONLY_SET;
+      const u = e != null ? e : o, l = t != null ? t : Se.ONLY_SET;
       this._ensureWorkbookSelection(i).setSelections(a, u, l);
     }
   }
@@ -3008,7 +3008,7 @@ let z = class extends $s {
       const o = this._instanceSrv.getUnit(e);
       if (!o)
         throw new Error(`[SheetsSelectionsService]: cannot resolve unit with id "${e}"!`);
-      t = new Ou(o), this._workbookSelections.set(e, t);
+      t = new Du(o), this._workbookSelections.set(e, t);
     }
     return t;
   }
@@ -3052,10 +3052,10 @@ let z = class extends $s {
     };
   }
 };
-z = Au([
-  xu(0, M)
+z = xu([
+  $u(0, M)
 ], z);
-const bh = "DISABLE_NORMAL_SELECTIONS", Eh = "SELECTIONS_ENABLED", $u = "REF_SELECTIONS_ENABLED", Vo = {
+const Eh = "DISABLE_NORMAL_SELECTIONS", Uh = "SELECTIONS_ENABLED", Wu = "REF_SELECTIONS_ENABLED", Lo = {
   id: "sheet.command.clear-selection-all",
   type: v.COMMAND,
   handler: (n, e) => {
@@ -3067,47 +3067,11 @@ const bh = "DISABLE_NORMAL_SELECTIONS", Eh = "SELECTIONS_ENABLED", $u = "REF_SEL
     const c = (e == null ? void 0 : e.subUnitId) || l.getSheetId(), d = (e == null ? void 0 : e.ranges) || ((I = s.getCurrentSelections()) == null ? void 0 : I.map((S) => S.range));
     if (!(d != null && d.length))
       return !1;
-    const h = ao(d, n, u, c), g = [], m = [], f = {
+    const h = uo(d, n, u, c), g = [], m = [], f = {
       subUnitId: c,
       unitId: u,
-      cellValue: er(h)
-    }, C = Ae(
-      n,
-      f
-    );
-    g.push({
-      id: ee.id,
-      params: f
-    }), m.push({
-      id: ee.id,
-      params: C
-    });
-    const p = i.onCommandExecute({ id: Vo.id });
-    return g.push(...p.redos), m.unshift(...p.undos), L(g, o) ? (r.pushUndoRedo({
-      // If there are multiple mutations that form an encapsulated project, they must be encapsulated in the same undo redo element.
-      // Hooks can be used to hook the code of external controllers to add new actions.
-      unitID: u,
-      undoMutations: m,
-      redoMutations: g
-    }), !0) : !1;
-  }
-}, Lo = {
-  id: "sheet.command.clear-selection-format",
-  type: v.COMMAND,
-  handler: (n, e) => {
-    var I;
-    const t = n.get(M), o = n.get(E), s = n.get(z), r = n.get(V), i = n.get(G), a = t.getCurrentUnitForType(B.UNIVER_SHEET);
-    if (!a) return !1;
-    const u = (e == null ? void 0 : e.unitId) || a.getUnitId(), l = a.getActiveSheet();
-    if (!l) return !1;
-    const c = (e == null ? void 0 : e.subUnitId) || l.getSheetId(), d = (e == null ? void 0 : e.ranges) || ((I = s.getCurrentSelections()) == null ? void 0 : I.map((S) => S.range));
-    if (!(d != null && d.length))
-      return !1;
-    const h = ao(d, n, u, c), g = [], m = [], f = {
-      subUnitId: c,
-      unitId: u,
-      cellValue: Uu(h)
-    }, C = Ae(
+      cellValue: tr(h)
+    }, C = De(
       n,
       f
     );
@@ -3127,9 +3091,45 @@ const bh = "DISABLE_NORMAL_SELECTIONS", Eh = "SELECTIONS_ENABLED", $u = "REF_SEL
       redoMutations: g
     }), !0) : !1;
   }
+}, Ho = {
+  id: "sheet.command.clear-selection-format",
+  type: v.COMMAND,
+  handler: (n, e) => {
+    var I;
+    const t = n.get(M), o = n.get(E), s = n.get(z), r = n.get(V), i = n.get(G), a = t.getCurrentUnitForType(B.UNIVER_SHEET);
+    if (!a) return !1;
+    const u = (e == null ? void 0 : e.unitId) || a.getUnitId(), l = a.getActiveSheet();
+    if (!l) return !1;
+    const c = (e == null ? void 0 : e.subUnitId) || l.getSheetId(), d = (e == null ? void 0 : e.ranges) || ((I = s.getCurrentSelections()) == null ? void 0 : I.map((S) => S.range));
+    if (!(d != null && d.length))
+      return !1;
+    const h = uo(d, n, u, c), g = [], m = [], f = {
+      subUnitId: c,
+      unitId: u,
+      cellValue: ku(h)
+    }, C = De(
+      n,
+      f
+    );
+    g.push({
+      id: ee.id,
+      params: f
+    }), m.push({
+      id: ee.id,
+      params: C
+    });
+    const p = i.onCommandExecute({ id: Ho.id });
+    return g.push(...p.redos), m.unshift(...p.undos), L(g, o) ? (r.pushUndoRedo({
+      // If there are multiple mutations that form an encapsulated project, they must be encapsulated in the same undo redo element.
+      // Hooks can be used to hook the code of external controllers to add new actions.
+      unitID: u,
+      undoMutations: m,
+      redoMutations: g
+    }), !0) : !1;
+  }
 };
-function uo(n, e, t = !0) {
-  const o = e.getMatrixWithMergedCells(...yi(n)), s = [];
+function lo(n, e, t = !0) {
+  const o = e.getMatrixWithMergedCells(...bi(n)), s = [];
   if (o.forValue((i, a, u) => {
     if (u.colSpan !== void 0 && u.rowSpan !== void 0) {
       const l = {
@@ -3143,9 +3143,9 @@ function uo(n, e, t = !0) {
   }), s.length === 0)
     return n;
   const r = N.union(n, ...s);
-  return t ? uo(r, e, t) : r;
+  return t ? lo(r, e, t) : r;
 }
-function Uh(n, e, t) {
+function kh(n, e, t) {
   let o = null;
   return t.getMatrixWithMergedCells(n, e, n, e).forValue((r, i, a) => (o = {
     actualRow: r,
@@ -3169,11 +3169,11 @@ function Uh(n, e, t) {
     rangeType: j.NORMAL
   };
 }
-function kh(n, e, t) {
+function Th(n, e, t) {
   const { startRow: o, startColumn: s, endRow: r, endColumn: i } = n;
   return Number.isNaN(o) && (n.startRow = 0), Number.isNaN(r) && (n.endRow = e - 1), Number.isNaN(s) && (n.startColumn = 0), Number.isNaN(i) && (n.endColumn = t - 1), n;
 }
-function _e(n, e) {
+function Me(n, e) {
   const t = Number.isNaN(n.startRow) ? 0 : n.startRow, o = Number.isNaN(n.startColumn) ? 0 : n.startColumn, s = e.getMergedCell(t, o);
   return s ? {
     ...s,
@@ -3195,21 +3195,21 @@ function _e(n, e) {
   };
 }
 const ut = (n, e, t) => ({
-  id: ie.id,
+  id: ae.id,
   params: {
     unitId: e.getUnitId(),
     subUnitId: t.getSheetId(),
     reveal: !0,
-    selections: [{ range: n, primary: _e(n, t) }]
+    selections: [{ range: n, primary: Me(n, t) }]
   }
 });
-function Th(n) {
+function Ph(n) {
   if (!n)
     return !1;
   const { range: e, primary: t } = n;
   return N.equals(e, t);
 }
-function Wu(n) {
+function Vu(n) {
   function e(t, o) {
     function s(r) {
       for (let i = r.startRow; i <= r.endRow; i++)
@@ -3223,60 +3223,60 @@ function Wu(n) {
     forOperableEach: e
   };
 }
-const ms = (n) => n.id !== zs;
-function Ct(n, e, t, o, s, r, i) {
+const fs = (n) => n.id !== Gs;
+function pt(n, e, t, o, s, r, i) {
   const a = {};
   for (let u = e; u <= t; u++)
     for (let l = o; l <= s; l++) {
-      const c = r ? n.getCellWithFilteredInterceptors(i, l, us, ms) : n.getCellWithFilteredInterceptors(u, i, us, ms);
+      const c = r ? n.getCellWithFilteredInterceptors(i, l, ls, fs) : n.getCellWithFilteredInterceptors(u, i, ls, fs);
       !c || !c.s || (a[u] || (a[u] = {}), a[u][l] = { s: c.s });
     }
   return a;
 }
-var Vu = Object.getOwnPropertyDescriptor, Lu = (n, e, t, o) => {
-  for (var s = o > 1 ? void 0 : o ? Vu(e, t) : e, r = n.length - 1, i; r >= 0; r--)
+var Lu = Object.getOwnPropertyDescriptor, Hu = (n, e, t, o) => {
+  for (var s = o > 1 ? void 0 : o ? Lu(e, t) : e, r = n.length - 1, i; r >= 0; r--)
     (i = n[r]) && (s = i(s) || s);
   return s;
-}, Hu = (n, e) => (t, o) => e(t, o, n);
-const Fu = Ao("sheets-formula.ref-selections.service");
-let fs = class extends z {
+}, Fu = (n, e) => (t, o) => e(t, o, n);
+const Bu = xo("sheets-formula.ref-selections.service");
+let Rs = class extends z {
   constructor(n) {
     super(n);
   }
   _init() {
     const n = this._getAliveWorkbooks$().pipe(et(this.dispose$));
-    this.selectionMoveStart$ = n.pipe(tt((e) => jt(...e.map((t) => t.selectionMoveStart$)))), this.selectionMoving$ = n.pipe(tt((e) => jt(...e.map((t) => t.selectionMoving$)))), this.selectionMoveEnd$ = n.pipe(tt((e) => jt(...e.map((t) => t.selectionMoveEnd$)))), this.selectionSet$ = n.pipe(tt((e) => jt(...e.map((t) => t.selectionSet$))));
+    this.selectionMoveStart$ = n.pipe(tt((e) => zt(...e.map((t) => t.selectionMoveStart$)))), this.selectionMoving$ = n.pipe(tt((e) => zt(...e.map((t) => t.selectionMoving$)))), this.selectionMoveEnd$ = n.pipe(tt((e) => zt(...e.map((t) => t.selectionMoveEnd$)))), this.selectionSet$ = n.pipe(tt((e) => zt(...e.map((t) => t.selectionSet$))));
   }
   dispose() {
-    super.dispose(), this.selectionMoveStart$ = Ie(null), this.selectionMoving$ = Ie(null), this.selectionMoveEnd$ = Ie(null), this.selectionSet$ = Ie(null), delete this._instanceSrv, this._workbookSelections.clear();
+    super.dispose(), this.selectionMoveStart$ = we(null), this.selectionMoving$ = we(null), this.selectionMoveEnd$ = we(null), this.selectionSet$ = we(null), delete this._instanceSrv, this._workbookSelections.clear();
   }
   _getAliveWorkbooks$() {
     const n = this._instanceSrv.getAllUnitsForType(B.UNIVER_SHEET);
     n.forEach((t) => this._ensureWorkbookSelection(t.getUnitId()));
-    const e = new gt(n);
+    const e = new mt(n);
     return this.disposeWithMe(this._instanceSrv.getTypeOfUnitAdded$(B.UNIVER_SHEET).subscribe((t) => {
       this._ensureWorkbookSelection(t.getUnitId()), e.next([...e.getValue(), t]);
     })), this.disposeWithMe(this._instanceSrv.getTypeOfUnitDisposed$(B.UNIVER_SHEET).subscribe((t) => {
       this._removeWorkbookSelection(t.getUnitId()), e.next(e.getValue().filter((o) => o !== t));
-    })), e.pipe(yo((t) => t.map((o) => this._ensureWorkbookSelection(o.getUnitId()))));
+    })), e.pipe(bo((t) => t.map((o) => this._ensureWorkbookSelection(o.getUnitId()))));
   }
 };
-fs = Lu([
-  Hu(0, M)
-], fs);
-function Bu(n, e) {
-  const o = n.get(Ws).getContextValue($u);
-  return n.get(o && !e ? Fu : z);
+Rs = Hu([
+  Fu(0, M)
+], Rs);
+function ju(n, e) {
+  const o = n.get(Vs).getContextValue(Wu);
+  return n.get(o && !e ? Bu : z);
 }
-const ie = {
+const ae = {
   id: "sheet.operation.set-selections",
   type: v.OPERATION,
   handler: (n, e) => {
     if (!e) return !1;
     const { selections: t, type: o, unitId: s, subUnitId: r } = e;
-    return Bu(n).setSelections(s, r, [...t], o), !0;
+    return ju(n).setSelections(s, r, [...t], o), !0;
   }
-}, ju = {
+}, zu = {
   id: "sheet.command.select-range",
   type: v.COMMAND,
   handler: (n, e) => {
@@ -3285,25 +3285,25 @@ const ie = {
     if (!i) return !1;
     const a = [{
       range: s,
-      primary: _e(s, i.worksheet),
+      primary: Me(s, i.worksheet),
       style: null
     }];
-    return r.syncExecuteCommand(ie.id, {
+    return r.syncExecuteCommand(ae.id, {
       unitId: t,
       subUnitId: o,
       selections: a
     });
   }
-}, tr = "sheet.command.move-range", yt = {
+}, nr = "sheet.command.move-range", bt = {
   type: v.COMMAND,
-  id: tr,
+  id: nr,
   // eslint-disable-next-line max-lines-per-function
   handler: async (n, e) => {
     var w, I;
-    const t = n.get(E), o = n.get(V), s = n.get(M), r = n.get(Vt), i = n.get(it), a = n.get(G), u = P(s);
-    if (!u || !await a.beforeCommandExecute({ id: yt.id, params: e }))
+    const t = n.get(E), o = n.get(V), s = n.get(M), r = n.get(Lt), i = n.get(it), a = n.get(G), u = P(s);
+    if (!u || !await a.beforeCommandExecute({ id: bt.id, params: e }))
       return !1;
-    const { worksheet: c, subUnitId: d, unitId: h } = u, g = Ho(
+    const { worksheet: c, subUnitId: d, unitId: h } = u, g = Fo(
       n,
       { unitId: h, subUnitId: d, range: e.fromRange },
       { subUnitId: d, range: e.toRange }
@@ -3311,19 +3311,19 @@ const ie = {
     if (g === null)
       return r.emit(i.t("sheets.info.acrossMergedCell")), !1;
     const m = a.onCommandExecute({
-      id: yt.id,
+      id: bt.id,
       params: e
     }), f = [
       ...(w = m.preRedos) != null ? w : [],
       ...g.redos,
       ...m.redos,
       {
-        id: ie.id,
+        id: ae.id,
         params: {
           unitId: h,
           subUnitId: d,
-          selections: [{ range: e.toRange, primary: zu(e.fromRange, e.toRange, c) }],
-          type: we.MOVE_END
+          selections: [{ range: e.toRange, primary: Gu(e.fromRange, e.toRange, c) }],
+          type: Se.MOVE_END
         }
       }
     ], C = [
@@ -3331,12 +3331,12 @@ const ie = {
       ...g.undos,
       ...m.undos,
       {
-        id: ie.id,
+        id: ae.id,
         params: {
           unitId: h,
           subUnitId: d,
-          selections: [{ range: e.fromRange, primary: _e(e.fromRange, c) }],
-          type: we.MOVE_END
+          selections: [{ range: e.fromRange, primary: Me(e.fromRange, c) }],
+          type: Se.MOVE_END
         }
       }
     ];
@@ -3346,7 +3346,7 @@ const ie = {
         subUnitId: d,
         ranges: [e.fromRange, e.toRange]
       }), b = a.afterCommandExecute({
-        id: yt.id,
+        id: bt.id,
         params: e
       });
       return L([...b.redos, ...y], t), o.pushUndoRedo({
@@ -3358,27 +3358,27 @@ const ie = {
     return !1;
   }
 };
-function Ho(n, e, t, o = !1) {
+function Fo(n, e, t, o = !1) {
   const s = [], r = [], { range: i, subUnitId: a, unitId: u } = e, { range: l, subUnitId: c } = t, h = n.get(M).getUniverSheetInstance(u), g = h == null ? void 0 : h.getSheetBySheetId(c), m = h == null ? void 0 : h.getSheetBySheetId(a), f = g == null ? void 0 : g.getCellMatrix(), C = m == null ? void 0 : m.getCellMatrix();
   if (g && m && f && C) {
-    const p = uo(l, g, !1);
+    const p = lo(l, g, !1);
     if (!N.equals(l, p) && !o)
       return null;
-    const w = new Y(), I = new Y(), S = new Y();
-    X.foreach(i, (T, U) => {
+    const w = new q(), I = new q(), S = new q();
+    Y.foreach(i, (T, U) => {
       const D = C.getValue(T, U);
       if (w.setValue(T, U, A.deepClone(D)), D) {
-        const H = h == null ? void 0 : h.getStyles().get(D.s);
-        S.setValue(T, U, A.deepClone(H));
+        const F = h == null ? void 0 : h.getStyles().get(D.s);
+        S.setValue(T, U, A.deepClone(F));
       }
       I.setValue(T, U, null);
     });
-    const y = new Y(), b = new Y();
-    X.foreach(l, (T, U) => {
+    const y = new q(), b = new q();
+    Y.foreach(l, (T, U) => {
       y.setValue(T, U, A.deepClone(f.getValue(T, U)));
-    }), X.foreach(i, (T, U) => {
-      const D = Vs(T, U), H = N.getRelativeRange(D, i), F = N.getPositionRange(H, l), K = A.deepClone(S.getValue(T, U)), J = A.deepClone(w.getValue(T, U));
-      J && K && (J.s = K), b.setValue(F.startRow, F.startColumn, J);
+    }), Y.foreach(i, (T, U) => {
+      const D = Ls(T, U), F = N.getRelativeRange(D, i), Z = N.getPositionRange(F, l), X = A.deepClone(S.getValue(T, U)), H = A.deepClone(w.getValue(T, U));
+      H && X && (H.s = X), b.setValue(Z.startRow, Z.startColumn, H);
     });
     const O = {
       fromRange: e.range,
@@ -3405,27 +3405,27 @@ function Ho(n, e, t, o = !1) {
       },
       unitId: u
     };
-    s.push({ id: wt.id, params: O }), r.push({ id: wt.id, params: k });
+    s.push({ id: It.id, params: O }), r.push({ id: It.id, params: k });
   }
   return {
     redos: s,
     undos: r
   };
 }
-function zu(n, e, t) {
-  const o = n.startRow, s = n.startColumn, r = t.getMergedCell(o, s), i = _e(e, t);
+function Gu(n, e, t) {
+  const o = n.startRow, s = n.startColumn, r = t.getMergedCell(o, s), i = Me(e, t);
   if (r) {
     const a = r.endRow - r.startRow + 1, u = r.endColumn - r.startColumn + 1;
     i.endRow = i.startRow + a - 1, i.endColumn = i.startColumn + u - 1, i.actualRow = i.startRow, i.actualColumn = i.startColumn, i.isMerged = !1, i.isMergedMainCell = !0;
   }
   return i;
 }
-var On = /* @__PURE__ */ ((n) => (n[n.UNIVER_UNKNOWN = 0] = "UNIVER_UNKNOWN", n[n.UNIVER_DOC = 1] = "UNIVER_DOC", n[n.UNIVER_SHEET = 2] = "UNIVER_SHEET", n[n.UNIVER_SLIDE = 3] = "UNIVER_SLIDE", n[n.UNIVER_PROJECT = 4] = "UNIVER_PROJECT", n[n.UNRECOGNIZED = -1] = "UNRECOGNIZED", n))(On || {}), _ = /* @__PURE__ */ ((n) => (n[n.View = 0] = "View", n[n.Edit = 1] = "Edit", n[n.ManageCollaborator = 2] = "ManageCollaborator", n[n.Print = 3] = "Print", n[n.Duplicate = 4] = "Duplicate", n[n.Comment = 5] = "Comment", n[n.Copy = 6] = "Copy", n[n.Share = 7] = "Share", n[n.Export = 8] = "Export", n[n.MoveWorksheet = 9] = "MoveWorksheet", n[n.DeleteWorksheet = 10] = "DeleteWorksheet", n[n.HideWorksheet = 11] = "HideWorksheet", n[n.RenameWorksheet = 12] = "RenameWorksheet", n[n.CreateWorksheet = 13] = "CreateWorksheet", n[n.SetWorksheetStyle = 14] = "SetWorksheetStyle", n[n.EditWorksheetCell = 15] = "EditWorksheetCell", n[n.InsertHyperlink = 16] = "InsertHyperlink", n[n.Sort = 17] = "Sort", n[n.Filter = 18] = "Filter", n[n.PivotTable = 19] = "PivotTable", n[n.FloatImg = 20] = "FloatImg", n[n.History = 21] = "History", n[n.RwHgtClWdt = 22] = "RwHgtClWdt", n[n.ViemRwHgtClWdt = 23] = "ViemRwHgtClWdt", n[n.ViewFilter = 24] = "ViewFilter", n[n.MoveSheet = 25] = "MoveSheet", n[n.DeleteSheet = 26] = "DeleteSheet", n[n.HideSheet = 27] = "HideSheet", n[n.CopySheet = 28] = "CopySheet", n[n.RenameSheet = 29] = "RenameSheet", n[n.CreateSheet = 30] = "CreateSheet", n[n.SelectProtectedCells = 31] = "SelectProtectedCells", n[n.SelectUnProtectedCells = 32] = "SelectUnProtectedCells", n[n.SetCellStyle = 33] = "SetCellStyle", n[n.SetCellValue = 34] = "SetCellValue", n[n.SetRowStyle = 35] = "SetRowStyle", n[n.SetColumnStyle = 36] = "SetColumnStyle", n[n.InsertRow = 37] = "InsertRow", n[n.InsertColumn = 38] = "InsertColumn", n[n.DeleteRow = 39] = "DeleteRow", n[n.DeleteColumn = 40] = "DeleteColumn", n[n.EditExtraObject = 41] = "EditExtraObject", n[n.Delete = 42] = "Delete", n[n.RecoverHistory = 43] = "RecoverHistory", n[n.ViewHistory = 44] = "ViewHistory", n[n.CreatePermissionObject = 45] = "CreatePermissionObject", n[n.UNRECOGNIZED = -1] = "UNRECOGNIZED", n))(_ || {}), x = /* @__PURE__ */ ((n) => (n[n.Unkonwn = 0] = "Unkonwn", n[n.Workbook = 1] = "Workbook", n[n.Worksheet = 2] = "Worksheet", n[n.SelectRange = 3] = "SelectRange", n[n.Document = 4] = "Document", n[n.Slide = 5] = "Slide", n[n.UNRECOGNIZED = -1] = "UNRECOGNIZED", n))(x || {});
-class Ve {
+var Dn = /* @__PURE__ */ ((n) => (n[n.UNIVER_UNKNOWN = 0] = "UNIVER_UNKNOWN", n[n.UNIVER_DOC = 1] = "UNIVER_DOC", n[n.UNIVER_SHEET = 2] = "UNIVER_SHEET", n[n.UNIVER_SLIDE = 3] = "UNIVER_SLIDE", n[n.UNIVER_PROJECT = 4] = "UNIVER_PROJECT", n[n.UNRECOGNIZED = -1] = "UNRECOGNIZED", n))(Dn || {}), _ = /* @__PURE__ */ ((n) => (n[n.View = 0] = "View", n[n.Edit = 1] = "Edit", n[n.ManageCollaborator = 2] = "ManageCollaborator", n[n.Print = 3] = "Print", n[n.Duplicate = 4] = "Duplicate", n[n.Comment = 5] = "Comment", n[n.Copy = 6] = "Copy", n[n.Share = 7] = "Share", n[n.Export = 8] = "Export", n[n.MoveWorksheet = 9] = "MoveWorksheet", n[n.DeleteWorksheet = 10] = "DeleteWorksheet", n[n.HideWorksheet = 11] = "HideWorksheet", n[n.RenameWorksheet = 12] = "RenameWorksheet", n[n.CreateWorksheet = 13] = "CreateWorksheet", n[n.SetWorksheetStyle = 14] = "SetWorksheetStyle", n[n.EditWorksheetCell = 15] = "EditWorksheetCell", n[n.InsertHyperlink = 16] = "InsertHyperlink", n[n.Sort = 17] = "Sort", n[n.Filter = 18] = "Filter", n[n.PivotTable = 19] = "PivotTable", n[n.FloatImg = 20] = "FloatImg", n[n.History = 21] = "History", n[n.RwHgtClWdt = 22] = "RwHgtClWdt", n[n.ViemRwHgtClWdt = 23] = "ViemRwHgtClWdt", n[n.ViewFilter = 24] = "ViewFilter", n[n.MoveSheet = 25] = "MoveSheet", n[n.DeleteSheet = 26] = "DeleteSheet", n[n.HideSheet = 27] = "HideSheet", n[n.CopySheet = 28] = "CopySheet", n[n.RenameSheet = 29] = "RenameSheet", n[n.CreateSheet = 30] = "CreateSheet", n[n.SelectProtectedCells = 31] = "SelectProtectedCells", n[n.SelectUnProtectedCells = 32] = "SelectUnProtectedCells", n[n.SetCellStyle = 33] = "SetCellStyle", n[n.SetCellValue = 34] = "SetCellValue", n[n.SetRowStyle = 35] = "SetRowStyle", n[n.SetColumnStyle = 36] = "SetColumnStyle", n[n.InsertRow = 37] = "InsertRow", n[n.InsertColumn = 38] = "InsertColumn", n[n.DeleteRow = 39] = "DeleteRow", n[n.DeleteColumn = 40] = "DeleteColumn", n[n.EditExtraObject = 41] = "EditExtraObject", n[n.Delete = 42] = "Delete", n[n.RecoverHistory = 43] = "RecoverHistory", n[n.ViewHistory = 44] = "ViewHistory", n[n.CreatePermissionObject = 45] = "CreatePermissionObject", n[n.UNRECOGNIZED = -1] = "UNRECOGNIZED", n))(_ || {}), x = /* @__PURE__ */ ((n) => (n[n.Unkonwn = 0] = "Unkonwn", n[n.Workbook = 1] = "Workbook", n[n.Worksheet = 2] = "Worksheet", n[n.SelectRange = 3] = "SelectRange", n[n.Document = 4] = "Document", n[n.Slide = 5] = "Slide", n[n.UNRECOGNIZED = -1] = "UNRECOGNIZED", n))(x || {});
+class We {
   constructor(e, t, o) {
     R(this, "type", x.SelectRange);
     R(this, "subType", _.Edit);
-    R(this, "status", q.INIT);
+    R(this, "status", J.INIT);
     R(this, "value", !0);
     R(this, "id");
     R(this, "unitId");
@@ -3434,11 +3434,11 @@ class Ve {
     this.unitId = e, this.subUnitId = t, this.permissionId = o, this.id = `${x.SelectRange}.${_.Edit}.${o}`;
   }
 }
-class Fo {
+class Bo {
   constructor(e, t, o) {
     R(this, "type", x.SelectRange);
     R(this, "subType", _.View);
-    R(this, "status", q.INIT);
+    R(this, "status", J.INIT);
     R(this, "value", !0);
     R(this, "id");
     R(this, "unitId");
@@ -3447,34 +3447,14 @@ class Fo {
     this.unitId = e, this.subUnitId = t, this.permissionId = o, this.id = `${x.SelectRange}.${_.View}.${o}`;
   }
 }
-class nr {
-  constructor(e) {
-    R(this, "id");
-    R(this, "value", !0);
-    R(this, "type", x.Workbook);
-    R(this, "status", q.INIT);
-    R(this, "subType", _.Comment);
-    this.unitId = e, this.unitId = e, this.id = `${this.type}.${_.Comment}_${e}`;
-  }
-}
 class or {
   constructor(e) {
     R(this, "id");
     R(this, "value", !0);
     R(this, "type", x.Workbook);
-    R(this, "status", q.INIT);
-    R(this, "subType", _.Copy);
-    this.unitId = e, this.unitId = e, this.id = `${this.type}.${_.Copy}_${e}`;
-  }
-}
-class Gu {
-  constructor(e) {
-    R(this, "id");
-    R(this, "value", !0);
-    R(this, "type", x.Workbook);
-    R(this, "subType", _.CopySheet);
-    R(this, "status", q.INIT);
-    this.unitId = e, this.unitId = e, this.id = `${this.type}.${_.CopySheet}_${e}`;
+    R(this, "status", J.INIT);
+    R(this, "subType", _.Comment);
+    this.unitId = e, this.unitId = e, this.id = `${this.type}.${_.Comment}_${e}`;
   }
 }
 class sr {
@@ -3482,9 +3462,19 @@ class sr {
     R(this, "id");
     R(this, "value", !0);
     R(this, "type", x.Workbook);
-    R(this, "status", q.INIT);
-    R(this, "subType", _.CreatePermissionObject);
-    this.unitId = e, this.unitId = e, this.id = `${this.type}.${_.CreatePermissionObject}_${e}`;
+    R(this, "status", J.INIT);
+    R(this, "subType", _.Copy);
+    this.unitId = e, this.unitId = e, this.id = `${this.type}.${_.Copy}_${e}`;
+  }
+}
+class Ku {
+  constructor(e) {
+    R(this, "id");
+    R(this, "value", !0);
+    R(this, "type", x.Workbook);
+    R(this, "subType", _.CopySheet);
+    R(this, "status", J.INIT);
+    this.unitId = e, this.unitId = e, this.id = `${this.type}.${_.CopySheet}_${e}`;
   }
 }
 class rr {
@@ -3492,29 +3482,9 @@ class rr {
     R(this, "id");
     R(this, "value", !0);
     R(this, "type", x.Workbook);
-    R(this, "status", q.INIT);
-    R(this, "subType", _.CreateSheet);
-    this.unitId = e, this.unitId = e, this.id = `${this.type}.${_.CreateSheet}_${e}`;
-  }
-}
-class Ku {
-  constructor(e) {
-    R(this, "value", !0);
-    R(this, "type", x.Workbook);
-    R(this, "status", q.INIT);
-    R(this, "id");
-    R(this, "subType", _.DeleteColumn);
-    this.unitId = e, this.id = `${this.type}.${_.DeleteColumn}_${e}`;
-  }
-}
-class Ju {
-  constructor(e) {
-    R(this, "value", !0);
-    R(this, "type", x.Workbook);
-    R(this, "status", q.INIT);
-    R(this, "id");
-    R(this, "subType", _.DeleteRow);
-    this.unitId = e, this.id = `${this.type}.${_.DeleteRow}_${e}`;
+    R(this, "status", J.INIT);
+    R(this, "subType", _.CreatePermissionObject);
+    this.unitId = e, this.unitId = e, this.id = `${this.type}.${_.CreatePermissionObject}_${e}`;
   }
 }
 class ir {
@@ -3522,9 +3492,29 @@ class ir {
     R(this, "id");
     R(this, "value", !0);
     R(this, "type", x.Workbook);
-    R(this, "status", q.INIT);
-    R(this, "subType", _.DeleteSheet);
-    this.unitId = e, this.unitId = e, this.id = `${this.type}.${_.DeleteSheet}_${e}`;
+    R(this, "status", J.INIT);
+    R(this, "subType", _.CreateSheet);
+    this.unitId = e, this.unitId = e, this.id = `${this.type}.${_.CreateSheet}_${e}`;
+  }
+}
+class Ju {
+  constructor(e) {
+    R(this, "value", !0);
+    R(this, "type", x.Workbook);
+    R(this, "status", J.INIT);
+    R(this, "id");
+    R(this, "subType", _.DeleteColumn);
+    this.unitId = e, this.id = `${this.type}.${_.DeleteColumn}_${e}`;
+  }
+}
+class qu {
+  constructor(e) {
+    R(this, "value", !0);
+    R(this, "type", x.Workbook);
+    R(this, "status", J.INIT);
+    R(this, "id");
+    R(this, "subType", _.DeleteRow);
+    this.unitId = e, this.id = `${this.type}.${_.DeleteRow}_${e}`;
   }
 }
 class ar {
@@ -3532,19 +3522,9 @@ class ar {
     R(this, "id");
     R(this, "value", !0);
     R(this, "type", x.Workbook);
-    R(this, "status", q.INIT);
-    R(this, "subType", _.Duplicate);
-    this.unitId = e, this.unitId = e, this.id = `${this.type}.${_.Duplicate}_${e}`;
-  }
-}
-class Pe {
-  constructor(e) {
-    R(this, "id");
-    R(this, "value", !0);
-    R(this, "type", x.Workbook);
-    R(this, "status", q.INIT);
-    R(this, "subType", _.Edit);
-    this.unitId = e, this.unitId = e, this.id = `${this.type}.${_.Edit}_${e}`;
+    R(this, "status", J.INIT);
+    R(this, "subType", _.DeleteSheet);
+    this.unitId = e, this.unitId = e, this.id = `${this.type}.${_.DeleteSheet}_${e}`;
   }
 }
 class ur {
@@ -3552,69 +3532,19 @@ class ur {
     R(this, "id");
     R(this, "value", !0);
     R(this, "type", x.Workbook);
-    R(this, "status", q.INIT);
-    R(this, "subType", _.Export);
-    this.unitId = e, this.unitId = e, this.id = `${this.type}.${_.Export}_${e}`;
+    R(this, "status", J.INIT);
+    R(this, "subType", _.Duplicate);
+    this.unitId = e, this.unitId = e, this.id = `${this.type}.${_.Duplicate}_${e}`;
   }
 }
-class Bo {
+class Te {
   constructor(e) {
     R(this, "id");
     R(this, "value", !0);
     R(this, "type", x.Workbook);
-    R(this, "status", q.INIT);
-    R(this, "subType", _.HideSheet);
-    this.unitId = e, this.unitId = e, this.id = `${this.type}.${_.HideSheet}_${e}`;
-  }
-}
-class qu {
-  constructor(e) {
-    R(this, "id");
-    R(this, "value", !0);
-    R(this, "type", x.Workbook);
-    R(this, "status", q.INIT);
-    R(this, "subType", _.History);
-    this.unitId = e, this.unitId = e, this.id = `${this.type}.${_.History}_${e}`;
-  }
-}
-class Yu {
-  constructor(e) {
-    R(this, "value", !0);
-    R(this, "type", x.Workbook);
-    R(this, "status", q.INIT);
-    R(this, "id");
-    R(this, "subType", _.InsertColumn);
-    this.unitId = e, this.id = `${this.type}.${_.InsertColumn}_${e}`;
-  }
-}
-class Xu {
-  constructor(e) {
-    R(this, "value", !0);
-    R(this, "type", x.Workbook);
-    R(this, "status", q.INIT);
-    R(this, "id");
-    R(this, "subType", _.InsertRow);
-    this.unitId = e, this.id = `${this.type}.${_.InsertRow}_${e}`;
-  }
-}
-class jo {
-  constructor(e) {
-    R(this, "id");
-    R(this, "value", !0);
-    R(this, "type", x.Workbook);
-    R(this, "status", q.INIT);
-    R(this, "subType", _.ManageCollaborator);
-    this.unitId = e, this.unitId = e, this.id = `${this.type}.${_.ManageCollaborator}_${e}`;
-  }
-}
-class zo {
-  constructor(e) {
-    R(this, "id");
-    R(this, "value", !0);
-    R(this, "type", x.Workbook);
-    R(this, "status", q.INIT);
-    R(this, "subType", _.MoveSheet);
-    this.unitId = e, this.unitId = e, this.id = `${this.type}.${_.MoveSheet}_${e}`;
+    R(this, "status", J.INIT);
+    R(this, "subType", _.Edit);
+    this.unitId = e, this.unitId = e, this.id = `${this.type}.${_.Edit}_${e}`;
   }
 }
 class lr {
@@ -3622,19 +3552,59 @@ class lr {
     R(this, "id");
     R(this, "value", !0);
     R(this, "type", x.Workbook);
-    R(this, "status", q.INIT);
-    R(this, "subType", _.Print);
-    this.unitId = e, this.unitId = e, this.id = `${this.type}.${_.Print}_${e}`;
+    R(this, "status", J.INIT);
+    R(this, "subType", _.Export);
+    this.unitId = e, this.unitId = e, this.id = `${this.type}.${_.Export}_${e}`;
   }
 }
-class cr {
+class jo {
   constructor(e) {
     R(this, "id");
     R(this, "value", !0);
     R(this, "type", x.Workbook);
-    R(this, "status", q.INIT);
-    R(this, "subType", _.RecoverHistory);
-    this.unitId = e, this.unitId = e, this.id = `${this.type}.${_.RecoverHistory}_${e}`;
+    R(this, "status", J.INIT);
+    R(this, "subType", _.HideSheet);
+    this.unitId = e, this.unitId = e, this.id = `${this.type}.${_.HideSheet}_${e}`;
+  }
+}
+class Yu {
+  constructor(e) {
+    R(this, "id");
+    R(this, "value", !0);
+    R(this, "type", x.Workbook);
+    R(this, "status", J.INIT);
+    R(this, "subType", _.History);
+    this.unitId = e, this.unitId = e, this.id = `${this.type}.${_.History}_${e}`;
+  }
+}
+class Xu {
+  constructor(e) {
+    R(this, "value", !0);
+    R(this, "type", x.Workbook);
+    R(this, "status", J.INIT);
+    R(this, "id");
+    R(this, "subType", _.InsertColumn);
+    this.unitId = e, this.id = `${this.type}.${_.InsertColumn}_${e}`;
+  }
+}
+class Zu {
+  constructor(e) {
+    R(this, "value", !0);
+    R(this, "type", x.Workbook);
+    R(this, "status", J.INIT);
+    R(this, "id");
+    R(this, "subType", _.InsertRow);
+    this.unitId = e, this.id = `${this.type}.${_.InsertRow}_${e}`;
+  }
+}
+class zo {
+  constructor(e) {
+    R(this, "id");
+    R(this, "value", !0);
+    R(this, "type", x.Workbook);
+    R(this, "status", J.INIT);
+    R(this, "subType", _.ManageCollaborator);
+    this.unitId = e, this.unitId = e, this.id = `${this.type}.${_.ManageCollaborator}_${e}`;
   }
 }
 class Go {
@@ -3642,9 +3612,19 @@ class Go {
     R(this, "id");
     R(this, "value", !0);
     R(this, "type", x.Workbook);
-    R(this, "status", q.INIT);
-    R(this, "subType", _.RenameSheet);
-    this.unitId = e, this.unitId = e, this.id = `${this.type}.${_.RenameSheet}_${e}`;
+    R(this, "status", J.INIT);
+    R(this, "subType", _.MoveSheet);
+    this.unitId = e, this.unitId = e, this.id = `${this.type}.${_.MoveSheet}_${e}`;
+  }
+}
+class cr {
+  constructor(e) {
+    R(this, "id");
+    R(this, "value", !0);
+    R(this, "type", x.Workbook);
+    R(this, "status", J.INIT);
+    R(this, "subType", _.Print);
+    this.unitId = e, this.unitId = e, this.id = `${this.type}.${_.Print}_${e}`;
   }
 }
 class dr {
@@ -3652,9 +3632,19 @@ class dr {
     R(this, "id");
     R(this, "value", !0);
     R(this, "type", x.Workbook);
-    R(this, "status", q.INIT);
-    R(this, "subType", _.Share);
-    this.unitId = e, this.unitId = e, this.id = `${this.type}.${_.Share}_${e}`;
+    R(this, "status", J.INIT);
+    R(this, "subType", _.RecoverHistory);
+    this.unitId = e, this.unitId = e, this.id = `${this.type}.${_.RecoverHistory}_${e}`;
+  }
+}
+class Ko {
+  constructor(e) {
+    R(this, "id");
+    R(this, "value", !0);
+    R(this, "type", x.Workbook);
+    R(this, "status", J.INIT);
+    R(this, "subType", _.RenameSheet);
+    this.unitId = e, this.unitId = e, this.id = `${this.type}.${_.RenameSheet}_${e}`;
   }
 }
 class hr {
@@ -3662,9 +3652,9 @@ class hr {
     R(this, "id");
     R(this, "value", !0);
     R(this, "type", x.Workbook);
-    R(this, "status", q.INIT);
-    R(this, "subType", _.View);
-    this.unitId = e, this.unitId = e, this.id = `${this.type}.${_.View}_${e}`;
+    R(this, "status", J.INIT);
+    R(this, "subType", _.Share);
+    this.unitId = e, this.unitId = e, this.id = `${this.type}.${_.Share}_${e}`;
   }
 }
 class gr {
@@ -3672,264 +3662,279 @@ class gr {
     R(this, "id");
     R(this, "value", !0);
     R(this, "type", x.Workbook);
-    R(this, "status", q.INIT);
-    R(this, "subType", _.ViewHistory);
-    this.unitId = e, this.unitId = e, this.id = `${this.type}.${_.ViewHistory}_${e}`;
+    R(this, "status", J.INIT);
+    R(this, "subType", _.View);
+    this.unitId = e, this.unitId = e, this.id = `${this.type}.${_.View}_${e}`;
   }
 }
 class mr {
-  constructor(e, t) {
-    R(this, "value", !0);
-    R(this, "type", x.Worksheet);
-    R(this, "status", q.INIT);
+  constructor(e) {
     R(this, "id");
-    R(this, "subType", _.Copy);
-    this.unitId = e, this.subUnitId = t, this.id = `${this.type}.${_.Copy}_${e}_${t}`;
+    R(this, "value", !0);
+    R(this, "type", x.Workbook);
+    R(this, "status", J.INIT);
+    R(this, "subType", _.ViewHistory);
+    this.unitId = e, this.unitId = e, this.id = `${this.type}.${_.ViewHistory}_${e}`;
   }
 }
 class fr {
   constructor(e, t) {
     R(this, "value", !0);
     R(this, "type", x.Worksheet);
-    R(this, "status", q.INIT);
+    R(this, "status", J.INIT);
     R(this, "id");
-    R(this, "subType", _.DeleteColumn);
-    this.unitId = e, this.subUnitId = t, this.id = `${this.type}.${_.DeleteColumn}_${e}_${t}`;
+    R(this, "subType", _.Copy);
+    this.unitId = e, this.subUnitId = t, this.id = `${this.type}.${_.Copy}_${e}_${t}`;
   }
 }
 class Rr {
   constructor(e, t) {
     R(this, "value", !0);
     R(this, "type", x.Worksheet);
-    R(this, "status", q.INIT);
+    R(this, "status", J.INIT);
     R(this, "id");
-    R(this, "subType", _.Delete);
-    this.unitId = e, this.subUnitId = t, this.id = `${this.type}.${_.Delete}_${e}_${t}`;
+    R(this, "subType", _.DeleteColumn);
+    this.unitId = e, this.subUnitId = t, this.id = `${this.type}.${_.DeleteColumn}_${e}_${t}`;
   }
 }
 class Cr {
   constructor(e, t) {
     R(this, "value", !0);
     R(this, "type", x.Worksheet);
-    R(this, "status", q.INIT);
+    R(this, "status", J.INIT);
     R(this, "id");
-    R(this, "subType", _.DeleteRow);
-    this.unitId = e, this.subUnitId = t, this.id = `${this.type}.${_.DeleteRow}_${e}_${t}`;
-  }
-}
-class Le {
-  constructor(e, t) {
-    R(this, "value", !0);
-    R(this, "type", x.Worksheet);
-    R(this, "status", q.INIT);
-    R(this, "id");
-    R(this, "subType", _.Edit);
-    this.unitId = e, this.subUnitId = t, this.id = `${this.type}.${_.Edit}_${e}_${t}`;
+    R(this, "subType", _.Delete);
+    this.unitId = e, this.subUnitId = t, this.id = `${this.type}.${_.Delete}_${e}_${t}`;
   }
 }
 class pr {
   constructor(e, t) {
     R(this, "value", !0);
     R(this, "type", x.Worksheet);
-    R(this, "status", q.INIT);
+    R(this, "status", J.INIT);
     R(this, "id");
-    R(this, "subType", _.EditExtraObject);
-    this.unitId = e, this.subUnitId = t, this.id = `${this.type}.${_.EditExtraObject}_${e}_${t}`;
+    R(this, "subType", _.DeleteRow);
+    this.unitId = e, this.subUnitId = t, this.id = `${this.type}.${_.DeleteRow}_${e}_${t}`;
+  }
+}
+class Ve {
+  constructor(e, t) {
+    R(this, "value", !0);
+    R(this, "type", x.Worksheet);
+    R(this, "status", J.INIT);
+    R(this, "id");
+    R(this, "subType", _.Edit);
+    this.unitId = e, this.subUnitId = t, this.id = `${this.type}.${_.Edit}_${e}_${t}`;
   }
 }
 class Sr {
   constructor(e, t) {
     R(this, "value", !0);
     R(this, "type", x.Worksheet);
-    R(this, "status", q.INIT);
+    R(this, "status", J.INIT);
     R(this, "id");
-    R(this, "subType", _.Filter);
-    this.unitId = e, this.subUnitId = t, this.id = `${this.type}.${_.Filter}_${e}_${t}`;
+    R(this, "subType", _.EditExtraObject);
+    this.unitId = e, this.subUnitId = t, this.id = `${this.type}.${_.EditExtraObject}_${e}_${t}`;
   }
 }
 class wr {
   constructor(e, t) {
     R(this, "value", !0);
     R(this, "type", x.Worksheet);
-    R(this, "status", q.INIT);
+    R(this, "status", J.INIT);
     R(this, "id");
-    R(this, "subType", _.InsertColumn);
-    this.unitId = e, this.subUnitId = t, this.id = `${this.type}.${_.InsertColumn}_${e}_${t}`;
+    R(this, "subType", _.Filter);
+    this.unitId = e, this.subUnitId = t, this.id = `${this.type}.${_.Filter}_${e}_${t}`;
   }
 }
 class Ir {
   constructor(e, t) {
     R(this, "value", !0);
     R(this, "type", x.Worksheet);
-    R(this, "status", q.INIT);
+    R(this, "status", J.INIT);
     R(this, "id");
-    R(this, "subType", _.InsertHyperlink);
-    this.unitId = e, this.subUnitId = t, this.id = `${this.type}.${_.InsertHyperlink}_${e}_${t}`;
+    R(this, "subType", _.InsertColumn);
+    this.unitId = e, this.subUnitId = t, this.id = `${this.type}.${_.InsertColumn}_${e}_${t}`;
   }
 }
 class vr {
   constructor(e, t) {
     R(this, "value", !0);
     R(this, "type", x.Worksheet);
-    R(this, "status", q.INIT);
+    R(this, "status", J.INIT);
     R(this, "id");
-    R(this, "subType", _.InsertRow);
-    this.unitId = e, this.subUnitId = t, this.id = `${this.type}.${_.InsertRow}_${e}_${t}`;
+    R(this, "subType", _.InsertHyperlink);
+    this.unitId = e, this.subUnitId = t, this.id = `${this.type}.${_.InsertHyperlink}_${e}_${t}`;
   }
 }
 class Mr {
   constructor(e, t) {
     R(this, "value", !0);
     R(this, "type", x.Worksheet);
-    R(this, "status", q.INIT);
+    R(this, "status", J.INIT);
     R(this, "id");
-    R(this, "subType", _.ManageCollaborator);
-    this.unitId = e, this.subUnitId = t, this.id = `${this.type}.${_.ManageCollaborator}_${e}_${t}`;
+    R(this, "subType", _.InsertRow);
+    this.unitId = e, this.subUnitId = t, this.id = `${this.type}.${_.InsertRow}_${e}_${t}`;
   }
 }
 class _r {
   constructor(e, t) {
     R(this, "value", !0);
     R(this, "type", x.Worksheet);
-    R(this, "status", q.INIT);
+    R(this, "status", J.INIT);
     R(this, "id");
-    R(this, "subType", _.PivotTable);
-    this.unitId = e, this.subUnitId = t, this.id = `${this.type}.${_.PivotTable}_${e}_${t}`;
-  }
-}
-class Ph {
-  constructor(e, t) {
-    R(this, "value", !0);
-    R(this, "type", x.Worksheet);
-    R(this, "status", q.INIT);
-    R(this, "id");
-    R(this, "subType", _.SelectProtectedCells);
-    this.unitId = e, this.subUnitId = t, this.id = `${this.type}.${_.SelectProtectedCells}_${e}_${t}`;
-  }
-}
-class Nh {
-  constructor(e, t) {
-    R(this, "value", !0);
-    R(this, "type", x.Worksheet);
-    R(this, "status", q.INIT);
-    R(this, "id");
-    R(this, "subType", _.SelectUnProtectedCells);
-    this.unitId = e, this.subUnitId = t, this.id = `${this.type}.${_.SelectUnProtectedCells}_${e}_${t}`;
+    R(this, "subType", _.ManageCollaborator);
+    this.unitId = e, this.subUnitId = t, this.id = `${this.type}.${_.ManageCollaborator}_${e}_${t}`;
   }
 }
 class yr {
   constructor(e, t) {
     R(this, "value", !0);
     R(this, "type", x.Worksheet);
-    R(this, "status", q.INIT);
+    R(this, "status", J.INIT);
     R(this, "id");
-    R(this, "subType", _.SetCellStyle);
-    this.unitId = e, this.subUnitId = t, this.id = `${this.type}.${_.SetCellStyle}_${e}_${t}`;
+    R(this, "subType", _.PivotTable);
+    this.unitId = e, this.subUnitId = t, this.id = `${this.type}.${_.PivotTable}_${e}_${t}`;
   }
 }
-class Dn {
+class Nh {
   constructor(e, t) {
     R(this, "value", !0);
     R(this, "type", x.Worksheet);
-    R(this, "status", q.INIT);
+    R(this, "status", J.INIT);
     R(this, "id");
-    R(this, "subType", _.SetCellValue);
-    this.unitId = e, this.subUnitId = t, this.id = `${this.type}.${_.SetCellValue}_${e}_${t}`;
+    R(this, "subType", _.SelectProtectedCells);
+    this.unitId = e, this.subUnitId = t, this.id = `${this.type}.${_.SelectProtectedCells}_${e}_${t}`;
   }
 }
-class Zt {
+class Oh {
   constructor(e, t) {
     R(this, "value", !0);
     R(this, "type", x.Worksheet);
-    R(this, "status", q.INIT);
+    R(this, "status", J.INIT);
     R(this, "id");
-    R(this, "subType", _.SetColumnStyle);
-    this.unitId = e, this.subUnitId = t, this.id = `${this.type}.${_.SetColumnStyle}_${e}_${t}`;
-  }
-}
-class Qt {
-  constructor(e, t) {
-    R(this, "value", !0);
-    R(this, "type", x.Worksheet);
-    R(this, "status", q.INIT);
-    R(this, "id");
-    R(this, "subType", _.SetRowStyle);
-    this.unitId = e, this.subUnitId = t, this.id = `${this.type}.${_.SetRowStyle}_${e}_${t}`;
+    R(this, "subType", _.SelectUnProtectedCells);
+    this.unitId = e, this.subUnitId = t, this.id = `${this.type}.${_.SelectUnProtectedCells}_${e}_${t}`;
   }
 }
 class br {
   constructor(e, t) {
     R(this, "value", !0);
     R(this, "type", x.Worksheet);
-    R(this, "status", q.INIT);
+    R(this, "status", J.INIT);
+    R(this, "id");
+    R(this, "subType", _.SetCellStyle);
+    this.unitId = e, this.subUnitId = t, this.id = `${this.type}.${_.SetCellStyle}_${e}_${t}`;
+  }
+}
+class An {
+  constructor(e, t) {
+    R(this, "value", !0);
+    R(this, "type", x.Worksheet);
+    R(this, "status", J.INIT);
+    R(this, "id");
+    R(this, "subType", _.SetCellValue);
+    this.unitId = e, this.subUnitId = t, this.id = `${this.type}.${_.SetCellValue}_${e}_${t}`;
+  }
+}
+class Qt {
+  constructor(e, t) {
+    R(this, "value", !0);
+    R(this, "type", x.Worksheet);
+    R(this, "status", J.INIT);
+    R(this, "id");
+    R(this, "subType", _.SetColumnStyle);
+    this.unitId = e, this.subUnitId = t, this.id = `${this.type}.${_.SetColumnStyle}_${e}_${t}`;
+  }
+}
+class en {
+  constructor(e, t) {
+    R(this, "value", !0);
+    R(this, "type", x.Worksheet);
+    R(this, "status", J.INIT);
+    R(this, "id");
+    R(this, "subType", _.SetRowStyle);
+    this.unitId = e, this.subUnitId = t, this.id = `${this.type}.${_.SetRowStyle}_${e}_${t}`;
+  }
+}
+class Er {
+  constructor(e, t) {
+    R(this, "value", !0);
+    R(this, "type", x.Worksheet);
+    R(this, "status", J.INIT);
     R(this, "id");
     R(this, "subType", _.Sort);
     this.unitId = e, this.subUnitId = t, this.id = `${this.type}.${_.Sort}_${e}_${t}`;
   }
 }
-class lo {
+class co {
   constructor(e, t) {
     R(this, "value", !0);
     R(this, "type", x.Worksheet);
-    R(this, "status", q.INIT);
+    R(this, "status", J.INIT);
     R(this, "id");
     R(this, "subType", _.View);
     this.unitId = e, this.subUnitId = t, this.id = `${this.type}.${_.View}_${e}_${t}`;
   }
 }
-const pn = {
+const Sn = {
   id: "sheet.command.set-range-values",
   type: v.COMMAND,
   handler: (n, e) => {
-    var H;
+    var X;
     const t = n.get(E), o = n.get(V), s = n.get(M), r = n.get(z), i = n.get(G), a = n.get(Ze), u = P(s, e);
     if (!u) return !1;
-    const { subUnitId: l, unitId: c, workbook: d, worksheet: h } = u, { value: g, range: m, redoUndoId: f } = e, C = m ? [m] : (H = r.getCurrentSelections()) == null ? void 0 : H.map((F) => F.range);
-    if (!C || !C.length || !a.getPermissionPoint(new Le(c, l).id)) return !1;
-    const p = new Y();
-    let w;
+    const { subUnitId: l, unitId: c, workbook: d, worksheet: h } = u, { value: g, range: m, redoUndoId: f } = e, C = m ? [m] : (X = r.getCurrentSelections()) == null ? void 0 : X.map((H) => H.range);
+    if (!C || !C.length || !a.getPermissionPoint(new Ve(c, l).id)) return !1;
+    const p = h.getRowCount() - 1, w = h.getColumnCount() - 1;
+    for (let H = 0; H < C.length; H++) {
+      const ne = C[H];
+      ne.endRow > p && (ne.endRow = p), ne.endColumn > w && (ne.endColumn = w);
+    }
+    const I = new q();
+    let S;
     if (A.isArray(g))
-      for (let F = 0; F < C.length; F++) {
-        const { startRow: K, startColumn: J, endRow: ae, endColumn: se } = C[F];
-        for (let le = 0; le <= ae - K; le++)
-          for (let Se = 0; Se <= se - J; Se++)
-            p.setValue(le + K, Se + J, g[le][Se]);
+      for (let H = 0; H < C.length; H++) {
+        const { startRow: ne, startColumn: re, endRow: me, endColumn: Be } = C[H];
+        for (let K = 0; K <= me - ne; K++)
+          for (let ct = 0; ct <= Be - re; ct++)
+            I.setValue(K + ne, ct + re, g[K][ct]);
       }
-    else if (Ls(g))
-      for (let F = 0; F < C.length; F++) {
-        const { startRow: K, startColumn: J, endRow: ae, endColumn: se } = C[F];
-        for (let le = K; le <= ae; le++)
-          for (let Se = J; Se <= se; Se++)
-            p.setValue(le, Se, g);
+    else if (Hs(g))
+      for (let H = 0; H < C.length; H++) {
+        const { startRow: ne, startColumn: re, endRow: me, endColumn: Be } = C[H];
+        for (let K = ne; K <= me; K++)
+          for (let ct = re; ct <= Be; ct++)
+            I.setValue(K, ct, g);
       }
     else
-      w = g;
-    const I = { subUnitId: l, unitId: c, cellValue: w != null ? w : p.getMatrix() }, S = Ae(n, I), y = bi(I.cellValue, (F, K) => h.getCellHeight(F, K) || void 0);
-    if (!t.syncExecuteCommand(ee.id, I)) return !1;
-    const { undos: O, redos: k } = i.onCommandExecute({
-      id: pn.id,
-      params: I
-    }), { undos: T, redos: U } = i.generateMutationsOfAutoHeight({
+      S = g;
+    const y = { subUnitId: l, unitId: c, cellValue: S != null ? S : I.getMatrix() }, b = De(n, y), O = Ei(y.cellValue, (H, ne) => h.getCellHeight(H, ne) || void 0);
+    if (!t.syncExecuteCommand(ee.id, y)) return !1;
+    const { undos: T, redos: U } = i.onCommandExecute({
+      id: Sn.id,
+      params: y
+    }), { undos: D, redos: F } = i.generateMutationsOfAutoHeight({
       unitId: c,
       subUnitId: l,
       ranges: C,
-      cellHeights: new Y(y)
+      cellHeights: new q(O)
     });
-    if (L([...k, ...U], t).result) {
-      const F = ut(m != null ? m : p.getRange(), d, h);
+    if (L([...U, ...F], t).result) {
+      const H = ut(m != null ? m : I.getRange(), d, h);
       return o.pushUndoRedo({
         unitID: c,
         undoMutations: [
-          { id: ee.id, params: S },
-          ...O,
+          { id: ee.id, params: b },
           ...T,
-          F
+          ...D,
+          H
         ],
         redoMutations: [
-          { id: ee.id, params: I },
-          ...k,
+          { id: ee.id, params: y },
           ...U,
-          A.deepClone(F)
+          ...F,
+          A.deepClone(H)
         ],
         id: f
       }), !0;
@@ -3937,7 +3942,7 @@ const pn = {
     return !1;
   }
 };
-function Er(n, e) {
+function Ur(n, e) {
   const t = [], o = [], { unitId: s, subUnitId: r, range: i, shiftDimension: a, cellValue: u = {} } = e, l = n.get(M), c = n.get(G), d = l.getUniverSheetInstance(s), h = d == null ? void 0 : d.getSheetBySheetId(r);
   if (h) {
     const g = h.getCellMatrix(), m = g.getDataRange();
@@ -3947,7 +3952,7 @@ function Er(n, e) {
         const b = Math.min(i.endRow, m.endRow);
         let O = 0;
         for (let T = i.startRow; T <= b; T++) {
-          const U = g.getRow(T), D = U ? Hs(U) - 1 : 0;
+          const U = g.getRow(T), D = U ? Fs(U) - 1 : 0;
           O = Math.max(O, D);
         }
         I = {
@@ -3979,7 +3984,7 @@ function Er(n, e) {
           endColumn: b
         };
       }
-      const y = Ho(
+      const y = Fo(
         n,
         { unitId: s, subUnitId: r, range: I },
         { subUnitId: r, range: S },
@@ -3997,11 +4002,11 @@ function Er(n, e) {
       subUnitId: r,
       unitId: s,
       cellValue: u
-    }, C = Ae(
+    }, C = De(
       n,
       f
     ), { undos: p, redos: w } = c.onCommandExecute({
-      id: pn.id,
+      id: Sn.id,
       params: { ...f, range: i }
     });
     t.push({ id: ee.id, params: f }, ...w), o.push({ id: ee.id, params: C }, ...p);
@@ -4011,18 +4016,18 @@ function Er(n, e) {
     undo: o
   };
 }
-function Ur(n, e) {
+function kr(n, e) {
   const t = [], o = [], { unitId: s, subUnitId: r, range: i, shiftDimension: a } = e, u = n.get(M), l = n.get(G), c = u.getUniverSheetInstance(s), d = c == null ? void 0 : c.getSheetBySheetId(r);
   if (d) {
     const h = d.getCellMatrix(), g = h.getDataRange(), m = {
       subUnitId: r,
       unitId: s,
-      cellValue: er([i])
-    }, f = Ae(
+      cellValue: tr([i])
+    }, f = De(
       n,
       m
     ), C = l.onCommandExecute({
-      id: pn.id,
+      id: Sn.id,
       params: m
     });
     if (t.push({ id: ee.id, params: m }, ...C.redos), o.push(...C.undos, {
@@ -4034,7 +4039,7 @@ function Ur(n, e) {
         const I = Math.min(i.endRow, g.endRow);
         let S = 0;
         for (let b = i.startRow; b <= I; b++) {
-          const O = h.getRow(b), k = O ? Hs(O) - 1 : 0;
+          const O = h.getRow(b), k = O ? Fs(O) - 1 : 0;
           S = Math.max(S, k);
         }
         p = {
@@ -4068,7 +4073,7 @@ function Ur(n, e) {
         };
       }
       if (p && w) {
-        const I = Ho(
+        const I = Fo(
           n,
           { unitId: s, subUnitId: r, range: p },
           { subUnitId: r, range: w },
@@ -4083,7 +4088,7 @@ function Ur(n, e) {
     undo: o
   };
 }
-function Oh(n, e, t, o, s, r) {
+function Dh(n, e, t, o, s, r) {
   const { startRow: i, endRow: a, startColumn: u, endColumn: l } = e;
   if (s === Re.ROWS) {
     const c = a - i + 1;
@@ -4107,7 +4112,7 @@ function Oh(n, e, t, o, s, r) {
         r && r[d] && r[d][h] ? n.setValue(d, h, r[d][h]) : n.realDeleteValue(d, h);
   }
 }
-function Dh(n, e, t, o, s) {
+function Ah(n, e, t, o, s) {
   const { startRow: r, endRow: i, startColumn: a, endColumn: u } = e, l = i - r + 1, c = u - a + 1;
   if (s === Re.ROWS)
     for (let d = r; d <= t; d++)
@@ -4122,9 +4127,9 @@ function Dh(n, e, t, o, s) {
         g == null ? n.realDeleteValue(d, h) : n.setValue(d, h, g);
       }
 }
-const kr = "sheet.command.delete-range-move-left", It = {
+const Tr = "sheet.command.delete-range-move-left", vt = {
   type: v.COMMAND,
-  id: kr,
+  id: Tr,
   handler: async (n, e) => {
     var S, y, b;
     const t = n.get(E), o = n.get(V), s = n.get(M), r = n.get(z), i = n.get(G), a = P(s);
@@ -4138,15 +4143,15 @@ const kr = "sheet.command.delete-range-move-left", It = {
       unitId: d,
       shiftDimension: Re.COLUMNS
     }, m = i.onCommandExecute({
-      id: It.id,
+      id: vt.id,
       params: { range: h }
-    }), { redo: f, undo: C } = Ur(
+    }), { redo: f, undo: C } = kr(
       n,
       g
     ), p = [...(y = m.preRedos) != null ? y : [], ...f], w = [...m.undos, ...C];
     if (p.push(...m.redos), p.push(ut(h, l, u)), w.push(...(b = m.preUndos) != null ? b : []), L(p, t).result) {
       const O = i.afterCommandExecute({
-        id: It.id,
+        id: vt.id,
         params: { range: h }
       });
       return L(O.redos, t), w.push(...O.undos), p.push(...O.redos), o.pushUndoRedo({
@@ -4159,9 +4164,9 @@ const kr = "sheet.command.delete-range-move-left", It = {
   }
   // all subsequent mutations should succeed inorder to make the whole process succeed
   // Promise.all([]).then(() => true),
-}, Tr = "sheet.command.delete-range-move-up", vt = {
+}, Pr = "sheet.command.delete-range-move-up", Mt = {
   type: v.COMMAND,
-  id: Tr,
+  id: Pr,
   handler: async (n, e) => {
     var S, y, b;
     const t = n.get(E), o = n.get(V), s = n.get(M), r = n.get(z), i = n.get(G), a = P(s);
@@ -4175,15 +4180,15 @@ const kr = "sheet.command.delete-range-move-left", It = {
       unitId: u,
       shiftDimension: Re.ROWS
     }, m = i.onCommandExecute({
-      id: vt.id,
+      id: Mt.id,
       params: { range: h }
-    }), { redo: f, undo: C } = Ur(
+    }), { redo: f, undo: C } = kr(
       n,
       g
     ), p = [...(y = m.preRedos) != null ? y : [], ...f], w = [...m.undos, ...C];
     if (p.push(...m.redos), p.push(ut(h, c, d)), w.push(...(b = m.preUndos) != null ? b : []), L(p, t).result) {
       const O = i.afterCommandExecute({
-        id: vt.id,
+        id: Mt.id,
         params: { range: h }
       });
       return L(O.redos, t), w.push(...O.undos), p.push(...O.redos), o.pushUndoRedo({
@@ -4196,23 +4201,23 @@ const kr = "sheet.command.delete-range-move-left", It = {
   }
   // all subsequent mutations should succeed inorder to make the whole process succeed
   // Promise.all([]).then(() => true),
-}, Zu = "sheet.command.insert-range-move-down", Pt = {
+}, Qu = "sheet.command.insert-range-move-down", Nt = {
   type: v.COMMAND,
   id: "sheet.command.insert-range-move-down",
   // eslint-disable-next-line max-lines-per-function
   handler: async (n, e) => {
-    var H, F, K;
-    const t = n.get(E), o = n.get(V), s = n.get(M), r = n.get(z), i = n.get(G), a = n.get(Vt), u = n.get(it);
+    var F, Z, X;
+    const t = n.get(E), o = n.get(V), s = n.get(M), r = n.get(z), i = n.get(G), a = n.get(Lt), u = n.get(it);
     if (r.isOverlapping())
       return a.emit(u.t("sheets.info.overlappingSelections")), !1;
     const l = P(s);
     if (!l) return !1;
     const { unitId: c, subUnitId: d, worksheet: h, workbook: g } = l;
     let m = e == null ? void 0 : e.range;
-    if (m || (m = (H = r.getCurrentLastSelection()) == null ? void 0 : H.range), !m) return !1;
+    if (m || (m = (F = r.getCurrentLastSelection()) == null ? void 0 : F.range), !m) return !1;
     const f = [], C = [], p = h.getCellMatrix(), w = p.getDataRange(), S = p.getSlice(w.startRow, w.endRow, m.startColumn, m.endColumn).getDataRange().endRow, y = Math.max(S + (m.endRow - m.startRow + 1) - w.endRow, 0);
     if (y > 0) {
-      const J = m.startRow - 1, ae = h.getRowHeight(J), se = {
+      const H = m.startRow - 1, ne = h.getRowHeight(H), re = {
         unitId: c,
         subUnitId: d,
         range: {
@@ -4222,24 +4227,24 @@ const kr = "sheet.command.delete-range-move-left", It = {
           endColumn: w.endColumn
         },
         rowInfo: new Array(y).fill(void 0).map(() => ({
-          h: ae,
+          h: ne,
           hd: te.FALSE
         }))
       };
       f.push({
-        id: Ue.id,
-        params: se
+        id: Ee.id,
+        params: re
       });
-      const le = $o(
+      const me = Wo(
         n,
-        se
+        re
       );
-      C.push({ id: Te.id, params: le });
+      C.push({ id: ke.id, params: me });
     }
     const b = {};
-    X.foreach(m, (J, ae) => {
-      const se = h.getCell(J, ae);
-      se && (b[J] || (b[J] = {}), b[J][ae] = { s: se.s });
+    Y.foreach(m, (H, ne) => {
+      const re = h.getCell(H, ne);
+      re && (b[H] || (b[H] = {}), b[H][ne] = { s: re.s });
     });
     const O = {
       range: m,
@@ -4247,21 +4252,21 @@ const kr = "sheet.command.delete-range-move-left", It = {
       unitId: c,
       shiftDimension: Re.ROWS,
       cellValue: b
-    }, { redo: k, undo: T } = Er(
+    }, { redo: k, undo: T } = Ur(
       n,
       O
     );
     f.push(...k), C.push(...T);
     const U = i.onCommandExecute({
-      id: Pt.id,
+      id: Nt.id,
       params: { range: m }
     });
-    if (f.push(...U.redos), f.push(ut(m, g, h)), C.push(...(F = U.preUndos) != null ? F : []), f.unshift(...(K = U.preRedos) != null ? K : []), C.unshift(...U.undos), L(f, t)) {
-      const J = i.afterCommandExecute({
-        id: Pt.id,
+    if (f.push(...U.redos), f.push(ut(m, g, h)), C.push(...(Z = U.preUndos) != null ? Z : []), f.unshift(...(X = U.preRedos) != null ? X : []), C.unshift(...U.undos), L(f, t)) {
+      const H = i.afterCommandExecute({
+        id: Nt.id,
         params: { range: m }
       });
-      return L(J.redos, t), C.push(...J.undos), f.push(...J.redos), o.pushUndoRedo({
+      return L(H.redos, t), C.push(...H.undos), f.push(...H.redos), o.pushUndoRedo({
         unitID: c,
         undoMutations: C.reverse(),
         redoMutations: f
@@ -4271,26 +4276,26 @@ const kr = "sheet.command.delete-range-move-left", It = {
   }
   // all subsequent mutations should succeed inorder to make the whole process succeed
   // Promise.all([]).then(() => true),
-}, Ko = "sheet.command.insert-range-move-right", rn = {
+}, Jo = "sheet.command.insert-range-move-right", an = {
   type: v.COMMAND,
-  id: Ko,
+  id: Jo,
   // eslint-disable-next-line max-lines-per-function
   handler: async (n, e) => {
-    var H, F, K;
-    const t = n.get(E), o = n.get(V), s = n.get(M), r = n.get(z), i = n.get(G), a = n.get(Vt), u = n.get(it);
+    var F, Z, X;
+    const t = n.get(E), o = n.get(V), s = n.get(M), r = n.get(z), i = n.get(G), a = n.get(Lt), u = n.get(it);
     if (r.isOverlapping())
       return a.emit(u.t("sheets.info.overlappingSelections")), !1;
     const l = P(s);
     if (!l) return !1;
     const { workbook: c, worksheet: d, unitId: h, subUnitId: g } = l;
     let m = e == null ? void 0 : e.range;
-    if (m || (m = (H = r.getCurrentLastSelection()) == null ? void 0 : H.range), !m) return !1;
+    if (m || (m = (F = r.getCurrentLastSelection()) == null ? void 0 : F.range), !m) return !1;
     const f = [], C = [], p = d.getCellMatrix(), w = p.getDataRange(), S = p.getSlice(m.startRow, m.endRow, w.startColumn, w.endColumn).getDataRange().endColumn, y = Math.max(
       S + (m.endColumn - m.startColumn + 1) - w.endColumn,
       0
     );
     if (y > 0) {
-      const J = m.startColumn - 1, ae = d.getColumnWidth(J), se = {
+      const H = m.startColumn - 1, ne = d.getColumnWidth(H), re = {
         unitId: h,
         subUnitId: g,
         range: {
@@ -4300,24 +4305,24 @@ const kr = "sheet.command.delete-range-move-left", It = {
           endColumn: w.endColumn + y
         },
         colInfo: new Array(y).fill(void 0).map(() => ({
-          w: ae,
+          w: ne,
           hd: te.FALSE
         }))
       };
       f.push({
-        id: ke.id,
-        params: se
+        id: Ue.id,
+        params: re
       });
-      const le = ro(
+      const me = io(
         n,
-        se
+        re
       );
-      C.push({ id: Me.id, params: le });
+      C.push({ id: ve.id, params: me });
     }
     const b = {};
-    X.foreach(m, (J, ae) => {
-      const se = d.getCell(J, ae);
-      !se || !se.s || (b[J] || (b[J] = {}), b[J][ae] = { s: se.s });
+    Y.foreach(m, (H, ne) => {
+      const re = d.getCell(H, ne);
+      !re || !re.s || (b[H] || (b[H] = {}), b[H][ne] = { s: re.s });
     });
     const O = {
       range: m,
@@ -4325,21 +4330,21 @@ const kr = "sheet.command.delete-range-move-left", It = {
       unitId: h,
       shiftDimension: Re.COLUMNS,
       cellValue: b
-    }, { redo: k, undo: T } = Er(
+    }, { redo: k, undo: T } = Ur(
       n,
       O
     );
     f.push(...k), C.push(...T);
     const U = i.onCommandExecute({
-      id: rn.id,
+      id: an.id,
       params: { range: m }
     });
-    if (f.push(...U.redos), f.push(ut(m, c, d)), C.push(...(F = U.preUndos) != null ? F : []), f.unshift(...(K = U.preRedos) != null ? K : []), C.unshift(...U.undos), L(f, t).result) {
-      const J = i.afterCommandExecute({
-        id: rn.id,
+    if (f.push(...U.redos), f.push(ut(m, c, d)), C.push(...(Z = U.preUndos) != null ? Z : []), f.unshift(...(X = U.preRedos) != null ? X : []), C.unshift(...U.undos), L(f, t).result) {
+      const H = i.afterCommandExecute({
+        id: an.id,
         params: { range: m }
       });
-      return L(J.redos, t), C.push(...J.undos), f.push(...J.redos), o.pushUndoRedo({
+      return L(H.redos, t), C.push(...H.undos), f.push(...H.redos), o.pushUndoRedo({
         unitID: h,
         undoMutations: C.reverse(),
         redoMutations: f
@@ -4349,15 +4354,15 @@ const kr = "sheet.command.delete-range-move-left", It = {
   }
   // all subsequent mutations should succeed in order to make the whole process succeed
   // Promise.all([]).then(() => true),
-}, Pr = "sheet.command.insert-row", Ye = {
+}, Nr = "sheet.command.insert-row", Ye = {
   type: v.COMMAND,
-  id: Pr,
+  id: Nr,
   handler: async (n, e) => {
     const t = n.get(E), o = n.get(G), { range: s, direction: r, unitId: i, subUnitId: a, cellValue: u } = e;
     return await o.beforeCommandExecute({
       id: Ye.id,
       params: e
-    }) ? t.syncExecuteCommand(Nr.id, {
+    }) ? t.syncExecuteCommand(Or.id, {
       range: s,
       direction: r,
       unitId: i,
@@ -4365,7 +4370,7 @@ const kr = "sheet.command.delete-range-move-left", It = {
       cellValue: u
     }) : !1;
   }
-}, Nr = {
+}, Or = {
   type: v.COMMAND,
   id: "sheet.command.insert-row-by-range",
   handler: (n, e) => {
@@ -4383,10 +4388,10 @@ const kr = "sheet.command.delete-range-move-left", It = {
         hd: te.FALSE
       }))
       // row height should inherit from the anchor row
-    }, I = $o(
+    }, I = Wo(
       n,
       w
-    ), S = [{ id: Ue.id, params: w }], y = [{ id: Te.id, params: I }];
+    ), S = [{ id: Ee.id, params: w }], y = [{ id: ke.id, params: I }];
     g && Object.keys(g).length > 0 && S.push({
       id: ee.id,
       params: {
@@ -4400,11 +4405,11 @@ const kr = "sheet.command.delete-range-move-left", It = {
       params: e
     });
     if (S.unshift(...(k = b.preRedos) != null ? k : []), S.push(...(T = b.redos) != null ? T : []), S.push(ut(l, a, u)), y.unshift(...(U = b.preUndos) != null ? U : []), y.push(...(D = b.undos) != null ? D : []), L(S, t).result) {
-      const H = r.afterCommandExecute({
+      const F = r.afterCommandExecute({
         id: Ye.id,
         params: e
       });
-      return L(H.redos, t), S.push(...H.redos), y.push(...H.undos), o.pushUndoRedo({
+      return L(F.redos, t), S.push(...F.redos), y.push(...F.undos), o.pushUndoRedo({
         unitID: e.unitId,
         undoMutations: y,
         redoMutations: S
@@ -4412,7 +4417,7 @@ const kr = "sheet.command.delete-range-move-left", It = {
     }
     return !1;
   }
-}, Qu = {
+}, el = {
   type: v.COMMAND,
   id: "sheet.command.insert-row-before",
   handler: async (n, e) => {
@@ -4436,11 +4441,11 @@ const kr = "sheet.command.delete-range-move-left", It = {
         endColumn: m
       },
       // copy styles from the row above
-      cellValue: Ct(a, d, h, g, m, !0, d - 1)
+      cellValue: pt(a, d, h, g, m, !0, d - 1)
     };
     return n.get(E).executeCommand(Ye.id, f);
   }
-}, el = {
+}, tl = {
   type: v.COMMAND,
   id: "sheet.command.insert-row-after",
   handler: async (n) => {
@@ -4465,11 +4470,11 @@ const kr = "sheet.command.delete-range-move-left", It = {
         rangeType: j.ROW
       },
       // copy styles from the row below
-      cellValue: Ct(i, c, d, h, g, !0, o.endRow)
+      cellValue: pt(i, c, d, h, g, !0, o.endRow)
     };
     return n.get(E).executeCommand(Ye.id, m);
   }
-}, tl = {
+}, nl = {
   type: v.COMMAND,
   id: "sheet.command.insert-multi-rows-above",
   handler: async (n, e) => {
@@ -4482,7 +4487,7 @@ const kr = "sheet.command.delete-range-move-left", It = {
       return !1;
     const r = n.get(M), i = P(r);
     if (!i) return !1;
-    const { worksheet: a, unitId: u, subUnitId: l } = i, c = e.value || 0, d = s.startRow, h = s.startRow + c - 1, g = 0, m = a.getColumnCount() - 1, f = Ct(a, d, h, g, m, !0, d - 1), C = {
+    const { worksheet: a, unitId: u, subUnitId: l } = i, c = e.value || 0, d = s.startRow, h = s.startRow + c - 1, g = 0, m = a.getColumnCount() - 1, f = pt(a, d, h, g, m, !0, d - 1), C = {
       unitId: u,
       subUnitId: l,
       direction: pe.UP,
@@ -4498,7 +4503,7 @@ const kr = "sheet.command.delete-range-move-left", It = {
     };
     return n.get(E).executeCommand(Ye.id, C);
   }
-}, nl = {
+}, ol = {
   type: v.COMMAND,
   id: "sheet.command.insert-multi-rows-after",
   handler: async (n, e) => {
@@ -4523,19 +4528,19 @@ const kr = "sheet.command.delete-range-move-left", It = {
         rangeType: j.ROW
       },
       // copy styles from the row below
-      cellValue: Ct(a, d, h, g, m, !0, s.endRow)
+      cellValue: pt(a, d, h, g, m, !0, s.endRow)
     };
     return n.get(E).executeCommand(Ye.id, f);
   }
-}, Or = "sheet.command.insert-col", Xe = {
+}, Dr = "sheet.command.insert-col", Xe = {
   type: v.COMMAND,
-  id: Or,
+  id: Dr,
   handler: async (n, e) => {
     const t = n.get(E), o = n.get(G), { range: s, direction: r, subUnitId: i, unitId: a, cellValue: u } = e;
     return await o.beforeCommandExecute({
       id: Xe.id,
       params: e
-    }) ? t.syncExecuteCommand(Dr.id, {
+    }) ? t.syncExecuteCommand(Ar.id, {
       range: s,
       direction: r,
       unitId: a,
@@ -4543,7 +4548,7 @@ const kr = "sheet.command.delete-range-move-left", It = {
       cellValue: u
     }) : !1;
   }
-}, Dr = {
+}, Ar = {
   type: v.COMMAND,
   id: "sheet.command.insert-col-by-range",
   handler: (n, e) => {
@@ -4558,10 +4563,10 @@ const kr = "sheet.command.delete-range-move-left", It = {
         w: C,
         hd: te.FALSE
       }))
-    }, w = ro(
+    }, w = io(
       n,
       p
-    ), I = [{ id: ke.id, params: p }], S = [{ id: Me.id, params: w }];
+    ), I = [{ id: Ue.id, params: p }], S = [{ id: ve.id, params: w }];
     c && I.push({
       id: ee.id,
       params: {
@@ -4587,7 +4592,7 @@ const kr = "sheet.command.delete-range-move-left", It = {
     }
     return !1;
   }
-}, ol = {
+}, sl = {
   type: v.COMMAND,
   id: "sheet.command.insert-col-before",
   handler: async (n, e) => {
@@ -4611,11 +4616,11 @@ const kr = "sheet.command.delete-range-move-left", It = {
         rangeType: j.COLUMN
       },
       // copy styles from the column before
-      cellValue: Ct(a, g, m, d, h, !1, d - 1)
+      cellValue: pt(a, g, m, d, h, !1, d - 1)
     };
     return n.get(E).executeCommand(Xe.id, f);
   }
-}, sl = {
+}, rl = {
   type: v.COMMAND,
   id: "sheet.command.insert-col-after",
   handler: async (n) => {
@@ -4638,11 +4643,11 @@ const kr = "sheet.command.delete-range-move-left", It = {
         endRow: g
       },
       // copy styles from the column after
-      cellValue: Ct(i, h, g, c, d, !1, o.endColumn)
+      cellValue: pt(i, h, g, c, d, !1, o.endColumn)
     };
     return n.get(E).executeCommand(Xe.id, m);
   }
-}, rl = {
+}, il = {
   type: v.COMMAND,
   id: "sheet.command.insert-multi-cols-before",
   handler: async (n, e) => {
@@ -4666,11 +4671,11 @@ const kr = "sheet.command.delete-range-move-left", It = {
         rangeType: j.COLUMN
       },
       // copy styles from the column before
-      cellValue: Ct(a, g, m, d, h, !1, d - 1)
+      cellValue: pt(a, g, m, d, h, !1, d - 1)
     };
     return n.get(E).executeCommand(Xe.id, f);
   }
-}, il = {
+}, al = {
   type: v.COMMAND,
   id: "sheet.command.insert-multi-cols-right",
   handler: async (n, e) => {
@@ -4693,11 +4698,11 @@ const kr = "sheet.command.delete-range-move-left", It = {
         endRow: m
       },
       // copy styles from the column after
-      cellValue: Ct(a, g, m, d, h, !1, s.endColumn)
+      cellValue: pt(a, g, m, d, h, !1, s.endColumn)
     };
     return n.get(E).executeCommand(Xe.id, f);
   }
-}, An = "sheet.command.remove-row", Ar = {
+}, xn = "sheet.command.remove-row", xr = {
   type: v.COMMAND,
   id: "sheet.command.remove-row-by-range",
   handler: (n, e) => {
@@ -4706,13 +4711,13 @@ const kr = "sheet.command.delete-range-move-left", It = {
       return !1;
     const t = n.get(M), o = P(t, e);
     if (!o) return !1;
-    const { workbook: s, worksheet: r } = o, i = n.get(G), { range: a, unitId: u, subUnitId: l } = e, c = ao([a], n, u, l).reverse(), d = [], h = [];
+    const { workbook: s, worksheet: r } = o, i = n.get(G), { range: a, unitId: u, subUnitId: l } = e, c = uo([a], n, u, l).reverse(), d = [], h = [];
     c.forEach((I) => {
       const S = [], y = [], b = {
         unitId: u,
         subUnitId: l,
         range: I
-      }, O = $a(
+      }, O = Wa(
         b,
         r
       ), k = r.getCellMatrix().getSlice(I.startRow, I.endRow, 0, r.getColumnCount() - 1), T = {
@@ -4720,10 +4725,10 @@ const kr = "sheet.command.delete-range-move-left", It = {
         subUnitId: l,
         cellValue: k.getMatrix()
       };
-      y.push({ id: Te.id, params: b }), S.push({ id: Ue.id, params: O }), S.push({ id: ee.id, params: T }), h.push(...y), d.unshift(...S);
+      y.push({ id: ke.id, params: b }), S.push({ id: Ee.id, params: O }), S.push({ id: ee.id, params: T }), h.push(...y), d.unshift(...S);
     });
     const g = i.onCommandExecute({
-      id: An,
+      id: xn,
       params: { range: a }
     }), m = n.get(E);
     if (L(
@@ -4736,7 +4741,7 @@ const kr = "sheet.command.delete-range-move-left", It = {
       m
     ).result) {
       const I = i.afterCommandExecute({
-        id: An,
+        id: xn,
         params: { range: a }
       });
       return L(I.redos, m), n.get(V).pushUndoRedo({
@@ -4757,83 +4762,6 @@ const kr = "sheet.command.delete-range-move-left", It = {
     }
     return !1;
   }
-}, co = {
-  type: v.COMMAND,
-  id: An,
-  handler: async (n, e) => {
-    var h;
-    const t = n.get(z), o = n.get(G), s = n.get(E);
-    let r = e == null ? void 0 : e.range;
-    if (r || (r = (h = t.getCurrentLastSelection()) == null ? void 0 : h.range), !r) return !1;
-    const i = n.get(M), a = P(i);
-    if (!a) return !1;
-    const { worksheet: u, subUnitId: l, unitId: c } = a;
-    return r = {
-      ...r,
-      startColumn: 0,
-      endColumn: Math.max(u.getMaxColumns() - 1, 0)
-    }, await o.beforeCommandExecute({
-      id: co.id,
-      params: { range: r }
-    }) ? s.syncExecuteCommand(Ar.id, {
-      range: r,
-      unitId: c,
-      subUnitId: l
-    }) : !1;
-  }
-}, xn = "sheet.command.remove-col", xr = {
-  type: v.COMMAND,
-  id: "sheet.command.remove-col-by-range",
-  handler: (n, e) => {
-    var p, w, I;
-    if (!e)
-      return !1;
-    const t = n.get(M), o = P(t, e);
-    if (!o) return !1;
-    const { workbook: s, worksheet: r } = o, i = n.get(G), { range: a, unitId: u, subUnitId: l } = e, c = {
-      unitId: u,
-      subUnitId: l,
-      range: a
-    }, d = Wa(n, c), h = r.getCellMatrix().getSlice(0, r.getRowCount() - 1, a.startColumn, a.endColumn), g = {
-      unitId: u,
-      subUnitId: l,
-      cellValue: h.getMatrix()
-    }, m = i.onCommandExecute({
-      id: xn,
-      params: { range: a }
-    }), f = n.get(E);
-    if (L(
-      [
-        ...(p = m.preRedos) != null ? p : [],
-        { id: Me.id, params: c },
-        ...m.redos,
-        ut(a, s, r)
-      ],
-      f
-    ).result) {
-      const S = i.afterCommandExecute({
-        id: xn,
-        params: { range: a }
-      });
-      return L(S.redos, f), n.get(V).pushUndoRedo({
-        unitID: u,
-        undoMutations: [
-          ...(w = m.preUndos) != null ? w : [],
-          { id: ke.id, params: d },
-          { id: ee.id, params: g },
-          ...m.undos,
-          ...S.undos
-        ],
-        redoMutations: [
-          ...(I = m.preRedos) != null ? I : [],
-          { id: Me.id, params: c },
-          ...m.redos,
-          ...S.redos
-        ]
-      }), !0;
-    }
-    return !1;
-  }
 }, ho = {
   type: v.COMMAND,
   id: xn,
@@ -4847,8 +4775,8 @@ const kr = "sheet.command.delete-range-move-left", It = {
     const { worksheet: u, subUnitId: l, unitId: c } = a;
     return r = {
       ...r,
-      startRow: 0,
-      endRow: Math.max(u.getMaxRows() - 1, 0)
+      startColumn: 0,
+      endColumn: Math.max(u.getMaxColumns() - 1, 0)
     }, await o.beforeCommandExecute({
       id: ho.id,
       params: { range: r }
@@ -4858,7 +4786,84 @@ const kr = "sheet.command.delete-range-move-left", It = {
       subUnitId: l
     }) : !1;
   }
-}, al = (n, e) => {
+}, $n = "sheet.command.remove-col", $r = {
+  type: v.COMMAND,
+  id: "sheet.command.remove-col-by-range",
+  handler: (n, e) => {
+    var p, w, I;
+    if (!e)
+      return !1;
+    const t = n.get(M), o = P(t, e);
+    if (!o) return !1;
+    const { workbook: s, worksheet: r } = o, i = n.get(G), { range: a, unitId: u, subUnitId: l } = e, c = {
+      unitId: u,
+      subUnitId: l,
+      range: a
+    }, d = Va(n, c), h = r.getCellMatrix().getSlice(0, r.getRowCount() - 1, a.startColumn, a.endColumn), g = {
+      unitId: u,
+      subUnitId: l,
+      cellValue: h.getMatrix()
+    }, m = i.onCommandExecute({
+      id: $n,
+      params: { range: a }
+    }), f = n.get(E);
+    if (L(
+      [
+        ...(p = m.preRedos) != null ? p : [],
+        { id: ve.id, params: c },
+        ...m.redos,
+        ut(a, s, r)
+      ],
+      f
+    ).result) {
+      const S = i.afterCommandExecute({
+        id: $n,
+        params: { range: a }
+      });
+      return L(S.redos, f), n.get(V).pushUndoRedo({
+        unitID: u,
+        undoMutations: [
+          ...(w = m.preUndos) != null ? w : [],
+          { id: Ue.id, params: d },
+          { id: ee.id, params: g },
+          ...m.undos,
+          ...S.undos
+        ],
+        redoMutations: [
+          ...(I = m.preRedos) != null ? I : [],
+          { id: ve.id, params: c },
+          ...m.redos,
+          ...S.redos
+        ]
+      }), !0;
+    }
+    return !1;
+  }
+}, go = {
+  type: v.COMMAND,
+  id: $n,
+  handler: async (n, e) => {
+    var h;
+    const t = n.get(z), o = n.get(G), s = n.get(E);
+    let r = e == null ? void 0 : e.range;
+    if (r || (r = (h = t.getCurrentLastSelection()) == null ? void 0 : h.range), !r) return !1;
+    const i = n.get(M), a = P(i);
+    if (!a) return !1;
+    const { worksheet: u, subUnitId: l, unitId: c } = a;
+    return r = {
+      ...r,
+      startRow: 0,
+      endRow: Math.max(u.getMaxRows() - 1, 0)
+    }, await o.beforeCommandExecute({
+      id: go.id,
+      params: { range: r }
+    }) ? s.syncExecuteCommand($r.id, {
+      range: r,
+      unitId: c,
+      subUnitId: l
+    }) : !1;
+  }
+}, ul = (n, e) => {
   const t = n.get(M), { subUnitId: o, unitId: s } = e, r = Qe(t, e);
   if (!r)
     throw new Error("[RemoveSheetUndoMutationFactory]: Worksheet is null error!");
@@ -4868,7 +4873,7 @@ const kr = "sheet.command.delete-range-move-left", It = {
     sheet: u,
     unitId: s
   };
-}, Lt = {
+}, Ht = {
   id: "sheet.mutation.remove-sheet",
   type: v.MUTATION,
   handler: (n, e) => {
@@ -4876,33 +4881,33 @@ const kr = "sheet.command.delete-range-move-left", It = {
     return r ? r.removeSheet(o) : !1;
   }
 };
-function ul(n, e) {
+function ll(n, e) {
   return e.getMergeData().some((t) => t.startRow < n && n <= t.endRow);
 }
-function ll(n, e) {
+function cl(n, e) {
   return e.getMergeData().some((t) => t.startColumn < n && n <= t.endColumn);
 }
-const $r = "sheet.command.move-rows", an = {
-  id: $r,
+const Wr = "sheet.command.move-rows", un = {
+  id: Wr,
   type: v.COMMAND,
   // eslint-disable-next-line max-lines-per-function
   handler: (n, e) => {
-    var H, F;
+    var F, Z;
     const t = n.get(z), {
       fromRange: { startRow: o },
       toRange: { startRow: s },
       range: r
-    } = e, i = r ? [Vr(r)] : t.getCurrentSelections(), a = i == null ? void 0 : i.filter(
-      (K) => K.range.rangeType === j.ROW && K.range.startRow <= o && o <= K.range.endRow
+    } = e, i = r ? [Lr(r)] : t.getCurrentSelections(), a = i == null ? void 0 : i.filter(
+      (X) => X.range.rangeType === j.ROW && X.range.startRow <= o && o <= X.range.endRow
     );
     if ((a == null ? void 0 : a.length) !== 1)
       return !1;
     const u = n.get(G), l = n.get(M), c = P(l, e);
     if (!c) return !1;
-    const { workbook: d, worksheet: h } = c, g = d.getUnitId(), m = h.getSheetId(), f = n.get(Vt), C = n.get(it), p = a[0].range, w = a[0].primary, I = uo(p, h, !1);
+    const { workbook: d, worksheet: h } = c, g = d.getUnitId(), m = h.getSheetId(), f = n.get(Lt), C = n.get(it), p = a[0].range, w = a[0].primary, I = lo(p, h, !1);
     if (!N.equals(p, I))
       return f.emit(C.t("sheets.info.partOfCell")), !1;
-    if (ul(s, h))
+    if (ll(s, h))
       return f.emit(C.t("sheets.info.acrossMergedCell")), !1;
     const S = {
       ...p,
@@ -4913,41 +4918,41 @@ const $r = "sheet.command.move-rows", an = {
       subUnitId: m,
       sourceRange: p,
       targetRange: S
-    }, b = Aa(n, y), O = n.get(E), k = u.onCommandExecute({ id: an.id, params: e }), T = [
-      ...(H = k.preRedos) != null ? H : [],
+    }, b = xa(n, y), O = n.get(E), k = u.onCommandExecute({ id: un.id, params: e }), T = [
+      ...(F = k.preRedos) != null ? F : [],
       { id: Je.id, params: y }
     ], U = [
-      ...(F = k.preUndos) != null ? F : [],
+      ...(Z = k.preUndos) != null ? Z : [],
       { id: Je.id, params: b }
     ];
     if (w) {
-      const J = s - o < 0, ae = p.endRow - p.startRow + 1, se = J ? S : {
+      const H = s - o < 0, ne = p.endRow - p.startRow + 1, re = H ? S : {
         ...S,
-        startRow: S.startRow - ae,
-        endRow: S.endRow - ae
-      }, le = {
+        startRow: S.startRow - ne,
+        endRow: S.endRow - ne
+      }, me = {
         unitId: g,
         subUnitId: m,
-        type: we.MOVE_END,
+        type: Se.MOVE_END,
         selections: [{
-          range: se,
-          primary: _e(se, h),
+          range: re,
+          primary: Me(re, h),
           style: null
         }]
-      }, Se = {
+      }, Be = {
         unitId: g,
         subUnitId: m,
-        type: we.MOVE_END,
+        type: Se.MOVE_END,
         selections: [{ range: p, primary: w, style: null }]
       };
-      T.push({ id: ie.id, params: le }), U.push({ id: ie.id, params: Se });
+      T.push({ id: ae.id, params: me }), U.push({ id: ae.id, params: Be });
     }
     if (T.push(...k.redos), U.push(...k.undos), L(T, O).result) {
-      const K = u.afterCommandExecute({
-        id: an.id,
+      const X = u.afterCommandExecute({
+        id: un.id,
         params: e
       });
-      return L(K.redos, O), T.push(...K.redos), U.push(...K.undos), n.get(V).pushUndoRedo({
+      return L(X.redos, O), T.push(...X.redos), U.push(...X.undos), n.get(V).pushUndoRedo({
         unitID: g,
         undoMutations: U,
         redoMutations: T
@@ -4955,27 +4960,27 @@ const $r = "sheet.command.move-rows", an = {
     }
     return !1;
   }
-}, Wr = "sheet.command.move-cols", un = {
-  id: Wr,
+}, Vr = "sheet.command.move-cols", ln = {
+  id: Vr,
   type: v.COMMAND,
   // eslint-disable-next-line max-lines-per-function
   handler: (n, e) => {
-    var H, F;
+    var F, Z;
     const t = n.get(z), {
       fromRange: { startColumn: o },
       toRange: { startColumn: s },
       range: r
-    } = e, i = r ? [Vr(r)] : t.getCurrentSelections(), a = i == null ? void 0 : i.filter(
-      (K) => K.range.rangeType === j.COLUMN && K.range.startColumn <= o && o <= K.range.endColumn
+    } = e, i = r ? [Lr(r)] : t.getCurrentSelections(), a = i == null ? void 0 : i.filter(
+      (X) => X.range.rangeType === j.COLUMN && X.range.startColumn <= o && o <= X.range.endColumn
     );
     if ((a == null ? void 0 : a.length) !== 1)
       return !1;
     const u = n.get(G), l = n.get(M), c = P(l, e);
     if (!c) return !1;
-    const { workbook: d, worksheet: h } = c, g = d.getUnitId(), m = h.getSheetId(), f = n.get(Vt), C = n.get(it), p = a[0].range, w = a[0].primary, I = uo(p, h, !1);
+    const { workbook: d, worksheet: h } = c, g = d.getUnitId(), m = h.getSheetId(), f = n.get(Lt), C = n.get(it), p = a[0].range, w = a[0].primary, I = lo(p, h, !1);
     if (!N.equals(p, I))
       return f.emit(C.t("sheets.info.partOfCell")), !1;
-    if (ll(s, h))
+    if (cl(s, h))
       return f.emit(C.t("sheets.info.acrossMergedCell")), !1;
     const S = {
       ...p,
@@ -4986,37 +4991,37 @@ const $r = "sheet.command.move-rows", an = {
       subUnitId: m,
       sourceRange: p,
       targetRange: S
-    }, b = xa(n, y), O = n.get(E), k = u.onCommandExecute({ id: un.id, params: e }), T = [
-      ...(H = k.preRedos) != null ? H : [],
+    }, b = $a(n, y), O = n.get(E), k = u.onCommandExecute({ id: ln.id, params: e }), T = [
+      ...(F = k.preRedos) != null ? F : [],
       { id: qe.id, params: y }
     ], U = [
-      ...(F = k.preUndos) != null ? F : [],
+      ...(Z = k.preUndos) != null ? Z : [],
       { id: qe.id, params: b }
     ];
     if (w) {
-      const K = p.endColumn - p.startColumn + 1, se = s - o < 0 ? S : {
+      const X = p.endColumn - p.startColumn + 1, re = s - o < 0 ? S : {
         ...S,
-        startColumn: S.startColumn - K,
-        endColumn: S.endColumn - K
-      }, le = {
+        startColumn: S.startColumn - X,
+        endColumn: S.endColumn - X
+      }, me = {
         unitId: g,
         subUnitId: m,
-        type: we.MOVE_END,
-        selections: [{ range: se, primary: _e(se, h), style: null }]
-      }, Se = {
+        type: Se.MOVE_END,
+        selections: [{ range: re, primary: Me(re, h), style: null }]
+      }, Be = {
         unitId: g,
         subUnitId: m,
-        type: we.MOVE_END,
+        type: Se.MOVE_END,
         selections: [{ range: p, primary: w, style: null }]
       };
-      T.push({ id: ie.id, params: le }), U.push({ id: ie.id, params: Se });
+      T.push({ id: ae.id, params: me }), U.push({ id: ae.id, params: Be });
     }
     if (T.push(...k.redos), U.push(...k.undos), L(T, O).result) {
-      const K = u.afterCommandExecute({
-        id: un.id,
+      const X = u.afterCommandExecute({
+        id: ln.id,
         params: e
       });
-      return L(K.redos, O), T.push(...K.redos), U.push(...K.undos), n.get(V).pushUndoRedo({
+      return L(X.redos, O), T.push(...X.redos), U.push(...X.undos), n.get(V).pushUndoRedo({
         unitID: g,
         undoMutations: U,
         redoMutations: T
@@ -5025,18 +5030,18 @@ const $r = "sheet.command.move-rows", an = {
     return !1;
   }
 };
-function Vr(n) {
+function Lr(n) {
   return {
     range: n,
     primary: null,
     style: null
   };
 }
-var cl = Object.getOwnPropertyDescriptor, dl = (n, e, t, o) => {
-  for (var s = o > 1 ? void 0 : o ? cl(e, t) : e, r = n.length - 1, i; r >= 0; r--)
+var dl = Object.getOwnPropertyDescriptor, hl = (n, e, t, o) => {
+  for (var s = o > 1 ? void 0 : o ? dl(e, t) : e, r = n.length - 1, i; r >= 0; r--)
     (i = n[r]) && (s = i(s) || s);
   return s;
-}, hl = (n, e) => (t, o) => e(t, o, n);
+}, gl = (n, e) => (t, o) => e(t, o, n);
 let rt = class extends ue {
   constructor(e) {
     super();
@@ -5056,23 +5061,23 @@ let rt = class extends ue {
     this._sheetSkeletonStore.has(e) && this._sheetSkeletonStore.get(e).delete(t);
   }
 };
-rt = dl([
-  hl(0, $(so))
+rt = hl([
+  gl(0, $(ro))
 ], rt);
-function Jo(n, e) {
-  const t = new Y();
-  return n.map((o) => X.transformRange(o, e)).forEach((o) => {
-    X.foreach(o, (s, r) => {
+function qo(n, e) {
+  const t = new q();
+  return n.map((o) => Y.transformRange(o, e)).forEach((o) => {
+    Y.foreach(o, (s, r) => {
       const i = e.getCellHeight(s, r);
       i && t.setValue(s, r, i);
     });
   }), t;
 }
-const gl = 1e4;
-function Sn(n, e) {
+const ml = 1e4;
+function wn(n, e) {
   if (!e)
     return { suitableRanges: n, remainingRanges: [] };
-  const t = e.worksheet.getColumnCount(), o = Math.ceil(gl / t), s = [], r = [], i = e.getOffsetRelativeToRowCol(0, e.scrollY).row, a = n.map((l) => {
+  const t = e.worksheet.getColumnCount(), o = Math.ceil(ml / t), s = [], r = [], i = e.getOffsetRelativeToRowCol(0, e.scrollY).row, a = n.map((l) => {
     let c;
     return i >= l.startRow && i <= l.endRow ? c = 0 : i < l.startRow ? c = l.startRow - i : c = i - l.endRow, {
       range: l,
@@ -5102,13 +5107,13 @@ function Sn(n, e) {
     }
   return { suitableRanges: s, remainingRanges: r };
 }
-const Lr = "sheet.command.reorder-range", bo = {
-  id: Lr,
+const Hr = "sheet.command.reorder-range", Eo = {
+  id: Hr,
   type: v.COMMAND,
   handler: (n, e) => {
     var I, S;
     const { subUnitId: t, unitId: o, range: s, order: r } = e, i = n.get(E), a = {
-      id: Nn.id,
+      id: On.id,
       params: {
         unitId: o,
         subUnitId: t,
@@ -5116,9 +5121,9 @@ const Lr = "sheet.command.reorder-range", bo = {
         range: s
       }
     }, u = {
-      id: Nn.id,
-      params: Va(a.params)
-    }, l = n.get(G), c = l.onCommandExecute({ id: bo.id, params: e }), d = [
+      id: On.id,
+      params: La(a.params)
+    }, l = n.get(G), c = l.onCommandExecute({ id: Eo.id, params: e }), d = [
       ...(I = c.preRedos) != null ? I : [],
       a,
       ...c.redos
@@ -5126,13 +5131,13 @@ const Lr = "sheet.command.reorder-range", bo = {
       ...(S = c.preUndos) != null ? S : [],
       u,
       ...c.undos
-    ], g = L(d, i), { suitableRanges: m, remainingRanges: f } = Sn([s], n.get(rt).getSkeleton(o, t)), { undos: C, redos: p } = l.generateMutationsOfAutoHeight({
+    ], g = L(d, i), { suitableRanges: m, remainingRanges: f } = wn([s], n.get(rt).getSkeleton(o, t)), { undos: C, redos: p } = l.generateMutationsOfAutoHeight({
       unitId: o,
       subUnitId: t,
       ranges: [s],
       autoHeightRanges: m,
       lazyAutoHeightRanges: f
-    }), w = l.afterCommandExecute({ id: bo.id, params: e });
+    }), w = l.afterCommandExecute({ id: Eo.id, params: e });
     return g.result ? (L([...w.redos, ...p], i), n.get(V).pushUndoRedo({
       unitID: o,
       undoMutations: [...h, ...w.undos, ...C],
@@ -5140,24 +5145,24 @@ const Lr = "sheet.command.reorder-range", bo = {
     }), !0) : !1;
   }
 }, W = {
-  MoveRangeCommandId: tr,
-  InsertRowCommandId: Pr,
-  InsertColCommandId: Or,
-  RemoveColCommandId: xn,
-  RemoveRowCommandId: An,
-  DeleteRangeMoveLeftCommandId: kr,
-  DeleteRangeMoveUpCommandId: Tr,
-  InsertRangeMoveDownCommandId: Zu,
-  InsertRangeMoveRightCommandId: Ko,
-  MoveColsCommandId: Wr,
-  MoveRowsCommandId: $r,
-  ReorderRangeCommandId: Lr
+  MoveRangeCommandId: nr,
+  InsertRowCommandId: Nr,
+  InsertColCommandId: Dr,
+  RemoveColCommandId: $n,
+  RemoveRowCommandId: xn,
+  DeleteRangeMoveLeftCommandId: Tr,
+  DeleteRangeMoveUpCommandId: Pr,
+  InsertRangeMoveDownCommandId: Qu,
+  InsertRangeMoveRightCommandId: Jo,
+  MoveColsCommandId: Vr,
+  MoveRowsCommandId: Wr,
+  ReorderRangeCommandId: Hr
 };
 var Q = /* @__PURE__ */ ((n) => (n[n.Set = 0] = "Set", n[n.Delete = 1] = "Delete", n[n.HorizontalMove = 2] = "HorizontalMove", n[n.VerticalMove = 3] = "VerticalMove", n[n.Unknown = 4] = "Unknown", n))(Q || {});
-const Mn = Number.MAX_SAFE_INTEGER, Ke = (n) => {
+const _n = Number.MAX_SAFE_INTEGER, Ke = (n) => {
   const e = { ...n }, t = Number.isNaN(e.startRow) && Number.isNaN(e.endRow) && !Number.isNaN(e.startColumn) && !Number.isNaN(e.endColumn), o = Number.isNaN(e.startColumn) && Number.isNaN(e.endColumn) && !Number.isNaN(e.startRow) && !Number.isNaN(e.endRow);
-  return (e.rangeType === j.COLUMN || t) && (e.startRow = 0, e.endRow = Mn), (e.rangeType === j.ROW || o) && (e.startColumn = 0, e.endColumn = Mn), e.rangeType === j.ALL && (e.startColumn = 0, e.endColumn = Mn, e.startRow = 0, e.endRow = Mn), e;
-}, Oe = (n) => {
+  return (e.rangeType === j.COLUMN || t) && (e.startRow = 0, e.endRow = _n), (e.rangeType === j.ROW || o) && (e.startColumn = 0, e.endColumn = _n), e.rangeType === j.ALL && (e.startColumn = 0, e.endColumn = _n, e.startRow = 0, e.endRow = _n), e;
+}, Ne = (n) => {
   let e = n.rangeType;
   return n.rangeType === j.COLUMN ? e = j.ROW : n.rangeType === j.ROW && (e = j.COLUMN), {
     startRow: n.startColumn,
@@ -5166,7 +5171,7 @@ const Mn = Number.MAX_SAFE_INTEGER, Ke = (n) => {
     endColumn: n.endRow,
     rangeType: e
   };
-}, $n = (n, e, t) => {
+}, Wn = (n, e, t) => {
   const o = { ...t }, s = { ...e }, r = (f, C) => {
     const p = Math.max(f.start, C.start), w = Math.min(f.end, C.end);
     return w < p ? null : { start: p, end: w };
@@ -5196,11 +5201,11 @@ const Mn = Number.MAX_SAFE_INTEGER, Ke = (n) => {
     step: o.start - t.start,
     length: i(o) - i(t)
   };
-}, Hr = (n, e) => {
+}, Fr = (n, e) => {
   const { fromRange: t, toRange: o } = n.params || {};
   if (!o || !t)
     return [];
-  const s = Ke(t), r = Ke(o), i = Ke(e), a = $n(
+  const s = Ke(t), r = Ke(o), i = Ke(e), a = Wn(
     { start: s.startRow, end: s.endRow },
     { start: r.startRow, end: r.endRow },
     { start: i.startRow, end: i.endRow }
@@ -5216,24 +5221,24 @@ const Mn = Number.MAX_SAFE_INTEGER, Ke = (n) => {
       length: a.length || 0
     }
   ];
-}, ml = (n, e) => {
+}, fl = (n, e) => {
   const { fromRange: t, toRange: o } = n.params || {};
   if (!t || !o)
     return [e];
-  const s = t.startRow, r = t.endRow - t.startRow + 1, i = o.startRow, a = new Y();
-  return X.foreach(e, (l, c) => {
+  const s = t.startRow, r = t.endRow - t.startRow + 1, i = o.startRow, a = new q();
+  return Y.foreach(e, (l, c) => {
     a.setValue(l, c, 1);
   }), a.moveRows(s, r, i), at(a, (l) => l === 1);
-}, fl = (n, e) => {
+}, Rl = (n, e) => {
   const { range: t, order: o } = n.params || {};
   if (!t || !o)
     return [e];
-  const s = new Y();
-  X.foreach(e, (a, u) => {
+  const s = new q();
+  Y.foreach(e, (a, u) => {
     s.setValue(a, u, 1);
   });
-  const r = new Y();
-  return X.foreach(t, (a, u) => {
+  const r = new q();
+  return Y.foreach(t, (a, u) => {
     var l;
     if (Object.prototype.hasOwnProperty.call(o, a)) {
       const c = o[a], d = (l = s.getValue(c, u)) != null ? l : 0;
@@ -5242,11 +5247,11 @@ const Mn = Number.MAX_SAFE_INTEGER, Ke = (n) => {
   }), r.forValue((a, u, l) => {
     s.setValue(a, u, l);
   }), at(s, (a) => a === 1);
-}, Fr = (n, e) => {
+}, Br = (n, e) => {
   const { fromRange: t, toRange: o } = n.params || {};
   if (!o || !t)
     return [];
-  const s = Ke(t), r = Ke(o), i = Ke(e), a = $n(
+  const s = Ke(t), r = Ke(o), i = Ke(e), a = Wn(
     { start: s.startColumn, end: s.endColumn },
     { start: r.startColumn, end: r.endColumn },
     { start: i.startColumn, end: i.endColumn }
@@ -5262,15 +5267,15 @@ const Mn = Number.MAX_SAFE_INTEGER, Ke = (n) => {
       length: a.length || 0
     }
   ];
-}, Rl = (n, e) => {
+}, Cl = (n, e) => {
   const { fromRange: t, toRange: o } = n.params || {};
   if (!t || !o)
     return [e];
-  const s = t.startColumn, r = t.endColumn - t.startColumn + 1, i = o.startColumn, a = new Y();
-  return X.foreach(e, (u, l) => {
+  const s = t.startColumn, r = t.endColumn - t.startColumn + 1, i = o.startColumn, a = new q();
+  return Y.foreach(e, (u, l) => {
     a.setValue(u, l, 1);
   }), a.moveColumns(s, r, i), at(a, (u) => u === 1);
-}, Cl = (n, e) => {
+}, pl = (n, e) => {
   var r, i;
   const t = (r = n.params) == null ? void 0 : r.toRange, o = (i = n.params) == null ? void 0 : i.fromRange;
   if (!t || !o)
@@ -5291,7 +5296,7 @@ const Mn = Number.MAX_SAFE_INTEGER, Ke = (n) => {
     ];
   }
   return s;
-}, pl = (n, e) => {
+}, Sl = (n, e) => {
   var d, h;
   const t = (d = n.params) == null ? void 0 : d.toRange, o = (h = n.params) == null ? void 0 : h.fromRange;
   if (!t || !o)
@@ -5302,12 +5307,12 @@ const Mn = Number.MAX_SAFE_INTEGER, Ke = (n) => {
     const g = N.getRelativeRange(e, o);
     return [N.getPositionRange(g, t)];
   }
-  const s = new Y();
-  X.foreach(e, (g, m) => {
+  const s = new q();
+  Y.foreach(e, (g, m) => {
     s.setValue(g, m, 1);
   });
-  const r = new Y(), i = N.getIntersects(o, e);
-  i && X.foreach(i, (g, m) => {
+  const r = new q(), i = N.getIntersects(o, e);
+  i && Y.foreach(i, (g, m) => {
     s.getValue(g, m) && (s.setValue(g, m, void 0), r.setValue(g, m, 1));
   });
   const a = t.startColumn - o.startColumn, u = t.startRow - o.startRow, l = {
@@ -5316,12 +5321,12 @@ const Mn = Number.MAX_SAFE_INTEGER, Ke = (n) => {
     startRow: t.startRow - u,
     endRow: t.endRow - u
   };
-  return l && X.foreach(l, (g, m) => {
+  return l && Y.foreach(l, (g, m) => {
     var p;
     const f = g + u, C = m + a;
     s.setValue(f, C, (p = r.getValue(g, m)) != null ? p : 0);
   }), at(s, (g) => g === 1);
-}, Nt = (n, e) => {
+}, Ot = (n, e) => {
   const t = Ke(n), o = Ke(e), s = (i) => i.endColumn - i.startColumn + 1, r = (i) => i.endRow - i.startRow + 1;
   if (t.startRow <= o.startRow && t.endRow >= o.endRow) {
     if (
@@ -5346,12 +5351,12 @@ const Mn = Number.MAX_SAFE_INTEGER, Ke = (n) => {
       return { step: -s(t), length: 0 };
   }
   return { step: 0, length: 0 };
-}, Br = (n, e) => {
+}, jr = (n, e) => {
   var r;
   const t = (r = n.params) == null ? void 0 : r.range;
   if (!t)
     return [];
-  const o = [], s = Nt(t, e);
+  const o = [], s = Ot(t, e);
   if (!s)
     o.push({ type: Q.Delete });
   else {
@@ -5363,7 +5368,7 @@ const Mn = Number.MAX_SAFE_INTEGER, Ke = (n) => {
     });
   }
   return o;
-}, Sl = (n, e, t) => {
+}, wl = (n, e, t) => {
   var i;
   const o = (i = n.params) == null ? void 0 : i.range;
   if (!o)
@@ -5393,7 +5398,7 @@ const Mn = Number.MAX_SAFE_INTEGER, Ke = (n) => {
   } else
     r(o);
   function r(a) {
-    const u = Nt(Oe(a), Oe(e));
+    const u = Ot(Ne(a), Ne(e));
     if (!u)
       s.push({ type: Q.Delete });
     else {
@@ -5406,7 +5411,7 @@ const Mn = Number.MAX_SAFE_INTEGER, Ke = (n) => {
     }
   }
   return s;
-}, wl = (n, e) => {
+}, Il = (n, e) => {
   const { range: t, order: o } = n.params || {};
   if (!t || !o)
     return [];
@@ -5424,7 +5429,7 @@ const Mn = Number.MAX_SAFE_INTEGER, Ke = (n) => {
     return [];
   }
   return [];
-}, Ot = (n, e) => {
+}, Dt = (n, e) => {
   const t = Ke(n), o = Ke(e), s = (r) => r.endColumn - r.startColumn + 1;
   return t.startRow <= o.startRow && t.endRow >= o.endRow ? (
     // 2
@@ -5457,7 +5462,7 @@ const Mn = Number.MAX_SAFE_INTEGER, Ke = (n) => {
     )
   ) : { step: 0, length: 0 };
 };
-function Il(n, e, t) {
+function vl(n, e, t) {
   const o = [];
   if (N.contains(e, t) && o.push({
     type: Q.Delete
@@ -5475,25 +5480,14 @@ function Il(n, e, t) {
   }
   return o;
 }
-const vl = (n, e) => {
+const Ml = (n, e) => {
   var a;
   const t = (a = n.params) == null ? void 0 : a.range;
   if (!t)
     return [];
-  const o = [], s = Ot(Oe(t), Oe(e)), { step: r, length: i } = s;
+  const o = [], s = Dt(Ne(t), Ne(e)), { step: r, length: i } = s;
   return o.push({
     type: Q.VerticalMove,
-    step: r,
-    length: i
-  }), o;
-}, Ml = (n, e) => {
-  var a;
-  const t = (a = n.params) == null ? void 0 : a.range;
-  if (!t)
-    return [];
-  const o = [], s = Ot(t, e), { step: r, length: i } = s;
-  return o.push({
-    type: Q.HorizontalMove,
     step: r,
     length: i
   }), o;
@@ -5502,13 +5496,24 @@ const vl = (n, e) => {
   const t = (a = n.params) == null ? void 0 : a.range;
   if (!t)
     return [];
-  const o = [], s = Ot(Oe(t), Oe(e)), { step: r, length: i } = s;
+  const o = [], s = Dt(t, e), { step: r, length: i } = s;
+  return o.push({
+    type: Q.HorizontalMove,
+    step: r,
+    length: i
+  }), o;
+}, yl = (n, e) => {
+  var a;
+  const t = (a = n.params) == null ? void 0 : a.range;
+  if (!t)
+    return [];
+  const o = [], s = Dt(Ne(t), Ne(e)), { step: r, length: i } = s;
   return o.push({
     type: Q.VerticalMove,
     step: r,
     length: i
   }), o;
-}, yl = (n, e) => {
+}, bl = (n, e) => {
   var u;
   const t = (u = n.params) == null ? void 0 : u.range;
   if (!t)
@@ -5520,26 +5525,26 @@ const vl = (n, e) => {
   }, r = N.subtract(e, s), i = N.getIntersects(s, e);
   if (!i)
     return [e];
-  const a = new Y();
+  const a = new q();
   return r.forEach((l) => {
-    X.foreach(l, (c, d) => {
+    Y.foreach(l, (c, d) => {
       a.setValue(c, d, 1);
     });
-  }), i && X.foreach(i, (l, c) => {
+  }), i && Y.foreach(i, (l, c) => {
     a.setValue(l + o, c, 1);
   }), at(a, (l) => l === 1);
-}, bl = (n, e) => {
+}, El = (n, e) => {
   var a;
   const t = (a = n.params) == null ? void 0 : a.range;
   if (!t)
     return [];
-  const o = [], s = Ot(t, e), { step: r, length: i } = s;
+  const o = [], s = Dt(t, e), { step: r, length: i } = s;
   return o.push({
     type: Q.HorizontalMove,
     step: r,
     length: i
   }), o;
-}, El = (n, e) => {
+}, Ul = (n, e) => {
   var u;
   const t = (u = n.params) == null ? void 0 : u.range;
   if (!t)
@@ -5551,20 +5556,20 @@ const vl = (n, e) => {
   }, r = N.subtract(e, s), i = N.getIntersects(s, e);
   if (!i)
     return [e];
-  const a = new Y();
+  const a = new q();
   return r.forEach((l) => {
-    X.foreach(l, (c, d) => {
+    Y.foreach(l, (c, d) => {
       a.setValue(c, d, 1);
     });
-  }), i && X.foreach(i, (l, c) => {
+  }), i && Y.foreach(i, (l, c) => {
     a.setValue(l, c + o, 1);
   }), at(a, (l) => l === 1);
-}, Ul = (n, e) => {
+}, kl = (n, e) => {
   var r;
   const t = (r = n.params) == null ? void 0 : r.range;
   if (!t)
     return [];
-  const o = [], s = Nt(t, e);
+  const o = [], s = Ot(t, e);
   if (!s)
     o.push({ type: Q.Delete });
   else {
@@ -5576,7 +5581,7 @@ const vl = (n, e) => {
     });
   }
   return o;
-}, kl = (n, e) => {
+}, Tl = (n, e) => {
   var l;
   const t = (l = n.params) == null ? void 0 : l.range;
   if (!t)
@@ -5589,22 +5594,22 @@ const vl = (n, e) => {
   }, s = t.endColumn - t.startColumn + 1, r = N.getIntersects(t, e), i = N.subtract(e, o), a = N.getIntersects(o, e);
   if (!r && !a)
     return [e];
-  const u = new Y();
-  return a && X.foreach(a, (c, d) => {
+  const u = new q();
+  return a && Y.foreach(a, (c, d) => {
     u.setValue(c, d - s, 1);
-  }), r && X.foreach(r, (c, d) => {
+  }), r && Y.foreach(r, (c, d) => {
     u.setValue(c, d - s, 0);
   }), i.forEach((c) => {
-    X.foreach(c, (d, h) => {
+    Y.foreach(c, (d, h) => {
       u.setValue(d, h, 1);
     });
   }), at(u, (c) => c === 1);
-}, Tl = (n, e) => {
+}, Pl = (n, e) => {
   var r;
   const t = (r = n.params) == null ? void 0 : r.range;
   if (!t)
     return [];
-  const o = [], s = Nt(Oe(t), Oe(e));
+  const o = [], s = Ot(Ne(t), Ne(e));
   if (!s)
     o.push({ type: Q.Delete });
   else {
@@ -5616,7 +5621,7 @@ const vl = (n, e) => {
     });
   }
   return o;
-}, Pl = (n, e) => {
+}, Nl = (n, e) => {
   var l;
   const t = (l = n.params) == null ? void 0 : l.range;
   if (!t)
@@ -5628,26 +5633,26 @@ const vl = (n, e) => {
   }, s = t.endRow - t.startRow + 1, r = N.getIntersects(t, e), i = N.subtract(e, o), a = N.getIntersects(o, e);
   if (!r && !a)
     return [e];
-  const u = new Y();
-  return a && X.foreach(a, (c, d) => {
+  const u = new q();
+  return a && Y.foreach(a, (c, d) => {
     u.setValue(c - s, d, 1);
-  }), r && X.foreach(r, (c, d) => {
+  }), r && Y.foreach(r, (c, d) => {
     u.setValue(c - s, d, 0);
   }), i.forEach((c) => {
-    X.foreach(c, (d, h) => {
+    Y.foreach(c, (d, h) => {
       u.setValue(d, h, 1);
     });
   }), at(u, (c) => c === 1);
-}, Nl = (n, e) => {
+}, Ol = (n, e) => {
   var s;
-  const t = (s = n.ranges) != null ? s : [n.range], o = new Y();
-  return X.foreach(e, (r, i) => {
+  const t = (s = n.ranges) != null ? s : [n.range], o = new q();
+  return Y.foreach(e, (r, i) => {
     o.setValue(r, i, 1);
   }), t.forEach((r) => {
     const i = r.startRow, u = r.endRow - i + 1;
     o.removeRows(i, u);
   }), at(o, (r) => r === 1);
-}, Ol = (n, e) => {
+}, Dl = (n, e) => {
   const t = n.params, o = t.range.startRow, s = t.range.endRow - t.range.startRow + 1;
   return e.startRow >= o ? [{
     startRow: e.startRow + s,
@@ -5660,7 +5665,7 @@ const vl = (n, e) => {
     startColumn: e.startColumn,
     endColumn: e.endColumn
   }];
-}, Dl = (n, e) => {
+}, Al = (n, e) => {
   const t = n.params, o = t.range.startColumn, s = t.range.endColumn - t.range.startColumn + 1;
   return e.startColumn >= o ? [{
     startRow: e.startRow,
@@ -5673,7 +5678,7 @@ const vl = (n, e) => {
     startColumn: e.startColumn,
     endColumn: e.endColumn + s
   }];
-}, Dt = (n, e) => {
+}, At = (n, e) => {
   let t = { ...e };
   return n.forEach((o) => {
     switch (o.type) {
@@ -5699,93 +5704,93 @@ const vl = (n, e) => {
       }
     }
   }), t && (t.endColumn < t.startColumn || t.endRow < t.startRow) ? null : t;
-}, Rs = (n, e) => {
+}, Cs = (n, e) => {
   let t = [];
   switch (e.id) {
     case W.DeleteRangeMoveLeftCommandId: {
-      t = Ul(e, n);
+      t = kl(e, n);
       break;
     }
     case W.DeleteRangeMoveUpCommandId: {
-      t = Tl(e, n);
+      t = Pl(e, n);
       break;
     }
     case W.InsertColCommandId: {
-      t = Ml(e, n);
-      break;
-    }
-    case W.InsertRangeMoveDownCommandId: {
       t = _l(e, n);
       break;
     }
+    case W.InsertRangeMoveDownCommandId: {
+      t = yl(e, n);
+      break;
+    }
     case W.InsertRangeMoveRightCommandId: {
-      t = bl(e, n);
+      t = El(e, n);
       break;
     }
     case W.InsertRowCommandId: {
-      t = vl(e, n);
+      t = Ml(e, n);
       break;
     }
     case W.MoveColsCommandId: {
-      t = Fr(e, n);
+      t = Br(e, n);
       break;
     }
     case W.MoveRangeCommandId: {
-      t = Cl(e, n);
+      t = pl(e, n);
       break;
     }
     case W.MoveRowsCommandId: {
-      t = Hr(e, n);
+      t = Fr(e, n);
       break;
     }
     case W.RemoveColCommandId: {
-      t = Br(e, n);
+      t = jr(e, n);
       break;
     }
     case W.RemoveRowCommandId: {
-      t = Sl(e, n);
-      break;
-    }
-    case W.ReorderRangeCommandId: {
       t = wl(e, n);
       break;
     }
+    case W.ReorderRangeCommandId: {
+      t = Il(e, n);
+      break;
+    }
   }
-  return Dt(t, n);
-}, Ah = (n, e, t) => [It.id, vt.id].includes(e.id) || jr(e, t).some((r) => N.intersects(r, n)) ? Rs(n, e) : n, Cs = (n, e) => {
+  return At(t, n);
+}, xh = (n, e, t) => [vt.id, Mt.id].includes(e.id) || zr(e, t).some((r) => N.intersects(r, n)) ? Cs(n, e) : n, ps = (n, e) => {
   let t = [];
   switch (e.id) {
     case W.DeleteRangeMoveLeftCommandId:
-      return kl(e, n);
+      return Tl(e, n);
     case W.DeleteRangeMoveUpCommandId:
-      return Pl(e, n);
+      return Nl(e, n);
     case W.InsertRangeMoveDownCommandId:
-      return yl(e, n);
+      return bl(e, n);
     case W.InsertRangeMoveRightCommandId:
-      return El(e, n);
+      return Ul(e, n);
     case W.InsertColCommandId:
-      return Dl(e, n);
+      return Al(e, n);
     case W.InsertRowCommandId:
-      return Ol(e, n);
+      return Dl(e, n);
     case W.MoveColsCommandId:
-      return Rl(e, n);
+      return Cl(e, n);
     case W.MoveRangeCommandId:
-      return pl(e, n);
+      return Sl(e, n);
     case W.MoveRowsCommandId:
-      return ml(e, n);
-    case W.ReorderRangeCommandId:
       return fl(e, n);
+    case W.ReorderRangeCommandId:
+      return Rl(e, n);
     case W.RemoveColCommandId: {
-      t = Br(e, n);
+      t = jr(e, n);
       break;
     }
     case W.RemoveRowCommandId:
-      return Nl(e.params, n);
+      return Ol(e.params, n);
   }
-  const o = Dt(t, n);
+  const o = At(t, n);
   return o ? [o] : [];
-}, xh = (n, e, t) => [It.id, vt.id, Pt.id, Ko].includes(e.id) || jr(e, t).some((r) => N.intersects(r, n)) ? Cs(n, e) : n;
-function Al(n, e) {
+}, $h = (n, e, t) => [vt.id, Mt.id, Nt.id, Jo].includes(e.id) || zr(e, t).some((r) => N.intersects(r, n)) ? ps(n, e) : n;
+function xl(n, e) {
   const { id: t, params: o } = e;
   let s = {
     length: 0,
@@ -5793,39 +5798,39 @@ function Al(n, e) {
     type: Q.Unknown
   };
   switch (t) {
-    case Lt.id:
+    case Ht.id:
       s.type = Q.Delete;
       break;
     case Je.id:
-      s = $n(
+      s = Wn(
         { start: o.sourceRange.startRow, end: o.sourceRange.endRow },
         { start: o.targetRange.startRow, end: o.targetRange.endRow },
         { start: n.startRow, end: n.endRow }
       ), s.type = Q.VerticalMove;
       break;
     case qe.id:
-      s = $n(
+      s = Wn(
         { start: o.sourceRange.startColumn, end: o.sourceRange.endColumn },
         { start: o.targetRange.startColumn, end: o.targetRange.endColumn },
         { start: n.startColumn, end: n.endColumn }
       ), s.type = Q.HorizontalMove;
       break;
-    case Me.id:
-      s = Nt(o.range, n), s ? s.type = Q.HorizontalMove : s = { step: 0, length: 0, type: Q.Delete };
-      break;
-    case Te.id:
-      s = Nt(Oe(o.range), Oe(n)), s ? s.type = Q.VerticalMove : s = { step: 0, length: 0, type: Q.Delete };
-      break;
-    case Ue.id:
-      s = Ot(Oe(o.range), Oe(n)), s.type = Q.VerticalMove;
+    case ve.id:
+      s = Ot(o.range, n), s ? s.type = Q.HorizontalMove : s = { step: 0, length: 0, type: Q.Delete };
       break;
     case ke.id:
-      s = Ot(o.range, n), s.type = Q.HorizontalMove;
+      s = Ot(Ne(o.range), Ne(n)), s ? s.type = Q.VerticalMove : s = { step: 0, length: 0, type: Q.Delete };
       break;
-    case wt.id:
+    case Ee.id:
+      s = Dt(Ne(o.range), Ne(n)), s.type = Q.VerticalMove;
+      break;
+    case Ue.id:
+      s = Dt(o.range, n), s.type = Q.HorizontalMove;
+      break;
+    case It.id:
       {
-        const r = o.fromRange || new Y(o.from).getRange(), i = o.toRange || new Y(o.to).getRange();
-        s = Il(
+        const r = o.fromRange || new q(o.from).getRange(), i = o.toRange || new q(o.to).getRange();
+        s = vl(
           r,
           i,
           n
@@ -5833,9 +5838,9 @@ function Al(n, e) {
       }
       break;
   }
-  return s ? Array.isArray(s) ? Dt(s, n) : Dt([s], n) : n;
+  return s ? Array.isArray(s) ? At(s, n) : At([s], n) : n;
 }
-function jr(n, e) {
+function zr(n, e) {
   var o, s, r, i, a, u;
   const { selectionManagerService: t } = e;
   switch (n.id) {
@@ -5912,7 +5917,7 @@ function jr(n, e) {
     }
   }
 }
-function xl(n) {
+function $l(n) {
   switch (n.id) {
     case qe.id: {
       const e = n.params;
@@ -5936,11 +5941,11 @@ function xl(n) {
         }
       ];
     }
-    case wt.id: {
+    case It.id: {
       const e = n.params;
-      return [new Y(e.from.value).getRange(), new Y(e.to.value).getRange()];
+      return [new q(e.from.value).getRange(), new q(e.to.value).getRange()];
     }
-    case ke.id: {
+    case Ue.id: {
       const t = n.params.range;
       return [
         {
@@ -5950,7 +5955,7 @@ function xl(n) {
         }
       ];
     }
-    case Ue.id: {
+    case Ee.id: {
       const t = n.params.range;
       return [
         {
@@ -5960,13 +5965,13 @@ function xl(n) {
         }
       ];
     }
-    case Me.id:
+    case ve.id:
       return [n.params.range];
-    case Te.id:
+    case ke.id:
       return [n.params.range];
   }
 }
-function $h(n, e) {
+function Wh(n, e) {
   var s, r, i, a, u, l;
   const t = n.get(M), o = n.get(z);
   switch (e.id) {
@@ -6140,13 +6145,13 @@ function $h(n, e) {
     }
   }
 }
-var $l = Object.getOwnPropertyDescriptor, Wl = (n, e, t, o) => {
-  for (var s = o > 1 ? void 0 : o ? $l(e, t) : e, r = n.length - 1, i; r >= 0; r--)
+var Wl = Object.getOwnPropertyDescriptor, Vl = (n, e, t, o) => {
+  for (var s = o > 1 ? void 0 : o ? Wl(e, t) : e, r = n.length - 1, i; r >= 0; r--)
     (i = n[r]) && (s = i(s) || s);
   return s;
-}, _n = (n, e) => (t, o) => e(t, o, n);
-const Vl = ft("MERGE_REDO"), Ll = ft("MERGE_UNDO"), ps = Math.floor(Number.MAX_SAFE_INTEGER / 10);
-class Hl extends ue {
+}, yn = (n, e) => (t, o) => e(t, o, n);
+const Ll = Rt("MERGE_REDO"), Hl = Rt("MERGE_UNDO"), Ss = Math.floor(Number.MAX_SAFE_INTEGER / 10);
+class Fl extends ue {
   constructor(e, t, o, s, r = !1) {
     super(), this._unitId = e, this._subUnitId = t, this._range = o, this._callback = s, this._skipIntersects = r;
   }
@@ -6154,7 +6159,7 @@ class Hl extends ue {
     var s, r;
     if (((s = e.params) == null ? void 0 : s.unitId) !== this._unitId)
       return;
-    if (e.id === wt.id) {
+    if (e.id === It.id) {
       const i = e.params;
       if (i.from.subUnitId !== this._subUnitId || i.to.subUnitId !== this._subUnitId)
         return;
@@ -6163,32 +6168,32 @@ class Hl extends ue {
     if (!this._range)
       return;
     if (this._skipIntersects) {
-      if (e.id === Lt.id)
+      if (e.id === Ht.id)
         return;
-      const i = xl(e);
+      const i = $l(e);
       if (i != null && i.some((a) => N.intersects(a, this._range)))
         return;
     }
-    const t = Al(this._range, e);
+    const t = xl(this._range, e);
     if (t && N.equals(t, this._range))
       return !1;
     const o = this._range;
     this._range = t, this._callback(o, t);
   }
 }
-let At = class extends ue {
+let xt = class extends ue {
   constructor(e, t, o, s) {
     super();
-    R(this, "interceptor", new Oo({ MERGE_REDO: Vl, MERGE_UNDO: Ll }));
+    R(this, "interceptor", new Do({ MERGE_REDO: Ll, MERGE_UNDO: Hl }));
     R(this, "_watchRanges", /* @__PURE__ */ new Set());
     R(this, "_refRangeManagerMap", /* @__PURE__ */ new Map());
-    R(this, "_serializer", Fl());
+    R(this, "_serializer", Bl());
     // eslint-disable-next-line max-lines-per-function
     R(this, "_onRefRangeChange", () => {
       this._sheetInterceptorService.interceptCommand({
         // eslint-disable-next-line max-lines-per-function
         getMutations: (e) => {
-          const t = this._univerInstanceService.getCurrentUnitForType(B.UNIVER_SHEET).getActiveSheet(), o = Ss(this._univerInstanceService), s = ws(this._univerInstanceService);
+          const t = this._univerInstanceService.getCurrentUnitForType(B.UNIVER_SHEET).getActiveSheet(), o = ws(this._univerInstanceService), s = Is(this._univerInstanceService);
           if (!t || !o || !s)
             return { redos: [], undos: [], preRedos: [], preUndos: [] };
           const a = ((() => {
@@ -6259,20 +6264,20 @@ let At = class extends ue {
               }
               case W.DeleteRangeMoveUpCommandId:
               case W.InsertRangeMoveDownCommandId: {
-                const g = e.params.range || Is(this._selectionManagerService)[0], m = {
+                const g = e.params.range || vs(this._selectionManagerService)[0], m = {
                   startRow: g.startRow,
                   startColumn: g.startColumn,
                   endColumn: g.endColumn,
-                  endRow: ps
+                  endRow: Ss
                 };
                 return this._checkRange([m], o, s);
               }
               case W.DeleteRangeMoveLeftCommandId:
               case W.InsertRangeMoveRightCommandId: {
-                const g = e.params.range || Is(this._selectionManagerService)[0], m = {
+                const g = e.params.range || vs(this._selectionManagerService)[0], m = {
                   startRow: g.startRow,
                   startColumn: g.startColumn,
-                  endColumn: ps,
+                  endColumn: Ss,
                   endRow: g.endRow
                 };
                 return this._checkRange([m], o, s);
@@ -6319,7 +6324,7 @@ let At = class extends ue {
       });
     });
     R(this, "_checkRange", (e, t, o) => {
-      const s = vs(t, o), r = this._refRangeManagerMap.get(s);
+      const s = Ms(t, o), r = this._refRangeManagerMap.get(s);
       if (r) {
         const i = /* @__PURE__ */ new Set();
         return [...r.keys()].forEach((u) => {
@@ -6347,15 +6352,15 @@ let At = class extends ue {
      * @memberof RefRangeService
      */
     R(this, "registerRefRange", (e, t, o, s) => {
-      const r = o || Ss(this._univerInstanceService), i = s || ws(this._univerInstanceService);
+      const r = o || ws(this._univerInstanceService), i = s || Is(this._univerInstanceService);
       if (!r || !i)
-        return Ne(() => {
+        return Pe(() => {
         });
-      const a = vs(r, i), u = this._serializer.serialize(e);
+      const a = Ms(r, i), u = this._serializer.serialize(e);
       let l = this._refRangeManagerMap.get(a);
       l || (l = /* @__PURE__ */ new Map(), this._refRangeManagerMap.set(a, l));
       const c = l.get(u);
-      return c ? c.add(t) : l.set(u, /* @__PURE__ */ new Set([t])), Ne(() => {
+      return c ? c.add(t) : l.set(u, /* @__PURE__ */ new Set([t])), Pe(() => {
         const d = l.get(u);
         d && (d.delete(t), d.size || (l.delete(u), l.size || this._refRangeManagerMap.delete(a)));
       });
@@ -6375,37 +6380,37 @@ let At = class extends ue {
       for (const d of this._watchRanges)
         d.onMutation(c);
     }));
-    const a = new Hl(e, t, o, s, r);
+    const a = new Fl(e, t, o, s, r);
     this._watchRanges.add(a);
-    const u = Ne(() => {
+    const u = Pe(() => {
       this._watchRanges.delete(a), this._watchRanges.size === 0 && (i == null || i.dispose(), i = null);
     }), l = this.disposeWithMe(u);
-    return Ne(() => {
+    return Pe(() => {
       l.dispose(), u.dispose();
     });
   }
 };
-At = Wl([
-  _n(0, E),
-  _n(1, $(G)),
-  _n(2, $(M)),
-  _n(3, $(z))
-], At);
-function Ss(n) {
-  return n.getCurrentUnitForType(B.UNIVER_SHEET).getUnitId();
-}
+xt = Vl([
+  yn(0, E),
+  yn(1, $(G)),
+  yn(2, $(M)),
+  yn(3, $(z))
+], xt);
 function ws(n) {
-  var e;
-  return (e = n.getCurrentUnitForType(B.UNIVER_SHEET).getActiveSheet()) == null ? void 0 : e.getSheetId();
+  return n.getCurrentUnitForType(B.UNIVER_SHEET).getUnitId();
 }
 function Is(n) {
   var e;
+  return (e = n.getCurrentUnitForType(B.UNIVER_SHEET).getActiveSheet()) == null ? void 0 : e.getSheetId();
+}
+function vs(n) {
+  var e;
   return ((e = n.getCurrentSelections()) == null ? void 0 : e.map((t) => t.range)) || [];
 }
-function vs(n, e) {
+function Ms(n, e) {
   return `${n}_${e}`;
 }
-function Fl() {
+function Bl() {
   const n = ["startRow", "startColumn", "endRow", "endColumn", "rangeType"];
   return {
     deserialize: (t) => {
@@ -6427,13 +6432,13 @@ function Fl() {
     }, "")
   };
 }
-var Bl = Object.getOwnPropertyDescriptor, jl = (n, e, t, o) => {
-  for (var s = o > 1 ? void 0 : o ? Bl(e, t) : e, r = n.length - 1, i; r >= 0; r--)
+var jl = Object.getOwnPropertyDescriptor, zl = (n, e, t, o) => {
+  for (var s = o > 1 ? void 0 : o ? jl(e, t) : e, r = n.length - 1, i; r >= 0; r--)
     (i = n[r]) && (s = i(s) || s);
   return s;
-}, _t = (n, e) => (t, o) => e(t, o, n);
-const zl = [ke.id, Ue.id, Me.id, Te.id], Gl = [Je.id, qe.id];
-function zr(n, e) {
+}, yt = (n, e) => (t, o) => e(t, o, n);
+const Gl = [Ue.id, Ee.id, ve.id, ke.id], Kl = [Je.id, qe.id];
+function Gr(n, e) {
   let t = n;
   if (e !== void 0) {
     const o = [];
@@ -6464,12 +6469,12 @@ function zr(n, e) {
   }
   return t;
 }
-const Kl = ft("mergeCellPermissionCheck");
-let Wn = class extends ue {
+const Jl = Rt("mergeCellPermissionCheck");
+let Vn = class extends ue {
   constructor(e, t, o, s, r, i) {
     super();
-    R(this, "disposableCollection", new Et());
-    R(this, "interceptor", new Oo({ MERGE_CELL_INTERCEPTOR_CHECK: Kl }));
+    R(this, "disposableCollection", new Ut());
+    R(this, "interceptor", new Do({ MERGE_CELL_INTERCEPTOR_CHECK: Jl }));
     this._commandService = e, this._refRangeService = t, this._univerInstanceService = o, this._injector = s, this._sheetInterceptorService = r, this._selectionManagerService = i, this._onRefRangeChange(), this._initCommandInterceptor(), this._commandExecutedListener();
   }
   _initCommandInterceptor() {
@@ -6478,8 +6483,8 @@ let Wn = class extends ue {
       getMutations(t) {
         var o;
         switch (t.id) {
-          case Vo.id:
-          case Lo.id: {
+          case Lo.id:
+          case Ho.id: {
             const s = e._univerInstanceService.getCurrentUnitForType(B.UNIVER_SHEET), r = s.getUnitId(), i = s == null ? void 0 : s.getActiveSheet();
             if (!i)
               return { redos: [], undos: [] };
@@ -6491,10 +6496,10 @@ let Wn = class extends ue {
                 unitId: r,
                 subUnitId: a,
                 ranges: l
-              }, h = ye(e._injector, d), g = [
-                { id: oe.id, params: d }
+              }, h = _e(e._injector, d), g = [
+                { id: se.id, params: d }
               ], m = [
-                { id: ne.id, params: h }
+                { id: oe.id, params: h }
               ];
               return { redos: g, undos: m };
             }
@@ -6512,14 +6517,14 @@ let Wn = class extends ue {
           return a;
         const { worksheet: l } = u, d = l.getMergeData().filter((h) => s.some((g) => N.intersects(h, g)));
         return d.length ? (r.push({
-          id: oe.id,
+          id: se.id,
           params: {
             unitId: t,
             subUnitId: o,
             ranges: d
           }
         }), i.push({
-          id: ne.id,
+          id: oe.id,
           params: {
             unitId: t,
             subUnitId: o,
@@ -6547,31 +6552,31 @@ let Wn = class extends ue {
         const s = e.params, r = s.unitId || t, i = s.subUnitId || o;
         return this._handleInsertColCommand(s, r, i);
       }
-      case ho.id: {
+      case go.id: {
         const s = e.params;
         return this._handleRemoveColCommand(s, t, o);
       }
-      case co.id: {
+      case ho.id: {
         const s = e.params;
         return this._handleRemoveRowCommand(s, t, o);
       }
-      case yt.id: {
+      case bt.id: {
         const s = e.params;
         return this._handleMoveRangeCommand(s, t, o);
       }
-      case rn.id: {
+      case an.id: {
         const s = e.params;
         return this._handleInsertRangeMoveRightCommand(s, t, o);
       }
-      case Pt.id: {
+      case Nt.id: {
         const s = e.params;
         return this._handleInsertRangeMoveDownCommand(s, t, o);
       }
-      case vt.id: {
+      case Mt.id: {
         const s = e.params;
         return this._handleDeleteRangeMoveUpCommand(s, t, o);
       }
-      case It.id: {
+      case vt.id: {
         const s = e.params;
         return this._handleDeleteRangeMoveLeftCommand(s, t, o);
       }
@@ -6594,84 +6599,84 @@ let Wn = class extends ue {
     };
     this.disposeWithMe(
       this._commandService.onCommandExecuted((t) => {
-        if (t.id === Cn.id) {
+        if (t.id === pn.id) {
           const o = t.params, s = o.subUnitId, r = o.unitId;
           if (!s || !r)
             return;
           e(r, s);
         }
-        if (t.id === ne.id) {
+        if (t.id === oe.id) {
           const o = t.params, s = o.subUnitId, r = o.unitId;
           if (!s || !r)
             return;
           e(o.unitId, o.subUnitId);
         }
       })
-    ), this._univerInstanceService.getCurrentTypeOfUnit$(B.UNIVER_SHEET).pipe(qi((t) => !!t)).subscribe((t) => {
+    ), this._univerInstanceService.getCurrentTypeOfUnit$(B.UNIVER_SHEET).pipe(Yi((t) => !!t)).subscribe((t) => {
       const o = t.getActiveSheet();
       o && e(t.getUnitId(), o.getSheetId());
     });
   }
   _handleMoveRowsCommand(e, t, o) {
-    const s = xe(this._univerInstanceService, t);
+    const s = Ae(this._univerInstanceService, t);
     if (!s)
       return this._handleNull();
-    const r = $e(s, o);
+    const r = xe(s, o);
     if (!r)
       return this._handleNull();
     const i = [...r.getMergeData()], a = { unitId: t, subUnitId: o, ranges: [] }, u = { unitId: t, subUnitId: o, ranges: [] }, { fromRange: l } = e, { startRow: c, endRow: d } = l;
     if (i.forEach((m) => {
       if (c <= m.startRow && d >= m.endRow) {
         a.ranges.push(m);
-        const f = Hr({ id: W.MoveRowsCommandId, params: e }, m), C = Dt(f, m);
+        const f = Fr({ id: W.MoveRowsCommandId, params: e }, m), C = At(f, m);
         C && u.ranges.push(C);
       }
     }), a.ranges.length === 0)
       return this._handleNull();
-    const h = ye(this._injector, a), g = We(this._injector, u);
+    const h = _e(this._injector, a), g = $e(this._injector, u);
     return {
-      preRedos: [{ id: oe.id, params: a }],
-      redos: [{ id: ne.id, params: u }],
-      preUndos: [{ id: oe.id, params: g }],
-      undos: [{ id: ne.id, params: h }]
+      preRedos: [{ id: se.id, params: a }],
+      redos: [{ id: oe.id, params: u }],
+      preUndos: [{ id: se.id, params: g }],
+      undos: [{ id: oe.id, params: h }]
     };
   }
   _handleMoveColsCommand(e, t, o) {
-    const s = xe(this._univerInstanceService, t);
+    const s = Ae(this._univerInstanceService, t);
     if (!s)
       return this._handleNull();
-    const r = $e(s, o);
+    const r = xe(s, o);
     if (!r)
       return this._handleNull();
     const i = [...r.getMergeData()], a = { unitId: t, subUnitId: o, ranges: [] }, u = { unitId: t, subUnitId: o, ranges: [] }, { fromRange: l } = e, { startColumn: c, endColumn: d } = l;
     if (i.forEach((m) => {
       if (c <= m.startColumn && d >= m.endColumn) {
         a.ranges.push(m);
-        const f = Fr({ id: W.MoveColsCommandId, params: e }, m), C = Dt(f, m);
+        const f = Br({ id: W.MoveColsCommandId, params: e }, m), C = At(f, m);
         C && u.ranges.push(C);
       }
     }), a.ranges.length === 0)
       return this._handleNull();
-    const h = ye(this._injector, a), g = We(this._injector, u);
+    const h = _e(this._injector, a), g = $e(this._injector, u);
     return {
-      preRedos: [{ id: oe.id, params: a }],
-      redos: [{ id: ne.id, params: u }],
-      preUndos: [{ id: oe.id, params: g }],
-      undos: [{ id: ne.id, params: h }]
+      preRedos: [{ id: se.id, params: a }],
+      redos: [{ id: oe.id, params: u }],
+      preUndos: [{ id: se.id, params: g }],
+      undos: [{ id: oe.id, params: h }]
     };
   }
   _handleMoveRangeCommand(e, t, o) {
-    const s = xe(this._univerInstanceService, t);
+    const s = Ae(this._univerInstanceService, t);
     if (!s)
       return this._handleNull();
-    const r = $e(s, o);
+    const r = xe(s, o);
     if (!r)
       return this._handleNull();
-    const i = r.getMergeData(), a = i.filter((g) => N.intersects(g, e.fromRange)), u = i.filter((g) => N.intersects(g, e.toRange)), l = a.map((g) => N.getRelativeRange(g, e.fromRange)).map((g) => N.getPositionRange(g, e.toRange)), c = zr(l).filter(
+    const i = r.getMergeData(), a = i.filter((g) => N.intersects(g, e.fromRange)), u = i.filter((g) => N.intersects(g, e.toRange)), l = a.map((g) => N.getRelativeRange(g, e.fromRange)).map((g) => N.getPositionRange(g, e.toRange)), c = Gr(l).filter(
       (g) => !i.some((m) => N.equals(g, m))
     ), d = [
       {
-        id: oe.id,
+        id: se.id,
         params: {
           unitId: t,
           subUnitId: o,
@@ -6679,7 +6684,7 @@ let Wn = class extends ue {
         }
       },
       {
-        id: oe.id,
+        id: se.id,
         params: {
           unitId: t,
           subUnitId: o,
@@ -6687,7 +6692,7 @@ let Wn = class extends ue {
         }
       },
       {
-        id: ne.id,
+        id: oe.id,
         params: {
           unitId: t,
           subUnitId: o,
@@ -6696,7 +6701,7 @@ let Wn = class extends ue {
       }
     ], h = [
       {
-        id: oe.id,
+        id: se.id,
         params: {
           unitId: t,
           subUnitId: o,
@@ -6704,7 +6709,7 @@ let Wn = class extends ue {
         }
       },
       {
-        id: ne.id,
+        id: oe.id,
         params: {
           unitId: t,
           subUnitId: o,
@@ -6712,7 +6717,7 @@ let Wn = class extends ue {
         }
       },
       {
-        id: ne.id,
+        id: oe.id,
         params: {
           unitId: t,
           subUnitId: o,
@@ -6723,10 +6728,10 @@ let Wn = class extends ue {
     return { redos: d, undos: h };
   }
   _handleInsertRowCommand(e, t, o) {
-    const s = xe(this._univerInstanceService, t);
+    const s = Ae(this._univerInstanceService, t);
     if (!s)
       return this._handleNull();
-    const r = $e(s, o);
+    const r = xe(s, o);
     if (!r)
       return this._handleNull();
     const { range: i } = e, { startRow: a, endRow: u } = i, l = A.deepClone(r.getMergeData()).reduce((p, w) => (a > w.startRow && a <= w.endRow && p.push(w), p), []);
@@ -6742,30 +6747,30 @@ let Wn = class extends ue {
       unitId: t,
       subUnitId: o,
       ranges: l
-    }, h = ye(
+    }, h = _e(
       this._injector,
       d
     ), g = {
       unitId: t,
       subUnitId: o,
       ranges: c
-    }, m = We(
+    }, m = $e(
       this._injector,
       g
     ), f = [
-      { id: oe.id, params: d },
-      { id: ne.id, params: g }
+      { id: se.id, params: d },
+      { id: oe.id, params: g }
     ], C = [
-      { id: oe.id, params: m },
-      { id: ne.id, params: h }
+      { id: se.id, params: m },
+      { id: oe.id, params: h }
     ];
     return { redos: f, undos: C };
   }
   _handleInsertColCommand(e, t, o) {
-    const { range: s } = e, r = xe(this._univerInstanceService, t);
+    const { range: s } = e, r = Ae(this._univerInstanceService, t);
     if (!r)
       return this._handleNull();
-    const i = $e(r, o);
+    const i = xe(r, o);
     if (!i)
       return this._handleNull();
     const { startColumn: a, endColumn: u } = s, l = A.deepClone(i.getMergeData()).reduce((p, w) => (a > w.startColumn && a <= w.endColumn && p.push(w), p), []);
@@ -6781,30 +6786,30 @@ let Wn = class extends ue {
       unitId: t,
       subUnitId: o,
       ranges: l
-    }, h = ye(
+    }, h = _e(
       this._injector,
       d
     ), g = {
       unitId: t,
       subUnitId: o,
       ranges: c
-    }, m = We(
+    }, m = $e(
       this._injector,
       g
     ), f = [
-      { id: oe.id, params: d },
-      { id: ne.id, params: g }
+      { id: se.id, params: d },
+      { id: oe.id, params: g }
     ], C = [
-      { id: oe.id, params: m },
-      { id: ne.id, params: h }
+      { id: se.id, params: m },
+      { id: oe.id, params: h }
     ];
     return { redos: f, undos: C };
   }
   _handleRemoveColCommand(e, t, o) {
-    const s = xe(this._univerInstanceService, t);
+    const s = Ae(this._univerInstanceService, t);
     if (!s)
       return this._handleNull();
-    const r = $e(s, o);
+    const r = xe(s, o);
     if (!r)
       return this._handleNull();
     const { range: i } = e, { startColumn: a, endColumn: u } = i, l = A.deepClone(r.getMergeData()).reduce((I, S) => (N.intersects(i, S) && I.push(S), I), []);
@@ -6821,24 +6826,24 @@ let Wn = class extends ue {
       unitId: t,
       subUnitId: o,
       ranges: l
-    }, h = ye(
+    }, h = _e(
       this._injector,
       d
     ), g = {
       unitId: t,
       subUnitId: o,
       ranges: c
-    }, m = We(
+    }, m = $e(
       this._injector,
       g
-    ), f = [{ id: oe.id, params: d }], C = [{ id: ne.id, params: g }], p = [{ id: oe.id, params: m }], w = [{ id: ne.id, params: h }];
+    ), f = [{ id: se.id, params: d }], C = [{ id: oe.id, params: g }], p = [{ id: se.id, params: m }], w = [{ id: oe.id, params: h }];
     return { preUndos: p, undos: w, preRedos: f, redos: C };
   }
   _handleRemoveRowCommand(e, t, o) {
-    const { range: s } = e, r = xe(this._univerInstanceService, t);
+    const { range: s } = e, r = Ae(this._univerInstanceService, t);
     if (!r)
       return this._handleNull();
-    const i = $e(r, o);
+    const i = xe(r, o);
     if (!i)
       return this._handleNull();
     const { startRow: a, endRow: u } = s, l = A.deepClone(i.getMergeData()).reduce((I, S) => (N.intersects(s, S) && I.push(S), I), []);
@@ -6855,24 +6860,24 @@ let Wn = class extends ue {
       unitId: t,
       subUnitId: o,
       ranges: l
-    }, h = ye(
+    }, h = _e(
       this._injector,
       d
     ), g = {
       unitId: t,
       subUnitId: o,
       ranges: c
-    }, m = We(
+    }, m = $e(
       this._injector,
       g
-    ), f = [{ id: oe.id, params: d }], C = [{ id: ne.id, params: g }], p = [{ id: oe.id, params: m }], w = [{ id: ne.id, params: h }];
+    ), f = [{ id: se.id, params: d }], C = [{ id: oe.id, params: g }], p = [{ id: se.id, params: m }], w = [{ id: oe.id, params: h }];
     return { preUndos: p, undos: w, preRedos: f, redos: C };
   }
   _handleInsertRangeMoveRightCommand(e, t, o) {
-    const s = xe(this._univerInstanceService, t);
+    const s = Ae(this._univerInstanceService, t);
     if (!s)
       return this._handleNull();
-    const r = $e(s, o);
+    const r = xe(s, o);
     if (!r)
       return this._handleNull();
     const i = e.range, a = r.getMaxColumns() - 1, u = r.getMergeData(), l = [], c = [];
@@ -6908,43 +6913,43 @@ let Wn = class extends ue {
       unitId: t,
       subUnitId: o,
       ranges: l
-    }, h = ye(
+    }, h = _e(
       this._injector,
       d
     ), g = {
       unitId: t,
       subUnitId: o,
       ranges: c
-    }, m = We(
+    }, m = $e(
       this._injector,
       g
     );
     return {
       preRedos: [
-        { id: oe.id, params: d }
+        { id: se.id, params: d }
       ],
       redos: [
         {
-          id: ne.id,
+          id: oe.id,
           params: g
         }
       ],
       preUndos: [
-        { id: oe.id, params: m }
+        { id: se.id, params: m }
       ],
       undos: [
         {
-          id: ne.id,
+          id: oe.id,
           params: h
         }
       ]
     };
   }
   _handleInsertRangeMoveDownCommand(e, t, o) {
-    const s = xe(this._univerInstanceService, t);
+    const s = Ae(this._univerInstanceService, t);
     if (!s)
       return this._handleNull();
-    const r = $e(s, o);
+    const r = xe(s, o);
     if (!r)
       return this._handleNull();
     const i = e.range, a = r.getMaxRows() - 1, u = r.getMergeData(), l = [], c = [];
@@ -6964,44 +6969,44 @@ let Wn = class extends ue {
       unitId: t,
       subUnitId: o,
       ranges: l
-    }, h = ye(
+    }, h = _e(
       this._injector,
       d
     ), g = {
       unitId: t,
       subUnitId: o,
       ranges: c
-    }, m = We(
+    }, m = $e(
       this._injector,
       g
     ), f = [
       {
-        id: oe.id,
+        id: se.id,
         params: d
       }
     ], C = [
       {
-        id: ne.id,
+        id: oe.id,
         params: g
       }
     ], p = [
       {
-        id: oe.id,
+        id: se.id,
         params: m
       }
     ], w = [
       {
-        id: ne.id,
+        id: oe.id,
         params: h
       }
     ];
     return { redos: C, undos: w, preRedos: f, preUndos: p };
   }
   _handleDeleteRangeMoveUpCommand(e, t, o) {
-    const s = xe(this._univerInstanceService, t);
+    const s = Ae(this._univerInstanceService, t);
     if (!s)
       return this._handleNull();
-    const r = $e(s, o);
+    const r = xe(s, o);
     if (!r)
       return this._handleNull();
     const i = e.range, a = r.getMaxRows() - 1, u = r.getMergeData(), l = [], c = [];
@@ -7016,44 +7021,44 @@ let Wn = class extends ue {
       unitId: t,
       subUnitId: o,
       ranges: l
-    }, h = ye(
+    }, h = _e(
       this._injector,
       d
     ), g = {
       unitId: t,
       subUnitId: o,
       ranges: c
-    }, m = We(
+    }, m = $e(
       this._injector,
       g
     ), f = [
       {
-        id: oe.id,
+        id: se.id,
         params: d
       }
     ], C = [
       {
-        id: ne.id,
+        id: oe.id,
         params: g
       }
     ], p = [
       {
-        id: oe.id,
+        id: se.id,
         params: m
       }
     ], w = [
       {
-        id: ne.id,
+        id: oe.id,
         params: h
       }
     ];
     return { redos: C, undos: w, preRedos: f, preUndos: p };
   }
   _handleDeleteRangeMoveLeftCommand(e, t, o) {
-    const s = xe(this._univerInstanceService, t);
+    const s = Ae(this._univerInstanceService, t);
     if (!s)
       return this._handleNull();
-    const r = $e(s, o);
+    const r = xe(s, o);
     if (!r)
       return this._handleNull();
     const i = e.range, a = r.getMaxColumns() - 1, u = r.getMergeData(), l = [], c = [];
@@ -7089,29 +7094,29 @@ let Wn = class extends ue {
       unitId: t,
       subUnitId: o,
       ranges: l
-    }, h = ye(this._injector, d), g = {
+    }, h = _e(this._injector, d), g = {
       unitId: t,
       subUnitId: o,
       ranges: c
-    }, m = We(this._injector, g);
+    }, m = $e(this._injector, g);
     return {
       preRedos: [
-        { id: oe.id, params: d }
+        { id: se.id, params: d }
       ],
       redos: [
         {
-          id: ne.id,
+          id: oe.id,
           params: g
         }
       ],
       undos: [
         {
-          id: ne.id,
+          id: oe.id,
           params: h
         }
       ],
       preUndos: [
-        { id: oe.id, params: m }
+        { id: se.id, params: m }
       ]
     };
   }
@@ -7123,7 +7128,7 @@ let Wn = class extends ue {
   }
   _commandExecutedListener() {
     this.disposeWithMe(this._commandService.onCommandExecuted((e) => {
-      if (Gl.includes(e.id)) {
+      if (Kl.includes(e.id)) {
         if (!e.params) return;
         const t = this._univerInstanceService.getUniverSheetInstance(e.params.unitId);
         if (!t) return;
@@ -7139,7 +7144,7 @@ let Wn = class extends ue {
           this.disposableCollection.add(this._refRangeService.registerRefRange(f, m, h, g));
         });
       }
-      if (zl.includes(e.id)) {
+      if (Gl.includes(e.id)) {
         const t = this._univerInstanceService.getUniverSheetInstance(e.params.unitId);
         if (!t) return;
         const o = t.getSheetBySheetId(e.params.subUnitId);
@@ -7159,24 +7164,24 @@ let Wn = class extends ue {
     }));
   }
 };
-Wn = jl([
-  _t(0, $(E)),
-  _t(1, $(At)),
-  _t(2, $(M)),
-  _t(3, $(so)),
-  _t(4, $(G)),
-  _t(5, $(z))
-], Wn);
-function xe(n, e) {
+Vn = zl([
+  yt(0, $(E)),
+  yt(1, $(xt)),
+  yt(2, $(M)),
+  yt(3, $(ro)),
+  yt(4, $(G)),
+  yt(5, $(z))
+], Vn);
+function Ae(n, e) {
   return e ? n.getUniverSheetInstance(e) : n.getCurrentUnitForType(B.UNIVER_SHEET);
 }
-function $e(n, e) {
+function xe(n, e) {
   return e ? n.getSheetBySheetId(e) : n.getActiveSheet();
 }
-function Jl(n, e) {
-  return e.some((t) => ql(n, t));
-}
 function ql(n, e) {
+  return e.some((t) => Yl(n, t));
+}
+function Yl(n, e) {
   const { startRow: t, startColumn: o, endColumn: s, endRow: r } = e, i = n.getMatrixWithMergedCells(t, o, r, s);
   let a = !1;
   return i.forValue((u, l, c) => {
@@ -7184,14 +7189,14 @@ function ql(n, e) {
       return a = !0, !1;
   }), a;
 }
-function Yl(n, e, t, o) {
+function Xl(n, e, t, o) {
   const s = [], r = [], i = t.getSheetId();
   return o.forEach((a) => {
-    const u = Xl(t, a), l = {
+    const u = Zl(t, a), l = {
       unitId: e,
       subUnitId: i,
       cellValue: u.getData()
-    }, c = Ae(
+    }, c = De(
       n,
       l
     );
@@ -7201,17 +7206,17 @@ function Yl(n, e, t, o) {
     redos: r
   };
 }
-function Xl(n, e) {
-  const { startRow: t, startColumn: o, endColumn: s, endRow: r } = e, i = n.getMatrixWithMergedCells(t, o, r, s, Ei.Raw), a = new Y();
+function Zl(n, e) {
+  const { startRow: t, startColumn: o, endColumn: s, endRow: r } = e, i = n.getMatrixWithMergedCells(t, o, r, s, Ui.Raw), a = new q();
   return i.forValue((u, l, c) => {
     c && (u !== t || l !== o) && a.setValue(u, l, null);
   }), a;
 }
-const go = {
+const mo = {
   type: v.COMMAND,
   id: "sheet.command.add-worksheet-merge",
   handler: (n, e) => {
-    const t = n.get(E), o = n.get(V), s = n.get(M), r = e.unitId, i = e.subUnitId, a = e.selections, u = zr(a, e.value), l = s.getUniverSheetInstance(r).getSheetBySheetId(i), c = [], d = [], h = Jl(l, u), g = {
+    const t = n.get(E), o = n.get(V), s = n.get(M), r = e.unitId, i = e.subUnitId, a = e.selections, u = Gr(a, e.value), l = s.getUniverSheetInstance(r).getSheetBySheetId(i), c = [], d = [], h = ql(l, u), g = {
       unitId: r,
       subUnitId: i,
       ranges: u
@@ -7220,10 +7225,10 @@ const go = {
       subUnitId: i,
       ranges: u
     };
-    c.push({ id: oe.id, params: g }), c.push({ id: ne.id, params: m });
-    const f = ye(n, g), C = We(n, m);
-    if (d.push({ id: oe.id, params: C }), d.push({ id: ne.id, params: f }), h) {
-      const w = Yl(n, r, l, u);
+    c.push({ id: se.id, params: g }), c.push({ id: oe.id, params: m });
+    const f = _e(n, g), C = $e(n, m);
+    if (d.push({ id: se.id, params: C }), d.push({ id: oe.id, params: f }), h) {
+      const w = Xl(n, r, l, u);
       c.unshift(...w.redos), d.push(...w.undos);
     }
     return L(c, t).result ? (o.pushUndoRedo({
@@ -7232,7 +7237,7 @@ const go = {
       redoMutations: c
     }), !0) : !1;
   }
-}, Wh = {
+}, Vh = {
   type: v.COMMAND,
   id: "sheet.command.add-worksheet-merge-all",
   handler: async (n) => {
@@ -7245,13 +7250,13 @@ const go = {
     const i = r.getActiveSheet();
     if (!i) return !1;
     const a = r.getUnitId(), u = i.getSheetId();
-    return e.executeCommand(go.id, {
+    return e.executeCommand(mo.id, {
       selections: o,
       unitId: a,
       subUnitId: u
     });
   }
-}, Vh = {
+}, Lh = {
   type: v.COMMAND,
   id: "sheet.command.add-worksheet-merge-vertical",
   handler: async (n) => {
@@ -7264,14 +7269,14 @@ const go = {
     const i = r.getActiveSheet();
     if (!i) return !1;
     const a = r.getUnitId(), u = i.getSheetId();
-    return e.executeCommand(go.id, {
+    return e.executeCommand(mo.id, {
       value: Re.COLUMNS,
       selections: o,
       unitId: a,
       subUnitId: u
     });
   }
-}, Lh = {
+}, Hh = {
   type: v.COMMAND,
   id: "sheet.command.add-worksheet-merge-horizontal",
   handler: async (n) => {
@@ -7284,7 +7289,7 @@ const go = {
     const i = r.getActiveSheet();
     if (!i) return !1;
     const a = r.getUnitId(), u = i.getSheetId();
-    return e.executeCommand(go.id, {
+    return e.executeCommand(mo.id, {
       value: Re.ROWS,
       selections: o,
       unitId: a,
@@ -7292,13 +7297,13 @@ const go = {
     });
   }
 };
-function Hh(n, e, t, o, s) {
+function Fh(n, e, t, o, s) {
   const r = n.get(M), i = P(r, { unitId: e, subUnitId: t });
   if (!i) return;
   const { worksheet: a } = i;
   if (a.getMergeData().some((d) => o.some((h) => N.intersects(h, d))))
     throw new Error("The ranges to be merged overlap with the existing merged cells");
-  n.get(E).executeCommand(go.id, {
+  n.get(E).executeCommand(mo.id, {
     unitId: e,
     subUnitId: t,
     selections: o,
@@ -7312,13 +7317,13 @@ class lt {
      * Map<unitId, Map<subUnitId, Map<subUnitId, IWorksheetProtectionRule>>>
      */
     R(this, "_model", /* @__PURE__ */ new Map());
-    R(this, "_ruleChange", new De());
-    R(this, "_ruleRefresh", new De());
-    R(this, "_resetOrder", new De());
+    R(this, "_ruleChange", new Oe());
+    R(this, "_ruleRefresh", new Oe());
+    R(this, "_resetOrder", new Oe());
     R(this, "ruleChange$", this._ruleChange.asObservable());
     R(this, "ruleRefresh$", this._ruleRefresh.asObservable());
     R(this, "resetOrder$", this._resetOrder.asObservable());
-    R(this, "_worksheetRuleInitStateChange", new gt(!1));
+    R(this, "_worksheetRuleInitStateChange", new mt(!1));
     R(this, "worksheetRuleInitStateChange$", this._worksheetRuleInitStateChange.asObservable());
   }
   changeRuleInitState(e) {
@@ -7387,33 +7392,33 @@ class lt {
         return [e, s];
   }
 }
-const Mt = {
+const _t = {
   id: "sheet.mutation.add-worksheet-protection",
   type: v.MUTATION,
   handler: (n, e) => {
     const { unitId: t, rule: o } = e;
     return n.get(lt).addRule(t, o), !0;
   }
-}, xt = {
+}, $t = {
   id: "sheet.mutation.delete-worksheet-protection",
   type: v.MUTATION,
   handler: (n, e) => {
     const { unitId: t, subUnitId: o } = e;
     return n.get(lt).deleteRule(t, o), !0;
   }
-}, Zl = {
+}, Ql = {
   type: v.COMMAND,
   id: "sheet.command.add-worksheet-protection",
   async handler(n, e) {
     if (!e)
       return !1;
     const t = n.get(E), o = n.get(V), { rule: s, unitId: r } = e, i = s.subUnitId;
-    if (await t.executeCommand(Mt.id, {
+    if (await t.executeCommand(_t.id, {
       unitId: r,
       rule: s,
       subUnitId: s.subUnitId
     })) {
-      const u = [{ id: Mt.id, params: { unitId: r, rule: s, subUnitId: s.subUnitId } }], l = [{ id: xt.id, params: { unitId: r, subUnitId: i } }];
+      const u = [{ id: _t.id, params: { unitId: r, rule: s, subUnitId: s.subUnitId } }], l = [{ id: $t.id, params: { unitId: r, subUnitId: i } }];
       o.pushUndoRedo({
         unitID: r,
         redoMutations: u,
@@ -7422,26 +7427,26 @@ const Mt = {
     }
     return !0;
   }
-}, Ql = {
+}, ec = {
   type: v.COMMAND,
   id: "sheet.command.set-worksheet-range-theme-style",
   handler: (n, e) => {
-    const t = n.get(E), o = n.get(V), { unitId: s } = e, r = Oa(n, e);
-    return t.syncExecuteCommand(tn.id, e) ? (o.pushUndoRedo({
+    const t = n.get(E), o = n.get(V), { unitId: s } = e, r = Da(n, e);
+    return t.syncExecuteCommand(nn.id, e) ? (o.pushUndoRedo({
       unitID: s,
-      undoMutations: [{ id: nn.id, params: r }],
-      redoMutations: [{ id: tn.id, params: e }]
+      undoMutations: [{ id: on.id, params: r }],
+      redoMutations: [{ id: nn.id, params: e }]
     }), !0) : !1;
   }
-}, ec = "sheet.command.append-row", tc = {
+}, tc = "sheet.command.append-row", nc = {
   type: v.COMMAND,
-  id: ec,
+  id: tc,
   handler: (n, e) => {
     const t = n.get(E), o = n.get(V), { unitId: s, subUnitId: r, cellValue: i, insertRowNums: a, insertColumnNums: u, maxRows: l, maxColumns: c } = e, d = {
       unitId: s,
       subUnitId: r,
       cellValue: i
-    }, h = Ae(
+    }, h = De(
       n,
       d
     ), g = [{ id: ee.id, params: d }], m = [{ id: ee.id, params: h }];
@@ -7455,11 +7460,11 @@ const Mt = {
           startColumn: 0,
           endColumn: c - 1
         }
-      }, p = $o(
+      }, p = Wo(
         n,
         C
       );
-      g.unshift({ id: Ue.id, params: C }), m.push({ id: Te.id, params: p });
+      g.unshift({ id: Ee.id, params: C }), m.push({ id: ke.id, params: p });
     }
     if (u) {
       const C = {
@@ -7471,11 +7476,11 @@ const Mt = {
           startColumn: c,
           endColumn: c - 1 + u
         }
-      }, p = ro(
+      }, p = io(
         n,
         C
       );
-      g.unshift({ id: ke.id, params: C }), m.push({ id: Me.id, params: p });
+      g.unshift({ id: Ue.id, params: C }), m.push({ id: ve.id, params: p });
     }
     return L(g, t).result ? (o.pushUndoRedo({
       unitID: s,
@@ -7483,7 +7488,7 @@ const Mt = {
       redoMutations: g
     }), !0) : !1;
   }
-}, qo = {
+}, Yo = {
   id: "sheet.command.clear-selection-content",
   type: v.COMMAND,
   handler: (n, e) => {
@@ -7495,14 +7500,14 @@ const Mt = {
     const c = (e == null ? void 0 : e.subUnitId) || l.getSheetId(), d = (e == null ? void 0 : e.ranges) || ((I = s.getCurrentSelections()) == null ? void 0 : I.map((S) => S.range));
     if (!(d != null && d.length))
       return !1;
-    const h = ao(d, n, u, c), g = {
+    const h = uo(d, n, u, c), g = {
       subUnitId: c,
       unitId: u,
-      cellValue: Eu(h)
-    }, m = Ae(
+      cellValue: Uu(h)
+    }, m = De(
       n,
       g
-    ), f = i.onCommandExecute({ id: qo.id }), C = [{ id: ee.id, params: g }, ...f.redos], p = [...f.undos, { id: ee.id, params: m }];
+    ), f = i.onCommandExecute({ id: Yo.id }), C = [{ id: ee.id, params: g }, ...f.redos], p = [...f.undos, { id: ee.id, params: m }];
     return L(C, o).result ? (r.pushUndoRedo({
       // If there are multiple mutations that form an encapsulated project, they must be encapsulated in the same undo redo element.
       // Hooks can be used to hook the code of external controllers to add new actions.
@@ -7511,18 +7516,18 @@ const Mt = {
       redoMutations: C
     }), !0) : !1;
   }
-}, Gr = (n, e) => ({
+}, Kr = (n, e) => ({
   subUnitId: e.sheet.id,
   unitId: e.unitId,
   subUnitName: e.sheet.name
-}), ln = {
+}), cn = {
   id: "sheet.mutation.insert-sheet",
   type: v.MUTATION,
   handler: (n, e) => {
     const t = n.get(M), { sheet: o, index: s, unitId: r, styles: i } = e, a = t.getUniverSheetInstance(r);
     return a ? (i && a.addStyles(i), a.addWorksheet(o.id, s, o)) : !1;
   }
-}, Kr = {
+}, Jr = {
   type: v.COMMAND,
   id: "sheet.command.copy-sheet",
   handler: (n, e) => {
@@ -7531,24 +7536,24 @@ const Mt = {
     if (!a)
       return !1;
     const { workbook: u, worksheet: l, unitId: c, subUnitId: d } = a, h = A.deepClone(l.getConfig());
-    h.name = nc(u, i, h.name), h.id = Ut();
+    h.name = oc(u, i, h.name), h.id = kt();
     const m = {
       index: u.getSheetIndex(l) + 1,
       sheet: h,
       unitId: c
-    }, f = Gr(
+    }, f = Kr(
       n,
       m
     ), C = r.onCommandExecute({
-      id: Kr.id,
+      id: Jr.id,
       params: { unitId: c, subUnitId: d, targetSubUnitId: h.id }
     }), p = [
       ...(S = C.preRedos) != null ? S : [],
-      { id: ln.id, params: m },
+      { id: cn.id, params: m },
       ...C.redos
     ], w = [
       ...(y = C.preUndos) != null ? y : [],
-      { id: Lt.id, params: f },
+      { id: Ht.id, params: f },
       ...C.undos
     ];
     return L(p, t).result ? (o.pushUndoRedo({
@@ -7558,13 +7563,13 @@ const Mt = {
     }), !0) : !1;
   }
 };
-function nc(n, e, t) {
+function oc(n, e, t) {
   let o = `${t} ${e.t("sheets.tabs.sheetCopy", "")}`, s = 2;
   for (; n.checkSheetName(o); )
     o = `${t} ${e.t("sheets.tabs.sheetCopy", `${s}`)}`, s++;
   return o;
 }
-const oc = {
+const sc = {
   type: v.COMMAND,
   id: "sheet.command.delete-range-protection",
   async handler(n, e) {
@@ -7578,39 +7583,39 @@ const oc = {
     return await t.executeCommand(st.id, a) && o.pushUndoRedo({
       unitID: s,
       redoMutations: [{ id: st.id, params: a }],
-      undoMutations: [{ id: Be.id, params: { unitId: s, subUnitId: r, rules: [i] } }]
+      undoMutations: [{ id: Fe.id, params: { unitId: s, subUnitId: r, rules: [i] } }]
     }), !0;
   }
-}, sc = {
+}, rc = {
   type: v.COMMAND,
   id: "sheet.command.delete-worksheet-protection",
   handler(n, e) {
     if (!e)
       return !1;
     const t = n.get(E), o = n.get(V), { rule: s, unitId: r, subUnitId: i } = e;
-    t.executeCommand(xt.id, {
+    t.executeCommand($t.id, {
       unitId: r,
       subUnitId: i
     });
-    const a = [{ id: xt.id, params: { unitId: r, subUnitId: i } }], u = [{ id: Mt.id, params: { unitId: r, rule: s, subUnitId: i } }];
+    const a = [{ id: $t.id, params: { unitId: r, subUnitId: i } }], u = [{ id: _t.id, params: { unitId: r, rule: s, subUnitId: i } }];
     return o.pushUndoRedo({
       unitID: r,
       redoMutations: a,
       undoMutations: u
     }), !0;
   }
-}, rc = {
+}, ic = {
   type: v.COMMAND,
   id: "sheet.command.remove-worksheet-range-theme-style",
   handler: (n, e) => {
-    const t = n.get(E), o = n.get(V), { unitId: s } = e, r = Da(n, e);
-    return t.syncExecuteCommand(nn.id, e) ? (o.pushUndoRedo({
+    const t = n.get(E), o = n.get(V), { unitId: s } = e, r = Aa(n, e);
+    return t.syncExecuteCommand(on.id, e) ? (o.pushUndoRedo({
       unitID: s,
-      undoMutations: [{ id: tn.id, params: r }],
-      redoMutations: [{ id: nn.id, params: e }]
+      undoMutations: [{ id: nn.id, params: r }],
+      redoMutations: [{ id: on.id, params: e }]
     }), !0) : !1;
   }
-}, ic = {
+}, ac = {
   id: "sheet.command.insert-defined-name",
   type: v.COMMAND,
   handler: (n, e) => {
@@ -7619,54 +7624,54 @@ const oc = {
     const s = {
       ...e
     };
-    return t.syncExecuteCommand(en.id, s) ? (o.pushUndoRedo({
+    return t.syncExecuteCommand(tn.id, s) ? (o.pushUndoRedo({
       unitID: e.unitId,
-      undoMutations: [{ id: Pn.id, params: s }],
-      redoMutations: [{ id: en.id, params: s }]
+      undoMutations: [{ id: Nn.id, params: s }],
+      redoMutations: [{ id: tn.id, params: s }]
     }), !0) : !1;
   }
-}, ac = {
+}, uc = {
   id: "sheet.command.insert-sheet",
   type: v.COMMAND,
   handler: (n, e) => {
     var C;
-    const t = n.get(E), o = n.get(V), s = n.get(M), r = n.get(it), i = Ks(s, { unitId: e == null ? void 0 : e.unitId });
+    const t = n.get(E), o = n.get(V), s = n.get(M), r = n.get(it), i = Js(s, { unitId: e == null ? void 0 : e.unitId });
     if (!i) return !1;
     const { unitId: a, workbook: u } = i;
     let l = u.getSheets().length;
-    const c = e == null ? void 0 : e.sheet, d = c == null ? void 0 : c.id, h = Ui(c || {});
-    e ? (l = (C = e.index) != null ? C : l, h.id = d || Ut(), h.name = (c == null ? void 0 : c.name) || u.generateNewSheetName(`${r.t("sheets.tabs.sheet")}`)) : (h.id = Ut(), h.name = u.generateNewSheetName(`${r.t("sheets.tabs.sheet")}`));
+    const c = e == null ? void 0 : e.sheet, d = c == null ? void 0 : c.id, h = ki(c || {});
+    e ? (l = (C = e.index) != null ? C : l, h.id = d || kt(), h.name = (c == null ? void 0 : c.name) || u.generateNewSheetName(`${r.t("sheets.tabs.sheet")}`)) : (h.id = kt(), h.name = u.generateNewSheetName(`${r.t("sheets.tabs.sheet")}`));
     const g = {
       index: l,
       sheet: h,
       unitId: a
-    }, m = Gr(
+    }, m = Kr(
       n,
       g
     );
-    return t.syncExecuteCommand(ln.id, g) ? (o.pushUndoRedo({
+    return t.syncExecuteCommand(cn.id, g) ? (o.pushUndoRedo({
       unitID: a,
-      undoMutations: [{ id: Lt.id, params: m }],
-      redoMutations: [{ id: ln.id, params: g }]
+      undoMutations: [{ id: Ht.id, params: m }],
+      redoMutations: [{ id: cn.id, params: g }]
     }), !0) : !1;
   }
-}, cn = {
+}, dn = {
   id: "sheet.mutation.register-worksheet-range-theme-style",
   type: v.MUTATION,
   handler: (n, e) => {
-    const { unitId: t, rangeThemeStyleJson: o, themeName: s } = e, r = n.get(M), i = P(r), a = n.get(ve);
+    const { unitId: t, rangeThemeStyleJson: o, themeName: s } = e, r = n.get(M), i = P(r), a = n.get(Ie);
     if (!i) return !1;
-    const u = new Rt(s, o);
+    const u = new Ct(s, o);
     return a.registerRangeThemeStyle(t, u), !0;
   }
-}, Yo = {
+}, Xo = {
   id: "sheet.mutation.unregister-worksheet-range-theme-style",
   type: v.MUTATION,
   handler: (n, e) => {
-    const { unitId: t, themeName: o } = e, s = n.get(M), r = P(s), i = n.get(ve);
+    const { unitId: t, themeName: o } = e, s = n.get(M), r = P(s), i = n.get(Ie);
     return r ? (i.unregisterRangeThemeStyle(t, o), !0) : !1;
   }
-}, uc = {
+}, lc = {
   id: "sheet.command.register-worksheet-range-theme-style",
   type: v.COMMAND,
   handler: (n, e) => {
@@ -7682,13 +7687,13 @@ const oc = {
       unitId: t,
       themeName: o.getName()
     };
-    return r.syncExecuteCommand(cn.id, u) && i.pushUndoRedo({
+    return r.syncExecuteCommand(dn.id, u) && i.pushUndoRedo({
       unitID: t,
-      undoMutations: [{ id: Yo.id, params: l }],
-      redoMutations: [{ id: cn.id, params: u }]
+      undoMutations: [{ id: Xo.id, params: l }],
+      redoMutations: [{ id: dn.id, params: u }]
     }), !0;
   }
-}, Jr = {
+}, qr = {
   id: "sheet.command.remove-defined-name",
   type: v.COMMAND,
   handler: (n, e) => {
@@ -7697,13 +7702,13 @@ const oc = {
     if (!e) return !1;
     const r = {
       ...e
-    }, i = s.onCommandExecute({ id: Jr.id, params: e }), a = [
+    }, i = s.onCommandExecute({ id: qr.id, params: e }), a = [
       ...(c = i.preRedos) != null ? c : [],
-      { id: Pn.id, params: r },
+      { id: Nn.id, params: r },
       ...i.redos
     ], u = [
       ...(d = i.preUndos) != null ? d : [],
-      { id: en.id, params: r },
+      { id: tn.id, params: r },
       ...i.undos
     ];
     return L(a, t) ? (o.pushUndoRedo({
@@ -7712,7 +7717,7 @@ const oc = {
       redoMutations: a.filter(Boolean)
     }), !0) : !1;
   }
-}, Xo = {
+}, Zo = {
   id: "sheet.command.remove-sheet",
   type: v.COMMAND,
   handler: (n, e) => {
@@ -7725,26 +7730,26 @@ const oc = {
       subUnitId: u,
       unitId: a,
       subUnitName: c.getName()
-    }, h = al(
+    }, h = ul(
       n,
       d
     ), g = r.onCommandExecute({
-      id: Xo.id,
+      id: Zo.id,
       params: { unitId: a, subUnitId: u }
-    }), m = [...(p = g.preRedos) != null ? p : [], { id: Lt.id, params: d }, ...g.redos], f = [...(w = g.preUndos) != null ? w : [], { id: ln.id, params: h }, ...g.undos];
+    }), m = [...(p = g.preRedos) != null ? p : [], { id: Ht.id, params: d }, ...g.redos], f = [...(w = g.preUndos) != null ? w : [], { id: cn.id, params: h }, ...g.undos];
     return L(m, t).result ? (o.pushUndoRedo({
       unitID: a,
       undoMutations: f,
       redoMutations: m
     }), !0) : !1;
   }
-}, lc = {
+}, cc = {
   type: v.COMMAND,
   id: "sheet.command.remove-worksheet-merge",
   // eslint-disable-next-line max-lines-per-function
   handler: (n, e) => {
     var D;
-    const t = n.get(z), o = n.get(E), s = n.get(V), r = n.get(M), i = (e == null ? void 0 : e.ranges) || ((D = t.getCurrentSelections()) == null ? void 0 : D.map((H) => H.range));
+    const t = n.get(z), o = n.get(E), s = n.get(V), r = n.get(M), i = (e == null ? void 0 : e.ranges) || ((D = t.getCurrentSelections()) == null ? void 0 : D.map((F) => F.range));
     if (!(i != null && i.length)) return !1;
     const a = P(r);
     if (!a) return !1;
@@ -7752,9 +7757,9 @@ const oc = {
       unitId: l,
       subUnitId: u,
       ranges: i
-    }, g = c.getConfig().mergeData.filter((H) => i.some((F) => N.intersects(F, H)));
+    }, g = c.getConfig().mergeData.filter((F) => i.some((Z) => N.intersects(Z, F)));
     if (!g.length) return !1;
-    const m = ye(
+    const m = _e(
       n,
       d
     ), f = t.getCurrentSelections();
@@ -7770,7 +7775,7 @@ const oc = {
       isMerged: !1,
       isMergedMainCell: !1
     };
-    const y = cc(c, g), b = {
+    const y = dc(c, g), b = {
       unitId: l,
       subUnitId: u,
       cellValue: y.redoParams.getMatrix()
@@ -7779,13 +7784,13 @@ const oc = {
       subUnitId: u,
       cellValue: y.undoParams.getMatrix()
     }, k = [
-      { id: oe.id, params: m },
+      { id: se.id, params: m },
       { id: ee.id, params: b },
-      { id: ie.id, params: { selections: p } }
+      { id: ae.id, params: { selections: p } }
     ], T = [
-      { id: ne.id, params: m },
+      { id: oe.id, params: m },
       { id: ee.id, params: O },
-      { id: ie.id, params: { selections: C } }
+      { id: ae.id, params: { selections: C } }
     ];
     return L(k, o) ? (s.pushUndoRedo({
       unitID: l,
@@ -7794,8 +7799,8 @@ const oc = {
     }), !0) : !1;
   }
 };
-function cc(n, e) {
-  const t = new Y(), o = new Y();
+function dc(n, e) {
+  const t = new q(), o = new q();
   return e.forEach((s) => {
     const { startRow: r, startColumn: i, endColumn: a, endRow: u } = s, l = n.getCellMatrix().getValue(r, i);
     if (l != null && l.s)
@@ -7807,15 +7812,15 @@ function cc(n, e) {
     undoParams: o
   };
 }
-class Ht {
+class Ft {
   constructor() {
     R(this, "_borderInfo", {
-      type: de.ALL,
+      type: ce.ALL,
       color: "#000000",
-      style: Ns.THIN,
+      style: Os.THIN,
       activeBorderType: !1
     });
-    R(this, "_borderInfo$", new gt(this._borderInfo));
+    R(this, "_borderInfo$", new mt(this._borderInfo));
     R(this, "borderInfo$", this._borderInfo$.asObservable());
   }
   dispose() {
@@ -7840,15 +7845,15 @@ class Ht {
     this._borderInfo$.next(this._borderInfo);
   }
 }
-function Vn(n, e) {
+function Ln(n, e) {
   const { startRow: t, startColumn: o, endRow: s, endColumn: r } = n;
   for (let i = t; i <= s; i++)
     for (let a = o; a <= r; a++)
       e(i, a);
 }
-const Zo = (n, e, t, o) => {
+const Qo = (n, e, t, o) => {
   const { mr: s, worksheet: r } = n;
-  e.startRow < 0 || e.startColumn < 0 || Vn(e, (i, a) => {
+  e.startRow < 0 || e.startColumn < 0 || Ln(e, (i, a) => {
     var c, d;
     const u = r.getMergedCell(i, a);
     let l = t;
@@ -7872,7 +7877,7 @@ const Zo = (n, e, t, o) => {
       s.setValue(i, a, { s: { bd: l } });
     }
   });
-}, dc = (n) => {
+}, hc = (n) => {
   const e = {
     startRow: n.startRow - 1,
     startColumn: n.startColumn,
@@ -7925,8 +7930,8 @@ const Zo = (n, e, t, o) => {
     rightRange: u
   };
 };
-function hc(n, e, t) {
-  const { style: o, color: s, type: r } = n.getBorderInfo(), i = r === de.TOP || r === de.ALL || r === de.OUTSIDE, a = r === de.LEFT || r === de.ALL || r === de.OUTSIDE, u = r === de.BOTTOM || r === de.ALL || r === de.OUTSIDE, l = r === de.RIGHT || r === de.ALL || r === de.OUTSIDE, c = r === de.VERTICAL || r === de.ALL || r === de.INSIDE, d = r === de.HORIZONTAL || r === de.ALL || r === de.INSIDE, h = r.indexOf("tlbr") > -1, g = r.indexOf("tlbc") > -1, m = r.indexOf("tlmr") > -1, f = r.indexOf("bltr") > -1, C = r.indexOf("mltr") > -1, p = r.indexOf("bctr") > -1, w = t[0], {
+function gc(n, e, t) {
+  const { style: o, color: s, type: r } = n.getBorderInfo(), i = r === ce.TOP || r === ce.ALL || r === ce.OUTSIDE, a = r === ce.LEFT || r === ce.ALL || r === ce.OUTSIDE, u = r === ce.BOTTOM || r === ce.ALL || r === ce.OUTSIDE, l = r === ce.RIGHT || r === ce.ALL || r === ce.OUTSIDE, c = r === ce.VERTICAL || r === ce.ALL || r === ce.INSIDE, d = r === ce.HORIZONTAL || r === ce.ALL || r === ce.INSIDE, h = r.indexOf("tlbr") > -1, g = r.indexOf("tlbc") > -1, m = r.indexOf("tlmr") > -1, f = r.indexOf("bltr") > -1, C = r.indexOf("mltr") > -1, p = r.indexOf("bctr") > -1, w = t[0], {
     topRangeOut: I,
     leftRangeOut: S,
     bottomRangeOut: y,
@@ -7935,11 +7940,11 @@ function hc(n, e, t) {
     leftRange: k,
     bottomRange: T,
     rightRange: U
-  } = dc(w), D = new Y(), { worksheet: H, unitId: F, subUnitId: K } = e;
+  } = hc(w), D = new q(), { worksheet: F, unitId: Z, subUnitId: X } = e;
   return {
-    worksheet: H,
-    unitId: F,
-    subUnitId: K,
+    worksheet: F,
+    unitId: Z,
+    subUnitId: X,
     style: o,
     color: s,
     type: r,
@@ -7973,9 +7978,9 @@ function hc(n, e, t) {
     }
   };
 }
-const gc = (n) => {
+const mc = (n) => {
   const { range: e, mr: t, borderStyle: o, vertical: s, horizontal: r, worksheet: i } = n;
-  s && Vn(e, (a, u) => {
+  s && Ln(e, (a, u) => {
     var c, d, h;
     const l = i.getMergedCell(a, u);
     if (l) {
@@ -8003,7 +8008,7 @@ const gc = (n) => {
         });
       }
     }
-  }), r && Vn(e, (a, u) => {
+  }), r && Ln(e, (a, u) => {
     var c, d, h;
     const l = i.getMergedCell(a, u);
     if (l) {
@@ -8033,111 +8038,111 @@ const gc = (n) => {
     }
   });
 };
-function mc(n) {
+function fc(n) {
   const { borderStyle: e, tl_br: t, tl_bc: o, tl_mr: s, bl_tr: r, ml_tr: i, bc_tr: a } = n, u = (l, c, d) => {
-    Zo(n, l, c, d);
+    Qo(n, l, c, d);
   };
   t && u(n.range, { tl_br: A.deepClone(e) }, !0), o && u(n.range, { tl_bc: A.deepClone(e) }, !0), s && u(n.range, { tl_mr: A.deepClone(e) }, !0), r && u(n.range, { bl_tr: A.deepClone(e) }, !0), i && u(n.range, { ml_tr: A.deepClone(e) }, !0), a && u(n.range, { bc_tr: A.deepClone(e) }, !0);
 }
-const fc = (n) => {
+const Rc = (n) => {
   const { top: e, left: t, right: o, bottom: s, borderStyle: r, bottomRange: i, topRange: a, leftRange: u, rightRange: l, bottomRangeOut: c, topRangeOut: d, leftRangeOut: h, rightRangeOut: g } = n, m = (f, C, p) => {
-    Zo(n, f, C, p);
+    Qo(n, f, C, p);
   };
   e && (m(d, { b: null }), m(a, { t: A.deepClone(r) }, !0)), s && (m(c, { t: null }), m(i, { b: A.deepClone(r) }, !0)), t && (m(h, { r: null }), m(u, { l: A.deepClone(r) }, !0)), o && (m(g, { l: null }), m(l, { r: A.deepClone(r) }, !0));
-}, Rc = (n) => {
+}, Cc = (n) => {
   const { range: e, worksheet: t, mr: o, top: s, bottom: r, left: i, right: a, vertical: u, horizontal: l, tl_br: c, tl_bc: d, tl_mr: h, bl_tr: g, ml_tr: m, bc_tr: f, topRange: C, bottomRange: p, leftRange: w, rightRange: I, topRangeOut: S, bottomRangeOut: y, leftRangeOut: b, rightRangeOut: O } = n, k = (T, U, D) => {
-    Zo(n, T, U, D);
+    Qo(n, T, U, D);
   };
-  !s && !r && !i && !a && !u && !l && !c && !d && !h && !g && !m && !f && (Vn(e, (T, U) => {
-    var H, F, K, J, ae, se, le, Se;
+  !s && !r && !i && !a && !u && !l && !c && !d && !h && !g && !m && !f && (Ln(e, (T, U) => {
+    var F, Z, X, H, ne, re, me, Be;
     const D = t.getMergedCell(T, U);
     if (D) {
       if (D.endColumn !== e.endColumn) {
-        const Z = (H = o.getValue(D.startRow, D.startColumn)) == null ? void 0 : H.s;
+        const K = (F = o.getValue(D.startRow, D.startColumn)) == null ? void 0 : F.s;
         o.setValue(T, U, {
           s: {
-            bd: Z != null && Z.bd ? Object.assign(Z.bd, { r: null }) : { r: null }
+            bd: K != null && K.bd ? Object.assign(K.bd, { r: null }) : { r: null }
           }
         });
       }
       if (D.startColumn !== e.startColumn) {
-        const Z = (F = o.getValue(D.startRow, D.startColumn)) == null ? void 0 : F.s;
+        const K = (Z = o.getValue(D.startRow, D.startColumn)) == null ? void 0 : Z.s;
         o.setValue(T, U, {
           s: {
-            bd: Z != null && Z.bd ? Object.assign(Z.bd, { l: null }) : { l: null }
+            bd: K != null && K.bd ? Object.assign(K.bd, { l: null }) : { l: null }
           }
         });
       }
       if (D.endRow !== e.endRow) {
-        const Z = (K = o.getValue(D.startRow, D.startColumn)) == null ? void 0 : K.s;
+        const K = (X = o.getValue(D.startRow, D.startColumn)) == null ? void 0 : X.s;
         o.setValue(T, U, {
           s: {
-            bd: Z != null && Z.bd ? Object.assign(Z.bd, { b: null }) : { b: null }
+            bd: K != null && K.bd ? Object.assign(K.bd, { b: null }) : { b: null }
           }
         });
       }
       if (D.startRow !== e.startRow) {
-        const Z = (J = o.getValue(D.startRow, D.startColumn)) == null ? void 0 : J.s;
+        const K = (H = o.getValue(D.startRow, D.startColumn)) == null ? void 0 : H.s;
         o.setValue(T, U, {
           s: {
-            bd: Z != null && Z.bd ? Object.assign(Z.bd, { t: null }) : { t: null }
+            bd: K != null && K.bd ? Object.assign(K.bd, { t: null }) : { t: null }
           }
         });
       }
     } else {
       if (U !== e.endColumn) {
-        const Z = (ae = o.getValue(T, U)) == null ? void 0 : ae.s;
+        const K = (ne = o.getValue(T, U)) == null ? void 0 : ne.s;
         o.setValue(T, U, {
           s: {
-            bd: Z != null && Z.bd ? Object.assign(Z.bd, { r: null }) : { r: null }
+            bd: K != null && K.bd ? Object.assign(K.bd, { r: null }) : { r: null }
           }
         });
       }
       if (U !== e.startColumn) {
-        const Z = (se = o.getValue(T, U)) == null ? void 0 : se.s;
+        const K = (re = o.getValue(T, U)) == null ? void 0 : re.s;
         o.setValue(T, U, {
           s: {
-            bd: Z != null && Z.bd ? Object.assign(Z.bd, { l: null }) : { l: null }
+            bd: K != null && K.bd ? Object.assign(K.bd, { l: null }) : { l: null }
           }
         });
       }
       if (T !== e.endRow) {
-        const Z = (le = o.getValue(T, U)) == null ? void 0 : le.s;
+        const K = (me = o.getValue(T, U)) == null ? void 0 : me.s;
         o.setValue(T, U, {
           s: {
-            bd: Z != null && Z.bd ? Object.assign(Z.bd, { b: null }) : { b: null }
+            bd: K != null && K.bd ? Object.assign(K.bd, { b: null }) : { b: null }
           }
         });
       }
       if (T !== e.startRow) {
-        const Z = (Se = o.getValue(T, U)) == null ? void 0 : Se.s;
+        const K = (Be = o.getValue(T, U)) == null ? void 0 : Be.s;
         o.setValue(T, U, {
           s: {
-            bd: Z != null && Z.bd ? Object.assign(Z.bd, { t: null }) : { t: null }
+            bd: K != null && K.bd ? Object.assign(K.bd, { t: null }) : { t: null }
           }
         });
       }
     }
   }), k(S, { b: null }), k(C, { t: null }, !0), k(y, { t: null }), k(p, { b: null }, !0), k(b, { r: null }), k(w, { l: null }, !0), k(O, { l: null }), k(I, { r: null }, !0), k(e, { tl_br: null }, !0), k(e, { tl_bc: null }, !0), k(e, { tl_mr: null }, !0), k(e, { bl_tr: null }, !0), k(e, { ml_tr: null }, !0), k(e, { bc_tr: null }, !0));
-}, wn = {
+}, In = {
   id: "sheet.command.set-border",
   type: v.COMMAND,
   handler: (n, e) => {
     var p;
-    const t = n.get(E), o = n.get(V), s = n.get(M), r = n.get(z), i = n.get(Ht), a = P(s, e);
+    const t = n.get(E), o = n.get(V), s = n.get(M), r = n.get(z), i = n.get(Ft), a = P(s, e);
     if (!a) return !1;
     const u = (e == null ? void 0 : e.ranges) || ((p = r.getCurrentSelections()) == null ? void 0 : p.map((w) => w.range));
     if (!(u != null && u.length))
       return !1;
     const { activeBorderType: l } = i.getBorderInfo();
     if (!l) return !1;
-    const c = hc(i, a, u);
-    gc(c), fc(c), mc(c), Rc(c);
+    const c = gc(i, a, u);
+    mc(c), Rc(c), fc(c), Cc(c);
     const { unitId: d, subUnitId: h, mr: g } = c, m = {
       unitId: d,
       subUnitId: h,
       cellValue: g.getData()
-    }, f = Ae(
+    }, f = De(
       n,
       m
     );
@@ -8147,40 +8152,40 @@ const fc = (n) => {
       redoMutations: [{ id: ee.id, params: m }]
     }), !0) : !1;
   }
-}, Cc = {
+}, pc = {
   id: "sheet.command.set-border-position",
   type: v.COMMAND,
   handler: (n, e) => {
     if (!e.value) return !1;
     const t = n.get(E);
-    return n.get(Ht).setType(e.value), t.syncExecuteCommand(wn.id);
+    return n.get(Ft).setType(e.value), t.syncExecuteCommand(In.id);
   }
-}, pc = {
+}, Sc = {
   id: "sheet.command.set-border-style",
   type: v.COMMAND,
   handler: (n, e) => {
     const t = n.get(E);
-    return n.get(Ht).setStyle(e.value), t.syncExecuteCommand(wn.id);
+    return n.get(Ft).setStyle(e.value), t.syncExecuteCommand(In.id);
   }
-}, Sc = {
+}, wc = {
   id: "sheet.command.set-border-color",
   type: v.COMMAND,
   handler: (n, e) => {
     const t = n.get(E);
-    return n.get(Ht).setColor(e.value), t.syncExecuteCommand(wn.id);
+    return n.get(Ft).setColor(e.value), t.syncExecuteCommand(In.id);
   }
-}, wc = {
+}, Ic = {
   id: "sheet.command.set-border-basic",
   type: v.COMMAND,
   handler: (n, e) => {
-    const { unitId: t, subUnitId: o, value: s, ranges: r } = e, { type: i, color: a, style: u } = s, l = n.get(E), c = n.get(Ht);
-    return c.setType(i), a && c.setColor(a), c.setStyle(u), l.syncExecuteCommand(wn.id, {
+    const { unitId: t, subUnitId: o, value: s, ranges: r } = e, { type: i, color: a, style: u } = s, l = n.get(E), c = n.get(Ft);
+    return c.setType(i), a && c.setColor(a), c.setStyle(u), l.syncExecuteCommand(In.id, {
       unitId: t,
       subUnitId: o,
       ranges: r
     });
   }
-}, Ic = {
+}, vc = {
   type: v.COMMAND,
   id: "sheet.command.set-col-data",
   handler: (n, e) => {
@@ -8190,14 +8195,14 @@ const fc = (n) => {
       subUnitId: u,
       unitId: a,
       columnData: i
-    }, d = Fa(c, l);
-    return t.syncExecuteCommand(zt.id, c) ? (o.pushUndoRedo({
+    }, d = Ba(c, l);
+    return t.syncExecuteCommand(Gt.id, c) ? (o.pushUndoRedo({
       unitID: a,
-      undoMutations: [{ id: zt.id, params: d }],
-      redoMutations: [{ id: zt.id, params: c }]
+      undoMutations: [{ id: Gt.id, params: d }],
+      redoMutations: [{ id: Gt.id, params: c }]
     }), !0) : !1;
   }
-}, dn = {
+}, hn = {
   type: v.COMMAND,
   id: "sheet.command.set-col-visible-on-cols",
   handler: (n, e) => {
@@ -8212,39 +8217,39 @@ const fc = (n) => {
       unitId: t,
       subUnitId: o,
       reveal: !0,
-      selections: s.map((I) => ({ range: I, primary: _e(I, l), style: null }))
-    }, h = ja(n, c), g = {
+      selections: s.map((I) => ({ range: I, primary: Me(I, l), style: null }))
+    }, h = za(n, c), g = {
       unitId: t,
       subUnitId: o,
-      selections: Yr(s).map((I) => ({
+      selections: Xr(s).map((I) => ({
         range: I,
-        primary: _e(I, l),
+        primary: Me(I, l),
         style: null
       }))
     }, m = L([
-      { id: sn.id, params: c },
-      { id: ie.id, params: d }
+      { id: rn.id, params: c },
+      { id: ae.id, params: d }
     ], i), f = r.onCommandExecute({
-      id: dn.id,
+      id: hn.id,
       params: e
     }), C = L([...f.redos], i);
     if (m.result && C.result) {
       const I = r.afterCommandExecute({
-        id: dn.id,
+        id: hn.id,
         params: e
       });
       return L(I.redos, i), n.get(V).pushUndoRedo({
         unitID: t,
         undoMutations: [
-          { id: on.id, params: h },
-          { id: ie.id, params: g },
+          { id: sn.id, params: h },
+          { id: ae.id, params: g },
           ...(p = f.undos) != null ? p : [],
           ...I.undos
         ],
         redoMutations: [
           ...(w = f.preRedos) != null ? w : [],
-          { id: sn.id, params: c },
-          { id: ie.id, params: d },
+          { id: rn.id, params: c },
+          { id: ae.id, params: d },
           ...f.redos,
           ...I.redos
         ]
@@ -8252,7 +8257,7 @@ const fc = (n) => {
     }
     return !0;
   }
-}, qr = {
+}, Yr = {
   type: v.COMMAND,
   id: "sheet.command.set-selected-cols-visible",
   handler: (n) => {
@@ -8262,13 +8267,13 @@ const fc = (n) => {
     const s = P(n.get(M));
     if (!s) return !1;
     const { worksheet: r, unitId: i, subUnitId: a } = s, u = o.map((c) => r.getHiddenCols(c.startColumn, c.endColumn)).flat();
-    return t.executeCommand(dn.id, {
+    return t.executeCommand(hn.id, {
       unitId: i,
       subUnitId: a,
       ranges: u
     });
   }
-}, Eo = {
+}, Uo = {
   type: v.COMMAND,
   id: "sheet.command.set-col-hidden",
   handler: (n, e) => {
@@ -8279,48 +8284,48 @@ const fc = (n) => {
     const a = P(s, e);
     if (!a) return !1;
     const { worksheet: u, unitId: l, subUnitId: c } = a;
-    i = vc(a.worksheet, i);
+    i = Mc(a.worksheet, i);
     const d = { unitId: l, subUnitId: c, ranges: i }, h = {
       unitId: l,
       subUnitId: c,
-      selections: Yr(i).map((b) => ({
+      selections: Xr(i).map((b) => ({
         range: b,
-        primary: _e(b, u),
+        primary: Me(b, u),
         style: null
       }))
-    }, g = Ba(n, d), m = {
+    }, g = ja(n, d), m = {
       unitId: l,
       subUnitId: c,
       reveal: !0,
       selections: i.map((b) => ({
         range: b,
-        primary: _e(b, u),
+        primary: Me(b, u),
         style: null
       }))
     }, f = L([
-      { id: on.id, params: d },
-      { id: ie.id, params: h }
+      { id: sn.id, params: d },
+      { id: ae.id, params: h }
     ], r), C = o.onCommandExecute({
-      id: Eo.id,
+      id: Uo.id,
       params: d
     }), p = L([...C.redos], r);
     if (f.result && p.result) {
       const b = o.afterCommandExecute({
-        id: Eo.id,
+        id: Uo.id,
         params: d
       });
       return L(b.redos, r), n.get(V).pushUndoRedo({
         unitID: l,
         undoMutations: [
-          { id: sn.id, params: g },
-          { id: ie.id, params: m },
+          { id: rn.id, params: g },
+          { id: ae.id, params: m },
           ...(S = C.undos) != null ? S : [],
           ...b.undos
         ],
         redoMutations: [
           ...(y = C.preRedos) != null ? y : [],
-          { id: on.id, params: d },
-          { id: ie.id, params: h },
+          { id: sn.id, params: d },
+          { id: ae.id, params: h },
           ...C.redos,
           ...b.redos
         ]
@@ -8329,7 +8334,7 @@ const fc = (n) => {
     return !1;
   }
 };
-function vc(n, e) {
+function Mc(n, e) {
   const t = n.getRowCount() - 1, o = n.getHiddenCols(), s = [];
   return e.forEach((r) => {
     const i = o.filter((a) => a.startColumn >= r.startColumn && a.endColumn <= r.endColumn);
@@ -8342,8 +8347,8 @@ function vc(n, e) {
       s.push(r);
   }), s;
 }
-function Yr(n) {
-  return Mc(n).map((t) => {
+function Xr(n) {
+  return _c(n).map((t) => {
     const o = t.startColumn === 0 ? t.endColumn + 1 : t.startColumn - 1;
     return {
       ...t,
@@ -8352,7 +8357,7 @@ function Yr(n) {
     };
   });
 }
-function Mc(n) {
+function _c(n) {
   const e = [];
   let t;
   return n.sort((o, s) => o.startColumn - s.startColumn).forEach((o) => {
@@ -8363,7 +8368,7 @@ function Mc(n) {
     t.endColumn === o.startColumn - 1 ? t.endColumn = o.endColumn : (e.push(t), t = o);
   }), e.push(t), e;
 }
-const Xr = {
+const Zr = {
   id: "sheet.command.set-defined-name",
   type: v.COMMAND,
   handler: (n, e) => {
@@ -8372,15 +8377,15 @@ const Xr = {
     if (!e) return !1;
     const r = {
       ...e
-    }, i = Yi(n, e), a = s.onCommandExecute({ id: Xr.id, params: e }), u = [
+    }, i = Xi(n, e), a = s.onCommandExecute({ id: Zr.id, params: e }), u = [
       ...(d = a.preRedos) != null ? d : [],
-      { id: Pn.id, params: i },
-      { id: en.id, params: r },
+      { id: Nn.id, params: i },
+      { id: tn.id, params: r },
       ...a.redos
     ], l = [
       ...(h = a.preUndos) != null ? h : [],
-      { id: Pn.id, params: r },
-      { id: en.id, params: i },
+      { id: Nn.id, params: r },
+      { id: tn.id, params: i },
       ...a.undos
     ];
     return L(u, t) ? (o.pushUndoRedo({
@@ -8389,7 +8394,7 @@ const Xr = {
       redoMutations: u.filter(Boolean)
     }), !0) : !1;
   }
-}, Zr = (n, e) => {
+}, Qr = (n, e) => {
   const o = n.get(M).getUniverSheetInstance(e.unitId);
   if (o == null)
     throw new Error("universheet is null error!");
@@ -8414,7 +8419,7 @@ const Xr = {
     const r = s.getConfig(), { startRow: i, startColumn: a, ySplit: u, xSplit: l } = e;
     return r.freeze = { startRow: i, startColumn: a, ySplit: u, xSplit: l }, !0;
   }
-}, _c = {
+}, yc = {
   type: v.COMMAND,
   id: "sheet.command.set-frozen",
   handler: (n, e) => {
@@ -8427,14 +8432,14 @@ const Xr = {
       unitId: i,
       subUnitId: a,
       ...e
-    }, m = Zr(n, g);
+    }, m = Qr(n, g);
     return t.syncExecuteCommand(ot.id, g) ? (o.pushUndoRedo({
       unitID: i,
       undoMutations: [{ id: ot.id, params: m }],
       redoMutations: [{ id: ot.id, params: g }]
     }), !0) : !1;
   }
-}, yc = {
+}, bc = {
   type: v.COMMAND,
   id: "sheet.command.cancel-frozen",
   handler: (n, e) => {
@@ -8447,14 +8452,14 @@ const Xr = {
       startColumn: -1,
       xSplit: 0,
       ySplit: 0
-    }, l = Zr(n, u);
+    }, l = Qr(n, u);
     return t.syncExecuteCommand(ot.id, u) && s.pushUndoRedo({
       unitID: i,
       undoMutations: [{ id: ot.id, params: l }],
       redoMutations: [{ id: ot.id, params: u }]
     }), !0;
   }
-}, bc = {
+}, Ec = {
   type: v.COMMAND,
   id: "sheet.command.set-gridlines-color",
   handler: (n, e) => {
@@ -8471,10 +8476,10 @@ const Xr = {
       unitId: u,
       subUnitId: l
     };
-    return t.syncExecuteCommand(Gt.id, c) ? (o.pushUndoRedo({
+    return t.syncExecuteCommand(Kt.id, c) ? (o.pushUndoRedo({
       unitID: u,
-      undoMutations: [{ id: Gt.id, params: d }],
-      redoMutations: [{ id: Gt.id, params: c }]
+      undoMutations: [{ id: Kt.id, params: d }],
+      redoMutations: [{ id: Kt.id, params: c }]
     }), !0) : !1;
   }
 }, fe = {
@@ -8482,10 +8487,10 @@ const Xr = {
   type: v.MUTATION,
   handler: (n, e) => {
     const { unitId: t, subUnitId: o, rule: s, ruleId: r } = e;
-    return n.get(me).setRule(t, o, r, s), !0;
+    return n.get(ge).setRule(t, o, r, s), !0;
   }
-}, Fh = (n, e) => {
-  const { unitId: t, subUnitId: o, ruleId: s } = e, i = n.get(me).getRule(t, o, s);
+}, Bh = (n, e) => {
+  const { unitId: t, subUnitId: o, ruleId: s } = e, i = n.get(ge).getRule(t, o, s);
   return i ? {
     id: fe.id,
     params: {
@@ -8493,27 +8498,27 @@ const Xr = {
       rule: i
     }
   } : null;
-}, bt = {
+}, Et = {
   id: "sheet.mutation.set-worksheet-protection",
   type: v.MUTATION,
   handler: (n, e) => {
     const { unitId: t, subUnitId: o, rule: s } = e;
     return n.get(lt).setRule(t, o, s), !0;
   }
-}, Ec = {
+}, Uc = {
   type: v.COMMAND,
   id: "sheet.command.set-protection",
   async handler(n, e) {
     if (!e)
       return !1;
-    const t = n.get(E), o = n.get(V), s = n.get(me), { rule: r, oldRule: i } = e, { unitId: a, subUnitId: u } = r, l = [], c = [];
-    return (i == null ? void 0 : i.unitType) === r.unitType ? r.unitType === x.Worksheet ? (l.push({ id: bt.id, params: { unitId: a, subUnitId: u, rule: r } }), c.push({ id: bt.id, params: { unitId: a, subUnitId: u, rule: i } })) : (l.push({ id: fe.id, params: { unitId: a, subUnitId: u, rule: r, ruleId: r.id } }), c.push({ id: fe.id, params: { unitId: a, subUnitId: u, ruleId: i.id, rule: i } })) : (i && (i.unitType === x.Worksheet ? (l.push({ id: xt.id, params: { unitId: a, subUnitId: u } }), c.push({ id: Mt.id, params: { unitId: a, rule: i, subUnitId: i.subUnitId } })) : i.unitType === x.SelectRange && (l.push({ id: st.id, params: { unitId: a, subUnitId: u, ruleIds: [i.id] } }), c.push({ id: Be.id, params: { unitId: a, subUnitId: u, rules: [i] } }))), r.unitType === x.Worksheet ? (l.push({ id: Mt.id, params: { unitId: a, rule: r, subUnitId: r.subUnitId } }), c.unshift({ id: xt.id, params: { unitId: a, subUnitId: u } })) : r.unitType === x.SelectRange && (r.id = s.createRuleId(a, u), l.push({ id: Be.id, params: { unitId: a, subUnitId: u, rules: [r] } }), c.unshift({ id: st.id, params: { unitId: a, subUnitId: u, ruleIds: [r.id] } }))), L(l, t) && o.pushUndoRedo({
+    const t = n.get(E), o = n.get(V), s = n.get(ge), { rule: r, oldRule: i } = e, { unitId: a, subUnitId: u } = r, l = [], c = [];
+    return (i == null ? void 0 : i.unitType) === r.unitType ? r.unitType === x.Worksheet ? (l.push({ id: Et.id, params: { unitId: a, subUnitId: u, rule: r } }), c.push({ id: Et.id, params: { unitId: a, subUnitId: u, rule: i } })) : (l.push({ id: fe.id, params: { unitId: a, subUnitId: u, rule: r, ruleId: r.id } }), c.push({ id: fe.id, params: { unitId: a, subUnitId: u, ruleId: i.id, rule: i } })) : (i && (i.unitType === x.Worksheet ? (l.push({ id: $t.id, params: { unitId: a, subUnitId: u } }), c.push({ id: _t.id, params: { unitId: a, rule: i, subUnitId: i.subUnitId } })) : i.unitType === x.SelectRange && (l.push({ id: st.id, params: { unitId: a, subUnitId: u, ruleIds: [i.id] } }), c.push({ id: Fe.id, params: { unitId: a, subUnitId: u, rules: [i] } }))), r.unitType === x.Worksheet ? (l.push({ id: _t.id, params: { unitId: a, rule: r, subUnitId: r.subUnitId } }), c.unshift({ id: $t.id, params: { unitId: a, subUnitId: u } })) : r.unitType === x.SelectRange && (r.id = s.createRuleId(a, u), l.push({ id: Fe.id, params: { unitId: a, subUnitId: u, rules: [r] } }), c.unshift({ id: st.id, params: { unitId: a, subUnitId: u, ruleIds: [r.id] } }))), L(l, t) && o.pushUndoRedo({
       unitID: a,
       undoMutations: c,
       redoMutations: l
     }), !0;
   }
-}, Uc = {
+}, kc = {
   type: v.COMMAND,
   id: "sheet.command.set-row-data",
   handler: (n, e) => {
@@ -8523,14 +8528,14 @@ const Xr = {
       subUnitId: u,
       unitId: a,
       rowData: i
-    }, d = eu(c, l);
-    return t.syncExecuteCommand(Kt.id, c) ? (o.pushUndoRedo({
+    }, d = tu(c, l);
+    return t.syncExecuteCommand(Jt.id, c) ? (o.pushUndoRedo({
       unitID: a,
-      undoMutations: [{ id: Kt.id, params: d }],
-      redoMutations: [{ id: Kt.id, params: c }]
+      undoMutations: [{ id: Jt.id, params: d }],
+      redoMutations: [{ id: Jt.id, params: c }]
     }), !0) : !1;
   }
-}, hn = {
+}, gn = {
   type: v.COMMAND,
   id: "sheet.command.set-specific-rows-visible",
   handler: (n, e) => {
@@ -8543,45 +8548,45 @@ const Xr = {
       reveal: !0,
       selections: s.map((S) => ({
         range: S,
-        primary: _e(S, l),
+        primary: Me(S, l),
         style: null
       }))
-    }, h = tu(n, c), g = {
+    }, h = nu(n, c), g = {
       unitId: t,
       subUnitId: o,
-      selections: ei(s).map((S) => ({
+      selections: ti(s).map((S) => ({
         range: S,
-        primary: _e(S, l),
+        primary: Me(S, l),
         style: null
       }))
     }, m = L(
       [
-        { id: kt.id, params: c },
-        { id: ie.id, params: d }
+        { id: Tt.id, params: c },
+        { id: ae.id, params: d }
       ],
       r
     ), f = a.onCommandExecute({
-      id: hn.id,
+      id: gn.id,
       params: e
     }), C = L([...f.redos], r);
     if (m.result && C.result) {
       const S = a.afterCommandExecute({
-        id: hn.id,
+        id: gn.id,
         params: e
       });
       return L(S.redos, r), i.pushUndoRedo({
         unitID: t,
         undoMutations: [
           ...(p = f.preUndos) != null ? p : [],
-          { id: Tt.id, params: h },
-          { id: ie.id, params: g },
+          { id: Pt.id, params: h },
+          { id: ae.id, params: g },
           ...(w = f.undos) != null ? w : [],
           ...S.undos
         ],
         redoMutations: [
           ...(I = f.preRedos) != null ? I : [],
-          { id: kt.id, params: c },
-          { id: ie.id, params: d },
+          { id: Tt.id, params: c },
+          { id: ae.id, params: d },
           ...f.redos,
           ...S.redos
         ]
@@ -8589,7 +8594,7 @@ const Xr = {
     }
     return !0;
   }
-}, Qr = {
+}, ei = {
   type: v.COMMAND,
   id: "sheet.command.set-selected-rows-visible",
   handler: async (n) => {
@@ -8599,13 +8604,13 @@ const Xr = {
     const r = P(t);
     if (!r) return !1;
     const { worksheet: i, unitId: a, subUnitId: u } = r, l = s.map((d) => i.getHiddenRows(d.startRow, d.endRow)).flat();
-    return o.executeCommand(hn.id, {
+    return o.executeCommand(gn.id, {
       unitId: a,
       subUnitId: u,
       ranges: l
     });
   }
-}, Uo = {
+}, ko = {
   type: v.COMMAND,
   id: "sheet.command.set-rows-hidden",
   handler: (n, e) => {
@@ -8615,48 +8620,48 @@ const Xr = {
     if (!(a != null && a.length)) return !1;
     const u = P(r, e);
     if (!u) return !1;
-    a = kc(u.worksheet, a);
+    a = Tc(u.worksheet, a);
     const { unitId: l, subUnitId: c, worksheet: d } = u, h = { unitId: l, subUnitId: c, ranges: a }, g = {
       unitId: l,
       subUnitId: c,
-      selections: ei(a).map((k) => ({
+      selections: ti(a).map((k) => ({
         range: k,
-        primary: _e(k, d),
+        primary: Me(k, d),
         style: null
       }))
-    }, m = nu(n, h), f = {
+    }, m = ou(n, h), f = {
       unitId: l,
       subUnitId: c,
       reveal: !0,
       selections: a.map((k) => ({
         range: k,
-        primary: _e(k, d),
+        primary: Me(k, d),
         style: null
       }))
-    }, C = i.onCommandExecute({ id: Uo.id, params: h });
+    }, C = i.onCommandExecute({ id: ko.id, params: h });
     if (L([
       ...(S = C.preRedos) != null ? S : [],
-      { id: Tt.id, params: h },
-      { id: ie.id, params: g },
+      { id: Pt.id, params: h },
+      { id: ae.id, params: g },
       ...C.redos
     ], o).result) {
       const k = i.afterCommandExecute({
-        id: Uo.id,
+        id: ko.id,
         params: h
       });
       return L(k.redos, o), s.pushUndoRedo({
         unitID: l,
         undoMutations: [
           ...(y = C.preUndos) != null ? y : [],
-          { id: kt.id, params: m },
-          { id: ie.id, params: f },
+          { id: Tt.id, params: m },
+          { id: ae.id, params: f },
           ...(b = C.undos) != null ? b : [],
           ...k.undos
         ],
         redoMutations: [
           ...(O = C.preRedos) != null ? O : [],
-          { id: Tt.id, params: h },
-          { id: ie.id, params: g },
+          { id: Pt.id, params: h },
+          { id: ae.id, params: g },
           ...C.redos,
           ...k.redos
         ]
@@ -8665,7 +8670,7 @@ const Xr = {
     return !0;
   }
 };
-function kc(n, e) {
+function Tc(n, e) {
   const t = n.getMaxColumns() - 1, o = n.getHiddenRows(), s = [];
   return e.forEach((r) => {
     const i = o.filter((a) => a.startRow >= r.startRow && a.endRow <= r.endRow);
@@ -8678,8 +8683,8 @@ function kc(n, e) {
       s.push(r);
   }), s;
 }
-function ei(n) {
-  return Tc(n).map((t) => {
+function ti(n) {
+  return Pc(n).map((t) => {
     const o = t.startRow === 0 ? t.endRow + 1 : t.startRow - 1;
     return {
       ...t,
@@ -8688,7 +8693,7 @@ function ei(n) {
     };
   });
 }
-function Tc(n) {
+function Pc(n) {
   const e = [];
   let t;
   return n.sort((o, s) => o.startRow - s.startRow).forEach((o) => {
@@ -8699,7 +8704,7 @@ function Tc(n) {
     o.startRow === t.endRow + 1 ? t.endRow = o.endRow : (e.push(t), t = o);
   }), e.push(t), e;
 }
-const Pc = ["ff", "fs", "tr", "tb"], Ce = {
+const Nc = ["ff", "fs", "tr", "tb"], Ce = {
   type: v.COMMAND,
   id: "sheet.command.set-style",
   // eslint-disable-next-line max-lines-per-function
@@ -8710,13 +8715,13 @@ const Pc = ["ff", "fs", "tr", "tb"], Ce = {
     const { unitId: s, subUnitId: r, worksheet: i } = o, { range: a, style: u } = e, l = n.get(E), c = n.get(V), d = n.get(z), h = a ? [a] : (T = d.getCurrentSelections()) == null ? void 0 : T.map((U) => U.range);
     if (!(h != null && h.length))
       return !1;
-    const g = new Y(), m = Wu(i);
+    const g = new q(), m = Vu(i);
     if (A.isArray(u.value))
       for (let U = 0; U < h.length; U++)
-        m.forOperableEach(h[U], (D, H, F) => {
-          g.setValue(D, H, {
+        m.forOperableEach(h[U], (D, F, Z) => {
+          g.setValue(D, F, {
             s: {
-              [u.type]: u.value[D - F.startRow][H - F.startColumn]
+              [u.type]: u.value[D - Z.startRow][F - Z.startColumn]
             }
           });
         });
@@ -8727,13 +8732,13 @@ const Pc = ["ff", "fs", "tr", "tb"], Ce = {
             [u.type]: u.value
           }
         };
-        m.forOperableEach(h[U], (H, F) => g.setValue(H, F, D));
+        m.forOperableEach(h[U], (F, Z) => g.setValue(F, Z, D));
       }
     const f = {
       subUnitId: r,
       unitId: s,
       cellValue: g.getMatrix()
-    }, C = n.get(rt).getSkeleton(s, r), p = Ae(
+    }, C = n.get(rt).getSkeleton(s, r), p = De(
       n,
       f
     ), w = l.syncExecuteCommand(
@@ -8741,16 +8746,16 @@ const Pc = ["ff", "fs", "tr", "tb"], Ce = {
       f
     ), I = n.get(G);
     let S = [], y = [];
-    if (Pc.includes(e == null ? void 0 : e.style.type)) {
-      const { suitableRanges: U, remainingRanges: D } = Sn(h, C), H = Jo(U, i), { undos: F, redos: K } = I.generateMutationsOfAutoHeight({
+    if (Nc.includes(e == null ? void 0 : e.style.type)) {
+      const { suitableRanges: U, remainingRanges: D } = wn(h, C), F = qo(U, i), { undos: Z, redos: X } = I.generateMutationsOfAutoHeight({
         unitId: s,
         subUnitId: r,
         ranges: U,
         autoHeightRanges: U,
         lazyAutoHeightRanges: D,
-        cellHeights: H
+        cellHeights: F
       });
-      S = F, y = K;
+      S = Z, y = X;
     }
     const { undos: b, redos: O } = I.onCommandExecute({
       id: Ce.id,
@@ -8762,7 +8767,7 @@ const Pc = ["ff", "fs", "tr", "tb"], Ce = {
       redoMutations: [{ id: ee.id, params: f }, ...O, ...y]
     }), !0) : !1;
   }
-}, Bh = {
+}, jh = {
   type: v.COMMAND,
   id: "sheet.command.set-bold",
   handler: (n) => {
@@ -8773,12 +8778,12 @@ const Pc = ["ff", "fs", "tr", "tb"], Ce = {
     const { worksheet: o } = t, { actualRow: s, actualColumn: r } = e.primary, a = {
       style: {
         type: "bl",
-        value: o.getRange(s, r).getFontWeight() === ki.BOLD ? te.FALSE : te.TRUE
+        value: o.getRange(s, r).getFontWeight() === Ti.BOLD ? te.FALSE : te.TRUE
       }
     };
     return n.get(E).syncExecuteCommand(Ce.id, a);
   }
-}, jh = {
+}, zh = {
   type: v.COMMAND,
   id: "sheet.command.set-italic",
   handler: (n) => {
@@ -8790,7 +8795,7 @@ const Pc = ["ff", "fs", "tr", "tb"], Ce = {
     let s = !0;
     if (e.primary) {
       const { startRow: i, startColumn: a } = e.primary;
-      s = o.getRange(i, a).getFontStyle() === Ti.ITALIC;
+      s = o.getRange(i, a).getFontStyle() === Pi.ITALIC;
     }
     const r = {
       style: {
@@ -8800,7 +8805,7 @@ const Pc = ["ff", "fs", "tr", "tb"], Ce = {
     };
     return n.get(E).syncExecuteCommand(Ce.id, r);
   }
-}, zh = {
+}, Gh = {
   type: v.COMMAND,
   id: "sheet.command.set-underline",
   handler: (n) => {
@@ -8821,7 +8826,7 @@ const Pc = ["ff", "fs", "tr", "tb"], Ce = {
     };
     return n.get(E).syncExecuteCommand(Ce.id, r);
   }
-}, Gh = {
+}, Kh = {
   type: v.COMMAND,
   id: "sheet.command.set-stroke",
   handler: (n) => {
@@ -8840,7 +8845,7 @@ const Pc = ["ff", "fs", "tr", "tb"], Ce = {
     };
     return n.get(E).syncExecuteCommand(Ce.id, r);
   }
-}, Kh = {
+}, Jh = {
   type: v.COMMAND,
   id: "sheet.command.set-overline",
   handler: (n) => {
@@ -8861,7 +8866,7 @@ const Pc = ["ff", "fs", "tr", "tb"], Ce = {
     };
     return n.get(E).syncExecuteCommand(Ce.id, r);
   }
-}, Jh = {
+}, qh = {
   type: v.COMMAND,
   id: "sheet.command.set-font-family",
   handler: (n, e) => {
@@ -8875,7 +8880,7 @@ const Pc = ["ff", "fs", "tr", "tb"], Ce = {
     };
     return t.syncExecuteCommand(Ce.id, o);
   }
-}, qh = {
+}, Yh = {
   type: v.COMMAND,
   id: "sheet.command.set-font-size",
   handler: (n, e) => {
@@ -8889,7 +8894,7 @@ const Pc = ["ff", "fs", "tr", "tb"], Ce = {
     };
     return t.syncExecuteCommand(Ce.id, o);
   }
-}, Nc = {
+}, Oc = {
   type: v.COMMAND,
   id: "sheet.command.set-text-color",
   handler: (n, e) => {
@@ -8905,7 +8910,7 @@ const Pc = ["ff", "fs", "tr", "tb"], Ce = {
     };
     return t.syncExecuteCommand(Ce.id, o);
   }
-}, Oc = {
+}, Dc = {
   type: v.COMMAND,
   id: "sheet.command.reset-text-color",
   handler: (n) => {
@@ -8920,7 +8925,7 @@ const Pc = ["ff", "fs", "tr", "tb"], Ce = {
     };
     return e.syncExecuteCommand(Ce.id, t);
   }
-}, Dc = {
+}, Ac = {
   type: v.COMMAND,
   id: "sheet.command.set-background-color",
   handler: (n, e) => {
@@ -8936,7 +8941,7 @@ const Pc = ["ff", "fs", "tr", "tb"], Ce = {
     };
     return t.syncExecuteCommand(Ce.id, o);
   }
-}, Ac = {
+}, xc = {
   type: v.COMMAND,
   id: "sheet.command.reset-background-color",
   handler: (n) => {
@@ -8951,7 +8956,7 @@ const Pc = ["ff", "fs", "tr", "tb"], Ce = {
     };
     return e.syncExecuteCommand(Ce.id, t);
   }
-}, xc = {
+}, $c = {
   type: v.COMMAND,
   id: "sheet.command.set-vertical-text-align",
   handler: (n, e) => {
@@ -8968,7 +8973,7 @@ const Pc = ["ff", "fs", "tr", "tb"], Ce = {
     };
     return t.syncExecuteCommand(Ce.id, o);
   }
-}, $c = {
+}, Wc = {
   type: v.COMMAND,
   id: "sheet.command.set-horizontal-text-align",
   handler: (n, e) => {
@@ -8985,7 +8990,7 @@ const Pc = ["ff", "fs", "tr", "tb"], Ce = {
     };
     return t.syncExecuteCommand(Ce.id, o);
   }
-}, Wc = {
+}, Vc = {
   type: v.COMMAND,
   id: "sheet.command.set-text-wrap",
   handler: (n, e) => {
@@ -9002,7 +9007,7 @@ const Pc = ["ff", "fs", "tr", "tb"], Ce = {
     };
     return t.syncExecuteCommand(Ce.id, o);
   }
-}, Vc = {
+}, Lc = {
   type: v.COMMAND,
   id: "sheet.command.set-text-rotation",
   handler: (n, e) => {
@@ -9019,13 +9024,13 @@ const Pc = ["ff", "fs", "tr", "tb"], Ce = {
     };
     return o.syncExecuteCommand(Ce.id, s);
   }
-}, Lc = (n, e) => {
+}, Hc = (n, e) => {
   const r = n.get(M).getUniverSheetInstance(e.unitId).getSheetBySheetId(e.subUnitId).getConfig().tabColor;
   return {
     ...A.deepClone(e),
     color: r
   };
-}, Un = {
+}, kn = {
   id: "sheet.mutation.set-tab-color",
   type: v.MUTATION,
   handler: (n, e) => {
@@ -9034,7 +9039,7 @@ const Pc = ["ff", "fs", "tr", "tb"], Ce = {
     const o = t.getSheetBySheetId(e.subUnitId);
     return o ? (o.getConfig().tabColor = e.color, !0) : !1;
   }
-}, Hc = {
+}, Fc = {
   type: v.COMMAND,
   id: "sheet.command.set-tab-color",
   handler: (n, e) => {
@@ -9044,41 +9049,41 @@ const Pc = ["ff", "fs", "tr", "tb"], Ce = {
       color: e.value,
       unitId: r,
       subUnitId: i
-    }, u = Lc(n, a);
-    return t.syncExecuteCommand(Un.id, a) ? (o.pushUndoRedo({
+    }, u = Hc(n, a);
+    return t.syncExecuteCommand(kn.id, a) ? (o.pushUndoRedo({
       unitID: r,
-      undoMutations: [{ id: Un.id, params: u }],
-      redoMutations: [{ id: Un.id, params: a }]
+      undoMutations: [{ id: kn.id, params: u }],
+      redoMutations: [{ id: kn.id, params: a }]
     }), !0) : !1;
   }
-}, ti = {
+}, ni = {
   id: "sheet.mutation.set-workbook-name",
   type: v.MUTATION,
   handler: (n, e) => {
     const t = n.get(M).getUnit(e.unitId, B.UNIVER_SHEET);
     return t ? (t.setName(e.name), !0) : !1;
   }
-}, ni = {
+}, oi = {
   type: v.COMMAND,
   id: "sheet.command.set-workbook-name",
   handler: (n, e) => {
     var u;
     const t = n.get(E), o = n.get(G);
-    if (!Ks(n.get(M), e)) return !1;
+    if (!Js(n.get(M), e)) return !1;
     const r = o.onCommandExecute({
-      id: ni.id,
+      id: oi.id,
       params: e
     }), i = {
       name: e.name,
       unitId: e.unitId
     }, a = [
       ...(u = r.preRedos) != null ? u : [],
-      { id: ti.id, params: i },
+      { id: ni.id, params: i },
       ...r.redos
     ];
     return L(a, t).result;
   }
-}, Fc = 4, oi = {
+}, Bc = 4, si = {
   type: v.COMMAND,
   id: "sheet.command.set-worksheet-activate",
   handler: (n, e, t) => {
@@ -9087,15 +9092,15 @@ const Pc = ["ff", "fs", "tr", "tb"], Ce = {
     const { unitId: r, subUnitId: i } = s;
     return new Promise((a) => {
       setTimeout(() => {
-        const u = o.syncExecuteCommand(Cn.id, {
+        const u = o.syncExecuteCommand(pn.id, {
           unitId: r,
           subUnitId: i
         }, t);
         a(u);
-      }, Fc);
+      }, Bc);
     });
   }
-}, Ln = {
+}, Hn = {
   type: v.COMMAND,
   id: "sheet.command.delta-column-width",
   // eslint-disable-next-line max-lines-per-function
@@ -9105,25 +9110,25 @@ const Pc = ["ff", "fs", "tr", "tb"], Ce = {
       return !1;
     const s = n.get(E), r = n.get(V), i = P(n.get(M));
     if (!i) return !1;
-    const { worksheet: a, unitId: u, subUnitId: l } = i, { anchorCol: c, deltaX: d } = e, g = a.getColumnWidth(c) + d, m = o.length === 1 && o[0].range.rangeType === j.ALL, f = o.filter((J) => J.range.rangeType === j.COLUMN), C = m ? j.ALL : f.some(({ range: J }) => {
-      const { startColumn: ae, endColumn: se } = J;
-      return ae <= c && c <= se;
+    const { worksheet: a, unitId: u, subUnitId: l } = i, { anchorCol: c, deltaX: d } = e, g = a.getColumnWidth(c) + d, m = o.length === 1 && o[0].range.rangeType === j.ALL, f = o.filter((H) => H.range.rangeType === j.COLUMN), C = m ? j.ALL : f.some(({ range: H }) => {
+      const { startColumn: ne, endColumn: re } = H;
+      return ne <= c && c <= re;
     }) ? j.COLUMN : j.NORMAL;
     let p;
     if (C === j.ALL) {
-      const J = a.getRowCount(), ae = new Array(a.getColumnCount()).fill(void 0).map(
-        (se, le) => ({ startRow: 0, endRow: J - 1, startColumn: le, endColumn: le })
+      const H = a.getRowCount(), ne = new Array(a.getColumnCount()).fill(void 0).map(
+        (re, me) => ({ startRow: 0, endRow: H - 1, startColumn: me, endColumn: me })
       );
       p = {
         subUnitId: l,
         unitId: u,
         colWidth: g,
-        ranges: ae
+        ranges: ne
       };
     } else C === j.COLUMN ? p = {
       subUnitId: l,
       unitId: u,
-      ranges: f.map((J) => N.clone(J.range)),
+      ranges: f.map((H) => N.clone(H.range)),
       colWidth: g
     } : p = {
       subUnitId: l,
@@ -9138,16 +9143,16 @@ const Pc = ["ff", "fs", "tr", "tb"], Ce = {
         }
       ]
     };
-    const w = n.get(rt).getSkeleton(u, l), { suitableRanges: I, remainingRanges: S } = Sn(p.ranges, w);
-    Jo(I, a);
+    const w = n.get(rt).getSkeleton(u, l), { suitableRanges: I, remainingRanges: S } = wn(p.ranges, w);
+    qo(I, a);
     const y = n.get(G), { undos: b, redos: O } = y.onCommandExecute({
-      id: Ln.id,
+      id: Hn.id,
       params: p
-    }), k = qs(
+    }), k = Ys(
       p,
       a
     ), T = s.syncExecuteCommand(
-      mt.id,
+      ft.id,
       p
     ), { undos: U, redos: D } = y.generateMutationsOfAutoHeight({
       unitId: u,
@@ -9155,17 +9160,17 @@ const Pc = ["ff", "fs", "tr", "tb"], Ce = {
       ranges: I,
       autoHeightRanges: I,
       lazyAutoHeightRanges: S
-    }), { undos: H, redos: F } = n.get(G).afterCommandExecute({
-      id: Ln.id,
+    }), { undos: F, redos: Z } = n.get(G).afterCommandExecute({
+      id: Hn.id,
       params: p
-    }), K = L([...O, ...F, ...D], s);
-    return T && K.result && r.pushUndoRedo({
+    }), X = L([...O, ...Z, ...D], s);
+    return T && X.result && r.pushUndoRedo({
       unitID: u,
-      undoMutations: [{ id: mt.id, params: k }, ...b, ...H, ...U],
-      redoMutations: [{ id: mt.id, params: p }, ...O, ...F, ...D]
+      undoMutations: [{ id: ft.id, params: k }, ...b, ...F, ...U],
+      redoMutations: [{ id: ft.id, params: p }, ...O, ...Z, ...D]
     }), !0;
   }
-}, Hn = {
+}, Fn = {
   type: v.COMMAND,
   id: "sheet.command.set-worksheet-col-width",
   handler: (n, e) => {
@@ -9179,35 +9184,35 @@ const Pc = ["ff", "fs", "tr", "tb"], Ce = {
       unitId: l,
       ranges: i,
       colWidth: e.value
-    }, { suitableRanges: g, remainingRanges: m } = Sn(h.ranges, d);
-    Jo(g, c);
-    const f = qs(h, c), C = o.syncExecuteCommand(mt.id, h), { undos: p, redos: w } = r.generateMutationsOfAutoHeight({
+    }, { suitableRanges: g, remainingRanges: m } = wn(h.ranges, d);
+    qo(g, c);
+    const f = Ys(h, c), C = o.syncExecuteCommand(ft.id, h), { undos: p, redos: w } = r.generateMutationsOfAutoHeight({
       unitId: l,
       subUnitId: u,
       ranges: g,
       autoHeightRanges: g,
       lazyAutoHeightRanges: m
     }), I = r.onCommandExecute({
-      id: Hn.id,
+      id: Fn.id,
       params: h
     }), S = L([...I.redos, ...w], o);
     if (C && S.result) {
       const T = r.afterCommandExecute({
-        id: Hn.id,
+        id: Fn.id,
         params: h
       });
       return L(T.redos, o), s.pushUndoRedo({
         unitID: l,
         undoMutations: [
           ...(O = I.preUndos) != null ? O : [],
-          { id: mt.id, params: f },
+          { id: ft.id, params: f },
           ...I.undos,
           ...T.undos,
           ...p
         ],
         redoMutations: [
           ...(k = I.preRedos) != null ? k : [],
-          { id: mt.id, params: h },
+          { id: ft.id, params: h },
           ...I.redos,
           ...T.redos,
           ...w
@@ -9218,7 +9223,7 @@ const Pc = ["ff", "fs", "tr", "tb"], Ce = {
   }
 };
 v.COMMAND;
-const Bc = {
+const jc = {
   type: v.COMMAND,
   id: "sheet.command.set-worksheet-column-count",
   handler: (n, e) => {
@@ -9228,25 +9233,25 @@ const Bc = {
       unitId: t,
       subUnitId: o,
       columnCount: s
-    }, c = ou(n, l);
-    return r.syncExecuteCommand(Jt.id, l) ? (i.pushUndoRedo({
+    }, c = su(n, l);
+    return r.syncExecuteCommand(qt.id, l) ? (i.pushUndoRedo({
       unitID: t,
-      undoMutations: [{ id: Jt.id, params: c }],
-      redoMutations: [{ id: Jt.id, params: l }]
+      undoMutations: [{ id: qt.id, params: c }],
+      redoMutations: [{ id: qt.id, params: l }]
     }), !0) : !1;
   }
-}, jc = {
+}, zc = {
   type: v.COMMAND,
   id: "sheet.command.set-worksheet-default-style",
   handler: (n, e) => {
-    const t = n.get(E), o = n.get(V), { unitId: s } = e, r = su(n, e);
-    return t.syncExecuteCommand(qt.id, e) ? (o.pushUndoRedo({
+    const t = n.get(E), o = n.get(V), { unitId: s } = e, r = ru(n, e);
+    return t.syncExecuteCommand(Yt.id, e) ? (o.pushUndoRedo({
       unitID: s,
-      undoMutations: [{ id: qt.id, params: r }],
-      redoMutations: [{ id: qt.id, params: e }]
+      undoMutations: [{ id: Yt.id, params: r }],
+      redoMutations: [{ id: Yt.id, params: e }]
     }), !0) : !1;
   }
-}, si = (n, e) => {
+}, ri = (n, e) => {
   const t = Qe(n.get(M), e);
   if (!t)
     throw new Error("[SetWorksheetHideMutationFactory]: worksheet is null error!");
@@ -9256,7 +9261,7 @@ const Bc = {
     unitId: e.unitId,
     subUnitId: o.getSheetId()
   };
-}, St = {
+}, wt = {
   id: "sheet.mutation.set-worksheet-hidden",
   type: v.MUTATION,
   handler: (n, e) => {
@@ -9266,11 +9271,11 @@ const Bc = {
     const o = t.getSheetBySheetId(e.subUnitId);
     return o ? (o.getConfig().hidden = e.hidden, !0) : !1;
   }
-}, zc = {
+}, Gc = {
   type: v.COMMAND,
   id: "sheet.command.set-worksheet-hidden",
   handler: (n, e) => {
-    const t = n.get(E), o = n.get(V), s = n.get(Vt), r = n.get(it), i = P(n.get(M), e);
+    const t = n.get(E), o = n.get(V), s = n.get(Lt), r = n.get(it), i = P(n.get(M), e);
     if (!i) return !1;
     const { workbook: a, worksheet: u, unitId: l, subUnitId: c } = i;
     if (u.getConfig().hidden === te.TRUE) return !1;
@@ -9278,14 +9283,14 @@ const Bc = {
       unitId: l,
       subUnitId: c,
       hidden: te.TRUE
-    }, g = si(n, h);
-    return a.getSheets().filter((p) => p.getConfig().hidden === te.FALSE).length === 1 ? (s.emit(r.t("sheets.info.hideSheet")), !1) : t.syncExecuteCommand(St.id, h) ? (o.pushUndoRedo({
+    }, g = ri(n, h);
+    return a.getSheets().filter((p) => p.getConfig().hidden === te.FALSE).length === 1 ? (s.emit(r.t("sheets.info.hideSheet")), !1) : t.syncExecuteCommand(wt.id, h) ? (o.pushUndoRedo({
       unitID: l,
-      undoMutations: [{ id: St.id, params: g }],
-      redoMutations: [{ id: St.id, params: h }]
+      undoMutations: [{ id: wt.id, params: g }],
+      redoMutations: [{ id: wt.id, params: h }]
     }), !0) : !1;
   }
-}, Gc = (n, e) => {
+}, Kc = (n, e) => {
   const t = Qe(n.get(M), e);
   if (!t)
     throw new Error("[SetWorksheetNameMutationFactory]: worksheet is null error!");
@@ -9295,7 +9300,7 @@ const Bc = {
     name: o.getName(),
     subUnitId: o.getSheetId()
   };
-}, Fn = {
+}, Bn = {
   id: "sheet.mutation.set-worksheet-name",
   type: v.MUTATION,
   handler: (n, e) => {
@@ -9305,7 +9310,7 @@ const Bc = {
     const o = t.getSheetBySheetId(e.subUnitId);
     return o ? (o.getConfig().name = e.name, !0) : !1;
   }
-}, Qo = {
+}, es = {
   type: v.COMMAND,
   id: "sheet.command.set-worksheet-name",
   handler: (n, e) => {
@@ -9316,19 +9321,19 @@ const Bc = {
       subUnitId: a,
       name: e.name,
       unitId: i
-    }, l = Gc(
+    }, l = Kc(
       n,
       u
     ), c = s.onCommandExecute({
-      id: Qo.id,
+      id: es.id,
       params: e
     }), d = [
       ...(m = c.preRedos) != null ? m : [],
-      { id: Fn.id, params: u },
+      { id: Bn.id, params: u },
       ...c.redos
     ], h = [
       ...(f = c.preUndos) != null ? f : [],
-      { id: Fn.id, params: l },
+      { id: Bn.id, params: l },
       ...c.undos
     ];
     return L(d, t).result ? (o.pushUndoRedo({
@@ -9337,11 +9342,11 @@ const Bc = {
       redoMutations: d
     }), !0) : !1;
   }
-}, Kc = (n, e) => ({
+}, Jc = (n, e) => ({
   ...A.deepClone(e),
   toOrder: e.fromOrder,
   fromOrder: e.toOrder
-}), kn = {
+}), Tn = {
   id: "sheet.mutation.set-worksheet-order",
   type: v.MUTATION,
   handler: (n, e) => {
@@ -9350,7 +9355,7 @@ const Bc = {
     const o = t.getConfig();
     return o.sheetOrder.splice(e.fromOrder, 1), o.sheetOrder.splice(e.toOrder, 0, e.subUnitId), !0;
   }
-}, ri = {
+}, ii = {
   type: v.COMMAND,
   id: "sheet.command.set-worksheet-order",
   handler: (n, e) => {
@@ -9361,18 +9366,18 @@ const Bc = {
       toOrder: e.order,
       unitId: i,
       subUnitId: a
-    }, c = Kc(n, l);
-    return t.syncExecuteCommand(kn.id, l) ? (o.pushUndoRedo({
+    }, c = Jc(n, l);
+    return t.syncExecuteCommand(Tn.id, l) ? (o.pushUndoRedo({
       unitID: i,
-      undoMutations: [{ id: kn.id, params: c }],
-      redoMutations: [{ id: kn.id, params: l }]
+      undoMutations: [{ id: Tn.id, params: c }],
+      redoMutations: [{ id: Tn.id, params: l }]
     }), !0) : !1;
   }
 };
-class In {
+class vn {
   constructor() {
     R(this, "_model", /* @__PURE__ */ new Map());
-    R(this, "_pointChange", new De());
+    R(this, "_pointChange", new Oe());
     R(this, "pointChange$", this._pointChange.asObservable());
   }
   addRule(e) {
@@ -9424,11 +9429,11 @@ class In {
         return [e, s];
   }
 }
-class ii {
+class ai {
   constructor(e, t, o) {
     R(this, "type", x.SelectRange);
     R(this, "subType", _.Delete);
-    R(this, "status", q.INIT);
+    R(this, "status", J.INIT);
     R(this, "value", !0);
     R(this, "id");
     R(this, "unitId");
@@ -9437,11 +9442,11 @@ class ii {
     this.unitId = e, this.subUnitId = t, this.permissionId = o, this.id = `${x.SelectRange}.${_.Delete}.${o}`;
   }
 }
-class ai {
+class ui {
   constructor(e, t, o) {
     R(this, "type", x.SelectRange);
     R(this, "subType", _.ManageCollaborator);
-    R(this, "status", q.INIT);
+    R(this, "status", J.INIT);
     R(this, "value", !0);
     R(this, "id");
     R(this, "unitId");
@@ -9450,33 +9455,33 @@ class ai {
     this.unitId = e, this.subUnitId = t, this.permissionId = o, this.id = `${x.SelectRange}.${_.ManageCollaborator}.${o}`;
   }
 }
-const Ee = () => [Fo, Ve, ai, ii], pt = [_.Edit, _.View, _.ManageCollaborator, _.Delete], Yh = (n = "unitId", e = "subUnitId", t = "permissionId") => Ee().reduce((o, s) => {
+const be = () => [Bo, We, ui, ai], St = [_.Edit, _.View, _.ManageCollaborator, _.Delete], Xh = (n = "unitId", e = "subUnitId", t = "permissionId") => be().reduce((o, s) => {
   const r = new s(n, e, t);
   return o[r.subType] = r.value, o;
-}, {}), gn = () => [
-  Pe,
-  lr,
-  nr,
-  hr,
-  or,
-  ur,
-  jo,
-  rr,
-  ir,
-  Go,
-  Bo,
-  ar,
-  dr,
-  zo,
-  Gu,
-  gr,
+}, {}), mn = () => [
+  Te,
   cr,
+  or,
+  gr,
   sr,
+  lr,
+  zo,
+  ir,
+  ar,
+  Ko,
+  jo,
+  ur,
+  hr,
+  Go,
+  Ku,
+  mr,
+  dr,
+  rr,
+  Zu,
   Xu,
-  Yu,
-  Ju,
-  Ku
-], Jc = [
+  qu,
+  Ju
+], qc = [
   _.Edit,
   _.Print,
   _.Comment,
@@ -9499,27 +9504,27 @@ const Ee = () => [Fo, Ve, ai, ii], pt = [_.Edit, _.View, _.ManageCollaborator, _
   _.InsertColumn,
   _.DeleteRow,
   _.DeleteColumn
-], be = () => [
-  Le,
-  lo,
-  Mr,
-  Rr
-], He = () => [
-  mr,
+], ye = () => [
+  Ve,
+  co,
+  _r,
+  Cr
+], Le = () => [
   fr,
-  Cr,
+  Rr,
   pr,
   Sr,
   wr,
-  vr,
   Ir,
-  _r,
+  Mr,
+  vr,
   yr,
-  Dn,
-  Zt,
+  br,
+  An,
   Qt,
-  br
-], po = [
+  en,
+  Er
+], So = [
   _.Copy,
   _.DeleteColumn,
   _.DeleteRow,
@@ -9535,13 +9540,13 @@ const Ee = () => [Fo, Ve, ai, ii], pt = [_.Edit, _.View, _.ManageCollaborator, _
   _.SetRowStyle,
   _.Sort
 ];
-var qc = Object.getOwnPropertyDescriptor, Yc = (n, e, t, o) => {
-  for (var s = o > 1 ? void 0 : o ? qc(e, t) : e, r = n.length - 1, i; r >= 0; r--)
+var Yc = Object.getOwnPropertyDescriptor, Xc = (n, e, t, o) => {
+  for (var s = o > 1 ? void 0 : o ? Yc(e, t) : e, r = n.length - 1, i; r >= 0; r--)
     (i = n[r]) && (s = i(s) || s);
   return s;
-}, ct = (n, e) => (t, o) => e(t, o, n);
-const Xc = "SHEET_WORKSHEET_PROTECTION_PLUGIN", Zc = "SHEET_WORKSHEET_PROTECTION_POINT_PLUGIN";
-let Bn = class extends $s {
+}, dt = (n, e) => (t, o) => e(t, o, n);
+const Zc = "SHEET_WORKSHEET_PROTECTION_PLUGIN", Qc = "SHEET_WORKSHEET_PROTECTION_POINT_PLUGIN";
+let jn = class extends Ws {
   constructor(n, e, t, o, s, r, i, a) {
     super(), this._permissionService = n, this._univerInstanceService = e, this._injector = t, this._worksheetProtectionRuleModel = o, this._worksheetProtectionPointRuleModel = s, this._resourceManagerService = r, this._rangeProtectionRuleModel = i, this._logService = a, this._init(), this._initRuleChange(), this._initRuleSnapshot(), this._initPointSnapshot();
   }
@@ -9549,7 +9554,7 @@ let Bn = class extends $s {
     const n = (e) => {
       const t = e.getUnitId(), o = (s) => {
         const r = s.getSheetId();
-        [...be(), ...He()].forEach((i) => {
+        [...ye(), ...Le()].forEach((i) => {
           const a = new i(t, r);
           this._permissionService.addPermissionPoint(a);
         }), this._logService.debug("[WorksheetPermissionService]", "Initialization completed", t, r);
@@ -9561,11 +9566,11 @@ let Bn = class extends $s {
       }), e.sheetDisposed$.subscribe((s) => {
         const r = s.getSheetId();
         this._rangeProtectionRuleModel.getSubunitRuleList(t, r).forEach((a) => {
-          [...Ee()].forEach((u) => {
+          [...be()].forEach((u) => {
             const l = new u(t, r, a.permissionId);
             this._permissionService.deletePermissionPoint(l.id);
           });
-        }), [...be(), ...He()].forEach((a) => {
+        }), [...ye(), ...Le()].forEach((a) => {
           const u = new a(t, r);
           this._permissionService.deletePermissionPoint(u.id);
         });
@@ -9573,10 +9578,10 @@ let Bn = class extends $s {
     };
     this._univerInstanceService.getAllUnitsForType(B.UNIVER_SHEET).forEach((e) => {
       n(e);
-    }), this._univerInstanceService.getTypeOfUnitAdded$(B.UNIVER_SHEET).pipe(ss(this.dispose$)).subscribe(n), this._univerInstanceService.getTypeOfUnitDisposed$(B.UNIVER_SHEET).pipe(ss(this.dispose$)).subscribe((e) => {
+    }), this._univerInstanceService.getTypeOfUnitAdded$(B.UNIVER_SHEET).pipe(rs(this.dispose$)).subscribe(n), this._univerInstanceService.getTypeOfUnitDisposed$(B.UNIVER_SHEET).pipe(rs(this.dispose$)).subscribe((e) => {
       e.getSheets().forEach((t) => {
         const o = e.getUnitId(), s = t.getSheetId();
-        be().forEach((r) => {
+        ye().forEach((r) => {
           const i = new r(o, s);
           this._permissionService.deletePermissionPoint(i.id);
         });
@@ -9590,14 +9595,14 @@ let Bn = class extends $s {
           case "add":
             break;
           case "delete": {
-            be().forEach((e) => {
+            ye().forEach((e) => {
               const t = new e(n.unitId, n.subUnitId);
               this._permissionService.updatePermissionPoint(t.id, !0);
             });
             break;
           }
           case "set": {
-            be().forEach((e) => {
+            ye().forEach((e) => {
               const t = new e(n.unitId, n.subUnitId);
               this._permissionService.updatePermissionPoint(t.id, n.rule);
             });
@@ -9624,11 +9629,11 @@ let Bn = class extends $s {
       this._resourceManagerService.registerPluginResource({
         toJson: n,
         parseJson: e,
-        pluginName: Xc,
-        businesses: [On.UNIVER_SHEET],
+        pluginName: Zc,
+        businesses: [Dn.UNIVER_SHEET],
         onLoad: (t, o) => {
           this._worksheetProtectionRuleModel.fromObject(o), Object.keys(o).forEach((s) => {
-            be().forEach((r) => {
+            ye().forEach((r) => {
               const i = new r(t, s);
               i.value = !1, this._permissionService.addPermissionPoint(i);
             });
@@ -9638,11 +9643,11 @@ let Bn = class extends $s {
           const o = this._univerInstanceService.getUnit(t);
           o && (o.getSheets().forEach((s) => {
             const r = s.getSheetId();
-            [...be(), ...He()].forEach((i) => {
+            [...ye(), ...Le()].forEach((i) => {
               const a = new i(t, r);
               this._permissionService.deletePermissionPoint(a.id);
             });
-          }), gn().forEach((s) => {
+          }), mn().forEach((s) => {
             const r = new s(t);
             this._permissionService.deletePermissionPoint(r.id);
           })), this._worksheetProtectionRuleModel.deleteUnitModel(t);
@@ -9667,11 +9672,11 @@ let Bn = class extends $s {
       this._resourceManagerService.registerPluginResource({
         toJson: n,
         parseJson: e,
-        pluginName: Zc,
-        businesses: [On.UNIVER_SHEET],
+        pluginName: Qc,
+        businesses: [Dn.UNIVER_SHEET],
         onLoad: (t, o) => {
           this._worksheetProtectionPointRuleModel.fromObject(o), Object.keys(o).forEach((s) => {
-            He().forEach((r) => {
+            Le().forEach((r) => {
               const i = new r(t, s);
               this._permissionService.addPermissionPoint(i);
             });
@@ -9684,49 +9689,49 @@ let Bn = class extends $s {
     );
   }
 };
-Bn = Yc([
-  ct(0, $(Ze)),
-  ct(1, $(M)),
-  ct(2, $(so)),
-  ct(3, $(lt)),
-  ct(4, $(In)),
-  ct(5, $(Rn)),
-  ct(6, $(me)),
-  ct(7, $(Fs))
-], Bn);
-const es = {
+jn = Xc([
+  dt(0, $(Ze)),
+  dt(1, $(M)),
+  dt(2, $(ro)),
+  dt(3, $(lt)),
+  dt(4, $(vn)),
+  dt(5, $(Cn)),
+  dt(6, $(ge)),
+  dt(7, $(Bs))
+], jn);
+const ts = {
   id: "sheet.mutation.set-worksheet-permission-points",
   type: v.MUTATION,
   handler: (n, e) => {
     const { rule: t } = e;
-    return n.get(In).addRule(t), !0;
+    return n.get(vn).addRule(t), !0;
   }
-}, Qc = {
+}, ed = {
   type: v.COMMAND,
   id: "sheet.command.set-worksheet-permission-points",
   async handler(n, e) {
     if (!e)
       return !1;
     const t = n.get(E), { rule: o } = e;
-    return t.executeCommand(es.id, {
+    return t.executeCommand(ts.id, {
       rule: o,
       unitId: o.unitId,
       subUnitId: o.subUnitId
     }), !0;
   }
-}, ed = {
+}, td = {
   type: v.COMMAND,
   id: "sheet.command.set-worksheet-protection",
   async handler(n, e) {
     if (!e)
       return !1;
     const t = n.get(E), o = n.get(V), { rule: s, permissionId: r, oldRule: i } = e, { unitId: a, subUnitId: u } = s, l = { ...s, permissionId: r };
-    if (await t.executeCommand(bt.id, {
+    if (await t.executeCommand(Et.id, {
       unitId: a,
       subUnitId: u,
       newRule: l
     })) {
-      const d = [{ id: bt.id, params: { unitId: a, subUnitId: u, newRule: l } }], h = [{ id: bt.id, params: { unitId: a, subUnitId: u, rule: i } }];
+      const d = [{ id: Et.id, params: { unitId: a, subUnitId: u, newRule: l } }], h = [{ id: Et.id, params: { unitId: a, subUnitId: u, rule: i } }];
       o.pushUndoRedo({
         unitID: a,
         redoMutations: d,
@@ -9735,13 +9740,13 @@ const es = {
     }
     return !0;
   }
-}, td = (n, e) => {
+}, nd = (n, e) => {
   const r = n.get(M).getUniverSheetInstance(e.unitId).getSheetBySheetId(e.subUnitId).getConfig().rightToLeft;
   return {
     ...A.deepClone(e),
     rightToLeft: r
   };
-}, So = {
+}, wo = {
   id: "sheet.mutation.set-worksheet-right-to-left",
   type: v.MUTATION,
   handler: (n, e) => {
@@ -9752,7 +9757,7 @@ const es = {
     const s = o.getConfig();
     return s.rightToLeft = e.rightToLeft, !0;
   }
-}, Xh = {
+}, Zh = {
   type: v.COMMAND,
   id: "sheet.command.set-worksheet-right-to-left",
   handler: async (n, e) => {
@@ -9766,22 +9771,22 @@ const es = {
       rightToLeft: a,
       unitId: r,
       subUnitId: i
-    }, l = td(
+    }, l = nd(
       n,
       u
     );
     return t.syncExecuteCommand(
-      So.id,
+      wo.id,
       u
     ) ? (o.pushUndoRedo({
       unitID: r,
-      undoMutations: [{ id: So.id, params: l }],
+      undoMutations: [{ id: wo.id, params: l }],
       redoMutations: [
-        { id: So.id, params: u }
+        { id: wo.id, params: u }
       ]
     }), !0) : !1;
   }
-}, nd = {
+}, od = {
   type: v.COMMAND,
   id: "sheet.command.set-worksheet-row-count",
   handler: (n, e) => {
@@ -9791,14 +9796,14 @@ const es = {
       unitId: t,
       subUnitId: o,
       rowCount: s
-    }, c = ru(n, l);
-    return r.syncExecuteCommand(Yt.id, l) ? (i.pushUndoRedo({
+    }, c = iu(n, l);
+    return r.syncExecuteCommand(Xt.id, l) ? (i.pushUndoRedo({
       unitID: t,
-      undoMutations: [{ id: Yt.id, params: c }],
-      redoMutations: [{ id: Yt.id, params: l }]
+      undoMutations: [{ id: Xt.id, params: c }],
+      redoMutations: [{ id: Xt.id, params: l }]
     }), !0) : !1;
   }
-}, jn = {
+}, zn = {
   type: v.COMMAND,
   id: "sheet.command.delta-row-height",
   // eslint-disable-next-line max-lines-per-function
@@ -9810,19 +9815,19 @@ const es = {
     const r = P(n.get(M));
     if (!r) return !1;
     const { worksheet: i, subUnitId: a, unitId: u } = r, { anchorRow: l, deltaY: c } = e, h = i.getRowHeight(l) + c, g = o.length === 1 && o[0].range.rangeType === j.ALL, m = o.filter((D) => D.range.rangeType === j.ROW), f = g ? j.ALL : m.some(({ range: D }) => {
-      const { startRow: H, endRow: F } = D;
-      return H <= l && l <= F;
+      const { startRow: F, endRow: Z } = D;
+      return F <= l && l <= Z;
     }) ? j.ROW : j.NORMAL;
     let C;
     if (f === j.ALL) {
-      const D = i.getColumnCount(), H = new Array(i.getRowCount()).fill(void 0).map(
-        (F, K) => ({ startRow: K, endRow: K, startColumn: 0, endColumn: D - 1 })
+      const D = i.getColumnCount(), F = new Array(i.getRowCount()).fill(void 0).map(
+        (Z, X) => ({ startRow: X, endRow: X, startColumn: 0, endColumn: D - 1 })
       );
       C = {
         subUnitId: a,
         unitId: u,
         rowHeight: h,
-        ranges: H
+        ranges: F
       };
     } else f === j.ROW ? C = {
       subUnitId: a,
@@ -9842,13 +9847,13 @@ const es = {
         }
       ]
     };
-    const p = Ys(C, i), w = {
+    const p = Xs(C, i), w = {
       unitId: u,
       subUnitId: a,
       ranges: C.ranges,
       autoHeightInfo: te.FALSE
-    }, I = Wo(w, i), S = n.get(E), y = n.get(V), b = s.onCommandExecute({
-      id: jn.id,
+    }, I = Vo(w, i), S = n.get(E), y = n.get(V), b = s.onCommandExecute({
+      id: zn.id,
       params: C
     }), O = L([
       {
@@ -9856,13 +9861,13 @@ const es = {
         params: C
       },
       {
-        id: Fe.id,
+        id: He.id,
         params: w
       }
     ], S), k = L([...b.redos], S);
     if (O.result && k.result) {
       const D = s.afterCommandExecute({
-        id: jn.id,
+        id: zn.id,
         params: C
       });
       return L(D.redos, S), y.pushUndoRedo({
@@ -9874,7 +9879,7 @@ const es = {
             params: p
           },
           {
-            id: Fe.id,
+            id: He.id,
             params: I
           },
           ...b.undos,
@@ -9887,7 +9892,7 @@ const es = {
             params: C
           },
           {
-            id: Fe.id,
+            id: He.id,
             params: w
           },
           ...b.redos,
@@ -9897,7 +9902,7 @@ const es = {
     }
     return !1;
   }
-}, zn = {
+}, Gn = {
   type: v.COMMAND,
   id: "sheet.command.set-row-height",
   // eslint-disable-next-line max-lines-per-function
@@ -9913,27 +9918,27 @@ const es = {
       unitId: l,
       ranges: a,
       rowHeight: e.value
-    }, g = Ys(h, d), m = {
+    }, g = Xs(h, d), m = {
       unitId: l,
       subUnitId: c,
       ranges: h.ranges,
       autoHeightInfo: te.FALSE
-    }, f = Wo(m, d), C = L([
+    }, f = Vo(m, d), C = L([
       {
         id: nt.id,
         params: h
       },
       {
-        id: Fe.id,
+        id: He.id,
         params: m
       }
     ], o), p = i.onCommandExecute({
-      id: zn.id,
+      id: Gn.id,
       params: h
     }), w = L([...p.redos], o);
     if (C.result && w.result) {
       const O = i.afterCommandExecute({
-        id: zn.id,
+        id: Gn.id,
         params: h
       });
       return L(O.redos, o), s.pushUndoRedo({
@@ -9945,7 +9950,7 @@ const es = {
             params: g
           },
           {
-            id: Fe.id,
+            id: He.id,
             params: f
           },
           ...p.undos,
@@ -9958,7 +9963,7 @@ const es = {
             params: h
           },
           {
-            id: Fe.id,
+            id: He.id,
             params: m
           },
           ...p.redos,
@@ -9968,7 +9973,7 @@ const es = {
     }
     return !1;
   }
-}, ts = {
+}, ns = {
   type: v.COMMAND,
   id: "sheet.command.set-row-is-auto-height",
   handler: (n, e) => {
@@ -9984,26 +9989,26 @@ const es = {
       ranges: c,
       autoHeightInfo: te.TRUE
       // Hard code first, maybe it will change by the menu item in the future.
-    }, h = Wo(d, l), g = t.syncExecuteCommand(
-      Fe.id,
+    }, h = Vo(d, l), g = t.syncExecuteCommand(
+      He.id,
       d
-    ), m = n.get(rt).getSkeleton(a, u), { suitableRanges: f, remainingRanges: C } = Sn(d.ranges, m), p = n.get(G), { undos: w, redos: I } = p.generateMutationsOfAutoHeight({
+    ), m = n.get(rt).getSkeleton(a, u), { suitableRanges: f, remainingRanges: C } = wn(d.ranges, m), p = n.get(G), { undos: w, redos: I } = p.generateMutationsOfAutoHeight({
       unitId: a,
       subUnitId: u,
       ranges: f,
       autoHeightRanges: f,
       lazyAutoHeightRanges: C
     }), { undos: S, redos: y } = p.onCommandExecute({
-      id: ts.id,
+      id: ns.id,
       params: d
     }), b = L([...y, ...I], t);
     return g && b.result ? (o.pushUndoRedo({
       unitID: a,
-      undoMutations: [{ id: Fe.id, params: h }, ...S, ...w],
-      redoMutations: [{ id: Fe.id, params: d }, ...y, ...I]
+      undoMutations: [{ id: He.id, params: h }, ...S, ...w],
+      redoMutations: [{ id: He.id, params: d }, ...y, ...I]
     }), !0) : !1;
   }
-}, ui = {
+}, li = {
   type: v.COMMAND,
   id: "sheet.command.set-worksheet-show",
   handler: (n, e) => {
@@ -10017,26 +10022,26 @@ const es = {
       unitId: t,
       subUnitId: o,
       hidden: te.FALSE
-    }, h = si(n, d), g = s.syncExecuteCommand(St.id, d), m = {
+    }, h = ri(n, d), g = s.syncExecuteCommand(wt.id, d), m = {
       unitId: t,
       subUnitId: o
     }, f = s.syncExecuteCommand(
-      Cn.id,
+      pn.id,
       m
     );
     return g && f ? (r.pushUndoRedo({
       unitID: t,
       undoMutations: [
-        { id: St.id, params: h }
+        { id: wt.id, params: h }
         // { id: SetWorksheetActiveOperation.id, params: unActiveMutationParams },
       ],
       redoMutations: [
         // { id: SetWorksheetActiveOperation.id, params: activeSheetMutationParams },
-        { id: St.id, params: d }
+        { id: wt.id, params: d }
       ]
     }), !0) : !1;
   }
-}, od = {
+}, sd = {
   type: v.COMMAND,
   id: "sheet.command.split-text-to-columns",
   // eslint-disable-next-line max-lines-per-function
@@ -10047,7 +10052,7 @@ const es = {
     if (!h) return !1;
     const g = h.getSheetBySheetId(o);
     if (!g) return !1;
-    const { lastRow: m, rs: f, maxLength: C } = Mu(g, s, r, i, a), p = g.getColumnCount(), { startColumn: w } = X.transformRange(s, g);
+    const { lastRow: m, rs: f, maxLength: C } = _u(g, s, r, i, a), p = g.getColumnCount(), { startColumn: w } = Y.transformRange(s, g);
     if (s.startColumn !== s.endColumn)
       return !1;
     const I = [], S = [], y = w + C + 1 - p;
@@ -10063,26 +10068,26 @@ const es = {
         }
       };
       I.push({
-        id: ke.id,
+        id: Ue.id,
         params: D
       });
-      const H = ro(
+      const F = io(
         n,
         D
       );
-      S.push({ id: Me.id, params: H });
+      S.push({ id: ve.id, params: F });
     }
     const b = {
       startRow: s.startRow,
       endRow: m,
       startColumn: w,
       endColumn: w + C
-    }, O = new Y();
+    }, O = new q();
     for (let D = b.startRow; D <= b.endRow; D++)
-      for (let H = b.startColumn; H <= b.endColumn; H++) {
-        const F = f[D - b.startRow];
-        H === 0 && (F == null ? void 0 : F.length) === 1 ? O.setValue(D, H, g.getCell(D, H)) : O.setValue(D, H, {
-          v: (F == null ? void 0 : F[H - b.startColumn]) || null,
+      for (let F = b.startColumn; F <= b.endColumn; F++) {
+        const Z = f[D - b.startRow];
+        F === 0 && (Z == null ? void 0 : Z.length) === 1 ? O.setValue(D, F, g.getCell(D, F)) : O.setValue(D, F, {
+          v: (Z == null ? void 0 : Z[F - b.startColumn]) || null,
           p: null,
           f: null,
           si: null,
@@ -10093,7 +10098,7 @@ const es = {
       unitId: t,
       subUnitId: o,
       cellValue: O.clone()
-    }, T = Ae(n, k);
+    }, T = De(n, k);
     return I.push({
       id: ee.id,
       params: k
@@ -10106,7 +10111,7 @@ const es = {
       redoMutations: I
     }), !0) : !1;
   }
-}, sd = {
+}, rd = {
   id: "sheet.command.toggle-cell-checkbox",
   type: v.COMMAND,
   handler: (n, e) => {
@@ -10118,13 +10123,13 @@ const es = {
     const h = l.getCell(s, r);
     if (!(h != null && h.p))
       return !1;
-    const g = A.deepClone(h.p), m = new Pi(g), f = Ni.paragraph.bullet.toggleChecklist({
+    const g = A.deepClone(h.p), m = new Ni(g), f = Oi.paragraph.bullet.toggleChecklist({
       document: m,
       paragraphIndex: i
     });
     if (!f)
       return !1;
-    Oi.apply(m.getBody(), f.serialize());
+    Di.apply(m.getBody(), f.serialize());
     const C = {
       unitId: t,
       subUnitId: o,
@@ -10132,14 +10137,14 @@ const es = {
         [s]: {
           [r]: {
             p: g,
-            t: re.STRING
+            t: ie.STRING
           }
         }
       }
     }, p = {
       id: ee.id,
       params: C
-    }, w = Ae(n, C), I = {
+    }, w = De(n, C), I = {
       id: ee.id,
       params: w
     }, S = [p], y = [I];
@@ -10149,7 +10154,7 @@ const es = {
       unitID: t
     }), d.syncExecuteCommand(p.id, p.params);
   }
-}, rd = {
+}, id = {
   type: v.COMMAND,
   id: "sheet.command.toggle-gridlines",
   handler: (n, e) => {
@@ -10166,20 +10171,20 @@ const es = {
       unitId: u,
       subUnitId: l
     };
-    return t.syncExecuteCommand(Xt.id, c) ? (o.pushUndoRedo({
+    return t.syncExecuteCommand(Zt.id, c) ? (o.pushUndoRedo({
       unitID: u,
-      undoMutations: [{ id: Xt.id, params: d }],
-      redoMutations: [{ id: Xt.id, params: c }]
+      undoMutations: [{ id: Zt.id, params: d }],
+      redoMutations: [{ id: Zt.id, params: c }]
     }), !0) : !1;
   }
-}, id = {
+}, ad = {
   id: "sheet.command.unregister-worksheet-range-theme-style",
   type: v.COMMAND,
   handler: (n, e) => {
     var h;
     if (!e)
       return !1;
-    const { unitId: t, themeName: o } = e, s = n.get(M), r = n.get(E), i = n.get(V), a = n.get(ve);
+    const { unitId: t, themeName: o } = e, s = n.get(M), r = n.get(E), i = n.get(V), a = n.get(Ie);
     if (!P(s)) return !1;
     const l = {
       unitId: t,
@@ -10189,38 +10194,38 @@ const es = {
       themeName: o,
       rangeThemeStyleJson: (h = a.getRangeThemeStyle(t, o)) == null ? void 0 : h.toJson()
     };
-    return r.syncExecuteCommand(cn.id, e) && i.pushUndoRedo({
+    return r.syncExecuteCommand(dn.id, e) && i.pushUndoRedo({
       unitID: t,
-      undoMutations: [{ id: cn.id, params: c }],
-      redoMutations: [{ id: Yo.id, params: l }]
+      undoMutations: [{ id: dn.id, params: c }],
+      redoMutations: [{ id: Xo.id, params: l }]
     }), !0;
   }
-}, ad = {
+}, ud = {
   id: "sheet.mutation.add-range-theme",
   type: v.MUTATION,
   handler: (n, e) => {
     if (!e)
       return !1;
-    const { styleJSON: t, unitId: o } = e, s = n.get(ve), r = new Rt(t.name);
+    const { styleJSON: t, unitId: o } = e, s = n.get(Ie), r = new Ct(t.name);
     return r.fromJson(t), s.registerRangeThemeStyle(o, r), !0;
   }
-}, ud = {
+}, ld = {
   id: "sheet.mutation.empty",
   type: v.MUTATION,
   handler: () => !0
-}, ld = {
+}, cd = {
   id: "sheet.operation.mark-dirty-row-auto-height",
   type: v.OPERATION,
   handler: () => !0
-}, cd = {
+}, dd = {
   id: "sheet.operation.cancel-mark-dirty-row-auto-height",
   type: v.OPERATION,
   handler: () => !0
-}, $t = Ao("INumfmtService"), Zh = (n, e) => {
-  const t = n.get($t), { values: o, unitId: s, subUnitId: r } = e, i = [], a = [];
+}, Wt = xo("INumfmtService"), Qh = (n, e) => {
+  const t = n.get(Wt), { values: o, unitId: s, subUnitId: r } = e, i = [], a = [];
   Object.keys(o).forEach((l) => {
     o[l].ranges.forEach((d) => {
-      X.foreach(d, (h, g) => {
+      Y.foreach(d, (h, g) => {
         const m = t.getValue(s, r, h, g);
         m ? i.push({
           pattern: m.pattern,
@@ -10232,30 +10237,30 @@ const es = {
   });
   const u = [];
   if (i.length) {
-    const l = ko(s, r, i);
+    const l = To(s, r, i);
     Object.keys(l.values).forEach((c) => {
       const d = l.values[c];
-      d.ranges = Qs(d.ranges);
+      d.ranges = er(d.ranges);
     }), u.push({
-      id: ns.id,
-      params: ko(s, r, i)
+      id: os.id,
+      params: To(s, r, i)
     });
   }
   return a.length && u.push({
-    id: li.id,
+    id: ci.id,
     params: {
       unitId: s,
       subUnitId: r,
       ranges: a
     }
   }), u;
-}, ns = {
+}, os = {
   id: "sheet.mutation.set.numfmt",
   type: v.MUTATION,
   handler: (n, e) => {
     if (!e)
       return !1;
-    const { values: t, refMap: o } = e, s = n.get($t), r = e.unitId, i = e.subUnitId, a = Object.keys(t).reduce(
+    const { values: t, refMap: o } = e, s = n.get(Wt), r = e.unitId, i = e.subUnitId, a = Object.keys(t).reduce(
       (u, l) => {
         const c = o[l], d = t[l].ranges;
         return c && u.push({
@@ -10267,19 +10272,19 @@ const es = {
     );
     return s.setValues(r, i, a), !0;
   }
-}, li = {
+}, ci = {
   id: "sheet.mutation.remove.numfmt",
   type: v.MUTATION,
   handler: (n, e) => {
     if (!e)
       return !1;
     const { unitId: t, subUnitId: o, ranges: s } = e;
-    return n.get($t).deleteValues(t, o, s), !0;
+    return n.get(Wt).deleteValues(t, o, s), !0;
   }
-}, Qh = (n, e) => {
-  const t = n.get($t), { ranges: o, unitId: s, subUnitId: r } = e, i = [];
+}, eg = (n, e) => {
+  const t = n.get(Wt), { ranges: o, unitId: s, subUnitId: r } = e, i = [];
   if (o.forEach((u) => {
-    X.foreach(u, (l, c) => {
+    Y.foreach(u, (l, c) => {
       const d = t.getValue(s, r, l, c);
       d && i.push({
         pattern: d.pattern,
@@ -10289,44 +10294,44 @@ const es = {
     });
   }), !i.length)
     return [];
-  const a = ko(s, r, i);
+  const a = To(s, r, i);
   return Object.keys(a.values).forEach((u) => {
     const l = a.values[u];
-    l.ranges = Qs(l.ranges);
-  }), [{ id: ns.id, params: a }];
-}, ko = (n, e, t) => {
-  const o = _u(t, "pattern"), s = {}, r = {}, i = yu();
+    l.ranges = er(l.ranges);
+  }), [{ id: os.id, params: a }];
+}, To = (n, e, t) => {
+  const o = yu(t, "pattern"), s = {}, r = {}, i = bu();
   return Object.keys(o).forEach((a) => {
     const u = o[a], l = i();
     s[l] = {
       pattern: a
     }, u.forEach((c) => {
-      r[l] || (r[l] = { ranges: [] }), r[l].ranges.push(Vs(c.row, c.col));
+      r[l] || (r[l] = { ranges: [] }), r[l].ranges.push(Ls(c.row, c.col));
     });
   }), { unitId: n, subUnitId: e, refMap: s, values: r };
-}, dd = {
+}, hd = {
   id: "sheet.mutation.remove-range-theme",
   type: v.MUTATION,
   handler: (n, e) => {
     if (!e)
       return !1;
     const { styleName: t, unitId: o } = e;
-    return n.get(ve).unregisterRangeThemeStyle(o, t), !0;
+    return n.get(Ie).unregisterRangeThemeStyle(o, t), !0;
   }
-}, hd = {
+}, gd = {
   id: "sheet.mutation.set-range-theme",
   type: v.MUTATION,
   handler: (n, e) => {
     if (!e)
       return !1;
-    const { unitId: t, styleName: o, style: s } = e, i = n.get(ve).getRangeThemeStyle(t, o);
+    const { unitId: t, styleName: o, style: s } = e, i = n.get(Ie).getRangeThemeStyle(t, o);
     return i && (s.headerRowStyle && i.setHeaderRowStyle(s.headerRowStyle), s.firstRowStyle && i.setFirstRowStyle(s.firstRowStyle), s.secondRowStyle && i.setSecondRowStyle(s.secondRowStyle), s.lastRowStyle && i.setLastRowStyle(s.lastRowStyle)), !0;
   }
-}, gd = {
+}, md = {
   id: "sheet.operation.scroll-to-cell",
   type: v.OPERATION,
   handler: () => !0
-}, eg = (n, e, t) => {
+}, tg = (n, e, t) => {
   const s = n.get(z).getCurrentSelections(), { value: r, selections: i, unitId: a, subUnitId: u } = e;
   if (s) {
     const c = s[(s == null ? void 0 : s.length) - 1].primary;
@@ -10356,40 +10361,40 @@ const es = {
       })), I = {
         unitId: a,
         subUnitId: u,
-        type: we.ONLY_SET,
+        type: Se.ONLY_SET,
         selections: w
       };
       return {
-        id: ie.id,
+        id: ae.id,
         params: I
       };
     }
     return null;
   }
   return null;
-}, tg = (n, e) => {
+}, ng = (n, e) => {
   const o = n.get(z).getCurrentSelections(), { unitId: s, subUnitId: r } = e;
   if (o && o[(o == null ? void 0 : o.length) - 1].primary) {
     const u = {
       unitId: s,
       subUnitId: r,
-      type: we.ONLY_SET,
+      type: Se.ONLY_SET,
       selections: [...o]
     };
     return {
-      id: ie.id,
+      id: ae.id,
       params: u
     };
   }
   return null;
-}, md = "maxCellsPerSheet", fd = 3e6;
-var Rd = Object.getOwnPropertyDescriptor, Cd = (n, e, t, o) => {
-  for (var s = o > 1 ? void 0 : o ? Rd(e, t) : e, r = n.length - 1, i; r >= 0; r--)
+}, fd = "maxCellsPerSheet", Rd = 3e6;
+var Cd = Object.getOwnPropertyDescriptor, pd = (n, e, t, o) => {
+  for (var s = o > 1 ? void 0 : o ? Cd(e, t) : e, r = n.length - 1, i; r >= 0; r--)
     (i = n[r]) && (s = i(s) || s);
   return s;
-}, Ms = (n, e) => (t, o) => e(t, o, n);
-const pd = "SHEET_DEFINED_NAME_PLUGIN", ng = "AllDefaultWorkbook";
-let Gn = class extends ue {
+}, _s = (n, e) => (t, o) => e(t, o, n);
+const Sd = "SHEET_DEFINED_NAME_PLUGIN", og = "AllDefaultWorkbook";
+let Kn = class extends ue {
   constructor(n, e) {
     super(), this._definedNamesService = n, this._resourceManagerService = e, this._initialize();
   }
@@ -10411,7 +10416,7 @@ let Gn = class extends ue {
     };
     this.disposeWithMe(
       this._resourceManagerService.registerPluginResource({
-        pluginName: pd,
+        pluginName: Sd,
         businesses: [B.UNIVER_SHEET],
         toJson: (t) => n(t),
         parseJson: (t) => e(t),
@@ -10425,34 +10430,34 @@ let Gn = class extends ue {
     );
   }
 };
-Gn = Cd([
-  Ms(0, js),
-  Ms(1, Rn)
-], Gn);
-const ci = "sheets.config", _s = {};
-var Sd = Object.getOwnPropertyDescriptor, wd = (n, e, t, o) => {
-  for (var s = o > 1 ? void 0 : o ? Sd(e, t) : e, r = n.length - 1, i; r >= 0; r--)
+Kn = pd([
+  _s(0, zs),
+  _s(1, Cn)
+], Kn);
+const di = "sheets.config", ys = {};
+var wd = Object.getOwnPropertyDescriptor, Id = (n, e, t, o) => {
+  for (var s = o > 1 ? void 0 : o ? wd(e, t) : e, r = n.length - 1, i; r >= 0; r--)
     (i = n[r]) && (s = i(s) || s);
   return s;
-}, wo = (n, e) => (t, o) => e(t, o, n);
-const Id = [
+}, Io = (n, e) => (t, o) => e(t, o, n);
+const vd = [
   ot.id
-], vd = [
+], Md = [
+  Ee.id,
   Ue.id,
   ke.id,
-  Te.id,
-  Me.id,
+  ve.id,
   Je.id,
   qe.id
 ];
-let Kn = class extends ue {
+let Jn = class extends ue {
   constructor(e, t, o) {
     var r, i;
     super();
-    R(this, "_d", new Et());
+    R(this, "_d", new Ut());
     R(this, "_enabled", !0);
     this._univerInstanceService = e, this._commandService = t, this._configService = o;
-    const s = (i = (r = this._configService.getConfig(ci)) == null ? void 0 : r.freezeSync) != null ? i : !0;
+    const s = (i = (r = this._configService.getConfig(di)) == null ? void 0 : r.freezeSync) != null ? i : !0;
     this.setEnabled(s);
   }
   getEnabled() {
@@ -10464,13 +10469,13 @@ let Kn = class extends ue {
   _initOnlyLocalListener() {
     this._d.add(
       this._commandService.beforeCommandExecuted((e, t) => {
-        Id.includes(e.id) && (t || (t = {}), t.onlyLocal = !0);
+        vd.includes(e.id) && (t || (t = {}), t.onlyLocal = !0);
       })
     ), this._d.add(
       this._commandService.onCommandExecuted((e, t) => {
-        if (vd.includes(e.id) && (t != null && t.fromCollab)) {
+        if (Md.includes(e.id) && (t != null && t.fromCollab)) {
           const { id: o, params: s } = e;
-          o === Ue.id ? this._handleInsertRowMutation(s, t) : o === ke.id ? this._handleInsertColMutation(s, t) : o === Te.id ? this._handleRemoveRowMutation(s, t) : o === Me.id ? this._handleRemoveColMutation(s, t) : o === Je.id ? this._handleMoveRowsMutation(s, t) : o === qe.id && this._handleMoveColsMutation(s, t);
+          o === Ee.id ? this._handleInsertRowMutation(s, t) : o === Ue.id ? this._handleInsertColMutation(s, t) : o === ke.id ? this._handleRemoveRowMutation(s, t) : o === ve.id ? this._handleRemoveColMutation(s, t) : o === Je.id ? this._handleMoveRowsMutation(s, t) : o === qe.id && this._handleMoveColsMutation(s, t);
         }
       })
     );
@@ -10559,114 +10564,114 @@ let Kn = class extends ue {
     ], this._commandService, s);
   }
 };
-Kn = wd([
-  wo(0, $(M)),
-  wo(1, E),
-  wo(2, xo)
-], Kn);
-var Md = Object.getOwnPropertyDescriptor, _d = (n, e, t, o) => {
-  for (var s = o > 1 ? void 0 : o ? Md(e, t) : e, r = n.length - 1, i; r >= 0; r--)
+Jn = Id([
+  Io(0, $(M)),
+  Io(1, E),
+  Io(2, $o)
+], Jn);
+var _d = Object.getOwnPropertyDescriptor, yd = (n, e, t, o) => {
+  for (var s = o > 1 ? void 0 : o ? _d(e, t) : e, r = n.length - 1, i; r >= 0; r--)
     (i = n[r]) && (s = i(s) || s);
   return s;
 }, ze = (n, e) => (t, o) => e(t, o, n);
-let Jn = class extends ue {
+let qn = class extends ue {
   constructor(e, t, o, s, r, i, a, u, l, c) {
     super();
-    R(this, "disposableCollection", new Et());
-    R(this, "_triggerPermissionUIEvent$", new De());
+    R(this, "disposableCollection", new Ut());
+    R(this, "_triggerPermissionUIEvent$", new Oe());
     R(this, "triggerPermissionUIEvent$", this._triggerPermissionUIEvent$.asObservable());
     this._commandService = e, this._univerInstanceService = t, this._permissionService = o, this._selectionManagerService = s, this._rangeProtectionRuleModel = r, this._worksheetProtectionRuleModel = i, this._localeService = a, this._lexerTreeBuilder = u, this._contextService = l, this._definedNamesService = c, this._initialize();
   }
   blockExecuteWithoutPermission(e) {
-    throw this._triggerPermissionUIEvent$.next(e), new Di("have no permission");
+    throw this._triggerPermissionUIEvent$.next(e), new Ai("have no permission");
   }
   _getPermissionCheck(e, t) {
     let o = !0, s = "";
     switch (e) {
-      case pn.id:
-        Ls(t.value) && t.value.f ? (o = this._permissionCheckWithFormula(t), s = this._localeService.t("permission.dialog.formulaErr")) : o = this._permissionCheckBySetRangeValue({
-          workbookTypes: [Pe],
-          rangeTypes: [Ve],
-          worksheetTypes: [Dn, Le]
+      case Sn.id:
+        Hs(t.value) && t.value.f ? (o = this._permissionCheckWithFormula(t), s = this._localeService.t("permission.dialog.formulaErr")) : o = this._permissionCheckBySetRangeValue({
+          workbookTypes: [Te],
+          rangeTypes: [We],
+          worksheetTypes: [An, Ve]
         }, t);
         break;
-      case qo.id:
+      case Yo.id:
         o = this.permissionCheckWithRanges({
-          workbookTypes: [Pe],
-          rangeTypes: [Ve],
-          worksheetTypes: [Dn, Le]
+          workbookTypes: [Te],
+          rangeTypes: [We],
+          worksheetTypes: [An, Ve]
         }), s = this._localeService.t("permission.dialog.editErr");
         break;
-      case Ln.id:
       case Hn.id:
-        o = this.permissionCheckWithoutRange({
-          worksheetTypes: [Zt]
-        }), s = this._localeService.t("permission.dialog.setRowColStyleErr");
-        break;
-      case jn.id:
-      case zn.id:
-      case ts.id:
+      case Fn.id:
         o = this.permissionCheckWithoutRange({
           worksheetTypes: [Qt]
         }), s = this._localeService.t("permission.dialog.setRowColStyleErr");
         break;
+      case zn.id:
+      case Gn.id:
+      case ns.id:
+        o = this.permissionCheckWithoutRange({
+          worksheetTypes: [en]
+        }), s = this._localeService.t("permission.dialog.setRowColStyleErr");
+        break;
+      case ln.id:
       case un.id:
-      case an.id:
         o = this._permissionCheckByMoveCommand(t), s = this._localeService.t("permission.dialog.moveRowColErr");
         break;
-      case yt.id:
+      case bt.id:
         o = this._permissionCheckByMoveRangeCommand(t), s = this._localeService.t("permission.dialog.moveRangeErr");
         break;
-      case ri.id:
-        o = this._permissionCheckByWorksheetCommand([Pe, zo]), s = this._localeService.t("permission.dialog.operatorSheetErr"), o === !1 && this._worksheetProtectionRuleModel.resetOrder();
+      case ii.id:
+        o = this._permissionCheckByWorksheetCommand([Te, Go]), s = this._localeService.t("permission.dialog.operatorSheetErr"), o === !1 && this._worksheetProtectionRuleModel.resetOrder();
         break;
-      case Qo.id:
-        o = this._permissionCheckByWorksheetCommand([Pe, Go]), s = this._localeService.t("permission.dialog.operatorSheetErr"), o === !1 && this._worksheetProtectionRuleModel.resetOrder();
+      case es.id:
+        o = this._permissionCheckByWorksheetCommand([Te, Ko]), s = this._localeService.t("permission.dialog.operatorSheetErr"), o === !1 && this._worksheetProtectionRuleModel.resetOrder();
         break;
-      case ui.id:
+      case li.id:
         {
           const { unitId: r, subUnitId: i } = t;
-          o = this._permissionCheckByWorksheetCommand([Pe, Bo], r, i), s = this._localeService.t("permission.dialog.operatorSheetErr"), o === !1 && this._worksheetProtectionRuleModel.resetOrder();
+          o = this._permissionCheckByWorksheetCommand([Te, jo], r, i), s = this._localeService.t("permission.dialog.operatorSheetErr"), o === !1 && this._worksheetProtectionRuleModel.resetOrder();
         }
-        break;
-      case dn.id:
-        o = this.permissionCheckWithRanges({
-          workbookTypes: [Pe],
-          rangeTypes: [Ve],
-          worksheetTypes: [Le, Zt]
-        }, t.ranges), s = this._localeService.t("permission.dialog.setRowColStyleErr");
         break;
       case hn.id:
         o = this.permissionCheckWithRanges({
-          workbookTypes: [Pe],
-          rangeTypes: [Ve],
-          worksheetTypes: [Le, Qt]
+          workbookTypes: [Te],
+          rangeTypes: [We],
+          worksheetTypes: [Ve, Qt]
         }, t.ranges), s = this._localeService.t("permission.dialog.setRowColStyleErr");
         break;
-      case qr.id:
+      case gn.id:
         o = this.permissionCheckWithRanges({
-          workbookTypes: [Pe],
-          rangeTypes: [Ve],
-          worksheetTypes: [Le, Zt]
+          workbookTypes: [Te],
+          rangeTypes: [We],
+          worksheetTypes: [Ve, en]
+        }, t.ranges), s = this._localeService.t("permission.dialog.setRowColStyleErr");
+        break;
+      case Yr.id:
+        o = this.permissionCheckWithRanges({
+          workbookTypes: [Te],
+          rangeTypes: [We],
+          worksheetTypes: [Ve, Qt]
         }), s = this._localeService.t("permission.dialog.setRowColStyleErr");
         break;
-      case Qr.id:
+      case ei.id:
         o = this.permissionCheckWithRanges({
-          workbookTypes: [Pe],
-          rangeTypes: [Ve],
-          worksheetTypes: [Le, Qt]
+          workbookTypes: [Te],
+          rangeTypes: [We],
+          worksheetTypes: [Ve, en]
         }), s = this._localeService.t("permission.dialog.setRowColStyleErr");
         break;
-      case rn.id:
+      case an.id:
         o = this._permissionCheckWithInsertRangeMove("right"), s = this._localeService.t("permission.dialog.insertOrDeleteMoveRangeErr");
         break;
-      case Pt.id:
+      case Nt.id:
         o = this._permissionCheckWithInsertRangeMove("bottom"), s = this._localeService.t("permission.dialog.insertOrDeleteMoveRangeErr");
         break;
-      case It.id:
+      case vt.id:
         o = this._permissionCheckWithInsertRangeMove("left"), s = this._localeService.t("permission.dialog.insertOrDeleteMoveRangeErr");
         break;
-      case vt.id:
+      case Mt.id:
         o = this._permissionCheckWithInsertRangeMove("top"), s = this._localeService.t("permission.dialog.insertOrDeleteMoveRangeErr");
         break;
     }
@@ -10683,7 +10688,7 @@ let Jn = class extends ue {
     ), this.disposeWithMe(
       this._commandService.onCommandExecuted((e) => {
         var t;
-        if (e.id === Fn.id) {
+        if (e.id === Bn.id) {
           const o = e.params, { unitId: s = (t = this._univerInstanceService.getCurrentUnitForType(B.UNIVER_SHEET)) == null ? void 0 : t.getUnitId(), subUnitId: r } = o;
           if (!s || !r)
             return;
@@ -10707,7 +10712,7 @@ let Jn = class extends ue {
     if (!s)
       return !1;
     const { unitId: r, subUnitId: i } = s, a = this._worksheetProtectionRuleModel.getRule(r, i), u = this._rangeProtectionRuleModel.getSubunitRuleList(r, i).length > 0;
-    return a || u ? (c = (l = this._permissionService.getPermissionPoint(new jo(r).id)) == null ? void 0 : l.value) != null ? c : !1 : this._permissionService.composePermission(e.map((d) => new d(r).id)).every((d) => d.value);
+    return a || u ? (c = (l = this._permissionService.getPermissionPoint(new zo(r).id)) == null ? void 0 : l.value) != null ? c : !1 : this._permissionService.composePermission(e.map((d) => new d(r).id)).every((d) => d.value);
   }
   permissionCheckWithoutRange(e) {
     var h, g, m, f;
@@ -10787,7 +10792,7 @@ let Jn = class extends ue {
   }
   _permissionCheckBySetRangeValue(e, t) {
     let o = [];
-    t.range ? o = [t.range] : o = [new Y(t.value).getDataRange()];
+    t.range ? o = [t.range] : o = [new q(t.value).getDataRange()];
     const { unitId: s, subUnitId: r } = t;
     return this.permissionCheckWithRanges(e, o, s, r);
   }
@@ -10798,10 +10803,10 @@ let Jn = class extends ue {
       const c = s.substring(1), d = this._univerInstanceService.getCurrentUnitForType(B.UNIVER_SHEET), h = (r = e.unitId) != null ? r : d.getUnitId(), g = this._definedNamesService.getValueByName(h, c);
       if (g) {
         let m = g.formulaOrRefString;
-        m.startsWith(Zi.EQUALS) && (m = m.slice(1));
+        m.startsWith(Qi.EQUALS) && (m = m.slice(1));
         const f = m.split(",");
         for (let C = 0; C < f.length; C++) {
-          const p = f[C], w = Qi(p);
+          const p = f[C], w = ea(p);
           if (w.sheetName) {
             const I = d.getSheetBySheetName(w.sheetName);
             if (!I)
@@ -10822,9 +10827,9 @@ let Jn = class extends ue {
           return !0;
         for (let f = 0; f < m.length; f++) {
           const C = m[f];
-          if (typeof C == "string" || C.nodeType !== ea.REFERENCE)
+          if (typeof C == "string" || C.nodeType !== ta.REFERENCE)
             continue;
-          const { token: p } = C, w = ta(p), I = w.unitId ? this._univerInstanceService.getUnit(w.unitId) : this._univerInstanceService.getCurrentUnitForType(B.UNIVER_SHEET);
+          const { token: p } = C, w = na(p), I = w.unitId ? this._univerInstanceService.getUnit(w.unitId) : this._univerInstanceService.getCurrentUnitForType(B.UNIVER_SHEET);
           if (!I) return !0;
           let S = w.sheetName ? I.getSheetBySheetName(w.sheetName) : I.getActiveSheet();
           const y = I.getUnitId();
@@ -10832,15 +10837,15 @@ let Jn = class extends ue {
             if (S = I.getSheetBySheetName(w.sheetName), !S)
               return !0;
             const U = S == null ? void 0 : S.getSheetId();
-            if (!this._permissionService.getPermissionPoint(new lo(y, U).id)) return !1;
+            if (!this._permissionService.getPermissionPoint(new co(y, U).id)) return !1;
           }
           if (!S)
             return !0;
           const { startRow: b, endRow: O, startColumn: k, endColumn: T } = w.range;
           for (let U = b; U <= O; U++)
             for (let D = k; D <= T; D++) {
-              const H = (l = (u = S.getCell(U, D)) == null ? void 0 : u.selectionProtection) == null ? void 0 : l[0];
-              if ((H == null ? void 0 : H[_.View]) === !1)
+              const F = (l = (u = S.getCell(U, D)) == null ? void 0 : u.selectionProtection) == null ? void 0 : l[0];
+              if ((F == null ? void 0 : F[_.View]) === !1)
                 return !1;
             }
         }
@@ -10851,41 +10856,41 @@ let Jn = class extends ue {
       const c = P(this._univerInstanceService);
       if (!c)
         return !1;
-      const d = e.unitId || c.unitId, h = e.subUnitId || c.subUnitId, m = this._rangeProtectionRuleModel.getSubunitRuleList(d, h).filter((C) => C.ranges.some((p) => N.intersects(p, o))).map((C) => new Ve(d, h, C.permissionId).id);
+      const d = e.unitId || c.unitId, h = e.subUnitId || c.subUnitId, m = this._rangeProtectionRuleModel.getSubunitRuleList(d, h).filter((C) => C.ranges.some((p) => N.intersects(p, o))).map((C) => new We(d, h, C.permissionId).id);
       if (!this._permissionService.composePermission(m).every((C) => C.value))
         return !1;
     }
     return !0;
   }
 };
-Jn = _d([
+qn = yd([
   ze(0, E),
   ze(1, M),
   ze(2, Ze),
   ze(3, $(z)),
-  ze(4, $(me)),
+  ze(4, $(ge)),
   ze(5, $(lt)),
   ze(6, $(it)),
-  ze(7, $(Xi)),
-  ze(8, Ws),
-  ze(9, js)
-], Jn);
-var yd = Object.getOwnPropertyDescriptor, bd = (n, e, t, o) => {
-  for (var s = o > 1 ? void 0 : o ? yd(e, t) : e, r = n.length - 1, i; r >= 0; r--)
+  ze(7, $(Zi)),
+  ze(8, Vs),
+  ze(9, zs)
+], qn);
+var bd = Object.getOwnPropertyDescriptor, Ed = (n, e, t, o) => {
+  for (var s = o > 1 ? void 0 : o ? bd(e, t) : e, r = n.length - 1, i; r >= 0; r--)
     (i = n[r]) && (s = i(s) || s);
   return s;
-}, Ft = (n, e) => (t, o) => e(t, o, n);
-let mn = class extends ue {
+}, Bt = (n, e) => (t, o) => e(t, o, n);
+let fn = class extends ue {
   constructor(e, t, o, s, r) {
     super();
-    R(this, "_unitPermissionInitStateChange", new gt(!1));
+    R(this, "_unitPermissionInitStateChange", new mt(!1));
     R(this, "unitPermissionInitStateChange$", this._unitPermissionInitStateChange.asObservable());
     this._permissionService = e, this._univerInstanceService = t, this._rangeProtectionRuleModel = o, this._worksheetProtectionRuleModel = s, this._worksheetProtectionPointModel = r, this._init();
   }
   _init() {
     const e = (t) => {
       const o = t.getUnitId();
-      gn().forEach((s) => {
+      mn().forEach((s) => {
         const r = new s(o);
         this._permissionService.addPermissionPoint(r);
       });
@@ -10899,15 +10904,15 @@ let mn = class extends ue {
       t.getSheets().forEach((s) => {
         const r = s.getSheetId();
         this._rangeProtectionRuleModel.getSubunitRuleList(o, r).forEach((a) => {
-          [...Ee()].forEach((u) => {
+          [...be()].forEach((u) => {
             const l = new u(o, r, a.permissionId);
             this._permissionService.deletePermissionPoint(l.id);
           });
-        }), [...be(), ...He()].forEach((a) => {
+        }), [...ye(), ...Le()].forEach((a) => {
           const u = new a(o, r);
           this._permissionService.deletePermissionPoint(u.id);
         });
-      }), gn().forEach((s) => {
+      }), mn().forEach((s) => {
         const r = new s(o);
         this._permissionService.deletePermissionPoint(r.id);
       }), this._rangeProtectionRuleModel.deleteUnitModel(o), this._worksheetProtectionPointModel.deleteUnitModel(o), this._worksheetProtectionRuleModel.deleteUnitModel(o);
@@ -10917,19 +10922,19 @@ let mn = class extends ue {
     this._unitPermissionInitStateChange.next(e);
   }
 };
-mn = bd([
-  Ft(0, $(Ze)),
-  Ft(1, $(M)),
-  Ft(2, $(me)),
-  Ft(3, $(lt)),
-  Ft(4, $(In))
-], mn);
-var Ed = Object.getOwnPropertyDescriptor, Ud = (n, e, t, o) => {
-  for (var s = o > 1 ? void 0 : o ? Ed(e, t) : e, r = n.length - 1, i; r >= 0; r--)
+fn = Ed([
+  Bt(0, $(Ze)),
+  Bt(1, $(M)),
+  Bt(2, $(ge)),
+  Bt(3, $(lt)),
+  Bt(4, $(vn))
+], fn);
+var Ud = Object.getOwnPropertyDescriptor, kd = (n, e, t, o) => {
+  for (var s = o > 1 ? void 0 : o ? Ud(e, t) : e, r = n.length - 1, i; r >= 0; r--)
     (i = n[r]) && (s = i(s) || s);
   return s;
 }, Ge = (n, e) => (t, o) => e(t, o, n);
-let qn = class extends ue {
+let Yn = class extends ue {
   constructor(n, e, t, o, s, r, i, a, u, l) {
     super(), this._univerInstanceService = n, this._permissionService = e, this._authzIoService = t, this._rangeProtectionRuleModel = o, this._worksheetProtectionRuleModel = s, this._userManagerService = r, this._worksheetProtectionPointRuleModel = i, this._workbookPermissionService = a, this._undoRedoService = u, this._commandService = l;
   }
@@ -10949,7 +10954,7 @@ let qn = class extends ue {
             objectID: u.permissionId,
             unitID: o,
             objectType: x.SelectRange,
-            actions: pt
+            actions: St
           });
         });
       }), !t.length) {
@@ -10959,7 +10964,7 @@ let qn = class extends ue {
       this._authzIoService.batchAllowed(t).then((i) => {
         i.forEach((a) => {
           const u = r.get(a.objectID);
-          u && Ee().forEach((l) => {
+          u && be().forEach((l) => {
             const c = new l(o, u.subUnitId, a.objectID), d = c.subType, h = a.actions.find((g) => g.action === d);
             (h == null ? void 0 : h.allowed) !== void 0 && this._permissionService.updatePermissionPoint(c.id, h.allowed);
           });
@@ -10975,9 +10980,9 @@ let qn = class extends ue {
           objectID: n.rule.permissionId,
           unitID: n.unitId,
           objectType: x.SelectRange,
-          actions: pt
+          actions: St
         }).then((e) => {
-          Ee().forEach((t) => {
+          be().forEach((t) => {
             if (n.type === "set") {
               const { rule: a, oldRule: u } = n;
               if (a.permissionId === (u == null ? void 0 : u.permissionId))
@@ -10986,7 +10991,7 @@ let qn = class extends ue {
             const o = n.rule, s = new t(o.unitId, o.subUnitId, o.permissionId), r = s.subType, i = e.find((a) => a.action === r);
             i && this._permissionService.updatePermissionPoint(s.id, i.allowed);
           }), this._rangeProtectionRuleModel.ruleRefresh(n.rule.permissionId);
-        }) : this._rangeProtectionRuleModel.getSubunitRuleList(n.unitId, n.subUnitId).length === 0 && (this._worksheetProtectionPointRuleModel.deleteRule(n.unitId, n.subUnitId), [...He()].forEach((t) => {
+        }) : this._rangeProtectionRuleModel.getSubunitRuleList(n.unitId, n.subUnitId).length === 0 && (this._worksheetProtectionPointRuleModel.deleteRule(n.unitId, n.subUnitId), [...Le()].forEach((t) => {
           const o = new t(n.unitId, n.subUnitId);
           this._permissionService.updatePermissionPoint(o.id, o.value);
         }));
@@ -11001,9 +11006,9 @@ let qn = class extends ue {
         objectID: e,
         objectType: x.Workbook,
         unitID: e,
-        actions: Jc
+        actions: qc
       }).then((o) => {
-        gn().forEach((s) => {
+        mn().forEach((s) => {
           const r = new s(e), i = r.subType, a = o.find((u) => u.action === i);
           a && this._permissionService.updatePermissionPoint(r.id, a.allowed);
         });
@@ -11019,13 +11024,13 @@ let qn = class extends ue {
           objectID: n.rule.permissionId,
           unitID: n.unitId,
           objectType: x.Worksheet,
-          actions: pt
+          actions: St
         }).then((e) => {
-          be().forEach((t) => {
+          ye().forEach((t) => {
             const o = new t(n.unitId, n.subUnitId), s = o.subType, r = e.find((i) => i.action === s);
             r && this._permissionService.updatePermissionPoint(o.id, r.allowed);
           }), this._worksheetProtectionRuleModel.ruleRefresh(n.rule.permissionId);
-        }) : ([...be(), ...He()].forEach((e) => {
+        }) : ([...ye(), ...Le()].forEach((e) => {
           const t = new e(n.unitId, n.subUnitId);
           this._permissionService.updatePermissionPoint(t.id, !0);
         }), this._worksheetProtectionPointRuleModel.deleteRule(n.unitId, n.subUnitId));
@@ -11039,9 +11044,9 @@ let qn = class extends ue {
           objectID: n.permissionId,
           unitID: n.unitId,
           objectType: x.Worksheet,
-          actions: po
+          actions: So
         }).then((e) => {
-          He().forEach((t) => {
+          Le().forEach((t) => {
             const o = new t(n.unitId, n.subUnitId), s = o.subType, r = e.find((i) => i.action === s);
             r && this._permissionService.updatePermissionPoint(o.id, r.allowed);
           });
@@ -11058,14 +11063,14 @@ let qn = class extends ue {
           objectID: u.permissionId,
           unitID: o,
           objectType: x.Worksheet,
-          actions: pt
+          actions: St
         }));
         const l = this._worksheetProtectionPointRuleModel.getRule(o, a);
         l && (r.set(l.permissionId, l), t.push({
           objectID: l.permissionId,
           unitID: o,
           objectType: x.Worksheet,
-          actions: po
+          actions: So
         }));
       }), !t.length) {
         this._worksheetProtectionRuleModel.changeRuleInitState(!0);
@@ -11074,7 +11079,7 @@ let qn = class extends ue {
       this._authzIoService.batchAllowed(t).then((i) => {
         i.forEach((a) => {
           const u = r.get(a.objectID);
-          u && [...be(), ...He()].forEach((l) => {
+          u && [...ye(), ...Le()].forEach((l) => {
             const c = new l(o, u.subUnitId), d = c.subType, h = a.actions.find((g) => g.action === d);
             (h == null ? void 0 : h.allowed) !== void 0 && this._permissionService.updatePermissionPoint(c.id, h.allowed);
           });
@@ -11086,20 +11091,20 @@ let qn = class extends ue {
   _initUserChange() {
     this.disposeWithMe(
       // When the user changes, the permission points are updated. The first modification needs to be filtered here because it is a Behavior type, but in fact the user information is ready when this controller is initialized.
-      this._userManagerService.currentUser$.pipe(Bs(1)).subscribe(() => {
+      this._userManagerService.currentUser$.pipe(js(1)).subscribe(() => {
         const n = this._permissionService.getAllPermissionPoint();
         this._permissionService.clearPermissionMap(), this._worksheetProtectionRuleModel.changeRuleInitState(!1), this._univerInstanceService.getAllUnitsForType(B.UNIVER_SHEET).forEach((t) => {
           const o = t.getUnitId();
-          gn().forEach((s) => {
+          mn().forEach((s) => {
             let r = new s(o);
             n.has(r.id) && (r = n.get(r.id)), this._permissionService.addPermissionPoint(r);
           }), t.getSheets().forEach((s) => {
             const r = s.getSheetId();
-            [...be(), ...He()].forEach((a) => {
+            [...ye(), ...Le()].forEach((a) => {
               let u = new a(o, r);
               n.has(u.id) && (u = n.get(u.id)), this._permissionService.addPermissionPoint(u);
             }), this._rangeProtectionRuleModel.getSubunitRuleList(o, r).forEach((a) => {
-              Ee().forEach((u) => {
+              be().forEach((u) => {
                 let l = new u(o, r, a.permissionId);
                 n.has(l.id) && (l = n.get(l.id)), this._permissionService.addPermissionPoint(l);
               });
@@ -11118,10 +11123,10 @@ let qn = class extends ue {
         objectID: e,
         unitID: n,
         objectType: x.Worksheet,
-        actions: pt
+        actions: St
       }).then((u) => {
         let l = "";
-        be().forEach((c) => {
+        ye().forEach((c) => {
           var m;
           const d = new c(n, a), h = d.subType, g = u.find((f) => f.action === h);
           g && (((m = this._permissionService.getPermissionPoint(d.id)) == null ? void 0 : m.value) !== g.allowed && (o = !0), this._permissionService.updatePermissionPoint(d.id, g.allowed), l += `${g.action}_${g.allowed}`);
@@ -11135,9 +11140,9 @@ let qn = class extends ue {
         objectID: e,
         unitID: n,
         objectType: x.Worksheet,
-        actions: po
+        actions: So
       }).then((u) => {
-        He().forEach((l) => {
+        Le().forEach((l) => {
           var g;
           const c = new l(n, a), d = c.subType, h = u.find((m) => m.action === d);
           h && (((g = this._permissionService.getPermissionPoint(c.id)) == null ? void 0 : g.value) !== h.allowed && (o = !0), this._permissionService.updatePermissionPoint(c.id, h.allowed));
@@ -11151,10 +11156,10 @@ let qn = class extends ue {
         objectID: e,
         unitID: n,
         objectType: x.SelectRange,
-        actions: pt
+        actions: St
       }).then((u) => {
         let l = "";
-        Ee().forEach((c) => {
+        be().forEach((c) => {
           var m;
           const d = new c(n, a, e), h = d.subType, g = u.find((f) => f.action === h);
           g && (((m = this._permissionService.getPermissionPoint(d.id)) == null ? void 0 : m.value) !== g.allowed && (o = !0), this._permissionService.updatePermissionPoint(d.id, g.allowed), l += `${g.action}_${g.allowed}`);
@@ -11165,7 +11170,7 @@ let qn = class extends ue {
   _refreshPermissionByCollaCreate() {
     this.disposeWithMe(
       this._commandService.onCommandExecuted((n, e) => {
-        if (e != null && e.fromCollab && (n.id === Be.id || n.id === Mt.id || n.id === es.id)) {
+        if (e != null && e.fromCollab && (n.id === Fe.id || n.id === _t.id || n.id === ts.id)) {
           const t = n.params;
           this._undoRedoService.clearUndoRedo(t.unitId);
         }
@@ -11173,27 +11178,27 @@ let qn = class extends ue {
     );
   }
 };
-qn = Ud([
+Yn = kd([
   Ge(0, M),
   Ge(1, Ze),
-  Ge(2, Ai),
-  Ge(3, $(me)),
+  Ge(2, xi),
+  Ge(3, $(ge)),
   Ge(4, $(lt)),
-  Ge(5, $(xi)),
-  Ge(6, $(In)),
-  Ge(7, $(mn)),
+  Ge(5, $($i)),
+  Ge(6, $(vn)),
+  Ge(7, $(fn)),
   Ge(8, $(V)),
   Ge(9, $(E))
-], qn);
-var kd = Object.getOwnPropertyDescriptor, Td = (n, e, t, o) => {
-  for (var s = o > 1 ? void 0 : o ? kd(e, t) : e, r = n.length - 1, i; r >= 0; r--)
+], Yn);
+var Td = Object.getOwnPropertyDescriptor, Pd = (n, e, t, o) => {
+  for (var s = o > 1 ? void 0 : o ? Td(e, t) : e, r = n.length - 1, i; r >= 0; r--)
     (i = n[r]) && (s = i(s) || s);
   return s;
-}, Io = (n, e) => (t, o) => e(t, o, n);
-let Yn = class extends ue {
+}, vo = (n, e) => (t, o) => e(t, o, n);
+let Xn = class extends ue {
   constructor(e, t, o) {
     super();
-    R(this, "_zebraCacheUpdateSubject", new De());
+    R(this, "_zebraCacheUpdateSubject", new Oe());
     this._commandService = e, this._sheetRangeThemeModel = t, this._univerInstanceService = o, this._init();
   }
   _init() {
@@ -11212,13 +11217,7 @@ let Yn = class extends ue {
       const { id: t } = e;
       let o, s;
       switch (t) {
-        case Ue.id:
-          {
-            const r = e.params;
-            o = r.unitId, s = r.subUnitId;
-          }
-          break;
-        case kt.id:
+        case Ee.id:
           {
             const r = e.params;
             o = r.unitId, s = r.subUnitId;
@@ -11230,7 +11229,13 @@ let Yn = class extends ue {
             o = r.unitId, s = r.subUnitId;
           }
           break;
-        case Te.id:
+        case Pt.id:
+          {
+            const r = e.params;
+            o = r.unitId, s = r.subUnitId;
+          }
+          break;
+        case ke.id:
           {
             const r = e.params;
             o = r.unitId, s = r.subUnitId;
@@ -11254,31 +11259,31 @@ let Yn = class extends ue {
     );
   }
 };
-Yn = Td([
-  Io(0, $(E)),
-  Io(1, $(ve)),
-  Io(2, $(M))
-], Yn);
-var Pd = Object.getOwnPropertyDescriptor, Nd = (n, e, t, o) => {
-  for (var s = o > 1 ? void 0 : o ? Pd(e, t) : e, r = n.length - 1, i; r >= 0; r--)
+Xn = Pd([
+  vo(0, $(E)),
+  vo(1, $(Ie)),
+  vo(2, $(M))
+], Xn);
+var Nd = Object.getOwnPropertyDescriptor, Od = (n, e, t, o) => {
+  for (var s = o > 1 ? void 0 : o ? Nd(e, t) : e, r = n.length - 1, i; r >= 0; r--)
     (i = n[r]) && (s = i(s) || s);
   return s;
-}, ys = (n, e) => (t, o) => e(t, o, n);
-let fn = class {
+}, bs = (n, e) => (t, o) => e(t, o, n);
+let Rn = class {
   constructor(n, e) {
-    R(this, "_cache", new $i(1e4));
+    R(this, "_cache", new Wi(1e4));
     this._selectionProtectionRuleModel = n, this._permissionService = e, this._init();
   }
   _init() {
     this._permissionService.permissionPointUpdate$.pipe(
-      rs((n) => n.type === x.SelectRange),
-      rs((n) => Ee().some((e) => n instanceof e)),
-      ia((n) => n)
+      is((n) => n.type === x.SelectRange),
+      is((n) => be().some((e) => n instanceof e)),
+      aa((n) => n)
     ).subscribe((n) => {
       const e = this._selectionProtectionRuleModel.getSubunitRuleList(n.unitId, n.subUnitId);
       for (const t of e)
         t.permissionId === n.permissionId && t.ranges.forEach((o) => {
-          X.foreach(o, (s, r) => {
+          Y.foreach(o, (s, r) => {
             const i = this._createKey(n.unitId, n.subUnitId, s, r);
             this._cache.delete(i);
           });
@@ -11286,12 +11291,12 @@ let fn = class {
     }), this._selectionProtectionRuleModel.ruleChange$.subscribe((n) => {
       var e;
       n.rule.ranges.forEach((t) => {
-        X.foreach(t, (o, s) => {
+        Y.foreach(t, (o, s) => {
           const r = this._createKey(n.unitId, n.subUnitId, o, s);
           this._cache.delete(r);
         });
       }), n.type === "set" && ((e = n.oldRule) == null || e.ranges.forEach((t) => {
-        X.foreach(t, (o, s) => {
+        Y.foreach(t, (o, s) => {
           const r = this._createKey(n.unitId, n.subUnitId, o, s);
           this._cache.delete(r);
         });
@@ -11311,7 +11316,7 @@ let fn = class {
     const u = [];
     for (const l of s)
       if (l.ranges.some((c) => c.startRow <= t && c.endRow >= t && c.startColumn <= o && c.endColumn >= o)) {
-        const c = Ee().reduce((d, h) => {
+        const c = be().reduce((d, h) => {
           var f;
           const g = new h(n, e, l.permissionId), m = this._permissionService.getPermissionPoint(g.id);
           return d[g.subType] = (f = m == null ? void 0 : m.value) != null ? f : g.value, d;
@@ -11324,16 +11329,16 @@ let fn = class {
     this._cache.clear();
   }
 };
-fn = Nd([
-  ys(0, $(me)),
-  ys(1, $(Ze))
-], fn);
-var Od = Object.getOwnPropertyDescriptor, Dd = (n, e, t, o) => {
-  for (var s = o > 1 ? void 0 : o ? Od(e, t) : e, r = n.length - 1, i; r >= 0; r--)
+Rn = Od([
+  bs(0, $(ge)),
+  bs(1, $(Ze))
+], Rn);
+var Dd = Object.getOwnPropertyDescriptor, Ad = (n, e, t, o) => {
+  for (var s = o > 1 ? void 0 : o ? Dd(e, t) : e, r = n.length - 1, i; r >= 0; r--)
     (i = n[r]) && (s = i(s) || s);
   return s;
-}, vo = (n, e) => (t, o) => e(t, o, n);
-let Wt = class extends ue {
+}, Mo = (n, e) => (t, o) => e(t, o, n);
+let Vt = class extends ue {
   constructor(e, t, o) {
     super();
     R(this, "_cellRuleCache", /* @__PURE__ */ new Map());
@@ -11354,8 +11359,8 @@ let Wt = class extends ue {
   }
   _initUpdateCellInfoCache() {
     this._permissionService.permissionPointUpdate$.pipe(
-      os((e) => e.type === x.SelectRange),
-      yo((e) => e)
+      ss((e) => e.type === x.SelectRange),
+      bo((e) => e)
     ).subscribe((e) => {
       const { subUnitId: t, unitId: o, permissionId: s } = e, r = this._permissionIdCache.get(s);
       if (!r)
@@ -11374,11 +11379,11 @@ let Wt = class extends ue {
       var r;
       const { unitId: t, subUnitId: o } = e, s = this._ensureCellInfoMap(t, o);
       e.rule.ranges.forEach((i) => {
-        X.foreach(i, (a, u) => {
+        Y.foreach(i, (a, u) => {
           s.delete(`${a}-${u}`);
         });
       }), e.type === "set" && ((r = e.oldRule) == null || r.ranges.forEach((i) => {
-        X.foreach(i, (a, u) => {
+        Y.foreach(i, (a, u) => {
           this._cellInfoCache.delete(`${a}-${u}`);
         });
       }));
@@ -11428,7 +11433,7 @@ let Wt = class extends ue {
   }
   _getSelectionActions(e, t, o) {
     var l, c, d, h, g, m, f, C, p, w, I, S;
-    const s = (d = (c = this._permissionService.getPermissionPoint((l = new Ve(e, t, o.permissionId)) == null ? void 0 : l.id)) == null ? void 0 : c.value) != null ? d : !0, r = (m = (g = this._permissionService.getPermissionPoint((h = new Fo(e, t, o.permissionId)) == null ? void 0 : h.id)) == null ? void 0 : g.value) != null ? m : !0, i = (p = (C = this._permissionService.getPermissionPoint((f = new ai(e, t, o.permissionId)) == null ? void 0 : f.id)) == null ? void 0 : C.value) != null ? p : !1, a = (S = (I = this._permissionService.getPermissionPoint((w = new ii(e, t, o.permissionId)) == null ? void 0 : w.id)) == null ? void 0 : I.value) != null ? S : !1;
+    const s = (d = (c = this._permissionService.getPermissionPoint((l = new We(e, t, o.permissionId)) == null ? void 0 : l.id)) == null ? void 0 : c.value) != null ? d : !0, r = (m = (g = this._permissionService.getPermissionPoint((h = new Bo(e, t, o.permissionId)) == null ? void 0 : h.id)) == null ? void 0 : g.value) != null ? m : !0, i = (p = (C = this._permissionService.getPermissionPoint((f = new ui(e, t, o.permissionId)) == null ? void 0 : f.id)) == null ? void 0 : C.value) != null ? p : !1, a = (S = (I = this._permissionService.getPermissionPoint((w = new ai(e, t, o.permissionId)) == null ? void 0 : w.id)) == null ? void 0 : I.value) != null ? S : !1;
     return {
       [_.Edit]: s,
       [_.View]: r,
@@ -11488,8 +11493,8 @@ let Wt = class extends ue {
   }
   _initUpdateRowColInfoCache() {
     this._permissionService.permissionPointUpdate$.pipe(
-      os((e) => e.type === x.SelectRange),
-      yo((e) => e)
+      ss((e) => e.type === x.SelectRange),
+      bo((e) => e)
     ).subscribe({
       next: (e) => {
         const { subUnitId: t, unitId: o, permissionId: s } = e, r = this._permissionIdCache.get(s);
@@ -11557,198 +11562,198 @@ let Wt = class extends ue {
     });
   }
 };
-Wt = Dd([
-  vo(0, $(me)),
-  vo(1, $(Ze)),
-  vo(2, $(M))
-], Wt);
-const di = "ONLY_REGISTER_FORMULA_RELATED_MUTATIONS_KEY";
-var Ad = Object.getOwnPropertyDescriptor, xd = (n, e, t, o) => {
-  for (var s = o > 1 ? void 0 : o ? Ad(e, t) : e, r = n.length - 1, i; r >= 0; r--)
+Vt = Ad([
+  Mo(0, $(ge)),
+  Mo(1, $(Ze)),
+  Mo(2, $(M))
+], Vt);
+const hi = "ONLY_REGISTER_FORMULA_RELATED_MUTATIONS_KEY";
+var xd = Object.getOwnPropertyDescriptor, $d = (n, e, t, o) => {
+  for (var s = o > 1 ? void 0 : o ? xd(e, t) : e, r = n.length - 1, i; r >= 0; r--)
     (i = n[r]) && (s = i(s) || s);
   return s;
-}, Mo = (n, e) => (t, o) => e(t, o, n);
-let Xn = class extends ue {
+}, _o = (n, e) => (t, o) => e(t, o, n);
+let Zn = class extends ue {
   // eslint-disable-next-line max-lines-per-function
   constructor(n, e, t) {
     var s;
     super(), this._commandService = n, this._configService = e, this._dataSyncPrimaryController = t, [
       ee,
-      ke,
       Ue,
-      ln,
-      wt,
+      Ee,
+      cn,
+      It,
       Je,
       qe,
-      Me,
-      Te,
-      Lt,
+      ve,
+      ke,
+      Ht,
+      se,
+      ci,
       oe,
-      li,
-      ne,
-      ti,
-      Fn,
-      ns,
-      Nn,
-      ud,
-      Tt,
-      // formula SUBTOTAL
-      kt,
+      ni,
+      Bn,
+      os,
+      On,
       ld,
-      cd
+      Pt,
+      // formula SUBTOTAL
+      Tt,
+      cd,
+      dd
     ].forEach((r) => {
       var i;
       this._commandService.registerCommand(r), (i = this._dataSyncPrimaryController) == null || i.registerSyncingMutations(r);
-    }), ((s = this._configService.getConfig(di)) != null ? s : !1) || [
-      tc,
-      Vo,
-      qo,
+    }), ((s = this._configService.getConfig(hi)) != null ? s : !1) || [
+      nc,
       Lo,
-      Kr,
-      It,
-      vt,
-      Ln,
-      jn,
-      sl,
-      ol,
-      rl,
-      il,
-      Dr,
-      Xe,
-      Pt,
-      rn,
-      el,
-      Qu,
-      nl,
-      tl,
-      Nr,
-      Ye,
-      ac,
-      un,
-      yt,
-      an,
-      Ar,
-      ho,
-      xr,
-      co,
-      Xo,
-      bo,
-      lc,
-      Ac,
-      Oc,
-      Dc,
-      wc,
-      Sc,
-      wn,
-      Cc,
-      pc,
-      Eo,
-      on,
-      sn,
-      Hn,
-      Ic,
-      zt,
-      _c,
-      ot,
-      yc,
-      $c,
-      pn,
-      zn,
-      Uo,
-      Uc,
-      Kt,
-      qr,
-      Qr,
-      dn,
-      hn,
-      Ce,
-      Hc,
-      Un,
-      Nc,
-      Vc,
-      Wc,
-      xc,
-      ni,
-      oi,
-      Cn,
-      zc,
-      St,
-      Qo,
-      ri,
-      kn,
-      Xs,
-      nt,
-      ts,
-      Fe,
-      mt,
-      // SetWorksheetColIsAutoWidthCommand,
-      nd,
-      Yt,
-      Bc,
-      Jt,
-      ju,
-      ie,
-      gd,
-      ic,
-      Jr,
-      Xr,
-      ui,
-      rd,
-      Xt,
-      bc,
-      Gt,
-      // permissions range protection
-      Qc,
-      Mt,
-      bt,
-      xt,
-      es,
-      Nu,
-      Ec,
-      oc,
-      Zl,
-      sc,
-      ed,
-      Be,
-      st,
-      fe,
-      sd,
-      qt,
-      jc,
-      od,
-      // range theme
-      nn,
-      tn,
       Yo,
-      cn,
-      id,
+      Ho,
+      Jr,
+      vt,
+      Mt,
+      Hn,
+      zn,
+      rl,
+      sl,
+      il,
+      al,
+      Ar,
+      Xe,
+      Nt,
+      an,
+      tl,
+      el,
+      ol,
+      nl,
+      Or,
+      Ye,
       uc,
+      ln,
+      bt,
+      un,
+      xr,
+      go,
+      $r,
+      ho,
+      Zo,
+      Eo,
+      cc,
+      xc,
+      Dc,
+      Ac,
+      Ic,
+      wc,
+      In,
+      pc,
+      Sc,
+      Uo,
+      sn,
+      rn,
+      Fn,
+      vc,
+      Gt,
+      yc,
+      ot,
+      bc,
+      Wc,
+      Sn,
+      Gn,
+      ko,
+      kc,
+      Jt,
+      Yr,
+      ei,
+      hn,
+      gn,
+      Ce,
+      Fc,
+      kn,
+      Oc,
+      Lc,
+      Vc,
+      $c,
+      oi,
+      si,
+      pn,
+      Gc,
+      wt,
+      es,
+      ii,
+      Tn,
+      Zs,
+      nt,
+      ns,
+      He,
+      ft,
+      // SetWorksheetColIsAutoWidthCommand,
+      od,
+      Xt,
+      jc,
+      qt,
+      zu,
+      ae,
+      md,
+      ac,
+      qr,
+      Zr,
+      li,
+      id,
+      Zt,
+      Ec,
+      Kt,
+      // permissions range protection
+      ed,
+      _t,
+      Et,
+      $t,
+      ts,
+      Ou,
+      Uc,
+      sc,
       Ql,
       rc,
+      td,
+      Fe,
+      st,
+      fe,
+      rd,
+      Yt,
+      zc,
+      sd,
+      // range theme
+      on,
+      nn,
+      Xo,
+      dn,
       ad,
-      hd,
-      dd
-    ].forEach((r) => this.disposeWithMe(this._commandService.registerCommand(r))), this._configService.setConfig(md, fd);
+      lc,
+      ec,
+      ic,
+      ud,
+      gd,
+      hd
+    ].forEach((r) => this.disposeWithMe(this._commandService.registerCommand(r))), this._configService.setConfig(fd, Rd);
   }
 };
-Xn = xd([
-  Mo(0, E),
-  Mo(1, xo),
-  Mo(2, Wi(aa))
-], Xn);
-var $d = Object.getOwnPropertyDescriptor, Wd = (n, e, t, o) => {
-  for (var s = o > 1 ? void 0 : o ? $d(e, t) : e, r = n.length - 1, i; r >= 0; r--)
+Zn = $d([
+  _o(0, E),
+  _o(1, $o),
+  _o(2, Vi(ua))
+], Zn);
+var Wd = Object.getOwnPropertyDescriptor, Vd = (n, e, t, o) => {
+  for (var s = o > 1 ? void 0 : o ? Wd(e, t) : e, r = n.length - 1, i; r >= 0; r--)
     (i = n[r]) && (s = i(s) || s);
   return s;
-}, bs = (n, e) => (t, o) => e(t, o, n);
-let Zn = class extends ue {
+}, Es = (n, e) => (t, o) => e(t, o, n);
+let Qn = class extends ue {
   constructor(n, e) {
     super(), this._univerInstanceService = n, this._commandService = e, this._initialize();
   }
   _initialize() {
     this.disposeWithMe(
       this._commandService.onCommandExecuted((n) => {
-        if (n.id !== na.id)
+        if (n.id !== oa.id)
           return;
         const e = n.params, { unitData: t } = e, o = Object.keys(t), s = [];
         for (let i = 0; i < o.length; i++) {
@@ -11788,23 +11793,23 @@ let Zn = class extends ue {
    * @returns
    */
   _getMergedCellData(n, e, t) {
-    const o = this._univerInstanceService.getUniverSheetInstance(n), s = o == null ? void 0 : o.getStyles(), r = o == null ? void 0 : o.getSheetBySheetId(e), i = r == null ? void 0 : r.getCellMatrix(), a = new Y(t);
+    const o = this._univerInstanceService.getUniverSheetInstance(n), s = o == null ? void 0 : o.getStyles(), r = o == null ? void 0 : o.getSheetBySheetId(e), i = r == null ? void 0 : r.getCellMatrix(), a = new q(t);
     return a.forValue((u, l, c) => {
-      const d = i == null ? void 0 : i.getValue(u, l), h = oa(d, c, s);
+      const d = i == null ? void 0 : i.getValue(u, l), h = sa(d, c, s);
       a.setValue(u, l, h);
     }), a.getMatrix();
   }
 };
-Zn = Wd([
-  bs(0, $(M)),
-  bs(1, E)
-], Zn);
-var Vd = Object.getOwnPropertyDescriptor, Ld = (n, e, t, o) => {
-  for (var s = o > 1 ? void 0 : o ? Vd(e, t) : e, r = n.length - 1, i; r >= 0; r--)
+Qn = Vd([
+  Es(0, $(M)),
+  Es(1, E)
+], Qn);
+var Ld = Object.getOwnPropertyDescriptor, Hd = (n, e, t, o) => {
+  for (var s = o > 1 ? void 0 : o ? Ld(e, t) : e, r = n.length - 1, i; r >= 0; r--)
     (i = n[r]) && (s = i(s) || s);
   return s;
-}, Hd = (n, e) => (t, o) => e(t, o, n);
-let Qn = class extends ue {
+}, Fd = (n, e) => (t, o) => e(t, o, n);
+let eo = class extends ue {
   constructor(n) {
     super(), this._sheetInterceptorService = n, this._initialize();
   }
@@ -11813,37 +11818,37 @@ let Qn = class extends ue {
   }
   _initInterceptorCellContent() {
     this.disposeWithMe(
-      this._sheetInterceptorService.intercept(ht.CELL_CONTENT, {
+      this._sheetInterceptorService.intercept(gt.CELL_CONTENT, {
         priority: 11,
-        effect: he.Value | he.Style,
+        effect: de.Value | de.Style,
         handler: (n, e, t) => {
           var s;
           if (!n)
             return t(n);
           const o = e.workbook.getStyles().getStyleByCell(n);
-          return Vi((s = o == null ? void 0 : o.n) == null ? void 0 : s.pattern) && (n == null ? void 0 : n.t) === re.NUMBER && n.v !== void 0 && n.v !== null && No(n.v) && ((!n || n === e.rawData) && (n = { ...e.rawData }), n.v = sa(Number(n.v))), t(n);
+          return Li((s = o == null ? void 0 : o.n) == null ? void 0 : s.pattern) && (n == null ? void 0 : n.t) === ie.NUMBER && n.v !== void 0 && n.v !== null && Oo(n.v) && ((!n || n === e.rawData) && (n = { ...e.rawData }), n.v = ra(Number(n.v))), t(n);
         }
       })
     );
   }
 };
-Qn = Ld([
-  Hd(0, $(G))
-], Qn);
-var Fd = Object.getOwnPropertyDescriptor, Bd = (n, e, t, o) => {
-  for (var s = o > 1 ? void 0 : o ? Fd(e, t) : e, r = n.length - 1, i; r >= 0; r--)
+eo = Hd([
+  Fd(0, $(G))
+], eo);
+var Bd = Object.getOwnPropertyDescriptor, jd = (n, e, t, o) => {
+  for (var s = o > 1 ? void 0 : o ? Bd(e, t) : e, r = n.length - 1, i; r >= 0; r--)
     (i = n[r]) && (s = i(s) || s);
   return s;
-}, yn = (n, e) => (t, o) => e(t, o, n);
-let eo = class extends ue {
+}, bn = (n, e) => (t, o) => e(t, o, n);
+let to = class extends ue {
   constructor(n, e, t, o) {
     super(), this._permissionService = n, this._worksheetProtectionRuleModel = e, this._sheetInterceptorService = t, this._rangeProtectionCache = o, this._initViewModelByRangeInterceptor(), this._initViewModelBySheetInterceptor();
   }
   _initViewModelByRangeInterceptor() {
-    this.disposeWithMe(this._sheetInterceptorService.intercept(ht.CELL_CONTENT, {
+    this.disposeWithMe(this._sheetInterceptorService.intercept(gt.CELL_CONTENT, {
       // permissions are placed at a high level to prioritize whether to filter subsequent renderings.
       priority: 999,
-      effect: he.Value | he.Style,
+      effect: de.Value | de.Style,
       handler: (n, e, t) => {
         const { unitId: o, subUnitId: s, row: r, col: i } = e, a = this._rangeProtectionCache.getCellInfo(o, s, r, i);
         if (a) {
@@ -11855,17 +11860,17 @@ let eo = class extends ue {
     }));
   }
   _initViewModelBySheetInterceptor() {
-    this.disposeWithMe(this._sheetInterceptorService.intercept(ht.CELL_CONTENT, {
+    this.disposeWithMe(this._sheetInterceptorService.intercept(gt.CELL_CONTENT, {
       // permissions are placed at a high level to prioritize whether to filter subsequent renderings.
       priority: 999,
-      effect: he.Value | he.Style,
+      effect: de.Value | de.Style,
       handler: (n, e, t) => {
         var i, a, u, l, c;
         const { unitId: o, subUnitId: s } = e, r = this._worksheetProtectionRuleModel.getRule(o, s);
         if (r != null && r.permissionId) {
           const d = [{
-            [_.View]: (a = (i = this._permissionService.getPermissionPoint(new lo(o, s).id)) == null ? void 0 : i.value) != null ? a : !1,
-            [_.Edit]: (l = (u = this._permissionService.getPermissionPoint(new Le(o, s).id)) == null ? void 0 : u.value) != null ? l : !1
+            [_.View]: (a = (i = this._permissionService.getPermissionPoint(new co(o, s).id)) == null ? void 0 : i.value) != null ? a : !1,
+            [_.Edit]: (l = (u = this._permissionService.getPermissionPoint(new Ve(o, s).id)) == null ? void 0 : u.value) != null ? l : !1
           }], h = !((c = d[0]) != null && c[_.View]), g = !n || n === e.rawData ? { ...n } : n;
           return g.hasWorksheetRule = !0, g.selectionProtection = d, h ? (delete g.s, delete g.v, delete g.p, g) : t(g);
         }
@@ -11874,21 +11879,21 @@ let eo = class extends ue {
     }));
   }
 };
-eo = Bd([
-  yn(0, Ze),
-  yn(1, $(lt)),
-  yn(2, $(G)),
-  yn(3, $(Wt))
-], eo);
-const Es = Ao("univer.exclusive-range-service");
-class jd extends ue {
+to = jd([
+  bn(0, Ze),
+  bn(1, $(lt)),
+  bn(2, $(G)),
+  bn(3, $(Vt))
+], to);
+const Us = xo("univer.exclusive-range-service");
+class zd extends ue {
   constructor() {
     super(...arguments);
     /**
      * Exclusive range data structure is as follows: unitId -> sheetId -> feature -> range
      */
     R(this, "_exclusiveRanges", /* @__PURE__ */ new Map());
-    R(this, "_exclusiveRangesChange$", new De());
+    R(this, "_exclusiveRangesChange$", new Oe());
     R(this, "exclusiveRangesChange$", this._exclusiveRangesChange$.asObservable());
   }
   _ensureUnitMap(t) {
@@ -11944,12 +11949,12 @@ class jd extends ue {
     }), o;
   }
 }
-var zd = Object.getOwnPropertyDescriptor, Gd = (n, e, t, o) => {
-  for (var s = o > 1 ? void 0 : o ? zd(e, t) : e, r = n.length - 1, i; r >= 0; r--)
+var Gd = Object.getOwnPropertyDescriptor, Kd = (n, e, t, o) => {
+  for (var s = o > 1 ? void 0 : o ? Gd(e, t) : e, r = n.length - 1, i; r >= 0; r--)
     (i = n[r]) && (s = i(s) || s);
   return s;
-}, _o = (n, e) => (t, o) => e(t, o, n);
-let To = class extends ue {
+}, yo = (n, e) => (t, o) => e(t, o, n);
+let Po = class extends ue {
   constructor(n, e, t) {
     super(), this._resourceManagerService = n, this._univerInstanceService = e, this._logService = t;
   }
@@ -11977,7 +11982,7 @@ let To = class extends ue {
       return;
     const r = o.getStyles();
     t.forEach((i) => {
-      X.foreach(i, (a, u) => {
+      Y.foreach(i, (a, u) => {
         const l = s.getCellRaw(a, u);
         if (!l)
           return;
@@ -11998,7 +12003,7 @@ let To = class extends ue {
     const r = o.getStyles(), i = s.getCellMatrix();
     t.forEach((a) => {
       a.ranges.forEach((u) => {
-        X.foreach(u, (l, c) => {
+        Y.foreach(u, (l, c) => {
           const d = s.getCellRaw(l, c);
           if (d) {
             const g = { ...r.getStyleByCell(d) || {}, n: { pattern: a.pattern } }, m = r.setValue(g);
@@ -12012,21 +12017,21 @@ let To = class extends ue {
     });
   }
 };
-To = Gd([
-  _o(0, Rn),
-  _o(1, M),
-  _o(2, Fs)
-], To);
-var Kd = Object.getOwnPropertyDescriptor, Jd = (n, e, t, o) => {
-  for (var s = o > 1 ? void 0 : o ? Kd(e, t) : e, r = n.length - 1, i; r >= 0; r--)
+Po = Kd([
+  yo(0, Cn),
+  yo(1, M),
+  yo(2, Bs)
+], Po);
+var Jd = Object.getOwnPropertyDescriptor, qd = (n, e, t, o) => {
+  for (var s = o > 1 ? void 0 : o ? Jd(e, t) : e, r = n.length - 1, i; r >= 0; r--)
     (i = n[r]) && (s = i(s) || s);
   return s;
-}, dt = (n, e) => (t, o) => e(t, o, n);
-const Us = [ke.id, Ue.id, Me.id, Te.id], ks = [Je.id, qe.id];
-let to = class extends ue {
+}, ht = (n, e) => (t, o) => e(t, o, n);
+const ks = [Ue.id, Ee.id, ve.id, ke.id], Ts = [Je.id, qe.id];
+let no = class extends ue {
   constructor(e, t, o, s, r, i, a, u) {
     super();
-    R(this, "disposableCollection", new Et());
+    R(this, "disposableCollection", new Ut());
     this._selectionProtectionRuleModel = e, this._univerInstanceService = t, this._commandService = o, this._refRangeService = s, this._selectionProtectionRenderModel = r, this._rangeProtectionCache = i, this._sheetInterceptorService = a, this._rangeProtectionRuleModel = u, this._onRefRangeChange(), this._correctPermissionRange(), this._initReBuildCache(), this._initRemoveSheet();
   }
   _onRefRangeChange() {
@@ -12042,13 +12047,13 @@ let to = class extends ue {
     };
     this.disposeWithMe(
       this._commandService.onCommandExecuted((o) => {
-        if (o.id === oi.id) {
+        if (o.id === si.id) {
           const s = o.params, r = s.subUnitId, i = s.unitId;
           if (!r || !i)
             return;
           e(i, r);
         }
-        if (o.id === fe.id || o.id === Be.id) {
+        if (o.id === fe.id || o.id === Fe.id) {
           const s = o.params, r = s.subUnitId, i = s.unitId;
           if (!r || !i)
             return;
@@ -12065,17 +12070,17 @@ let to = class extends ue {
   }
   refRangeHandle(e, t, o) {
     switch (e.id) {
-      case an.id:
-        return this._getRefRangeMutationsByMoveRows(e.params, t, o);
       case un.id:
+        return this._getRefRangeMutationsByMoveRows(e.params, t, o);
+      case ln.id:
         return this._getRefRangeMutationsByMoveCols(e.params, t, o);
       case Ye.id:
         return this._getRefRangeMutationsByInsertRows(e.params, t, o);
       case Xe.id:
         return this._getRefRangeMutationsByInsertCols(e.params, t, o);
-      case ho.id:
+      case go.id:
         return this._getRefRangeMutationsByDeleteCols(e.params, t, o);
-      case co.id:
+      case ho.id:
         return this._getRefRangeMutationsByDeleteRows(e.params, t, o);
     }
     return { redos: [], undos: [] };
@@ -12094,7 +12099,7 @@ let to = class extends ue {
           }
           return d;
         }, []);
-        l.ranges = c, l.ranges.length ? (i.push({ id: fe.id, params: { unitId: t, subUnitId: o, rule: l, ruleId: u.id } }), a.push({ id: fe.id, params: { unitId: t, subUnitId: o, rule: u, ruleId: u.id } })) : (i.push({ id: st.id, params: { unitId: t, subUnitId: o, ruleIds: [u.id] } }), a.push({ id: Be.id, params: { unitId: t, subUnitId: o, name: "", rules: [u] } }));
+        l.ranges = c, l.ranges.length ? (i.push({ id: fe.id, params: { unitId: t, subUnitId: o, rule: l, ruleId: u.id } }), a.push({ id: fe.id, params: { unitId: t, subUnitId: o, rule: u, ruleId: u.id } })) : (i.push({ id: st.id, params: { unitId: t, subUnitId: o, ruleIds: [u.id] } }), a.push({ id: Fe.id, params: { unitId: t, subUnitId: o, name: "", rules: [u] } }));
       }), { redos: i, undos: a };
     }
     return { undos: [], redos: [] };
@@ -12176,7 +12181,7 @@ let to = class extends ue {
   }
   _correctPermissionRange() {
     this.disposeWithMe(this._commandService.onCommandExecuted((e) => {
-      if (ks.includes(e.id)) {
+      if (Ts.includes(e.id)) {
         if (!e.params) return;
         const t = this._univerInstanceService.getCurrentUnitForType(B.UNIVER_SHEET);
         if (!t) return;
@@ -12194,7 +12199,7 @@ let to = class extends ue {
           this.disposableCollection.add(this._refRangeService.registerRefRange(f, g, d, h));
         }), this._selectionProtectionRenderModel.clear();
       }
-      if (Us.includes(e.id)) {
+      if (ks.includes(e.id)) {
         const t = this._univerInstanceService.getUniverSheetInstance(e.params.unitId);
         if (!t) return;
         const o = t.getSheetBySheetId(e.params.subUnitId);
@@ -12220,7 +12225,7 @@ let to = class extends ue {
   }
   _initReBuildCache() {
     this.disposeWithMe(this._commandService.onCommandExecuted((e) => {
-      if (Us.includes(e.id) || ks.includes(e.id)) {
+      if (ks.includes(e.id) || Ts.includes(e.id)) {
         const { unitId: t, subUnitId: o } = e.params;
         this._rangeProtectionCache.reBuildCache(t, o);
       }
@@ -12231,11 +12236,11 @@ let to = class extends ue {
       {
         getMutations: (e) => {
           const t = [], o = [], s = [], r = [];
-          if (e.id === Xo.id) {
+          if (e.id === Zo.id) {
             const i = e.params, a = [], u = [];
             this._rangeProtectionRuleModel.getSubunitRuleList(i.unitId, i.subUnitId).forEach((l) => {
               a.push(l.id), u.push(l);
-            }), a.length && u.length && (s.push({ id: st.id, params: { unitId: i.unitId, subUnitId: i.subUnitId, ruleIds: a } }), t.push({ id: Be.id, params: { unitId: i.unitId, subUnitId: i.subUnitId, name: "", rules: u } }));
+            }), a.length && u.length && (s.push({ id: st.id, params: { unitId: i.unitId, subUnitId: i.subUnitId, ruleIds: a } }), t.push({ id: Fe.id, params: { unitId: i.unitId, subUnitId: i.subUnitId, name: "", rules: u } }));
           }
           return {
             redos: o,
@@ -12248,23 +12253,23 @@ let to = class extends ue {
     );
   }
 };
-to = Jd([
-  dt(0, $(me)),
-  dt(1, $(M)),
-  dt(2, E),
-  dt(3, $(At)),
-  dt(4, $(fn)),
-  dt(5, $(Wt)),
-  dt(6, $(G)),
-  dt(7, $(me))
-], to);
-var qd = Object.getOwnPropertyDescriptor, Yd = (n, e, t, o) => {
-  for (var s = o > 1 ? void 0 : o ? qd(e, t) : e, r = n.length - 1, i; r >= 0; r--)
+no = qd([
+  ht(0, $(ge)),
+  ht(1, $(M)),
+  ht(2, E),
+  ht(3, $(xt)),
+  ht(4, $(Rn)),
+  ht(5, $(Vt)),
+  ht(6, $(G)),
+  ht(7, $(ge))
+], no);
+var Yd = Object.getOwnPropertyDescriptor, Xd = (n, e, t, o) => {
+  for (var s = o > 1 ? void 0 : o ? Yd(e, t) : e, r = n.length - 1, i; r >= 0; r--)
     (i = n[r]) && (s = i(s) || s);
   return s;
-}, Bt = (n, e) => (t, o) => e(t, o, n);
-const Xd = "SHEET_RANGE_PROTECTION_PLUGIN";
-let no = class extends ue {
+}, jt = (n, e) => (t, o) => e(t, o, n);
+const Zd = "SHEET_RANGE_PROTECTION_PLUGIN";
+let oo = class extends ue {
   constructor(n, e, t, o, s) {
     super(), this._selectionProtectionRuleModel = n, this._permissionService = e, this._resourceManagerService = t, this._selectionProtectionCache = o, this._univerInstanceService = s, this._initSnapshot(), this._initRuleChange();
   }
@@ -12273,21 +12278,21 @@ let no = class extends ue {
       this._selectionProtectionRuleModel.ruleChange$.subscribe((n) => {
         switch (n.type) {
           case "add": {
-            Ee().forEach((e) => {
+            be().forEach((e) => {
               const t = new e(n.unitId, n.subUnitId, n.rule.permissionId);
               this._permissionService.addPermissionPoint(t);
             });
             break;
           }
           case "delete": {
-            Ee().forEach((e) => {
+            be().forEach((e) => {
               const t = new e(n.unitId, n.subUnitId, n.rule.permissionId);
               this._permissionService.deletePermissionPoint(t.id);
             });
             break;
           }
           case "set": {
-            n.oldRule.permissionId !== n.rule.permissionId && Ee().forEach((e) => {
+            n.oldRule.permissionId !== n.rule.permissionId && be().forEach((e) => {
               const t = new e(n.unitId, n.subUnitId, n.oldRule.permissionId);
               this._permissionService.deletePermissionPoint(t.id);
               const o = new e(n.unitId, n.subUnitId, n.rule.permissionId);
@@ -12316,8 +12321,8 @@ let no = class extends ue {
       this._resourceManagerService.registerPluginResource({
         toJson: n,
         parseJson: e,
-        pluginName: Xd,
-        businesses: [On.UNIVER_SHEET],
+        pluginName: Zd,
+        businesses: [Dn.UNIVER_SHEET],
         onLoad: (t, o) => {
           const s = this._selectionProtectionRuleModel.toObject();
           s[t] = o, this._selectionProtectionRuleModel.fromObject(s);
@@ -12329,10 +12334,10 @@ let no = class extends ue {
                 objectID: u.permissionId,
                 unitID: t,
                 objectType: x.SelectRange,
-                actions: pt
+                actions: St
               });
             }), a.forEach((u) => {
-              Ee().forEach((l) => {
+              be().forEach((l) => {
                 const c = new l(t, i, u.permissionId);
                 c.value = !1, this._permissionService.addPermissionPoint(c);
               });
@@ -12346,19 +12351,19 @@ let no = class extends ue {
     );
   }
 };
-no = Yd([
-  Bt(0, $(me)),
-  Bt(1, $(Ze)),
-  Bt(2, $(Rn)),
-  Bt(3, $(Wt)),
-  Bt(4, $(M))
-], no);
-var Zd = Object.getOwnPropertyDescriptor, Qd = (n, e, t, o) => {
-  for (var s = o > 1 ? void 0 : o ? Zd(e, t) : e, r = n.length - 1, i; r >= 0; r--)
+oo = Xd([
+  jt(0, $(ge)),
+  jt(1, $(Ze)),
+  jt(2, $(Cn)),
+  jt(3, $(Vt)),
+  jt(4, $(M))
+], oo);
+var Qd = Object.getOwnPropertyDescriptor, eh = (n, e, t, o) => {
+  for (var s = o > 1 ? void 0 : o ? Qd(e, t) : e, r = n.length - 1, i; r >= 0; r--)
     (i = n[r]) && (s = i(s) || s);
   return s;
-}, eh = (n, e) => (t, o) => e(t, o, n);
-let Po = class extends ue {
+}, th = (n, e) => (t, o) => e(t, o, n);
+let No = class extends ue {
   constructor(n) {
     super(), this._sheetRangeThemeModel = n;
   }
@@ -12404,279 +12409,279 @@ let Po = class extends ue {
     return this._sheetRangeThemeModel.getRegisteredRangeThemes();
   }
 };
-Po = Qd([
-  eh(0, $(ve))
-], Po);
-var th = Object.defineProperty, nh = Object.getOwnPropertyDescriptor, oh = (n, e, t) => e in n ? th(n, e, { enumerable: !0, configurable: !0, writable: !0, value: t }) : n[e] = t, sh = (n, e, t, o) => {
-  for (var s = o > 1 ? void 0 : o ? nh(e, t) : e, r = n.length - 1, i; r >= 0; r--)
+No = eh([
+  th(0, $(Ie))
+], No);
+var nh = Object.defineProperty, oh = Object.getOwnPropertyDescriptor, sh = (n, e, t) => e in n ? nh(n, e, { enumerable: !0, configurable: !0, writable: !0, value: t }) : n[e] = t, rh = (n, e, t, o) => {
+  for (var s = o > 1 ? void 0 : o ? oh(e, t) : e, r = n.length - 1, i; r >= 0; r--)
     (i = n[r]) && (s = i(s) || s);
   return s;
-}, Ts = (n, e) => (t, o) => e(t, o, n), hi = (n, e, t) => oh(n, typeof e != "symbol" ? e + "" : e, t);
-const rh = "SHEET_PLUGIN";
-let oo = class extends Hi {
-  constructor(n = _s, e, t) {
+}, Ps = (n, e) => (t, o) => e(t, o, n), gi = (n, e, t) => sh(n, typeof e != "symbol" ? e + "" : e, t);
+const ih = "SHEET_PLUGIN";
+let so = class extends Fi {
+  constructor(n = ys, e, t) {
     super(), this._config = n, this._injector = e, this._configService = t;
-    const { ...o } = Fi(
+    const { ...o } = Bi(
       {},
-      _s,
+      ys,
       this._config
     );
-    this._configService.setConfig(ci, o), this._initConfig(), this._initDependencies();
+    this._configService.setConfig(di, o), this._initConfig(), this._initDependencies();
   }
   _initConfig() {
     var n, e, t;
-    (n = this._config) != null && n.onlyRegisterFormulaRelatedMutations && this._configService.setConfig(di, !0), (e = this._config) != null && e.isRowStylePrecedeColumnStyle && this._configService.setConfig(Bi, !0), (t = this._config) != null && t.autoHeightForMergedCells && this._configService.setConfig(ji, !0);
+    (n = this._config) != null && n.onlyRegisterFormulaRelatedMutations && this._configService.setConfig(hi, !0), (e = this._config) != null && e.isRowStylePrecedeColumnStyle && this._configService.setConfig(ji, !0), (t = this._config) != null && t.autoHeightForMergedCells && this._configService.setConfig(zi, !0);
   }
   _initDependencies() {
     var e;
     const n = [
       // services
-      [Ht],
+      [Ft],
       [z],
-      [At],
-      [mn],
-      [$t, { useClass: To }],
+      [xt],
+      [fn],
+      [Wt, { useClass: Po }],
       [G],
-      [Po],
+      [No],
       [rt],
       // controllers
-      [Xn],
-      [Wn],
-      [Qn],
-      [Gn],
-      [Yn],
-      [Kn],
-      // permission
-      [Bn],
-      [lt],
-      [In],
+      [Zn],
+      [Vn],
       [eo],
-      [qn],
+      [Kn],
+      [Xn],
       [Jn],
-      // range theme
-      [ve],
-      // range protection
-      [fn],
-      [me],
-      [Wt],
+      // permission
+      [jn],
+      [lt],
+      [vn],
       [to],
+      [Yn],
+      [qn],
+      // range theme
+      [Ie],
+      // range protection
+      [Rn],
+      [ge],
+      [Vt],
       [no],
-      [Es, {
-        useClass: jd,
+      [oo],
+      [Us, {
+        useClass: zd,
         deps: [z]
       }]
     ];
-    (e = this._config) != null && e.notExecuteFormula || n.push([Zn]), zi(this._injector, Gi(n, this._config.override)), vn(this._injector, [
+    (e = this._config) != null && e.notExecuteFormula || n.push([Qn]), Gi(this._injector, Ki(n, this._config.override)), Mn(this._injector, [
       [G],
-      [no],
-      [Es],
-      [qn],
-      [Kn]
+      [oo],
+      [Us],
+      [Yn],
+      [Jn]
     ]);
   }
   onStarting() {
-    vn(this._injector, [
-      [Xn],
-      [Wn],
-      [mn],
-      [Bn],
-      [eo],
+    Mn(this._injector, [
+      [Zn],
+      [Vn],
+      [fn],
+      [jn],
+      [to],
       [rt]
     ]);
   }
   onRendered() {
-    vn(this._injector, [
-      [$t]
+    Mn(this._injector, [
+      [Wt]
     ]);
   }
   onReady() {
-    vn(this._injector, [
-      [Zn],
-      [Gn],
-      [Yn],
-      [ve],
+    Mn(this._injector, [
       [Qn],
-      [fn],
-      [to],
-      [At],
-      [Jn]
+      [Kn],
+      [Xn],
+      [Ie],
+      [eo],
+      [Rn],
+      [no],
+      [xt],
+      [qn]
     ]);
   }
 };
-hi(oo, "pluginName", rh);
-hi(oo, "type", B.UNIVER_SHEET);
-oo = sh([
-  Li(ra),
-  Ts(1, $(so)),
-  Ts(2, xo)
-], oo);
-const og = {
+gi(so, "pluginName", ih);
+gi(so, "type", B.UNIVER_SHEET);
+so = rh([
+  Hi(ia),
+  Ps(1, $(ro)),
+  Ps(2, $o)
+], so);
+const sg = {
   /**
    * The permission point for adding or editing workbook comments
    */
-  WorkbookCommentPermission: nr,
+  WorkbookCommentPermission: or,
   /**
    * The permission point for copy in workbook
    */
-  WorkbookCopyPermission: or,
+  WorkbookCopyPermission: sr,
   /**
    * The permission point for creating protect in a workbook
    */
-  WorkbookCreateProtectPermission: sr,
+  WorkbookCreateProtectPermission: rr,
   /**
    * The permission point for creating new sheets in a workbook
    */
-  WorkbookCreateSheetPermission: rr,
+  WorkbookCreateSheetPermission: ir,
   /**
    * The permission point for deleting sheets in a workbook
    */
-  WorkbookDeleteSheetPermission: ir,
+  WorkbookDeleteSheetPermission: ar,
   /**
    * The permission point for duplicating a sheet in a workbook
    */
-  WorkbookDuplicatePermission: ar,
+  WorkbookDuplicatePermission: ur,
   /**
    * The permission point for editing workbook content
    */
-  WorkbookEditablePermission: Pe,
+  WorkbookEditablePermission: Te,
   /**
    * The permission point for exporting workbook data
    */
-  WorkbookExportPermission: ur,
+  WorkbookExportPermission: lr,
   /**
    * The permission point for hiding sheets in a workbook
    */
-  WorkbookHideSheetPermission: Bo,
+  WorkbookHideSheetPermission: jo,
   /**
    * The permission point for viewing and managing workbook history
    */
-  WorkbookHistoryPermission: qu,
+  WorkbookHistoryPermission: Yu,
   /**
    * The permission point for managing collaborators in a workbook
    */
-  WorkbookManageCollaboratorPermission: jo,
+  WorkbookManageCollaboratorPermission: zo,
   /**
    * The permission point for moving sheets within a workbook
    */
-  WorkbookMoveSheetPermission: zo,
+  WorkbookMoveSheetPermission: Go,
   /**
    * The permission point for printing a workbook
    */
-  WorkbookPrintPermission: lr,
+  WorkbookPrintPermission: cr,
   /**
    * The permission point for recovering a previous history state of a workbook
    */
-  WorkbookRecoverHistoryPermission: cr,
+  WorkbookRecoverHistoryPermission: dr,
   /**
    * The permission point for renaming sheets in a workbook
    */
-  WorkbookRenameSheetPermission: Go,
+  WorkbookRenameSheetPermission: Ko,
   /**
    * The permission point for sharing a workbook with others
    */
-  WorkbookSharePermission: dr,
+  WorkbookSharePermission: hr,
   /**
    * The permission point for viewing the history of a workbook
    */
-  WorkbookViewHistoryPermission: gr,
+  WorkbookViewHistoryPermission: mr,
   /**
    * The permission point for viewing a workbook
    */
-  WorkbookViewPermission: hr,
+  WorkbookViewPermission: gr,
   /**
    * The permission point for copying contents from a worksheet
    */
-  WorksheetCopyPermission: mr,
+  WorksheetCopyPermission: fr,
   /**
    * The permission point for deleting columns in a worksheet
    */
-  WorksheetDeleteColumnPermission: fr,
+  WorksheetDeleteColumnPermission: Rr,
   /**
    * The permission point for deleting worksheet protection rules
    */
-  WorksheetDeleteProtectionPermission: Rr,
+  WorksheetDeleteProtectionPermission: Cr,
   /**
    * The permission point for deleting rows in a worksheet
    */
-  WorksheetDeleteRowPermission: Cr,
+  WorksheetDeleteRowPermission: pr,
   /**
    * The permission point for editing extra objects (e.g. shapes) in a worksheet
    */
-  WorksheetEditExtraObjectPermission: pr,
+  WorksheetEditExtraObjectPermission: Sr,
   /**
    * The permission point for editing the content of a worksheet
    */
-  WorksheetEditPermission: Le,
+  WorksheetEditPermission: Ve,
   /**
    * The permission point for applying filters in a worksheet
    */
-  WorksheetFilterPermission: Sr,
+  WorksheetFilterPermission: wr,
   /**
    * The permission point for inserting columns into a worksheet
    */
-  WorksheetInsertColumnPermission: wr,
+  WorksheetInsertColumnPermission: Ir,
   /**
    * The permission point for inserting hyperlinks in a worksheet
    */
-  WorksheetInsertHyperlinkPermission: Ir,
+  WorksheetInsertHyperlinkPermission: vr,
   /**
    * The permission point for inserting rows into a worksheet
    */
-  WorksheetInsertRowPermission: vr,
+  WorksheetInsertRowPermission: Mr,
   /**
    * The permission point for managing collaborators of a worksheet
    */
-  WorksheetManageCollaboratorPermission: Mr,
+  WorksheetManageCollaboratorPermission: _r,
   /**
    * The permission point for creating or modifying pivot tables in a worksheet
    */
-  WorksheetPivotTablePermission: _r,
+  WorksheetPivotTablePermission: yr,
   /**
    * The permission point for setting the style of cells in a worksheet
    */
-  WorksheetSetCellStylePermission: yr,
+  WorksheetSetCellStylePermission: br,
   /**
    * The permission point for setting the value of cells in a worksheet
    */
-  WorksheetSetCellValuePermission: Dn,
+  WorksheetSetCellValuePermission: An,
   /**
    * The permission point for setting the style of columns in a worksheet
    */
-  WorksheetSetColumnStylePermission: Zt,
+  WorksheetSetColumnStylePermission: Qt,
   /**
    * The permission point for setting the style of rows in a worksheet
    */
-  WorksheetSetRowStylePermission: Qt,
+  WorksheetSetRowStylePermission: en,
   /**
    * The permission point for performing sort operations on a worksheet
    */
-  WorksheetSortPermission: br,
+  WorksheetSortPermission: Er,
   /**
    * The permission point for viewing the content of a worksheet
    */
-  WorksheetViewPermission: lo,
+  WorksheetViewPermission: co,
   /**
    * The permission point for editing the range protection settings
    */
-  RangeProtectionPermissionEditPoint: Ve,
+  RangeProtectionPermissionEditPoint: We,
   /**
    * The permission point for viewing the range protection settings
    */
-  RangeProtectionPermissionViewPoint: Fo
-}, sg = (n, e, t, o) => {
-  const s = n.get(Ze), r = n.get(me), i = s.getPermissionPoint(new Pe(e).id);
+  RangeProtectionPermissionViewPoint: Bo
+}, rg = (n, e, t, o) => {
+  const s = n.get(Ze), r = n.get(ge), i = s.getPermissionPoint(new Te(e).id);
   if (!(i != null && i.value))
     return !1;
-  const a = s.getPermissionPoint(new Le(e, t).id);
+  const a = s.getPermissionPoint(new Ve(e, t).id);
   if (!(a != null && a.value))
     return !1;
   const l = r.getSubunitRuleList(e, t).filter((c) => c.ranges.some((d) => o.some((h) => N.intersects(d, h))));
   return l.length ? l.every((c) => {
-    const d = c.permissionId, h = s.getPermissionPoint(new Ve(e, t, d).id);
+    const d = c.permissionId, h = s.getPermissionPoint(new We(e, t, d).id);
     return !!(h != null && h.value);
   }) : !0;
-}, gi = (n, e, t, o = 1, s = !0, r = !0) => {
-  const i = X.transformRange(n, e), { startRow: a, endRow: u } = i;
+}, mi = (n, e, t, o = 1, s = !0, r = !0) => {
+  const i = Y.transformRange(n, e), { startRow: a, endRow: u } = i;
   let l = t.startRow - o, c = e.getMergedCell(l, t.startColumn), d = !c || c.startRow === l && c.startColumn === t.startColumn;
   for (; !e.getRowVisible(l) || !d; )
     l--, c = e.getMergedCell(l, t.startColumn), d = !c || c.startRow === l && c.startColumn === t.startColumn;
@@ -12684,10 +12689,10 @@ const og = {
     return { ...t, startRow: l, endRow: l };
   if (r) {
     const h = { ...t, startRow: u, endRow: u };
-    return fi(n, e, h, o, s, !1);
+    return Ri(n, e, h, o, s, !1);
   }
-}, mi = (n, e, t, o = 1, s = !0, r = !0) => {
-  const i = X.transformRange(n, e), { startRow: a, endRow: u } = i;
+}, fi = (n, e, t, o = 1, s = !0, r = !0) => {
+  const i = Y.transformRange(n, e), { startRow: a, endRow: u } = i;
   let l = t.endRow + o, c = e.getMergedCell(l, t.startColumn), d = !c || c.startRow === l && c.startColumn === t.startColumn;
   for (; !e.getRowVisible(l) || !d; )
     l++, c = e.getMergedCell(l, t.startColumn), d = !c || c.startRow === l && c.startColumn === t.startColumn;
@@ -12695,10 +12700,10 @@ const og = {
     return { ...t, startRow: l, endRow: l };
   if (r) {
     const h = { ...t, startRow: a, endRow: a };
-    return Ri(n, e, h, o, s, !1);
+    return Ci(n, e, h, o, s, !1);
   }
-}, fi = (n, e, t, o = 1, s = !0, r = !0) => {
-  const i = X.transformRange(n, e), { startColumn: a, endColumn: u } = i;
+}, Ri = (n, e, t, o = 1, s = !0, r = !0) => {
+  const i = Y.transformRange(n, e), { startColumn: a, endColumn: u } = i;
   let l = t.startColumn - o, c = e.getMergedCell(t.startRow, l), d = !c || c.startRow === t.startRow && c.startColumn === l;
   for (; !e.getColVisible(l) || !d; )
     l--, c = e.getMergedCell(t.startRow, l), d = !c || c.startRow === t.startRow && c.startColumn === l;
@@ -12706,10 +12711,10 @@ const og = {
     return { ...t, startColumn: l, endColumn: l };
   if (r) {
     const h = { ...t, startColumn: u, endColumn: u };
-    return gi(n, e, h, o, s, !1);
+    return mi(n, e, h, o, s, !1);
   }
-}, Ri = (n, e, t, o = 1, s = !0, r = !0) => {
-  const i = X.transformRange(n, e), { startColumn: a, endColumn: u } = i;
+}, Ci = (n, e, t, o = 1, s = !0, r = !0) => {
+  const i = Y.transformRange(n, e), { startColumn: a, endColumn: u } = i;
   let l = t.endColumn + o, c = e.getMergedCell(t.startRow, l), d = !c || c.startRow === t.startRow && c.startColumn === l;
   for (; !e.getColVisible(l) || !d; )
     l++, c = e.getMergedCell(t.startRow, l), d = !c || c.startRow === t.startRow && c.startColumn === l;
@@ -12717,10 +12722,10 @@ const og = {
     return { ...t, endColumn: l, startColumn: l };
   if (r) {
     const h = { ...t, startColumn: a, endColumn: a };
-    return mi(n, e, h, o, s, !1);
+    return fi(n, e, h, o, s, !1);
   }
 };
-function bn(n, e, t) {
+function En(n, e, t) {
   let o = null;
   return t.getMatrixWithMergedCells(n, e, n, e).forValue((r, i, a) => (o = {
     actualRow: r,
@@ -12744,18 +12749,18 @@ function bn(n, e, t) {
     rangeType: j.NORMAL
   };
 }
-const ih = (n, e, t, o, s = 1) => {
+const ah = (n, e, t, o, s = 1) => {
   switch (o) {
     case pe.UP:
-      return gi(n, e, t, s);
-    case pe.DOWN:
       return mi(n, e, t, s);
-    case pe.LEFT:
+    case pe.DOWN:
       return fi(n, e, t, s);
-    case pe.RIGHT:
+    case pe.LEFT:
       return Ri(n, e, t, s);
+    case pe.RIGHT:
+      return Ci(n, e, t, s);
   }
-}, rg = (n, e, t) => {
+}, ig = (n, e, t) => {
   let o, s = -1, r;
   for (let p = 0; p < n.length; p++)
     if (n[p].primary) {
@@ -12769,10 +12774,10 @@ const ih = (n, e, t, o, s = 1) => {
     return null;
   const l = { ...r }, { startRow: c, startColumn: d, endRow: h, endColumn: g } = o.range, m = i ? l.startRow === c && l.startColumn === d : l.endRow === h && l.endColumn === g, f = m && i;
   if (!N.equals(o.range, l)) {
-    const p = m ? u.range : ih(o.range, t, l, e);
+    const p = m ? u.range : ah(o.range, t, l, e);
     if (!p)
       return null;
-    const w = f ? bn(p.endRow, p.endColumn, t) : bn(p.startRow, p.startColumn, t);
+    const w = f ? En(p.endRow, p.endColumn, t) : En(p.startRow, p.startColumn, t);
     return {
       startRow: w.startRow,
       startColumn: w.startColumn,
@@ -12780,7 +12785,7 @@ const ih = (n, e, t, o, s = 1) => {
       endColumn: w.endColumn
     };
   }
-  const C = f ? bn(u.range.endRow, u.range.endColumn, t) : bn(u.range.startRow, u.range.startColumn, t);
+  const C = f ? En(u.range.endRow, u.range.endColumn, t) : En(u.range.startRow, u.range.startColumn, t);
   return {
     startRow: C.startRow,
     startColumn: C.startColumn,
@@ -12789,363 +12794,363 @@ const ih = (n, e, t, o, s = 1) => {
   };
 };
 export {
-  fo as AFTER_CELL_EDIT,
-  eg as AddMergeRedoSelectionsOperationFactory,
-  We as AddMergeUndoMutationFactory,
-  tg as AddMergeUndoSelectionsOperationFactory,
-  Nu as AddRangeProtectionCommand,
-  Be as AddRangeProtectionMutation,
-  ad as AddRangeThemeMutation,
-  Wh as AddWorksheetMergeAllCommand,
-  go as AddWorksheetMergeCommand,
-  Lh as AddWorksheetMergeHorizontalCommand,
-  ne as AddWorksheetMergeMutation,
-  Vh as AddWorksheetMergeVerticalCommand,
-  Zl as AddWorksheetProtectionCommand,
-  Mt as AddWorksheetProtectionMutation,
-  tc as AppendRowCommand,
-  ls as BEFORE_CELL_EDIT,
-  Ht as BorderStyleManagerService,
-  mh as COMMAND_LISTENER_SKELETON_CHANGE,
-  fh as COMMAND_LISTENER_VALUE_CHANGE,
-  yc as CancelFrozenCommand,
-  cd as CancelMarkDirtyRowAutoHeightMutation,
-  Vo as ClearSelectionAllCommand,
-  qo as ClearSelectionContentCommand,
-  Lo as ClearSelectionFormatCommand,
-  Kr as CopySheetCommand,
-  bh as DISABLE_NORMAL_SELECTIONS,
-  Gn as DefinedNameDataController,
-  It as DeleteRangeMoveLeftCommand,
-  vt as DeleteRangeMoveUpCommand,
-  oc as DeleteRangeProtectionCommand,
+  Ro as AFTER_CELL_EDIT,
+  tg as AddMergeRedoSelectionsOperationFactory,
+  $e as AddMergeUndoMutationFactory,
+  ng as AddMergeUndoSelectionsOperationFactory,
+  Ou as AddRangeProtectionCommand,
+  Fe as AddRangeProtectionMutation,
+  ud as AddRangeThemeMutation,
+  Vh as AddWorksheetMergeAllCommand,
+  mo as AddWorksheetMergeCommand,
+  Hh as AddWorksheetMergeHorizontalCommand,
+  oe as AddWorksheetMergeMutation,
+  Lh as AddWorksheetMergeVerticalCommand,
+  Ql as AddWorksheetProtectionCommand,
+  _t as AddWorksheetProtectionMutation,
+  nc as AppendRowCommand,
+  cs as BEFORE_CELL_EDIT,
+  Ft as BorderStyleManagerService,
+  fh as COMMAND_LISTENER_SKELETON_CHANGE,
+  Rh as COMMAND_LISTENER_VALUE_CHANGE,
+  bc as CancelFrozenCommand,
+  dd as CancelMarkDirtyRowAutoHeightMutation,
+  Lo as ClearSelectionAllCommand,
+  Yo as ClearSelectionContentCommand,
+  Ho as ClearSelectionFormatCommand,
+  Jr as CopySheetCommand,
+  Eh as DISABLE_NORMAL_SELECTIONS,
+  Kn as DefinedNameDataController,
+  vt as DeleteRangeMoveLeftCommand,
+  Mt as DeleteRangeMoveUpCommand,
+  sc as DeleteRangeProtectionCommand,
   st as DeleteRangeProtectionMutation,
-  sc as DeleteWorksheetProtectionCommand,
-  xt as DeleteWorksheetProtectionMutation,
-  rc as DeleteWorksheetRangeThemeStyleCommand,
-  nn as DeleteWorksheetRangeThemeStyleMutation,
-  Da as DeleteWorksheetRangeThemeStyleMutationFactory,
-  Ln as DeltaColumnWidthCommand,
-  jn as DeltaRowHeightCommand,
-  Pu as EditStateEnum,
+  rc as DeleteWorksheetProtectionCommand,
+  $t as DeleteWorksheetProtectionMutation,
+  ic as DeleteWorksheetRangeThemeStyleCommand,
+  on as DeleteWorksheetRangeThemeStyleMutation,
+  Aa as DeleteWorksheetRangeThemeStyleMutationFactory,
+  Hn as DeltaColumnWidthCommand,
+  zn as DeltaRowHeightCommand,
+  Nu as EditStateEnum,
   W as EffectRefRangId,
-  ud as EmptyMutation,
-  jd as ExclusiveRangeService,
-  yh as FactoryAddRangeProtectionMutation,
-  _h as FactoryDeleteRangeProtectionMutation,
-  Fh as FactorySetRangeProtectionMutation,
-  Es as IExclusiveRangeService,
-  ht as INTERCEPTOR_POINT,
-  $t as INumfmtService,
-  Fu as IRefSelectionsService,
-  sl as InsertColAfterCommand,
-  ol as InsertColBeforeCommand,
-  Dr as InsertColByRangeCommand,
+  ld as EmptyMutation,
+  zd as ExclusiveRangeService,
+  bh as FactoryAddRangeProtectionMutation,
+  yh as FactoryDeleteRangeProtectionMutation,
+  Bh as FactorySetRangeProtectionMutation,
+  Us as IExclusiveRangeService,
+  gt as INTERCEPTOR_POINT,
+  Wt as INumfmtService,
+  Bu as IRefSelectionsService,
+  rl as InsertColAfterCommand,
+  sl as InsertColBeforeCommand,
+  Ar as InsertColByRangeCommand,
   Xe as InsertColCommand,
-  ke as InsertColMutation,
-  ro as InsertColMutationUndoFactory,
-  ic as InsertDefinedNameCommand,
-  rl as InsertMultiColsLeftCommand,
-  il as InsertMultiColsRightCommand,
-  tl as InsertMultiRowsAboveCommand,
-  nl as InsertMultiRowsAfterCommand,
-  Pt as InsertRangeMoveDownCommand,
-  rn as InsertRangeMoveRightCommand,
-  el as InsertRowAfterCommand,
-  Qu as InsertRowBeforeCommand,
-  Nr as InsertRowByRangeCommand,
+  Ue as InsertColMutation,
+  io as InsertColMutationUndoFactory,
+  ac as InsertDefinedNameCommand,
+  il as InsertMultiColsLeftCommand,
+  al as InsertMultiColsRightCommand,
+  nl as InsertMultiRowsAboveCommand,
+  ol as InsertMultiRowsAfterCommand,
+  Nt as InsertRangeMoveDownCommand,
+  an as InsertRangeMoveRightCommand,
+  tl as InsertRowAfterCommand,
+  el as InsertRowBeforeCommand,
+  Or as InsertRowByRangeCommand,
   Ye as InsertRowCommand,
-  Ue as InsertRowMutation,
-  $o as InsertRowMutationUndoFactory,
-  ac as InsertSheetCommand,
-  ln as InsertSheetMutation,
-  Gr as InsertSheetUndoMutationFactory,
-  ha as InterceptCellContentPriority,
-  md as MAX_CELL_PER_SHEET_KEY,
-  Kl as MERGE_CELL_INTERCEPTOR_CHECK,
-  ld as MarkDirtyRowAutoHeightMutation,
-  Wn as MergeCellController,
-  un as MoveColsCommand,
+  Ee as InsertRowMutation,
+  Wo as InsertRowMutationUndoFactory,
+  uc as InsertSheetCommand,
+  cn as InsertSheetMutation,
+  Kr as InsertSheetUndoMutationFactory,
+  ga as InterceptCellContentPriority,
+  fd as MAX_CELL_PER_SHEET_KEY,
+  Jl as MERGE_CELL_INTERCEPTOR_CHECK,
+  cd as MarkDirtyRowAutoHeightMutation,
+  Vn as MergeCellController,
+  ln as MoveColsCommand,
   qe as MoveColsMutation,
-  xa as MoveColsMutationUndoFactory,
-  yt as MoveRangeCommand,
-  wt as MoveRangeMutation,
-  an as MoveRowsCommand,
+  $a as MoveColsMutationUndoFactory,
+  bt as MoveRangeCommand,
+  It as MoveRangeMutation,
+  un as MoveRowsCommand,
   Je as MoveRowsMutation,
-  Aa as MoveRowsMutationUndoFactory,
-  To as NumfmtService,
+  xa as MoveRowsMutationUndoFactory,
+  Po as NumfmtService,
   Q as OperatorType,
-  og as PermissionPointsDefinitions,
-  $u as REF_SELECTIONS_ENABLED,
-  Sh as RangeMergeUtil,
-  Wt as RangeProtectionCache,
-  ii as RangeProtectionPermissionDeleteProtectionPoint,
-  Ve as RangeProtectionPermissionEditPoint,
-  ai as RangeProtectionPermissionManageCollaPoint,
-  Fo as RangeProtectionPermissionViewPoint,
-  to as RangeProtectionRefRangeService,
-  fn as RangeProtectionRenderModel,
-  me as RangeProtectionRuleModel,
-  no as RangeProtectionService,
-  Rt as RangeThemeStyle,
-  At as RefRangeService,
-  fs as RefSelectionsService,
-  uc as RegisterWorksheetRangeThemeStyleCommand,
-  cn as RegisterWorksheetRangeThemeStyleMutation,
-  xr as RemoveColByRangeCommand,
-  ho as RemoveColCommand,
-  Me as RemoveColMutation,
-  Jr as RemoveDefinedNameCommand,
-  ye as RemoveMergeUndoMutationFactory,
-  li as RemoveNumfmtMutation,
-  dd as RemoveRangeThemeMutation,
-  Ar as RemoveRowByRangeCommand,
-  co as RemoveRowCommand,
-  Te as RemoveRowMutation,
-  Xo as RemoveSheetCommand,
-  Lt as RemoveSheetMutation,
-  al as RemoveSheetUndoMutationFactory,
-  lc as RemoveWorksheetMergeCommand,
-  oe as RemoveWorksheetMergeMutation,
-  bo as ReorderRangeCommand,
-  Nn as ReorderRangeMutation,
-  Va as ReorderRangeUndoMutationFactory,
-  Ac as ResetBackgroundColorCommand,
-  Oc as ResetTextColorCommand,
-  ng as SCOPE_WORKBOOK_VALUE_DEFINED_NAME,
-  Eh as SELECTIONS_ENABLED,
-  Ih as SELECTION_CONTROL_BORDER_BUFFER_COLOR,
-  wh as SELECTION_CONTROL_BORDER_BUFFER_WIDTH,
-  gd as ScrollToCellOperation,
-  ju as SelectRangeCommand,
-  we as SelectionMoveType,
-  Dc as SetBackgroundColorCommand,
-  Bh as SetBoldCommand,
-  wc as SetBorderBasicCommand,
-  Sc as SetBorderColorCommand,
-  wn as SetBorderCommand,
-  Cc as SetBorderPositionCommand,
-  pc as SetBorderStyleCommand,
-  Ic as SetColDataCommand,
-  zt as SetColDataMutation,
-  Fa as SetColDataMutationFactory,
-  Eo as SetColHiddenCommand,
-  on as SetColHiddenMutation,
-  sn as SetColVisibleMutation,
-  Hn as SetColWidthCommand,
-  Xr as SetDefinedNameCommand,
-  Jh as SetFontFamilyCommand,
-  qh as SetFontSizeCommand,
-  _c as SetFrozenCommand,
+  sg as PermissionPointsDefinitions,
+  Wu as REF_SELECTIONS_ENABLED,
+  wh as RangeMergeUtil,
+  Vt as RangeProtectionCache,
+  ai as RangeProtectionPermissionDeleteProtectionPoint,
+  We as RangeProtectionPermissionEditPoint,
+  ui as RangeProtectionPermissionManageCollaPoint,
+  Bo as RangeProtectionPermissionViewPoint,
+  no as RangeProtectionRefRangeService,
+  Rn as RangeProtectionRenderModel,
+  ge as RangeProtectionRuleModel,
+  oo as RangeProtectionService,
+  Ct as RangeThemeStyle,
+  xt as RefRangeService,
+  Rs as RefSelectionsService,
+  lc as RegisterWorksheetRangeThemeStyleCommand,
+  dn as RegisterWorksheetRangeThemeStyleMutation,
+  $r as RemoveColByRangeCommand,
+  go as RemoveColCommand,
+  ve as RemoveColMutation,
+  qr as RemoveDefinedNameCommand,
+  _e as RemoveMergeUndoMutationFactory,
+  ci as RemoveNumfmtMutation,
+  hd as RemoveRangeThemeMutation,
+  xr as RemoveRowByRangeCommand,
+  ho as RemoveRowCommand,
+  ke as RemoveRowMutation,
+  Zo as RemoveSheetCommand,
+  Ht as RemoveSheetMutation,
+  ul as RemoveSheetUndoMutationFactory,
+  cc as RemoveWorksheetMergeCommand,
+  se as RemoveWorksheetMergeMutation,
+  Eo as ReorderRangeCommand,
+  On as ReorderRangeMutation,
+  La as ReorderRangeUndoMutationFactory,
+  xc as ResetBackgroundColorCommand,
+  Dc as ResetTextColorCommand,
+  og as SCOPE_WORKBOOK_VALUE_DEFINED_NAME,
+  Uh as SELECTIONS_ENABLED,
+  vh as SELECTION_CONTROL_BORDER_BUFFER_COLOR,
+  Ih as SELECTION_CONTROL_BORDER_BUFFER_WIDTH,
+  md as ScrollToCellOperation,
+  zu as SelectRangeCommand,
+  Se as SelectionMoveType,
+  Ac as SetBackgroundColorCommand,
+  jh as SetBoldCommand,
+  Ic as SetBorderBasicCommand,
+  wc as SetBorderColorCommand,
+  In as SetBorderCommand,
+  pc as SetBorderPositionCommand,
+  Sc as SetBorderStyleCommand,
+  vc as SetColDataCommand,
+  Gt as SetColDataMutation,
+  Ba as SetColDataMutationFactory,
+  Uo as SetColHiddenCommand,
+  sn as SetColHiddenMutation,
+  rn as SetColVisibleMutation,
+  Fn as SetColWidthCommand,
+  Zr as SetDefinedNameCommand,
+  qh as SetFontFamilyCommand,
+  Yh as SetFontSizeCommand,
+  yc as SetFrozenCommand,
   ot as SetFrozenMutation,
-  Zr as SetFrozenMutationFactory,
-  bc as SetGridlinesColorCommand,
-  Gt as SetGridlinesColorMutation,
-  $c as SetHorizontalTextAlignCommand,
-  jh as SetItalicCommand,
-  ns as SetNumfmtMutation,
-  Kh as SetOverlineCommand,
-  Ec as SetProtectionCommand,
+  Qr as SetFrozenMutationFactory,
+  Ec as SetGridlinesColorCommand,
+  Kt as SetGridlinesColorMutation,
+  Wc as SetHorizontalTextAlignCommand,
+  zh as SetItalicCommand,
+  os as SetNumfmtMutation,
+  Jh as SetOverlineCommand,
+  Uc as SetProtectionCommand,
   fe as SetRangeProtectionMutation,
-  hd as SetRangeThemeMutation,
-  pn as SetRangeValuesCommand,
+  gd as SetRangeThemeMutation,
+  Sn as SetRangeValuesCommand,
   ee as SetRangeValuesMutation,
-  Ae as SetRangeValuesUndoMutationFactory,
-  Uc as SetRowDataCommand,
-  Kt as SetRowDataMutation,
-  eu as SetRowDataMutationFactory,
-  zn as SetRowHeightCommand,
-  Uo as SetRowHiddenCommand,
-  Tt as SetRowHiddenMutation,
-  kt as SetRowVisibleMutation,
-  qr as SetSelectedColsVisibleCommand,
-  Qr as SetSelectedRowsVisibleCommand,
-  ie as SetSelectionsOperation,
-  dn as SetSpecificColsVisibleCommand,
-  hn as SetSpecificRowsVisibleCommand,
-  Gh as SetStrikeThroughCommand,
+  De as SetRangeValuesUndoMutationFactory,
+  kc as SetRowDataCommand,
+  Jt as SetRowDataMutation,
+  tu as SetRowDataMutationFactory,
+  Gn as SetRowHeightCommand,
+  ko as SetRowHiddenCommand,
+  Pt as SetRowHiddenMutation,
+  Tt as SetRowVisibleMutation,
+  Yr as SetSelectedColsVisibleCommand,
+  ei as SetSelectedRowsVisibleCommand,
+  ae as SetSelectionsOperation,
+  hn as SetSpecificColsVisibleCommand,
+  gn as SetSpecificRowsVisibleCommand,
+  Kh as SetStrikeThroughCommand,
   Ce as SetStyleCommand,
-  Hc as SetTabColorCommand,
-  Un as SetTabColorMutation,
-  Nc as SetTextColorCommand,
-  Vc as SetTextRotationCommand,
-  Wc as SetTextWrapCommand,
-  zh as SetUnderlineCommand,
-  xc as SetVerticalTextAlignCommand,
-  ni as SetWorkbookNameCommand,
-  ti as SetWorkbookNameMutation,
-  oi as SetWorksheetActivateCommand,
-  Cn as SetWorksheetActiveOperation,
-  mt as SetWorksheetColWidthMutation,
-  qs as SetWorksheetColWidthMutationFactory,
-  Bc as SetWorksheetColumnCountCommand,
-  Jt as SetWorksheetColumnCountMutation,
-  ou as SetWorksheetColumnCountUndoMutationFactory,
-  jc as SetWorksheetDefaultStyleCommand,
-  qt as SetWorksheetDefaultStyleMutation,
-  su as SetWorksheetDefaultStyleMutationFactory,
-  zc as SetWorksheetHideCommand,
-  St as SetWorksheetHideMutation,
-  Qo as SetWorksheetNameCommand,
-  Fn as SetWorksheetNameMutation,
-  ri as SetWorksheetOrderCommand,
-  kn as SetWorksheetOrderMutation,
-  Qc as SetWorksheetPermissionPointsCommand,
-  es as SetWorksheetPermissionPointsMutation,
-  ed as SetWorksheetProtectionCommand,
-  bt as SetWorksheetProtectionMutation,
-  Ql as SetWorksheetRangeThemeStyleCommand,
-  tn as SetWorksheetRangeThemeStyleMutation,
-  Oa as SetWorksheetRangeThemeStyleMutationFactory,
-  Xh as SetWorksheetRightToLeftCommand,
-  So as SetWorksheetRightToLeftMutation,
-  Xs as SetWorksheetRowAutoHeightMutation,
-  gh as SetWorksheetRowAutoHeightMutationFactory,
-  nd as SetWorksheetRowCountCommand,
-  Yt as SetWorksheetRowCountMutation,
-  ru as SetWorksheetRowCountUndoMutationFactory,
+  Fc as SetTabColorCommand,
+  kn as SetTabColorMutation,
+  Oc as SetTextColorCommand,
+  Lc as SetTextRotationCommand,
+  Vc as SetTextWrapCommand,
+  Gh as SetUnderlineCommand,
+  $c as SetVerticalTextAlignCommand,
+  oi as SetWorkbookNameCommand,
+  ni as SetWorkbookNameMutation,
+  si as SetWorksheetActivateCommand,
+  pn as SetWorksheetActiveOperation,
+  ft as SetWorksheetColWidthMutation,
+  Ys as SetWorksheetColWidthMutationFactory,
+  jc as SetWorksheetColumnCountCommand,
+  qt as SetWorksheetColumnCountMutation,
+  su as SetWorksheetColumnCountUndoMutationFactory,
+  zc as SetWorksheetDefaultStyleCommand,
+  Yt as SetWorksheetDefaultStyleMutation,
+  ru as SetWorksheetDefaultStyleMutationFactory,
+  Gc as SetWorksheetHideCommand,
+  wt as SetWorksheetHideMutation,
+  es as SetWorksheetNameCommand,
+  Bn as SetWorksheetNameMutation,
+  ii as SetWorksheetOrderCommand,
+  Tn as SetWorksheetOrderMutation,
+  ed as SetWorksheetPermissionPointsCommand,
+  ts as SetWorksheetPermissionPointsMutation,
+  td as SetWorksheetProtectionCommand,
+  Et as SetWorksheetProtectionMutation,
+  ec as SetWorksheetRangeThemeStyleCommand,
+  nn as SetWorksheetRangeThemeStyleMutation,
+  Da as SetWorksheetRangeThemeStyleMutationFactory,
+  Zh as SetWorksheetRightToLeftCommand,
+  wo as SetWorksheetRightToLeftMutation,
+  Zs as SetWorksheetRowAutoHeightMutation,
+  mh as SetWorksheetRowAutoHeightMutationFactory,
+  od as SetWorksheetRowCountCommand,
+  Xt as SetWorksheetRowCountMutation,
+  iu as SetWorksheetRowCountUndoMutationFactory,
   nt as SetWorksheetRowHeightMutation,
-  ts as SetWorksheetRowIsAutoHeightCommand,
-  Fe as SetWorksheetRowIsAutoHeightMutation,
-  ui as SetWorksheetShowCommand,
+  ns as SetWorksheetRowIsAutoHeightCommand,
+  He as SetWorksheetRowIsAutoHeightMutation,
+  li as SetWorksheetShowCommand,
   G as SheetInterceptorService,
-  Jn as SheetPermissionCheckController,
-  qn as SheetPermissionInitController,
-  ve as SheetRangeThemeModel,
-  Po as SheetRangeThemeService,
-  iu as SheetSkeletonChangeType,
+  qn as SheetPermissionCheckController,
+  Yn as SheetPermissionInitController,
+  Ie as SheetRangeThemeModel,
+  No as SheetRangeThemeService,
+  au as SheetSkeletonChangeType,
   rt as SheetSkeletonService,
-  au as SheetValueChangeType,
-  Kn as SheetsFreezeSyncController,
+  uu as SheetValueChangeType,
+  Jn as SheetsFreezeSyncController,
   z as SheetsSelectionsService,
-  Cu as SplitDelimiterEnum,
-  od as SplitTextToColumnsCommand,
-  sd as ToggleCellCheckboxCommand,
-  rd as ToggleGridlinesCommand,
-  Xt as ToggleGridlinesMutation,
+  pu as SplitDelimiterEnum,
+  sd as SplitTextToColumnsCommand,
+  rd as ToggleCellCheckboxCommand,
+  id as ToggleGridlinesCommand,
+  Zt as ToggleGridlinesMutation,
   _ as UnitAction,
   x as UnitObject,
-  oo as UniverSheetsPlugin,
-  id as UnregisterWorksheetRangeThemeStyleCommand,
-  Yo as UnregisterWorksheetRangeThemeStyleMutation,
-  Ro as VALIDATE_CELL,
-  Tu as ViewStateEnum,
-  nr as WorkbookCommentPermission,
-  or as WorkbookCopyPermission,
-  Gu as WorkbookCopySheetPermission,
-  sr as WorkbookCreateProtectPermission,
-  rr as WorkbookCreateSheetPermission,
-  Ku as WorkbookDeleteColumnPermission,
-  Ju as WorkbookDeleteRowPermission,
-  ir as WorkbookDeleteSheetPermission,
-  ar as WorkbookDuplicatePermission,
-  Pe as WorkbookEditablePermission,
-  ur as WorkbookExportPermission,
-  Bo as WorkbookHideSheetPermission,
-  qu as WorkbookHistoryPermission,
-  Yu as WorkbookInsertColumnPermission,
-  Xu as WorkbookInsertRowPermission,
-  jo as WorkbookManageCollaboratorPermission,
-  zo as WorkbookMoveSheetPermission,
-  mn as WorkbookPermissionService,
-  lr as WorkbookPrintPermission,
-  cr as WorkbookRecoverHistoryPermission,
-  Go as WorkbookRenameSheetPermission,
-  Ou as WorkbookSelectionModel,
-  dr as WorkbookSharePermission,
-  gr as WorkbookViewHistoryPermission,
-  hr as WorkbookViewPermission,
-  mr as WorksheetCopyPermission,
-  fr as WorksheetDeleteColumnPermission,
-  Rr as WorksheetDeleteProtectionPermission,
-  Cr as WorksheetDeleteRowPermission,
-  pr as WorksheetEditExtraObjectPermission,
-  Le as WorksheetEditPermission,
-  Sr as WorksheetFilterPermission,
-  wr as WorksheetInsertColumnPermission,
-  Ir as WorksheetInsertHyperlinkPermission,
-  vr as WorksheetInsertRowPermission,
-  Mr as WorksheetManageCollaboratorPermission,
-  Bn as WorksheetPermissionService,
-  _r as WorksheetPivotTablePermission,
-  In as WorksheetProtectionPointModel,
+  so as UniverSheetsPlugin,
+  ad as UnregisterWorksheetRangeThemeStyleCommand,
+  Xo as UnregisterWorksheetRangeThemeStyleMutation,
+  Co as VALIDATE_CELL,
+  Pu as ViewStateEnum,
+  or as WorkbookCommentPermission,
+  sr as WorkbookCopyPermission,
+  Ku as WorkbookCopySheetPermission,
+  rr as WorkbookCreateProtectPermission,
+  ir as WorkbookCreateSheetPermission,
+  Ju as WorkbookDeleteColumnPermission,
+  qu as WorkbookDeleteRowPermission,
+  ar as WorkbookDeleteSheetPermission,
+  ur as WorkbookDuplicatePermission,
+  Te as WorkbookEditablePermission,
+  lr as WorkbookExportPermission,
+  jo as WorkbookHideSheetPermission,
+  Yu as WorkbookHistoryPermission,
+  Xu as WorkbookInsertColumnPermission,
+  Zu as WorkbookInsertRowPermission,
+  zo as WorkbookManageCollaboratorPermission,
+  Go as WorkbookMoveSheetPermission,
+  fn as WorkbookPermissionService,
+  cr as WorkbookPrintPermission,
+  dr as WorkbookRecoverHistoryPermission,
+  Ko as WorkbookRenameSheetPermission,
+  Du as WorkbookSelectionModel,
+  hr as WorkbookSharePermission,
+  mr as WorkbookViewHistoryPermission,
+  gr as WorkbookViewPermission,
+  fr as WorksheetCopyPermission,
+  Rr as WorksheetDeleteColumnPermission,
+  Cr as WorksheetDeleteProtectionPermission,
+  pr as WorksheetDeleteRowPermission,
+  Sr as WorksheetEditExtraObjectPermission,
+  Ve as WorksheetEditPermission,
+  wr as WorksheetFilterPermission,
+  Ir as WorksheetInsertColumnPermission,
+  vr as WorksheetInsertHyperlinkPermission,
+  Mr as WorksheetInsertRowPermission,
+  _r as WorksheetManageCollaboratorPermission,
+  jn as WorksheetPermissionService,
+  yr as WorksheetPivotTablePermission,
+  vn as WorksheetProtectionPointModel,
   lt as WorksheetProtectionRuleModel,
-  Ph as WorksheetSelectProtectedCellsPermission,
-  Nh as WorksheetSelectUnProtectedCellsPermission,
-  yr as WorksheetSetCellStylePermission,
-  Dn as WorksheetSetCellValuePermission,
-  Zt as WorksheetSetColumnStylePermission,
-  Qt as WorksheetSetRowStylePermission,
-  br as WorksheetSortPermission,
-  lo as WorksheetViewPermission,
-  Yn as ZebraCrossingCacheController,
-  Hh as addMergeCellsUtil,
-  Al as adjustRangeOnMutation,
-  uo as alignToMergedCellsBorders,
-  pt as baseProtectionActions,
-  as as checkCellValueType,
-  sg as checkRangesEditablePermission,
-  Ru as convertPrimaryWithCoordToPrimary,
-  vh as convertSelectionDataToRange,
-  Ct as copyRangeStyles,
-  mu as createTopMatrixFromMatrix,
-  gu as createTopMatrixFromRanges,
-  Jc as defaultWorkbookPermissionPoints,
-  po as defaultWorksheetPermissionPoint,
-  ph as expandToContinuousRange,
-  Qh as factoryRemoveNumfmtUndoMutation,
-  Zh as factorySetNumfmtUndoMutation,
-  Zs as findAllRectangle,
-  Mh as findFirstNonEmptyCell,
+  Nh as WorksheetSelectProtectedCellsPermission,
+  Oh as WorksheetSelectUnProtectedCellsPermission,
+  br as WorksheetSetCellStylePermission,
+  An as WorksheetSetCellValuePermission,
+  Qt as WorksheetSetColumnStylePermission,
+  en as WorksheetSetRowStylePermission,
+  Er as WorksheetSortPermission,
+  co as WorksheetViewPermission,
+  Xn as ZebraCrossingCacheController,
+  Fh as addMergeCellsUtil,
+  xl as adjustRangeOnMutation,
+  lo as alignToMergedCellsBorders,
+  St as baseProtectionActions,
+  us as checkCellValueType,
+  rg as checkRangesEditablePermission,
+  Cu as convertPrimaryWithCoordToPrimary,
+  Mh as convertSelectionDataToRange,
+  pt as copyRangeStyles,
+  fu as createTopMatrixFromMatrix,
+  mu as createTopMatrixFromRanges,
+  qc as defaultWorkbookPermissionPoints,
+  So as defaultWorksheetPermissionPoint,
+  Sh as expandToContinuousRange,
+  eg as factoryRemoveNumfmtUndoMutation,
+  Qh as factorySetNumfmtUndoMutation,
+  Qs as findAllRectangle,
+  _h as findFirstNonEmptyCell,
   ut as followSelectionOperation,
-  er as generateNullCell,
-  Eu as generateNullCellValue,
-  zr as getAddMergeMutationRangeByType,
-  Ee as getAllRangePermissionPoint,
-  gn as getAllWorkbookPermissionPoint,
-  be as getAllWorksheetPermissionPoint,
-  He as getAllWorksheetPermissionPointByPointPanel,
-  Uh as getCellAtRowCol,
-  Yh as getDefaultRangePermission,
-  Er as getInsertRangeMutations,
-  Ho as getMoveRangeUndoRedoMutations,
-  rg as getNextPrimaryCell,
-  _e as getPrimaryForRange,
-  Ur as getRemoveRangeMutations,
-  Bu as getSelectionsService,
-  $h as getSeparateEffectedRangesOnCommand,
+  tr as generateNullCell,
+  Uu as generateNullCellValue,
+  Gr as getAddMergeMutationRangeByType,
+  be as getAllRangePermissionPoint,
+  mn as getAllWorkbookPermissionPoint,
+  ye as getAllWorksheetPermissionPoint,
+  Le as getAllWorksheetPermissionPointByPointPanel,
+  kh as getCellAtRowCol,
+  Xh as getDefaultRangePermission,
+  Ur as getInsertRangeMutations,
+  Fo as getMoveRangeUndoRedoMutations,
+  ig as getNextPrimaryCell,
+  Me as getPrimaryForRange,
+  kr as getRemoveRangeMutations,
+  ju as getSelectionsService,
+  Wh as getSeparateEffectedRangesOnCommand,
   P as getSheetCommandTarget,
-  Ks as getSheetCommandTargetWorkbook,
+  Js as getSheetCommandTargetWorkbook,
   Qe as getSheetMutationTarget,
-  Ch as getSkeletonChangedEffectedRange,
-  Rh as getValueChangedEffectedRange,
-  ao as getVisibleRanges,
-  Ot as handleBaseInsertRange,
-  $n as handleBaseMoveRowsCols,
-  Nt as handleBaseRemoveRange,
-  Cs as handleCommonDefaultRangeChangeWithEffectRefCommands,
-  xh as handleCommonRangeChangeWithEffectRefCommandsSkipNoInterests,
-  Rs as handleDefaultRangeChangeWithEffectRefCommands,
-  Ah as handleDefaultRangeChangeWithEffectRefCommandsSkipNoInterests,
-  Ul as handleDeleteRangeMoveLeft,
-  Tl as handleDeleteRangeMoveUp,
-  Dh as handleDeleteRangeMutation,
-  Br as handleIRemoveCol,
-  Sl as handleIRemoveRow,
-  Ml as handleInsertCol,
-  _l as handleInsertRangeMoveDown,
-  bl as handleInsertRangeMoveRight,
-  Oh as handleInsertRangeMutation,
-  vl as handleInsertRow,
-  Fr as handleMoveCols,
-  Cl as handleMoveRange,
-  Hr as handleMoveRows,
-  Th as isSingleCellSelection,
-  Qs as rangeMerge,
-  ku as rangeToDiscreteRange,
-  Oe as rotateRange,
-  Dt as runRefRangeMutations,
-  kh as setEndForRange,
-  Mu as splitRangeText,
-  ko as transformCellsToRange
+  ph as getSkeletonChangedEffectedRange,
+  Ch as getValueChangedEffectedRange,
+  uo as getVisibleRanges,
+  Dt as handleBaseInsertRange,
+  Wn as handleBaseMoveRowsCols,
+  Ot as handleBaseRemoveRange,
+  ps as handleCommonDefaultRangeChangeWithEffectRefCommands,
+  $h as handleCommonRangeChangeWithEffectRefCommandsSkipNoInterests,
+  Cs as handleDefaultRangeChangeWithEffectRefCommands,
+  xh as handleDefaultRangeChangeWithEffectRefCommandsSkipNoInterests,
+  kl as handleDeleteRangeMoveLeft,
+  Pl as handleDeleteRangeMoveUp,
+  Ah as handleDeleteRangeMutation,
+  jr as handleIRemoveCol,
+  wl as handleIRemoveRow,
+  _l as handleInsertCol,
+  yl as handleInsertRangeMoveDown,
+  El as handleInsertRangeMoveRight,
+  Dh as handleInsertRangeMutation,
+  Ml as handleInsertRow,
+  Br as handleMoveCols,
+  pl as handleMoveRange,
+  Fr as handleMoveRows,
+  Ph as isSingleCellSelection,
+  er as rangeMerge,
+  Tu as rangeToDiscreteRange,
+  Ne as rotateRange,
+  At as runRefRangeMutations,
+  Th as setEndForRange,
+  _u as splitRangeText,
+  To as transformCellsToRange
 };
