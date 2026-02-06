@@ -73,6 +73,17 @@ export const SetRangeValuesCommand: ICommand = {
         if (!currentSelections || !currentSelections.length) return false;
         if (!permissionService.getPermissionPoint(new WorksheetEditPermission(unitId, subUnitId).id)) return false;
 
+        // Clamp selection ranges to actual worksheet dimensions so unbounded
+        // ranges (e.g. column range E:E with endRow=9999) don't cause
+        // excessive iteration or memory allocation.
+        const maxRow = worksheet.getRowCount() - 1;
+        const maxCol = worksheet.getColumnCount() - 1;
+        for (let i = 0; i < currentSelections.length; i++) {
+            const sel = currentSelections[i];
+            if (sel.endRow > maxRow) sel.endRow = maxRow;
+            if (sel.endColumn > maxCol) sel.endColumn = maxCol;
+        }
+
         const cellValue = new ObjectMatrix<ICellData>();
         let realCellValue: IObjectMatrixPrimitiveType<ICellData> | undefined;
 
