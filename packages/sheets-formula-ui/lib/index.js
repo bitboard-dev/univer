@@ -2450,33 +2450,20 @@ function Mr(t = "") {
 function zi() {
   const t = T(gt), e = t.getCurrentTheme();
   return ie(() => {
-    const o = [
-      t.getColorFromTheme("loop-color.1"),
-      t.getColorFromTheme("loop-color.2"),
-      t.getColorFromTheme("loop-color.3"),
-      t.getColorFromTheme("loop-color.4"),
-      t.getColorFromTheme("loop-color.5"),
-      t.getColorFromTheme("loop-color.6"),
-      t.getColorFromTheme("loop-color.7"),
-      t.getColorFromTheme("loop-color.8"),
-      t.getColorFromTheme("loop-color.9"),
-      t.getColorFromTheme("loop-color.10"),
-      t.getColorFromTheme("loop-color.11"),
-      t.getColorFromTheme("loop-color.12")
-    ].map((c) => t.isValidThemeColor(c) ? t.getColorFromTheme(c) : c), r = t.getColorFromTheme("blue.700"), s = t.getColorFromTheme("jiqing.800"), i = t.getColorFromTheme("black");
-    return { formulaRefColors: o, numberColor: r, stringColor: s, plainTextColor: i };
-  }, [e]);
+    const o = ["#B87333", "#8A9A5B", "#3D3831"], r = "#3D3831", s = "#7C3F2A", i = "#3D3831", c = "#3D3831";
+    return { formulaRefColors: o, numberColor: r, stringColor: s, plainTextColor: i, functionColor: c };
+  }, [e, t]);
 }
 function Gi(t, e, n) {
-  const { formulaRefColors: o, numberColor: r, stringColor: s, plainTextColor: i } = e, c = [], a = [], g = /* @__PURE__ */ new Map();
-  let m = 0;
-  for (let d = 0, h = n.length; d < h; d++) {
-    const u = n[d];
-    if (typeof u == "string") {
-      const _ = c[c.length - 1], I = _ ? _.ed : 0, f = I + u.length;
-      c.push({
-        st: I,
-        ed: f,
+  const { formulaRefColors: o, numberColor: r, stringColor: s, plainTextColor: i, functionColor: c } = e, a = [], g = [], m = /* @__PURE__ */ new Map();
+  let d = 0;
+  for (let h = 0, u = n.length; h < u; h++) {
+    const _ = n[h];
+    if (typeof _ == "string") {
+      const I = a[a.length - 1], f = I ? I.ed : 0, x = f + _.length;
+      a.push({
+        st: f,
+        ed: x,
         ts: {
           cl: {
             rgb: i
@@ -2486,47 +2473,49 @@ function Gi(t, e, n) {
       });
       continue;
     }
-    if (t.hasDefinedNameDescription(u.token.trim())) {
-      c.push({
-        st: u.startIndex,
-        ed: u.endIndex + 1,
+    if (t.hasDefinedNameDescription(_.token.trim())) {
+      a.push({
+        st: _.startIndex,
+        ed: _.endIndex + 1,
         ts: {
           cl: {
             rgb: i
           },
-          fs: 11
+          fs: 11,
+          bl: 1
         }
       });
       continue;
     }
-    const { startIndex: l, endIndex: v, nodeType: p, token: S } = u;
+    const { startIndex: l, endIndex: v, nodeType: p, token: S } = _;
     let C = "";
     if (p === Q.REFERENCE) {
-      if (g.has(S))
-        C = g.get(S);
+      if (m.has(S))
+        C = m.get(S);
       else {
-        const _ = m % o.length;
-        C = o[_], g.set(S, C), m++;
+        const I = d % o.length;
+        C = o[I], m.set(S, C), d++;
       }
-      a.push({
-        refIndex: d,
+      g.push({
+        refIndex: h,
         themeColor: C,
         token: S,
-        startIndex: u.startIndex,
-        endIndex: u.endIndex,
-        index: a.length
+        startIndex: _.startIndex,
+        endIndex: _.endIndex,
+        index: g.length
       });
-    } else p === Q.NUMBER ? C = r : (p === Q.STRING || p === Q.ARRAY) && (C = s);
-    C && C.length > 0 ? c.push({
+    } else p === Q.NUMBER ? C = r : p === Q.FUNCTION ? C = c : (p === Q.STRING || p === Q.ARRAY) && (C = s);
+    C && C.length > 0 ? a.push({
       st: l,
       ed: v + 1,
       ts: {
         cl: {
           rgb: C
         },
-        fs: 11
+        fs: 11,
+        ...p === Q.REFERENCE || p === Q.FUNCTION ? { bl: 1 } : {}
       }
-    }) : c.push({
+    }) : a.push({
       st: l,
       ed: v + 1,
       ts: {
@@ -2537,7 +2526,7 @@ function Gi(t, e, n) {
       }
     });
   }
-  return { textRuns: c, refSelections: a };
+  return { textRuns: a, refSelections: g };
 }
 const Xi = (t, e, n, o) => {
   const r = T(me), s = T(Wt), i = G(e);
