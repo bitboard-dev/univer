@@ -77,10 +77,24 @@ export function updateFormulaDataByCellValue(sheetFormulaDataMatrix: ObjectMatri
         if (si !== formulaId) {
             clearFormulaData();
         }
-        sheetFormulaDataMatrix.setValue(r, c, {
-            f: '',
-            si: formulaId,
-        });
+
+        // If the source cell for this si group was already processed in this
+        // batch (e.g. fill_formula writes { f, si } for row 1 and { si } for
+        // rows 2-N in a single set-range-values), resolve the offset-adjusted
+        // formula eagerly so newSheetFormulaDataMatrix includes these cells
+        // for recalculation.
+        const sourceInfo = formulaIdMap[formulaId];
+        if (sourceInfo) {
+            const x = c - sourceInfo.c;
+            const y = r - sourceInfo.r;
+            sheetFormulaDataMatrix.setValue(r, c, { f: sourceInfo.f, si: formulaId, x, y });
+            newSheetFormulaDataMatrix.setValue(r, c, { f: sourceInfo.f, si: formulaId, x, y });
+        } else {
+            sheetFormulaDataMatrix.setValue(r, c, {
+                f: '',
+                si: formulaId,
+            });
+        }
     } else if (!checkFormulaString && !checkFormulaId && sheetFormulaDataMatrix.getValue(r, c)) {
         clearFormulaData();
 
