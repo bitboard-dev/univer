@@ -609,14 +609,7 @@ export function formulaDataItemToCellData(formulaDataItem: Nullable<IFormulaData
         cellData.si = si;
     }
 
-    // Always write the formula string to cell data when present.
-    // Previously only the source cell (x=0, y=0) kept f, and offset
-    // cells had f=null. This prevented the formula engine from seeing
-    // si-only cells written dynamically via set-range-values — the
-    // dirty range pipeline only recalculates cells with f in the cell
-    // matrix. The si and x/y offsets remain in the formula data model
-    // for reference tracking and XLSX serialization.
-    if (checkFormulaString) {
+    if (checkFormulaString && x === 0 && y === 0) {
         cellData.f = f;
     }
 
