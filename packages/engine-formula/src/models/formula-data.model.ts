@@ -366,6 +366,21 @@ export class FormulaDataModel extends Disposable {
             updateFormulaDataByCellValue(sheetFormulaDataMatrix, newSheetFormulaDataMatrix, formulaIdMap, deleteFormulaIdMap, r, c, cell);
         });
 
+        // Resolve si-only cells that were eagerly matched in the first pass:
+        // compute the offset-adjusted formula string so they are treated as
+        // real formulas by the calculation engine (dirty-range pipeline only
+        // triggers recalculation for cells with an actual formula string).
+        newSheetFormulaDataMatrix.forValue((r, c, cell) => {
+            if (cell && isFormulaId(cell.si) && cell.x !== undefined && cell.y !== undefined && (cell.x !== 0 || cell.y !== 0)) {
+                const adjusted = this._lexerTreeBuilder.moveFormulaRefOffset(cell.f, cell.x, cell.y);
+                if (adjusted) {
+                    const resolved = { f: adjusted, si: cell.si, x: cell.x, y: cell.y };
+                    sheetFormulaDataMatrix.setValue(r, c, resolved);
+                    newSheetFormulaDataMatrix.setValue(r, c, resolved);
+                }
+            }
+        });
+
         // Convert the formula ID to formula string
         sheetFormulaDataMatrix.forValue((r, c, cell) => {
             const formulaString = cell?.f || '';
