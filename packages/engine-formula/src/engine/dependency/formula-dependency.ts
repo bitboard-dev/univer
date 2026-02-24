@@ -62,6 +62,7 @@ export const IFormulaDependencyGenerator = createIdentifier<IFormulaDependencyGe
 
 export class FormulaDependencyGenerator extends Disposable {
     private _updateRangeFlattenCache = new Map<string, Map<string, IRange[]>>();
+    private _hasBuiltDependencies = false;
 
     protected _dependencyRTreeCacheForAddressFunction: RTree = new RTree();
 
@@ -82,25 +83,89 @@ export class FormulaDependencyGenerator extends Disposable {
     override dispose(): void {
         this._updateRangeFlattenCache.clear();
         this._dependencyRTreeCacheForAddressFunction.clear();
+        this._hasBuiltDependencies = false;
         FORMULA_AST_CACHE.clear();
     }
 
     async generate() {
         this._updateRangeFlatten();
-        // const formulaInterpreter = Interpreter.create(interpreterDatasetConfig);
+
+        const forceCalculate = this._currentConfigService.isForceCalculate();
+        const clearDependencyTreeCache = this._currentConfigService.getClearDependencyTreeCache();
+        const hasClearCache = clearDependencyTreeCache != null && Object.keys(clearDependencyTreeCache).length > 0;
+
+        // Fast path: when dependencies are already built (not first run),
+        // no formulas were added/removed (no cache clear), and calculation
+        // isn't forced, skip the expensive full tree regeneration.
+        // Use the existing RTree to find only the affected formulas from
+        // dirty ranges, avoiding O(N) iteration over all formula data.
+        if (!forceCalculate && !hasClearCache && this._hasBuiltDependencies) {
+            const dirtyRanges = this._currentConfigService.getDirtyRanges();
+
+            // Check if any dirty cells contain NEW formulas that aren't yet
+            // in the dependency tree. If so, we need the full registration path.
+            const formulaData = this._currentConfigService.getFormulaData();
+            let hasNewFormulas = false;
+            for (const dirtyRange of dirtyRanges) {
+                const { unitId, sheetId, range } = dirtyRange;
+                const sheetFormulas = formulaData?.[unitId]?.[sheetId];
+                if (!sheetFormulas) continue;
+                for (let r = range.startRow; r <= range.endRow && !hasNewFormulas; r++) {
+                    for (let c = range.startColumn; c <= range.endColumn && !hasNewFormulas; c++) {
+                        const cell = sheetFormulas[r]?.[c];
+                        if (cell && cell.f) {
+                            // This cell has a formula — check if it's already registered
+                            const existingId = this._dependencyManagerService.getFormulaDependency(unitId, sheetId, r, c);
+                            if (existingId == null) {
+                                hasNewFormulas = true;
+                            }
+                        }
+                    }
+                }
+            }
+
+            if (hasNewFormulas) {
+                // Fall through to full registration path for new formulas
+            } else {
+                const treeIds = this._dependencyManagerService.searchDependency(dirtyRanges);
+                const addressSearchResults = this._dependencyRTreeCacheForAddressFunction.bulkSearch(dirtyRanges) as Set<number>;
+                for (const id of addressSearchResults) {
+                    treeIds.add(id);
+                }
+
+                if (treeIds.size === 0) {
+                    return Promise.resolve([]);
+                }
+
+                const affectedTrees: IFormulaDependencyTree[] = [];
+                for (const treeId of treeIds) {
+                    const tree = this._dependencyManagerService.getTreeById(treeId);
+                    if (tree) {
+                        tree.isDirty = true;
+                        tree.resetState();
+                        affectedTrees.push(tree);
+                    }
+                }
+
+                const finalTreeList = this._calculateRunList(affectedTrees);
+                const isCycleDependency = this._checkIsCycleDependency(finalTreeList);
+                if (isCycleDependency) {
+                    this._runtimeService.enableCycleDependency();
+                }
+                return Promise.resolve(finalTreeList);
+            }
+        }
 
         const formulaData = this._currentConfigService.getFormulaData();
 
         const otherFormulaData = this._otherFormulaManagerService.getOtherFormulaData();
 
-        const clearDependencyTreeCache = this._currentConfigService.getClearDependencyTreeCache();
-
-        if (clearDependencyTreeCache != null) {
-            Object.keys(clearDependencyTreeCache).forEach((unitId) => {
+        if (hasClearCache) {
+            Object.keys(clearDependencyTreeCache!).forEach((unitId) => {
                 if (unitId == null) {
                     return;
                 }
-                Object.keys(clearDependencyTreeCache[unitId]!).forEach((subUnitId) => {
+                Object.keys(clearDependencyTreeCache![unitId]!).forEach((subUnitId) => {
                     if (subUnitId == null) {
                         return;
                     }
@@ -136,6 +201,7 @@ export class FormulaDependencyGenerator extends Disposable {
         }
 
         this._dependencyRTreeCacheForAddressFunction.clear();
+        this._hasBuiltDependencies = true;
 
         return Promise.resolve(finalTreeList);
     }
@@ -551,8 +617,8 @@ export class FormulaDependencyGenerator extends Disposable {
                 const matrixData = new ObjectMatrix(sheetData[sheetId] || {});
                 const sIdCache = new Map<string, FormulaDependencyTree>();
 
+                // First pass: register si source cells (x=0, y=0, si!=null)
                 matrixData.forValue((row, column, formulaDataItem) => {
-                    // const formulaString = formulaDataItem.f;
                     if (formulaDataItem == null) {
                         return true;
                     }
@@ -563,11 +629,23 @@ export class FormulaDependencyGenerator extends Disposable {
                         return true;
                     }
 
+                    // Reuse existing cached tree when the formula hasn't changed,
+                    // avoiding expensive tree creation + AST parse on every cycle.
+                    const existingTreeId = this._dependencyManagerService.getFormulaDependency(unitId, sheetId, row, column);
+                    if (existingTreeId != null) {
+                        const existingTree = this._dependencyManagerService.getTreeById(existingTreeId);
+                        if (existingTree && existingTree.formula === formulaDataItem.f) {
+                            existingTree.isCache = true;
+                            sIdCache.set(si, existingTree as FormulaDependencyTree);
+                            treeList.push(existingTree);
+                            return true;
+                        }
+                    }
+
                     const FDtree = this._createFDtree(unitId, sheetId, row, column, unitData, formulaDataItem);
 
-                    const treeId = this._dependencyManagerService.getFormulaDependency(unitId, sheetId, row, column);
-                    if (treeId != null) {
-                        FDtree.treeId = treeId;
+                    if (existingTreeId != null) {
+                        FDtree.treeId = existingTreeId;
                     } else {
                         this._dependencyManagerService.addFormulaDependency(unitId, sheetId, row, column, FDtree);
                         this._dependencyManagerService.addFormulaDependencyByDefinedName(FDtree);
@@ -577,8 +655,8 @@ export class FormulaDependencyGenerator extends Disposable {
                     treeList.push(FDtree);
                 });
 
+                // Second pass: register offset cells and non-si formulas
                 matrixData.forValue((row, column, formulaDataItem) => {
-                    // const formulaString = formulaDataItem.f;
                     if (formulaDataItem == null) {
                         return true;
                     }
@@ -589,19 +667,34 @@ export class FormulaDependencyGenerator extends Disposable {
                         return true;
                     }
 
+                    // Reuse existing cached tree for unchanged formulas
+                    const existingTreeId = this._dependencyManagerService.getFormulaDependency(unitId, sheetId, row, column);
+                    if (existingTreeId != null) {
+                        const existingTree = this._dependencyManagerService.getTreeById(existingTreeId);
+                        if (existingTree) {
+                            // For virtual trees, check that the source si group hasn't changed
+                            const isVirtualMatch = existingTree.isVirtual && si && sIdCache.has(si);
+                            // For regular trees, check the formula string
+                            const isRegularMatch = !existingTree.isVirtual && existingTree.formula === formulaDataItem.f;
+                            if (isVirtualMatch || isRegularMatch) {
+                                existingTree.isCache = true;
+                                treeList.push(existingTree);
+                                return true;
+                            }
+                        }
+                    }
+
                     let FDtree: IFormulaDependencyTree;
 
                     if (si && sIdCache.has(si)) {
                         const cache = sIdCache.get(si)!;
                         FDtree = this._createVirtualFDtree(cache as FormulaDependencyTree, formulaDataItem);
-                        // FDtree.rangeList = this._moveRangeList(cache, x, y);
                     } else {
                         FDtree = this._createFDtree(unitId, sheetId, row, column, unitData, formulaDataItem);
                     }
 
-                    const treeId = this._dependencyManagerService.getFormulaDependency(unitId, sheetId, row, column);
-                    if (treeId != null) {
-                        FDtree.treeId = treeId;
+                    if (existingTreeId != null) {
+                        FDtree.treeId = existingTreeId;
                     } else {
                         this._dependencyManagerService.addFormulaDependency(unitId, sheetId, row, column, FDtree);
                         this._dependencyManagerService.addFormulaDependencyByDefinedName(FDtree);
