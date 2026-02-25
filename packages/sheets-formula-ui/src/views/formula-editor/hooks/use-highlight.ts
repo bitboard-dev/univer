@@ -254,37 +254,29 @@ interface IColorMap {
     numberColor: string;
     stringColor: string;
     plainTextColor: string;
+    functionColor: string;
 }
 
 export function useColor(): IColorMap {
     const themeService = useDependency(ThemeService);
     const theme = themeService.getCurrentTheme();
     const result = useMemo(() => {
-        const formulaRefColors = [
-            themeService.getColorFromTheme('loop-color.1'),
-            themeService.getColorFromTheme('loop-color.2'),
-            themeService.getColorFromTheme('loop-color.3'),
-            themeService.getColorFromTheme('loop-color.4'),
-            themeService.getColorFromTheme('loop-color.5'),
-            themeService.getColorFromTheme('loop-color.6'),
-            themeService.getColorFromTheme('loop-color.7'),
-            themeService.getColorFromTheme('loop-color.8'),
-            themeService.getColorFromTheme('loop-color.9'),
-            themeService.getColorFromTheme('loop-color.10'),
-            themeService.getColorFromTheme('loop-color.11'),
-            themeService.getColorFromTheme('loop-color.12'),
-        ].map((color) => themeService.isValidThemeColor(color) ? themeService.getColorFromTheme(color) : color);
-        const numberColor = themeService.getColorFromTheme('blue.700');
-        const stringColor = themeService.getColorFromTheme('jiqing.800');
-        const plainTextColor = themeService.getColorFromTheme('black');
-        return { formulaRefColors, numberColor, stringColor, plainTextColor };
-    }, [theme]);
+        // Bitboard-aligned compact palette:
+        // - fewer hues reduce visual noise
+        // - references and functions get bold treatment for segmentation
+        const formulaRefColors = ['#B87333', '#8A9A5B', '#3D3831'];
+        const numberColor = '#3D3831';
+        const stringColor = '#7C3F2A';
+        const plainTextColor = '#3D3831';
+        const functionColor = '#3D3831';
+        return { formulaRefColors, numberColor, stringColor, plainTextColor, functionColor };
+    }, [theme, themeService]);
     return result;
 }
 
 // eslint-disable-next-line max-lines-per-function
 export function buildTextRuns(descriptionService: IDescriptionService, colorMap: IColorMap, sequenceNodes: Array<ISequenceNode | string>) {
-    const { formulaRefColors, numberColor, stringColor, plainTextColor } = colorMap;
+    const { formulaRefColors, numberColor, stringColor, plainTextColor, functionColor } = colorMap;
     const textRuns: ITextRun[] = [];
     const refSelections: IRefSelection[] = [];
     const themeColorMap = new Map<string, string>();
@@ -317,6 +309,7 @@ export function buildTextRuns(descriptionService: IDescriptionService, colorMap:
                         rgb: plainTextColor,
                     },
                     fs: 11,
+                    bl: 1,
                 },
             });
             continue;
@@ -347,6 +340,8 @@ export function buildTextRuns(descriptionService: IDescriptionService, colorMap:
             themeColor = stringColor;
         } else if (nodeType === sequenceNodeType.ARRAY) {
             themeColor = stringColor;
+        } else if (nodeType === sequenceNodeType.FUNCTION) {
+            themeColor = functionColor;
         }
 
         if (themeColor && themeColor.length > 0) {
@@ -358,6 +353,7 @@ export function buildTextRuns(descriptionService: IDescriptionService, colorMap:
                         rgb: themeColor,
                     },
                     fs: 11,
+                    ...(nodeType === sequenceNodeType.REFERENCE || nodeType === sequenceNodeType.FUNCTION ? { bl: 1 } : {}),
                 },
             });
         } else {
