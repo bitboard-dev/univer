@@ -343,7 +343,16 @@ export class FormulaDataModel extends Disposable {
     updateFormulaData(unitId: string, sheetId: string, cellValue: IObjectMatrixPrimitiveType<Nullable<ICellData>>) {
         const cellMatrix = new ObjectMatrix(cellValue);
 
-        const formulaIdMap = this._getSheetFormulaIdMap(unitId, sheetId); // Connect the formula and ID
+        // Check if any mutation cells involve formulas or si references.
+        let mutationHasFormulas = false;
+        cellMatrix.forValue((_r, _c, cell) => {
+            if (cell && (isFormulaString(cell.f) || isFormulaId(cell.si))) {
+                mutationHasFormulas = true;
+                return false;
+            }
+        });
+
+        const formulaIdMap = this._getSheetFormulaIdMap(unitId, sheetId);
 
         const deleteFormulaIdMap = new Map<string, string | IFormulaIdMap>();
 
@@ -366,7 +375,21 @@ export class FormulaDataModel extends Disposable {
             updateFormulaDataByCellValue(sheetFormulaDataMatrix, newSheetFormulaDataMatrix, formulaIdMap, deleteFormulaIdMap, r, c, cell);
         });
 
-        // Convert the formula ID to formula string
+        // Skip the expensive second pass (O(N) over all formula cells) when
+        // the mutation didn't affect any si groups. The first pass handles
+        // formula creation/deletion for mutated cells. The second pass only
+        // needs to run when si groups need re-resolution (deletions or new
+        // si cells). Plain value edits skip this entirely.
+
+        if (!mutationHasFormulas && deleteFormulaIdMap.size === 0) {
+            return newSheetFormulaDataMatrix.getMatrix();
+        }
+
+        // Convert the formula ID to formula string.
+        // Only add cells to newSheetFormulaDataMatrix (the recalculation set)
+        // if they were part of the incoming mutation OR if their si group was
+        // affected by a deletion. Existing si cells that weren't mutated don't
+        // need to be recalculated — they're already resolved and computed.
         sheetFormulaDataMatrix.forValue((r, c, cell) => {
             const formulaString = cell?.f || '';
             const formulaId = cell?.si || '';
@@ -381,7 +404,13 @@ export class FormulaDataModel extends Disposable {
                     const y = r - formulaInfo.r;
 
                     sheetFormulaDataMatrix.setValue(r, c, { f, si: formulaId, x, y });
-                    newSheetFormulaDataMatrix.setValue(r, c, { f, si: formulaId, x, y });
+                    // Only mark for recalculation if this cell is part of the
+                    // incoming mutation. Existing si cells that weren't touched
+                    // by this mutation are already resolved and don't need
+                    // redundant recalculation that causes O(N) lag on edits.
+                    if (cellMatrix.getValue(r, c) !== undefined) {
+                        newSheetFormulaDataMatrix.setValue(r, c, { f, si: formulaId, x, y });
+                    }
                 } else if (typeof deleteFormula === 'string') {
                     const x = cell?.x || 0;
                     const y = cell?.y || 0;
@@ -418,7 +447,7 @@ export class FormulaDataModel extends Disposable {
         const arrayFormulaRangeMatrix = new ObjectMatrix(arrayFormulaRange);
         const cellMatrix = new ObjectMatrix(cellValue);
 
-        cellMatrix.forValue((r, c, cell) => {
+        cellMatrix.forValue((r, c, _cell) => {
             arrayFormulaRangeMatrix.realDeleteValue(r, c);
         });
     }
@@ -444,7 +473,7 @@ export class FormulaDataModel extends Disposable {
 
         const cellMatrix = new ObjectMatrix(cellValue);
 
-        cellMatrix.forValue((r, c, cell) => {
+        cellMatrix.forValue((r, c, _cell) => {
             clearArrayFormulaCellDataByCell(arrayFormulaRangeMatrix, arrayFormulaCellDataMatrix, r, c);
         });
     }
