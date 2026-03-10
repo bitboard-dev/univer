@@ -35,6 +35,13 @@ export interface IUniverEngineFormulaConfig {
      */
     intervalCount?: number;
 
+    /**
+     * The maximum number of dependency tree nodes to execute before yielding and
+     * clearing transient reference caches. Lower values reduce peak working-set
+     * size at the cost of extra scheduler overhead.
+     */
+    batchExecutionCount?: number;
+
 }
 
 export const defaultPluginConfig: IUniverEngineFormulaConfig = {};
