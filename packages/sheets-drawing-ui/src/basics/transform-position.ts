@@ -24,13 +24,10 @@ import { convertPositionSheetOverGridToAbsolute } from '@univerjs/sheets-ui';
 export function drawingPositionToTransform(
     position: ISheetDrawingPosition,
     selectionRenderService: ISheetSelectionRenderService,
-    sheetSkeletonManagerService: SheetSkeletonManagerService,
-    targetSheetId?: string
+    sheetSkeletonManagerService: SheetSkeletonManagerService
 ): Nullable<ITransformState> {
     const { from, to, flipY = false, flipX = false, angle = 0, skewX = 0, skewY = 0 } = position;
-    const skeletonParam = targetSheetId
-        ? sheetSkeletonManagerService.getSkeletonParam(targetSheetId)
-        : sheetSkeletonManagerService.getCurrent();
+    const skeletonParam = sheetSkeletonManagerService.getCurrent();
     if (skeletonParam == null) {
         return;
     }

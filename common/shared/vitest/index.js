@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 
-const { defineConfig, mergeConfig } = require('vitest/config');
+async function createConfig(options) {
+    const { defineConfig, mergeConfig } = await import('vitest/config');
 
-function createConfig(options) {
     return defineConfig(mergeConfig({
         test: {
             css: {
