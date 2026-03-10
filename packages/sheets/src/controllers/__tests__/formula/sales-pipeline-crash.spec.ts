@@ -278,7 +278,7 @@ async function runSalesPipelineScenario(options?: {
     };
 
     formulaEngine.executeCalculation();
-    await formulaEngine.onCalculationEnd();
+    await formulaEngine.onCalculationEnd(300_000);
 
     return {
         totalCount: getCellValue(pipelineSummarySheetId, stages.length + 1, 1),
@@ -365,7 +365,7 @@ describe('sales pipeline workload crash reproducer', () => {
         `replays the sales-pipeline formula mix across ${numOpps} opportunities`,
         async () => {
             formulaEngine.executeCalculation();
-            await formulaEngine.onCalculationEnd();
+            await formulaEngine.onCalculationEnd(300_000);
 
             expect(getCellValue(pipelineSummarySheetId, stages.length + 1, 1)).toBe(numOpps);
             expect(getCellValue(dealScoringSheetId, 1, 6)).not.toBeNull();

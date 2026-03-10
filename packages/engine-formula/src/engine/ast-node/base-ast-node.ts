@@ -124,6 +124,19 @@ export class BaseAstNode {
         return this._valueObject;
     }
 
+    /**
+     * Release intermediate value objects from this node and all descendants
+     * without destroying the AST structure. The tree remains valid for
+     * re-execution on the next dirty cycle.
+     */
+    clearIntermediate(): void {
+        this._valueObject = null;
+        const children = this._children;
+        for (let i = 0, len = children.length; i < len; i++) {
+            children[i].clearIntermediate();
+        }
+    }
+
     isCalculated() {
         return this._calculateState;
     }

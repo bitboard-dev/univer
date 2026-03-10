@@ -191,11 +191,11 @@ export class FFormula extends FBase {
      * @deprecated Use `whenComputingCompleteAsync` instead.
      * @returns {Promise<void>} This method returns a promise that resolves when the calculation is complete.
      */
-    onCalculationEnd(): Promise<void> {
+    onCalculationEnd(timeout?: number): Promise<void> {
         return new Promise((resolve, reject) => {
             const timer = setTimeout(() => {
                 reject(new Error('Calculation end timeout'));
-            }, 30_000);
+            }, timeout ?? 30_000);
 
             const disposable = this.calculationEnd(() => {
                 clearTimeout(timer);
