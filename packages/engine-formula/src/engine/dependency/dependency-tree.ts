@@ -69,6 +69,14 @@ class FormulaDependencyTreeCalculator {
 
     treeId: number;
 
+    // READNOW: MEMORY HOTSPOT #4 — Every formula tree node has two Sets for
+    // dependency tracking. With 10K+ formula cells, that's 20K+ Set instances.
+    // The OOM stack trace shows Runtime_SetGrow as the final allocation that
+    // tips over the heap — Sets are resized via OrderedHashTable::Rehash which
+    // allocates FixedArrays. The Sets themselves aren't huge, but they compound
+    // with the array allocations from mapValue/_batchOperator.
+    // Also see _clearFeatureCalculationNode in formula-dependency.ts which
+    // rebuilds these Sets on every recalc pass.
     children: Set<number> = new Set();
 
     parents: Set<number> = new Set();

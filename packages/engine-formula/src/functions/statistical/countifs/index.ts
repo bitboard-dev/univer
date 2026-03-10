@@ -17,8 +17,10 @@
 import type { FunctionVariantType } from '../../../engine/reference-object/base-reference-object';
 import type { BaseValueObject } from '../../../engine/value-object/base-value-object';
 import { ErrorType } from '../../../basics/error-type';
+import { compareToken } from '../../../basics/token';
 import { expandArrayValueObject } from '../../../engine/utils/array-object';
-import { getBooleanResults, parsePairedRangeAndCriteria } from '../../../engine/utils/value-object';
+import { findCompareToken } from '../../../engine/utils/object-compare';
+import { getBooleanResults, isSameValueObjectType, parsePairedRangeAndCriteria } from '../../../engine/utils/value-object';
 import { ArrayValueObject } from '../../../engine/value-object/array-value-object';
 import { ErrorValueObject } from '../../../engine/value-object/base-value-object';
 import { NumberValueObject } from '../../../engine/value-object/primitive-object';
@@ -53,8 +55,114 @@ export class Countifs extends BaseFunction {
             return expandArrayValueObject(criteriaMaxRowLength, criteriaMaxColumnLength, ErrorValueObject.create(ErrorType.VALUE));
         }
 
+        if (criteriaMaxRowLength === 1 && criteriaMaxColumnLength === 1) {
+            return this._scalarCountifs(_variants);
+        }
+
         const booleanResults = getBooleanResults(_variants, criteriaMaxRowLength, criteriaMaxColumnLength, true);
 
+        return this._aggregateResults(booleanResults);
+    }
+
+    /**
+     * Fast path: all criteria are scalar (1×1). Iterate ranges once per cell,
+     * checking all criteria per row — zero intermediate array allocations.
+     */
+    private _scalarCountifs(variants: BaseValueObject[]): BaseValueObject {
+        const pairCount = variants.length / 2;
+        const ranges: ArrayValueObject[] = new Array(pairCount);
+        const operators: compareToken[] = new Array(pairCount);
+        const criteriaObjects: BaseValueObject[] = new Array(pairCount);
+
+        for (let p = 0; p < pairCount; p++) {
+            const range = variants[p * 2];
+            const criteria = variants[p * 2 + 1];
+
+            if (!range.isArray()) {
+                return this._fallbackCountifs(variants);
+            }
+            ranges[p] = range as ArrayValueObject;
+
+            const criteriaValue = criteria.isArray()
+                ? (criteria as ArrayValueObject).get(0, 0) || criteria
+                : criteria;
+
+            if (criteriaValue.isError()) {
+                return criteriaValue;
+            }
+
+            if (criteriaValue.isString()) {
+                const [op, obj] = findCompareToken(`${criteriaValue.getValue()}`);
+                operators[p] = op;
+                criteriaObjects[p] = obj;
+            } else {
+                operators[p] = compareToken.EQUALS;
+                criteriaObjects[p] = criteriaValue;
+            }
+        }
+
+        const rowCount = ranges[0].getRowCount();
+        const colCount = ranges[0].getColumnCount();
+        let count = 0;
+
+        for (let r = 0; r < rowCount; r++) {
+            for (let c = 0; c < colCount; c++) {
+                let allMatch = true;
+
+                for (let p = 0; p < pairCount; p++) {
+                    const cellValue = ranges[p].get(r, c);
+                    if (!cellValue || cellValue.isError()) {
+                        allMatch = false;
+                        break;
+                    }
+
+                    if (!isSameValueObjectType(cellValue, criteriaObjects[p])) {
+                        const op = operators[p];
+                        if (op === compareToken.EQUALS || op === compareToken.NOT_EQUAL) {
+                            if (cellValue.isNumber() && criteriaObjects[p].isString()) {
+                                const criteriaNum = criteriaObjects[p].convertToNumberObjectValue();
+                                if (criteriaNum.isNumber()) {
+                                    const cmp = cellValue.compare(criteriaNum, op);
+                                    if (cmp.isError() || cmp.getValue() !== true) {
+                                        allMatch = false;
+                                    }
+                                    continue;
+                                }
+                            }
+                            if (criteriaObjects[p].isNumber() && cellValue.isString()) {
+                                const cellNum = cellValue.convertToNumberObjectValue();
+                                if (cellNum.isNumber()) {
+                                    const cmp = cellNum.compare(criteriaObjects[p], op);
+                                    if (cmp.isError() || cmp.getValue() !== true) {
+                                        allMatch = false;
+                                    }
+                                    continue;
+                                }
+                            }
+                            allMatch = op === compareToken.NOT_EQUAL;
+                        } else {
+                            allMatch = false;
+                        }
+                        if (!allMatch) break;
+                        continue;
+                    }
+
+                    const cmp = cellValue.compare(criteriaObjects[p], operators[p]);
+                    if (cmp.isError() || cmp.getValue() !== true) {
+                        allMatch = false;
+                        break;
+                    }
+                }
+
+                if (allMatch) count++;
+            }
+        }
+
+        return NumberValueObject.create(count);
+    }
+
+    private _fallbackCountifs(variants: BaseValueObject[]): BaseValueObject {
+        const booleanResults = getBooleanResults(variants, 1, 1, true);
         return this._aggregateResults(booleanResults);
     }
 

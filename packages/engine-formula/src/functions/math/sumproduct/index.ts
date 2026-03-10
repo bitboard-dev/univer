@@ -26,6 +26,13 @@ export class Sumproduct extends BaseFunction {
 
     override maxParams = 255;
 
+    // READNOW: MEMORY HOTSPOT #3 — SUMPRODUCT creates intermediate number[][]
+    // arrays per variant. For SUMPRODUCT((A=B)*(C*D)), the comparison (A=B)
+    // already materialized a full ArrayValueObject via mapValue before reaching
+    // here. Then this method allocates another number[][] to accumulate products.
+    // With 10K rows and 3 variants, that's 30K+ row arrays. The real cost is
+    // upstream in mapValue — by the time we're here, the arrays are already in
+    // memory. But the concat+reduce on line 90 creates yet another copy.
     override calculate(array1: BaseValueObject, ...variants: BaseValueObject[]) {
         if (array1.isError()) {
             return array1;
@@ -36,13 +43,6 @@ export class Sumproduct extends BaseFunction {
         if (variants.length > 0) {
             const rowCount = _array1.getRowCount();
             const columnCount = _array1.getColumnCount();
-
-            let resultArray = this._getResultArrayByArray1(rowCount, columnCount, _array1);
-
-            if (resultArray instanceof ErrorValueObject) {
-                return resultArray;
-            }
-            resultArray = resultArray as number[][];
 
             for (let i = 0; i < variants.length; i++) {
                 if (variants[i].isError()) {
@@ -60,11 +60,21 @@ export class Sumproduct extends BaseFunction {
                 if (variantRowCount !== rowCount || variantColumnCount !== columnCount) {
                     return ErrorValueObject.create(ErrorType.VALUE);
                 }
+            }
 
-                for (let r = 0; r < rowCount; r++) {
-                    const row: number[] = [];
+            let result = 0;
 
-                    for (let c = 0; c < columnCount; c++) {
+            for (let r = 0; r < rowCount; r++) {
+                for (let c = 0; c < columnCount; c++) {
+                    const array1ValueObject = _array1.get(r, c) as BaseValueObject;
+
+                    if (array1ValueObject.isError()) {
+                        return array1ValueObject;
+                    }
+
+                    let product = array1ValueObject.isNumber() ? array1ValueObject.getValue() as number : 0;
+
+                    for (let i = 0; i < variants.length; i++) {
                         let variantValueObject = variants[i] as BaseValueObject;
 
                         if (variants[i].isArray()) {
@@ -75,19 +85,16 @@ export class Sumproduct extends BaseFunction {
                             return variantValueObject;
                         }
 
-                        // Only number values are considered for the sumproduct calculation
                         if (variantValueObject.isNumber()) {
-                            row.push((variantValueObject.getValue() as number) * resultArray[r][c]);
+                            product *= variantValueObject.getValue() as number;
                         } else {
-                            row.push(0);
+                            product = 0;
                         }
                     }
 
-                    resultArray[r] = row;
+                    result += product;
                 }
             }
-
-            const result = resultArray.reduce((acc, cur) => acc.concat(cur)).reduce((acc, cur) => acc + cur, 0);
 
             return NumberValueObject.create(result);
         } else {
@@ -111,32 +118,5 @@ export class Sumproduct extends BaseFunction {
         }
 
         return _array1 as ArrayValueObject;
-    }
-
-    private _getResultArrayByArray1(rowCount: number, columnCount: number, array1: ArrayValueObject) {
-        const resultArray: number[][] = [];
-
-        for (let r = 0; r < rowCount; r++) {
-            const row: number[] = [];
-
-            for (let c = 0; c < columnCount; c++) {
-                const array1ValueObject = array1.get(r, c) as BaseValueObject;
-
-                if (array1ValueObject.isError()) {
-                    return array1ValueObject;
-                }
-
-                // Only number values are considered for the sumproduct calculation
-                if (array1ValueObject.isNumber()) {
-                    row.push(array1ValueObject.getValue() as number);
-                } else {
-                    row.push(0);
-                }
-            }
-
-            resultArray.push(row);
-        }
-
-        return resultArray;
     }
 }

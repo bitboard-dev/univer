@@ -17,6 +17,7 @@
 import { describe, expect, it } from 'vitest';
 import { ErrorType } from '../../../../basics/error-type';
 import { ArrayValueObject, transformToValueObject } from '../../../../engine/value-object/array-value-object';
+import { ErrorValueObject } from '../../../../engine/value-object/base-value-object';
 import { BooleanValueObject, NullValueObject, NumberValueObject, StringValueObject } from '../../../../engine/value-object/primitive-object';
 import { getObjectValue } from '../../../util';
 import { FUNCTION_NAMES_MATH } from '../../function-names';
@@ -121,6 +122,34 @@ describe('Test sumproduct function', () => {
             });
             const result = testFunction.calculate(array1, array2);
             expect(getObjectValue(result)).toBe(ErrorType.VALUE);
+        });
+
+        it('propagates later variant errors even when an earlier factor is non-numeric', () => {
+            const array1 = ArrayValueObject.create({
+                calculateValueList: [
+                    [StringValueObject.create('text')],
+                ],
+                rowCount: 1,
+                columnCount: 1,
+                unitId: '',
+                sheetId: '',
+                row: 0,
+                column: 0,
+            });
+            const array2 = ArrayValueObject.create({
+                calculateValueList: [
+                    [ErrorValueObject.create(ErrorType.NUM)],
+                ],
+                rowCount: 1,
+                columnCount: 1,
+                unitId: '',
+                sheetId: '',
+                row: 0,
+                column: 0,
+            });
+
+            const result = testFunction.calculate(array1, array2);
+            expect(getObjectValue(result)).toBe(ErrorType.NUM);
         });
 
         it('More test', () => {

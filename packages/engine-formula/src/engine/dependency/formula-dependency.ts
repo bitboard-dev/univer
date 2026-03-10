@@ -253,37 +253,37 @@ export class FormulaDependencyGenerator extends Disposable {
         return hasFeatureCalculation;
     }
 
+    // READNOW: MEMORY HOTSPOT #5 — Rebuilds children and parents Sets for every
+    // tree node on each recalc pass. For 10K formulas, this allocates 20K new
+    // Sets per pass, iterates the old Sets, and discards them. This is the Set
+    // churn that shows up in the OOM stack trace as Runtime_SetGrow.
     private _clearFeatureCalculationNode(newTreeList: IFormulaDependencyTree[]) {
         const featureMap = this._featureCalculationManagerService.getReferenceExecutorMap();
 
         newTreeList.forEach((tree) => {
-            const newChildren = new Set<number>();
             for (const childTreeId of tree.children) {
                 const child = this._dependencyManagerService.getTreeById(childTreeId);
                 if (!child) {
+                    tree.children.delete(childTreeId);
                     continue;
                 }
-                if (!child.featureId) {
-                    newChildren.add(childTreeId);
-                } else if (!featureMap.get(tree.unitId)?.get(tree.subUnitId)?.has(child.featureId)) {
-                    newChildren.add(childTreeId);
+
+                if (child.featureId && featureMap.get(tree.unitId)?.get(tree.subUnitId)?.has(child.featureId)) {
+                    tree.children.delete(childTreeId);
                 }
             }
-            tree.children = newChildren;
 
-            const newParents = new Set<number>();
             for (const parentTreeId of tree.parents) {
                 const parent = this._dependencyManagerService.getTreeById(parentTreeId);
                 if (!parent) {
+                    tree.parents.delete(parentTreeId);
                     continue;
                 }
-                if (!parent.featureId) {
-                    newParents.add(parentTreeId);
-                } else if (!featureMap.get(tree.unitId)?.get(tree.subUnitId)?.has(parent.featureId)) {
-                    newParents.add(parentTreeId);
+
+                if (parent.featureId && featureMap.get(tree.unitId)?.get(tree.subUnitId)?.has(parent.featureId)) {
+                    tree.parents.delete(parentTreeId);
                 }
             }
-            tree.parents = newParents;
         });
     }
 

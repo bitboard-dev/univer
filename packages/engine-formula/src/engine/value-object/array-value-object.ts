@@ -1004,14 +1004,20 @@ export class ArrayValueObject extends BaseValueObject {
         return this.mapValue(wrappedCallbackFn);
     }
 
+    // READNOW: MEMORY HOTSPOT #1 — mapValue allocates a full BaseValueObject[][]
+    // for every formula operation (comparison, arithmetic, etc.). With SUMPRODUCT
+    // over 10K rows, each sub-expression creates a 10K-element array. Nested
+    // operations (e.g. (A=B)*(C*D)) compound: each * and = creates its own copy.
+    // For 10K formulas each scanning 10K rows, this produces ~100M+ array objects.
+    // Root cause of OOM in ArrayValueObject allocation (99% of heap in profiling).
     override mapValue(callbackFn: callbackMapFnType): BaseValueObject {
         const rowCount = this._rowCount;
         const columnCount = this._columnCount;
 
-        const result: BaseValueObject[][] = [];
+        const result = new Array<BaseValueObject[]>(rowCount);
 
         for (let r = 0; r < rowCount; r++) {
-            const rowList: BaseValueObject[] = [];
+            const rowList = new Array<BaseValueObject>(columnCount);
             for (let c = 0; c < columnCount; c++) {
                 const row = this._values?.[r];
 
@@ -1027,7 +1033,7 @@ export class ArrayValueObject extends BaseValueObject {
                     }
                 }
             }
-            result.push(rowList);
+            result[r] = rowList;
         }
 
         return this._createNewArray(result, rowCount, columnCount);
@@ -1428,14 +1434,18 @@ export class ArrayValueObject extends BaseValueObject {
         return transposedArray;
     }
 
+    // READNOW: MEMORY HOTSPOT #2 — _batchOperator is called for every binary
+    // operation (=, <>, *, +, etc.) between arrays. Allocates result[][] and
+    // per-row arrays. For SUMPRODUCT((A=B)*(C*D)), this fires once for =,
+    // once for *, once for the outer * — each time allocating a full copy of
+    // the row range. Combined with mapValue, this is the second largest source
+    // of intermediate array allocation.
     private _batchOperator(
         valueObject: BaseValueObject,
         batchOperatorType: BatchOperatorType,
         operator?: compareToken,
         isCaseSensitive?: boolean
     ): BaseValueObject {
-        const valueList: BaseValueObject[] = [];
-
         let rowCount = this._rowCount;
         let columnCount = this._columnCount;
 
@@ -1451,42 +1461,71 @@ export class ArrayValueObject extends BaseValueObject {
              */
             if (valueRowCount === 1 && valueColumnCount === 1) {
                 const v = (valueObject as ArrayValueObject).getFirstCell() as BaseValueObject;
+                const valueList = new Array<BaseValueObject>(columnCount);
                 for (let c = 0; c < columnCount; c++) {
-                    valueList.push(v);
+                    valueList[c] = v;
                 }
+                const result = Array.from({ length: rowCount }, () => new Array<BaseValueObject>(columnCount));
+                for (let c = 0; c < columnCount; c++) {
+                    this._batchOperatorValue(
+                        valueList[c],
+                        c,
+                        result,
+                        batchOperatorType,
+                        operator,
+                        isCaseSensitive
+                    );
+                }
+
+                const newArray = this._createNewArray(result, rowCount, columnCount);
+                newArray.setDefaultValue(BooleanValueObject.create(false));
+                return newArray;
             } else if (valueRowCount === 1 && this._columnCount > 1) {
                 const list = (valueObject as ArrayValueObject).getArrayValue();
+                const valueList = new Array<BaseValueObject>(columnCount);
                 for (let c = 0; c < columnCount; c++) {
-                    valueList.push(list[0][c] as BaseValueObject);
+                    valueList[c] = list[0][c] as BaseValueObject;
                 }
+                const result = Array.from({ length: rowCount }, () => new Array<BaseValueObject>(columnCount));
+                for (let c = 0; c < columnCount; c++) {
+                    this._batchOperatorValue(
+                        valueList[c],
+                        c,
+                        result,
+                        batchOperatorType,
+                        operator,
+                        isCaseSensitive
+                    );
+                }
+
+                const newArray = this._createNewArray(result, rowCount, columnCount);
+                newArray.setDefaultValue(BooleanValueObject.create(false));
+                return newArray;
             } else {
                 return this._batchOperatorArray(valueObject, batchOperatorType, operator, isCaseSensitive);
             }
         } else {
+            const valueList = new Array<BaseValueObject>(columnCount);
             for (let c = 0; c < columnCount; c++) {
-                valueList.push(valueObject);
+                valueList[c] = valueObject;
             }
+            const result = Array.from({ length: rowCount }, () => new Array<BaseValueObject>(columnCount));
+
+            for (let c = 0; c < columnCount; c++) {
+                this._batchOperatorValue(
+                    valueList[c],
+                    c,
+                    result,
+                    batchOperatorType,
+                    operator,
+                    isCaseSensitive
+                );
+            }
+
+            const newArray = this._createNewArray(result, rowCount, columnCount);
+            newArray.setDefaultValue(BooleanValueObject.create(false));
+            return newArray;
         }
-
-        const result: BaseValueObject[][] = [];
-
-        for (let c = 0; c < columnCount; c++) {
-            const value = valueList[c];
-            this._batchOperatorValue(
-                value,
-                c,
-                result,
-                batchOperatorType,
-                operator,
-                isCaseSensitive
-            );
-        }
-
-        const newArray = this._createNewArray(result, rowCount, columnCount);
-
-        // Mark empty values in the array as false
-        newArray.setDefaultValue(BooleanValueObject.create(false));
-        return newArray;
     }
 
     // eslint-disable-next-line max-lines-per-function
@@ -1765,14 +1804,14 @@ export class ArrayValueObject extends BaseValueObject {
             columnCount = this._columnCount;
         }
 
-        const result: BaseValueObject[][] = [];
+        const result = new Array<BaseValueObject[]>(rowCount);
 
         const currentCalculateType = this._checkArrayCalculateType(this as ArrayValueObject);
 
         const opCalculateType = this._checkArrayCalculateType(valueObject as ArrayValueObject);
 
         for (let r = 0; r < rowCount; r++) {
-            const rowList: BaseValueObject[] = [];
+            const rowList = new Array<BaseValueObject>(columnCount);
             for (let c = 0; c < columnCount; c++) {
                 let currentValue: Nullable<BaseValueObject>;
                 if (currentCalculateType === ArrayCalculateType.SINGLE) {
@@ -1858,7 +1897,7 @@ export class ArrayValueObject extends BaseValueObject {
                     rowList[c] = ErrorValueObject.create(ErrorType.NA);
                 }
             }
-            result.push(rowList);
+            result[r] = rowList;
         }
 
         return this._createNewArray(result, rowCount, columnCount);
@@ -1926,6 +1965,10 @@ export class ArrayValueObject extends BaseValueObject {
         return result;
     }
 
+    // READNOW: Every mapValue and _batchOperator call ends here, wrapping the
+    // intermediate BaseValueObject[][] in a new ArrayValueObject. The 2D array
+    // is held in calculateValueList and stays in memory until GC. No pooling
+    // or reuse — each operation allocates fresh.
     private _createNewArray(
         result: Nullable<BaseValueObject>[][],
         rowCount: number,
