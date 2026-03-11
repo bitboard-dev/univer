@@ -26,6 +26,19 @@ import { ErrorValueObject } from '../../../engine/value-object/base-value-object
 import { NumberValueObject } from '../../../engine/value-object/primitive-object';
 import { BaseFunction } from '../../base-function';
 
+const COUNTIFS_HASH_CACHE = new Map<string, Map<string, number>>();
+
+export function clearCountifsHashCache() {
+    COUNTIFS_HASH_CACHE.clear();
+}
+
+function typedKey(v: unknown): string {
+    if (typeof v === 'string') return `s${v}`;
+    if (typeof v === 'number') return `n${v}`;
+    if (typeof v === 'boolean') return v ? 'b1' : 'b0';
+    return 'x';
+}
+
 export class Countifs extends BaseFunction {
     override minParams = 2;
 
@@ -101,6 +114,11 @@ export class Countifs extends BaseFunction {
             }
         }
 
+        if (operators.every((op) => op === compareToken.EQUALS)) {
+            const hashResult = this._hashCountifs(ranges, criteriaObjects);
+            if (hashResult !== null) return hashResult;
+        }
+
         const rowCount = ranges[0].getRowCount();
         const colCount = ranges[0].getColumnCount();
         let count = 0;
@@ -159,6 +177,53 @@ export class Countifs extends BaseFunction {
         }
 
         return NumberValueObject.create(count);
+    }
+
+    private _hashCountifs(ranges: ArrayValueObject[], criteriaObjects: BaseValueObject[]): BaseValueObject | null {
+        const pairCount = ranges.length;
+
+        let cacheKey = '';
+        for (let p = 0; p < pairCount; p++) {
+            const r = ranges[p];
+            cacheKey += `${r.getUnitId()}_${r.getSheetId()}_${r.getCurrentRow()}_${r.getCurrentColumn()}_${r.getRowCount()}_${r.getColumnCount()};`;
+        }
+
+        let hashMap = COUNTIFS_HASH_CACHE.get(cacheKey);
+        if (!hashMap) {
+            hashMap = new Map<string, number>();
+            const rowCount = ranges[0].getRowCount();
+            const colCount = ranges[0].getColumnCount();
+
+            for (let r = 0; r < rowCount; r++) {
+                for (let c = 0; c < colCount; c++) {
+                    let compositeKey = '';
+                    let valid = true;
+
+                    for (let p = 0; p < pairCount; p++) {
+                        const cell = ranges[p].get(r, c);
+                        if (!cell || cell.isError()) {
+                            valid = false;
+                            break;
+                        }
+                        if (p > 0) compositeKey += '\x00';
+                        compositeKey += typedKey(cell.getValue());
+                    }
+
+                    if (valid) {
+                        hashMap.set(compositeKey, (hashMap.get(compositeKey) || 0) + 1);
+                    }
+                }
+            }
+            COUNTIFS_HASH_CACHE.set(cacheKey, hashMap);
+        }
+
+        let lookupKey = '';
+        for (let p = 0; p < pairCount; p++) {
+            if (p > 0) lookupKey += '\x00';
+            lookupKey += typedKey(criteriaObjects[p].getValue());
+        }
+
+        return NumberValueObject.create(hashMap.get(lookupKey) || 0);
     }
 
     private _fallbackCountifs(variants: BaseValueObject[]): BaseValueObject {

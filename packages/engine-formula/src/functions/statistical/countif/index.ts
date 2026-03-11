@@ -18,11 +18,25 @@ import type { BaseReferenceObject, FunctionVariantType } from '../../../engine/r
 import type { ArrayValueObject } from '../../../engine/value-object/array-value-object';
 import type { BaseValueObject } from '../../../engine/value-object/base-value-object';
 import { ErrorType } from '../../../basics/error-type';
-import { valueObjectCompare } from '../../../engine/utils/object-compare';
+import { compareToken } from '../../../basics/token';
+import { findCompareToken, valueObjectCompare } from '../../../engine/utils/object-compare';
 import { filterSameValueObjectResult } from '../../../engine/utils/value-object';
 import { ErrorValueObject } from '../../../engine/value-object/base-value-object';
 import { NumberValueObject } from '../../../engine/value-object/primitive-object';
 import { BaseFunction } from '../../base-function';
+
+const COUNTIF_HASH_CACHE = new Map<string, Map<string, number>>();
+
+export function clearCountifHashCache() {
+    COUNTIF_HASH_CACHE.clear();
+}
+
+function typedKey(v: unknown): string {
+    if (typeof v === 'string') return `s${v}`;
+    if (typeof v === 'number') return `n${v}`;
+    if (typeof v === 'boolean') return v ? 'b1' : 'b0';
+    return 'x';
+}
 
 export class Countif extends BaseFunction {
     override minParams = 2;
@@ -56,15 +70,53 @@ export class Countif extends BaseFunction {
     }
 
     private _handleSingleObject(range: FunctionVariantType, criteria: BaseValueObject): BaseValueObject {
+        if (!criteria.isError()) {
+            let op = compareToken.EQUALS;
+            let criteriaObj = criteria;
+            if (criteria.isString()) {
+                const [extractedOp, extractedObj] = findCompareToken(`${criteria.getValue()}`);
+                op = extractedOp;
+                criteriaObj = extractedObj;
+            }
+            if (op === compareToken.EQUALS) {
+                const hashResult = this._hashCountif(range as BaseReferenceObject, criteriaObj);
+                if (hashResult !== null) return hashResult;
+            }
+        }
+
         const _range = (range as BaseReferenceObject).toArrayValueObject();
 
         let resultArrayObject = valueObjectCompare(_range, criteria);
 
-        // If the condition is a numeric comparison, only numbers are counted, otherwise text is counted.
         resultArrayObject = filterSameValueObjectResult(resultArrayObject as ArrayValueObject, _range, criteria);
 
         const picked = (_range as ArrayValueObject).pick(resultArrayObject as ArrayValueObject);
         return this._countA(picked);
+    }
+
+    private _hashCountif(range: BaseReferenceObject, criteria: BaseValueObject): BaseValueObject | null {
+        const _range = range.toArrayValueObject();
+        const cacheKey = `${_range.getUnitId()}_${_range.getSheetId()}_${_range.getCurrentRow()}_${_range.getCurrentColumn()}_${_range.getRowCount()}_${_range.getColumnCount()}`;
+
+        let hashMap = COUNTIF_HASH_CACHE.get(cacheKey);
+        if (!hashMap) {
+            hashMap = new Map<string, number>();
+            const rowCount = _range.getRowCount();
+            const colCount = _range.getColumnCount();
+
+            for (let r = 0; r < rowCount; r++) {
+                for (let c = 0; c < colCount; c++) {
+                    const cell = _range.get(r, c);
+                    if (!cell || cell.isError()) continue;
+                    const key = typedKey(cell.getValue());
+                    hashMap.set(key, (hashMap.get(key) || 0) + 1);
+                }
+            }
+            COUNTIF_HASH_CACHE.set(cacheKey, hashMap);
+        }
+
+        const lookupKey = typedKey(criteria.getValue());
+        return NumberValueObject.create(hashMap.get(lookupKey) || 0);
     }
 
     private _countA(array: ArrayValueObject) {

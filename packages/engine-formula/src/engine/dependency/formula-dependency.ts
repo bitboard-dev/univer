@@ -43,6 +43,15 @@ import { FormulaDependencyTree, FormulaDependencyTreeType, FormulaDependencyTree
 
 const FORMULA_CACHE_LRU_COUNT = 5000;
 
+const FILL_DOWN_REF_RE = /([A-Z]+)(\d+)/g;
+
+export function normalizeFormulaTemplate(formula: string, excelRow: number): string {
+    return formula.replace(FILL_DOWN_REF_RE, (_match, colPart: string, rowDigits: string) => {
+        const delta = Number.parseInt(rowDigits, 10) - excelRow;
+        return `${colPart}{${delta}}`;
+    });
+}
+
 interface IFeatureFormulaParam {
     unitId: string;
     subUnitId: string;
@@ -655,7 +664,13 @@ export class FormulaDependencyGenerator extends Disposable {
                     treeList.push(FDtree);
                 });
 
-                // Second pass: register offset cells and non-si formulas
+                // Second pass: register offset cells and non-si formulas.
+                // Fill-down detection: for non-si formulas in the same column,
+                // check if the formula is a row-shifted variant of a prior
+                // formula. If so, share the leader's AST via a virtual tree
+                // instead of parsing a duplicate AST per row.
+                const fillDownLeaders = new Map<number, { tree: FormulaDependencyTree; row: number; template: string }>();
+
                 matrixData.forValue((row, column, formulaDataItem) => {
                     if (formulaDataItem == null) {
                         return true;
@@ -672,9 +687,7 @@ export class FormulaDependencyGenerator extends Disposable {
                     if (existingTreeId != null) {
                         const existingTree = this._dependencyManagerService.getTreeById(existingTreeId);
                         if (existingTree) {
-                            // For virtual trees, check that the source si group hasn't changed
-                            const isVirtualMatch = existingTree.isVirtual && si && sIdCache.has(si);
-                            // For regular trees, check the formula string
+                            const isVirtualMatch = existingTree.isVirtual && (si ? sIdCache.has(si) : true);
                             const isRegularMatch = !existingTree.isVirtual && existingTree.formula === formulaDataItem.f;
                             if (isVirtualMatch || isRegularMatch) {
                                 existingTree.isCache = true;
@@ -690,7 +703,21 @@ export class FormulaDependencyGenerator extends Disposable {
                         const cache = sIdCache.get(si)!;
                         FDtree = this._createVirtualFDtree(cache as FormulaDependencyTree, formulaDataItem);
                     } else {
-                        FDtree = this._createFDtree(unitId, sheetId, row, column, unitData, formulaDataItem);
+                        const formula = formulaDataItem.f;
+                        const excelRow = row + 1;
+                        const template = normalizeFormulaTemplate(formula, excelRow);
+                        const leader = fillDownLeaders.get(column);
+
+                        if (leader && leader.template === template) {
+                            FDtree = this._createFillDownVirtualFDtree(leader.tree, row - leader.row);
+                        } else {
+                            FDtree = this._createFDtree(unitId, sheetId, row, column, unitData, formulaDataItem);
+                            fillDownLeaders.set(column, {
+                                tree: FDtree as FormulaDependencyTree,
+                                row,
+                                template,
+                            });
+                        }
                     }
 
                     if (existingTreeId != null) {
@@ -703,6 +730,7 @@ export class FormulaDependencyGenerator extends Disposable {
                     treeList.push(FDtree);
                 });
 
+                fillDownLeaders.clear();
                 sIdCache.clear();
             }
         }
@@ -741,6 +769,15 @@ export class FormulaDependencyGenerator extends Disposable {
         virtual.refOffsetX = x;
         virtual.refOffsetY = y;
 
+        return virtual;
+    }
+
+    protected _createFillDownVirtualFDtree(leader: FormulaDependencyTree, refOffsetY: number) {
+        const virtual = new FormulaDependencyTreeVirtual();
+        virtual.treeId = generateRandomDependencyTreeId(this._dependencyManagerService);
+        virtual.refTree = leader;
+        virtual.refOffsetX = 0;
+        virtual.refOffsetY = refOffsetY;
         return virtual;
     }
 

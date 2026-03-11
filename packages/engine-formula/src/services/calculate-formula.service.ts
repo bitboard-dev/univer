@@ -49,6 +49,9 @@ import { Interpreter } from '../engine/interpreter/interpreter';
 import { FORMULA_REF_TO_ARRAY_CACHE } from '../engine/reference-object/base-reference-object';
 import { ErrorValueObjectCache } from '../engine/value-object/base-value-object';
 import { StringValueObjectCache } from '../engine/value-object/primitive-object';
+import { clearSumifHashCache } from '../functions/math/sumif';
+import { clearCountifHashCache } from '../functions/statistical/countif';
+import { clearCountifsHashCache } from '../functions/statistical/countifs';
 import { IFormulaCurrentConfigService } from './current-data.service';
 import { FormulaExecuteStageType, IFormulaRuntimeService } from './runtime.service';
 
@@ -107,6 +110,9 @@ export class CalculateFormulaService extends Disposable implements ICalculateFor
         this._executionCompleteListener$.complete();
         FORMULA_REF_TO_ARRAY_CACHE.clear();
         CELL_INVERTED_INDEX_CACHE.clear();
+        clearCountifsHashCache();
+        clearCountifHashCache();
+        clearSumifHashCache();
         ErrorValueObjectCache.clear();
         StringValueObjectCache.clear();
     }
@@ -134,6 +140,12 @@ export class CalculateFormulaService extends Disposable implements ICalculateFor
     }
 
     async execute(formulaDatasetConfig: IFormulaDatasetConfig) {
+        FORMULA_REF_TO_ARRAY_CACHE.clear();
+        CELL_INVERTED_INDEX_CACHE.clear();
+        clearCountifsHashCache();
+        clearCountifHashCache();
+        clearSumifHashCache();
+
         this._runtimeService.setFormulaExecuteStage(FormulaExecuteStageType.START);
         this._executionInProgressListener$.next(this._runtimeService.getRuntimeState());
 
@@ -149,6 +161,9 @@ export class CalculateFormulaService extends Disposable implements ICalculateFor
                 await this._executeStep();
 
                 FORMULA_REF_TO_ARRAY_CACHE.clear();
+                clearCountifsHashCache();
+                clearCountifHashCache();
+                clearSumifHashCache();
 
                 const isCycleDependency = this._runtimeService.isCycleDependency();
                 if (!isCycleDependency) {

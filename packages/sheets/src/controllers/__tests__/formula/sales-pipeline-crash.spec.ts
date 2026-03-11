@@ -33,7 +33,7 @@ import {
     SetFormulaCalculationStartMutation,
     SetFormulaCalculationStopMutation,
 } from '@univerjs/engine-formula';
-import { beforeEach, describe, expect, it } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import { SetRangeValuesMutation } from '../../../commands/mutations/set-range-values.mutation';
 import { createFunctionTestBed } from './create-function-test-bed';
 
@@ -292,9 +292,11 @@ describe('sales pipeline workload crash reproducer', () => {
     let formulaEngine: FFormula;
     let commandService: ICommandService;
     let getCellValue: (sheetId: string, row: number, column: number) => Nullable<CellValue>;
+    let _univer: ReturnType<typeof createFunctionTestBed>['univer'];
 
     beforeEach(async () => {
         const testBed = createFunctionTestBed(buildWorkbookData());
+        _univer = testBed.univer;
 
         get = testBed.get;
         formulaEngine = testBed.api.getFormula() as FFormula;
@@ -356,6 +358,10 @@ describe('sales pipeline workload crash reproducer', () => {
             const worksheet = testBed.sheet.getSheetBySheetId(sheetId) as Worksheet;
             return worksheet.getCellRaw(row, column)?.v;
         };
+    });
+
+    afterEach(() => {
+        _univer?.dispose();
     });
 
     const runHeavy = process.env[RUN_ENV] === '1';
