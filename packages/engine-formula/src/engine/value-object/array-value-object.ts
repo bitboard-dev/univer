@@ -311,6 +311,12 @@ export class ArrayValueObject extends BaseValueObject {
             if (typeof criteriaRaw === 'number') {
                 return this._rawCompareNumbers(cellVal, criteriaRaw, operator);
             }
+            if ((operator === compareToken.EQUALS || operator === compareToken.NOT_EQUAL) && typeof criteriaRaw === 'string') {
+                const criteriaNum = Number(criteriaRaw);
+                if (!Number.isNaN(criteriaNum)) {
+                    return this._rawCompareNumbers(cellVal, criteriaNum, operator);
+                }
+            }
             return operator === compareToken.NOT_EQUAL;
         }
 
@@ -324,6 +330,21 @@ export class ArrayValueObject extends BaseValueObject {
             }
             if (typeof cellRaw === 'number' && typeof criteriaRaw === 'number') {
                 return this._rawCompareNumbers(cellRaw, criteriaRaw, operator);
+            }
+        }
+
+        if (operator === compareToken.EQUALS || operator === compareToken.NOT_EQUAL) {
+            if (typeof cellRaw === 'number' && typeof criteriaRaw === 'string') {
+                const criteriaNum = Number(criteriaRaw);
+                if (!Number.isNaN(criteriaNum)) {
+                    return this._rawCompareNumbers(cellRaw, criteriaNum, operator);
+                }
+            }
+            if (typeof cellRaw === 'string' && typeof criteriaRaw === 'number') {
+                const cellNum = Number(cellRaw);
+                if (!Number.isNaN(cellNum)) {
+                    return this._rawCompareNumbers(cellNum, criteriaRaw, operator);
+                }
             }
         }
         return operator === compareToken.NOT_EQUAL;

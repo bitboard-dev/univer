@@ -30,8 +30,18 @@ import {
     UniverInstanceType,
 } from '@univerjs/core';
 import { FUniver } from '@univerjs/core/facade';
-import { ActiveDirtyManagerService, DefinedNamesService, FormulaDataModel, FunctionService, IActiveDirtyManagerService, IDefinedNamesService, IFunctionService, ISheetRowFilteredService, LexerTreeBuilder } from '@univerjs/engine-formula';
-import { SheetRowFilteredService } from '@univerjs/engine-formula/services/sheet-row-filtered.service.js';
+import {
+    ActiveDirtyManagerService,
+    DefinedNamesService,
+    FormulaDataModel,
+    FunctionService,
+    IActiveDirtyManagerService,
+    IDefinedNamesService,
+    IFunctionService,
+    ISheetRowFilteredService,
+    LexerTreeBuilder,
+    SheetRowFilteredService,
+} from '@univerjs/engine-formula';
 import {
     RefRangeService,
     SheetInterceptorService,

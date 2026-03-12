@@ -15,6 +15,7 @@
  */
 
 import { describe, expect, it } from 'vitest';
+import { resetFormulaOptimizationRuntimeFlags, setFormulaOptimizationRuntimeFlags } from '../../../../basics/common';
 import { ErrorType } from '../../../../basics/error-type';
 import { ArrayValueObject, transformToValueObject } from '../../../../engine/value-object/array-value-object';
 import { ErrorValueObject } from '../../../../engine/value-object/base-value-object';
@@ -207,6 +208,31 @@ describe('Test percentrankInc function', () => {
             const significance = NullValueObject.create();
             const result = testFunction.calculate(array, x, significance);
             expect(getObjectValue(result)).toStrictEqual(ErrorType.VALUE);
+        });
+
+        it('returns the same result with sorted numeric cache enabled or disabled', () => {
+            const array = ArrayValueObject.create({
+                calculateValueList: transformToValueObject([
+                    [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+                ]),
+                rowCount: 1,
+                columnCount: 10,
+                unitId: '',
+                sheetId: '',
+                row: 0,
+                column: 0,
+            });
+            const x = NumberValueObject.create(5.5);
+
+            setFormulaOptimizationRuntimeFlags({ disableSortedNumericCache: false });
+            const optimized = getObjectValue(testFunction.calculate(array, x));
+
+            setFormulaOptimizationRuntimeFlags({ disableSortedNumericCache: true });
+            const unoptimized = getObjectValue(testFunction.calculate(array, x));
+
+            expect(optimized).toStrictEqual(0.5);
+            expect(unoptimized).toStrictEqual(0.5);
+            resetFormulaOptimizationRuntimeFlags();
         });
     });
 });

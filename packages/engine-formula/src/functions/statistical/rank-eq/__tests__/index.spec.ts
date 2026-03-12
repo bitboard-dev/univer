@@ -19,7 +19,8 @@ import type { LexerNode } from '../../../../engine/analysis/lexer-node';
 
 import type { BaseAstNode } from '../../../../engine/ast-node/base-ast-node';
 import { CellValueType, LocaleType } from '@univerjs/core';
-import { beforeEach, describe, expect, it } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it } from 'vitest';
+import { resetFormulaOptimizationRuntimeFlags, setFormulaOptimizationRuntimeFlags } from '../../../../basics/common';
 import { ErrorType } from '../../../../basics/error-type';
 import { Lexer } from '../../../../engine/analysis/lexer';
 import { AstTreeBuilder } from '../../../../engine/analysis/parser';
@@ -152,6 +153,10 @@ describe('Test rank function', () => {
         };
     });
 
+    afterEach(() => {
+        resetFormulaOptimizationRuntimeFlags();
+    });
+
     describe('Rank', () => {
         it('Value is normal', async () => {
             const result = await calculate('=RANK.EQ(A1,A1:H1,0)');
@@ -214,6 +219,25 @@ describe('Test rank function', () => {
             expect(result).toStrictEqual([
                 [4, 2, ErrorType.NA, ErrorType.NAME],
             ]);
+        });
+
+        it('returns the same result with rank fast-path and index-map disabled', async () => {
+            const formula = '=RANK.EQ(A1,A1:H1,0)';
+
+            setFormulaOptimizationRuntimeFlags({
+                disableRankEqNumericFastPath: false,
+                disableRankEqIndexMap: false,
+            });
+            const optimized = await calculate(formula);
+
+            setFormulaOptimizationRuntimeFlags({
+                disableRankEqNumericFastPath: true,
+                disableRankEqIndexMap: true,
+            });
+            const unoptimized = await calculate(formula);
+
+            expect(optimized).toStrictEqual(4);
+            expect(unoptimized).toStrictEqual(4);
         });
     });
 });
