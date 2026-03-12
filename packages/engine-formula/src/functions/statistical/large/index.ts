@@ -69,6 +69,11 @@ export class Large extends BaseFunction {
     }
 
     private _getValues(array: BaseValueObject): number[] | ErrorValueObject {
+        if (array.isArray()) {
+            const cached = (array as ArrayValueObject).getSortedNumericValues(true);
+            if (cached) return cached;
+        }
+
         const rowCount = array.isArray() ? (array as ArrayValueObject).getRowCount() : 1;
         const columnCount = array.isArray() ? (array as ArrayValueObject).getColumnCount() : 1;
 

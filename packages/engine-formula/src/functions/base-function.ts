@@ -369,13 +369,31 @@ export class BaseFunction {
     }
 
     equalSearch(value: BaseValueObject, searchArray: ArrayValueObject, resultArray: ArrayValueObject, isFirst = true) {
-        const resultArrayValue = resultArray.pickRaw(searchArray.isEqual(value) as ArrayValueObject);
+        const target = value.getValue();
+        const searchRowCount = searchArray.getRowCount();
+        const searchColCount = searchArray.getColumnCount();
 
         if (isFirst) {
-            return this._getOneFirstByRaw(resultArrayValue);
+            for (let r = 0; r < searchRowCount; r++) {
+                for (let c = 0; c < searchColCount; c++) {
+                    const cell = searchArray.get(r, c);
+                    if (cell && !cell.isError() && cell.getValue() === target) {
+                        return resultArray.get(r, c) || ErrorValueObject.create(ErrorType.NA);
+                    }
+                }
+            }
+            return ErrorValueObject.create(ErrorType.NA);
         }
 
-        return this._getOneLastByRaw(resultArrayValue);
+        for (let r = searchRowCount - 1; r >= 0; r--) {
+            for (let c = searchColCount - 1; c >= 0; c--) {
+                const cell = searchArray.get(r, c);
+                if (cell && !cell.isError() && cell.getValue() === target) {
+                    return resultArray.get(r, c) || ErrorValueObject.create(ErrorType.NA);
+                }
+            }
+        }
+        return ErrorValueObject.create(ErrorType.NA);
     }
 
     fuzzySearch(value: BaseValueObject, searchArray: ArrayValueObject, resultArray: ArrayValueObject, isFirst = true) {

@@ -168,6 +168,8 @@ export class ArrayValueObject extends BaseValueObject {
     private _sliceCache = new Map<string, ArrayValueObject>();
 
     private _flattenCache: Nullable<ArrayValueObject>;
+    private _sortedNumericAsc: Nullable<number[]>;
+    private _sortedNumericDesc: Nullable<number[]>;
 
     /**
      * The default value of the array, null values in comparison results support setting to false
@@ -201,6 +203,99 @@ export class ArrayValueObject extends BaseValueObject {
 
     getNumericData(): Float64Array | null {
         return this._numericData;
+    }
+
+    getSortedNumericValues(descending: boolean): number[] | null {
+        if (descending) {
+            if (this._sortedNumericDesc) return this._sortedNumericDesc;
+        } else {
+            if (this._sortedNumericAsc) return this._sortedNumericAsc;
+        }
+
+        let values: number[];
+        if (this._numericData) {
+            values = [];
+            for (let i = 0; i < this._numericData.length; i++) {
+                const v = this._numericData[i];
+                if (Number.isFinite(v)) values.push(v);
+            }
+        } else {
+            values = [];
+            for (let r = 0; r < this._rowCount; r++) {
+                const row = this._values[r];
+                if (!row) continue;
+                for (let c = 0; c < this._columnCount; c++) {
+                    const cell = row[c];
+                    if (!cell || cell.isNull()) continue;
+                    if (cell.isError()) return null;
+                    if (cell.isBoolean() || cell.isString()) continue;
+                    const v = cell.getValue() as number;
+                    if (Number.isFinite(v)) values.push(v);
+                }
+            }
+        }
+
+        if (values.length === 0) return null;
+
+        const asc = [...values].sort((a, b) => a - b);
+        this._sortedNumericAsc = asc;
+        this._sortedNumericDesc = [...asc].reverse();
+
+        return descending ? this._sortedNumericDesc : this._sortedNumericAsc;
+    }
+
+    getNumberDirect(row: number, column: number): number {
+        if (this._numericData !== null) {
+            return this._numericData[row * this._columnCount + column];
+        }
+        const cell = this._values[row]?.[column];
+        return cell ? (cell.getValue() as number) : 0;
+    }
+
+    rawCompare(row: number, column: number, criteriaRaw: string | number | boolean, operator: compareToken): boolean {
+        if (this._numericData !== null) {
+            const cellVal = this._numericData[row * this._columnCount + column];
+            if (typeof criteriaRaw === 'number') {
+                return this._rawCompareNumbers(cellVal, criteriaRaw, operator);
+            }
+            return operator === compareToken.NOT_EQUAL;
+        }
+
+        const cell = this._values[row]?.[column];
+        if (!cell || cell.isNull() || cell.isError()) return false;
+
+        const cellRaw = cell.getValue();
+        if (typeof cellRaw === typeof criteriaRaw) {
+            if (typeof cellRaw === 'string' && typeof criteriaRaw === 'string') {
+                return this._rawCompareStrings(cellRaw.toLocaleLowerCase(), criteriaRaw.toLocaleLowerCase(), operator);
+            }
+            if (typeof cellRaw === 'number' && typeof criteriaRaw === 'number') {
+                return this._rawCompareNumbers(cellRaw, criteriaRaw, operator);
+            }
+        }
+        return operator === compareToken.NOT_EQUAL;
+    }
+
+    private _rawCompareNumbers(a: number, b: number, op: compareToken): boolean {
+        switch (op) {
+            case compareToken.EQUALS: return a === b;
+            case compareToken.NOT_EQUAL: return a !== b;
+            case compareToken.GREATER_THAN: return a > b;
+            case compareToken.GREATER_THAN_OR_EQUAL: return a >= b;
+            case compareToken.LESS_THAN: return a < b;
+            case compareToken.LESS_THAN_OR_EQUAL: return a <= b;
+        }
+    }
+
+    private _rawCompareStrings(a: string, b: string, op: compareToken): boolean {
+        switch (op) {
+            case compareToken.EQUALS: return a === b;
+            case compareToken.NOT_EQUAL: return a !== b;
+            case compareToken.GREATER_THAN: return a > b;
+            case compareToken.GREATER_THAN_OR_EQUAL: return a >= b;
+            case compareToken.LESS_THAN: return a < b;
+            case compareToken.LESS_THAN_OR_EQUAL: return a <= b;
+        }
     }
 
     private _materialize(): void {
@@ -1478,6 +1573,8 @@ export class ArrayValueObject extends BaseValueObject {
 
     private _clearCache() {
         this._flattenCache = null;
+        this._sortedNumericAsc = null;
+        this._sortedNumericDesc = null;
         this._sliceCache.clear();
     }
 

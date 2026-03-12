@@ -19,6 +19,7 @@ import type { BaseValueObject } from '../../../engine/value-object/base-value-ob
 import { ErrorType } from '../../../basics/error-type';
 import { compareToken } from '../../../basics/token';
 import { expandArrayValueObject } from '../../../engine/utils/array-object';
+import { isWildcard } from '../../../engine/utils/compare';
 import { findCompareToken } from '../../../engine/utils/object-compare';
 import { getBooleanResults, isSameValueObjectType, parsePairedRangeAndCriteria } from '../../../engine/utils/value-object';
 import { ArrayValueObject } from '../../../engine/value-object/array-value-object';
@@ -110,6 +111,34 @@ export class Sumifs extends BaseFunction {
         const rowCount = ranges[0].getRowCount();
         const colCount = ranges[0].getColumnCount();
         let total = 0;
+
+        const criteriaRawValues: (string | number | boolean)[] = new Array(pairCount);
+        let canUseRawPath = true;
+        for (let p = 0; p < pairCount; p++) {
+            const raw = criteriaObjects[p].getValue() as string | number | boolean;
+            criteriaRawValues[p] = typeof raw === 'string' ? raw.toLocaleLowerCase() : raw;
+            if (typeof raw === 'string' && isWildcard(raw)) {
+                canUseRawPath = false;
+            }
+        }
+
+        if (canUseRawPath) {
+            for (let r = 0; r < rowCount; r++) {
+                for (let c = 0; c < colCount; c++) {
+                    let allMatch = true;
+                    for (let p = 0; p < pairCount; p++) {
+                        if (!ranges[p].rawCompare(r, c, criteriaRawValues[p], operators[p])) {
+                            allMatch = false;
+                            break;
+                        }
+                    }
+                    if (allMatch) {
+                        total += sumArr.getNumberDirect(r, c);
+                    }
+                }
+            }
+            return NumberValueObject.create(total);
+        }
 
         for (let r = 0; r < rowCount; r++) {
             for (let c = 0; c < colCount; c++) {

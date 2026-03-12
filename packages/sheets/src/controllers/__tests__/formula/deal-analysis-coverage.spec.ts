@@ -261,57 +261,94 @@ describe('deal analysis formula coverage', () => {
     });
 
     it('computes all formula types correctly at 120 rows', async () => {
-        setup({ numOpps: 120, numReps: 12, numAccounts: 40 });
+        const numOpps = 120;
+        const numReps = 12;
+        const numAccounts = 40;
+        setup({ numOpps, numReps, numAccounts });
 
         formulaEngine.executeCalculation();
         await formulaEngine.onCalculationEnd(60_000);
 
-        // VLOOKUP: first opp has ACC-0001, should resolve to an industry string
-        const vlookup = getCellValue(dealAnalysisSheetId, 1, 5);
-        expect(vlookup).toBeTruthy();
-        expect(typeof vlookup).toBe('string');
+        const opps: { accountId: string; rep: string; stage: string; amount: number }[] = [];
+        for (let i = 0; i < numOpps; i++) {
+            opps.push({
+                accountId: `ACC-${String((i % numAccounts) + 1).padStart(4, '0')}`,
+                rep: `Rep ${String((i % numReps) + 1).padStart(2, '0')}`,
+                stage: stages[i % stages.length],
+                amount: 50000 + (i % 200) * 2500,
+            });
+        }
 
-        // INDEX/MATCH: should resolve to employee count (a number)
-        const indexMatch = getCellValue(dealAnalysisSheetId, 1, 6);
-        expect(typeof indexMatch).toBe('number');
-        expect(indexMatch).toBeGreaterThan(0);
+        const acctMap = new Map<string, { industry: string; employees: number }>();
+        for (let i = 0; i < numAccounts; i++) {
+            acctMap.set(`ACC-${String(i + 1).padStart(4, '0')}`, {
+                industry: industries[i % industries.length],
+                employees: 50 * (1 + (i % 20)),
+            });
+        }
 
-        // SUMIFS: rep's stage pipeline should be > 0
-        const sumifs = getCellValue(dealAnalysisSheetId, 1, 7);
-        expect(typeof sumifs).toBe('number');
-        expect(sumifs).toBeGreaterThan(0);
+        const allAmounts = opps.map((o) => o.amount);
+        const sortedDesc = [...allAmounts].sort((a, b) => b - a);
+        const sortedAsc = [...allAmounts].sort((a, b) => a - b);
+        const expectedLarge5 = sortedDesc[4];
 
-        // AVERAGEIFS: rep's stage avg deal — may be 0 if IFERROR catches an error
-        const averageifs = getCellValue(dealAnalysisSheetId, 1, 8);
-        expect(typeof averageifs).toBe('number');
+        function percentrankInc(arr: number[], x: number): number {
+            const n = arr.length;
+            for (let j = 0; j < n; j++) {
+                if (x === arr[j]) {
+                    return Math.floor((j / (n - 1)) * 1000) / 1000;
+                }
+                if (x > arr[j] && j + 1 < n && x < arr[j + 1]) {
+                    const raw = (j + (x - arr[j]) / (arr[j + 1] - arr[j])) / (n - 1);
+                    return Math.floor(raw * 1000) / 1000;
+                }
+            }
+            return -1;
+        }
 
-        // MAXIFS: rep's max deal should be >= this deal's amount
-        const maxifs = getCellValue(dealAnalysisSheetId, 1, 9);
-        const amount = getCellValue(dealAnalysisSheetId, 1, 3);
-        expect(typeof maxifs).toBe('number');
-        expect(maxifs as number).toBeGreaterThanOrEqual(amount as number);
+        for (let i = 0; i < numOpps; i++) {
+            const row = i + 1;
+            const opp = opps[i];
+            const acct = acctMap.get(opp.accountId)!;
+            const label = `row ${row} (opp ${i})`;
 
-        // MINIFS: rep's min deal should be <= this deal's amount
-        const minifs = getCellValue(dealAnalysisSheetId, 1, 10);
-        expect(typeof minifs).toBe('number');
-        expect(minifs as number).toBeLessThanOrEqual(amount as number);
+            const actualIndustry = getCellValue(dealAnalysisSheetId, row, 5);
+            expect(actualIndustry, `VLOOKUP ${label}`).toBe(acct.industry);
 
-        // RANK.EQ: should be between 1 and numOpps
-        const rank = getCellValue(dealAnalysisSheetId, 1, 11);
-        expect(typeof rank).toBe('number');
-        expect(rank as number).toBeGreaterThanOrEqual(1);
-        expect(rank as number).toBeLessThanOrEqual(120);
+            const actualEmployees = getCellValue(dealAnalysisSheetId, row, 6);
+            expect(actualEmployees, `INDEX/MATCH ${label}`).toBe(acct.employees);
 
-        // LARGE: 5th largest deal, should be a number
-        const large = getCellValue(dealAnalysisSheetId, 1, 12);
-        expect(typeof large).toBe('number');
-        expect(large as number).toBeGreaterThan(0);
+            const repStageOpps = opps.filter((o) => o.rep === opp.rep && o.stage === opp.stage);
+            const expectedSumifs = repStageOpps.reduce((s, o) => s + o.amount, 0);
+            const actualSumifs = getCellValue(dealAnalysisSheetId, row, 7);
+            expect(actualSumifs, `SUMIFS ${label}`).toBe(expectedSumifs);
 
-        // PERCENTRANK.INC: should be between 0 and 1
-        const percentrank = getCellValue(dealAnalysisSheetId, 1, 13);
-        expect(typeof percentrank).toBe('number');
-        expect(percentrank as number).toBeGreaterThanOrEqual(0);
-        expect(percentrank as number).toBeLessThanOrEqual(1);
+            const expectedAvgifs = repStageOpps.length > 0
+                ? repStageOpps.reduce((s, o) => s + o.amount, 0) / repStageOpps.length
+                : 0;
+            const actualAvgifs = getCellValue(dealAnalysisSheetId, row, 8);
+            expect(actualAvgifs, `AVERAGEIFS ${label}`).toBeCloseTo(expectedAvgifs, 6);
+
+            const repOpps = opps.filter((o) => o.rep === opp.rep);
+            const expectedMaxifs = Math.max(...repOpps.map((o) => o.amount));
+            const actualMaxifs = getCellValue(dealAnalysisSheetId, row, 9);
+            expect(actualMaxifs, `MAXIFS ${label}`).toBe(expectedMaxifs);
+
+            const expectedMinifs = Math.min(...repOpps.map((o) => o.amount));
+            const actualMinifs = getCellValue(dealAnalysisSheetId, row, 10);
+            expect(actualMinifs, `MINIFS ${label}`).toBe(expectedMinifs);
+
+            const expectedRank = sortedDesc.indexOf(opp.amount) + 1;
+            const actualRank = getCellValue(dealAnalysisSheetId, row, 11);
+            expect(actualRank, `RANK.EQ ${label}`).toBe(expectedRank);
+
+            const actualLarge = getCellValue(dealAnalysisSheetId, row, 12);
+            expect(actualLarge, `LARGE ${label}`).toBe(expectedLarge5);
+
+            const expectedPctRank = percentrankInc(sortedAsc, opp.amount);
+            const actualPctRank = getCellValue(dealAnalysisSheetId, row, 13);
+            expect(actualPctRank, `PERCENTRANK.INC ${label}`).toBeCloseTo(expectedPctRank, 3);
+        }
     }, 60000);
 
     const runHeavy = process.env[RUN_ENV] === '1';

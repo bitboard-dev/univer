@@ -64,6 +64,18 @@ export class RankEq extends BaseFunction {
         const numberArray = expandArrayValueObject(maxRowLength, maxColumnLength, _number as BaseValueObject, ErrorValueObject.create(ErrorType.NA));
         const orderArray = expandArrayValueObject(maxRowLength, maxColumnLength, _order as BaseValueObject, ErrorValueObject.create(ErrorType.NA));
 
+        const refDesc = [...refNumbers].sort((a, b) => b - a);
+        const refAsc = [...refNumbers].sort((a, b) => a - b);
+
+        const descIndex = new Map<number, number>();
+        for (let j = 0; j < refDesc.length; j++) {
+            if (!descIndex.has(refDesc[j])) descIndex.set(refDesc[j], j);
+        }
+        const ascIndex = new Map<number, number>();
+        for (let j = 0; j < refAsc.length; j++) {
+            if (!ascIndex.has(refAsc[j])) ascIndex.set(refAsc[j], j);
+        }
+
         const resultArray = numberArray.map((numberObject, rowIndex, columnIndex) => {
             const orderObject = orderArray.get(rowIndex, columnIndex) as BaseValueObject;
 
@@ -86,11 +98,10 @@ export class RankEq extends BaseFunction {
                 return ErrorValueObject.create(ErrorType.VALUE);
             }
 
-            const refOrderNumbers = refNumbers.sort((a, b) => !orderValue ? b - a : a - b);
+            const indexMap = !orderValue ? descIndex : ascIndex;
+            const result = indexMap.get(numberValue);
 
-            const result = refOrderNumbers.indexOf(numberValue);
-
-            if (result === -1) {
+            if (result === undefined) {
                 return ErrorValueObject.create(ErrorType.NA);
             }
 

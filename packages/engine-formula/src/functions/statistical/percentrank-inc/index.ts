@@ -133,6 +133,11 @@ export class PercentrankInc extends BaseFunction {
     }
 
     private _getValues(array: BaseValueObject): number[] | ErrorValueObject {
+        if (array.isArray()) {
+            const cached = (array as ArrayValueObject).getSortedNumericValues(false);
+            if (cached) return cached;
+        }
+
         const rowCount = array.isArray() ? (array as ArrayValueObject).getRowCount() : 1;
         const columnCount = array.isArray() ? (array as ArrayValueObject).getColumnCount() : 1;
 
