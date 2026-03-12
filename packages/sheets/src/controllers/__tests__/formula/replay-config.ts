@@ -35,6 +35,10 @@ export function getFormulaReplayConfigFromEnv(): Pick<
     | 'disableScalarFastPath'
     | 'disableFillDownSharing'
     | 'disableFormulaHashCache'
+    | 'disableEqualSearchIndex'
+    | 'disableRankEqNumericFastPath'
+    | 'disableSortedNumericCache'
+    | 'disableRankEqIndexMap'
     | 'traceIntervalCount'
     | 'traceToStderr'
 > {
@@ -45,6 +49,10 @@ export function getFormulaReplayConfigFromEnv(): Pick<
         disableScalarFastPath: envFlag('DISABLE_SCALAR_FAST_PATH'),
         disableFillDownSharing: envFlag('DISABLE_FILL_DOWN_SHARING'),
         disableFormulaHashCache: envFlag('DISABLE_FORMULA_HASH_CACHE'),
+        disableEqualSearchIndex: envFlag('DISABLE_EQUAL_SEARCH_INDEX'),
+        disableRankEqNumericFastPath: envFlag('DISABLE_RANK_EQ_NUMERIC_FAST_PATH'),
+        disableSortedNumericCache: envFlag('DISABLE_SORTED_NUMERIC_CACHE'),
+        disableRankEqIndexMap: envFlag('DISABLE_RANK_EQ_INDEX_MAP'),
         traceIntervalCount,
         traceToStderr: envFlag('FORMULA_TRACE_STDERR') || traceIntervalCount !== undefined,
     };

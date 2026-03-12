@@ -68,6 +68,30 @@ export interface IUniverEngineFormulaConfig {
     disableFormulaHashCache?: boolean;
 
     /**
+     * Replay/testing toggle: when true, disables indexed equality lookup in
+     * BaseFunction.equalSearch and uses scan-based fallback instead.
+     */
+    disableEqualSearchIndex?: boolean;
+
+    /**
+     * Replay/testing toggle: when true, disables RANK.EQ numeric-data fast path
+     * and uses iterator-based extraction for parity checks.
+     */
+    disableRankEqNumericFastPath?: boolean;
+
+    /**
+     * Replay/testing toggle: when true, disables sorted numeric cache lookups
+     * used by LARGE and PERCENTRANK.INC.
+     */
+    disableSortedNumericCache?: boolean;
+
+    /**
+     * Replay/testing toggle: when true, disables RANK.EQ index-map lookup and
+     * falls back to indexOf over sorted arrays.
+     */
+    disableRankEqIndexMap?: boolean;
+
+    /**
      * Optional sampling interval for execution tracing. When > 0, records
      * progress/memory samples every N formulas.
      */

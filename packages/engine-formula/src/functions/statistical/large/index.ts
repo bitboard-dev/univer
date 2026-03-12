@@ -17,6 +17,7 @@
 import type { ArrayValueObject } from '../../../engine/value-object/array-value-object';
 import type { BaseValueObject } from '../../../engine/value-object/base-value-object';
 import { isRealNum } from '@univerjs/core';
+import { isSortedNumericCacheEnabled } from '../../../basics/common';
 import { ErrorType } from '../../../basics/error-type';
 import { checkVariantsErrorIsStringToNumber } from '../../../engine/utils/check-variant-error';
 import { ErrorValueObject } from '../../../engine/value-object/base-value-object';
@@ -69,7 +70,7 @@ export class Large extends BaseFunction {
     }
 
     private _getValues(array: BaseValueObject): number[] | ErrorValueObject {
-        if (array.isArray()) {
+        if (array.isArray() && isSortedNumericCacheEnabled()) {
             const cached = (array as ArrayValueObject).getSortedNumericValues(true);
             if (cached) return cached;
         }

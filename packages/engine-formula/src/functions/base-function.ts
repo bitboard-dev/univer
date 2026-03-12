@@ -23,6 +23,7 @@ import type { BaseValueObject } from '../engine/value-object/base-value-object';
 import type { FormulaFunctionResultValueType, FormulaFunctionValueType } from '../engine/value-object/primitive-object';
 import type { FormulaDataModel } from '../models/formula-data.model';
 import type { IDefinedNameMapItem } from '../services/defined-names.service';
+import { isEqualSearchIndexEnabled } from '../basics/common';
 import { ErrorType } from '../basics/error-type';
 import { regexTestSingeRange, regexTestSingleColumn, regexTestSingleRow } from '../basics/regex';
 import { compareToken } from '../basics/token';
@@ -369,6 +370,10 @@ export class BaseFunction {
     }
 
     equalSearch(value: BaseValueObject, searchArray: ArrayValueObject, resultArray: ArrayValueObject, isFirst = true) {
+        if (!isEqualSearchIndexEnabled()) {
+            return this.fuzzySearch(value, searchArray, resultArray, isFirst);
+        }
+
         const target = value.getValue();
         const index = searchArray.getEqualSearchIndex(isFirst);
         const pos = index.get(target as string | number | boolean);

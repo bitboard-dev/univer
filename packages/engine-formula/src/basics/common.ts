@@ -209,6 +209,10 @@ interface FormulaOptimizationRuntimeFlags {
     scalarFastPathEnabled: boolean;
     fillDownSharingEnabled: boolean;
     formulaHashCacheEnabled: boolean;
+    equalSearchIndexEnabled: boolean;
+    rankEqNumericFastPathEnabled: boolean;
+    sortedNumericCacheEnabled: boolean;
+    rankEqIndexMapEnabled: boolean;
 }
 
 const defaultFormulaOptimizationRuntimeFlags: FormulaOptimizationRuntimeFlags = {
@@ -217,6 +221,10 @@ const defaultFormulaOptimizationRuntimeFlags: FormulaOptimizationRuntimeFlags = 
     scalarFastPathEnabled: true,
     fillDownSharingEnabled: true,
     formulaHashCacheEnabled: true,
+    equalSearchIndexEnabled: true,
+    rankEqNumericFastPathEnabled: true,
+    sortedNumericCacheEnabled: true,
+    rankEqIndexMapEnabled: true,
 };
 
 let formulaOptimizationRuntimeFlags: FormulaOptimizationRuntimeFlags = {
@@ -229,6 +237,10 @@ export function setFormulaOptimizationRuntimeFlags(config?: {
     disableScalarFastPath?: boolean;
     disableFillDownSharing?: boolean;
     disableFormulaHashCache?: boolean;
+    disableEqualSearchIndex?: boolean;
+    disableRankEqNumericFastPath?: boolean;
+    disableSortedNumericCache?: boolean;
+    disableRankEqIndexMap?: boolean;
 }) {
     formulaOptimizationRuntimeFlags = {
         typedArrayEnabled: config?.disableTypedArrayOptimization !== true,
@@ -236,6 +248,10 @@ export function setFormulaOptimizationRuntimeFlags(config?: {
         scalarFastPathEnabled: config?.disableScalarFastPath !== true,
         fillDownSharingEnabled: config?.disableFillDownSharing !== true,
         formulaHashCacheEnabled: config?.disableFormulaHashCache !== true,
+        equalSearchIndexEnabled: config?.disableEqualSearchIndex !== true,
+        rankEqNumericFastPathEnabled: config?.disableRankEqNumericFastPath !== true,
+        sortedNumericCacheEnabled: config?.disableSortedNumericCache !== true,
+        rankEqIndexMapEnabled: config?.disableRankEqIndexMap !== true,
     };
 }
 
@@ -261,4 +277,20 @@ export function isFillDownSharingEnabled() {
 
 export function isFormulaHashCacheEnabled() {
     return formulaOptimizationRuntimeFlags.formulaHashCacheEnabled;
+}
+
+export function isEqualSearchIndexEnabled() {
+    return formulaOptimizationRuntimeFlags.equalSearchIndexEnabled;
+}
+
+export function isRankEqNumericFastPathEnabled() {
+    return formulaOptimizationRuntimeFlags.rankEqNumericFastPathEnabled;
+}
+
+export function isSortedNumericCacheEnabled() {
+    return formulaOptimizationRuntimeFlags.sortedNumericCacheEnabled;
+}
+
+export function isRankEqIndexMapEnabled() {
+    return formulaOptimizationRuntimeFlags.rankEqIndexMapEnabled;
 }
