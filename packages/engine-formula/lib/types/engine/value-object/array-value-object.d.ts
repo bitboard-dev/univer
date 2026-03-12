@@ -29,6 +29,10 @@ export declare class ArrayValueObject extends BaseValueObject {
     private _currentColumn;
     private _sliceCache;
     private _flattenCache;
+    private _sortedNumericAsc;
+    private _sortedNumericDesc;
+    private _equalSearchFirstIndex;
+    private _equalSearchLastIndex;
     /**
      * The default value of the array, null values in comparison results support setting to false
      */
@@ -38,6 +42,16 @@ export declare class ArrayValueObject extends BaseValueObject {
     dispose(): void;
     isNumericArray(): boolean;
     getNumericData(): Float64Array | null;
+    getSortedNumericValues(descending: boolean): number[] | null;
+    getEqualSearchIndex(isFirst: boolean): Map<string | number | boolean, {
+        row: number;
+        column: number;
+    }>;
+    private _getRawValue;
+    getNumberDirect(row: number, column: number): number;
+    rawCompare(row: number, column: number, criteriaRaw: string | number | boolean, operator: compareToken): boolean;
+    private _rawCompareNumbers;
+    private _rawCompareStrings;
     private _materialize;
     clone(): ArrayValueObject;
     getRowCount(): number;

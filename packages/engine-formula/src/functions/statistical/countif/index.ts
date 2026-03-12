@@ -70,7 +70,7 @@ export class Countif extends BaseFunction {
     }
 
     private _handleSingleObject(range: FunctionVariantType, criteria: BaseValueObject): BaseValueObject {
-        if (!criteria.isError() && !process.env.DISABLE_FORMULA_HASH_CACHE) {
+        if (!criteria.isError() ) {
             let op = compareToken.EQUALS;
             let criteriaObj = criteria;
             if (criteria.isString()) {

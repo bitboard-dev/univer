@@ -143,9 +143,6 @@ export class ArrayValueObject extends BaseValueObject {
         const obj = new ArrayValueObject({ calculateValueList: [], rowCount, columnCount, unitId, sheetId, row, column });
         obj._values = [];
         obj._numericData = data;
-        if (process.env.DISABLE_TYPED_ARRAY) {
-            obj._materialize();
-        }
         return obj;
     }
 
@@ -1678,7 +1675,6 @@ export class ArrayValueObject extends BaseValueObject {
     }
 
     private _extractNumericData(): Float64Array | null {
-        if (process.env.DISABLE_TYPED_ARRAY) return null;
         if (this._numericData !== null) return this._numericData;
         const rowCount = this._rowCount;
         const columnCount = this._columnCount;

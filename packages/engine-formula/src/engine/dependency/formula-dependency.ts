@@ -708,7 +708,7 @@ export class FormulaDependencyGenerator extends Disposable {
                         const template = normalizeFormulaTemplate(formula, excelRow);
                         const leader = fillDownLeaders.get(column);
 
-                        if (leader && leader.template === template && !process.env.DISABLE_FILL_DOWN_SHARING) {
+                        if (leader && leader.template === template ) {
                             FDtree = this._createFillDownVirtualFDtree(leader.tree, row - leader.row);
                         } else {
                             FDtree = this._createFDtree(unitId, sheetId, row, column, unitData, formulaDataItem);

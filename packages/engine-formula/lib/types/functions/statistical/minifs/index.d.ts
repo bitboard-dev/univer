@@ -6,5 +6,7 @@ export declare class Minifs extends BaseFunction {
     maxParams: number;
     needsReferenceObject: boolean;
     calculate(minRange: FunctionVariantType, ...variants: FunctionVariantType[]): BaseValueObject;
+    private _scalarMinifs;
+    private _fallbackMinifs;
     private _aggregateResults;
 }

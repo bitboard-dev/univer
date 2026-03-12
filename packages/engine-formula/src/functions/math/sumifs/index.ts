@@ -57,7 +57,7 @@ export class Sumifs extends BaseFunction {
             return expandArrayValueObject(criteriaMaxRowLength, criteriaMaxColumnLength, ErrorValueObject.create(ErrorType.VALUE));
         }
 
-        if (criteriaMaxRowLength === 1 && criteriaMaxColumnLength === 1 && !process.env.DISABLE_SCALAR_FAST_PATH) {
+        if (criteriaMaxRowLength === 1 && criteriaMaxColumnLength === 1 ) {
             return this._scalarSumifs(_sumRange as BaseValueObject, _variants);
         }
 
