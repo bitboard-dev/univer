@@ -24,6 +24,7 @@ import {
     functionMath,
     functionMeta,
     functionStatistical,
+    ICalculateFormulaService,
     IFormulaCurrentConfigService,
     IFormulaRuntimeService,
     IFunctionService,
@@ -36,6 +37,7 @@ import {
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import { SetRangeValuesMutation } from '../../../commands/mutations/set-range-values.mutation';
 import { createFunctionTestBed } from './create-function-test-bed';
+import { profileCalculation } from './formula-profiler';
 
 import '@univerjs/engine-formula/facade';
 
@@ -291,6 +293,7 @@ describe('sales pipeline workload crash reproducer', () => {
     let get: Injector['get'];
     let formulaEngine: FFormula;
     let commandService: ICommandService;
+    let calcService: ICalculateFormulaService;
     let getCellValue: (sheetId: string, row: number, column: number) => Nullable<CellValue>;
     let _univer: ReturnType<typeof createFunctionTestBed>['univer'];
 
@@ -300,6 +303,7 @@ describe('sales pipeline workload crash reproducer', () => {
 
         get = testBed.get;
         formulaEngine = testBed.api.getFormula() as FFormula;
+        calcService = get(ICalculateFormulaService);
         commandService = get(ICommandService);
 
         commandService.registerCommand(SetFormulaCalculationStartMutation);
@@ -370,12 +374,20 @@ describe('sales pipeline workload crash reproducer', () => {
     heavyIt(
         `replays the sales-pipeline formula mix across ${numOpps} opportunities`,
         async () => {
-            formulaEngine.executeCalculation();
-            await formulaEngine.onCalculationEnd(300_000);
+            const result = await profileCalculation(formulaEngine, calcService, {
+                label: `sales-pipeline-${numOpps}`,
+                timeoutMs: 300_000,
+                cpu: !!process.env.FORMULA_CPU_PROF,
+                heap: !!process.env.FORMULA_HEAP_PROF,
+            });
 
             expect(getCellValue(pipelineSummarySheetId, stages.length + 1, 1)).toBe(numOpps);
             expect(getCellValue(dealScoringSheetId, 1, 6)).not.toBeNull();
             expect(getCellValue(dealScoringSheetId, Math.min(numOpps, 100), 7)).not.toBeNull();
+
+            if (result.trace.length > 0) {
+                expect(result.peakHeapMB).toBeLessThan(1800);
+            }
         },
         300000
     );

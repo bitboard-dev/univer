@@ -28,6 +28,7 @@ import type { IUniverEngineFormulaConfig } from '../controller/config.schema';
 import type { LexerNode } from '../engine/analysis/lexer-node';
 import type { FunctionVariantType } from '../engine/reference-object/base-reference-object';
 import type { IAllRuntimeData, IExecutionInProgressParams } from './runtime.service';
+import process from 'node:process';
 import {
     AsyncLock,
     createIdentifier,
@@ -70,6 +71,14 @@ function getBatchExecutionCount(config?: IUniverEngineFormulaConfig) {
     return Math.floor(batchExecutionCount);
 }
 
+export interface ITraceSample {
+    i: number;
+    total: number;
+    heapMB: number;
+    rssMB: number;
+    ms: number;
+}
+
 export interface ICalculateFormulaService {
     readonly executionInProgressListener$: Observable<IExecutionInProgressParams>;
     readonly executionCompleteListener$: Observable<IAllRuntimeData>;
@@ -78,6 +87,7 @@ export interface ICalculateFormulaService {
     execute(formulaDatasetConfig: IFormulaDatasetConfig): Promise<void>;
     stopFormulaExecution(): void;
     calculate(formulaString: string, transformSuffix?: boolean): void;
+    getExecutionTrace(): ITraceSample[];
 }
 
 export const ICalculateFormulaService = createIdentifier<ICalculateFormulaService>('engine-formula.calculate-formula.service');
@@ -90,6 +100,7 @@ export class CalculateFormulaService extends Disposable implements ICalculateFor
     readonly executionCompleteListener$ = this._executionCompleteListener$.asObservable();
 
     private _executeLock = new AsyncLock();
+    private _executionTrace: ITraceSample[] = [];
 
     constructor(
         @IConfigService protected readonly _configService: IConfigService,
@@ -115,6 +126,10 @@ export class CalculateFormulaService extends Disposable implements ICalculateFor
         clearSumifHashCache();
         ErrorValueObjectCache.clear();
         StringValueObjectCache.clear();
+    }
+
+    getExecutionTrace(): ITraceSample[] {
+        return this._executionTrace;
     }
 
     /**
@@ -299,6 +314,12 @@ export class CalculateFormulaService extends Disposable implements ICalculateFor
         const batchExecutionCount = getBatchExecutionCount(config);
 
         const treeCount = treeList.length;
+        const traceInterval = Number(process.env.FORMULA_TRACE_INTERVAL) || 0;
+        const traceT0 = traceInterval > 0 ? Date.now() : 0;
+        if (traceInterval > 0 && !isArrayFormulaState) {
+            this._executionTrace.length = 0;
+        }
+
         let processedCount = 0;
         while (processedCount < treeCount) {
             const batchEnd = Math.min(treeCount, processedCount + batchExecutionCount);
@@ -307,6 +328,21 @@ export class CalculateFormulaService extends Disposable implements ICalculateFor
                 const tree = treeList[i];
                 const nodeData = tree.nodeData;
                 const getDirtyData = tree.getDirtyData;
+
+                if (traceInterval > 0 && i % traceInterval === 0) {
+                    const mem = process.memoryUsage();
+                    const sample: ITraceSample = {
+                        i,
+                        total: treeCount,
+                        heapMB: Math.round(mem.heapUsed / 1048576),
+                        rssMB: Math.round(mem.rss / 1048576),
+                        ms: Date.now() - traceT0,
+                    };
+                    this._executionTrace.push(sample);
+                    const pct = Math.round((i / treeCount) * 100);
+                    const bar = '█'.repeat(Math.round(pct / 2.5));
+                    process.stderr.write(`  ${String(pct).padStart(3)}% │ ${String(sample.heapMB).padStart(5)} MB │ ${String(sample.ms).padStart(7)} ms │${bar}\n`);
+                }
 
                 if (i !== 0 && i % intervalCount === 0) {
                     await new Promise((resolve) => {
@@ -406,6 +442,17 @@ export class CalculateFormulaService extends Disposable implements ICalculateFor
                 this._executionCompleteListener$.next(this._runtimeService.getAllRuntimeData());
                 return;
             }
+        }
+
+        if (traceInterval > 0) {
+            const mem = process.memoryUsage();
+            this._executionTrace.push({
+                i: treeCount,
+                total: treeCount,
+                heapMB: Math.round(mem.heapUsed / 1048576),
+                rssMB: Math.round(mem.rss / 1048576),
+                ms: Date.now() - traceT0,
+            });
         }
 
         // clear all pending tasks
