@@ -1757,7 +1757,16 @@ export class ArrayValueObject extends BaseValueObject {
                     } else if (cell.isError()) {
                         return null;
                     } else {
-                        out[offset + c] = cell.getValue() === target ? 1 : 0;
+                        const cv = cell.getValue();
+                        if (cv === target) {
+                            out[offset + c] = 1;
+                        } else if (typeof cv === 'string' && typeof target === 'number') {
+                            out[offset + c] = Number(cv) === target ? 1 : 0;
+                        } else if (typeof cv === 'number' && typeof target === 'string') {
+                            out[offset + c] = cv === Number(target) ? 1 : 0;
+                        } else {
+                            out[offset + c] = 0;
+                        }
                     }
                 }
             }

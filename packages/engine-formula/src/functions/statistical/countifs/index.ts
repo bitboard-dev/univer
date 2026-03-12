@@ -284,7 +284,9 @@ export class Countifs extends BaseFunction {
 export function countTrueValue(array: ArrayValueObject) {
     let count = 0;
     array.iterator((value) => {
-        if (value?.isBoolean() && value.getValue() === true) {
+        if (!value) return;
+        const v = value.getValue();
+        if (v === true || v === 1) {
             count++;
         }
     });

@@ -14,11 +14,11 @@
  * limitations under the License.
  */
 
-import { compareToken } from '../../basics/token';
 import type { ArrayValueObject } from '../value-object/array-value-object';
-import { ValueObjectFactory } from '../value-object/array-value-object';
 import type { BaseValueObject } from '../value-object/base-value-object';
-import { BooleanValueObject, createBooleanValueObjectByRawValue } from '../value-object/primitive-object';
+import { compareToken } from '../../basics/token';
+import { ValueObjectFactory } from '../value-object/array-value-object';
+import { createBooleanValueObjectByRawValue } from '../value-object/primitive-object';
 import { expandArrayValueObject } from './array-object';
 
 export function findCompareToken(str: string): [compareToken, BaseValueObject] {
@@ -87,10 +87,17 @@ export function booleanObjectIntersection(valueObject1: BaseValueObject, valueOb
             return valueObject2;
         }
 
-        if (valueObject1?.isBoolean() && valueObject2?.isBoolean()) {
-            return createBooleanValueObjectByRawValue(valueObject1.getValue() && valueObject2.getValue());
-        }
+        const v1 = valueObject1?.isBoolean()
+            ? (valueObject1.getValue() as boolean)
+            : valueObject1?.isNumber()
+                ? (valueObject1.getValue() as number) !== 0
+                : false;
+        const v2 = valueObject2?.isBoolean()
+            ? (valueObject2.getValue() as boolean)
+            : valueObject2?.isNumber()
+                ? (valueObject2.getValue() as number) !== 0
+                : false;
 
-        return BooleanValueObject.create(false);
+        return createBooleanValueObjectByRawValue(v1 && v2);
     });
 }
