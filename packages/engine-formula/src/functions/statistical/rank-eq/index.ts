@@ -130,6 +130,15 @@ export class RankEq extends BaseFunction {
 
         const _ref = (ref as BaseReferenceObject).toArrayValueObject();
 
+        const numericData = _ref.getNumericData();
+        if (numericData) {
+            for (let i = 0; i < numericData.length; i++) {
+                const v = numericData[i];
+                if (Number.isFinite(v)) refNumbers.push(v);
+            }
+            return { refHasError, refErrorObject, refNumbers };
+        }
+
         _ref.iterator((refObject) => {
             const _refObject = refObject as BaseValueObject;
 

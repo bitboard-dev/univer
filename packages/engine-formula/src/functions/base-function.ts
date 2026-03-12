@@ -370,28 +370,10 @@ export class BaseFunction {
 
     equalSearch(value: BaseValueObject, searchArray: ArrayValueObject, resultArray: ArrayValueObject, isFirst = true) {
         const target = value.getValue();
-        const searchRowCount = searchArray.getRowCount();
-        const searchColCount = searchArray.getColumnCount();
-
-        if (isFirst) {
-            for (let r = 0; r < searchRowCount; r++) {
-                for (let c = 0; c < searchColCount; c++) {
-                    const cell = searchArray.get(r, c);
-                    if (cell && !cell.isError() && cell.getValue() === target) {
-                        return resultArray.get(r, c) || ErrorValueObject.create(ErrorType.NA);
-                    }
-                }
-            }
-            return ErrorValueObject.create(ErrorType.NA);
-        }
-
-        for (let r = searchRowCount - 1; r >= 0; r--) {
-            for (let c = searchColCount - 1; c >= 0; c--) {
-                const cell = searchArray.get(r, c);
-                if (cell && !cell.isError() && cell.getValue() === target) {
-                    return resultArray.get(r, c) || ErrorValueObject.create(ErrorType.NA);
-                }
-            }
+        const index = searchArray.getEqualSearchIndex(isFirst);
+        const pos = index.get(target as string | number | boolean);
+        if (pos) {
+            return resultArray.get(pos.row, pos.column) || ErrorValueObject.create(ErrorType.NA);
         }
         return ErrorValueObject.create(ErrorType.NA);
     }

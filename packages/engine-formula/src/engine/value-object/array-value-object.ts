@@ -170,6 +170,8 @@ export class ArrayValueObject extends BaseValueObject {
     private _flattenCache: Nullable<ArrayValueObject>;
     private _sortedNumericAsc: Nullable<number[]>;
     private _sortedNumericDesc: Nullable<number[]>;
+    private _equalSearchFirstIndex: Nullable<Map<string | number | boolean, { row: number; column: number }>>;
+    private _equalSearchLastIndex: Nullable<Map<string | number | boolean, { row: number; column: number }>>;
 
     /**
      * The default value of the array, null values in comparison results support setting to false
@@ -242,6 +244,43 @@ export class ArrayValueObject extends BaseValueObject {
         this._sortedNumericDesc = [...asc].reverse();
 
         return descending ? this._sortedNumericDesc : this._sortedNumericAsc;
+    }
+
+    getEqualSearchIndex(isFirst: boolean): Map<string | number | boolean, { row: number; column: number }> {
+        const cached = isFirst ? this._equalSearchFirstIndex : this._equalSearchLastIndex;
+        if (cached) return cached;
+
+        const index = new Map<string | number | boolean, { row: number; column: number }>();
+        const rowCount = this._rowCount;
+        const colCount = this._columnCount;
+
+        if (isFirst) {
+            for (let r = rowCount - 1; r >= 0; r--) {
+                for (let c = colCount - 1; c >= 0; c--) {
+                    const val = this._getRawValue(r, c);
+                    if (val !== null) index.set(val, { row: r, column: c });
+                }
+            }
+            this._equalSearchFirstIndex = index;
+        } else {
+            for (let r = 0; r < rowCount; r++) {
+                for (let c = 0; c < colCount; c++) {
+                    const val = this._getRawValue(r, c);
+                    if (val !== null) index.set(val, { row: r, column: c });
+                }
+            }
+            this._equalSearchLastIndex = index;
+        }
+        return index;
+    }
+
+    private _getRawValue(row: number, column: number): string | number | boolean | null {
+        if (this._numericData !== null) {
+            return this._numericData[row * this._columnCount + column];
+        }
+        const cell = this._values[row]?.[column];
+        if (!cell || cell.isNull() || cell.isError()) return null;
+        return cell.getValue() as string | number | boolean;
     }
 
     getNumberDirect(row: number, column: number): number {
@@ -805,6 +844,13 @@ export class ArrayValueObject extends BaseValueObject {
         isDesc = false,
         isFuzzyMatching = false
     ) {
+        if (searchType === ArrayOrderSearchType.NORMAL && !isFuzzyMatching) {
+            const target = valueObject.getValue() as string | number | boolean;
+            const index = this.getEqualSearchIndex(true);
+            const pos = index.get(target);
+            return pos || undefined;
+        }
+
         let result: Nullable<BaseValueObject>;
         let maxOrMin: Nullable<BaseValueObject>;
         let resultPosition: Nullable<{ row: number; column: number }>;
@@ -1575,6 +1621,8 @@ export class ArrayValueObject extends BaseValueObject {
         this._flattenCache = null;
         this._sortedNumericAsc = null;
         this._sortedNumericDesc = null;
+        this._equalSearchFirstIndex = null;
+        this._equalSearchLastIndex = null;
         this._sliceCache.clear();
     }
 
