@@ -18,7 +18,7 @@ import type { Nullable } from '@univerjs/core';
 import type { callbackMapFnType, IArrayValueObject } from './base-value-object';
 
 import { isRealNum } from '@univerjs/core';
-import { BooleanValue } from '../../basics/common';
+import { BooleanValue, isTypedArrayOptimizationEnabled } from '../../basics/common';
 import { ERROR_TYPE_SET, ErrorType } from '../../basics/error-type';
 import { CELL_INVERTED_INDEX_CACHE } from '../../basics/inverted-index-cache';
 import { regexTestArrayValue } from '../../basics/regex';
@@ -140,10 +140,27 @@ export class ArrayValueObject extends BaseValueObject {
         row: number = -1,
         column: number = -1
     ): ArrayValueObject {
+        if (!isTypedArrayOptimizationEnabled()) {
+            const calculateValueList = ArrayValueObject._typedArrayToValueObjects(data, rowCount, columnCount);
+            return new ArrayValueObject({ calculateValueList, rowCount, columnCount, unitId, sheetId, row, column });
+        }
         const obj = new ArrayValueObject({ calculateValueList: [], rowCount, columnCount, unitId, sheetId, row, column });
         obj._values = [];
         obj._numericData = data;
         return obj;
+    }
+
+    private static _typedArrayToValueObjects(data: Float64Array, rowCount: number, columnCount: number): BaseValueObject[][] {
+        const values: BaseValueObject[][] = [];
+        for (let r = 0; r < rowCount; r++) {
+            const row: BaseValueObject[] = [];
+            const offset = r * columnCount;
+            for (let c = 0; c < columnCount; c++) {
+                row[c] = createNumberValueObjectByRawValue(data[offset + c]);
+            }
+            values[r] = row;
+        }
+        return values;
     }
 
     private _values: Nullable<BaseValueObject>[][] = [];
@@ -1675,6 +1692,7 @@ export class ArrayValueObject extends BaseValueObject {
     }
 
     private _extractNumericData(): Float64Array | null {
+        if (!isTypedArrayOptimizationEnabled()) return null;
         if (this._numericData !== null) return this._numericData;
         const rowCount = this._rowCount;
         const columnCount = this._columnCount;

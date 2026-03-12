@@ -28,6 +28,7 @@ import type { PreCalculateNodeType } from '../utils/node-type';
 import type { IFormulaDependencyTree } from './dependency-tree';
 import { createIdentifier, Disposable, Inject, ObjectMatrix, RTree } from '@univerjs/core';
 
+import { isFillDownSharingEnabled } from '../../basics/common';
 import { prefixToken, suffixToken } from '../../basics/token';
 import { IFormulaCurrentConfigService } from '../../services/current-data.service';
 import { IDependencyManagerService } from '../../services/dependency-manager.service';
@@ -708,7 +709,7 @@ export class FormulaDependencyGenerator extends Disposable {
                         const template = normalizeFormulaTemplate(formula, excelRow);
                         const leader = fillDownLeaders.get(column);
 
-                        if (leader && leader.template === template ) {
+                        if (leader && leader.template === template && isFillDownSharingEnabled()) {
                             FDtree = this._createFillDownVirtualFDtree(leader.tree, row - leader.row);
                         } else {
                             FDtree = this._createFDtree(unitId, sheetId, row, column, unitData, formulaDataItem);

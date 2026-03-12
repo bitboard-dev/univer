@@ -38,6 +38,7 @@ import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import { SetRangeValuesMutation } from '../../../commands/mutations/set-range-values.mutation';
 import { createFunctionTestBed } from './create-function-test-bed';
 import { profileCalculation } from './formula-profiler';
+import { getFormulaReplayConfigFromEnv } from './replay-config';
 
 import '@univerjs/engine-formula/facade';
 
@@ -225,6 +226,7 @@ async function runSalesPipelineScenario(options?: {
 
     const configService = get(IConfigService);
     configService.setConfig(ENGINE_FORMULA_PLUGIN_CONFIG_KEY, {
+        ...getFormulaReplayConfigFromEnv(),
         batchExecutionCount: options?.batchExecutionCount,
         intervalCount: options?.intervalCount,
     });
@@ -312,6 +314,11 @@ describe('sales pipeline workload crash reproducer', () => {
         commandService.registerCommand(SetFormulaCalculationNotificationMutation);
         commandService.registerCommand(SetArrayFormulaDataMutation);
         commandService.registerCommand(SetRangeValuesMutation);
+
+        const configService = get(IConfigService);
+        configService.setConfig(ENGINE_FORMULA_PLUGIN_CONFIG_KEY, {
+            ...getFormulaReplayConfigFromEnv(),
+        });
 
         const functionService = get(IFunctionService);
         const formulaCurrentConfigService = get(IFormulaCurrentConfigService);

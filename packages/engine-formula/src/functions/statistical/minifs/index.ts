@@ -16,6 +16,7 @@
 
 import type { FunctionVariantType } from '../../../engine/reference-object/base-reference-object';
 import type { BaseValueObject } from '../../../engine/value-object/base-value-object';
+import { isScalarFastPathEnabled } from '../../../basics/common';
 import { ErrorType } from '../../../basics/error-type';
 import { compareToken } from '../../../basics/token';
 import { expandArrayValueObject } from '../../../engine/utils/array-object';
@@ -119,7 +120,7 @@ export class Minifs extends BaseFunction {
             }
         }
 
-        if (canUseRawPath) {
+        if (canUseRawPath && isScalarFastPathEnabled()) {
             for (let r = 0; r < rowCount; r++) {
                 for (let c = 0; c < colCount; c++) {
                     let allMatch = true;

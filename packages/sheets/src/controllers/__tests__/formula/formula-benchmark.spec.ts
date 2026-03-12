@@ -1,8 +1,25 @@
+/**
+ * Copyright 2023-present DreamNum Co., Ltd.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 import type { Ctor, IWorkbookData, Worksheet } from '@univerjs/core';
 import type { BaseFunction, IFunctionNames } from '@univerjs/engine-formula';
 import type { FFormula } from '@univerjs/engine-formula/facade';
-import { ICommandService } from '@univerjs/core';
+import { ICommandService, IConfigService } from '@univerjs/core';
 import {
+    ENGINE_FORMULA_PLUGIN_CONFIG_KEY,
     functionArray,
     functionCompatibility,
     functionDatabase,
@@ -27,12 +44,13 @@ import {
     SetFormulaCalculationStartMutation,
     SetFormulaCalculationStopMutation,
 } from '@univerjs/engine-formula';
-import { afterEach, describe, expect, it } from 'vitest';
+import { describe, expect, it } from 'vitest';
 import { SetRangeValuesMutation } from '../../../commands/mutations/set-range-values.mutation';
-import { createFunctionTestBed } from './create-function-test-bed';
 import { buildDataSheet, DATA_SHEET_ID } from './benchmark/data-generator';
 import { FORMULA_GROUPS } from './benchmark/formula-groups';
+import { createFunctionTestBed } from './create-function-test-bed';
 import { profileCalculation } from './formula-profiler';
+import { getFormulaReplayConfigFromEnv } from './replay-config';
 
 import '@univerjs/engine-formula/facade';
 
@@ -102,6 +120,11 @@ function setupTestBed(workbookData: IWorkbookData) {
     commandService.registerCommand(SetArrayFormulaDataMutation);
     commandService.registerCommand(SetRangeValuesMutation);
 
+    const configService = get(IConfigService);
+    configService.setConfig(ENGINE_FORMULA_PLUGIN_CONFIG_KEY, {
+        ...getFormulaReplayConfigFromEnv(),
+    });
+
     const functionService = get(IFunctionService);
     const formulaCurrentConfigService = get(IFormulaCurrentConfigService);
     const formulaRuntimeService = get(IFormulaRuntimeService);
@@ -161,7 +184,7 @@ function printSummary(results: IGroupResult[]) {
         const pad = (s: string, n: number) => s.padEnd(n);
         const cells = r.formulas * r.rows;
         console.warn(
-            `  ${pad(r.id + ':', 20)} ${String(r.formulas).padStart(4)} formulas  ${String(cells).padStart(9)} cells  ${String(r.wallMs).padStart(8)}ms  ${String(r.peakHeapMB).padStart(6)}MB`
+            `  ${pad(`${r.id}:`, 20)} ${String(r.formulas).padStart(4)} formulas  ${String(cells).padStart(9)} cells  ${String(r.wallMs).padStart(8)}ms  ${String(r.peakHeapMB).padStart(6)}MB`
         );
     }
     console.warn('----------------------------------------');

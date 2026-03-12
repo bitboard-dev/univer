@@ -16,6 +16,7 @@
 
 import type { FunctionVariantType } from '../../../engine/reference-object/base-reference-object';
 import type { BaseValueObject } from '../../../engine/value-object/base-value-object';
+import { isFormulaHashCacheEnabled, isScalarFastPathEnabled } from '../../../basics/common';
 import { ErrorType } from '../../../basics/error-type';
 import { compareToken } from '../../../basics/token';
 import { expandArrayValueObject } from '../../../engine/utils/array-object';
@@ -69,7 +70,7 @@ export class Countifs extends BaseFunction {
             return expandArrayValueObject(criteriaMaxRowLength, criteriaMaxColumnLength, ErrorValueObject.create(ErrorType.VALUE));
         }
 
-        if (criteriaMaxRowLength === 1 && criteriaMaxColumnLength === 1 ) {
+        if (criteriaMaxRowLength === 1 && criteriaMaxColumnLength === 1) {
             return this._scalarCountifs(_variants);
         }
 
@@ -115,7 +116,7 @@ export class Countifs extends BaseFunction {
             }
         }
 
-        if (operators.every((op) => op === compareToken.EQUALS)) {
+        if (operators.every((op) => op === compareToken.EQUALS) && isFormulaHashCacheEnabled()) {
             const hashResult = this._hashCountifs(ranges, criteriaObjects);
             if (hashResult !== null) return hashResult;
         }
@@ -134,7 +135,7 @@ export class Countifs extends BaseFunction {
             }
         }
 
-        if (canUseRawPath) {
+        if (canUseRawPath && isScalarFastPathEnabled()) {
             for (let r = 0; r < rowCount; r++) {
                 for (let c = 0; c < colCount; c++) {
                     let allMatch = true;

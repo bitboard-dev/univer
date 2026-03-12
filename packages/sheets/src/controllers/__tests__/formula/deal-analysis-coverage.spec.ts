@@ -17,8 +17,9 @@
 import type { CellValue, Ctor, IWorkbookData, Nullable, Worksheet } from '@univerjs/core';
 import type { BaseFunction, IFunctionNames } from '@univerjs/engine-formula';
 import type { FFormula } from '@univerjs/engine-formula/facade';
-import { CellValueType, ICommandService, LocaleType } from '@univerjs/core';
+import { CellValueType, ICommandService, IConfigService, LocaleType } from '@univerjs/core';
 import {
+    ENGINE_FORMULA_PLUGIN_CONFIG_KEY,
     functionLogical,
     functionLookup,
     functionMath,
@@ -38,6 +39,7 @@ import { afterEach, describe, expect, it } from 'vitest';
 import { SetRangeValuesMutation } from '../../../commands/mutations/set-range-values.mutation';
 import { createFunctionTestBed } from './create-function-test-bed';
 import { profileCalculation } from './formula-profiler';
+import { getFormulaReplayConfigFromEnv } from './replay-config';
 
 import '@univerjs/engine-formula/facade';
 
@@ -205,6 +207,11 @@ describe('deal analysis formula coverage', () => {
         commandService.registerCommand(SetFormulaCalculationNotificationMutation);
         commandService.registerCommand(SetArrayFormulaDataMutation);
         commandService.registerCommand(SetRangeValuesMutation);
+
+        const configService = get(IConfigService);
+        configService.setConfig(ENGINE_FORMULA_PLUGIN_CONFIG_KEY, {
+            ...getFormulaReplayConfigFromEnv(),
+        });
 
         const functionService = get(IFunctionService);
         const formulaCurrentConfigService = get(IFormulaCurrentConfigService);

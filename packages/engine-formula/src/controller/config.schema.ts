@@ -42,6 +42,42 @@ export interface IUniverEngineFormulaConfig {
      */
     batchExecutionCount?: number;
 
+    /**
+     * Replay/testing toggle: when true, disables typed-array-backed fast paths.
+     */
+    disableTypedArrayOptimization?: boolean;
+
+    /**
+     * Replay/testing toggle: when true, keeps intermediate AST values alive.
+     */
+    disableClearIntermediate?: boolean;
+
+    /**
+     * Replay/testing toggle: when true, disables scalar *IFS fast paths.
+     */
+    disableScalarFastPath?: boolean;
+
+    /**
+     * Replay/testing toggle: when true, disables fill-down AST sharing.
+     */
+    disableFillDownSharing?: boolean;
+
+    /**
+     * Replay/testing toggle: when true, disables SUMIF/COUNTIF/COUNTIFS hash caches.
+     */
+    disableFormulaHashCache?: boolean;
+
+    /**
+     * Optional sampling interval for execution tracing. When > 0, records
+     * progress/memory samples every N formulas.
+     */
+    traceIntervalCount?: number;
+
+    /**
+     * When traceIntervalCount is enabled, emit per-sample progress markers to stderr.
+     */
+    traceToStderr?: boolean;
+
 }
 
 export const defaultPluginConfig: IUniverEngineFormulaConfig = {};

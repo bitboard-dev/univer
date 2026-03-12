@@ -202,3 +202,63 @@ export enum ConcatenateType {
     FRONT,
     BACK,
 }
+
+interface FormulaOptimizationRuntimeFlags {
+    typedArrayEnabled: boolean;
+    clearIntermediateEnabled: boolean;
+    scalarFastPathEnabled: boolean;
+    fillDownSharingEnabled: boolean;
+    formulaHashCacheEnabled: boolean;
+}
+
+const defaultFormulaOptimizationRuntimeFlags: FormulaOptimizationRuntimeFlags = {
+    typedArrayEnabled: true,
+    clearIntermediateEnabled: true,
+    scalarFastPathEnabled: true,
+    fillDownSharingEnabled: true,
+    formulaHashCacheEnabled: true,
+};
+
+let formulaOptimizationRuntimeFlags: FormulaOptimizationRuntimeFlags = {
+    ...defaultFormulaOptimizationRuntimeFlags,
+};
+
+export function setFormulaOptimizationRuntimeFlags(config?: {
+    disableTypedArrayOptimization?: boolean;
+    disableClearIntermediate?: boolean;
+    disableScalarFastPath?: boolean;
+    disableFillDownSharing?: boolean;
+    disableFormulaHashCache?: boolean;
+}) {
+    formulaOptimizationRuntimeFlags = {
+        typedArrayEnabled: config?.disableTypedArrayOptimization !== true,
+        clearIntermediateEnabled: config?.disableClearIntermediate !== true,
+        scalarFastPathEnabled: config?.disableScalarFastPath !== true,
+        fillDownSharingEnabled: config?.disableFillDownSharing !== true,
+        formulaHashCacheEnabled: config?.disableFormulaHashCache !== true,
+    };
+}
+
+export function resetFormulaOptimizationRuntimeFlags() {
+    formulaOptimizationRuntimeFlags = { ...defaultFormulaOptimizationRuntimeFlags };
+}
+
+export function isTypedArrayOptimizationEnabled() {
+    return formulaOptimizationRuntimeFlags.typedArrayEnabled;
+}
+
+export function isClearIntermediateEnabled() {
+    return formulaOptimizationRuntimeFlags.clearIntermediateEnabled;
+}
+
+export function isScalarFastPathEnabled() {
+    return formulaOptimizationRuntimeFlags.scalarFastPathEnabled;
+}
+
+export function isFillDownSharingEnabled() {
+    return formulaOptimizationRuntimeFlags.fillDownSharingEnabled;
+}
+
+export function isFormulaHashCacheEnabled() {
+    return formulaOptimizationRuntimeFlags.formulaHashCacheEnabled;
+}

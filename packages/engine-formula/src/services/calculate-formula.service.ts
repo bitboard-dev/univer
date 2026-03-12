@@ -38,6 +38,7 @@ import {
     requestImmediateMacroTask,
 } from '@univerjs/core';
 import { Subject } from 'rxjs';
+import { isClearIntermediateEnabled, setFormulaOptimizationRuntimeFlags } from '../basics/common';
 import { ErrorType } from '../basics/error-type';
 import { CELL_INVERTED_INDEX_CACHE } from '../basics/inverted-index-cache';
 import { DEFAULT_CYCLE_REFERENCE_COUNT, ENGINE_FORMULA_PLUGIN_CONFIG_KEY } from '../controller/config.schema';
@@ -68,6 +69,19 @@ function getBatchExecutionCount(config?: IUniverEngineFormulaConfig) {
     }
 
     return Math.floor(batchExecutionCount);
+}
+
+function getTraceIntervalCount(config?: IUniverEngineFormulaConfig) {
+    const traceIntervalCount = Number(config?.traceIntervalCount);
+    if (!Number.isFinite(traceIntervalCount) || traceIntervalCount <= 0) {
+        return 0;
+    }
+
+    return Math.floor(traceIntervalCount);
+}
+
+function shouldTraceToStderr(config?: IUniverEngineFormulaConfig) {
+    return config?.traceToStderr === true;
 }
 
 export interface ITraceSample {
@@ -131,6 +145,41 @@ export class CalculateFormulaService extends Disposable implements ICalculateFor
         return this._executionTrace;
     }
 
+    private _recordTraceSample(i: number, total: number, traceStartMs: number, traceToStderr: boolean) {
+        const runtimeProcess = Reflect.get(globalThis as object, 'process') as
+            | {
+                memoryUsage?: () => { heapUsed: number; rss: number };
+                stderr?: { write?: (s: string) => void };
+            }
+            | undefined;
+        const memoryUsage = runtimeProcess?.memoryUsage;
+        const mem =
+            typeof memoryUsage === 'function'
+                ? memoryUsage()
+                : { heapUsed: 0, rss: 0 };
+        const sample: ITraceSample = {
+            i,
+            total,
+            heapMB: Math.round(mem.heapUsed / 1048576),
+            rssMB: Math.round(mem.rss / 1048576),
+            ms: Date.now() - traceStartMs,
+        };
+        this._executionTrace.push(sample);
+
+        if (!traceToStderr) {
+            return;
+        }
+
+        const writer = runtimeProcess?.stderr?.write;
+        if (typeof writer !== 'function') {
+            return;
+        }
+
+        const pct = total > 0 ? Math.round((i / total) * 100) : 100;
+        const bar = '█'.repeat(Math.round(pct / 2.5));
+        writer(`  ${String(pct).padStart(3)}% │ ${String(sample.heapMB).padStart(5)} MB │ ${String(sample.ms).padStart(7)} ms │${bar}\n`);
+    }
+
     /**
      * Stop the execution of the formula.
      */
@@ -166,6 +215,11 @@ export class CalculateFormulaService extends Disposable implements ICalculateFor
         this._currentConfigService.load(formulaDatasetConfig);
 
         this._runtimeService.reset();
+
+        const config = this._configService.getConfig(ENGINE_FORMULA_PLUGIN_CONFIG_KEY) as IUniverEngineFormulaConfig;
+        if (getTraceIntervalCount(config) > 0) {
+            this._executionTrace.length = 0;
+        }
 
         const cycleReferenceCount = (formulaDatasetConfig.maxIteration || DEFAULT_CYCLE_REFERENCE_COUNT) as number;
 
@@ -309,10 +363,14 @@ export class CalculateFormulaService extends Disposable implements ICalculateFor
         let pendingTasks: (() => void)[] = [];
 
         const config = this._configService.getConfig(ENGINE_FORMULA_PLUGIN_CONFIG_KEY) as IUniverEngineFormulaConfig;
+        setFormulaOptimizationRuntimeFlags(config);
         const intervalCount = config?.intervalCount || DEFAULT_INTERVAL_COUNT;
         const batchExecutionCount = getBatchExecutionCount(config);
+        const traceIntervalCount = getTraceIntervalCount(config);
+        const traceToStderr = shouldTraceToStderr(config);
 
         const treeCount = treeList.length;
+        const traceStartMs = traceIntervalCount > 0 ? Date.now() : 0;
 
         let processedCount = 0;
         while (processedCount < treeCount) {
@@ -322,6 +380,10 @@ export class CalculateFormulaService extends Disposable implements ICalculateFor
                 const tree = treeList[i];
                 const nodeData = tree.nodeData;
                 const getDirtyData = tree.getDirtyData;
+
+                if (traceIntervalCount > 0 && i % traceIntervalCount === 0) {
+                    this._recordTraceSample(i, treeCount, traceStartMs, traceToStderr);
+                }
 
                 if (i !== 0 && i % intervalCount === 0) {
                     await new Promise((resolve) => {
@@ -390,7 +452,9 @@ export class CalculateFormulaService extends Disposable implements ICalculateFor
                         this._runtimeService.setRuntimeData(value);
                     }
 
-                    nodeData.node.clearIntermediate();
+                    if (isClearIntermediateEnabled()) {
+                        nodeData.node?.clearIntermediate();
+                    }
                 }
             }
 
@@ -419,6 +483,10 @@ export class CalculateFormulaService extends Disposable implements ICalculateFor
                 this._executionCompleteListener$.next(this._runtimeService.getAllRuntimeData());
                 return;
             }
+        }
+
+        if (traceIntervalCount > 0) {
+            this._recordTraceSample(treeCount, treeCount, traceStartMs, traceToStderr);
         }
 
         // clear all pending tasks

@@ -70,8 +70,45 @@ export async function profileCalculation(
     } = {}
 ): Promise<IProfileResult> {
     const { label = 'calc', timeoutMs = 600_000, cpu = false, heap = false } = options;
+    const traceToStderr = process.env.FORMULA_TRACE_STDERR === '1';
 
     let session: Session | null = null;
+    const traceFromProgress: ITraceSample[] = [];
+    const traceStartMs = Date.now();
+    const progressSub = calcService.executionInProgressListener$.subscribe((state) => {
+        const total = state.totalFormulasToCalculate > 0
+            ? state.totalFormulasToCalculate
+            : state.totalArrayFormulasToCalculate;
+        const completed = state.totalFormulasToCalculate > 0
+            ? state.completedFormulasCount
+            : state.completedArrayFormulasCount;
+        if (!total || total <= 0) {
+            return;
+        }
+
+        const last = traceFromProgress[traceFromProgress.length - 1];
+        if (last && last.i === completed && last.total === total) {
+            return;
+        }
+
+        const mem = process.memoryUsage();
+        const sample: ITraceSample = {
+            i: Math.min(completed, total),
+            total,
+            heapMB: Math.round(mem.heapUsed / 1048576),
+            rssMB: Math.round(mem.rss / 1048576),
+            ms: Date.now() - traceStartMs,
+        };
+        traceFromProgress.push(sample);
+
+        if (!traceToStderr) {
+            return;
+        }
+
+        const pct = Math.round((sample.i / sample.total) * 100);
+        const bar = '█'.repeat(Math.round(pct / 2.5));
+        process.stderr.write(`  ${String(pct).padStart(3)}% │ ${String(sample.heapMB).padStart(5)} MB │ ${String(sample.ms).padStart(7)} ms │${bar}\n`);
+    });
 
     if (cpu || heap) {
         session = new Session();
@@ -88,8 +125,12 @@ export async function profileCalculation(
         await session!.post('HeapProfiler.startSampling');
     }
 
-    formulaEngine.executeCalculation();
-    await formulaEngine.onCalculationEnd(timeoutMs);
+    try {
+        formulaEngine.executeCalculation();
+        await formulaEngine.onCalculationEnd(timeoutMs);
+    } finally {
+        progressSub.unsubscribe();
+    }
 
     const result: IProfileResult = {
         trace: calcService.getExecutionTrace(),
@@ -97,6 +138,10 @@ export async function profileCalculation(
         finalHeapMB: 0,
         wallMs: 0,
     };
+
+    if (result.trace.length === 0 && traceFromProgress.length > 0) {
+        result.trace = traceFromProgress;
+    }
 
     if (result.trace.length > 0) {
         result.peakHeapMB = Math.max(...result.trace.map((s) => s.heapMB));

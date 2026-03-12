@@ -17,6 +17,7 @@
 import type { BaseReferenceObject, FunctionVariantType } from '../../../engine/reference-object/base-reference-object';
 import type { ArrayValueObject } from '../../../engine/value-object/array-value-object';
 import type { BaseValueObject } from '../../../engine/value-object/base-value-object';
+import { isFormulaHashCacheEnabled } from '../../../basics/common';
 import { ErrorType } from '../../../basics/error-type';
 import { compareToken } from '../../../basics/token';
 import { findCompareToken, valueObjectCompare } from '../../../engine/utils/object-compare';
@@ -70,7 +71,7 @@ export class Countif extends BaseFunction {
     }
 
     private _handleSingleObject(range: FunctionVariantType, criteria: BaseValueObject): BaseValueObject {
-        if (!criteria.isError() ) {
+        if (!criteria.isError()) {
             let op = compareToken.EQUALS;
             let criteriaObj = criteria;
             if (criteria.isString()) {
@@ -78,7 +79,7 @@ export class Countif extends BaseFunction {
                 op = extractedOp;
                 criteriaObj = extractedObj;
             }
-            if (op === compareToken.EQUALS) {
+            if (op === compareToken.EQUALS && isFormulaHashCacheEnabled()) {
                 const hashResult = this._hashCountif(range as BaseReferenceObject, criteriaObj);
                 if (hashResult !== null) return hashResult;
             }

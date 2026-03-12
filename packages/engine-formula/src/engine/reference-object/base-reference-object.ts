@@ -19,6 +19,7 @@ import type { IRuntimeUnitDataType, IUnitData, IUnitSheetNameMap, IUnitStylesDat
 import type { BaseValueObject, IArrayValueObject } from '../value-object/base-value-object';
 import { CellValueType, isTextFormat, moveRangeByOffset } from '@univerjs/core';
 import { FormulaAstLRU } from '../../basics/cache-lru';
+import { isTypedArrayOptimizationEnabled } from '../../basics/common';
 import { ERROR_TYPE_SET, ErrorType } from '../../basics/error-type';
 import { isNullCellForFormula } from '../../basics/is-null-cell';
 import { ObjectClassType } from '../../basics/object-class-type';
@@ -557,7 +558,7 @@ export class BaseReferenceObject extends ObjectClassType {
             return this._getBlankArrayValueObject();
         }
 
-        let allNumeric = rowSize > 0 && columnSize > 0 ;
+        let allNumeric = rowSize > 0 && columnSize > 0 && isTypedArrayOptimizationEnabled();
         const numericBuf = allNumeric ? new Float64Array(rowSize * columnSize) : null;
         const arrayValueList: BaseValueObject[][] = allNumeric ? [] : new Array(rowSize);
 

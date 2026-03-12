@@ -16,6 +16,7 @@
 
 import type { FunctionVariantType } from '../../../engine/reference-object/base-reference-object';
 import type { BaseValueObject } from '../../../engine/value-object/base-value-object';
+import { isScalarFastPathEnabled } from '../../../basics/common';
 import { ErrorType } from '../../../basics/error-type';
 import { compareToken } from '../../../basics/token';
 import { expandArrayValueObject } from '../../../engine/utils/array-object';
@@ -57,7 +58,7 @@ export class Sumifs extends BaseFunction {
             return expandArrayValueObject(criteriaMaxRowLength, criteriaMaxColumnLength, ErrorValueObject.create(ErrorType.VALUE));
         }
 
-        if (criteriaMaxRowLength === 1 && criteriaMaxColumnLength === 1 ) {
+        if (criteriaMaxRowLength === 1 && criteriaMaxColumnLength === 1) {
             return this._scalarSumifs(_sumRange as BaseValueObject, _variants);
         }
 
@@ -122,7 +123,7 @@ export class Sumifs extends BaseFunction {
             }
         }
 
-        if (canUseRawPath) {
+        if (canUseRawPath && isScalarFastPathEnabled()) {
             for (let r = 0; r < rowCount; r++) {
                 for (let c = 0; c < colCount; c++) {
                     let allMatch = true;
