@@ -46,6 +46,7 @@ export declare class CalculateFormulaService extends Disposable implements ICalc
     constructor(_configService: IConfigService, _lexer: Lexer, _currentConfigService: IFormulaCurrentConfigService, _runtimeService: IFormulaRuntimeService, _formulaDependencyGenerator: IFormulaDependencyGenerator, _interpreter: Interpreter, _astTreeBuilder: AstTreeBuilder);
     dispose(): void;
     getExecutionTrace(): ITraceSample[];
+    private _recordTraceSample;
     /**
      * Stop the execution of the formula.
      */

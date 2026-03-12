@@ -19,6 +19,7 @@ export declare class ArrayValueObject extends BaseValueObject {
      */
     static createByArray(array: Array<Array<number | string | boolean | null>>): ArrayValueObject;
     static createNumberArray(data: Float64Array, rowCount: number, columnCount: number, unitId?: string, sheetId?: string, row?: number, column?: number): ArrayValueObject;
+    private static _typedArrayToValueObjects;
     private _values;
     private _numericData;
     private _rowCount;
