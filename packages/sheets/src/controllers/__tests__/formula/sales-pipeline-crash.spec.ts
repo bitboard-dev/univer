@@ -405,3 +405,141 @@ describe('sales pipeline workload crash reproducer', () => {
         expect(batched.sampleScore).not.toBeNull();
     }, 30000);
 });
+
+describe('sales pipeline correctness (120 rows)', () => {
+    const testOpps = 120;
+    const testReps = 12;
+    const testAccounts = 40;
+
+    function oppData(index: number) {
+        const rep = `Rep ${String((index % testReps) + 1).padStart(2, '0')}`;
+        const account = `ACC-${String((index % testAccounts) + 1).padStart(4, '0')}`;
+        const stage = stages[index % stages.length];
+        const amount = 50000 + (index % 200) * 2500;
+        const probability = stageProbabilities[stage];
+        return { rep, account, stage, amount, probability };
+    }
+
+    function allOpps() {
+        return Array.from({ length: testOpps }, (_, i) => oppData(i));
+    }
+
+    it('verifies every formula cell against JS reference computation', async () => {
+        const scenario = createFunctionTestBed(buildWorkbookData({
+            numOpps: testOpps,
+            numReps: testReps,
+            numAccounts: testAccounts,
+        }));
+        const get = scenario.get;
+        const formulaEngine = scenario.api.getFormula() as FFormula;
+        const commandService = get(ICommandService);
+
+        commandService.registerCommand(SetFormulaCalculationStartMutation);
+        commandService.registerCommand(SetFormulaCalculationStopMutation);
+        commandService.registerCommand(SetFormulaCalculationResultMutation);
+        commandService.registerCommand(SetFormulaCalculationNotificationMutation);
+        commandService.registerCommand(SetArrayFormulaDataMutation);
+        commandService.registerCommand(SetRangeValuesMutation);
+
+        const functionService = get(IFunctionService);
+        const formulaCurrentConfigService = get(IFormulaCurrentConfigService);
+        const formulaRuntimeService = get(IFormulaRuntimeService);
+
+        formulaCurrentConfigService.load({
+            formulaData: {},
+            arrayFormulaCellData: {},
+            arrayFormulaRange: {},
+            forceCalculate: false,
+            dirtyRanges: [],
+            dirtyNameMap: {},
+            dirtyDefinedNameMap: {},
+            dirtyUnitFeatureMap: {},
+            dirtyUnitOtherFormulaMap: {},
+            excludedCell: {},
+            allUnitData: {
+                [scenario.unitId]: scenario.sheetData,
+            },
+        });
+
+        const sheetItem = scenario.sheetData[scenario.sheetId];
+        formulaRuntimeService.setCurrent(0, 0, sheetItem.rowCount, sheetItem.columnCount, scenario.sheetId, scenario.unitId);
+
+        const functions = [...functionMath, ...functionStatistical, ...functionLogical, ...functionMeta]
+            .map((reg) => new (reg[0] as Ctor<BaseFunction>)(reg[1] as IFunctionNames));
+        functionService.registerExecutors(...functions);
+
+        const cell = (sheetId: string, row: number, col: number) => {
+            const ws = scenario.sheet.getSheetBySheetId(sheetId) as Worksheet;
+            return ws.getCellRaw(row, col)?.v;
+        };
+
+        formulaEngine.executeCalculation();
+        await formulaEngine.onCalculationEnd(60_000);
+
+        const opps = allOpps();
+
+        // --- Pipeline Summary sheet: 7 stage rows ---
+        for (let s = 0; s < stages.length; s++) {
+            const stage = stages[s];
+            const row = s + 1;
+
+            const matching = opps.filter((o) => o.stage === stage);
+            const expectedCount = matching.length;
+            const expectedTotal = matching.reduce((sum, o) => sum + o.amount, 0);
+            const expectedAvg = expectedCount > 0 ? expectedTotal / expectedCount : 0;
+            const expectedWeighted = matching.reduce((sum, o) => sum + o.amount * o.probability, 0);
+
+            expect(cell(pipelineSummarySheetId, row, 1)).toBe(expectedCount);
+            expect(cell(pipelineSummarySheetId, row, 2)).toBe(expectedTotal);
+            expect(cell(pipelineSummarySheetId, row, 3)).toBeCloseTo(expectedAvg, 5);
+            expect(cell(pipelineSummarySheetId, row, 4)).toBeCloseTo(expectedWeighted, 2);
+        }
+
+        // Total row
+        const totalRow = stages.length + 1;
+        expect(cell(pipelineSummarySheetId, totalRow, 1)).toBe(testOpps);
+        const totalValue = opps.reduce((sum, o) => sum + o.amount, 0);
+        expect(cell(pipelineSummarySheetId, totalRow, 2)).toBe(totalValue);
+        const totalWeighted = opps.reduce((sum, o) => sum + o.amount * o.probability, 0);
+        expect(cell(pipelineSummarySheetId, totalRow, 4)).toBeCloseTo(totalWeighted, 2);
+
+        // --- Deal Scoring sheet: every row ---
+        for (let i = 0; i < testOpps; i++) {
+            const row = i + 1;
+            const o = opps[i];
+
+            // Col A-D: direct references
+            expect(cell(dealScoringSheetId, row, 0)).toBe(`OPP-${String(i + 1).padStart(5, '0')}`);
+            expect(cell(dealScoringSheetId, row, 1)).toBe(o.account);
+            expect(cell(dealScoringSheetId, row, 2)).toBe(o.rep);
+            expect(cell(dealScoringSheetId, row, 3)).toBe(o.amount);
+
+            // Col E (4): Rep Win Rate
+            const repOpps = opps.filter((x) => x.rep === o.rep);
+            const repWon = repOpps.filter((x) => x.stage === 'Closed Won').length;
+            const repLost = repOpps.filter((x) => x.stage === 'Closed Lost').length;
+            const repClosed = repWon + repLost;
+            const expectedWinRate = repClosed > 0 ? repWon / repClosed : 0;
+            expect(cell(dealScoringSheetId, row, 4)).toBeCloseTo(expectedWinRate, 8);
+
+            // Col F (5): Rep Avg Deal
+            const repCount = repOpps.length;
+            const repTotalAmt = repOpps.reduce((sum, x) => sum + x.amount, 0);
+            const expectedAvgDeal = repCount > 0 ? repTotalAmt / repCount : 0;
+            expect(cell(dealScoringSheetId, row, 5)).toBeCloseTo(expectedAvgDeal, 5);
+
+            // Col G (6): Account Pipeline = SUMPRODUCT((account=acct)*amount*probability)
+            const acctOpps = opps.filter((x) => x.account === o.account);
+            const expectedAcctPipeline = acctOpps.reduce((sum, x) => sum + x.amount * x.probability, 0);
+            expect(cell(dealScoringSheetId, row, 6)).toBeCloseTo(expectedAcctPipeline, 2);
+
+            // Col H (7): Score = winRate*0.3 + (amount/avgDeal)*0.3 + (amount/acctPipeline)*0.4
+            const dealRatio = expectedAvgDeal > 0 ? o.amount / expectedAvgDeal : 0;
+            const pipelineRatio = expectedAcctPipeline > 0 ? o.amount / expectedAcctPipeline : 0;
+            const expectedScore = expectedWinRate * 0.3 + dealRatio * 0.3 + pipelineRatio * 0.4;
+            expect(cell(dealScoringSheetId, row, 7)).toBeCloseTo(expectedScore, 6);
+        }
+
+        scenario.univer?.dispose();
+    }, 60000);
+});
