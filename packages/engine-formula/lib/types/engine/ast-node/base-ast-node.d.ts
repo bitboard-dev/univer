@@ -36,6 +36,12 @@ export declare class BaseAstNode {
     getToken(): string;
     setValue(value: Nullable<FunctionVariantType>): void;
     getValue(): Nullable<FunctionVariantType>;
+    /**
+     * Release intermediate value objects from this node and all descendants
+     * without destroying the AST structure. The tree remains valid for
+     * re-execution on the next dirty cycle.
+     */
+    clearIntermediate(): void;
     isCalculated(): boolean;
     setCalculated(): void;
     execute(): void;

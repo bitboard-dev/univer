@@ -68,7 +68,7 @@ export class Countifs extends BaseFunction {
             return expandArrayValueObject(criteriaMaxRowLength, criteriaMaxColumnLength, ErrorValueObject.create(ErrorType.VALUE));
         }
 
-        if (criteriaMaxRowLength === 1 && criteriaMaxColumnLength === 1) {
+        if (criteriaMaxRowLength === 1 && criteriaMaxColumnLength === 1 && !process.env.DISABLE_SCALAR_FAST_PATH) {
             return this._scalarCountifs(_variants);
         }
 

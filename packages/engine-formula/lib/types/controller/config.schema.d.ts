@@ -12,5 +12,11 @@ export interface IUniverEngineFormulaConfig {
      * The formula calculation quantity interval for waiting for the main thread message in the worker. Each time the formula calculates the `intervalCount` quantity, it will receive a main thread message to support stopping the calculation. Default is 500
      */
     intervalCount?: number;
+    /**
+     * The maximum number of dependency tree nodes to execute before yielding and
+     * clearing transient reference caches. Lower values reduce peak working-set
+     * size at the cost of extra scheduler overhead.
+     */
+    batchExecutionCount?: number;
 }
 export declare const defaultPluginConfig: IUniverEngineFormulaConfig;

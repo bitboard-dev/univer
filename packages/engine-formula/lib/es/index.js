@@ -1,11 +1,11 @@
-var Ku = Object.defineProperty;
-var Xu = (i, a, e) => a in i ? Ku(i, a, { enumerable: !0, configurable: !0, writable: !0, value: e }) : i[a] = e;
-var A = (i, a, e) => Xu(i, typeof a != "symbol" ? a + "" : a, e);
-import { ObjectMatrix as Ce, CommandType as Fe, RANGE_TYPE as Je, AbsoluteRefType as we, Tools as qe, createIdentifier as Ze, Disposable as Ne, IUniverInstanceService as Yn, LRUMap as Zu, hashAlgorithm as zu, moveRangeByOffset as aa, isValidRange as Ju, isFormulaString as dt, isFormulaId as Nt, Rectangle as Za, cellToRange as ec, Inject as ye, UniverInstanceType as hr, BooleanNumber as qi, LocaleService as tc, LocaleType as mt, numfmt as At, BuildTextUtils as rc, isRealNum as W, getNumfmtParseValueFilter as nc, CellValueType as Vt, isTextFormat as sc, RichTextBuilder as ac, toDisposable as ic, Injector as Ki, generateRandomId as oc, sortRules as uc, RTree as Os, IConfigService as ia, AsyncLock as cc, requestImmediateMacroTask as lc, ICommandService as ir, DataStreamTreeTokenType as Te, DisposableCollection as fc, Optional as hc, Plugin as mc, merge as gc, touchDependencies as cs } from "@univerjs/core";
-import { Subject as mr, BehaviorSubject as Xi, distinctUntilChanged as Zi, combineLatest as dc, map as Cc, Observable as _c, shareReplay as Ac } from "rxjs";
-import { DataSyncPrimaryController as Ec } from "@univerjs/rpc";
-var rr = /* @__PURE__ */ ((i) => (i.FALSE = "FALSE", i.TRUE = "TRUE", i))(rr || {}), Ut = /* @__PURE__ */ ((i) => (i[i.SUCCESS = 0] = "SUCCESS", i[i.ERROR = 1] = "ERROR", i))(Ut || {}), ct = /* @__PURE__ */ ((i) => (i[i.FRONT = 0] = "FRONT", i[i.BACK = 1] = "BACK", i))(ct || {});
-function bc(i, a, e, t, r) {
+var ic = Object.defineProperty;
+var oc = (i, a, e) => a in i ? ic(i, a, { enumerable: !0, configurable: !0, writable: !0, value: e }) : i[a] = e;
+var A = (i, a, e) => oc(i, typeof a != "symbol" ? a + "" : a, e);
+import { ObjectMatrix as Ce, CommandType as Fe, RANGE_TYPE as et, AbsoluteRefType as Se, Tools as Ke, createIdentifier as ze, Disposable as Ve, IUniverInstanceService as Hn, LRUMap as uc, hashAlgorithm as cc, moveRangeByOffset as ma, isValidRange as lc, isFormulaString as ct, isFormulaId as Ct, Rectangle as ai, cellToRange as fc, Inject as ye, UniverInstanceType as gr, BooleanNumber as ao, LocaleService as hc, LocaleType as gt, numfmt as Et, BuildTextUtils as mc, isRealNum as q, getNumfmtParseValueFilter as gc, CellValueType as Vt, isTextFormat as dc, RichTextBuilder as Cc, toDisposable as _c, Injector as io, generateRandomId as Ac, sortRules as Ec, RTree as Ls, IConfigService as ga, AsyncLock as bc, requestImmediateMacroTask as ii, ICommandService as ur, DataStreamTreeTokenType as Te, DisposableCollection as yc, Optional as Rc, Plugin as pc, merge as Nc, touchDependencies as ls } from "@univerjs/core";
+import { Subject as dr, BehaviorSubject as oo, distinctUntilChanged as uo, combineLatest as Vc, map as Oc, Observable as wc, shareReplay as Sc } from "rxjs";
+import { DataSyncPrimaryController as Mc } from "@univerjs/rpc";
+var nr = /* @__PURE__ */ ((i) => (i.FALSE = "FALSE", i.TRUE = "TRUE", i))(nr || {}), Ut = /* @__PURE__ */ ((i) => (i[i.SUCCESS = 0] = "SUCCESS", i[i.ERROR = 1] = "ERROR", i))(Ut || {}), lt = /* @__PURE__ */ ((i) => (i[i.FRONT = 0] = "FRONT", i[i.BACK = 1] = "BACK", i))(lt || {});
+function Dc(i, a, e, t, r) {
   for (let n = 0, s = i.length; n < s; n++) {
     const o = i[n];
     if (a !== o.unitId || e !== o.sheetId)
@@ -17,9 +17,9 @@ function bc(i, a, e, t, r) {
   return !1;
 }
 var m = /* @__PURE__ */ ((i) => (i.DIV_BY_ZERO = "#DIV/0!", i.NAME = "#NAME?", i.VALUE = "#VALUE!", i.NUM = "#NUM!", i.NA = "#N/A", i.CYCLE = "#CYCLE!", i.REF = "#REF!", i.SPILL = "#SPILL!", i.CALC = "#CALC!", i.ERROR = "#ERROR!", i.CONNECT = "#GETTING_DATA", i.NULL = "#NULL!", i))(m || {});
-const or = new Set(Object.values(m)), za = [...new Set(Object.values(m).map((i) => i.length))];
-var yc = /* @__PURE__ */ ((i) => (i[i.Financial = 0] = "Financial", i[i.Date = 1] = "Date", i[i.Math = 2] = "Math", i[i.Statistical = 3] = "Statistical", i[i.Lookup = 4] = "Lookup", i[i.Database = 5] = "Database", i[i.Text = 6] = "Text", i[i.Logical = 7] = "Logical", i[i.Information = 8] = "Information", i[i.Engineering = 9] = "Engineering", i[i.Cube = 10] = "Cube", i[i.Compatibility = 11] = "Compatibility", i[i.Web = 12] = "Web", i[i.Array = 13] = "Array", i[i.Univer = 14] = "Univer", i[i.User = 15] = "User", i[i.DefinedName = 16] = "DefinedName", i))(yc || {}), X = /* @__PURE__ */ ((i) => (i.PLUS = "+", i.MINUS = "-", i.MULTIPLY = "*", i.DIVIDED = "/", i.CONCATENATE = "&", i.POWER = "^", i.EQUALS = "=", i.NOT_EQUAL = "<>", i.GREATER_THAN = ">", i.GREATER_THAN_OR_EQUAL = ">=", i.LESS_THAN = "<", i.LESS_THAN_OR_EQUAL = "<=", i))(X || {}), k = /* @__PURE__ */ ((i) => (i.EQUALS = "=", i.NOT_EQUAL = "<>", i.GREATER_THAN = ">", i.GREATER_THAN_OR_EQUAL = ">=", i.LESS_THAN = "<", i.LESS_THAN_OR_EQUAL = "<=", i))(k || {});
-const sn = /* @__PURE__ */ new Map([
+const cr = new Set(Object.values(m)), oi = [...new Set(Object.values(m).map((i) => i.length))];
+var Lc = /* @__PURE__ */ ((i) => (i[i.Financial = 0] = "Financial", i[i.Date = 1] = "Date", i[i.Math = 2] = "Math", i[i.Statistical = 3] = "Statistical", i[i.Lookup = 4] = "Lookup", i[i.Database = 5] = "Database", i[i.Text = 6] = "Text", i[i.Logical = 7] = "Logical", i[i.Information = 8] = "Information", i[i.Engineering = 9] = "Engineering", i[i.Cube = 10] = "Cube", i[i.Compatibility = 11] = "Compatibility", i[i.Web = 12] = "Web", i[i.Array = 13] = "Array", i[i.Univer = 14] = "Univer", i[i.User = 15] = "User", i[i.DefinedName = 16] = "DefinedName", i))(Lc || {}), X = /* @__PURE__ */ ((i) => (i.PLUS = "+", i.MINUS = "-", i.MULTIPLY = "*", i.DIVIDED = "/", i.CONCATENATE = "&", i.POWER = "^", i.EQUALS = "=", i.NOT_EQUAL = "<>", i.GREATER_THAN = ">", i.GREATER_THAN_OR_EQUAL = ">=", i.LESS_THAN = "<", i.LESS_THAN_OR_EQUAL = "<=", i))(X || {}), U = /* @__PURE__ */ ((i) => (i.EQUALS = "=", i.NOT_EQUAL = "<>", i.GREATER_THAN = ">", i.GREATER_THAN_OR_EQUAL = ">=", i.LESS_THAN = "<", i.LESS_THAN_OR_EQUAL = "<=", i))(U || {});
+const on = /* @__PURE__ */ new Map([
   ["<>", 4],
   ["<", 4],
   [">=", 4],
@@ -33,7 +33,7 @@ const sn = /* @__PURE__ */ new Map([
   ["*", 1],
   ["^", 0]
   // ^
-]), xt = new Set(sn.keys()), Rc = /* @__PURE__ */ new Set([
+]), xt = new Set(on.keys()), Pc = /* @__PURE__ */ new Set([
   "=",
   "<>",
   ">",
@@ -42,36 +42,36 @@ const sn = /* @__PURE__ */ new Map([
   "<="
   /* LESS_THAN_OR_EQUAL */
 ]);
-var K = /* @__PURE__ */ ((i) => (i.OPEN_BRACKET = "(", i.CLOSE_BRACKET = ")", i.COMMA = ",", i.SINGLE_QUOTATION = "'", i.DOUBLE_QUOTATION = '"', i.OPEN_BRACES = "{", i.CLOSE_BRACES = "}", i.COLON = ":", i.OPEN_SQUARE_BRACKET = "[", i.CLOSE_SQUARE_BRACKET = "]", i))(K || {}), et = /* @__PURE__ */ ((i) => (i.PERCENTAGE = "%", i.POUND = "#", i))(et || {});
-const ls = /* @__PURE__ */ new Set([
+var K = /* @__PURE__ */ ((i) => (i.OPEN_BRACKET = "(", i.CLOSE_BRACKET = ")", i.COMMA = ",", i.SINGLE_QUOTATION = "'", i.DOUBLE_QUOTATION = '"', i.OPEN_BRACES = "{", i.CLOSE_BRACES = "}", i.COLON = ":", i.OPEN_SQUARE_BRACKET = "[", i.CLOSE_SQUARE_BRACKET = "]", i))(K || {}), tt = /* @__PURE__ */ ((i) => (i.PERCENTAGE = "%", i.POUND = "#", i))(tt || {});
+const fs = /* @__PURE__ */ new Set([
   "%",
   "#"
   /* POUND */
 ]);
-var Me = /* @__PURE__ */ ((i) => (i.AT = "@", i.MINUS = "-", i.PLUS = "+", i))(Me || {});
-const pc = " ", zi = [
-  ...Object.values(k),
+var we = /* @__PURE__ */ ((i) => (i.AT = "@", i.MINUS = "-", i.PLUS = "+", i))(we || {});
+const xc = " ", co = [
+  ...Object.values(U),
   ...Object.values(X),
   ...Object.values(K),
-  ...Object.values(et),
-  ...Object.values(Me)
+  ...Object.values(tt),
+  ...Object.values(we)
 ];
-function an(i) {
-  return zi.includes(i);
+function un(i) {
+  return co.includes(i);
 }
-function Vc(i) {
-  for (const a of zi)
+function jc(i) {
+  for (const a of co)
     if (i.indexOf(a) > -1)
       return !0;
   return !1;
 }
-function Kb(i) {
+function oy(i) {
   return i[0] === "'" && i[i.length - 1] === "'" ? i.substring(1, i.length - 1) : i;
 }
-function Xb(i) {
-  return an(i) && i !== K.CLOSE_BRACES && i !== K.CLOSE_BRACKET && i !== K.SINGLE_QUOTATION && i !== K.DOUBLE_QUOTATION || i === " ";
+function uy(i) {
+  return un(i) && i !== K.CLOSE_BRACES && i !== K.CLOSE_BRACKET && i !== K.SINGLE_QUOTATION && i !== K.DOUBLE_QUOTATION || i === " ";
 }
-const Nc = /* @__PURE__ */ new Set([
+const Uc = /* @__PURE__ */ new Set([
   X.PLUS,
   X.MINUS,
   X.MULTIPLY,
@@ -90,10 +90,10 @@ const Nc = /* @__PURE__ */ new Set([
   K.OPEN_BRACES,
   K.OPEN_SQUARE_BRACKET
 ]);
-function Oc(i) {
-  return Nc.has(i);
+function vc(i) {
+  return Uc.has(i);
 }
-const Mc = /* @__PURE__ */ new Set([
+const Tc = /* @__PURE__ */ new Set([
   X.PLUS,
   X.MINUS,
   X.MULTIPLY,
@@ -111,38 +111,38 @@ const Mc = /* @__PURE__ */ new Set([
   K.COLON,
   K.OPEN_BRACES,
   K.OPEN_SQUARE_BRACKET,
-  et.PERCENTAGE,
-  et.POUND
+  tt.PERCENTAGE,
+  tt.POUND
 ]);
-function wc(i) {
-  return Mc.has(i);
-}
-const Ji = '\\[([^\\[\\]\\/?:"<>|*\\\\]+)\\]', Ja = new RegExp(Ji), Sc = "((?![\\[\\]\\/?*\\\\]).)*!", It = "$", oa = "\\s*?:\\s*?", dn = "[A-Za-z]+", Cn = "[1-9][0-9]*", Nr = `'?(${Ji})?(${Sc})?'?`, Ms = `\\${It}?${dn}\\${It}?${Cn}`, Dc = `^(${Me.AT})?${Nr}${Ms}${oa}${Ms}$`, ei = new RegExp(Dc), Lc = `^${Nr}\\s*?${Ms}(${et.POUND})?$`, ti = new RegExp(Lc), Pc = `^${Nr}\\${It}?${Cn}${oa}\\${It}?${Cn}$`, ri = new RegExp(Pc), xc = `^${Nr}\\${It}?${dn}${oa}\\${It}?${dn}$`, ni = new RegExp(xc), jc = `^${Nr}\\s*?\\${It}?${Cn}$`, si = new RegExp(jc), Uc = `^${Nr}\\s*?\\${It}?${dn}$`, ai = new RegExp(Uc), vc = "{.*?}", ii = new RegExp(vc, "g");
-function Br(i) {
-  return ti.lastIndex = 0, ti.test(i);
-}
-function Tc(i) {
-  return ei.lastIndex = 0, ei.test(i);
-}
-function eo(i) {
-  return ri.lastIndex = 0, ri.test(i);
-}
-function to(i) {
-  return ni.lastIndex = 0, ni.test(i);
-}
-function ro(i) {
-  return si.lastIndex = 0, si.test(i);
-}
-function no(i) {
-  return ai.lastIndex = 0, ai.test(i);
-}
 function Bc(i) {
-  return ii.lastIndex = 0, ii.test(i);
+  return Tc.has(i);
 }
-function so(i) {
-  return Br(i) || Tc(i) || eo(i) || to(i);
+const lo = '\\[([^\\[\\]\\/?:"<>|*\\\\]+)\\]', ui = new RegExp(lo), Ic = "((?![\\[\\]\\/?*\\\\]).)*!", It = "$", da = "\\s*?:\\s*?", _n = "[A-Za-z]+", An = "[1-9][0-9]*", wr = `'?(${lo})?(${Ic})?'?`, Ps = `\\${It}?${_n}\\${It}?${An}`, Fc = `^(${we.AT})?${wr}${Ps}${da}${Ps}$`, ci = new RegExp(Fc), kc = `^${wr}\\s*?${Ps}(${tt.POUND})?$`, li = new RegExp(kc), $c = `^${wr}\\${It}?${An}${da}\\${It}?${An}$`, fi = new RegExp($c), Yc = `^${wr}\\${It}?${_n}${da}\\${It}?${_n}$`, hi = new RegExp(Yc), Hc = `^${wr}\\s*?\\${It}?${An}$`, mi = new RegExp(Hc), Qc = `^${wr}\\s*?\\${It}?${_n}$`, gi = new RegExp(Qc), Gc = "{.*?}", di = new RegExp(Gc, "g");
+function kr(i) {
+  return li.lastIndex = 0, li.test(i);
 }
-function Ic(i) {
+function Wc(i) {
+  return ci.lastIndex = 0, ci.test(i);
+}
+function fo(i) {
+  return fi.lastIndex = 0, fi.test(i);
+}
+function ho(i) {
+  return hi.lastIndex = 0, hi.test(i);
+}
+function mo(i) {
+  return mi.lastIndex = 0, mi.test(i);
+}
+function go(i) {
+  return gi.lastIndex = 0, gi.test(i);
+}
+function qc(i) {
+  return di.lastIndex = 0, di.test(i);
+}
+function Co(i) {
+  return kr(i) || Wc(i) || fo(i) || ho(i);
+}
+function Kc(i) {
   const a = {};
   return Object.keys(i).forEach((e) => {
     const t = i[e];
@@ -154,7 +154,7 @@ function Ic(i) {
     });
   }), a;
 }
-function Fc(i) {
+function Xc(i) {
   const a = {};
   for (const e in i) {
     const t = i[e];
@@ -170,33 +170,33 @@ function Fc(i) {
   }
   return a;
 }
-const kc = {
+const Zc = {
   id: "formula.mutation.register-function",
   type: Fe.MUTATION,
   handler: () => !0
-}, ws = {
+}, xs = {
   id: "formula.mutation.set-array-formula-data",
   type: Fe.MUTATION,
   handler: (i, a) => !0
-}, $c = /[^0-9]/g, Yc = /[^A-Za-z]/g;
-function on(i) {
+}, zc = /[^0-9]/g, Jc = /[^A-Za-z]/g;
+function cn(i) {
   let a = i[0] === "$";
   const e = i.substring(1);
   let t = e.indexOf("$") > -1;
-  return qe.isStringNumber(e) && a && !t && (a = !1, t = !0), a && t ? we.ALL : a ? we.COLUMN : t ? we.ROW : we.NONE;
+  return Ke.isStringNumber(e) && a && !t && (a = !1, t = !0), a && t ? Se.ALL : a ? Se.COLUMN : t ? Se.ROW : Se.NONE;
 }
-function Zb(i) {
+function cy(i) {
   const a = i.split("!");
   a.length > 1 && (i = a[a.length - 1]);
   const e = i.split(":");
   return e.length > 1 ? {
-    startAbsoluteRefType: on(e[0]),
-    endAbsoluteRefType: on(e[1])
-  } : { startAbsoluteRefType: on(e[0]) };
+    startAbsoluteRefType: cn(e[0]),
+    endAbsoluteRefType: cn(e[1])
+  } : { startAbsoluteRefType: cn(e[0]) };
 }
-function oi(i = we.NONE) {
+function Ci(i = Se.NONE) {
   let a = "", e = "";
-  return i === we.ROW ? a = "$" : i === we.COLUMN ? e = "$" : i === we.ALL && (a = "$", e = "$"), {
+  return i === Se.ROW ? a = "$" : i === Se.COLUMN ? e = "$" : i === Se.ALL && (a = "$", e = "$"), {
     rowAbsoluteString: a,
     columnAbsoluteString: e
   };
@@ -209,69 +209,69 @@ function Ft(i) {
     endRow: r,
     startAbsoluteRefType: n,
     endAbsoluteRefType: s,
-    rangeType: o = Je.NORMAL
-  } = i, u = oi(n), c = oi(s);
-  if (o === Je.ROW || o === Je.ALL) {
+    rangeType: o = et.NORMAL
+  } = i, u = Ci(n), c = Ci(s);
+  if (o === et.ROW || o === et.ALL) {
     const h = `${u.rowAbsoluteString}${e + 1}`, d = `${c.rowAbsoluteString}${r + 1}`;
     return `${h}:${d}`;
   }
-  if (o === Je.COLUMN) {
-    const h = `${u.columnAbsoluteString}${qe.chatAtABC(a)}`, d = `${c.columnAbsoluteString}${qe.chatAtABC(t)}`;
+  if (o === et.COLUMN) {
+    const h = `${u.columnAbsoluteString}${Ke.chatAtABC(a)}`, d = `${c.columnAbsoluteString}${Ke.chatAtABC(t)}`;
     return `${h}:${d}`;
   }
-  const l = `${u.columnAbsoluteString}${qe.chatAtABC(a)}${u.rowAbsoluteString}${e + 1}`, f = `${c.columnAbsoluteString}${qe.chatAtABC(t)}${c.rowAbsoluteString}${r + 1}`;
+  const l = `${u.columnAbsoluteString}${Ke.chatAtABC(a)}${u.rowAbsoluteString}${e + 1}`, f = `${c.columnAbsoluteString}${Ke.chatAtABC(t)}${c.rowAbsoluteString}${r + 1}`;
   return l === f ? l : `${l}:${f}`;
 }
-function Hc(i, a) {
-  return `${io(i)}!${Ft(a)}`;
+function el(i, a) {
+  return `${Ao(i)}!${Ft(a)}`;
 }
-function Gc(i, a, e) {
-  return Ds(i) || Ds(a) ? `'[${Ls(i)}]${Ls(a)}'!${Ft(e)}` : `[${i}]${a}!${Ft(e)}`;
+function tl(i, a, e) {
+  return Us(i) || Us(a) ? `'[${vs(i)}]${vs(a)}'!${Ft(e)}` : `[${i}]${a}!${Ft(e)}`;
 }
-function Ss(i) {
+function js(i) {
   const { unitId: a, sheetName: e, range: t } = i;
-  return a != null && a.length > 0 && e != null && e.length > 0 ? Gc(a, e, t) : e != null && e.length > 0 ? Hc(e, t) : Ft(t);
+  return a != null && a.length > 0 && e != null && e.length > 0 ? tl(a, e, t) : e != null && e.length > 0 ? el(e, t) : Ft(t);
 }
-function fs(i) {
-  const a = Number.parseInt(i.replace($c, "")) - 1, e = qe.ABCatNum(i.replace(Yc, "")), t = on(i);
+function hs(i) {
+  const a = Number.parseInt(i.replace(zc, "")) - 1, e = Ke.ABCatNum(i.replace(Jc, "")), t = cn(i);
   return {
     row: a,
     column: e,
     absoluteRefType: t
   };
 }
-function ua(i) {
-  const a = Ja.exec(i);
+function Ca(i) {
+  const a = ui.exec(i);
   let e = "";
-  a != null && (e = a[0].trim(), e = ui(e.slice(1, e.length - 1)), i = i.replace(Ja, ""));
+  a != null && (e = a[0].trim(), e = _i(e.slice(1, e.length - 1)), i = i.replace(ui, ""));
   const t = i.indexOf("!");
   let r = "", n = "";
-  return t > -1 ? (r = i.substring(0, t), r[0] === "'" && r[r.length - 1] === "'" && (r = r.substring(1, r.length - 1)), r = ui(r), n = i.substring(t + 1)) : n = i, {
+  return t > -1 ? (r = i.substring(0, t), r[0] === "'" && r[r.length - 1] === "'" && (r = r.substring(1, r.length - 1)), r = _i(r), n = i.substring(t + 1)) : n = i, {
     refBody: n,
     sheetName: r,
     unitId: e
   };
 }
-function Dr(i) {
-  const { refBody: a, sheetName: e, unitId: t } = ua(i), r = a.indexOf(":");
+function xr(i) {
+  const { refBody: a, sheetName: e, unitId: t } = Ca(i), r = a.indexOf(":");
   if (r === -1) {
-    const _ = fs(a), C = _.row, E = _.column, b = _.absoluteRefType;
+    const C = hs(a), _ = C.row, E = C.column, b = C.absoluteRefType;
     return {
       unitId: t,
       sheetName: e,
       range: {
-        startRow: C,
+        startRow: _,
         startColumn: E,
-        endRow: C,
+        endRow: _,
         endColumn: E,
         startAbsoluteRefType: b,
         endAbsoluteRefType: b
       }
     };
   }
-  const n = a.substring(0, r), s = a.substring(r + 1), o = fs(n), u = fs(s), c = o.row > u.row ? u.row : o.row, l = o.column > u.column ? u.column : o.column, f = o.row > u.row ? o.row : u.row, h = o.column > u.column ? o.column : u.column;
-  let d = Je.NORMAL;
-  return Number.isNaN(c) && Number.isNaN(f) ? d = Je.COLUMN : Number.isNaN(l) && Number.isNaN(h) && (d = Je.ROW), {
+  const n = a.substring(0, r), s = a.substring(r + 1), o = hs(n), u = hs(s), c = o.row > u.row ? u.row : o.row, l = o.column > u.column ? u.column : o.column, f = o.row > u.row ? o.row : u.row, h = o.column > u.column ? o.column : u.column;
+  let d = et.NORMAL;
+  return Number.isNaN(c) && Number.isNaN(f) ? d = et.COLUMN : Number.isNaN(l) && Number.isNaN(h) && (d = et.ROW), {
     unitId: t,
     sheetName: e,
     range: {
@@ -285,33 +285,33 @@ function Dr(i) {
     }
   };
 }
-const Qc = ["LOG10"];
-function un(i) {
-  const a = ao(i);
-  if (!so(a) || Qc.includes(a.toUpperCase().trim()))
+const rl = ["LOG10"];
+function ln(i) {
+  const a = _o(i);
+  if (!Co(a) || rl.includes(a.toUpperCase().trim()))
     return !1;
-  const { range: e } = Dr(a);
+  const { range: e } = xr(a);
   return !(e.endColumn >= 16384);
 }
-function ao(i) {
+function _o(i) {
   const a = [];
   let e = !1;
   for (let t = 0, r = i.length; t < r; t++) {
     const n = i[t];
-    if (n === pc && !e)
+    if (n === xc && !e)
       a.push(n);
     else {
-      if (!e && (n === Me.AT || n === Me.MINUS || n === Me.PLUS))
+      if (!e && (n === we.AT || n === we.MINUS || n === we.PLUS))
         continue;
       a.push(n), e = !0;
     }
   }
   return a.join("");
 }
-function zb(i, a) {
+function ly(i, a) {
   const e = (i == null ? void 0 : i.split(",")) || [];
-  return i === "" || e.length === 0 ? [] : Wc(i) ? e.map((n) => {
-    const s = Dr(n);
+  return i === "" || e.length === 0 ? [] : nl(i) ? e.map((n) => {
+    const s = xr(n);
     return {
       unitId: s.unitId,
       sheetId: a(s.sheetName),
@@ -320,44 +320,44 @@ function zb(i, a) {
     };
   }) : [];
 }
-function Wc(i) {
-  return ((i == null ? void 0 : i.split(",")) || []).every((e) => un(e.trim()));
+function nl(i) {
+  return ((i == null ? void 0 : i.split(",")) || []).every((e) => ln(e.trim()));
 }
-function Ds(i) {
-  return i.length === 0 ? !1 : !!(Vc(i) || qc(i) || Kc(i) || Xc(i) || /[\s!$%^&*()+\-=\[\]{};':"\\|,.<>\/?（）]/.test(i));
+function Us(i) {
+  return i.length === 0 ? !1 : !!(jc(i) || sl(i) || al(i) || il(i) || /[\s!$%^&*()+\-=\[\]{};':"\\|,.<>\/?（）]/.test(i));
 }
-function io(i) {
-  return Ds(i) ? `'${Ls(i)}'` : i;
+function Ao(i) {
+  return Us(i) ? `'${vs(i)}'` : i;
 }
-function Ls(i) {
+function vs(i) {
   return i.replace(/'/g, "''");
 }
-function ui(i) {
+function _i(i) {
   return i.replace(/''/g, "'");
 }
-function qc(i) {
+function sl(i) {
   const a = i.match(/[1-9][0-9]{0,6}/);
   return /^[A-Z]+[1-9][0-9]{0,6}$/.test(i) && a !== null;
 }
-function Kc(i) {
+function al(i) {
   return /^(R(-?[0-9]+)?C(-?[0-9]+)?|C(-?[0-9]+)?|R(-?[0-9]+)?)$/.test(i);
 }
-function Xc(i) {
+function il(i) {
   return !new RegExp("^\\p{Letter}", "u").test(i.charAt(0));
 }
-var Zc = Object.getOwnPropertyDescriptor, zc = (i, a, e, t) => {
-  for (var r = t > 1 ? void 0 : t ? Zc(a, e) : a, n = i.length - 1, s; n >= 0; n--)
+var ol = Object.getOwnPropertyDescriptor, ul = (i, a, e, t) => {
+  for (var r = t > 1 ? void 0 : t ? ol(a, e) : a, n = i.length - 1, s; n >= 0; n--)
     (s = i[n]) && (r = s(r) || r);
   return r;
-}, Jc = (i, a) => (e, t) => a(e, t, i);
-let Ps = class extends Ne {
+}, cl = (i, a) => (e, t) => a(e, t, i);
+let Ts = class extends Ve {
   constructor(a) {
     super();
     // 18.2.6 definedNames (Defined Names)
     A(this, "_definedNameMap", {});
     A(this, "_nameCacheMap", {});
     // Cache for name-to-definition mapping
-    A(this, "_update$", new mr());
+    A(this, "_update$", new dr());
     A(this, "update$", this._update$.asObservable());
     A(this, "_currentRange", {
       unitId: "",
@@ -369,9 +369,9 @@ let Ps = class extends Ne {
         endColumn: 0
       }
     });
-    A(this, "_currentRange$", new mr());
+    A(this, "_currentRange$", new dr());
     A(this, "currentRange$", this._currentRange$.asObservable());
-    A(this, "_focusRange$", new mr());
+    A(this, "_focusRange$", new dr());
     A(this, "focusRange$", this._focusRange$.asObservable());
     this._univerInstanceService = a;
   }
@@ -380,7 +380,7 @@ let Ps = class extends Ne {
   }
   getWorksheetByRef(a, e) {
     var r;
-    const { sheetName: t } = ua(e);
+    const { sheetName: t } = Ca(e);
     return (r = this._univerInstanceService.getUnit(a)) == null ? void 0 : r.getSheetBySheetName(t);
   }
   focusRange(a, e) {
@@ -448,22 +448,22 @@ let Ps = class extends Ne {
       this._nameCacheMap[a][t.name] = t;
   }
 };
-Ps = zc([
-  Jc(0, Yn)
-], Ps);
-const Or = Ze("univer.formula.defined-names.service"), Jb = (i, a) => {
+Ts = ul([
+  cl(0, Hn)
+], Ts);
+const Sr = ze("univer.formula.defined-names.service"), fy = (i, a) => {
   const { unitId: e, id: t } = a;
   return {
-    ...i.get(Or).getValueById(e, t),
+    ...i.get(Sr).getValueById(e, t),
     unitId: e
   };
-}, ca = {
+}, _a = {
   id: "formula.mutation.set-defined-name",
   type: Fe.MUTATION,
   handler: (i, a) => {
     if (a == null)
       return !1;
-    const e = i.get(Or), { id: t, unitId: r, name: n, formulaOrRefString: s, comment: o, hidden: u, localSheetId: c } = a;
+    const e = i.get(Sr), { id: t, unitId: r, name: n, formulaOrRefString: s, comment: o, hidden: u, localSheetId: c } = a;
     return e.registerDefinedName(r, {
       id: t,
       name: n.trim(),
@@ -473,68 +473,68 @@ const Or = Ze("univer.formula.defined-names.service"), Jb = (i, a) => {
       localSheetId: c
     }), !0;
   }
-}, oo = {
+}, Eo = {
   id: "formula.mutation.remove-defined-name",
   type: Fe.MUTATION,
   handler: (i, a) => {
     if (a == null)
       return !1;
-    const e = i.get(Or), { unitId: t, id: r } = a;
+    const e = i.get(Sr), { unitId: t, id: r } = a;
     return e.removeDefinedName(t, r), !0;
   }
-}, la = {
+}, Aa = {
   id: "formula.mutation.set-feature-calculation",
   type: Fe.MUTATION,
   handler: () => !0
-}, fa = {
+}, Ea = {
   id: "formula.mutation.remove-feature-calculation",
   type: Fe.MUTATION,
   handler: () => !0
-}, uo = {
+}, bo = {
   id: "formula.mutation.set-formula-calculation-start",
   type: Fe.MUTATION,
   handler: () => !0
-}, co = {
+}, yo = {
   id: "formula.mutation.set-formula-calculation-stop",
   type: Fe.MUTATION,
   handler: () => !0
-}, _n = {
+}, En = {
   id: "formula.mutation.set-formula-calculation-notification",
   type: Fe.MUTATION,
   handler: () => !0
-}, lo = {
+}, Ro = {
   id: "formula.mutation.set-formula-calculation-result",
   type: Fe.MUTATION,
   handler: () => !0
-}, fo = {
+}, po = {
   id: "formula.mutation.set-formula-data",
   type: Fe.MUTATION,
   handler: (i, a) => !0
-}, ha = {
+}, ba = {
   id: "formula.mutation.set-other-formula",
   type: Fe.MUTATION,
   handler: () => !0
-}, ma = {
+}, ya = {
   id: "formula.mutation.remove-other-formula",
   type: Fe.MUTATION,
   handler: () => !0
-}, el = {
+}, ll = {
   id: "formula.mutation.set-super-table",
   type: Fe.MUTATION,
   handler: () => !0
-}, tl = {
+}, fl = {
   id: "formula.mutation.remove-super-table",
   type: Fe.MUTATION,
   handler: () => !0
-}, ho = {
+}, No = {
   id: "formula.mutation.set-super-table-option",
   type: Fe.MUTATION,
   handler: () => !0
 };
-class wt {
+class St {
   constructor(a) {
     A(this, "_cache");
-    this._cache = new Zu(a);
+    this._cache = new uc(a);
   }
   set(a, e) {
     const t = this._hash(a);
@@ -554,22 +554,22 @@ class wt {
     this._cache.forEach(a, e);
   }
   _hash(a) {
-    return a.length <= 64 ? a : zu(a).toString();
+    return a.length <= 64 ? a : cc(a).toString();
   }
 }
-const gt = "P_1", Tt = "R_1", Cr = "L_1", Ir = "LR_1", mo = "LO_1", rl = "LET", Lr = "LAMBDA", nl = "CUBE", sl = /* @__PURE__ */ new Set(["RAND", "RANDBETWEEN", "NOW", "TODAY"]), xs = new wt(1e5);
-function _r(i) {
-  const a = xs.get(i);
+const dt = "P_1", Tt = "R_1", Ar = "L_1", $r = "LR_1", Vo = "LO_1", hl = "LET", jr = "LAMBDA", ml = "CUBE", gl = /* @__PURE__ */ new Set(["RAND", "RANDBETWEEN", "NOW", "TODAY"]), Bs = new St(1e5);
+function Er(i) {
+  const a = Bs.get(i);
   if (a)
     return a;
-  const e = Dr(i);
-  return xs.set(i, e), Dr(i);
+  const e = xr(i);
+  return Bs.set(i, e), xr(i);
 }
-function al() {
-  xs.clear();
+function dl() {
+  Bs.clear();
 }
-var $e = /* @__PURE__ */ ((i) => (i[i.NORMAL = 0] = "NORMAL", i[i.NUMBER = 1] = "NUMBER", i[i.STRING = 2] = "STRING", i[i.FUNCTION = 3] = "FUNCTION", i[i.REFERENCE = 4] = "REFERENCE", i[i.ARRAY = 5] = "ARRAY", i[i.DEFINED_NAME = 6] = "DEFINED_NAME", i))($e || {});
-function ci(i) {
+var Ye = /* @__PURE__ */ ((i) => (i[i.NORMAL = 0] = "NORMAL", i[i.NUMBER = 1] = "NUMBER", i[i.STRING = 2] = "STRING", i[i.FUNCTION = 3] = "FUNCTION", i[i.REFERENCE = 4] = "REFERENCE", i[i.ARRAY = 5] = "ARRAY", i[i.DEFINED_NAME = 6] = "DEFINED_NAME", i))(Ye || {});
+function Ai(i) {
   let a = "";
   for (const e of i)
     typeof e == "string" ? a += e : a += e.token;
@@ -682,8 +682,8 @@ class ae {
         return r;
   }
 }
-const go = 2e3, hs = new wt(go), ms = new wt(go);
-class ga extends Ne {
+const Oo = 2e3, ms = new St(Oo), gs = new St(Oo);
+class Ra extends Ve {
   constructor() {
     super(...arguments);
     A(this, "_currentLexerNode", new ae());
@@ -707,7 +707,7 @@ class ga extends Ne {
   }
   // Table3[[#All],[Column1]:[Column2]]
   dispose() {
-    this._resetTemp(), this._currentLexerNode.dispose(), hs.clear(), ms.clear();
+    this._resetTemp(), this._currentLexerNode.dispose(), ms.clear(), gs.clear();
   }
   getUpLevel() {
     return this._upLevel;
@@ -752,7 +752,7 @@ class ga extends Ne {
     let s = n.getParent(), o = n;
     for (; s; ) {
       const u = s.getToken();
-      if (u !== gt && !an(u) && s.getStartIndex() !== -1) {
+      if (u !== dt && !un(u) && s.getStartIndex() !== -1) {
         const c = s.getChildren().indexOf(o);
         return {
           functionName: u,
@@ -779,19 +779,19 @@ class ga extends Ne {
     let u = o.getParent(), c = 0;
     for (s[1] === K.OPEN_BRACKET && c++; u; ) {
       const l = u.getToken();
-      l !== gt && l !== K.COLON && u.getStartIndex() !== -1 && l.toUpperCase() !== Lr && (t === 0 ? c += 1 : t--), u = u.getParent();
+      l !== dt && l !== K.COLON && u.getStartIndex() !== -1 && l.toUpperCase() !== jr && (t === 0 ? c += 1 : t--), u = u.getParent();
     }
     return c;
   }
   sequenceNodesBuilder(e) {
-    const t = ms.get(e);
+    const t = gs.get(e);
     if (t)
       return [...t];
     const r = this._getSequenceArray(e);
     if (r.length === 0)
       return;
     const n = this.getSequenceNode(r);
-    return ms.set(e, [...n]), n;
+    return gs.set(e, [...n]), n;
   }
   convertRefersToAbsolute(e, t, r, n = "") {
     const s = this.sequenceNodesBuilder(e);
@@ -801,18 +801,18 @@ class ga extends Ne {
     e.substring(0, 1) === X.EQUALS && (o = X.EQUALS);
     for (let u = 0, c = s.length; u < c; u++) {
       const l = s[u];
-      if (typeof l != "string" && l.nodeType === $e.REFERENCE) {
-        const { token: f, endIndex: h } = l, d = _r(f);
+      if (typeof l != "string" && l.nodeType === Ye.REFERENCE) {
+        const { token: f, endIndex: h } = l, d = Er(f);
         if (d == null)
           continue;
-        const { range: _, sheetName: C, unitId: E } = d, b = {
-          ..._,
+        const { range: C, sheetName: _, unitId: E } = d, b = {
+          ...C,
           startAbsoluteRefType: t,
           endAbsoluteRefType: r
-        }, R = Ss({
+        }, R = js({
           range: b,
           unitId: E,
-          sheetName: C || n
+          sheetName: _ || n
         }), p = R.length - f.length;
         s[u] = {
           ...l,
@@ -820,12 +820,12 @@ class ga extends Ne {
           endIndex: h + p
         };
         for (let N = u + 1; N < c; N++) {
-          const M = s[N];
-          typeof M != "string" && (M.startIndex += p, M.endIndex += p);
+          const w = s[N];
+          typeof w != "string" && (w.startIndex += p, w.endIndex += p);
         }
       }
     }
-    return `${o}${ci(s)}`;
+    return `${o}${Ai(s)}`;
   }
   moveFormulaRefOffset(e, t, r, n = !1) {
     const s = this.sequenceNodesBuilder(e);
@@ -834,28 +834,28 @@ class ga extends Ne {
     const o = [];
     for (let u = 0, c = s.length; u < c; u++) {
       const l = s[u];
-      if (typeof l == "string" || l.nodeType !== $e.REFERENCE) {
+      if (typeof l == "string" || l.nodeType !== Ye.REFERENCE) {
         o.push(l);
         continue;
       }
-      const { token: f } = l, h = _r(f), { sheetName: d, unitId: _ } = h;
-      let C = h.range;
-      if (!n && C.startAbsoluteRefType === we.ALL && C.endAbsoluteRefType === we.ALL) {
+      const { token: f } = l, h = Er(f), { sheetName: d, unitId: C } = h;
+      let _ = h.range;
+      if (!n && _.startAbsoluteRefType === Se.ALL && _.endAbsoluteRefType === Se.ALL) {
         o.push(l);
         continue;
       } else
-        C = aa(C, t, r, n);
+        _ = ma(_, t, r, n);
       let E = "";
-      Ju(C) ? E = Ss({
-        range: C,
-        unitId: _,
+      lc(_) ? E = js({
+        range: _,
+        unitId: C,
         sheetName: d
       }) : E = m.REF, o.push({
         ...l,
         token: E
       });
     }
-    return `=${ci(o)}`;
+    return `=${Ai(o)}`;
   }
   /**
    * univer-pro/issues/1684
@@ -865,7 +865,7 @@ class ga extends Ne {
     if (this._currentLexerNode.getChildren().length === 0)
       return !0;
     const e = this._currentLexerNode.getChildren()[0];
-    return !!(e instanceof ae || xt.has(e) || ls.has(e) || e === Me.AT || e === K.COMMA || e === K.COLON || e === K.OPEN_BRACKET);
+    return !!(e instanceof ae || xt.has(e) || fs.has(e) || e === we.AT || e === K.COMMA || e === K.COLON || e === K.OPEN_BRACKET);
   }
   // eslint-disable-next-line complexity
   getSequenceNode(e) {
@@ -880,13 +880,13 @@ class ga extends Ne {
       let f = (u == null ? void 0 : u.segment) || "";
       const h = n - f.length;
       let d = n - 1;
-      const _ = n - 1;
-      if (n === s - 1 && this._isLastMergeString(l) && (f += l, d += 1), f === "" || sn.has(f)) {
+      const C = n - 1;
+      if (n === s - 1 && this._isLastMergeString(l) && (f += l, d += 1), f === "" || on.has(f)) {
         t.push(l);
         continue;
       }
-      const C = f.trim(), E = ao(C);
-      r === !0 && C[C.length - 1] === K.DOUBLE_QUOTATION && C[0] !== K.OPEN_BRACES ? (r = !1, this._processPushSequenceNode(t, $e.STRING, f, h, d, _)) : Br(E) && un(E) ? this._processPushSequenceNode(t, $e.REFERENCE, f, h, d, _) : qe.isStringNumber(C) ? this._processPushSequenceNode(t, $e.NUMBER, f, h, d, _) : C.length > 0 && this._processPushSequenceNode(t, $e.FUNCTION, f, h, d, _), (n !== s - 1 || !this._isLastMergeString(l)) && t.push(l);
+      const _ = f.trim(), E = _o(_);
+      r === !0 && _[_.length - 1] === K.DOUBLE_QUOTATION && _[0] !== K.OPEN_BRACES ? (r = !1, this._processPushSequenceNode(t, Ye.STRING, f, h, d, C)) : kr(E) && ln(E) ? this._processPushSequenceNode(t, Ye.REFERENCE, f, h, d, C) : Ke.isStringNumber(_) ? this._processPushSequenceNode(t, Ye.NUMBER, f, h, d, C) : _.length > 0 && this._processPushSequenceNode(t, Ye.FUNCTION, f, h, d, C), (n !== s - 1 || !this._isLastMergeString(l)) && t.push(l);
     }
     return this._mergeSequenceNodeReference(t);
   }
@@ -906,7 +906,7 @@ class ga extends Ne {
     return this._nodeMaker(e, void 0, t);
   }
   _isLastMergeString(e) {
-    return e === K.DOUBLE_QUOTATION || qe.isStringNumber(e) || !an(e);
+    return e === K.DOUBLE_QUOTATION || Ke.isStringNumber(e) || !un(e);
   }
   /**
    * Merge array and handle ref operations
@@ -919,14 +919,14 @@ class ga extends Ne {
       const s = e[n];
       if (typeof s == "string") {
         const o = e[n - 1];
-        if (s.trim() === K.CLOSE_BRACES && o != null && typeof o != "string" && o.nodeType === $e.FUNCTION && o.token.trim().substring(0, 1) === K.OPEN_BRACES) {
-          o.nodeType = $e.ARRAY, o.token += s, o.endIndex += s.length, n++;
+        if (s.trim() === K.CLOSE_BRACES && o != null && typeof o != "string" && o.nodeType === Ye.FUNCTION && o.token.trim().substring(0, 1) === K.OPEN_BRACES) {
+          o.nodeType = Ye.ARRAY, o.token += s, o.endIndex += s.length, n++;
           continue;
         }
         t.push(s);
       } else {
         const o = e[n + 1], u = e[n + 2];
-        o === K.COLON && typeof s != "string" && u != null && typeof u != "string" && un((s.token + o + u.token).trim()) && (s.nodeType = $e.REFERENCE, s.token += o + u.token, s.endIndex = u.endIndex, n += 2), t.push(s);
+        o === K.COLON && typeof s != "string" && u != null && typeof u != "string" && ln((s.token + o + u.token).trim()) && (s.nodeType = Ye.REFERENCE, s.token += o + u.token, s.endIndex = u.endIndex, n += 2), t.push(s);
       }
       n++;
     }
@@ -942,15 +942,15 @@ class ga extends Ne {
         const s = r.token.match(/^(\s*([-@+]\s*)+)(.*)$/);
         if (s) {
           const o = s[1], u = s[3];
-          if (un(u.trim())) {
+          if (ln(u.trim())) {
             const c = o.length, l = r.startIndex, f = r.startIndex + c - 1, h = {
-              nodeType: $e.NORMAL,
+              nodeType: Ye.NORMAL,
               // Use appropriate nodeType for operators
               token: o,
               startIndex: l,
               endIndex: f
             }, d = {
-              nodeType: $e.REFERENCE,
+              nodeType: Ye.REFERENCE,
               token: u,
               startIndex: f + 1,
               endIndex: r.endIndex
@@ -973,7 +973,7 @@ class ga extends Ne {
   }
   treeBuilder(e, t = !0, r, n) {
     if (t === !0) {
-      const h = hs.get(e), d = n == null ? void 0 : n(e);
+      const h = ms.get(e), d = n == null ? void 0 : n(e);
       if (h && !d)
         return h;
     }
@@ -984,8 +984,8 @@ class ga extends Ne {
       return o;
     let u = !1, c = "", l = [];
     if (r) {
-      const { hasDefinedName: h, sequenceString: d, definedNames: _ } = r(s);
-      u = h, c = d, l = _;
+      const { hasDefinedName: h, sequenceString: d, definedNames: C } = r(s);
+      u = h, c = d, l = C;
     }
     if (u && (this._resetCurrentLexerNode(), this._currentLexerNode.setToken(Tt), o = this._nodeMaker(`=${c}`), o === m.VALUE))
       return o;
@@ -993,7 +993,7 @@ class ga extends Ne {
     if (f && (this._currentLexerNode = f), t) {
       if (!this._suffixExpressionHandler(this._currentLexerNode))
         return m.VALUE;
-      hs.set(e, this._currentLexerNode);
+      ms.set(e, this._currentLexerNode);
     }
     return u && this._currentLexerNode.setDefinedNames(l), this._currentLexerNode;
   }
@@ -1022,10 +1022,10 @@ class ga extends Ne {
             const h = (u = s[s.length - 1]) == null ? void 0 : u.trim();
             if (!h || h === K.OPEN_BRACKET)
               break;
-            const d = sn.get(h), _ = sn.get(f);
-            if (d === void 0 || _ === void 0)
+            const d = on.get(h), C = on.get(f);
+            if (d === void 0 || C === void 0)
               break;
-            if (_ >= d)
+            if (C >= d)
               n.push(s.pop());
             else
               break;
@@ -1180,7 +1180,7 @@ class ga extends Ne {
     var r, n, s, o, u, c;
     const e = (r = this._currentLexerNode) == null ? void 0 : r.getParent();
     let t = !1;
-    if (e && e.getToken() === Cr) {
+    if (e && e.getToken() === Ar) {
       if ((n = e == null ? void 0 : e.getParent()) != null && n.getParent()) {
         const l = (o = (s = this._currentLexerNode.getParent()) == null ? void 0 : s.getParent()) == null ? void 0 : o.getParent();
         l && (this._currentLexerNode = l), t = !0;
@@ -1237,11 +1237,11 @@ class ga extends Ne {
    */
   _formulaErrorLastTokenCheck(e, t) {
     const r = this._findPreviousToken(e, t) || "", n = e.length - 1 === t;
-    if (!n && this._isOperatorToken(r) || n && Oc(r))
+    if (!n && this._isOperatorToken(r) || n && vc(r))
       return !0;
-    if (ls.has(r)) {
+    if (fs.has(r)) {
       const s = this._findSecondLastNonSpaceToken(e, t);
-      if (s == null || wc(s))
+      if (s == null || Bc(s))
         return !0;
     }
     return !1;
@@ -1298,20 +1298,20 @@ class ga extends Ne {
   }
   _checkSimilarErrorToken(e, t, r) {
     let n = t;
-    if (e !== et.POUND)
+    if (e !== tt.POUND)
       return !0;
     let s = r[++n];
     for (; s === " "; )
       s = r[++n];
-    return !!an(s);
+    return !!un(s);
   }
   _checkIfErrorObject(e, t) {
     return !!this._findErrorObject(e, t);
   }
   _findErrorObject(e, t) {
-    for (let r = 0; r < za.length; r++) {
-      const n = za[r], s = t.slice(e, e + n).join("").toUpperCase();
-      if (or.has(s))
+    for (let r = 0; r < oi.length; r++) {
+      const n = oi[r], s = t.slice(e, e + n).join("").toUpperCase();
+      if (cr.has(s))
         return s;
     }
   }
@@ -1328,7 +1328,7 @@ class ga extends Ne {
       const c = s[u];
       if (r === u)
         return [this._currentLexerNode, c];
-      if (c === et.POUND && this.isSingleQuotationClose() && this.isDoubleQuotationClose() && this.isBracesClose() && this.isSquareBracketClose() && this._checkIfErrorObject(u, s)) {
+      if (c === tt.POUND && this.isSingleQuotationClose() && this.isDoubleQuotationClose() && this.isBracesClose() && this.isSquareBracketClose() && this._checkIfErrorObject(u, s)) {
         const l = this._findErrorObject(u, s);
         if (l == null)
           return m.VALUE;
@@ -1351,7 +1351,7 @@ class ga extends Ne {
               return m.VALUE;
             this._addSequenceArray(t, c, u), u++, this._addSequenceArray(t, l, u), u++, this._closeBracket();
             continue;
-          } else l && this._newAndPushCurrentLexerNode(gt, u);
+          } else l && this._newAndPushCurrentLexerNode(dt, u);
         } else
           this._pushNodeToChildren(c), this._openBracket(
             0
@@ -1367,7 +1367,7 @@ class ga extends Ne {
           if (f && f === K.OPEN_BRACKET) {
             if (!this._setParentCurrentLexerNode() && u !== o - 1)
               return m.VALUE;
-            this._newAndPushCurrentLexerNode(Cr, u, !0), this._openLambda();
+            this._newAndPushCurrentLexerNode(Ar, u, !0), this._openLambda();
           } else if (!this._setAncestorCurrentLexerNode() && u !== o - 1)
             return m.VALUE;
         } else
@@ -1408,51 +1408,51 @@ class ga extends Ne {
         if (l === 1 || l == null) {
           if (this._pushNodeToChildren(this._segment), this._resetSegment(), !this._setParentCurrentLexerNode() && u !== o - 1 && l != null)
             return m.VALUE;
-          this._newAndPushCurrentLexerNode(gt, u);
+          this._newAndPushCurrentLexerNode(dt, u);
         } else {
           const f = new ae();
-          f.setToken(nl);
+          f.setToken(ml);
           const h = new ae();
-          h.setToken(gt), h.changeToParent(f);
+          h.setToken(dt), h.changeToParent(f);
           const d = this._currentLexerNode.getParent();
           if (d && d.getToken() === K.COLON) {
-            const _ = d.getParent();
-            if (!_)
+            const C = d.getParent();
+            if (!C)
               return m.VALUE;
-            d.changeToParent(h), _.setChildren([]), f.changeToParent(_);
+            d.changeToParent(h), C.setChildren([]), f.changeToParent(C);
           } else
             return m.VALUE;
           this._changeCurrentBracket(
             1
             /* FUNCTION */
-          ), this._pushNodeToChildren(this._segment), this._resetSegment(), this._currentLexerNode = f, this._newAndPushCurrentLexerNode(gt, u);
+          ), this._pushNodeToChildren(this._segment), this._resetSegment(), this._currentLexerNode = f, this._newAndPushCurrentLexerNode(dt, u);
         }
       } else if (c === K.COLON && this.isSingleQuotationClose() && this.isDoubleQuotationClose() && this.isBracesClose() && this.isSquareBracketClose()) {
         const l = new ae();
         l.setToken(c);
         const f = new ae();
-        f.setToken(gt), f.setParent(l);
+        f.setToken(dt), f.setParent(l);
         const h = new ae();
-        h.setToken(gt), h.setParent(l), l.getChildren().push(f, h);
-        let d = l, _ = 0;
+        h.setToken(dt), h.setParent(l), l.getChildren().push(f, h);
+        let d = l, C = 0;
         if (this._segmentCount() > 0) {
-          let C, E, b = 0;
+          let _, E, b = 0;
           const R = this._segment.trim(), p = R[0], N = R[1];
-          if (p === Me.MINUS && (C = new ae(), C.setToken(Me.MINUS), b++), (p === Me.AT || N === Me.AT) && (E = new ae(), E.setToken(Me.AT), C && (C.addChildren(E), E.setParent(C)), b++), b > 0 && (this._segment = R.slice(b)), _ = b, E)
+          if (p === we.MINUS && (_ = new ae(), _.setToken(we.MINUS), b++), (p === we.AT || N === we.AT) && (E = new ae(), E.setToken(we.AT), _ && (_.addChildren(E), E.setParent(_)), b++), b > 0 && (this._segment = R.slice(b)), C = b, E)
             if (E.addChildren(l), l.setParent(E), E.getParent()) {
-              const w = E.getParent();
-              w && (d = w);
+              const S = E.getParent();
+              S && (d = S);
             } else
               d = E;
-          else C && (d = C, C.addChildren(l), l.setParent(C));
-          const M = new ae();
-          M.setToken(this._segment), M.setParent(f), f.getChildren().push(M), this._resetSegment();
+          else _ && (d = _, _.addChildren(l), l.setParent(_));
+          const w = new ae();
+          w.setToken(this._segment), w.setParent(f), f.getChildren().push(w), this._resetSegment();
         } else {
-          const C = this._getLastChildCurrentLexerNode();
-          C && C.changeToParent(f);
+          const _ = this._getLastChildCurrentLexerNode();
+          _ && _.changeToParent(f);
         }
-        this._setCurrentLexerNode(d), this._currentLexerNode = h, this._openColon(_);
-      } else if (ls.has(c) && this._checkSimilarErrorToken(c, u, s) && this.isSingleQuotationClose() && this.isDoubleQuotationClose() && this.isSquareBracketClose() && this.isBracesClose()) {
+        this._setCurrentLexerNode(d), this._currentLexerNode = h, this._openColon(C);
+      } else if (fs.has(c) && this._checkSimilarErrorToken(c, u, s) && this.isSingleQuotationClose() && this.isDoubleQuotationClose() && this.isSquareBracketClose() && this.isBracesClose()) {
         this._pushNodeToChildren(this._segment);
         const l = new ae();
         l.setToken(c);
@@ -1513,52 +1513,64 @@ class ga extends Ne {
     });
   }
 }
-function il(i, a, e, t, r, n, s) {
-  const o = (s == null ? void 0 : s.f) || "", u = (s == null ? void 0 : s.si) || "", c = dt(o), l = Nt(u), f = i.getValue(r, n), h = (f == null ? void 0 : f.f) || "", d = (f == null ? void 0 : f.si) || "";
-  function _() {
-    var C;
-    if (dt(h) && Nt(d)) {
-      const E = (C = e == null ? void 0 : e[d]) == null ? void 0 : C.f;
+function Cl(i, a, e, t, r, n, s) {
+  const o = (s == null ? void 0 : s.f) || "", u = (s == null ? void 0 : s.si) || "", c = ct(o), l = Ct(u), f = i.getValue(r, n), h = (f == null ? void 0 : f.f) || "", d = (f == null ? void 0 : f.si) || "";
+  function C() {
+    var _;
+    if (ct(h) && Ct(d)) {
+      const E = (_ = e == null ? void 0 : e[d]) == null ? void 0 : _.f;
       E ? t.set(d, E) : t.set(d, h);
     }
   }
-  c && l ? (d !== u && _(), i.setValue(r, n, {
-    f: o,
-    si: u
-  }), e[u] = { f: o, r, c: n }, a.setValue(r, n, {
-    f: o,
-    si: u
-  })) : c && !l ? (h !== o && _(), i.setValue(r, n, {
-    f: o
-  }), a.setValue(r, n, {
-    f: o
-  })) : !c && l ? (d !== u && _(), i.setValue(r, n, {
-    f: "",
-    si: u
-  })) : !c && !l && i.getValue(r, n) && (_(), i.realDeleteValue(r, n), a.setValue(r, n, null));
+  if (c && l)
+    d !== u && C(), i.setValue(r, n, {
+      f: o,
+      si: u
+    }), e[u] = { f: o, r, c: n }, a.setValue(r, n, {
+      f: o,
+      si: u
+    });
+  else if (c && !l)
+    h !== o && C(), i.setValue(r, n, {
+      f: o
+    }), a.setValue(r, n, {
+      f: o
+    });
+  else if (!c && l) {
+    d !== u && C();
+    const _ = e[u];
+    if (_) {
+      const E = n - _.c, b = r - _.r;
+      i.setValue(r, n, { f: _.f, si: u, x: E, y: b }), a.setValue(r, n, { f: _.f, si: u, x: E, y: b });
+    } else
+      i.setValue(r, n, {
+        f: "",
+        si: u
+      });
+  } else !c && !l && i.getValue(r, n) && (C(), i.realDeleteValue(r, n), a.setValue(r, n, null));
 }
-function ol(i, a, e, t) {
+function _l(i, a, e, t) {
   const r = i == null ? void 0 : i.getValue(e, t);
   if (r == null)
     return !0;
   const n = [];
   i.forValue((l, f, h) => {
-    l === e && f === t || Za.intersects(h, r) && n.push(h);
+    l === e && f === t || ai.intersects(h, r) && n.push(h);
   });
   const { startRow: s, startColumn: o, endRow: u, endColumn: c } = r;
   for (let l = s; l <= u; l++)
     for (let f = o; f <= c; f++) {
       let h = !1;
-      const d = ec(l, f);
-      n.some((_) => Za.contains(_, d) ? (h = !0, !0) : !1), h || a.realDeleteValue(l, f);
+      const d = fc(l, f);
+      n.some((C) => ai.contains(C, d) ? (h = !0, !0) : !1), h || a.realDeleteValue(l, f);
     }
 }
-var ul = Object.getOwnPropertyDescriptor, cl = (i, a, e, t) => {
-  for (var r = t > 1 ? void 0 : t ? ul(a, e) : a, n = i.length - 1, s; n >= 0; n--)
+var Al = Object.getOwnPropertyDescriptor, El = (i, a, e, t) => {
+  for (var r = t > 1 ? void 0 : t ? Al(a, e) : a, n = i.length - 1, s; n >= 0; n--)
     (s = i[n]) && (r = s(r) || r);
   return r;
-}, li = (i, a) => (e, t) => a(e, t, i);
-let Ar = class extends Ne {
+}, Ei = (i, a) => (e, t) => a(e, t, i);
+let br = class extends Ve {
   constructor(a, e) {
     super();
     A(this, "_arrayFormulaRange", {});
@@ -1582,15 +1594,15 @@ let Ar = class extends Ne {
         let u = new Ce();
         ((f = this._arrayFormulaCellData[e]) == null ? void 0 : f[r]) != null && (u = new Ce(
           (h = this._arrayFormulaCellData[e]) == null ? void 0 : h[r]
-        )), n.forValue((d, _) => {
-          const C = o.getValue(d, _);
-          if (C == null)
+        )), n.forValue((d, C) => {
+          const _ = o.getValue(d, C);
+          if (_ == null)
             return !0;
-          const { startRow: E, startColumn: b, endRow: R, endColumn: p } = C;
+          const { startRow: E, startColumn: b, endRow: R, endColumn: p } = _;
           for (let N = E; N <= R; N++)
-            for (let M = b; M <= p; M++)
-              u.setValue(N, M, null);
-          o.realDeleteValue(d, _);
+            for (let w = b; w <= p; w++)
+              u.setValue(N, w, null);
+          o.realDeleteValue(d, C);
         }), this._arrayFormulaCellData[e] && (this._arrayFormulaCellData[e][r] = u.getData());
       });
     });
@@ -1607,9 +1619,9 @@ let Ar = class extends Ne {
           const h = s == null ? void 0 : s.getValue(l, f);
           if (h == null)
             return !0;
-          const { startRow: d, startColumn: _, endRow: C, endColumn: E } = h;
-          for (let b = d; b <= C; b++)
-            for (let R = _; R <= E; R++)
+          const { startRow: d, startColumn: C, endRow: _, endColumn: E } = h;
+          for (let b = d; b <= _; b++)
+            for (let R = C; R <= E; R++)
               o.setValue(b, R, null);
         }), n.forValue((l, f, h) => {
           o.setValue(l, f, h);
@@ -1618,12 +1630,12 @@ let Ar = class extends Ne {
     });
   }
   getFormulaData() {
-    const a = {}, e = this._univerInstanceService.getAllUnitsForType(hr.UNIVER_SHEET);
+    const a = {}, e = this._univerInstanceService.getAllUnitsForType(gr.UNIVER_SHEET);
     return e.length === 0 || e.forEach((t) => {
       const r = t.getUnitId();
       a[r] = {}, t.getSheets().forEach((s) => {
         const o = s.getCellMatrix(), u = s.getSheetId();
-        fi(a, r, u, o);
+        bi(a, r, u, o);
       });
     }), a;
   }
@@ -1636,7 +1648,7 @@ let Ar = class extends Ne {
     if (n == null)
       return {};
     const s = n.getCellMatrix();
-    return fi(t, a, e, s), t[a][e];
+    return bi(t, a, e, s), t[a][e];
   }
   getArrayFormulaRange() {
     return this._arrayFormulaRange;
@@ -1673,7 +1685,7 @@ let Ar = class extends Ne {
     s.getValue(t, r) && (s.realDeleteValue(t, r), this._arrayFormulaRange[a] && (this._arrayFormulaRange[a][e] = s.getData()));
   }
   getCalculateData() {
-    const a = this._univerInstanceService.getAllUnitsForType(hr.UNIVER_SHEET), e = {}, t = {}, r = {};
+    const a = this._univerInstanceService.getAllUnitsForType(gr.UNIVER_SHEET), e = {}, t = {}, r = {};
     for (const n of a) {
       const s = n.getUnitId(), o = n.getSheets(), u = {}, c = {};
       for (const l of o) {
@@ -1702,7 +1714,7 @@ let Ar = class extends Ne {
    * For formulas that are sensitive to hidden rows.
    */
   getHiddenRowsFiltered() {
-    const a = this._univerInstanceService.getAllUnitsForType(hr.UNIVER_SHEET), e = {};
+    const a = this._univerInstanceService.getAllUnitsForType(gr.UNIVER_SHEET), e = {};
     for (const t of a) {
       const r = t.getUnitId(), n = t.getSheets();
       e[r] = {};
@@ -1712,7 +1724,7 @@ let Ar = class extends Ne {
         const u = 0, c = s.getRowCount() - 1, l = {};
         for (let f = u; f <= c; f++)
           s.getRowVisible(f) || (l[f] = {
-            hd: qi.TRUE
+            hd: ao.TRUE
           });
         e[r][o] = l;
       }
@@ -1720,29 +1732,35 @@ let Ar = class extends Ne {
     return e;
   }
   updateFormulaData(a, e, t) {
-    const r = new Ce(t), n = this._getSheetFormulaIdMap(a, e), s = /* @__PURE__ */ new Map(), o = this.getFormulaData();
-    o[a] == null && (o[a] = {});
-    const u = o[a];
-    u[e] == null && (u[e] = {});
-    const c = new Ce(u[e] || {}), l = new Ce();
-    return r.forValue((f, h, d) => {
-      il(c, l, n, s, f, h, d);
-    }), c.forValue((f, h, d) => {
-      const _ = (d == null ? void 0 : d.f) || "", C = (d == null ? void 0 : d.si) || "";
-      if (Nt(C)) {
-        const E = n == null ? void 0 : n[C], b = s.get(C);
-        if (E && !dt(_)) {
-          const R = E.f, p = h - E.c, N = f - E.r;
-          c.setValue(f, h, { f: R, si: C, x: p, y: N }), l.setValue(f, h, { f: R, si: C, x: p, y: N });
-        } else if (typeof b == "string") {
-          const R = (d == null ? void 0 : d.x) || 0, p = (d == null ? void 0 : d.y) || 0, N = this._lexerTreeBuilder.moveFormulaRefOffset(b, R, p);
-          s.set(C, { r: f, c: h, f: N }), c.setValue(f, h, { f: N, si: C }), l.setValue(f, h, { f: N, si: C });
-        } else if (typeof b == "object") {
-          const R = h - b.c, p = f - b.r;
-          c.setValue(f, h, { f: b.f, si: C, x: R, y: p }), l.setValue(f, h, { f: b.f, si: C, x: R, y: p });
+    const r = new Ce(t);
+    let n = !1;
+    r.forValue((h, d, C) => {
+      if (C && (ct(C.f) || Ct(C.si)))
+        return n = !0, !1;
+    });
+    const s = this._getSheetFormulaIdMap(a, e), o = /* @__PURE__ */ new Map(), u = this.getFormulaData();
+    u[a] == null && (u[a] = {});
+    const c = u[a];
+    c[e] == null && (c[e] = {});
+    const l = new Ce(c[e] || {}), f = new Ce();
+    return r.forValue((h, d, C) => {
+      Cl(l, f, s, o, h, d, C);
+    }), !n && o.size === 0 || l.forValue((h, d, C) => {
+      const _ = (C == null ? void 0 : C.f) || "", E = (C == null ? void 0 : C.si) || "";
+      if (Ct(E)) {
+        const b = s == null ? void 0 : s[E], R = o.get(E);
+        if (b && !ct(_)) {
+          const p = b.f, N = d - b.c, w = h - b.r;
+          l.setValue(h, d, { f: p, si: E, x: N, y: w }), r.getValue(h, d) !== void 0 && f.setValue(h, d, { f: p, si: E, x: N, y: w });
+        } else if (typeof R == "string") {
+          const p = (C == null ? void 0 : C.x) || 0, N = (C == null ? void 0 : C.y) || 0, w = this._lexerTreeBuilder.moveFormulaRefOffset(R, p, N);
+          o.set(E, { r: h, c: d, f: w }), l.setValue(h, d, { f: w, si: E }), f.setValue(h, d, { f: w, si: E });
+        } else if (typeof R == "object") {
+          const p = d - R.c, N = h - R.r;
+          l.setValue(h, d, { f: R.f, si: E, x: p, y: N }), f.setValue(h, d, { f: R.f, si: E, x: p, y: N });
         }
       }
-    }), l.getMatrix();
+    }), f.getMatrix();
   }
   updateArrayFormulaRange(a, e, t) {
     var o;
@@ -1761,7 +1779,7 @@ let Ar = class extends Ne {
     if (!s) return;
     const o = new Ce(s);
     new Ce(t).forValue((f, h, d) => {
-      ol(n, o, f, h);
+      _l(n, o, f, h);
     });
   }
   getFormulaStringByCell(a, e, t, r) {
@@ -1775,17 +1793,17 @@ let Ar = class extends Ne {
     if (u == null)
       return null;
     const { f: c, si: l } = u;
-    if (dt(c))
+    if (ct(c))
       return c;
-    if (Nt(l)) {
+    if (Ct(l)) {
       let f = null;
-      return o.forValue((h, d, _) => {
-        if (_ == null)
+      return o.forValue((h, d, C) => {
+        if (C == null)
           return !0;
-        const { f: C, si: E } = _;
-        if (dt(C) && l === E)
+        const { f: _, si: E } = C;
+        if (ct(_) && l === E)
           return f = this._lexerTreeBuilder.moveFormulaRefOffset(
-            C,
+            _,
             e - d,
             a - h
           ), !1;
@@ -1813,8 +1831,8 @@ let Ar = class extends Ne {
           for (const l of Object.keys(o)) {
             const f = Number(l);
             for (const h in o[f]) {
-              const d = Number(h), _ = u.getCellRaw(f, d), C = dt(_ == null ? void 0 : _.f) || Nt(_ == null ? void 0 : _.si), E = (_ == null ? void 0 : _.v) === void 0;
-              if (!(C && E)) continue;
+              const d = Number(h), C = u.getCellRaw(f, d), _ = ct(C == null ? void 0 : C.f) || Ct(C == null ? void 0 : C.si), E = (C == null ? void 0 : C.v) === void 0;
+              if (!(_ && E)) continue;
               c[d] || (c[d] = []);
               const b = c[d].slice(-1)[0];
               b && b.endRow === f - 1 ? b.endRow = f : c[d].push({ startRow: f, endRow: f });
@@ -1828,7 +1846,7 @@ let Ar = class extends Ne {
                 unitId: t,
                 sheetId: s,
                 range: {
-                  rangeType: Je.NORMAL,
+                  rangeType: et.NORMAL,
                   startRow: d.startRow,
                   endRow: d.endRow,
                   // Use endRow as the inclusive end row
@@ -1851,19 +1869,19 @@ let Ar = class extends Ne {
       if (c == null)
         return !0;
       const { f: l, si: f } = c;
-      dt(l) && Nt(f) && (t[f] = { f: l, r: o, c: u });
+      ct(l) && Ct(f) && (t[f] = { f: l, r: o, c: u });
     }), t;
   }
 };
-Ar = cl([
-  li(0, Yn),
-  li(1, ye(ga))
-], Ar);
-function fi(i, a, e, t) {
+br = El([
+  Ei(0, Hn),
+  Ei(1, ye(Ra))
+], br);
+function bi(i, a, e, t) {
   i[a] || (i[a] = {}), i[a][e] || (i[a][e] = {});
   const r = /* @__PURE__ */ new Map(), n = new Ce(i[a][e]);
   t.forValue((o, u, c) => {
-    const l = (c == null ? void 0 : c.f) || "", f = (c == null ? void 0 : c.si) || "", h = dt(l), d = Nt(f);
+    const l = (c == null ? void 0 : c.f) || "", f = (c == null ? void 0 : c.si) || "", h = ct(l), d = Ct(f);
     h && d ? (n.setValue(o, u, {
       f: l,
       si: f
@@ -1875,11 +1893,11 @@ function fi(i, a, e, t) {
     });
   }), n.forValue((o, u, c) => {
     const l = (c == null ? void 0 : c.f) || "", f = (c == null ? void 0 : c.si) || "";
-    if (Nt(f) && !dt(l)) {
+    if (Ct(f) && !ct(l)) {
       const h = r.get(f);
       if (h) {
-        const d = h.f, _ = u - h.c, C = o - h.r;
-        n.setValue(o, u, { f: d, si: f, x: _, y: C });
+        const d = h.f, C = u - h.c, _ = o - h.r;
+        n.setValue(o, u, { f: d, si: f, x: C, y: _ });
       } else
         n.realDeleteValue(o, u);
     }
@@ -1891,7 +1909,7 @@ function fi(i, a, e, t) {
     }
   };
 }
-const ll = class js {
+const bl = class Is {
   /**
    * Accept two comparable values and creates new instance of interval
    * Predicate Interval.comparable_less(low, high) supposed to return true on these values
@@ -1906,7 +1924,7 @@ const ll = class js {
    * @returns {Interval}
    */
   clone() {
-    return new js(this.low, this.high);
+    return new Is(this.low, this.high);
   }
   /**
    * Propery max returns clone of this interval
@@ -1953,7 +1971,7 @@ const ll = class js {
    * @returns {Interval}
    */
   merge(a) {
-    return new js(
+    return new Is(
       this.low === void 0 ? a.low : this.low < a.low ? this.low : a.low,
       this.high === void 0 ? a.high : this.high > a.high ? this.high : a.high
     );
@@ -1987,7 +2005,7 @@ class Wt {
   constructor(a = void 0, e = void 0, t = null, r = null, n = null, s = Ae) {
     if (this.left = t, this.right = r, this.parent = n, this.color = s, this.item = { key: a, value: e }, a && a instanceof Array && a.length === 2 && !Number.isNaN(a[0]) && !Number.isNaN(a[1])) {
       let [o, u] = a;
-      o > u && ([o, u] = [u, o]), this.item.key = new ll(o, u);
+      o > u && ([o, u] = [u, o]), this.item.key = new bl(o, u);
     }
     this.max = this.item.key ? this.item.key.max : void 0;
   }
@@ -2035,7 +2053,7 @@ class Wt {
     return e(a.item.key.high, t);
   }
 }
-class da {
+class pa {
   /**
    * Construct new empty instance of IntervalTree
    */
@@ -2156,7 +2174,7 @@ class da {
    * @param callback(value,key) - function to be called for each tree item
    */
   map(a) {
-    const e = new da();
+    const e = new pa();
     return this.tree_walk(this.root, (t) => e.insert(t.item.key, a(t.item.value, t.item.key))), e;
   }
   /**
@@ -2279,7 +2297,7 @@ class da {
     return e += t, e;
   }
 }
-class fl {
+class yl {
   constructor() {
     /**
      * {
@@ -2332,7 +2350,7 @@ class fl {
     o == null && (o = /* @__PURE__ */ new Map(), s.set(e, o));
     let u = o.get(t);
     if (u == null) {
-      u = new da(), u.insert([r, n]), o.set(t, u);
+      u = new pa(), u.insert([r, n]), o.set(t, u);
       return;
     }
     this._handleNewInterval(u, r, n);
@@ -2358,23 +2376,23 @@ class fl {
         rowsInCache: [],
         rowsNotInCache: []
       };
-    o.sort((d, _) => d[0] - _[0]);
+    o.sort((d, C) => d[0] - C[0]);
     const u = [], c = [];
     let l = r;
     for (let d = 0; d < o.length; d++) {
-      const [_, C] = o[d];
-      if (l >= _) {
-        if (n <= C) {
+      const [C, _] = o[d];
+      if (l >= C) {
+        if (n <= _) {
           u.push([l, n]);
           break;
         }
-        u.push([l, C]), l = C + 1, d === o.length - 1 && l <= n && c.push([l, n]);
+        u.push([l, _]), l = _ + 1, d === o.length - 1 && l <= n && c.push([l, n]);
       } else {
-        if (n > C) {
-          u.push([_, C]), c.push([l, _ - 1]), l = C + 1, d === o.length - 1 && l <= n && c.push([l, n]);
+        if (n > _) {
+          u.push([C, _]), c.push([l, C - 1]), l = _ + 1, d === o.length - 1 && l <= n && c.push([l, n]);
           continue;
         }
-        u.push([_, n]), c.push([l, _ - 1]);
+        u.push([C, n]), c.push([l, C - 1]);
       }
     }
     return {
@@ -2400,8 +2418,8 @@ class fl {
     a.insert([n, s]);
   }
 }
-const We = new fl(), Ca = "engine-formula.config", Co = 1, ey = "CYCLE_REFERENCE_COUNT", hi = {};
-class hl extends Ne {
+const He = new yl(), Na = "engine-formula.config", wo = 1, hy = "CYCLE_REFERENCE_COUNT", yi = {};
+class Rl extends Ve {
   constructor() {
     super(...arguments);
     A(this, "_getRowFilteredCallback");
@@ -2414,15 +2432,15 @@ class hl extends Ne {
     return this._getRowFilteredCallback && (n = this._getRowFilteredCallback(e, t, r)) != null ? n : !1;
   }
 }
-const _o = Ze(
+const So = ze(
   "univer.formula.sheet-row-filtered.service"
 );
-var ml = Object.getOwnPropertyDescriptor, gl = (i, a, e, t) => {
-  for (var r = t > 1 ? void 0 : t ? ml(a, e) : a, n = i.length - 1, s; n >= 0; n--)
+var pl = Object.getOwnPropertyDescriptor, Nl = (i, a, e, t) => {
+  for (var r = t > 1 ? void 0 : t ? pl(a, e) : a, n = i.length - 1, s; n >= 0; n--)
     (s = i[n]) && (r = s(r) || r);
   return r;
-}, Xr = (i, a) => (e, t) => a(e, t, i);
-let Us = class extends Ne {
+}, zr = (i, a) => (e, t) => a(e, t, i);
+let Fs = class extends Ve {
   constructor(a, e, t, r) {
     super();
     A(this, "_unitData", {});
@@ -2508,7 +2526,7 @@ let Us = class extends Ne {
     return this._localeService.getCurrentLocale();
   }
   getSheetsInfo() {
-    const a = this._univerInstanceService.getCurrentUnitForType(hr.UNIVER_SHEET), { id: e, sheetOrder: t } = a.getSnapshot();
+    const a = this._univerInstanceService.getCurrentUnitForType(gr.UNIVER_SHEET), { id: e, sheetOrder: t } = a.getSnapshot();
     return {
       sheetOrder: t,
       sheetNameMap: this._sheetIdToNameMap[e]
@@ -2534,7 +2552,7 @@ let Us = class extends Ne {
       const { allUnitData: e, unitSheetNameMap: t, unitStylesData: r } = this._loadSheetData();
       this._unitData = e, this._unitStylesData = r, this._sheetNameMap = t;
     }
-    a.rowData && this._applyUnitRowData(a.rowData), this._formulaData = a.formulaData, this._arrayFormulaCellData = Ic(a.arrayFormulaCellData), this._arrayFormulaRange = a.arrayFormulaRange, this._forceCalculate = a.forceCalculate, this._clearDependencyTreeCache = a.clearDependencyTreeCache || {}, this._dirtyRanges = a.dirtyRanges, this._dirtyNameMap = a.dirtyNameMap, this._dirtyDefinedNameMap = a.dirtyDefinedNameMap, this._dirtyUnitFeatureMap = a.dirtyUnitFeatureMap, this._dirtyUnitOtherFormulaMap = a.dirtyUnitOtherFormulaMap, this._excludedCell = a.excludedCell, this._mergeNameMap(this._sheetNameMap, this._dirtyNameMap);
+    a.rowData && this._applyUnitRowData(a.rowData), this._formulaData = a.formulaData, this._arrayFormulaCellData = Kc(a.arrayFormulaCellData), this._arrayFormulaRange = a.arrayFormulaRange, this._forceCalculate = a.forceCalculate, this._clearDependencyTreeCache = a.clearDependencyTreeCache || {}, this._dirtyRanges = a.dirtyRanges, this._dirtyNameMap = a.dirtyNameMap, this._dirtyDefinedNameMap = a.dirtyDefinedNameMap, this._dirtyUnitFeatureMap = a.dirtyUnitFeatureMap, this._dirtyUnitOtherFormulaMap = a.dirtyUnitOtherFormulaMap, this._excludedCell = a.excludedCell, this._mergeNameMap(this._sheetNameMap, this._dirtyNameMap);
   }
   getDirtyData() {
     return {
@@ -2625,7 +2643,7 @@ let Us = class extends Ne {
     });
   }
   _loadSheetData() {
-    const a = this._univerInstanceService.getCurrentUnitForType(hr.UNIVER_SHEET), e = a == null ? void 0 : a.getActiveSheet();
+    const a = this._univerInstanceService.getCurrentUnitForType(gr.UNIVER_SHEET), e = a == null ? void 0 : a.getActiveSheet();
     return this._executeUnitId = a == null ? void 0 : a.getUnitId(), this._executeSubUnitId = e == null ? void 0 : e.getSheetId(), this._formulaDataModel.getCalculateData();
   }
   /**
@@ -2645,21 +2663,21 @@ let Us = class extends Ne {
           }), this._unitData[e][t].rowData = a[e][t]);
   }
 };
-Us = gl([
-  Xr(0, Yn),
-  Xr(1, ye(tc)),
-  Xr(2, ye(Ar)),
-  Xr(3, ye(_o))
-], Us);
-const Yt = Ze(
+Fs = Nl([
+  zr(0, Hn),
+  zr(1, ye(hc)),
+  zr(2, ye(br)),
+  zr(3, ye(So))
+], Fs);
+const Yt = ze(
   "univer.formula.current-data.service"
 );
-var dl = Object.getOwnPropertyDescriptor, Cl = (i, a, e, t) => {
-  for (var r = t > 1 ? void 0 : t ? dl(a, e) : a, n = i.length - 1, s; n >= 0; n--)
+var Vl = Object.getOwnPropertyDescriptor, Ol = (i, a, e, t) => {
+  for (var r = t > 1 ? void 0 : t ? Vl(a, e) : a, n = i.length - 1, s; n >= 0; n--)
     (s = i[n]) && (r = s(r) || r);
   return r;
-}, gs = (i, a) => (e, t) => a(e, t, i);
-let Er = class extends Ne {
+}, ds = (i, a) => (e, t) => a(e, t, i);
+let yr = class extends Ve {
   constructor(i, a, e) {
     super(), this._definedNamesService = i, this._lexerTreeBuilder = a, this._formulaCurrentConfigService = e;
   }
@@ -2706,7 +2724,7 @@ let Er = class extends Ne {
         continue;
       }
       const { nodeType: c, token: l } = u;
-      if (c === $e.REFERENCE || c === $e.FUNCTION) {
+      if (c === Ye.REFERENCE || c === Ye.FUNCTION) {
         const f = this._definedNamesService.getValueByName(a, l);
         if (f) {
           let h = f.formulaOrRefString;
@@ -2722,18 +2740,18 @@ let Er = class extends Ne {
     };
   }
 };
-Er = Cl([
-  gs(0, Or),
-  gs(1, ye(ga)),
-  gs(2, Yt)
-], Er);
-function cn(i) {
+yr = Ol([
+  ds(0, Sr),
+  ds(1, ye(Ra)),
+  ds(2, Yt)
+], yr);
+function fn(i) {
   if (i == null)
     return !0;
   const { v: a, f: e, si: t, p: r } = i;
   return !(!(a == null || typeof a == "string" && a.length === 0) || e != null && e.length > 0 || t != null && t.length > 0 || r != null);
 }
-function Ao(i, a, e, t, r) {
+function Mo(i, a, e, t, r) {
   var s;
   const n = Object.keys(r);
   for (const o of n) {
@@ -2745,7 +2763,7 @@ function Ao(i, a, e, t, r) {
       return l;
   }
 }
-const _l = [
+const wl = [
   "$",
   "£",
   "¥",
@@ -2773,7 +2791,7 @@ const _l = [
   "₽",
   "₾",
   "₿"
-], Al = {
+], Sl = {
   currency: 2,
   date: 4,
   datetime: 5,
@@ -2789,7 +2807,7 @@ const _l = [
   unknown: 11
   /* Custom */
 };
-function ty(i, a, e) {
+function my(i, a, e) {
   var u, c;
   if (i == null || a == null)
     return a;
@@ -2802,82 +2820,82 @@ function ty(i, a, e) {
   const o = n || s;
   return r.n.pattern = o, a;
 }
-const vs = new wt(1e5);
-function mi(i) {
-  const a = vs.get(i);
+const ks = new St(1e5);
+function Ri(i) {
+  const a = ks.get(i);
   if (a !== void 0)
     return a;
-  const e = bl(i);
-  return vs.set(i, e), e;
+  const e = Dl(i);
+  return ks.set(i, e), e;
 }
-function El() {
-  vs.clear();
+function Ml() {
+  ks.clear();
 }
-function bl(i) {
-  if (yl(i))
+function Dl(i) {
+  if (Ll(i))
     return 3;
-  const a = At.getFormatInfo(i).type || "unknown";
-  return Al[a];
+  const a = Et.getFormatInfo(i).type || "unknown";
+  return Sl[a];
 }
-function yl(i) {
-  return !!_l.find((a) => i.includes(a)) && i.startsWith("_(");
+function Ll(i) {
+  return !!wl.find((a) => i.includes(a)) && i.startsWith("_(");
 }
-function Zr(i, a, e) {
+function Jr(i, a, e) {
   if (i === "")
     return a;
   if (a === "")
     return i;
-  const t = mi(i), r = mi(a);
+  const t = Ri(i), r = Ri(a);
   return e === X.PLUS || e === X.MINUS ? t === 4 && r === 4 || t === 11 && r === 11 ? "" : a : e === X.MULTIPLY || e === X.DIVIDED ? t === 6 && r === 6 || t === 7 && r === 7 || t === 8 && r === 8 || t === 9 && r === 9 ? a : "" : i || a;
 }
-const Rl = /* @__PURE__ */ new Map([
-  [mt.EN_US, "$"],
-  [mt.RU_RU, "₽"],
-  [mt.VI_VN, "₫"],
-  [mt.ZH_CN, "¥"],
-  [mt.ZH_TW, "NT$"],
-  [mt.FR_FR, "€"],
-  [mt.FA_IR, "﷼"],
-  [mt.KO_KR, "₩"],
-  [mt.ES_ES, "€"],
-  [mt.CA_ES, "€"]
+const Pl = /* @__PURE__ */ new Map([
+  [gt.EN_US, "$"],
+  [gt.RU_RU, "₽"],
+  [gt.VI_VN, "₫"],
+  [gt.ZH_CN, "¥"],
+  [gt.ZH_TW, "NT$"],
+  [gt.FR_FR, "€"],
+  [gt.FA_IR, "﷼"],
+  [gt.KO_KR, "₩"],
+  [gt.ES_ES, "€"],
+  [gt.CA_ES, "€"]
 ]);
-function gi(i) {
-  return Rl.get(i) || "$";
+function pi(i) {
+  return Pl.get(i) || "$";
 }
-function ze(i, a = 2) {
+function Je(i, a = 2) {
   let e = a;
   a > 127 && (e = 127);
   let t = "";
-  return e > 0 && (t = `.${"0".repeat(e)}`), `"${gi(i)}"#,##0${t}_);[Red]("${gi(i)}"#,##0${t})`;
+  return e > 0 && (t = `.${"0".repeat(e)}`), `"${pi(i)}"#,##0${t}_);[Red]("${pi(i)}"#,##0${t})`;
 }
-function pl(i, a, e = 2) {
-  return At.format(ze(i, e), a);
+function xl(i, a, e = 2) {
+  return Et.format(Je(i, e), a);
 }
-const _a = new wt(1e5);
-function Vl(i) {
+const Va = new St(1e5);
+function jl(i) {
   let a = i;
   a.startsWith('"') && a.endsWith('"') && (a = a.slice(1, -1));
-  const e = _a.get(a);
+  const e = Va.get(a);
   if (e)
     return {
       isNumberPattern: !0,
       value: e.value,
       pattern: e.pattern
     };
-  const t = At.parseNumber(a);
+  const t = Et.parseNumber(a);
   if (t && t.z)
-    return ds(a, t.v, t.z);
-  const r = At.parseDate(a);
+    return Cs(a, t.v, t.z);
+  const r = Et.parseDate(a);
   if (r && r.z)
-    return ds(a, r.v, r.z);
-  const n = At.parseTime(a);
-  return n && n.z ? ds(a, n.v, n.z) : {
+    return Cs(a, r.v, r.z);
+  const n = Et.parseTime(a);
+  return n && n.z ? Cs(a, n.v, n.z) : {
     isNumberPattern: !1
   };
 }
-function ds(i, a, e) {
-  return _a.set(i, {
+function Cs(i, a, e) {
+  return Va.set(i, {
     value: a,
     pattern: e
   }), {
@@ -2886,10 +2904,10 @@ function ds(i, a, e) {
     pattern: e
   };
 }
-function Nl() {
-  _a.clear();
+function Ul() {
+  Va.clear();
 }
-class Hn {
+class Qn {
   constructor() {
     A(this, "pattern", "");
   }
@@ -2927,7 +2945,7 @@ class Hn {
     return !1;
   }
 }
-class Ht extends Hn {
+class Ht extends Qn {
   constructor(e) {
     super();
     A(this, "_customData");
@@ -3047,22 +3065,22 @@ class Ht extends Hn {
     return g.create(m.NAME);
   }
   isEqual(e) {
-    return this.compare(e, k.EQUALS);
+    return this.compare(e, U.EQUALS);
   }
   isNotEqual(e) {
-    return this.compare(e, k.NOT_EQUAL);
+    return this.compare(e, U.NOT_EQUAL);
   }
   isGreaterThanOrEqual(e) {
-    return this.compare(e, k.GREATER_THAN_OR_EQUAL);
+    return this.compare(e, U.GREATER_THAN_OR_EQUAL);
   }
   isLessThanOrEqual(e) {
-    return this.compare(e, k.LESS_THAN_OR_EQUAL);
+    return this.compare(e, U.LESS_THAN_OR_EQUAL);
   }
   isLessThan(e) {
-    return this.compare(e, k.LESS_THAN);
+    return this.compare(e, U.LESS_THAN);
   }
   isGreaterThan(e) {
-    return this.compare(e, k.GREATER_THAN);
+    return this.compare(e, U.GREATER_THAN);
   }
   concatenateFront(e) {
     return g.create(m.NAME);
@@ -3088,15 +3106,15 @@ class Ht extends Hn {
   compareBy(e, t) {
     return g.create(m.NAME);
   }
-  concatenate(e, t = ct.FRONT) {
+  concatenate(e, t = lt.FRONT) {
     let r = this.getValue().toString();
     if (typeof e == "string")
-      t === ct.FRONT ? r = e + r : r += e;
+      t === lt.FRONT ? r = e + r : r += e;
     else if (typeof e == "number")
-      t === ct.FRONT ? r = e.toString() + r : r += e.toString();
+      t === lt.FRONT ? r = e.toString() + r : r += e.toString();
     else if (typeof e == "boolean") {
       const n = e ? "TRUE" : "FALSE";
-      t === ct.FRONT ? r = n + r : r += n;
+      t === lt.FRONT ? r = n + r : r += n;
     }
     return r;
   }
@@ -3225,17 +3243,17 @@ class Ht extends Hn {
     return g.create(m.VALUE);
   }
 }
-const Ol = 1e3, Ts = new wt(Ol);
+const vl = 1e3, $s = new St(vl);
 class g extends Ht {
   constructor(a, e = "") {
     super(a), this._errorType = a, this._errorContent = e;
   }
   static create(a, e = "") {
-    const t = `${a}-${e}`, r = Ts.get(t);
+    const t = `${a}-${e}`, r = $s.get(t);
     if (r)
       return r;
     const n = new g(a, e);
-    return Ts.set(t, n), n;
+    return $s.set(t, n), n;
   }
   getValue() {
     return this._errorType;
@@ -3253,7 +3271,7 @@ class g extends Ht {
     return !0;
   }
 }
-function Ml(i) {
+function Tl(i) {
   var a;
   if (i === null)
     return 0;
@@ -3262,51 +3280,51 @@ function Ml(i) {
     if (e == null)
       return 0;
     const t = e.dataStream;
-    return rc.transform.getPlainText(t);
+    return mc.transform.getPlainText(t);
   }
   return (a = i == null ? void 0 : i.v) != null ? a : 0;
 }
-function ry(i, a = !1) {
-  return !a && !(dt(i == null ? void 0 : i.f) || Nt(i == null ? void 0 : i.si)) ? null : typeof (i == null ? void 0 : i.v) == "string" && or.has(i.v) ? i.v : null;
+function gy(i, a = !1) {
+  return !a && !(ct(i == null ? void 0 : i.f) || Ct(i == null ? void 0 : i.si)) ? null : typeof (i == null ? void 0 : i.v) == "string" && cr.has(i.v) ? i.v : null;
 }
-var Kt = /* @__PURE__ */ ((i) => (i[i.MIN = 0] = "MIN", i[i.MAX = 1] = "MAX", i))(Kt || {}), Le = /* @__PURE__ */ ((i) => (i[i.NORMAL = 0] = "NORMAL", i[i.MIN = 1] = "MIN", i[i.MAX = 2] = "MAX", i))(Le || {});
-function An() {
+var Xt = /* @__PURE__ */ ((i) => (i[i.MIN = 0] = "MIN", i[i.MAX = 1] = "MAX", i))(Xt || {}), Le = /* @__PURE__ */ ((i) => (i[i.NORMAL = 0] = "NORMAL", i[i.MIN = 1] = "MIN", i[i.MAX = 2] = "MAX", i))(Le || {});
+function bn() {
   return Intl && Intl.Collator ? new Intl.Collator(void 0, { numeric: !1 }).compare : (i, a) => i.localeCompare(a);
 }
-function wl(i) {
+function Bl(i) {
   return i.indexOf("*") > -1 || i.indexOf("?") > -1;
 }
-function Cs(i, a) {
-  const e = Dl(a).replace(/~?[*?]/g, (r) => r.startsWith("~") ? `\\${r.substring(1)}` : r === "*" ? ".*" : r === "?" ? "." : r);
+function _s(i, a) {
+  const e = Fl(a).replace(/~?[*?]/g, (r) => r.startsWith("~") ? `\\${r.substring(1)}` : r === "*" ? ".*" : r === "?" ? "." : r);
   return new RegExp(`^${e}$`).test(i);
 }
-function di(i) {
+function Ni(i) {
   return i.replace(/~?[*?]/g, (a) => a.startsWith("~") ? a.substring(1) : " ");
 }
-function Sl(i, a, e) {
+function Il(i, a, e) {
   let t = !1;
   switch (e) {
-    case k.EQUALS:
-      t = Cs(i, a);
+    case U.EQUALS:
+      t = _s(i, a);
       break;
-    case k.NOT_EQUAL:
-      t = !Cs(i, a);
+    case U.NOT_EQUAL:
+      t = !_s(i, a);
       break;
-    case k.GREATER_THAN:
-    case k.GREATER_THAN_OR_EQUAL:
-      t = Cs(i, a) || i > di(a);
+    case U.GREATER_THAN:
+    case U.GREATER_THAN_OR_EQUAL:
+      t = _s(i, a) || i > Ni(a);
       break;
-    case k.LESS_THAN:
-    case k.LESS_THAN_OR_EQUAL:
-      t = i < di(a);
+    case U.LESS_THAN:
+    case U.LESS_THAN_OR_EQUAL:
+      t = i < Ni(a);
       break;
   }
   return t;
 }
-function Dl(i) {
+function Fl(i) {
   return i.replace(/[.+^${}()|[\]\\]/g, "\\$&");
 }
-function Bs(i) {
+function Ys(i) {
   switch (i) {
     case 1:
       return 2;
@@ -3318,29 +3336,29 @@ function Bs(i) {
       return 0;
   }
 }
-function Is(i) {
+function Hs(i) {
   return i === -2 ? 1 : 0;
 }
-function Aa(i) {
+function Oa(i) {
   let a;
   switch (i) {
-    case k.EQUALS:
-      a = k.EQUALS;
+    case U.EQUALS:
+      a = U.EQUALS;
       break;
-    case k.GREATER_THAN:
-      a = k.LESS_THAN;
+    case U.GREATER_THAN:
+      a = U.LESS_THAN;
       break;
-    case k.GREATER_THAN_OR_EQUAL:
-      a = k.LESS_THAN_OR_EQUAL;
+    case U.GREATER_THAN_OR_EQUAL:
+      a = U.LESS_THAN_OR_EQUAL;
       break;
-    case k.LESS_THAN:
-      a = k.GREATER_THAN;
+    case U.LESS_THAN:
+      a = U.GREATER_THAN;
       break;
-    case k.LESS_THAN_OR_EQUAL:
-      a = k.GREATER_THAN_OR_EQUAL;
+    case U.LESS_THAN_OR_EQUAL:
+      a = U.GREATER_THAN_OR_EQUAL;
       break;
-    case k.NOT_EQUAL:
-      a = k.NOT_EQUAL;
+    case U.NOT_EQUAL:
+      a = U.NOT_EQUAL;
       break;
   }
   return a;
@@ -3352,7 +3370,7 @@ function Aa(i) {
  *  Copyright (c) 2025 Michael Mclaughlin <M8ch88l@gmail.com>
  *  MIT Licence
  */
-var lr = 9e15, Gt = 1e9, Fs = "0123456789abcdef", En = "2.3025850929940456840179914546843642076011014886287729760333279009675726096773524802359972050895982983419677840422862486334095254650828067566662873690987816894829072083255546808437998948262331985283935053089653777326288461633662222876982198867465436674744042432743651550489343149393914796194044002221051017141748003688084012647080685567743216228355220114804663715659121373450747856947683463616792101806445070648000277502684916746550586856935673420670581136429224554405758925724208241314695689016758940256776311356919292033376587141660230105703089634572075440370847469940168269282808481184289314848524948644871927809676271275775397027668605952496716674183485704422507197965004714951050492214776567636938662976979522110718264549734772662425709429322582798502585509785265383207606726317164309505995087807523710333101197857547331541421808427543863591778117054309827482385045648019095610299291824318237525357709750539565187697510374970888692180205189339507238539205144634197265287286965110862571492198849978748873771345686209167058", bn = "3.1415926535897932384626433832795028841971693993751058209749445923078164062862089986280348253421170679821480865132823066470938446095505822317253594081284811174502841027019385211055596446229489549303819644288109756659334461284756482337867831652712019091456485669234603486104543266482133936072602491412737245870066063155881748815209209628292540917153643678925903600113305305488204665213841469519415116094330572703657595919530921861173819326117931051185480744623799627495673518857527248912279381830119491298336733624406566430860213949463952247371907021798609437027705392171762931767523846748184676694051320005681271452635608277857713427577896091736371787214684409012249534301465495853710507922796892589235420199561121290219608640344181598136297747713099605187072113499999983729780499510597317328160963185950244594553469083026425223082533446850352619311881710100031378387528865875332083814206171776691473035982534904287554687311595628638823537875937519577818577805321712268066130019278766111959092164201989380952572010654858632789", ks = {
+var hr = 9e15, Qt = 1e9, Qs = "0123456789abcdef", yn = "2.3025850929940456840179914546843642076011014886287729760333279009675726096773524802359972050895982983419677840422862486334095254650828067566662873690987816894829072083255546808437998948262331985283935053089653777326288461633662222876982198867465436674744042432743651550489343149393914796194044002221051017141748003688084012647080685567743216228355220114804663715659121373450747856947683463616792101806445070648000277502684916746550586856935673420670581136429224554405758925724208241314695689016758940256776311356919292033376587141660230105703089634572075440370847469940168269282808481184289314848524948644871927809676271275775397027668605952496716674183485704422507197965004714951050492214776567636938662976979522110718264549734772662425709429322582798502585509785265383207606726317164309505995087807523710333101197857547331541421808427543863591778117054309827482385045648019095610299291824318237525357709750539565187697510374970888692180205189339507238539205144634197265287286965110862571492198849978748873771345686209167058", Rn = "3.1415926535897932384626433832795028841971693993751058209749445923078164062862089986280348253421170679821480865132823066470938446095505822317253594081284811174502841027019385211055596446229489549303819644288109756659334461284756482337867831652712019091456485669234603486104543266482133936072602491412737245870066063155881748815209209628292540917153643678925903600113305305488204665213841469519415116094330572703657595919530921861173819326117931051185480744623799627495673518857527248912279381830119491298336733624406566430860213949463952247371907021798609437027705392171762931767523846748184676694051320005681271452635608277857713427577896091736371787214684409012249534301465495853710507922796892589235420199561121290219608640344181598136297747713099605187072113499999983729780499510597317328160963185950244594553469083026425223082533446850352619311881710100031378387528865875332083814206171776691473035982534904287554687311595628638823537875937519577818577805321712268066130019278766111959092164201989380952572010654858632789", Gs = {
   // These values must be integers within the stated ranges (inclusive).
   // Most of these values can be changed at run-time using the `Decimal.config` method.
   // The maximum number of significant digits of the result of a calculation or base conversion.
@@ -3401,30 +3419,30 @@ var lr = 9e15, Gt = 1e9, Fs = "0123456789abcdef", En = "2.3025850929940456840179
   // 0 to EXP_LIMIT
   // The minimum exponent value, beneath which underflow to zero occurs.
   // JavaScript numbers: -324  (5e-324)
-  minE: -lr,
+  minE: -hr,
   // -1 to -EXP_LIMIT
   // The maximum exponent value, above which overflow to Infinity occurs.
   // JavaScript numbers: 308  (1.7976931348623157e+308)
-  maxE: lr,
+  maxE: hr,
   // 1 to EXP_LIMIT
   // Whether to use cryptographically-secure random number generation, if available.
   crypto: !1
   // true/false
-}, Eo, Ot, oe = !0, Gn = "[DecimalError] ", kt = Gn + "Invalid argument: ", bo = Gn + "Precision limit exceeded", yo = Gn + "crypto unavailable", Ro = "[object Decimal]", Ie = Math.floor, Pe = Math.pow, Ll = /^0b([01]+(\.[01]*)?|\.[01]+)(p[+-]?\d+)?$/i, Pl = /^0x([0-9a-f]+(\.[0-9a-f]*)?|\.[0-9a-f]+)(p[+-]?\d+)?$/i, xl = /^0o([0-7]+(\.[0-7]*)?|\.[0-7]+)(p[+-]?\d+)?$/i, po = /^(\d+(\.\d*)?|\.\d+)(e[+-]?\d+)?$/i, lt = 1e7, te = 7, jl = 9007199254740991, Ul = En.length - 1, $s = bn.length - 1, I = { toStringTag: Ro };
-I.absoluteValue = I.abs = function() {
+}, Do, Ot, oe = !0, Gn = "[DecimalError] ", kt = Gn + "Invalid argument: ", Lo = Gn + "Precision limit exceeded", Po = Gn + "crypto unavailable", xo = "[object Decimal]", Ie = Math.floor, Pe = Math.pow, kl = /^0b([01]+(\.[01]*)?|\.[01]+)(p[+-]?\d+)?$/i, $l = /^0x([0-9a-f]+(\.[0-9a-f]*)?|\.[0-9a-f]+)(p[+-]?\d+)?$/i, Yl = /^0o([0-7]+(\.[0-7]*)?|\.[0-7]+)(p[+-]?\d+)?$/i, jo = /^(\d+(\.\d*)?|\.\d+)(e[+-]?\d+)?$/i, ft = 1e7, te = 7, Hl = 9007199254740991, Ql = yn.length - 1, Ws = Rn.length - 1, F = { toStringTag: xo };
+F.absoluteValue = F.abs = function() {
   var i = new this.constructor(this);
   return i.s < 0 && (i.s = 1), J(i);
 };
-I.ceil = function() {
+F.ceil = function() {
   return J(new this.constructor(this), this.e + 1, 2);
 };
-I.clampedTo = I.clamp = function(i, a) {
+F.clampedTo = F.clamp = function(i, a) {
   var e, t = this, r = t.constructor;
   if (i = new r(i), a = new r(a), !i.s || !a.s) return new r(NaN);
   if (i.gt(a)) throw Error(kt + a);
   return e = t.cmp(i), e < 0 ? i : t.cmp(a) > 0 ? a : new r(t);
 };
-I.comparedTo = I.cmp = function(i) {
+F.comparedTo = F.cmp = function(i) {
   var a, e, t, r, n = this, s = n.d, o = (i = new n.constructor(i)).d, u = n.s, c = i.s;
   if (!s || !o)
     return !u || !c ? NaN : u !== c ? u : s === o ? 0 : !s ^ u < 0 ? 1 : -1;
@@ -3435,15 +3453,15 @@ I.comparedTo = I.cmp = function(i) {
     if (s[a] !== o[a]) return s[a] > o[a] ^ u < 0 ? 1 : -1;
   return t === r ? 0 : t > r ^ u < 0 ? 1 : -1;
 };
-I.cosine = I.cos = function() {
+F.cosine = F.cos = function() {
   var i, a, e = this, t = e.constructor;
-  return e.d ? e.d[0] ? (i = t.precision, a = t.rounding, t.precision = i + Math.max(e.e, e.sd()) + te, t.rounding = 1, e = vl(t, wo(t, e)), t.precision = i, t.rounding = a, J(Ot == 2 || Ot == 3 ? e.neg() : e, i, a, !0)) : new t(1) : new t(NaN);
+  return e.d ? e.d[0] ? (i = t.precision, a = t.rounding, t.precision = i + Math.max(e.e, e.sd()) + te, t.rounding = 1, e = Gl(t, Io(t, e)), t.precision = i, t.rounding = a, J(Ot == 2 || Ot == 3 ? e.neg() : e, i, a, !0)) : new t(1) : new t(NaN);
 };
-I.cubeRoot = I.cbrt = function() {
+F.cubeRoot = F.cbrt = function() {
   var i, a, e, t, r, n, s, o, u, c, l = this, f = l.constructor;
   if (!l.isFinite() || l.isZero()) return new f(l);
   for (oe = !1, n = l.s * Pe(l.s * l, 1 / 3), !n || Math.abs(n) == 1 / 0 ? (e = Ue(l.d), i = l.e, (n = (i - e.length + 1) % 3) && (e += n == 1 || n == -2 ? "0" : "00"), n = Pe(e, 1 / 3), i = Ie((i + 1) / 3) - (i % 3 == (i < 0 ? -1 : 2)), n == 1 / 0 ? e = "5e" + i : (e = n.toExponential(), e = e.slice(0, e.indexOf("e") + 1) + i), t = new f(e), t.s = l.s) : t = new f(n.toString()), s = (i = f.precision) + 3; ; )
-    if (o = t, u = o.times(o).times(o), c = u.plus(l), t = Ve(c.plus(l).times(o), c.plus(u), s + 2, 1), Ue(o.d).slice(0, s) === (e = Ue(t.d)).slice(0, s))
+    if (o = t, u = o.times(o).times(o), c = u.plus(l), t = Ne(c.plus(l).times(o), c.plus(u), s + 2, 1), Ue(o.d).slice(0, s) === (e = Ue(t.d)).slice(0, s))
       if (e = e.slice(s - 3, s + 1), e == "9999" || !r && e == "4999") {
         if (!r && (J(o, i + 1, 0), o.times(o).times(o).eq(l))) {
           t = o;
@@ -3456,7 +3474,7 @@ I.cubeRoot = I.cbrt = function() {
       }
   return oe = !0, J(t, i, f.rounding, a);
 };
-I.decimalPlaces = I.dp = function() {
+F.decimalPlaces = F.dp = function() {
   var i, a = this.d, e = NaN;
   if (a) {
     if (i = a.length - 1, e = (i - Ie(this.e / te)) * te, i = a[i], i) for (; i % 10 == 0; i /= 10) e--;
@@ -3464,113 +3482,113 @@ I.decimalPlaces = I.dp = function() {
   }
   return e;
 };
-I.dividedBy = I.div = function(i) {
-  return Ve(this, new this.constructor(i));
+F.dividedBy = F.div = function(i) {
+  return Ne(this, new this.constructor(i));
 };
-I.dividedToIntegerBy = I.divToInt = function(i) {
+F.dividedToIntegerBy = F.divToInt = function(i) {
   var a = this, e = a.constructor;
-  return J(Ve(a, new e(i), 0, 1, 1), e.precision, e.rounding);
+  return J(Ne(a, new e(i), 0, 1, 1), e.precision, e.rounding);
 };
-I.equals = I.eq = function(i) {
+F.equals = F.eq = function(i) {
   return this.cmp(i) === 0;
 };
-I.floor = function() {
+F.floor = function() {
   return J(new this.constructor(this), this.e + 1, 3);
 };
-I.greaterThan = I.gt = function(i) {
+F.greaterThan = F.gt = function(i) {
   return this.cmp(i) > 0;
 };
-I.greaterThanOrEqualTo = I.gte = function(i) {
+F.greaterThanOrEqualTo = F.gte = function(i) {
   var a = this.cmp(i);
   return a == 1 || a === 0;
 };
-I.hyperbolicCosine = I.cosh = function() {
+F.hyperbolicCosine = F.cosh = function() {
   var i, a, e, t, r, n = this, s = n.constructor, o = new s(1);
   if (!n.isFinite()) return new s(n.s ? 1 / 0 : NaN);
   if (n.isZero()) return o;
-  e = s.precision, t = s.rounding, s.precision = e + Math.max(n.e, n.sd()) + 4, s.rounding = 1, r = n.d.length, r < 32 ? (i = Math.ceil(r / 3), a = (1 / Wn(4, i)).toString()) : (i = 16, a = "2.3283064365386962890625e-10"), n = br(s, 1, n.times(a), new s(1), !0);
+  e = s.precision, t = s.rounding, s.precision = e + Math.max(n.e, n.sd()) + 4, s.rounding = 1, r = n.d.length, r < 32 ? (i = Math.ceil(r / 3), a = (1 / qn(4, i)).toString()) : (i = 16, a = "2.3283064365386962890625e-10"), n = Rr(s, 1, n.times(a), new s(1), !0);
   for (var u, c = i, l = new s(8); c--; )
     u = n.times(n), n = o.minus(u.times(l.minus(u.times(l))));
   return J(n, s.precision = e, s.rounding = t, !0);
 };
-I.hyperbolicSine = I.sinh = function() {
+F.hyperbolicSine = F.sinh = function() {
   var i, a, e, t, r = this, n = r.constructor;
   if (!r.isFinite() || r.isZero()) return new n(r);
   if (a = n.precision, e = n.rounding, n.precision = a + Math.max(r.e, r.sd()) + 4, n.rounding = 1, t = r.d.length, t < 3)
-    r = br(n, 2, r, r, !0);
+    r = Rr(n, 2, r, r, !0);
   else {
-    i = 1.4 * Math.sqrt(t), i = i > 16 ? 16 : i | 0, r = r.times(1 / Wn(5, i)), r = br(n, 2, r, r, !0);
+    i = 1.4 * Math.sqrt(t), i = i > 16 ? 16 : i | 0, r = r.times(1 / qn(5, i)), r = Rr(n, 2, r, r, !0);
     for (var s, o = new n(5), u = new n(16), c = new n(20); i--; )
       s = r.times(r), r = r.times(o.plus(s.times(u.times(s).plus(c))));
   }
   return n.precision = a, n.rounding = e, J(r, a, e, !0);
 };
-I.hyperbolicTangent = I.tanh = function() {
+F.hyperbolicTangent = F.tanh = function() {
   var i, a, e = this, t = e.constructor;
-  return e.isFinite() ? e.isZero() ? new t(e) : (i = t.precision, a = t.rounding, t.precision = i + 7, t.rounding = 1, Ve(e.sinh(), e.cosh(), t.precision = i, t.rounding = a)) : new t(e.s);
+  return e.isFinite() ? e.isZero() ? new t(e) : (i = t.precision, a = t.rounding, t.precision = i + 7, t.rounding = 1, Ne(e.sinh(), e.cosh(), t.precision = i, t.rounding = a)) : new t(e.s);
 };
-I.inverseCosine = I.acos = function() {
+F.inverseCosine = F.acos = function() {
   var i = this, a = i.constructor, e = i.abs().cmp(1), t = a.precision, r = a.rounding;
-  return e !== -1 ? e === 0 ? i.isNeg() ? _t(a, t, r) : new a(0) : new a(NaN) : i.isZero() ? _t(a, t + 4, r).times(0.5) : (a.precision = t + 6, a.rounding = 1, i = new a(1).minus(i).div(i.plus(1)).sqrt().atan(), a.precision = t, a.rounding = r, i.times(2));
+  return e !== -1 ? e === 0 ? i.isNeg() ? At(a, t, r) : new a(0) : new a(NaN) : i.isZero() ? At(a, t + 4, r).times(0.5) : (a.precision = t + 6, a.rounding = 1, i = new a(1).minus(i).div(i.plus(1)).sqrt().atan(), a.precision = t, a.rounding = r, i.times(2));
 };
-I.inverseHyperbolicCosine = I.acosh = function() {
+F.inverseHyperbolicCosine = F.acosh = function() {
   var i, a, e = this, t = e.constructor;
   return e.lte(1) ? new t(e.eq(1) ? 0 : NaN) : e.isFinite() ? (i = t.precision, a = t.rounding, t.precision = i + Math.max(Math.abs(e.e), e.sd()) + 4, t.rounding = 1, oe = !1, e = e.times(e).minus(1).sqrt().plus(e), oe = !0, t.precision = i, t.rounding = a, e.ln()) : new t(e);
 };
-I.inverseHyperbolicSine = I.asinh = function() {
+F.inverseHyperbolicSine = F.asinh = function() {
   var i, a, e = this, t = e.constructor;
   return !e.isFinite() || e.isZero() ? new t(e) : (i = t.precision, a = t.rounding, t.precision = i + 2 * Math.max(Math.abs(e.e), e.sd()) + 6, t.rounding = 1, oe = !1, e = e.times(e).plus(1).sqrt().plus(e), oe = !0, t.precision = i, t.rounding = a, e.ln());
 };
-I.inverseHyperbolicTangent = I.atanh = function() {
+F.inverseHyperbolicTangent = F.atanh = function() {
   var i, a, e, t, r = this, n = r.constructor;
-  return r.isFinite() ? r.e >= 0 ? new n(r.abs().eq(1) ? r.s / 0 : r.isZero() ? r : NaN) : (i = n.precision, a = n.rounding, t = r.sd(), Math.max(t, i) < 2 * -r.e - 1 ? J(new n(r), i, a, !0) : (n.precision = e = t - r.e, r = Ve(r.plus(1), new n(1).minus(r), e + i, 1), n.precision = i + 4, n.rounding = 1, r = r.ln(), n.precision = i, n.rounding = a, r.times(0.5))) : new n(NaN);
+  return r.isFinite() ? r.e >= 0 ? new n(r.abs().eq(1) ? r.s / 0 : r.isZero() ? r : NaN) : (i = n.precision, a = n.rounding, t = r.sd(), Math.max(t, i) < 2 * -r.e - 1 ? J(new n(r), i, a, !0) : (n.precision = e = t - r.e, r = Ne(r.plus(1), new n(1).minus(r), e + i, 1), n.precision = i + 4, n.rounding = 1, r = r.ln(), n.precision = i, n.rounding = a, r.times(0.5))) : new n(NaN);
 };
-I.inverseSine = I.asin = function() {
+F.inverseSine = F.asin = function() {
   var i, a, e, t, r = this, n = r.constructor;
-  return r.isZero() ? new n(r) : (a = r.abs().cmp(1), e = n.precision, t = n.rounding, a !== -1 ? a === 0 ? (i = _t(n, e + 4, t).times(0.5), i.s = r.s, i) : new n(NaN) : (n.precision = e + 6, n.rounding = 1, r = r.div(new n(1).minus(r.times(r)).sqrt().plus(1)).atan(), n.precision = e, n.rounding = t, r.times(2)));
+  return r.isZero() ? new n(r) : (a = r.abs().cmp(1), e = n.precision, t = n.rounding, a !== -1 ? a === 0 ? (i = At(n, e + 4, t).times(0.5), i.s = r.s, i) : new n(NaN) : (n.precision = e + 6, n.rounding = 1, r = r.div(new n(1).minus(r.times(r)).sqrt().plus(1)).atan(), n.precision = e, n.rounding = t, r.times(2)));
 };
-I.inverseTangent = I.atan = function() {
+F.inverseTangent = F.atan = function() {
   var i, a, e, t, r, n, s, o, u, c = this, l = c.constructor, f = l.precision, h = l.rounding;
   if (c.isFinite()) {
     if (c.isZero())
       return new l(c);
-    if (c.abs().eq(1) && f + 4 <= $s)
-      return s = _t(l, f + 4, h).times(0.25), s.s = c.s, s;
+    if (c.abs().eq(1) && f + 4 <= Ws)
+      return s = At(l, f + 4, h).times(0.25), s.s = c.s, s;
   } else {
     if (!c.s) return new l(NaN);
-    if (f + 4 <= $s)
-      return s = _t(l, f + 4, h).times(0.5), s.s = c.s, s;
+    if (f + 4 <= Ws)
+      return s = At(l, f + 4, h).times(0.5), s.s = c.s, s;
   }
   for (l.precision = o = f + 10, l.rounding = 1, e = Math.min(28, o / te + 2 | 0), i = e; i; --i) c = c.div(c.times(c).plus(1).sqrt().plus(1));
   for (oe = !1, a = Math.ceil(o / te), t = 1, u = c.times(c), s = new l(c), r = c; i !== -1; )
     if (r = r.times(u), n = s.minus(r.div(t += 2)), r = r.times(u), s = n.plus(r.div(t += 2)), s.d[a] !== void 0) for (i = a; s.d[i] === n.d[i] && i--; ) ;
   return e && (s = s.times(2 << e - 1)), oe = !0, J(s, l.precision = f, l.rounding = h, !0);
 };
-I.isFinite = function() {
+F.isFinite = function() {
   return !!this.d;
 };
-I.isInteger = I.isInt = function() {
+F.isInteger = F.isInt = function() {
   return !!this.d && Ie(this.e / te) > this.d.length - 2;
 };
-I.isNaN = function() {
+F.isNaN = function() {
   return !this.s;
 };
-I.isNegative = I.isNeg = function() {
+F.isNegative = F.isNeg = function() {
   return this.s < 0;
 };
-I.isPositive = I.isPos = function() {
+F.isPositive = F.isPos = function() {
   return this.s > 0;
 };
-I.isZero = function() {
+F.isZero = function() {
   return !!this.d && this.d[0] === 0;
 };
-I.lessThan = I.lt = function(i) {
+F.lessThan = F.lt = function(i) {
   return this.cmp(i) < 0;
 };
-I.lessThanOrEqualTo = I.lte = function(i) {
+F.lessThanOrEqualTo = F.lte = function(i) {
   return this.cmp(i) < 1;
 };
-I.logarithm = I.log = function(i) {
+F.logarithm = F.log = function(i) {
   var a, e, t, r, n, s, o, u, c = this, l = c.constructor, f = l.precision, h = l.rounding, d = 5;
   if (i == null)
     i = new l(10), a = !0;
@@ -3587,25 +3605,25 @@ I.logarithm = I.log = function(i) {
       for (r = e[0]; r % 10 === 0; ) r /= 10;
       n = r !== 1;
     }
-  if (oe = !1, o = f + d, s = vt(c, o), t = a ? yn(l, o + 10) : vt(i, o), u = Ve(s, t, o, 1), Pr(u.d, r = f, h))
+  if (oe = !1, o = f + d, s = vt(c, o), t = a ? pn(l, o + 10) : vt(i, o), u = Ne(s, t, o, 1), Ur(u.d, r = f, h))
     do
-      if (o += 10, s = vt(c, o), t = a ? yn(l, o + 10) : vt(i, o), u = Ve(s, t, o, 1), !n) {
+      if (o += 10, s = vt(c, o), t = a ? pn(l, o + 10) : vt(i, o), u = Ne(s, t, o, 1), !n) {
         +Ue(u.d).slice(r + 1, r + 15) + 1 == 1e14 && (u = J(u, f + 1, 0));
         break;
       }
-    while (Pr(u.d, r += 10, h));
+    while (Ur(u.d, r += 10, h));
   return oe = !0, J(u, f, h);
 };
-I.minus = I.sub = function(i) {
-  var a, e, t, r, n, s, o, u, c, l, f, h, d = this, _ = d.constructor;
-  if (i = new _(i), !d.d || !i.d)
-    return !d.s || !i.s ? i = new _(NaN) : d.d ? i.s = -i.s : i = new _(i.d || d.s !== i.s ? d : NaN), i;
+F.minus = F.sub = function(i) {
+  var a, e, t, r, n, s, o, u, c, l, f, h, d = this, C = d.constructor;
+  if (i = new C(i), !d.d || !i.d)
+    return !d.s || !i.s ? i = new C(NaN) : d.d ? i.s = -i.s : i = new C(i.d || d.s !== i.s ? d : NaN), i;
   if (d.s != i.s)
     return i.s = -i.s, d.plus(i);
-  if (c = d.d, h = i.d, o = _.precision, u = _.rounding, !c[0] || !h[0]) {
+  if (c = d.d, h = i.d, o = C.precision, u = C.rounding, !c[0] || !h[0]) {
     if (h[0]) i.s = -i.s;
-    else if (c[0]) i = new _(d);
-    else return new _(u === 3 ? -0 : 0);
+    else if (c[0]) i = new C(d);
+    else return new C(u === 3 ? -0 : 0);
     return oe ? J(i, o, u) : i;
   }
   if (e = Ie(i.e / te), l = Ie(d.e / te), c = c.slice(), n = l - e, n) {
@@ -3622,30 +3640,30 @@ I.minus = I.sub = function(i) {
   for (f && (a = c, c = h, h = a, i.s = -i.s), s = c.length, t = h.length - s; t > 0; --t) c[s++] = 0;
   for (t = h.length; t > n; ) {
     if (c[--t] < h[t]) {
-      for (r = t; r && c[--r] === 0; ) c[r] = lt - 1;
-      --c[r], c[t] += lt;
+      for (r = t; r && c[--r] === 0; ) c[r] = ft - 1;
+      --c[r], c[t] += ft;
     }
     c[t] -= h[t];
   }
   for (; c[--s] === 0; ) c.pop();
   for (; c[0] === 0; c.shift()) --e;
-  return c[0] ? (i.d = c, i.e = Qn(c, e), oe ? J(i, o, u) : i) : new _(u === 3 ? -0 : 0);
+  return c[0] ? (i.d = c, i.e = Wn(c, e), oe ? J(i, o, u) : i) : new C(u === 3 ? -0 : 0);
 };
-I.modulo = I.mod = function(i) {
+F.modulo = F.mod = function(i) {
   var a, e = this, t = e.constructor;
-  return i = new t(i), !e.d || !i.s || i.d && !i.d[0] ? new t(NaN) : !i.d || e.d && !e.d[0] ? J(new t(e), t.precision, t.rounding) : (oe = !1, t.modulo == 9 ? (a = Ve(e, i.abs(), 0, 3, 1), a.s *= i.s) : a = Ve(e, i, 0, t.modulo, 1), a = a.times(i), oe = !0, e.minus(a));
+  return i = new t(i), !e.d || !i.s || i.d && !i.d[0] ? new t(NaN) : !i.d || e.d && !e.d[0] ? J(new t(e), t.precision, t.rounding) : (oe = !1, t.modulo == 9 ? (a = Ne(e, i.abs(), 0, 3, 1), a.s *= i.s) : a = Ne(e, i, 0, t.modulo, 1), a = a.times(i), oe = !0, e.minus(a));
 };
-I.naturalExponential = I.exp = function() {
-  return Ys(this);
+F.naturalExponential = F.exp = function() {
+  return qs(this);
 };
-I.naturalLogarithm = I.ln = function() {
+F.naturalLogarithm = F.ln = function() {
   return vt(this);
 };
-I.negated = I.neg = function() {
+F.negated = F.neg = function() {
   var i = new this.constructor(this);
   return i.s = -i.s, J(i);
 };
-I.plus = I.add = function(i) {
+F.plus = F.add = function(i) {
   var a, e, t, r, n, s, o, u, c, l, f = this, h = f.constructor;
   if (i = new h(i), !f.d || !i.d)
     return !f.s || !i.s ? i = new h(NaN) : f.d || (i = new h(i.d || f.s === i.s ? f : NaN)), i;
@@ -3658,29 +3676,29 @@ I.plus = I.add = function(i) {
     e.reverse();
   }
   for (s = c.length, r = l.length, s - r < 0 && (r = s, e = l, l = c, c = e), a = 0; r; )
-    a = (c[--r] = c[r] + l[r] + a) / lt | 0, c[r] %= lt;
+    a = (c[--r] = c[r] + l[r] + a) / ft | 0, c[r] %= ft;
   for (a && (c.unshift(a), ++t), s = c.length; c[--s] == 0; ) c.pop();
-  return i.d = c, i.e = Qn(c, t), oe ? J(i, o, u) : i;
+  return i.d = c, i.e = Wn(c, t), oe ? J(i, o, u) : i;
 };
-I.precision = I.sd = function(i) {
+F.precision = F.sd = function(i) {
   var a, e = this;
   if (i !== void 0 && i !== !!i && i !== 1 && i !== 0) throw Error(kt + i);
-  return e.d ? (a = Vo(e.d), i && e.e + 1 > a && (a = e.e + 1)) : a = NaN, a;
+  return e.d ? (a = Uo(e.d), i && e.e + 1 > a && (a = e.e + 1)) : a = NaN, a;
 };
-I.round = function() {
+F.round = function() {
   var i = this, a = i.constructor;
   return J(new a(i), i.e + 1, a.rounding);
 };
-I.sine = I.sin = function() {
+F.sine = F.sin = function() {
   var i, a, e = this, t = e.constructor;
-  return e.isFinite() ? e.isZero() ? new t(e) : (i = t.precision, a = t.rounding, t.precision = i + Math.max(e.e, e.sd()) + te, t.rounding = 1, e = Bl(t, wo(t, e)), t.precision = i, t.rounding = a, J(Ot > 2 ? e.neg() : e, i, a, !0)) : new t(NaN);
+  return e.isFinite() ? e.isZero() ? new t(e) : (i = t.precision, a = t.rounding, t.precision = i + Math.max(e.e, e.sd()) + te, t.rounding = 1, e = ql(t, Io(t, e)), t.precision = i, t.rounding = a, J(Ot > 2 ? e.neg() : e, i, a, !0)) : new t(NaN);
 };
-I.squareRoot = I.sqrt = function() {
+F.squareRoot = F.sqrt = function() {
   var i, a, e, t, r, n, s = this, o = s.d, u = s.e, c = s.s, l = s.constructor;
   if (c !== 1 || !o || !o[0])
     return new l(!c || c < 0 && (!o || o[0]) ? NaN : o ? s : 1 / 0);
   for (oe = !1, c = Math.sqrt(+s), c == 0 || c == 1 / 0 ? (a = Ue(o), (a.length + u) % 2 == 0 && (a += "0"), c = Math.sqrt(a), u = Ie((u + 1) / 2) - (u < 0 || u % 2), c == 1 / 0 ? a = "5e" + u : (a = c.toExponential(), a = a.slice(0, a.indexOf("e") + 1) + u), t = new l(a)) : t = new l(c.toString()), e = (u = l.precision) + 3; ; )
-    if (n = t, t = n.plus(Ve(s, n, e + 2, 1)).times(0.5), Ue(n.d).slice(0, e) === (a = Ue(t.d)).slice(0, e))
+    if (n = t, t = n.plus(Ne(s, n, e + 2, 1)).times(0.5), Ue(n.d).slice(0, e) === (a = Ue(t.d)).slice(0, e))
       if (a = a.slice(e - 3, e + 1), a == "9999" || !r && a == "4999") {
         if (!r && (J(n, u + 1, 0), n.times(n).eq(s))) {
           t = n;
@@ -3693,103 +3711,103 @@ I.squareRoot = I.sqrt = function() {
       }
   return oe = !0, J(t, u, l.rounding, i);
 };
-I.tangent = I.tan = function() {
+F.tangent = F.tan = function() {
   var i, a, e = this, t = e.constructor;
-  return e.isFinite() ? e.isZero() ? new t(e) : (i = t.precision, a = t.rounding, t.precision = i + 10, t.rounding = 1, e = e.sin(), e.s = 1, e = Ve(e, new t(1).minus(e.times(e)).sqrt(), i + 10, 0), t.precision = i, t.rounding = a, J(Ot == 2 || Ot == 4 ? e.neg() : e, i, a, !0)) : new t(NaN);
+  return e.isFinite() ? e.isZero() ? new t(e) : (i = t.precision, a = t.rounding, t.precision = i + 10, t.rounding = 1, e = e.sin(), e.s = 1, e = Ne(e, new t(1).minus(e.times(e)).sqrt(), i + 10, 0), t.precision = i, t.rounding = a, J(Ot == 2 || Ot == 4 ? e.neg() : e, i, a, !0)) : new t(NaN);
 };
-I.times = I.mul = function(i) {
+F.times = F.mul = function(i) {
   var a, e, t, r, n, s, o, u, c, l = this, f = l.constructor, h = l.d, d = (i = new f(i)).d;
   if (i.s *= l.s, !h || !h[0] || !d || !d[0])
     return new f(!i.s || h && !h[0] && !d || d && !d[0] && !h ? NaN : !h || !d ? i.s / 0 : i.s * 0);
   for (e = Ie(l.e / te) + Ie(i.e / te), u = h.length, c = d.length, u < c && (n = h, h = d, d = n, s = u, u = c, c = s), n = [], s = u + c, t = s; t--; ) n.push(0);
   for (t = c; --t >= 0; ) {
     for (a = 0, r = u + t; r > t; )
-      o = n[r] + d[t] * h[r - t - 1] + a, n[r--] = o % lt | 0, a = o / lt | 0;
-    n[r] = (n[r] + a) % lt | 0;
+      o = n[r] + d[t] * h[r - t - 1] + a, n[r--] = o % ft | 0, a = o / ft | 0;
+    n[r] = (n[r] + a) % ft | 0;
   }
   for (; !n[--s]; ) n.pop();
-  return a ? ++e : n.shift(), i.d = n, i.e = Qn(n, e), oe ? J(i, f.precision, f.rounding) : i;
+  return a ? ++e : n.shift(), i.d = n, i.e = Wn(n, e), oe ? J(i, f.precision, f.rounding) : i;
 };
-I.toBinary = function(i, a) {
-  return Ea(this, 2, i, a);
+F.toBinary = function(i, a) {
+  return wa(this, 2, i, a);
 };
-I.toDecimalPlaces = I.toDP = function(i, a) {
+F.toDecimalPlaces = F.toDP = function(i, a) {
   var e = this, t = e.constructor;
-  return e = new t(e), i === void 0 ? e : (He(i, 0, Gt), a === void 0 ? a = t.rounding : He(a, 0, 8), J(e, i + e.e + 1, a));
+  return e = new t(e), i === void 0 ? e : (Ge(i, 0, Qt), a === void 0 ? a = t.rounding : Ge(a, 0, 8), J(e, i + e.e + 1, a));
 };
-I.toExponential = function(i, a) {
+F.toExponential = function(i, a) {
   var e, t = this, r = t.constructor;
-  return i === void 0 ? e = bt(t, !0) : (He(i, 0, Gt), a === void 0 ? a = r.rounding : He(a, 0, 8), t = J(new r(t), i + 1, a), e = bt(t, !0, i + 1)), t.isNeg() && !t.isZero() ? "-" + e : e;
+  return i === void 0 ? e = yt(t, !0) : (Ge(i, 0, Qt), a === void 0 ? a = r.rounding : Ge(a, 0, 8), t = J(new r(t), i + 1, a), e = yt(t, !0, i + 1)), t.isNeg() && !t.isZero() ? "-" + e : e;
 };
-I.toFixed = function(i, a) {
+F.toFixed = function(i, a) {
   var e, t, r = this, n = r.constructor;
-  return i === void 0 ? e = bt(r) : (He(i, 0, Gt), a === void 0 ? a = n.rounding : He(a, 0, 8), t = J(new n(r), i + r.e + 1, a), e = bt(t, !1, i + t.e + 1)), r.isNeg() && !r.isZero() ? "-" + e : e;
+  return i === void 0 ? e = yt(r) : (Ge(i, 0, Qt), a === void 0 ? a = n.rounding : Ge(a, 0, 8), t = J(new n(r), i + r.e + 1, a), e = yt(t, !1, i + t.e + 1)), r.isNeg() && !r.isZero() ? "-" + e : e;
 };
-I.toFraction = function(i) {
-  var a, e, t, r, n, s, o, u, c, l, f, h, d = this, _ = d.d, C = d.constructor;
-  if (!_) return new C(d);
-  if (c = e = new C(1), t = u = new C(0), a = new C(t), n = a.e = Vo(_) - d.e - 1, s = n % te, a.d[0] = Pe(10, s < 0 ? te + s : s), i == null)
+F.toFraction = function(i) {
+  var a, e, t, r, n, s, o, u, c, l, f, h, d = this, C = d.d, _ = d.constructor;
+  if (!C) return new _(d);
+  if (c = e = new _(1), t = u = new _(0), a = new _(t), n = a.e = Uo(C) - d.e - 1, s = n % te, a.d[0] = Pe(10, s < 0 ? te + s : s), i == null)
     i = n > 0 ? a : c;
   else {
-    if (o = new C(i), !o.isInt() || o.lt(c)) throw Error(kt + o);
+    if (o = new _(i), !o.isInt() || o.lt(c)) throw Error(kt + o);
     i = o.gt(a) ? n > 0 ? a : c : o;
   }
-  for (oe = !1, o = new C(Ue(_)), l = C.precision, C.precision = n = _.length * te * 2; f = Ve(o, a, 0, 1, 1), r = e.plus(f.times(t)), r.cmp(i) != 1; )
+  for (oe = !1, o = new _(Ue(C)), l = _.precision, _.precision = n = C.length * te * 2; f = Ne(o, a, 0, 1, 1), r = e.plus(f.times(t)), r.cmp(i) != 1; )
     e = t, t = r, r = c, c = u.plus(f.times(r)), u = r, r = a, a = o.minus(f.times(r)), o = r;
-  return r = Ve(i.minus(e), t, 0, 1, 1), u = u.plus(r.times(c)), e = e.plus(r.times(t)), u.s = c.s = d.s, h = Ve(c, t, n, 1).minus(d).abs().cmp(Ve(u, e, n, 1).minus(d).abs()) < 1 ? [c, t] : [u, e], C.precision = l, oe = !0, h;
+  return r = Ne(i.minus(e), t, 0, 1, 1), u = u.plus(r.times(c)), e = e.plus(r.times(t)), u.s = c.s = d.s, h = Ne(c, t, n, 1).minus(d).abs().cmp(Ne(u, e, n, 1).minus(d).abs()) < 1 ? [c, t] : [u, e], _.precision = l, oe = !0, h;
 };
-I.toHexadecimal = I.toHex = function(i, a) {
-  return Ea(this, 16, i, a);
+F.toHexadecimal = F.toHex = function(i, a) {
+  return wa(this, 16, i, a);
 };
-I.toNearest = function(i, a) {
+F.toNearest = function(i, a) {
   var e = this, t = e.constructor;
   if (e = new t(e), i == null) {
     if (!e.d) return e;
     i = new t(1), a = t.rounding;
   } else {
-    if (i = new t(i), a === void 0 ? a = t.rounding : He(a, 0, 8), !e.d) return i.s ? e : i;
+    if (i = new t(i), a === void 0 ? a = t.rounding : Ge(a, 0, 8), !e.d) return i.s ? e : i;
     if (!i.d)
       return i.s && (i.s = e.s), i;
   }
-  return i.d[0] ? (oe = !1, e = Ve(e, i, 0, a, 1).times(i), oe = !0, J(e)) : (i.s = e.s, e = i), e;
+  return i.d[0] ? (oe = !1, e = Ne(e, i, 0, a, 1).times(i), oe = !0, J(e)) : (i.s = e.s, e = i), e;
 };
-I.toNumber = function() {
+F.toNumber = function() {
   return +this;
 };
-I.toOctal = function(i, a) {
-  return Ea(this, 8, i, a);
+F.toOctal = function(i, a) {
+  return wa(this, 8, i, a);
 };
-I.toPower = I.pow = function(i) {
+F.toPower = F.pow = function(i) {
   var a, e, t, r, n, s, o = this, u = o.constructor, c = +(i = new u(i));
   if (!o.d || !i.d || !o.d[0] || !i.d[0]) return new u(Pe(+o, c));
   if (o = new u(o), o.eq(1)) return o;
   if (t = u.precision, n = u.rounding, i.eq(1)) return J(o, t, n);
-  if (a = Ie(i.e / te), a >= i.d.length - 1 && (e = c < 0 ? -c : c) <= jl)
-    return r = No(u, o, e, t), i.s < 0 ? new u(1).div(r) : J(r, t, n);
+  if (a = Ie(i.e / te), a >= i.d.length - 1 && (e = c < 0 ? -c : c) <= Hl)
+    return r = vo(u, o, e, t), i.s < 0 ? new u(1).div(r) : J(r, t, n);
   if (s = o.s, s < 0) {
     if (a < i.d.length - 1) return new u(NaN);
     if ((i.d[a] & 1) == 0 && (s = 1), o.e == 0 && o.d[0] == 1 && o.d.length == 1)
       return o.s = s, o;
   }
-  return e = Pe(+o, c), a = e == 0 || !isFinite(e) ? Ie(c * (Math.log("0." + Ue(o.d)) / Math.LN10 + o.e + 1)) : new u(e + "").e, a > u.maxE + 1 || a < u.minE - 1 ? new u(a > 0 ? s / 0 : 0) : (oe = !1, u.rounding = o.s = 1, e = Math.min(12, (a + "").length), r = Ys(i.times(vt(o, t + e)), t), r.d && (r = J(r, t + 5, 1), Pr(r.d, t, n) && (a = t + 10, r = J(Ys(i.times(vt(o, a + e)), a), a + 5, 1), +Ue(r.d).slice(t + 1, t + 15) + 1 == 1e14 && (r = J(r, t + 1, 0)))), r.s = s, oe = !0, u.rounding = n, J(r, t, n));
+  return e = Pe(+o, c), a = e == 0 || !isFinite(e) ? Ie(c * (Math.log("0." + Ue(o.d)) / Math.LN10 + o.e + 1)) : new u(e + "").e, a > u.maxE + 1 || a < u.minE - 1 ? new u(a > 0 ? s / 0 : 0) : (oe = !1, u.rounding = o.s = 1, e = Math.min(12, (a + "").length), r = qs(i.times(vt(o, t + e)), t), r.d && (r = J(r, t + 5, 1), Ur(r.d, t, n) && (a = t + 10, r = J(qs(i.times(vt(o, a + e)), a), a + 5, 1), +Ue(r.d).slice(t + 1, t + 15) + 1 == 1e14 && (r = J(r, t + 1, 0)))), r.s = s, oe = !0, u.rounding = n, J(r, t, n));
 };
-I.toPrecision = function(i, a) {
+F.toPrecision = function(i, a) {
   var e, t = this, r = t.constructor;
-  return i === void 0 ? e = bt(t, t.e <= r.toExpNeg || t.e >= r.toExpPos) : (He(i, 1, Gt), a === void 0 ? a = r.rounding : He(a, 0, 8), t = J(new r(t), i, a), e = bt(t, i <= t.e || t.e <= r.toExpNeg, i)), t.isNeg() && !t.isZero() ? "-" + e : e;
+  return i === void 0 ? e = yt(t, t.e <= r.toExpNeg || t.e >= r.toExpPos) : (Ge(i, 1, Qt), a === void 0 ? a = r.rounding : Ge(a, 0, 8), t = J(new r(t), i, a), e = yt(t, i <= t.e || t.e <= r.toExpNeg, i)), t.isNeg() && !t.isZero() ? "-" + e : e;
 };
-I.toSignificantDigits = I.toSD = function(i, a) {
+F.toSignificantDigits = F.toSD = function(i, a) {
   var e = this, t = e.constructor;
-  return i === void 0 ? (i = t.precision, a = t.rounding) : (He(i, 1, Gt), a === void 0 ? a = t.rounding : He(a, 0, 8)), J(new t(e), i, a);
+  return i === void 0 ? (i = t.precision, a = t.rounding) : (Ge(i, 1, Qt), a === void 0 ? a = t.rounding : Ge(a, 0, 8)), J(new t(e), i, a);
 };
-I.toString = function() {
-  var i = this, a = i.constructor, e = bt(i, i.e <= a.toExpNeg || i.e >= a.toExpPos);
+F.toString = function() {
+  var i = this, a = i.constructor, e = yt(i, i.e <= a.toExpNeg || i.e >= a.toExpPos);
   return i.isNeg() && !i.isZero() ? "-" + e : e;
 };
-I.truncated = I.trunc = function() {
+F.truncated = F.trunc = function() {
   return J(new this.constructor(this), this.e + 1, 1);
 };
-I.valueOf = I.toJSON = function() {
-  var i = this, a = i.constructor, e = bt(i, i.e <= a.toExpNeg || i.e >= a.toExpPos);
+F.valueOf = F.toJSON = function() {
+  var i = this, a = i.constructor, e = yt(i, i.e <= a.toExpNeg || i.e >= a.toExpPos);
   return i.isNeg() ? "-" + e : e;
 };
 function Ue(i) {
@@ -3803,34 +3821,34 @@ function Ue(i) {
   for (; s % 10 === 0; ) s /= 10;
   return n + s;
 }
-function He(i, a, e) {
+function Ge(i, a, e) {
   if (i !== ~~i || i < a || i > e)
     throw Error(kt + i);
 }
-function Pr(i, a, e, t) {
+function Ur(i, a, e, t) {
   var r, n, s, o;
   for (n = i[0]; n >= 10; n /= 10) --a;
   return --a < 0 ? (a += te, r = 0) : (r = Math.ceil((a + 1) / te), a %= te), n = Pe(10, te - a), o = i[r] % n | 0, t == null ? a < 3 ? (a == 0 ? o = o / 100 | 0 : a == 1 && (o = o / 10 | 0), s = e < 4 && o == 99999 || e > 3 && o == 49999 || o == 5e4 || o == 0) : s = (e < 4 && o + 1 == n || e > 3 && o + 1 == n / 2) && (i[r + 1] / n / 100 | 0) == Pe(10, a - 2) - 1 || (o == n / 2 || o == 0) && (i[r + 1] / n / 100 | 0) == 0 : a < 4 ? (a == 0 ? o = o / 1e3 | 0 : a == 1 ? o = o / 100 | 0 : a == 2 && (o = o / 10 | 0), s = (t || e < 4) && o == 9999 || !t && e > 3 && o == 4999) : s = ((t || e < 4) && o + 1 == n || !t && e > 3 && o + 1 == n / 2) && (i[r + 1] / n / 1e3 | 0) == Pe(10, a - 3) - 1, s;
 }
-function ln(i, a, e) {
+function hn(i, a, e) {
   for (var t, r = [0], n, s = 0, o = i.length; s < o; ) {
     for (n = r.length; n--; ) r[n] *= a;
-    for (r[0] += Fs.indexOf(i.charAt(s++)), t = 0; t < r.length; t++)
+    for (r[0] += Qs.indexOf(i.charAt(s++)), t = 0; t < r.length; t++)
       r[t] > e - 1 && (r[t + 1] === void 0 && (r[t + 1] = 0), r[t + 1] += r[t] / e | 0, r[t] %= e);
   }
   return r.reverse();
 }
-function vl(i, a) {
+function Gl(i, a) {
   var e, t, r;
   if (a.isZero()) return a;
-  t = a.d.length, t < 32 ? (e = Math.ceil(t / 3), r = (1 / Wn(4, e)).toString()) : (e = 16, r = "2.3283064365386962890625e-10"), i.precision += e, a = br(i, 1, a.times(r), new i(1));
+  t = a.d.length, t < 32 ? (e = Math.ceil(t / 3), r = (1 / qn(4, e)).toString()) : (e = 16, r = "2.3283064365386962890625e-10"), i.precision += e, a = Rr(i, 1, a.times(r), new i(1));
   for (var n = e; n--; ) {
     var s = a.times(a);
     a = s.times(s).minus(s).times(8).plus(1);
   }
   return i.precision -= e, a;
 }
-var Ve = /* @__PURE__ */ (function() {
+var Ne = /* @__PURE__ */ (function() {
   function i(t, r, n) {
     var s, o = 0, u = t.length;
     for (t = t.slice(); u--; )
@@ -3855,38 +3873,38 @@ var Ve = /* @__PURE__ */ (function() {
     for (; !t[0] && t.length > 1; ) t.shift();
   }
   return function(t, r, n, s, o, u) {
-    var c, l, f, h, d, _, C, E, b, R, p, N, M, w, S, D, L, U, x, F, Q = t.constructor, ne = t.s == r.s ? 1 : -1, z = t.d, G = r.d;
-    if (!z || !z[0] || !G || !G[0])
-      return new Q(
+    var c, l, f, h, d, C, _, E, b, R, p, N, w, S, M, D, L, T, x, k, G = t.constructor, ne = t.s == r.s ? 1 : -1, z = t.d, Q = r.d;
+    if (!z || !z[0] || !Q || !Q[0])
+      return new G(
         // Return NaN if either NaN, or both Infinity or 0.
-        !t.s || !r.s || (z ? G && z[0] == G[0] : !G) ? NaN : (
+        !t.s || !r.s || (z ? Q && z[0] == Q[0] : !Q) ? NaN : (
           // Return ±0 if x is 0 or y is ±Infinity, or return ±Infinity as y is 0.
-          z && z[0] == 0 || !G ? ne * 0 : ne / 0
+          z && z[0] == 0 || !Q ? ne * 0 : ne / 0
         )
       );
-    for (u ? (d = 1, l = t.e - r.e) : (u = lt, d = te, l = Ie(t.e / d) - Ie(r.e / d)), x = G.length, L = z.length, b = new Q(ne), R = b.d = [], f = 0; G[f] == (z[f] || 0); f++) ;
-    if (G[f] > (z[f] || 0) && l--, n == null ? (w = n = Q.precision, s = Q.rounding) : o ? w = n + (t.e - r.e) + 1 : w = n, w < 0)
-      R.push(1), _ = !0;
+    for (u ? (d = 1, l = t.e - r.e) : (u = ft, d = te, l = Ie(t.e / d) - Ie(r.e / d)), x = Q.length, L = z.length, b = new G(ne), R = b.d = [], f = 0; Q[f] == (z[f] || 0); f++) ;
+    if (Q[f] > (z[f] || 0) && l--, n == null ? (S = n = G.precision, s = G.rounding) : o ? S = n + (t.e - r.e) + 1 : S = n, S < 0)
+      R.push(1), C = !0;
     else {
-      if (w = w / d + 2 | 0, f = 0, x == 1) {
-        for (h = 0, G = G[0], w++; (f < L || h) && w--; f++)
-          S = h * u + (z[f] || 0), R[f] = S / G | 0, h = S % G | 0;
-        _ = h || f < L;
+      if (S = S / d + 2 | 0, f = 0, x == 1) {
+        for (h = 0, Q = Q[0], S++; (f < L || h) && S--; f++)
+          M = h * u + (z[f] || 0), R[f] = M / Q | 0, h = M % Q | 0;
+        C = h || f < L;
       } else {
-        for (h = u / (G[0] + 1) | 0, h > 1 && (G = i(G, h, u), z = i(z, h, u), x = G.length, L = z.length), D = x, p = z.slice(0, x), N = p.length; N < x; ) p[N++] = 0;
-        F = G.slice(), F.unshift(0), U = G[0], G[1] >= u / 2 && ++U;
+        for (h = u / (Q[0] + 1) | 0, h > 1 && (Q = i(Q, h, u), z = i(z, h, u), x = Q.length, L = z.length), D = x, p = z.slice(0, x), N = p.length; N < x; ) p[N++] = 0;
+        k = Q.slice(), k.unshift(0), T = Q[0], Q[1] >= u / 2 && ++T;
         do
-          h = 0, c = a(G, p, x, N), c < 0 ? (M = p[0], x != N && (M = M * u + (p[1] || 0)), h = M / U | 0, h > 1 ? (h >= u && (h = u - 1), C = i(G, h, u), E = C.length, N = p.length, c = a(C, p, E, N), c == 1 && (h--, e(C, x < E ? F : G, E, u))) : (h == 0 && (c = h = 1), C = G.slice()), E = C.length, E < N && C.unshift(0), e(p, C, N, u), c == -1 && (N = p.length, c = a(G, p, x, N), c < 1 && (h++, e(p, x < N ? F : G, N, u))), N = p.length) : c === 0 && (h++, p = [0]), R[f++] = h, c && p[0] ? p[N++] = z[D] || 0 : (p = [z[D]], N = 1);
-        while ((D++ < L || p[0] !== void 0) && w--);
-        _ = p[0] !== void 0;
+          h = 0, c = a(Q, p, x, N), c < 0 ? (w = p[0], x != N && (w = w * u + (p[1] || 0)), h = w / T | 0, h > 1 ? (h >= u && (h = u - 1), _ = i(Q, h, u), E = _.length, N = p.length, c = a(_, p, E, N), c == 1 && (h--, e(_, x < E ? k : Q, E, u))) : (h == 0 && (c = h = 1), _ = Q.slice()), E = _.length, E < N && _.unshift(0), e(p, _, N, u), c == -1 && (N = p.length, c = a(Q, p, x, N), c < 1 && (h++, e(p, x < N ? k : Q, N, u))), N = p.length) : c === 0 && (h++, p = [0]), R[f++] = h, c && p[0] ? p[N++] = z[D] || 0 : (p = [z[D]], N = 1);
+        while ((D++ < L || p[0] !== void 0) && S--);
+        C = p[0] !== void 0;
       }
       R[0] || R.shift();
     }
     if (d == 1)
-      b.e = l, Eo = _;
+      b.e = l, Do = C;
     else {
       for (f = 1, h = R[0]; h >= 10; h /= 10) f++;
-      b.e = f + l * d - 1, J(b, o ? n + b.e + 1 : n, s, _);
+      b.e = f + l * d - 1, J(b, o ? n + b.e + 1 : n, s, C);
     }
     return b;
   };
@@ -3916,36 +3934,36 @@ function J(i, a, e, t) {
         if (h == 0) {
           for (n = 1, s = f[0]; s >= 10; s /= 10) n++;
           for (s = f[0] += o, o = 1; s >= 10; s /= 10) o++;
-          n != o && (i.e++, f[0] == lt && (f[0] = 1));
+          n != o && (i.e++, f[0] == ft && (f[0] = 1));
           break;
         } else {
-          if (f[h] += o, f[h] != lt) break;
+          if (f[h] += o, f[h] != ft) break;
           f[h--] = 0, o = 1;
         }
     for (n = f.length; f[--n] === 0; ) f.pop();
   }
   return oe && (i.e > d.maxE ? (i.d = null, i.e = NaN) : i.e < d.minE && (i.e = 0, i.d = [0])), i;
 }
-function bt(i, a, e) {
-  if (!i.isFinite()) return Mo(i);
+function yt(i, a, e) {
+  if (!i.isFinite()) return Bo(i);
   var t, r = i.e, n = Ue(i.d), s = n.length;
   return a ? (e && (t = e - s) > 0 ? n = n.charAt(0) + "." + n.slice(1) + jt(t) : s > 1 && (n = n.charAt(0) + "." + n.slice(1)), n = n + (i.e < 0 ? "e" : "e+") + i.e) : r < 0 ? (n = "0." + jt(-r - 1) + n, e && (t = e - s) > 0 && (n += jt(t))) : r >= s ? (n += jt(r + 1 - s), e && (t = e - r - 1) > 0 && (n = n + "." + jt(t))) : ((t = r + 1) < s && (n = n.slice(0, t) + "." + n.slice(t)), e && (t = e - s) > 0 && (r + 1 === s && (n += "."), n += jt(t))), n;
 }
-function Qn(i, a) {
+function Wn(i, a) {
   var e = i[0];
   for (a *= te; e >= 10; e /= 10) a++;
   return a;
 }
-function yn(i, a, e) {
-  if (a > Ul)
-    throw oe = !0, e && (i.precision = e), Error(bo);
-  return J(new i(En), a, 1, !0);
+function pn(i, a, e) {
+  if (a > Ql)
+    throw oe = !0, e && (i.precision = e), Error(Lo);
+  return J(new i(yn), a, 1, !0);
 }
-function _t(i, a, e) {
-  if (a > $s) throw Error(bo);
-  return J(new i(bn), a, e, !0);
+function At(i, a, e) {
+  if (a > Ws) throw Error(Lo);
+  return J(new i(Rn), a, e, !0);
 }
-function Vo(i) {
+function Uo(i) {
   var a = i.length - 1, e = a * te + 1;
   if (a = i[a], a) {
     for (; a % 10 == 0; a /= 10) e--;
@@ -3957,21 +3975,21 @@ function jt(i) {
   for (var a = ""; i--; ) a += "0";
   return a;
 }
-function No(i, a, e, t) {
+function vo(i, a, e, t) {
   var r, n = new i(1), s = Math.ceil(t / te + 4);
   for (oe = !1; ; ) {
-    if (e % 2 && (n = n.times(a), _i(n.d, s) && (r = !0)), e = Ie(e / 2), e === 0) {
+    if (e % 2 && (n = n.times(a), Oi(n.d, s) && (r = !0)), e = Ie(e / 2), e === 0) {
       e = n.d.length - 1, r && n.d[e] === 0 && ++n.d[e];
       break;
     }
-    a = a.times(a), _i(a.d, s);
+    a = a.times(a), Oi(a.d, s);
   }
   return oe = !0, n;
 }
-function Ci(i) {
+function Vi(i) {
   return i.d[i.d.length - 1] & 1;
 }
-function Oo(i, a, e) {
+function To(i, a, e) {
   for (var t, r, n = new i(a[0]), s = 0; ++s < a.length; ) {
     if (r = new i(a[s]), !r.s) {
       n = r;
@@ -3981,41 +3999,41 @@ function Oo(i, a, e) {
   }
   return n;
 }
-function Ys(i, a) {
-  var e, t, r, n, s, o, u, c = 0, l = 0, f = 0, h = i.constructor, d = h.rounding, _ = h.precision;
+function qs(i, a) {
+  var e, t, r, n, s, o, u, c = 0, l = 0, f = 0, h = i.constructor, d = h.rounding, C = h.precision;
   if (!i.d || !i.d[0] || i.e > 17)
     return new h(i.d ? i.d[0] ? i.s < 0 ? 0 : 1 / 0 : 1 : i.s ? i.s < 0 ? 0 : i : NaN);
-  for (a == null ? (oe = !1, u = _) : u = a, o = new h(0.03125); i.e > -2; )
+  for (a == null ? (oe = !1, u = C) : u = a, o = new h(0.03125); i.e > -2; )
     i = i.times(o), f += 5;
   for (t = Math.log(Pe(2, f)) / Math.LN10 * 2 + 5 | 0, u += t, e = n = s = new h(1), h.precision = u; ; ) {
-    if (n = J(n.times(i), u, 1), e = e.times(++l), o = s.plus(Ve(n, e, u, 1)), Ue(o.d).slice(0, u) === Ue(s.d).slice(0, u)) {
+    if (n = J(n.times(i), u, 1), e = e.times(++l), o = s.plus(Ne(n, e, u, 1)), Ue(o.d).slice(0, u) === Ue(s.d).slice(0, u)) {
       for (r = f; r--; ) s = J(s.times(s), u, 1);
       if (a == null)
-        if (c < 3 && Pr(s.d, u - t, d, c))
+        if (c < 3 && Ur(s.d, u - t, d, c))
           h.precision = u += 10, e = n = o = new h(1), l = 0, c++;
         else
-          return J(s, h.precision = _, d, oe = !0);
+          return J(s, h.precision = C, d, oe = !0);
       else
-        return h.precision = _, s;
+        return h.precision = C, s;
     }
     s = o;
   }
 }
 function vt(i, a) {
-  var e, t, r, n, s, o, u, c, l, f, h, d = 1, _ = 10, C = i, E = C.d, b = C.constructor, R = b.rounding, p = b.precision;
-  if (C.s < 0 || !E || !E[0] || !C.e && E[0] == 1 && E.length == 1)
-    return new b(E && !E[0] ? -1 / 0 : C.s != 1 ? NaN : E ? 0 : C);
-  if (a == null ? (oe = !1, l = p) : l = a, b.precision = l += _, e = Ue(E), t = e.charAt(0), Math.abs(n = C.e) < 15e14) {
+  var e, t, r, n, s, o, u, c, l, f, h, d = 1, C = 10, _ = i, E = _.d, b = _.constructor, R = b.rounding, p = b.precision;
+  if (_.s < 0 || !E || !E[0] || !_.e && E[0] == 1 && E.length == 1)
+    return new b(E && !E[0] ? -1 / 0 : _.s != 1 ? NaN : E ? 0 : _);
+  if (a == null ? (oe = !1, l = p) : l = a, b.precision = l += C, e = Ue(E), t = e.charAt(0), Math.abs(n = _.e) < 15e14) {
     for (; t < 7 && t != 1 || t == 1 && e.charAt(1) > 3; )
-      C = C.times(i), e = Ue(C.d), t = e.charAt(0), d++;
-    n = C.e, t > 1 ? (C = new b("0." + e), n++) : C = new b(t + "." + e.slice(1));
+      _ = _.times(i), e = Ue(_.d), t = e.charAt(0), d++;
+    n = _.e, t > 1 ? (_ = new b("0." + e), n++) : _ = new b(t + "." + e.slice(1));
   } else
-    return c = yn(b, l + 2, p).times(n + ""), C = vt(new b(t + "." + e.slice(1)), l - _).plus(c), b.precision = p, a == null ? J(C, p, R, oe = !0) : C;
-  for (f = C, u = s = C = Ve(C.minus(1), C.plus(1), l, 1), h = J(C.times(C), l, 1), r = 3; ; ) {
-    if (s = J(s.times(h), l, 1), c = u.plus(Ve(s, new b(r), l, 1)), Ue(c.d).slice(0, l) === Ue(u.d).slice(0, l))
-      if (u = u.times(2), n !== 0 && (u = u.plus(yn(b, l + 2, p).times(n + ""))), u = Ve(u, new b(d), l, 1), a == null)
-        if (Pr(u.d, l - _, R, o))
-          b.precision = l += _, c = s = C = Ve(f.minus(1), f.plus(1), l, 1), h = J(C.times(C), l, 1), r = o = 1;
+    return c = pn(b, l + 2, p).times(n + ""), _ = vt(new b(t + "." + e.slice(1)), l - C).plus(c), b.precision = p, a == null ? J(_, p, R, oe = !0) : _;
+  for (f = _, u = s = _ = Ne(_.minus(1), _.plus(1), l, 1), h = J(_.times(_), l, 1), r = 3; ; ) {
+    if (s = J(s.times(h), l, 1), c = u.plus(Ne(s, new b(r), l, 1)), Ue(c.d).slice(0, l) === Ue(u.d).slice(0, l))
+      if (u = u.times(2), n !== 0 && (u = u.plus(pn(b, l + 2, p).times(n + ""))), u = Ne(u, new b(d), l, 1), a == null)
+        if (Ur(u.d, l - C, R, o))
+          b.precision = l += C, c = s = _ = Ne(f.minus(1), f.plus(1), l, 1), h = J(_.times(_), l, 1), r = o = 1;
         else
           return J(u, b.precision = p, R, oe = !0);
       else
@@ -4023,10 +4041,10 @@ function vt(i, a) {
     u = c, r += 2;
   }
 }
-function Mo(i) {
+function Bo(i) {
   return String(i.s * i.s / 0);
 }
-function fn(i, a) {
+function mn(i, a) {
   var e, t, r;
   for ((e = a.indexOf(".")) > -1 && (a = a.replace(".", "")), (t = a.search(/e/i)) > 0 ? (e < 0 && (e = t), e += +a.slice(t + 1), a = a.substring(0, t)) : e < 0 && (e = a.length), t = 0; a.charCodeAt(t) === 48; t++) ;
   for (r = a.length; a.charCodeAt(r - 1) === 48; --r) ;
@@ -4042,36 +4060,36 @@ function fn(i, a) {
     i.e = 0, i.d = [0];
   return i;
 }
-function Tl(i, a) {
+function Wl(i, a) {
   var e, t, r, n, s, o, u, c, l;
   if (a.indexOf("_") > -1) {
-    if (a = a.replace(/(\d)_(?=\d)/g, "$1"), po.test(a)) return fn(i, a);
+    if (a = a.replace(/(\d)_(?=\d)/g, "$1"), jo.test(a)) return mn(i, a);
   } else if (a === "Infinity" || a === "NaN")
     return +a || (i.s = NaN), i.e = NaN, i.d = null, i;
-  if (Pl.test(a))
+  if ($l.test(a))
     e = 16, a = a.toLowerCase();
-  else if (Ll.test(a))
+  else if (kl.test(a))
     e = 2;
-  else if (xl.test(a))
+  else if (Yl.test(a))
     e = 8;
   else
     throw Error(kt + a);
-  for (n = a.search(/p/i), n > 0 ? (u = +a.slice(n + 1), a = a.substring(2, n)) : a = a.slice(2), n = a.indexOf("."), s = n >= 0, t = i.constructor, s && (a = a.replace(".", ""), o = a.length, n = o - n, r = No(t, new t(e), n, n * 2)), c = ln(a, e, lt), l = c.length - 1, n = l; c[n] === 0; --n) c.pop();
-  return n < 0 ? new t(i.s * 0) : (i.e = Qn(c, l), i.d = c, oe = !1, s && (i = Ve(i, r, o * 4)), u && (i = i.times(Math.abs(u) < 54 ? Pe(2, u) : P.pow(2, u))), oe = !0, i);
+  for (n = a.search(/p/i), n > 0 ? (u = +a.slice(n + 1), a = a.substring(2, n)) : a = a.slice(2), n = a.indexOf("."), s = n >= 0, t = i.constructor, s && (a = a.replace(".", ""), o = a.length, n = o - n, r = vo(t, new t(e), n, n * 2)), c = hn(a, e, ft), l = c.length - 1, n = l; c[n] === 0; --n) c.pop();
+  return n < 0 ? new t(i.s * 0) : (i.e = Wn(c, l), i.d = c, oe = !1, s && (i = Ne(i, r, o * 4)), u && (i = i.times(Math.abs(u) < 54 ? Pe(2, u) : P.pow(2, u))), oe = !0, i);
 }
-function Bl(i, a) {
+function ql(i, a) {
   var e, t = a.d.length;
   if (t < 3)
-    return a.isZero() ? a : br(i, 2, a, a);
-  e = 1.4 * Math.sqrt(t), e = e > 16 ? 16 : e | 0, a = a.times(1 / Wn(5, e)), a = br(i, 2, a, a);
+    return a.isZero() ? a : Rr(i, 2, a, a);
+  e = 1.4 * Math.sqrt(t), e = e > 16 ? 16 : e | 0, a = a.times(1 / qn(5, e)), a = Rr(i, 2, a, a);
   for (var r, n = new i(5), s = new i(16), o = new i(20); e--; )
     r = a.times(a), a = a.times(n.plus(r.times(s.times(r).minus(o))));
   return a;
 }
-function br(i, a, e, t, r) {
+function Rr(i, a, e, t, r) {
   var n, s, o, u, c = i.precision, l = Math.ceil(c / te);
   for (oe = !1, u = e.times(e), o = new i(t); ; ) {
-    if (s = Ve(o.times(u), new i(a++ * a++), c, 1), o = r ? t.plus(s) : t.minus(s), t = Ve(s.times(u), new i(a++ * a++), c, 1), s = o.plus(t), s.d[l] !== void 0) {
+    if (s = Ne(o.times(u), new i(a++ * a++), c, 1), o = r ? t.plus(s) : t.minus(s), t = Ne(s.times(u), new i(a++ * a++), c, 1), s = o.plus(t), s.d[l] !== void 0) {
       for (n = l; s.d[n] === o.d[n] && n--; ) ;
       if (n == -1) break;
     }
@@ -4079,43 +4097,43 @@ function br(i, a, e, t, r) {
   }
   return oe = !0, s.d.length = l + 1, s;
 }
-function Wn(i, a) {
+function qn(i, a) {
   for (var e = i; --a; ) e *= i;
   return e;
 }
-function wo(i, a) {
-  var e, t = a.s < 0, r = _t(i, i.precision, 1), n = r.times(0.5);
+function Io(i, a) {
+  var e, t = a.s < 0, r = At(i, i.precision, 1), n = r.times(0.5);
   if (a = a.abs(), a.lte(n))
     return Ot = t ? 4 : 1, a;
   if (e = a.divToInt(r), e.isZero())
     Ot = t ? 3 : 2;
   else {
     if (a = a.minus(e.times(r)), a.lte(n))
-      return Ot = Ci(e) ? t ? 2 : 3 : t ? 4 : 1, a;
-    Ot = Ci(e) ? t ? 1 : 4 : t ? 3 : 2;
+      return Ot = Vi(e) ? t ? 2 : 3 : t ? 4 : 1, a;
+    Ot = Vi(e) ? t ? 1 : 4 : t ? 3 : 2;
   }
   return a.minus(r).abs();
 }
-function Ea(i, a, e, t) {
-  var r, n, s, o, u, c, l, f, h, d = i.constructor, _ = e !== void 0;
-  if (_ ? (He(e, 1, Gt), t === void 0 ? t = d.rounding : He(t, 0, 8)) : (e = d.precision, t = d.rounding), !i.isFinite())
-    l = Mo(i);
+function wa(i, a, e, t) {
+  var r, n, s, o, u, c, l, f, h, d = i.constructor, C = e !== void 0;
+  if (C ? (Ge(e, 1, Qt), t === void 0 ? t = d.rounding : Ge(t, 0, 8)) : (e = d.precision, t = d.rounding), !i.isFinite())
+    l = Bo(i);
   else {
-    for (l = bt(i), s = l.indexOf("."), _ ? (r = 2, a == 16 ? e = e * 4 - 3 : a == 8 && (e = e * 3 - 2)) : r = a, s >= 0 && (l = l.replace(".", ""), h = new d(1), h.e = l.length - s, h.d = ln(bt(h), 10, r), h.e = h.d.length), f = ln(l, 10, r), n = u = f.length; f[--u] == 0; ) f.pop();
+    for (l = yt(i), s = l.indexOf("."), C ? (r = 2, a == 16 ? e = e * 4 - 3 : a == 8 && (e = e * 3 - 2)) : r = a, s >= 0 && (l = l.replace(".", ""), h = new d(1), h.e = l.length - s, h.d = hn(yt(h), 10, r), h.e = h.d.length), f = hn(l, 10, r), n = u = f.length; f[--u] == 0; ) f.pop();
     if (!f[0])
-      l = _ ? "0p+0" : "0";
+      l = C ? "0p+0" : "0";
     else {
-      if (s < 0 ? n-- : (i = new d(i), i.d = f, i.e = n, i = Ve(i, h, e, t, 0, r), f = i.d, n = i.e, c = Eo), s = f[e], o = r / 2, c = c || f[e + 1] !== void 0, c = t < 4 ? (s !== void 0 || c) && (t === 0 || t === (i.s < 0 ? 3 : 2)) : s > o || s === o && (t === 4 || c || t === 6 && f[e - 1] & 1 || t === (i.s < 0 ? 8 : 7)), f.length = e, c)
+      if (s < 0 ? n-- : (i = new d(i), i.d = f, i.e = n, i = Ne(i, h, e, t, 0, r), f = i.d, n = i.e, c = Do), s = f[e], o = r / 2, c = c || f[e + 1] !== void 0, c = t < 4 ? (s !== void 0 || c) && (t === 0 || t === (i.s < 0 ? 3 : 2)) : s > o || s === o && (t === 4 || c || t === 6 && f[e - 1] & 1 || t === (i.s < 0 ? 8 : 7)), f.length = e, c)
         for (; ++f[--e] > r - 1; )
           f[e] = 0, e || (++n, f.unshift(1));
       for (u = f.length; !f[u - 1]; --u) ;
-      for (s = 0, l = ""; s < u; s++) l += Fs.charAt(f[s]);
-      if (_) {
+      for (s = 0, l = ""; s < u; s++) l += Qs.charAt(f[s]);
+      if (C) {
         if (u > 1)
           if (a == 16 || a == 8) {
             for (s = a == 16 ? 4 : 3, --u; u % s; u++) l += "0";
-            for (f = ln(l, r, a), u = f.length; !f[u - 1]; --u) ;
-            for (s = 1, l = "1."; s < u; s++) l += Fs.charAt(f[s]);
+            for (f = hn(l, r, a), u = f.length; !f[u - 1]; --u) ;
+            for (s = 1, l = "1."; s < u; s++) l += Qs.charAt(f[s]);
           } else
             l = l.charAt(0) + "." + l.slice(1);
         l = l + (n < 0 ? "p" : "p+") + n;
@@ -4129,102 +4147,102 @@ function Ea(i, a, e, t) {
   }
   return i.s < 0 ? "-" + l : l;
 }
-function _i(i, a) {
+function Oi(i, a) {
   if (i.length > a)
     return i.length = a, !0;
 }
-function Il(i) {
+function Kl(i) {
   return new this(i).abs();
 }
-function Fl(i) {
+function Xl(i) {
   return new this(i).acos();
 }
-function kl(i) {
+function Zl(i) {
   return new this(i).acosh();
 }
-function $l(i, a) {
+function zl(i, a) {
   return new this(i).plus(a);
 }
-function Yl(i) {
+function Jl(i) {
   return new this(i).asin();
 }
-function Hl(i) {
+function ef(i) {
   return new this(i).asinh();
 }
-function Gl(i) {
+function tf(i) {
   return new this(i).atan();
 }
-function Ql(i) {
+function rf(i) {
   return new this(i).atanh();
 }
-function Wl(i, a) {
+function nf(i, a) {
   i = new this(i), a = new this(a);
   var e, t = this.precision, r = this.rounding, n = t + 4;
-  return !i.s || !a.s ? e = new this(NaN) : !i.d && !a.d ? (e = _t(this, n, 1).times(a.s > 0 ? 0.25 : 0.75), e.s = i.s) : !a.d || i.isZero() ? (e = a.s < 0 ? _t(this, t, r) : new this(0), e.s = i.s) : !i.d || a.isZero() ? (e = _t(this, n, 1).times(0.5), e.s = i.s) : a.s < 0 ? (this.precision = n, this.rounding = 1, e = this.atan(Ve(i, a, n, 1)), a = _t(this, n, 1), this.precision = t, this.rounding = r, e = i.s < 0 ? e.minus(a) : e.plus(a)) : e = this.atan(Ve(i, a, n, 1)), e;
+  return !i.s || !a.s ? e = new this(NaN) : !i.d && !a.d ? (e = At(this, n, 1).times(a.s > 0 ? 0.25 : 0.75), e.s = i.s) : !a.d || i.isZero() ? (e = a.s < 0 ? At(this, t, r) : new this(0), e.s = i.s) : !i.d || a.isZero() ? (e = At(this, n, 1).times(0.5), e.s = i.s) : a.s < 0 ? (this.precision = n, this.rounding = 1, e = this.atan(Ne(i, a, n, 1)), a = At(this, n, 1), this.precision = t, this.rounding = r, e = i.s < 0 ? e.minus(a) : e.plus(a)) : e = this.atan(Ne(i, a, n, 1)), e;
 }
-function ql(i) {
+function sf(i) {
   return new this(i).cbrt();
 }
-function Kl(i) {
+function af(i) {
   return J(i = new this(i), i.e + 1, 2);
 }
-function Xl(i, a, e) {
+function of(i, a, e) {
   return new this(i).clamp(a, e);
 }
-function Zl(i) {
+function uf(i) {
   if (!i || typeof i != "object") throw Error(Gn + "Object expected");
   var a, e, t, r = i.defaults === !0, n = [
     "precision",
     1,
-    Gt,
+    Qt,
     "rounding",
     0,
     8,
     "toExpNeg",
-    -lr,
+    -hr,
     0,
     "toExpPos",
     0,
-    lr,
+    hr,
     "maxE",
     0,
-    lr,
+    hr,
     "minE",
-    -lr,
+    -hr,
     0,
     "modulo",
     0,
     9
   ];
   for (a = 0; a < n.length; a += 3)
-    if (e = n[a], r && (this[e] = ks[e]), (t = i[e]) !== void 0)
+    if (e = n[a], r && (this[e] = Gs[e]), (t = i[e]) !== void 0)
       if (Ie(t) === t && t >= n[a + 1] && t <= n[a + 2]) this[e] = t;
       else throw Error(kt + e + ": " + t);
-  if (e = "crypto", r && (this[e] = ks[e]), (t = i[e]) !== void 0)
+  if (e = "crypto", r && (this[e] = Gs[e]), (t = i[e]) !== void 0)
     if (t === !0 || t === !1 || t === 0 || t === 1)
       if (t)
         if (typeof crypto < "u" && crypto && (crypto.getRandomValues || crypto.randomBytes))
           this[e] = !0;
         else
-          throw Error(yo);
+          throw Error(Po);
       else
         this[e] = !1;
     else
       throw Error(kt + e + ": " + t);
   return this;
 }
-function zl(i) {
+function cf(i) {
   return new this(i).cos();
 }
-function Jl(i) {
+function lf(i) {
   return new this(i).cosh();
 }
-function So(i) {
+function Fo(i) {
   var a, e, t;
   function r(n) {
     var s, o, u, c = this;
     if (!(c instanceof r)) return new r(n);
-    if (c.constructor = r, Ai(n)) {
+    if (c.constructor = r, wi(n)) {
       c.s = n.s, oe ? !n.d || n.e > r.maxE ? (c.e = NaN, c.d = null) : n.e < r.minE ? (c.e = 0, c.d = [0]) : (c.e = n.e, c.d = n.d.slice()) : (c.e = n.e, c.d = n.d ? n.d.slice() : n.d);
       return;
     }
@@ -4242,28 +4260,28 @@ function So(i) {
         n || (c.s = NaN), c.e = NaN, c.d = null;
         return;
       }
-      return fn(c, n.toString());
+      return mn(c, n.toString());
     }
     if (u === "string")
-      return (o = n.charCodeAt(0)) === 45 ? (n = n.slice(1), c.s = -1) : (o === 43 && (n = n.slice(1)), c.s = 1), po.test(n) ? fn(c, n) : Tl(c, n);
+      return (o = n.charCodeAt(0)) === 45 ? (n = n.slice(1), c.s = -1) : (o === 43 && (n = n.slice(1)), c.s = 1), jo.test(n) ? mn(c, n) : Wl(c, n);
     if (u === "bigint")
-      return n < 0 ? (n = -n, c.s = -1) : c.s = 1, fn(c, n.toString());
+      return n < 0 ? (n = -n, c.s = -1) : c.s = 1, mn(c, n.toString());
     throw Error(kt + n);
   }
-  if (r.prototype = I, r.ROUND_UP = 0, r.ROUND_DOWN = 1, r.ROUND_CEIL = 2, r.ROUND_FLOOR = 3, r.ROUND_HALF_UP = 4, r.ROUND_HALF_DOWN = 5, r.ROUND_HALF_EVEN = 6, r.ROUND_HALF_CEIL = 7, r.ROUND_HALF_FLOOR = 8, r.EUCLID = 9, r.config = r.set = Zl, r.clone = So, r.isDecimal = Ai, r.abs = Il, r.acos = Fl, r.acosh = kl, r.add = $l, r.asin = Yl, r.asinh = Hl, r.atan = Gl, r.atanh = Ql, r.atan2 = Wl, r.cbrt = ql, r.ceil = Kl, r.clamp = Xl, r.cos = zl, r.cosh = Jl, r.div = ef, r.exp = tf, r.floor = rf, r.hypot = nf, r.ln = sf, r.log = af, r.log10 = uf, r.log2 = of, r.max = cf, r.min = lf, r.mod = ff, r.mul = hf, r.pow = mf, r.random = gf, r.round = df, r.sign = Cf, r.sin = _f, r.sinh = Af, r.sqrt = Ef, r.sub = bf, r.sum = yf, r.tan = Rf, r.tanh = pf, r.trunc = Vf, i === void 0 && (i = {}), i && i.defaults !== !0)
+  if (r.prototype = F, r.ROUND_UP = 0, r.ROUND_DOWN = 1, r.ROUND_CEIL = 2, r.ROUND_FLOOR = 3, r.ROUND_HALF_UP = 4, r.ROUND_HALF_DOWN = 5, r.ROUND_HALF_EVEN = 6, r.ROUND_HALF_CEIL = 7, r.ROUND_HALF_FLOOR = 8, r.EUCLID = 9, r.config = r.set = uf, r.clone = Fo, r.isDecimal = wi, r.abs = Kl, r.acos = Xl, r.acosh = Zl, r.add = zl, r.asin = Jl, r.asinh = ef, r.atan = tf, r.atanh = rf, r.atan2 = nf, r.cbrt = sf, r.ceil = af, r.clamp = of, r.cos = cf, r.cosh = lf, r.div = ff, r.exp = hf, r.floor = mf, r.hypot = gf, r.ln = df, r.log = Cf, r.log10 = Af, r.log2 = _f, r.max = Ef, r.min = bf, r.mod = yf, r.mul = Rf, r.pow = pf, r.random = Nf, r.round = Vf, r.sign = Of, r.sin = wf, r.sinh = Sf, r.sqrt = Mf, r.sub = Df, r.sum = Lf, r.tan = Pf, r.tanh = xf, r.trunc = jf, i === void 0 && (i = {}), i && i.defaults !== !0)
     for (t = ["precision", "rounding", "toExpNeg", "toExpPos", "maxE", "minE", "modulo", "crypto"], a = 0; a < t.length; ) i.hasOwnProperty(e = t[a++]) || (i[e] = this[e]);
   return r.config(i), r;
 }
-function ef(i, a) {
+function ff(i, a) {
   return new this(i).div(a);
 }
-function tf(i) {
+function hf(i) {
   return new this(i).exp();
 }
-function rf(i) {
+function mf(i) {
   return J(i = new this(i), i.e + 1, 3);
 }
-function nf() {
+function gf() {
   var i, a, e = new this(0);
   for (oe = !1, i = 0; i < arguments.length; )
     if (a = new this(arguments[i++]), a.d)
@@ -4275,39 +4293,39 @@ function nf() {
     }
   return oe = !0, e.sqrt();
 }
-function Ai(i) {
-  return i instanceof P || i && i.toStringTag === Ro || !1;
+function wi(i) {
+  return i instanceof P || i && i.toStringTag === xo || !1;
 }
-function sf(i) {
+function df(i) {
   return new this(i).ln();
 }
-function af(i, a) {
+function Cf(i, a) {
   return new this(i).log(a);
 }
-function of(i) {
+function _f(i) {
   return new this(i).log(2);
 }
-function uf(i) {
+function Af(i) {
   return new this(i).log(10);
 }
-function cf() {
-  return Oo(this, arguments, -1);
+function Ef() {
+  return To(this, arguments, -1);
 }
-function lf() {
-  return Oo(this, arguments, 1);
+function bf() {
+  return To(this, arguments, 1);
 }
-function ff(i, a) {
+function yf(i, a) {
   return new this(i).mod(a);
 }
-function hf(i, a) {
+function Rf(i, a) {
   return new this(i).mul(a);
 }
-function mf(i, a) {
+function pf(i, a) {
   return new this(i).pow(a);
 }
-function gf(i) {
+function Nf(i) {
   var a, e, t, r, n = 0, s = new this(1), o = [];
-  if (i === void 0 ? i = this.precision : He(i, 1, Gt), t = Math.ceil(i / te), this.crypto)
+  if (i === void 0 ? i = this.precision : Ge(i, 1, Qt), t = Math.ceil(i / te), this.crypto)
     if (crypto.getRandomValues)
       for (a = crypto.getRandomValues(new Uint32Array(t)); n < t; )
         r = a[n], r >= 429e7 ? a[n] = crypto.getRandomValues(new Uint32Array(1))[0] : o[n++] = r % 1e7;
@@ -4316,7 +4334,7 @@ function gf(i) {
         r = a[n] + (a[n + 1] << 8) + (a[n + 2] << 16) + ((a[n + 3] & 127) << 24), r >= 214e7 ? crypto.randomBytes(4).copy(a, n) : (o.push(r % 1e7), n += 4);
       n = t / 4;
     } else
-      throw Error(yo);
+      throw Error(Po);
   else for (; n < t; ) o[n++] = Math.random() * 1e7 | 0;
   for (t = o[--n], i %= te, t && i && (r = Pe(10, te - i), o[n] = (t / r | 0) * r); o[n] === 0; n--) o.pop();
   if (n < 0)
@@ -4328,48 +4346,48 @@ function gf(i) {
   }
   return s.e = e, s.d = o, s;
 }
-function df(i) {
+function Vf(i) {
   return J(i = new this(i), i.e + 1, this.rounding);
 }
-function Cf(i) {
+function Of(i) {
   return i = new this(i), i.d ? i.d[0] ? i.s : 0 * i.s : i.s || NaN;
 }
-function _f(i) {
+function wf(i) {
   return new this(i).sin();
 }
-function Af(i) {
+function Sf(i) {
   return new this(i).sinh();
 }
-function Ef(i) {
+function Mf(i) {
   return new this(i).sqrt();
 }
-function bf(i, a) {
+function Df(i, a) {
   return new this(i).sub(a);
 }
-function yf() {
+function Lf() {
   var i = 0, a = arguments, e = new this(a[i]);
   for (oe = !1; e.s && ++i < a.length; ) e = e.plus(a[i]);
   return oe = !0, J(e, this.precision, this.rounding);
 }
-function Rf(i) {
+function Pf(i) {
   return new this(i).tan();
 }
-function pf(i) {
+function xf(i) {
   return new this(i).tanh();
 }
-function Vf(i) {
+function jf(i) {
   return J(i = new this(i), i.e + 1, 1);
 }
-I[Symbol.for("nodejs.util.inspect.custom")] = I.toString;
-I[Symbol.toStringTag] = "Decimal";
-var P = I.constructor = So(ks);
-En = new P(En);
-bn = new P(bn);
-function Nf(i, a) {
+F[Symbol.for("nodejs.util.inspect.custom")] = F.toString;
+F[Symbol.toStringTag] = "Decimal";
+var P = F.constructor = Fo(Gs);
+yn = new P(yn);
+Rn = new P(Rn);
+function Uf(i, a) {
   const e = i + a;
   return Number.isSafeInteger(e) ? e : new P(i).add(a).toNumber();
 }
-function Of(i, a) {
+function vf(i, a) {
   const e = i - a;
   return Number.isSafeInteger(e) ? e : new P(i).sub(a).toNumber();
 }
@@ -4377,65 +4395,65 @@ function Mr(i, a) {
   const e = i * a;
   return Number.isSafeInteger(e) ? e : new P(i).mul(a).toNumber();
 }
-function Mf(i, a) {
+function Tf(i, a) {
   const e = i / a;
   return Number.isSafeInteger(e) ? e : new P(i).div(a).toNumber();
 }
 function Bt(i, a) {
-  const e = 10 ** Math.trunc(a), t = qn(i, e);
+  const e = 10 ** Math.trunc(a), t = Kn(i, e);
   return Math.round(Mr(i, e) + t) / e;
 }
-function Ke(i, a) {
-  const e = 10 ** Math.trunc(a), t = qn(i, e);
+function Xe(i, a) {
+  const e = 10 ** Math.trunc(a), t = Kn(i, e);
   return Math.floor(Mr(i, e) + t) / e;
 }
-function Ye(i, a) {
-  const e = 10 ** Math.trunc(a), t = qn(i, e);
+function Qe(i, a) {
+  const e = 10 ** Math.trunc(a), t = Kn(i, e);
   return Math.ceil(Mr(i, e) - t) / e;
 }
-function qn(i, a) {
+function Kn(i, a) {
   return Number.EPSILON * Math.max(1, Math.abs(Mr(i, a)));
 }
-function Ei(i, a) {
+function Si(i, a) {
   return i - a * Math.floor(i / a);
 }
-function wf(i, a) {
+function Bf(i, a) {
   return i ** a;
 }
-function Sf(i) {
+function If(i) {
   return Math.sqrt(i);
 }
-function bi(i, a) {
+function Mi(i, a) {
   return i === a;
 }
-function Df(i, a) {
+function Ff(i, a) {
   return i > a;
 }
-function Lf(i, a) {
+function kf(i, a) {
   return i >= a;
 }
-function Pf(i, a) {
+function $f(i, a) {
   return i < a;
 }
-function xf(i, a) {
+function Yf(i, a) {
   return i <= a;
 }
-function yi(i, a = 15) {
+function Di(i, a = 15) {
   return Math.floor(Math.abs(i)).toString().length >= a ? i : Number.parseFloat(i.toPrecision(a));
 }
-function jf(i, a, e = Number.EPSILON) {
+function Hf(i, a, e = Number.EPSILON) {
   return Math.abs(i - a) < e;
 }
-function ba(i, a = 12, e = 1e-10) {
-  const t = yi(i, a);
-  return jf(i, t, e) ? t : yi(i);
+function Sa(i, a = 12, e = 1e-10) {
+  const t = Di(i, a);
+  return Hf(i, t, e) ? t : Di(i);
 }
-function Uf(i) {
+function Qf(i) {
   return i - Math.trunc(i);
 }
-const $n = class $n extends Ht {
+const Yn = class Yn extends Ht {
   static create() {
-    return this._instance = this._instance || new $n(0), this._instance;
+    return this._instance = this._instance || new Yn(0), this._instance;
   }
   isNull() {
     return !0;
@@ -4456,13 +4474,13 @@ const $n = class $n extends Ht {
     return y.create(0).mod(a);
   }
   compare(a, e) {
-    return a.isString() ? j.create("").compare(a, e) : a.isBoolean() ? T.create(!1).compare(a, e) : y.create(0).compare(a, e);
+    return a.isString() ? j.create("").compare(a, e) : a.isBoolean() ? v.create(!1).compare(a, e) : y.create(0).compare(a, e);
   }
   concatenateFront(a) {
-    return a.isArray() ? a.concatenateBack(j.create("")) : j.create(this.concatenate(a.getValue(), ct.FRONT));
+    return a.isArray() ? a.concatenateBack(j.create("")) : j.create(this.concatenate(a.getValue(), lt.FRONT));
   }
   concatenateBack(a) {
-    return a.isArray() ? a.concatenateFront(j.create("")) : j.create(this.concatenate(a.getValue(), ct.BACK));
+    return a.isArray() ? a.concatenateFront(j.create("")) : j.create(this.concatenate(a.getValue(), lt.BACK));
   }
   plusBy(a) {
     return y.create(0).plusBy(a);
@@ -4477,7 +4495,7 @@ const $n = class $n extends Ht {
     return y.create(0).dividedBy(a);
   }
   compareBy(a, e) {
-    return typeof a == "string" ? j.create("").compareBy(a, e) : typeof a == "boolean" ? T.create(!1).compareBy(a, e) : y.create(0).compareBy(a, e);
+    return typeof a == "string" ? j.create("").compareBy(a, e) : typeof a == "boolean" ? v.create(!1).compareBy(a, e) : y.create(0).compareBy(a, e);
   }
   pow(a) {
     return y.create(0).pow(a);
@@ -4552,19 +4570,19 @@ const $n = class $n extends Ht {
     return y.create(0);
   }
   convertToBooleanObjectValue() {
-    return T.create(!1);
+    return v.create(!1);
   }
 };
-A($n, "_instance");
-let ue = $n;
-const Xt = class Xt extends Ht {
+A(Yn, "_instance");
+let ue = Yn;
+const Zt = class Zt extends Ht {
   constructor(e) {
     super(e);
     A(this, "_value", !1);
     this._value = e;
   }
   static create(e) {
-    return e ? (this._instanceTrue = this._instanceTrue || new Xt(!0), this._instanceTrue) : (this._instanceFalse = this._instanceFalse || new Xt(!1), this._instanceFalse);
+    return e ? (this._instanceTrue = this._instanceTrue || new Zt(!0), this._instanceTrue) : (this._instanceFalse = this._instanceFalse || new Zt(!1), this._instanceFalse);
   }
   getValue() {
     return this._value;
@@ -4596,7 +4614,7 @@ const Xt = class Xt extends Ht {
     return this._convertToNumber().mod(e);
   }
   compare(e, t) {
-    return e.isArray() ? e.compare(this, Aa(t)) : e.isNull() ? this._convertToNumber().compare(e, t) : this.compareBy(e.getValue(), t);
+    return e.isArray() ? e.compare(this, Oa(t)) : e.isNull() ? this._convertToNumber().compare(e, t) : this.compareBy(e.getValue(), t);
   }
   compareBy(e, t) {
     let r = !1;
@@ -4606,17 +4624,17 @@ const Xt = class Xt extends Ht {
       const n = y.create(e ? 1 : 0);
       return this._convertToNumber().compare(n, t);
     }
-    return Xt.create(r);
+    return Zt.create(r);
   }
   _compareString(e) {
     switch (e) {
-      case k.GREATER_THAN:
-      case k.GREATER_THAN_OR_EQUAL:
+      case U.GREATER_THAN:
+      case U.GREATER_THAN_OR_EQUAL:
         return !0;
-      case k.EQUALS:
-      case k.LESS_THAN:
-      case k.LESS_THAN_OR_EQUAL:
-      case k.NOT_EQUAL:
+      case U.EQUALS:
+      case U.LESS_THAN:
+      case U.LESS_THAN_OR_EQUAL:
+      case U.NOT_EQUAL:
         return !1;
     }
   }
@@ -4701,14 +4719,14 @@ const Xt = class Xt extends Ht {
     return this._convertToNumber().ceil(e);
   }
   convertToNumberObjectValue() {
-    return xr(this.getValue());
+    return vr(this.getValue());
   }
   convertToBooleanObjectValue() {
     return this;
   }
 };
-A(Xt, "_instanceTrue"), A(Xt, "_instanceFalse");
-let T = Xt;
+A(Zt, "_instanceTrue"), A(Zt, "_instanceFalse");
+let v = Zt;
 class y extends Ht {
   constructor(e) {
     super(e);
@@ -4742,7 +4760,7 @@ class y extends Ht {
     let r = this.plusBy(t.getValue());
     if (r.isError())
       return r;
-    const n = Zr(this.getPattern(), t.getPattern(), X.PLUS);
+    const n = Jr(this.getPattern(), t.getPattern(), X.PLUS);
     return r = y.create(Number(r.getValue()), n), r;
   }
   equalZero() {
@@ -4758,7 +4776,7 @@ class y extends Ht {
     let r = this.minusBy(t.getValue());
     if (r.isError())
       return r;
-    const n = Zr(this.getPattern(), t.getPattern(), X.MINUS);
+    const n = Jr(this.getPattern(), t.getPattern(), X.MINUS);
     return r = y.create(Number(r.getValue()), n), r;
   }
   multiply(e) {
@@ -4769,7 +4787,7 @@ class y extends Ht {
     let r = this.multiplyBy(t.getValue());
     if (r.isError())
       return r;
-    const n = Zr(this.getPattern(), t.getPattern(), X.MULTIPLY);
+    const n = Jr(this.getPattern(), t.getPattern(), X.MULTIPLY);
     return r = y.create(Number(r.getValue()), n), r;
   }
   divided(e) {
@@ -4782,7 +4800,7 @@ class y extends Ht {
     let r = this.dividedBy(t.getValue());
     if (r.isError())
       return r;
-    const n = Zr(this.getPattern(), t.getPattern(), X.DIVIDED);
+    const n = Jr(this.getPattern(), t.getPattern(), X.DIVIDED);
     return r = y.create(Number(r.getValue()), n), r;
   }
   mod(e) {
@@ -4798,23 +4816,23 @@ class y extends Ht {
         return g.create(m.DIV_BY_ZERO);
       if (!Number.isFinite(t) || !Number.isFinite(r) || Math.abs(r) * 11259e8 <= Math.abs(t))
         return g.create(m.NUM);
-      const n = Ei(t, r);
+      const n = Si(t, r);
       return Number.isFinite(n) ? y.create(n) : g.create(m.NUM);
     }
     if (typeof r == "boolean") {
       const n = r ? 1 : 0;
-      return n === 0 ? g.create(m.DIV_BY_ZERO) : y.create(Ei(t, n));
+      return n === 0 ? g.create(m.DIV_BY_ZERO) : y.create(Si(t, n));
     }
     return this;
   }
   concatenateFront(e) {
-    return e.isArray() ? e.concatenateBack(this) : j.create(this.concatenate(e.getValue(), ct.FRONT));
+    return e.isArray() ? e.concatenateBack(this) : j.create(this.concatenate(e.getValue(), lt.FRONT));
   }
   concatenateBack(e) {
-    return e.isArray() ? e.concatenateFront(this) : j.create(this.concatenate(e.getValue(), ct.BACK));
+    return e.isArray() ? e.concatenateFront(this) : j.create(this.concatenate(e.getValue(), lt.BACK));
   }
   compare(e, t) {
-    return e.isArray() ? e.compare(this, Aa(t)) : this.compareBy(e.getValue(), t);
+    return e.isArray() ? e.compare(this, Oa(t)) : this.compareBy(e.getValue(), t);
   }
   plusBy(e) {
     if (typeof e == "string" && e.trim() === "")
@@ -4824,7 +4842,7 @@ class y extends Ht {
       return g.create(m.VALUE);
     if (!Number.isFinite(t) || !Number.isFinite(r))
       return g.create(m.NUM);
-    const n = Nf(t, r);
+    const n = Uf(t, r);
     return Number.isFinite(n) ? y.create(n) : g.create(m.NUM);
   }
   minusBy(e) {
@@ -4835,7 +4853,7 @@ class y extends Ht {
       return g.create(m.VALUE);
     if (!Number.isFinite(t) || !Number.isFinite(r))
       return g.create(m.NUM);
-    const n = Of(t, r);
+    const n = vf(t, r);
     return Number.isFinite(n) ? y.create(n) : g.create(m.NUM);
   }
   multiplyBy(e) {
@@ -4859,23 +4877,23 @@ class y extends Ht {
       return g.create(m.NUM);
     if (r === 0)
       return g.create(m.DIV_BY_ZERO);
-    const n = Mf(t, r);
+    const n = Tf(t, r);
     return Number.isFinite(n) ? y.create(n) : g.create(m.NUM);
   }
   compareBy(e, t) {
     const r = this.getValue();
     let n = !1;
-    return typeof e == "string" ? n = this._compareString(t) : typeof e == "number" ? n = this._compareNumber(r, e, t) : typeof e == "boolean" && (n = this._compareBoolean(t)), T.create(n);
+    return typeof e == "string" ? n = this._compareString(t) : typeof e == "number" ? n = this._compareNumber(r, e, t) : typeof e == "boolean" && (n = this._compareBoolean(t)), v.create(n);
   }
   _compareString(e) {
     switch (e) {
-      case k.EQUALS:
-      case k.GREATER_THAN:
-      case k.GREATER_THAN_OR_EQUAL:
+      case U.EQUALS:
+      case U.GREATER_THAN:
+      case U.GREATER_THAN_OR_EQUAL:
         return !1;
-      case k.LESS_THAN:
-      case k.LESS_THAN_OR_EQUAL:
-      case k.NOT_EQUAL:
+      case U.LESS_THAN:
+      case U.LESS_THAN_OR_EQUAL:
+      case U.NOT_EQUAL:
         return !0;
     }
   }
@@ -4884,29 +4902,29 @@ class y extends Ht {
   }
   _compareFiniteNumber(e, t, r) {
     switch (r) {
-      case k.EQUALS:
-        return bi(e, t);
-      case k.GREATER_THAN:
-        return Df(e, t);
-      case k.GREATER_THAN_OR_EQUAL:
-        return Lf(e, t);
-      case k.LESS_THAN:
-        return Pf(e, t);
-      case k.LESS_THAN_OR_EQUAL:
-        return xf(e, t);
-      case k.NOT_EQUAL:
-        return !bi(e, t);
+      case U.EQUALS:
+        return Mi(e, t);
+      case U.GREATER_THAN:
+        return Ff(e, t);
+      case U.GREATER_THAN_OR_EQUAL:
+        return kf(e, t);
+      case U.LESS_THAN:
+        return $f(e, t);
+      case U.LESS_THAN_OR_EQUAL:
+        return Yf(e, t);
+      case U.NOT_EQUAL:
+        return !Mi(e, t);
     }
   }
   _compareBoolean(e) {
     switch (e) {
-      case k.EQUALS:
-      case k.GREATER_THAN:
-      case k.GREATER_THAN_OR_EQUAL:
+      case U.EQUALS:
+      case U.GREATER_THAN:
+      case U.GREATER_THAN_OR_EQUAL:
         return !1;
-      case k.LESS_THAN:
-      case k.LESS_THAN_OR_EQUAL:
-      case k.NOT_EQUAL:
+      case U.LESS_THAN:
+      case U.LESS_THAN_OR_EQUAL:
+      case U.NOT_EQUAL:
         return !0;
     }
   }
@@ -4926,14 +4944,14 @@ class y extends Ht {
       return g.create(m.NUM);
     if (t === 0)
       return n < 0 ? g.create(m.DIV_BY_ZERO) : n === 0 ? g.create(m.NUM) : y.create(0);
-    const s = wf(t, n);
+    const s = Bf(t, n);
     return Number.isFinite(s) ? y.create(s) : g.create(m.NUM);
   }
   sqrt() {
     const e = this.getValue();
     if (!Number.isFinite(e))
       return g.create(m.NUM);
-    const t = Sf(e);
+    const t = If(e);
     return Number.isFinite(t) ? y.create(t) : g.create(m.NUM);
   }
   cbrt() {
@@ -5094,10 +5112,10 @@ class y extends Ht {
     if (typeof r == "number") {
       if (!Number.isFinite(t) || !Number.isFinite(r))
         return g.create(m.NUM);
-      const n = t < 0 ? -Ke(Math.abs(t), r) : Ke(t, r);
+      const n = t < 0 ? -Xe(Math.abs(t), r) : Xe(t, r);
       return Number.isFinite(n) ? y.create(n) : g.create(m.NUM);
     }
-    return typeof r == "boolean" ? y.create(Ke(t, r ? 1 : 0)) : this;
+    return typeof r == "boolean" ? y.create(Xe(t, r ? 1 : 0)) : this;
   }
   ceil(e) {
     if (e.isArray())
@@ -5108,43 +5126,43 @@ class y extends Ht {
     if (typeof r == "number") {
       if (!Number.isFinite(t) || !Number.isFinite(r))
         return g.create(m.NUM);
-      const n = t < 0 ? -Ye(Math.abs(t), r) : Ye(t, r);
+      const n = t < 0 ? -Qe(Math.abs(t), r) : Qe(t, r);
       return Number.isFinite(n) ? y.create(n) : g.create(m.NUM);
     }
-    return typeof r == "boolean" ? y.create(Ye(t, r ? 1 : 0)) : this;
+    return typeof r == "boolean" ? y.create(Qe(t, r ? 1 : 0)) : this;
   }
   convertToNumberObjectValue() {
     return this;
   }
   convertToBooleanObjectValue() {
-    return Kn(!0);
+    return Xn(!0);
   }
   _compareInfinity(e, t, r) {
     let n = !1;
     switch (r) {
-      case k.EQUALS:
+      case U.EQUALS:
         n = e === t;
         break;
-      case k.GREATER_THAN:
+      case U.GREATER_THAN:
         n = e > t;
         break;
-      case k.GREATER_THAN_OR_EQUAL:
+      case U.GREATER_THAN_OR_EQUAL:
         n = e >= t;
         break;
-      case k.LESS_THAN:
+      case U.LESS_THAN:
         n = e < t;
         break;
-      case k.LESS_THAN_OR_EQUAL:
+      case U.LESS_THAN_OR_EQUAL:
         n = e <= t;
         break;
-      case k.NOT_EQUAL:
+      case U.NOT_EQUAL:
         n = e !== t;
         break;
     }
     return n;
   }
 }
-const vf = 1e5, Hs = new wt(vf);
+const Gf = 1e5, Ks = new St(Gf);
 class j extends Ht {
   constructor(e) {
     super(e);
@@ -5155,11 +5173,11 @@ class j extends Ht {
   }
   static create(e, t) {
     var s;
-    const r = Hs.get(e);
+    const r = Ks.get(e);
     if (r && t && this.checkCacheByOptions(r, t))
       return r;
     const n = new j(e);
-    return t != null && t.isHyperlink && (n._isHyperlink = t.isHyperlink, n._hyperlinkUrl = (s = t.hyperlinkUrl) != null ? s : ""), Hs.set(e, n), n;
+    return t != null && t.isHyperlink && (n._isHyperlink = t.isHyperlink, n._hyperlinkUrl = (s = t.hyperlinkUrl) != null ? s : ""), Ks.set(e, n), n;
   }
   static checkCacheByOptions(e, t) {
     return !(e.isHyperlink() !== t.isHyperlink || e.getHyperlinkUrl() !== t.hyperlinkUrl);
@@ -5177,10 +5195,10 @@ class j extends Ht {
     return this._hyperlinkUrl;
   }
   concatenateFront(e) {
-    return e.isArray() ? e.concatenateBack(this) : j.create(this.concatenate(e.getValue(), ct.FRONT));
+    return e.isArray() ? e.concatenateBack(this) : j.create(this.concatenate(e.getValue(), lt.FRONT));
   }
   concatenateBack(e) {
-    return e.isArray() ? e.concatenateFront(this) : j.create(this.concatenate(e.getValue(), ct.BACK));
+    return e.isArray() ? e.concatenateFront(this) : j.create(this.concatenate(e.getValue(), lt.BACK));
   }
   plus(e) {
     return this.convertToNumberObjectValue().plus(e);
@@ -5195,113 +5213,113 @@ class j extends Ht {
     return this.convertToNumberObjectValue().divided(e);
   }
   compare(e, t, r) {
-    return e.isArray() ? e.compare(this, Aa(t), r) : this.compareBy(e.getValue(), t, r);
+    return e.isArray() ? e.compare(this, Oa(t), r) : this.compareBy(e.getValue(), t, r);
   }
   compareBy(e, t, r = !1) {
     let n = this.getValue(), s = !1;
     if (typeof e == "string") {
       let o = e;
-      if (r || (n = n.toLocaleLowerCase(), o = o.toLocaleLowerCase()), wl(o))
+      if (r || (n = n.toLocaleLowerCase(), o = o.toLocaleLowerCase()), Bl(o))
         return this._checkWildcard(o, t);
       s = this._compareString(n, o, t);
     } else typeof e == "number" ? s = this._compareNumber(t) : typeof e == "boolean" && (s = this._compareBoolean(t));
-    return T.create(s);
+    return v.create(s);
   }
   _compareString(e, t, r) {
     switch (r) {
-      case k.EQUALS:
+      case U.EQUALS:
         return e === t;
-      case k.GREATER_THAN:
+      case U.GREATER_THAN:
         return e > t;
-      case k.GREATER_THAN_OR_EQUAL:
+      case U.GREATER_THAN_OR_EQUAL:
         return e >= t;
-      case k.LESS_THAN:
+      case U.LESS_THAN:
         return e < t;
-      case k.LESS_THAN_OR_EQUAL:
+      case U.LESS_THAN_OR_EQUAL:
         return e <= t;
-      case k.NOT_EQUAL:
+      case U.NOT_EQUAL:
         return e !== t;
     }
   }
   _compareNumber(e) {
     switch (e) {
-      case k.NOT_EQUAL:
-      case k.GREATER_THAN:
-      case k.GREATER_THAN_OR_EQUAL:
+      case U.NOT_EQUAL:
+      case U.GREATER_THAN:
+      case U.GREATER_THAN_OR_EQUAL:
         return !0;
-      case k.EQUALS:
-      case k.LESS_THAN:
-      case k.LESS_THAN_OR_EQUAL:
+      case U.EQUALS:
+      case U.LESS_THAN:
+      case U.LESS_THAN_OR_EQUAL:
         return !1;
     }
   }
   _compareBoolean(e) {
     switch (e) {
-      case k.EQUALS:
-      case k.GREATER_THAN:
-      case k.GREATER_THAN_OR_EQUAL:
+      case U.EQUALS:
+      case U.GREATER_THAN:
+      case U.GREATER_THAN_OR_EQUAL:
         return !1;
-      case k.LESS_THAN:
-      case k.LESS_THAN_OR_EQUAL:
-      case k.NOT_EQUAL:
+      case U.LESS_THAN:
+      case U.LESS_THAN_OR_EQUAL:
+      case U.NOT_EQUAL:
         return !0;
     }
   }
   convertToNumberObjectValue() {
-    const e = this.getValue(), t = nc(e);
-    return t && t.z ? xr(t.v, t.z) : xr(e);
+    const e = this.getValue(), t = gc(e);
+    return t && t.z ? vr(t.v, t.z) : vr(e);
   }
   convertToBooleanObjectValue() {
-    return T.create(!0);
+    return v.create(!0);
   }
   _checkWildcard(e, t) {
-    const r = this.getValue().toLocaleLowerCase(), n = Sl(r, e, t);
-    return T.create(n);
+    const r = this.getValue().toLocaleLowerCase(), n = Il(r, e, t);
+    return v.create(n);
   }
 }
-function Kn(i) {
+function Xn(i) {
   if (typeof i == "boolean")
-    return T.create(i);
+    return v.create(i);
   let a = !1;
   if (typeof i == "string") {
     const e = i.toLocaleUpperCase();
-    e === rr.TRUE ? a = !0 : e === rr.FALSE && (a = !1);
+    e === nr.TRUE ? a = !0 : e === nr.FALSE && (a = !1);
   } else
     i === 1 ? a = !0 : a = !1;
-  return T.create(a);
+  return v.create(a);
 }
-function Tf(i) {
+function Wf(i) {
   let a = i.toString();
   return a.charAt(0) === '"' && a.charAt(a.length - 1) === '"' && (a = a.slice(1, -1), a = a.replace(/""/g, '"')), j.create(a);
 }
-function xr(i, a = "") {
+function vr(i, a = "") {
   if (typeof i == "boolean") {
     let e = 0;
     return i && (e = 1), y.create(e, a);
   } else {
     if (typeof i == "number")
       return Number.isFinite(i) ? y.create(i, a) : g.create(m.NUM);
-    if (W(i))
+    if (q(i))
       return y.create(Number(i), a);
   }
   return g.create(m.VALUE);
 }
-function Bf(i) {
+function qf(i) {
   return "";
 }
-function Do(i = [], a = !1) {
+function ko(i = [], a = !1) {
   const e = [];
   for (let t = 0; t < i.length; t++) {
     const r = i[t];
     e[t] == null && (e[t] = []);
     for (let n = 0; n < r.length; n++) {
       const s = r[n];
-      e[t][n] = Mt.create(s, a);
+      e[t][n] = wt.create(s, a);
     }
   }
   return e;
 }
-function If(i = []) {
+function Kf(i = []) {
   const a = [];
   for (let e = 0; e < i.length; e++) {
     const t = i[e];
@@ -5313,10 +5331,11 @@ function If(i = []) {
   }
   return a;
 }
-class q extends Ht {
+class W extends Ht {
   constructor(e) {
-    super(typeof e == "string" ? e : Bf());
+    super(typeof e == "string" ? e : qf());
     A(this, "_values", []);
+    A(this, "_numericData", null);
     A(this, "_rowCount", -1);
     A(this, "_columnCount", -1);
     A(this, "_unitId", "");
@@ -5338,7 +5357,7 @@ class q extends Ht {
    * @returns
    */
   static create(e) {
-    return new q(e);
+    return new W(e);
   }
   /**
    * Create an array value object based on the array data.
@@ -5347,7 +5366,7 @@ class q extends Ht {
    */
   static createByArray(e) {
     const r = {
-      calculateValueList: Do(e),
+      calculateValueList: ko(e),
       rowCount: e.length,
       columnCount: e[0].length || 0,
       unitId: "",
@@ -5355,10 +5374,32 @@ class q extends Ht {
       row: -1,
       column: -1
     };
-    return new q(r);
+    return new W(r);
+  }
+  static createNumberArray(e, t, r, n = "", s = "", o = -1, u = -1) {
+    const c = new W({ calculateValueList: [], rowCount: t, columnCount: r, unitId: n, sheetId: s, row: o, column: u });
+    return c._values = [], c._numericData = e, process.env.DISABLE_TYPED_ARRAY && c._materialize(), c;
   }
   dispose() {
-    this._values = [], this._defaultValue = null, this._flattenPosition = null, this._clearCache();
+    this._values = [], this._numericData = null, this._defaultValue = null, this._flattenPosition = null, this._clearCache();
+  }
+  isNumericArray() {
+    return this._numericData !== null;
+  }
+  getNumericData() {
+    return this._numericData;
+  }
+  _materialize() {
+    if (this._numericData === null)
+      return;
+    const e = this._numericData, t = this._rowCount, r = this._columnCount, n = new Array(t);
+    for (let s = 0; s < t; s++) {
+      const o = new Array(r), u = s * r;
+      for (let c = 0; c < r; c++)
+        o[c] = y.create(e[u + c]);
+      n[s] = o;
+    }
+    this._values = n, this._numericData = null;
   }
   clone() {
     return this.map((e) => e);
@@ -5397,10 +5438,10 @@ class q extends Ht {
     return this._currentColumn;
   }
   getArrayValue() {
-    return this._values;
+    return this._materialize(), this._values;
   }
   setArrayValue(e) {
-    this._clearCache(), this._values = e;
+    this._clearCache(), this._numericData = null, this._values = e;
   }
   isArray() {
     return !0;
@@ -5410,9 +5451,17 @@ class q extends Ht {
   }
   get(e, t) {
     var r;
+    if (this._numericData !== null) {
+      const n = e * this._columnCount + t;
+      return n >= 0 && n < this._numericData.length ? y.create(this._numericData[n]) : this._defaultValue;
+    }
     return ((r = this._values[e]) == null ? void 0 : r[t]) || this._defaultValue;
   }
   getRealValue(e, t) {
+    if (this._numericData !== null) {
+      const s = e * this._columnCount + t;
+      return s >= 0 && s < this._numericData.length ? y.create(this._numericData[s]) : null;
+    }
     const r = this._values[e];
     if (r == null)
       return null;
@@ -5425,7 +5474,7 @@ class q extends Ht {
   set(e, t, r) {
     if (e >= this._rowCount || t >= this._columnCount)
       throw new Error("Exceeding array bounds.");
-    this._clearCache(), this._values[e][t] = r;
+    this._materialize(), this._clearCache(), this._values[e][t] = r;
   }
   getRangePosition() {
     const t = this.getRowCount(), r = 0, n = this.getColumnCount();
@@ -5438,7 +5487,18 @@ class q extends Ht {
   }
   iterator(e) {
     var u;
-    const { startRow: t, endRow: r, startColumn: n, endColumn: s } = this.getRangePosition(), o = this.getArrayValue();
+    const { startRow: t, endRow: r, startColumn: n, endColumn: s } = this.getRangePosition();
+    if (this._numericData !== null) {
+      const c = this._numericData, l = this._columnCount;
+      for (let f = t; f <= r; f++) {
+        const h = f * l;
+        for (let d = n; d <= s; d++)
+          if (e(y.create(c[h + d]), f, d) === !1)
+            return;
+      }
+      return;
+    }
+    const o = this._values;
     for (let c = t; c <= r; c++)
       for (let l = n; l <= s; l++)
         if (e(((u = o[c]) == null ? void 0 : u[l]) || this._defaultValue, c, l) === !1)
@@ -5446,7 +5506,18 @@ class q extends Ht {
   }
   iteratorReverse(e) {
     var u;
-    const { startRow: t, endRow: r, startColumn: n, endColumn: s } = this.getRangePosition(), o = this.getArrayValue();
+    const { startRow: t, endRow: r, startColumn: n, endColumn: s } = this.getRangePosition();
+    if (this._numericData !== null) {
+      const c = this._numericData, l = this._columnCount;
+      for (let f = r; f >= t; f--) {
+        const h = f * l;
+        for (let d = s; d >= n; d--)
+          if (e(y.create(c[h + d]), f, d) === !1)
+            return;
+      }
+      return;
+    }
+    const o = this._values;
     for (let c = r; c >= t; c--)
       for (let l = s; l >= n; l--)
         if (e(((u = o[c]) == null ? void 0 : u[l]) || this._defaultValue, c, l) === !1)
@@ -5500,9 +5571,12 @@ class q extends Ht {
     for (let s = 0; s < t; s++)
       for (let o = 0; o < r; o++) {
         const u = e.get(s, o);
-        if (!(u == null || u.isError()) && u.getValue() === !0) {
-          const c = this.get(s, o);
-          n[0].push(c);
+        if (u == null || u.isError())
+          continue;
+        const c = u.getValue();
+        if (c === !0 || c === 1) {
+          const l = this.get(s, o);
+          n[0].push(l);
         }
       }
     return n;
@@ -5565,16 +5639,16 @@ class q extends Ht {
     if (f != null)
       return f;
     const h = [], d = this._values;
-    let _ = 0, C = 0;
+    let C = 0, _ = 0;
     for (let p = r; p < n; p += s) {
-      C = 0, h[_] == null && (h[_] = []);
+      _ = 0, h[C] == null && (h[C] = []);
       for (let N = o; N < u; N += c) {
         if (!d[p])
           return;
-        let M = d[p][N] || this._defaultValue;
-        M == null && (M = ue.create()), h[_][C] = M, C++;
+        let w = d[p][N] || this._defaultValue;
+        w == null && (w = ue.create()), h[C][_] = w, _++;
       }
-      _++;
+      C++;
     }
     if (h.length === 0 || h[0].length === 0)
       return;
@@ -5602,8 +5676,8 @@ class q extends Ht {
     const l = (f, h, d) => {
       if (f == null)
         return !0;
-      let _;
-      if (n === !0 ? _ = f.compare(e, k.EQUALS) : _ = f.isEqual(e), (_ == null ? void 0 : _.getValue()) === !0)
+      let C;
+      if (n === !0 ? C = f.compare(e, U.EQUALS) : C = f.isEqual(e), (C == null ? void 0 : C.getValue()) === !0)
         return s = f, u = { row: h, column: d }, !1;
       t === Le.MAX ? f.isGreaterThan(e).getValue() === !0 && (o == null || f.minus(e).abs().isLessThanOrEqual(o.minus(e).abs()).getValue() === !0) && (o = f, c = { row: h, column: d }) : t === Le.MIN && f.isLessThan(e).getValue() === !0 && (o == null || f.minus(e).abs().isLessThanOrEqual(o.minus(e).abs()).getValue() === !0) && (o = f, c = { row: h, column: d });
     };
@@ -5612,7 +5686,7 @@ class q extends Ht {
     if (o != null)
       return c;
   }
-  binarySearch(e, t = Kt.MIN, r = Le.MIN) {
+  binarySearch(e, t = Xt.MIN, r = Le.MIN) {
     if (e.isError())
       return;
     const { stringArray: n, stringPosition: s, numberArray: o, numberPosition: u } = this.flattenPosition();
@@ -5629,14 +5703,14 @@ class q extends Ht {
    * @param matchType
    * @returns
    */
-  _binarySearch(e, t, r, n = Kt.MIN, s = Le.MIN) {
-    const o = An(), u = Number(e.getValue()), c = !Number.isNaN(u);
-    let l = 0, f = t.length - 1, h = -1, d = -1, _ = -1;
+  _binarySearch(e, t, r, n = Xt.MIN, s = Le.MIN) {
+    const o = bn(), u = Number(e.getValue()), c = !Number.isNaN(u);
+    let l = 0, f = t.length - 1, h = -1, d = -1, C = -1;
     for (; l <= f; ) {
-      const C = Math.floor((l + f) / 2), E = t[C];
+      const _ = Math.floor((l + f) / 2), E = t[_];
       let b;
       if (E.isNull())
-        b = n === Kt.MIN ? 1 : -1;
+        b = n === Xt.MIN ? 1 : -1;
       else {
         const R = E.getValue();
         if (c) {
@@ -5645,20 +5719,27 @@ class q extends Ht {
         } else
           b = o(R.toString().toLocaleLowerCase(), e.getValue().toString().toLocaleLowerCase());
       }
-      if (n === Kt.MAX && (b = -b), b === 0) {
-        h = C;
+      if (n === Xt.MAX && (b = -b), b === 0) {
+        h = _;
         break;
       }
-      b < 0 ? (d = C, l = C + 1) : (_ = C, f = C - 1);
+      b < 0 ? (d = _, l = _ + 1) : (C = _, f = _ - 1);
     }
     if (s === Le.NORMAL)
       return h !== -1 ? r[h] : void 0;
     if (s === Le.MIN)
-      return h !== -1 ? r[h] : n === Kt.MIN ? r[d] : r[_];
+      return h !== -1 ? r[h] : n === Xt.MIN ? r[d] : r[C];
     if (s === Le.MAX)
-      return h !== -1 ? r[h] : n === Kt.MIN ? r[_] : r[d];
+      return h !== -1 ? r[h] : n === Xt.MIN ? r[C] : r[d];
   }
   sum() {
+    if (this._numericData !== null) {
+      const t = this._numericData;
+      let r = 0;
+      for (let n = 0, s = t.length; n < s; n++)
+        r += t[n];
+      return y.create(r);
+    }
     let e = y.create(0);
     return this.iterator((t) => {
       if (t == null || t.isString() || t.isBoolean() || t.isNull())
@@ -5717,10 +5798,10 @@ class q extends Ht {
     }), e;
   }
   getNegative() {
-    return q.create("{0}").minus(this);
+    return W.create("{0}").minus(this);
   }
   getReciprocal() {
-    return q.create("{1}").divided(this);
+    return W.create("{1}").divided(this);
   }
   plus(e) {
     return this._batchOperator(
@@ -5781,11 +5862,27 @@ class q extends Ht {
     const t = (r, n, s) => r == null ? ue.create() : r.isError() ? r : e(r, n, s);
     return this.mapValue(t);
   }
+  // READNOW: MEMORY HOTSPOT #1 — mapValue allocates a full BaseValueObject[][]
+  // for every formula operation (comparison, arithmetic, etc.). With SUMPRODUCT
+  // over 10K rows, each sub-expression creates a 10K-element array. Nested
+  // operations (e.g. (A=B)*(C*D)) compound: each * and = creates its own copy.
+  // For 10K formulas each scanning 10K rows, this produces ~100M+ array objects.
+  // Root cause of OOM in ArrayValueObject allocation (99% of heap in profiling).
   mapValue(e) {
     var s;
-    const t = this._rowCount, r = this._columnCount, n = [];
+    const t = this._rowCount, r = this._columnCount, n = new Array(t);
+    if (this._numericData !== null) {
+      const o = this._numericData;
+      for (let u = 0; u < t; u++) {
+        const c = new Array(r), l = u * r;
+        for (let f = 0; f < r; f++)
+          c[f] = e(y.create(o[l + f]), u, f);
+        n[u] = c;
+      }
+      return this._createNewArray(n, t, r);
+    }
     for (let o = 0; o < t; o++) {
-      const u = [];
+      const u = new Array(r);
       for (let c = 0; c < r; c++) {
         const l = (s = this._values) == null ? void 0 : s[o];
         if (l == null)
@@ -5795,7 +5892,7 @@ class q extends Ht {
           f ? u[c] = e(f, o, c) : u[c] = ue.create();
         }
       }
-      n.push(u);
+      n[o] = u;
     }
     return this._createNewArray(n, t, r);
   }
@@ -5908,7 +6005,7 @@ class q extends Ht {
       f.isError() || r[0].push(f);
     });
     const { _unitId: n, _sheetId: s, _currentRow: o, _currentColumn: u } = this;
-    return q.create({
+    return W.create({
       calculateValueList: r,
       rowCount: 1,
       columnCount: r[0].length,
@@ -5973,13 +6070,13 @@ class q extends Ht {
     return this.map((t) => t.isError() ? t : e.ceil(t));
   }
   toValue() {
-    return If(this._values);
+    return Kf(this._values);
   }
   _clearCache() {
     this._flattenCache = null, this._sliceCache.clear();
   }
   _sort(e) {
-    const t = An();
+    const t = bn();
     return (r, n) => {
       const s = r[e], o = n[e];
       return s == null ? 1 : o == null ? -1 : s.isError() && s.isError() ? 0 : s.isError() ? 1 : o.isError() ? -1 : t(
@@ -5997,44 +6094,287 @@ class q extends Ht {
     }
     return n;
   }
+  _extractNumericData() {
+    if (process.env.DISABLE_TYPED_ARRAY) return null;
+    if (this._numericData !== null) return this._numericData;
+    const e = this._rowCount, t = this._columnCount, r = e * t, n = new Float64Array(r);
+    for (let s = 0; s < e; s++) {
+      const o = this._values[s];
+      if (o == null) return null;
+      const u = s * t;
+      for (let c = 0; c < t; c++) {
+        const l = o[c] || this._defaultValue;
+        if (l == null || l.isNull() || l.isError() || l.isString()) return null;
+        n[u + c] = l.isBoolean() ? l.getValue() ? 1 : 0 : l.getValue();
+      }
+    }
+    return n;
+  }
+  _typedCompareEquals(e) {
+    const t = this._rowCount, r = this._columnCount, n = t * r, s = new Float64Array(n), o = e.getValue();
+    if (this._numericData !== null) {
+      if (typeof o != "number") return null;
+      const u = this._numericData;
+      for (let c = 0; c < n; c++)
+        s[c] = u[c] === o ? 1 : 0;
+    } else
+      for (let u = 0; u < t; u++) {
+        const c = this._values[u];
+        if (c == null) continue;
+        const l = u * r;
+        for (let f = 0; f < r; f++) {
+          const h = c[f];
+          if (h == null || h.isNull())
+            s[l + f] = o === "" || o === null ? 1 : 0;
+          else {
+            if (h.isError())
+              return null;
+            s[l + f] = h.getValue() === o ? 1 : 0;
+          }
+        }
+      }
+    return W.createNumberArray(s, t, r, this._unitId, this._sheetId, this._currentRow, this._currentColumn);
+  }
+  _typedArithmeticFromValues(e, t) {
+    const r = this._rowCount, n = this._columnCount, s = r * n, o = new Float64Array(s);
+    for (let u = 0; u < r; u++) {
+      const c = this._values[u];
+      if (c == null) return null;
+      const l = u * n;
+      for (let f = 0; f < n; f++) {
+        const h = c[f];
+        if (h == null || h.isNull() || h.isError() || h.isString()) return null;
+        const d = h.isBoolean() ? h.getValue() ? 1 : 0 : h.getValue();
+        switch (t) {
+          case 2:
+            o[l + f] = d * e;
+            break;
+          case 1:
+            o[l + f] = d + e;
+            break;
+          case 0:
+            o[l + f] = d - e;
+            break;
+          case 3:
+            if (e === 0) return null;
+            o[l + f] = d / e;
+            break;
+          default:
+            return null;
+        }
+      }
+    }
+    return W.createNumberArray(o, r, n, this._unitId, this._sheetId, this._currentRow, this._currentColumn);
+  }
+  _typedBinaryScalar(e, t, r) {
+    const n = this._numericData;
+    if (n === null)
+      return null;
+    const s = n.length, o = new Float64Array(s);
+    switch (t) {
+      case 2:
+        for (let u = 0; u < s; u++) o[u] = n[u] * e;
+        break;
+      case 1:
+        for (let u = 0; u < s; u++) o[u] = n[u] + e;
+        break;
+      case 0:
+        for (let u = 0; u < s; u++) o[u] = n[u] - e;
+        break;
+      case 3:
+        if (e === 0) return null;
+        for (let u = 0; u < s; u++) o[u] = n[u] / e;
+        break;
+      case 5: {
+        if (!r) return null;
+        let u;
+        switch (r) {
+          case U.EQUALS:
+            u = (c, l) => c === l ? 1 : 0;
+            break;
+          case U.NOT_EQUAL:
+            u = (c, l) => c !== l ? 1 : 0;
+            break;
+          case U.GREATER_THAN:
+            u = (c, l) => c > l ? 1 : 0;
+            break;
+          case U.GREATER_THAN_OR_EQUAL:
+            u = (c, l) => c >= l ? 1 : 0;
+            break;
+          case U.LESS_THAN:
+            u = (c, l) => c < l ? 1 : 0;
+            break;
+          case U.LESS_THAN_OR_EQUAL:
+            u = (c, l) => c <= l ? 1 : 0;
+            break;
+          default:
+            return null;
+        }
+        for (let c = 0; c < s; c++) o[c] = u(n[c], e);
+        break;
+      }
+      default:
+        return null;
+    }
+    return W.createNumberArray(o, this._rowCount, this._columnCount, this._unitId, this._sheetId, this._currentRow, this._currentColumn);
+  }
+  _typedBinaryArray(e, t, r, n, s) {
+    const o = this._numericData;
+    if (o === null || this._rowCount !== t || this._columnCount !== r)
+      return null;
+    const u = o.length, c = new Float64Array(u);
+    switch (n) {
+      case 2:
+        for (let l = 0; l < u; l++) c[l] = o[l] * e[l];
+        break;
+      case 1:
+        for (let l = 0; l < u; l++) c[l] = o[l] + e[l];
+        break;
+      case 0:
+        for (let l = 0; l < u; l++) c[l] = o[l] - e[l];
+        break;
+      case 3:
+        for (let l = 0; l < u; l++) c[l] = e[l] === 0 ? Number.NaN : o[l] / e[l];
+        break;
+      case 5: {
+        if (!s) return null;
+        let l;
+        switch (s) {
+          case U.EQUALS:
+            l = (f, h) => f === h ? 1 : 0;
+            break;
+          case U.NOT_EQUAL:
+            l = (f, h) => f !== h ? 1 : 0;
+            break;
+          case U.GREATER_THAN:
+            l = (f, h) => f > h ? 1 : 0;
+            break;
+          case U.GREATER_THAN_OR_EQUAL:
+            l = (f, h) => f >= h ? 1 : 0;
+            break;
+          case U.LESS_THAN:
+            l = (f, h) => f < h ? 1 : 0;
+            break;
+          case U.LESS_THAN_OR_EQUAL:
+            l = (f, h) => f <= h ? 1 : 0;
+            break;
+          default:
+            return null;
+        }
+        for (let f = 0; f < u; f++) c[f] = l(o[f], e[f]);
+        break;
+      }
+      default:
+        return null;
+    }
+    return W.createNumberArray(c, this._rowCount, this._columnCount, this._unitId, this._sheetId, this._currentRow, this._currentColumn);
+  }
   _batchOperator(e, t, r, n) {
-    const s = [];
-    let o = this._rowCount, u = this._columnCount;
+    let s = this._rowCount, o = this._columnCount;
     if (e.isArray()) {
-      const f = e.getRowCount(), h = e.getColumnCount();
-      if (o = Math.max(f, o), u = Math.max(h, u), f === 1 && h === 1) {
-        const d = e.getFirstCell();
-        for (let _ = 0; _ < u; _++)
-          s.push(d);
-      } else if (f === 1 && this._columnCount > 1) {
-        const d = e.getArrayValue();
-        for (let _ = 0; _ < u; _++)
-          s.push(d[0][_]);
+      const u = e.getRowCount(), c = e.getColumnCount();
+      if (s = Math.max(u, s), o = Math.max(c, o), this._numericData !== null && e._numericData !== null) {
+        const l = this._typedBinaryArray(
+          e._numericData,
+          u,
+          c,
+          t,
+          r
+        );
+        if (l) return l;
+      }
+      if (this._numericData !== null && e._numericData === null && this._rowCount === u && this._columnCount === c) {
+        const l = e._extractNumericData();
+        if (l) {
+          const f = this._typedBinaryArray(l, u, c, t, r);
+          if (f) return f;
+        }
+      }
+      if (this._numericData === null && e._numericData !== null && this._rowCount === u && this._columnCount === c) {
+        const l = this._extractNumericData();
+        if (l) {
+          const h = W.createNumberArray(l, this._rowCount, this._columnCount, this._unitId, this._sheetId, this._currentRow, this._currentColumn)._typedBinaryArray(e._numericData, u, c, t, r);
+          if (h) return h;
+        }
+      }
+      if (u === 1 && c === 1) {
+        const l = e.getFirstCell();
+        if (this._numericData !== null && l.isNumber()) {
+          const C = this._typedBinaryScalar(l.getValue(), t, r);
+          if (C) return C;
+        }
+        if (t === 5 && r === U.EQUALS && !n) {
+          const C = this._typedCompareEquals(l);
+          if (C) return C;
+        }
+        const f = new Array(o);
+        for (let C = 0; C < o; C++)
+          f[C] = l;
+        const h = Array.from({ length: s }, () => new Array(o));
+        for (let C = 0; C < o; C++)
+          this._batchOperatorValue(
+            f[C],
+            C,
+            h,
+            t,
+            r,
+            n
+          );
+        const d = this._createNewArray(h, s, o);
+        return d.setDefaultValue(v.create(!1)), d;
+      } else if (u === 1 && this._columnCount > 1) {
+        const l = e.getArrayValue(), f = new Array(o);
+        for (let C = 0; C < o; C++)
+          f[C] = l[0][C];
+        const h = Array.from({ length: s }, () => new Array(o));
+        for (let C = 0; C < o; C++)
+          this._batchOperatorValue(
+            f[C],
+            C,
+            h,
+            t,
+            r,
+            n
+          );
+        const d = this._createNewArray(h, s, o);
+        return d.setDefaultValue(v.create(!1)), d;
       } else
         return this._batchOperatorArray(e, t, r, n);
-    } else
-      for (let f = 0; f < u; f++)
-        s.push(e);
-    const c = [];
-    for (let f = 0; f < u; f++) {
-      const h = s[f];
-      this._batchOperatorValue(
-        h,
-        f,
-        c,
-        t,
-        r,
-        n
-      );
+    } else {
+      if (this._numericData !== null && e.isNumber()) {
+        const f = this._typedBinaryScalar(e.getValue(), t, r);
+        if (f) return f;
+      }
+      if (t === 5 && r === U.EQUALS && !n) {
+        const f = this._typedCompareEquals(e);
+        if (f) return f;
+      }
+      if (this._numericData === null && t !== 5 && t !== 6 && t !== 7 && e.isNumber()) {
+        const f = this._typedArithmeticFromValues(e.getValue(), t);
+        if (f) return f;
+      }
+      const u = new Array(o);
+      for (let f = 0; f < o; f++)
+        u[f] = e;
+      const c = Array.from({ length: s }, () => new Array(o));
+      for (let f = 0; f < o; f++)
+        this._batchOperatorValue(
+          u[f],
+          f,
+          c,
+          t,
+          r,
+          n
+        );
+      const l = this._createNewArray(c, s, o);
+      return l.setDefaultValue(v.create(!1)), l;
     }
-    const l = this._createNewArray(c, o, u);
-    return l.setDefaultValue(T.create(!1)), l;
   }
   // eslint-disable-next-line max-lines-per-function
   _batchOperatorValue(e, t, r, n, s, o) {
     const u = this._rowCount, c = this.getUnitId(), l = this.getSheetId(), f = this.getCurrentRow(), h = this.getCurrentColumn();
     if (n === 5) {
-      const { rowsInCache: d, rowsNotInCache: _ } = We.canUseCache(
+      const { rowsInCache: d, rowsNotInCache: C } = He.canUseCache(
         c,
         l,
         t + h,
@@ -6042,38 +6382,38 @@ class q extends Ht {
         f + u - 1
       );
       if (d.length > 0) {
-        if (s === k.EQUALS) {
-          const C = We.getCellPositions(
+        if (s === U.EQUALS) {
+          const _ = He.getCellPositions(
             c,
             l,
             t + h,
             e.getValue(),
             d
           );
-          C != null && C.forEach((E) => {
+          _ != null && _.forEach((E) => {
             if (E < f || E > f + u - 1)
               return;
             const b = E - f;
-            r[b] == null && (r[b] = []), r[b][t] = T.create(!0);
+            r[b] == null && (r[b] = []), r[b][t] = v.create(!0);
           });
         } else {
-          const C = We.getCellValuePositions(
+          const _ = He.getCellValuePositions(
             c,
             l,
             t + h
           );
-          C != null && C.forEach((E, b) => {
+          _ != null && _.forEach((E, b) => {
             let R = ue.create();
-            or.has(b) ? R = g.create(b) : typeof b == "string" ? R = j.create(b) : typeof b == "number" ? R = y.create(b) : typeof b == "boolean" && (R = T.create(b));
+            cr.has(b) ? R = g.create(b) : typeof b == "string" ? R = j.create(b) : typeof b == "number" ? R = y.create(b) : typeof b == "boolean" && (R = v.create(b));
             let p;
             R.isError() ? p = R : e.isError() ? p = e : p = R.compare(e, s, o), (p.isError() || p.getValue() === !0) && E.forEach((N) => {
               N >= f && N <= f + u - 1 && (r[N - f] == null && (r[N - f] = []), r[N - f][t] = p);
             });
           });
         }
-        if (_.length > 0)
-          for (const C of _) {
-            const [E, b] = C;
+        if (C.length > 0)
+          for (const _ of C) {
+            const [E, b] = _;
             for (let R = E; R <= b; R++)
               this.__batchOperatorRowValue(
                 e,
@@ -6088,7 +6428,7 @@ class q extends Ht {
                 s,
                 o
               );
-            We.setContinueBuildingCache(
+            He.setContinueBuildingCache(
               c,
               l,
               t + h,
@@ -6113,7 +6453,7 @@ class q extends Ht {
         s,
         o
       );
-    We.setContinueBuildingCache(
+    He.setContinueBuildingCache(
       c,
       l,
       t + h,
@@ -6173,13 +6513,13 @@ class q extends Ht {
         }
     else
       r[s][t] = g.create(m.NA);
-    d != null && (d.isError() ? We.set(
+    d != null && (d.isError() ? He.set(
       o,
       u,
       t + l,
       d.getErrorType(),
       s + c
-    ) : We.set(
+    ) : He.set(
       o,
       u,
       t + l,
@@ -6191,64 +6531,64 @@ class q extends Ht {
   _batchOperatorArray(e, t, r, n) {
     let s = e.getRowCount(), o = e.getColumnCount();
     s < this._rowCount && (s = this._rowCount), o < this._columnCount && (o = this._columnCount);
-    const u = [], c = this._checkArrayCalculateType(this), l = this._checkArrayCalculateType(e);
+    const u = new Array(s), c = this._checkArrayCalculateType(this), l = this._checkArrayCalculateType(e);
     for (let f = 0; f < s; f++) {
-      const h = [];
+      const h = new Array(o);
       for (let d = 0; d < o; d++) {
-        let _;
-        c === 3 ? _ = this.getValueOrDefault(0, 0) : c === 1 ? _ = this.getValueOrDefault(0, d) : c === 2 ? _ = this.getValueOrDefault(f, 0) : _ = this.getValueOrDefault(f, d);
         let C;
-        if (l === 3 ? C = e.getValueOrDefault(0, 0) : l === 1 ? C = e.getValueOrDefault(0, d) : l === 2 ? C = e.getValueOrDefault(f, 0) : C = e.getValueOrDefault(f, d), _ && C)
-          if (_.isError())
-            h[d] = _;
-          else if (C.isError())
+        c === 3 ? C = this.getValueOrDefault(0, 0) : c === 1 ? C = this.getValueOrDefault(0, d) : c === 2 ? C = this.getValueOrDefault(f, 0) : C = this.getValueOrDefault(f, d);
+        let _;
+        if (l === 3 ? _ = e.getValueOrDefault(0, 0) : l === 1 ? _ = e.getValueOrDefault(0, d) : l === 2 ? _ = e.getValueOrDefault(f, 0) : _ = e.getValueOrDefault(f, d), C && _)
+          if (C.isError())
             h[d] = C;
+          else if (_.isError())
+            h[d] = _;
           else
             switch (t) {
               case 1:
-                h[d] = _.plus(C);
+                h[d] = C.plus(_);
                 break;
               case 0:
-                h[d] = _.minus(C);
+                h[d] = C.minus(_);
                 break;
               case 2:
-                h[d] = _.multiply(C);
+                h[d] = C.multiply(_);
                 break;
               case 3:
-                h[d] = _.divided(C);
+                h[d] = C.divided(_);
                 break;
               case 4:
-                h[d] = _.mod(C);
+                h[d] = C.mod(_);
                 break;
               case 5:
-                r ? h[d] = _.compare(C, r, n) : h[d] = g.create(m.VALUE);
+                r ? h[d] = C.compare(_, r, n) : h[d] = g.create(m.VALUE);
                 break;
               case 6:
-                h[d] = _.concatenateFront(C);
+                h[d] = C.concatenateFront(_);
                 break;
               case 7:
-                h[d] = _.concatenateBack(C);
+                h[d] = C.concatenateBack(_);
                 break;
               case 8:
-                h[d] = _.pow(C);
+                h[d] = C.pow(_);
                 break;
               case 9:
-                h[d] = _.round(C);
+                h[d] = C.round(_);
                 break;
               case 12:
-                h[d] = _.atan2(C);
+                h[d] = C.atan2(_);
                 break;
               case 10:
-                h[d] = _.floor(C);
+                h[d] = C.floor(_);
                 break;
               case 11:
-                h[d] = _.ceil(C);
+                h[d] = C.ceil(_);
                 break;
             }
         else
           h[d] = g.create(m.NA);
       }
-      u.push(h);
+      u[f] = h;
     }
     return this._createNewArray(u, s, o);
   }
@@ -6267,12 +6607,16 @@ class q extends Ht {
       const f = [];
       for (let h = 0; h < l; h++) {
         const d = c[h].trim();
-        f.push(Mt.create(d));
+        f.push(wt.create(d));
       }
       n.push(f);
     }
     return this._rowCount = r, this._columnCount = s, n;
   }
+  // READNOW: Every mapValue and _batchOperator call ends here, wrapping the
+  // intermediate BaseValueObject[][] in a new ArrayValueObject. The 2D array
+  // is held in calculateValueList and stays in memory until GC. No pooling
+  // or reuse — each operation allocates fresh.
   _createNewArray(e, t, r, n = -1, s = -1) {
     (this._currentColumn === -1 || this._currentRow === -1) && (n = -1, s = -1);
     const o = {
@@ -6284,40 +6628,40 @@ class q extends Ht {
       row: n,
       column: s
     };
-    return q.create(o);
+    return W.create(o);
   }
 }
-class Mt {
+class wt {
   static create(a, e = !1) {
     if (a == null)
       return ue.create();
     if (typeof a == "boolean")
-      return T.create(a);
+      return v.create(a);
     if (typeof a == "string") {
       const t = a.toLocaleUpperCase().trim();
-      if (or.has(t))
+      if (cr.has(t))
         return g.create(t);
-      if (t === rr.TRUE || t === rr.FALSE)
-        return Kn(a);
-      if (W(a))
+      if (t === nr.TRUE || t === nr.FALSE)
+        return Xn(a);
+      if (q(a))
         return y.create(Number(a));
       if (!e) {
-        const { isNumberPattern: n, value: s, pattern: o } = Vl(a);
+        const { isNumberPattern: n, value: s, pattern: o } = jl(a);
         if (n)
           return y.create(s, o);
       }
       const r = a.replace(/\n/g, "").replace(/\r/g, "");
-      return !Ff(r) && Bc(r) ? q.create(r) : Tf(a);
+      return !Xf(r) && qc(r) ? W.create(r) : Wf(a);
     }
-    return typeof a == "number" ? xr(a) : g.create(m.VALUE);
+    return typeof a == "number" ? vr(a) : g.create(m.VALUE);
   }
 }
-function Ff(i) {
+function Xf(i) {
   const a = i.trim();
   return a.startsWith('"') && a.endsWith('"');
 }
-const kf = 1e4, Rn = new wt(kf);
-class Xn extends Hn {
+const Zf = 1e4, Pr = new St(Zf);
+class Zn extends Qn {
   constructor(e) {
     super();
     A(this, "_forcedSheetId", "");
@@ -6365,7 +6709,7 @@ class Xn extends Hn {
     };
   }
   getRangePosition() {
-    let { startRow: e, startColumn: t, endRow: r, endColumn: n } = aa(this._rangeData, this._refOffsetX, this._refOffsetY);
+    let { startRow: e, startColumn: t, endRow: r, endColumn: n } = ma(this._rangeData, this._refOffsetX, this._refOffsetY);
     return Number.isNaN(e) && (e = 0), Number.isNaN(t) && (t = 0), Number.isNaN(r) && (r = this.getActiveSheetRowCount() - 1), Number.isNaN(n) && (n = this.getActiveSheetColumnCount() - 1), {
       ...this._rangeData,
       startRow: e,
@@ -6388,16 +6732,16 @@ class Xn extends Hn {
           return e(g.create(m.REF), c, l);
         const f = this.getCellData(c, l);
         let h = !1;
-        if (cn(f)) {
+        if (fn(f)) {
           h = e(null, c, l);
           continue;
         }
         let d = this.getCellValueObject(f);
         if (c === t && l === n) {
-          const _ = this.getCellPattern(o, u, c, l);
-          if (_ && d.isNumber()) {
-            const C = Number(d.getValue());
-            d = y.create(C, _);
+          const C = this.getCellPattern(o, u, c, l);
+          if (C && d.isNumber()) {
+            const _ = Number(d.getValue());
+            d = y.create(_, C);
           }
         }
         if (h = e(d, c, l), h === !1)
@@ -6555,14 +6899,14 @@ class Xn extends Hn {
     };
   }
   getCellValueObject(e) {
-    const t = Ml(e);
-    if (or.has(t))
+    const t = Tl(e);
+    if (cr.has(t))
       return g.create(t);
     if (e.t === Vt.NUMBER) {
       const r = this._getPatternByCell(e);
-      return sc(r) ? j.create(t.toString()) : xr(t, r);
+      return dc(r) ? j.create(t.toString()) : vr(t, r);
     }
-    return e.t === Vt.STRING || e.t === Vt.FORCE_STRING ? j.create(t.toString()) : e.t === Vt.BOOLEAN ? Kn(t) : Mt.create(t);
+    return e.t === Vt.STRING || e.t === Vt.FORCE_STRING ? j.create(t.toString()) : e.t === Vt.BOOLEAN ? Xn(t) : wt.create(t);
   }
   _getPatternByCell(e) {
     var n;
@@ -6601,7 +6945,7 @@ class Xn extends Hn {
     return (n == null ? void 0 : n.getValue(e, t)) || (o == null ? void 0 : o.getValue(e, t)) || this.getRuntimeFeatureCellValue(e, t) || (s == null ? void 0 : s.getValue(e, t)) || (r == null ? void 0 : r.cellData.getValue(e, t));
   }
   getRuntimeFeatureCellValue(e, t) {
-    return Ao(e, t, this.getSheetId(), this.getUnitId(), this._runtimeFeatureCellData);
+    return Mo(e, t, this.getSheetId(), this.getUnitId(), this._runtimeFeatureCellData);
   }
   getCellByPosition(e, t) {
     let r = e, n = t;
@@ -6630,27 +6974,53 @@ class Xn extends Hn {
   }
   toArrayValueObject(e = !0) {
     var _;
-    const { startRow: t, endRow: r, startColumn: n, endColumn: s } = this.getRangePosition(), o = `${this.getUnitId()}_${this.getSheetId()}_${t}_${r}_${n}_${s}`, u = Rn.get(o);
+    const { startRow: t, endRow: r, startColumn: n, endColumn: s } = this.getRangePosition(), o = `${this.getUnitId()}_${this.getSheetId()}_${t}_${r}_${n}_${s}`, u = Pr.get(o);
     if (u && e)
       return u;
     const c = r - t + 1, l = s - n + 1;
     if (c < 0 || l < 0)
       return this._getBlankArrayValueObject();
-    const f = new Array(c);
-    this.iterator((C, E, b) => {
-      const R = E - t, p = b - n;
-      f[R] || (f[R] = new Array(l)), C == null && (C = ue.create()), f[R][p] = C;
+    let f = c > 0 && l > 0 && !process.env.DISABLE_TYPED_ARRAY;
+    const h = f ? new Float64Array(c * l) : null, d = f ? [] : new Array(c);
+    this.iterator((E, b, R) => {
+      const p = b - t, N = R - n;
+      if (E == null && (E = ue.create()), f && (E.isNumber() ? h[p * l + N] = E.getValue() : f = !1), !f) {
+        if (d.length === 0) {
+          for (let w = 0; w < c; w++)
+            d[w] = new Array(l);
+          for (let w = 0; w <= p; w++) {
+            const S = w * l, M = w < p ? l : N;
+            for (let D = 0; D < M; D++)
+              d[w][D] = y.create(h[S + D]);
+          }
+        }
+        d[p] || (d[p] = new Array(l)), d[p][N] = E;
+      }
     });
-    const h = {
-      calculateValueList: f,
-      rowCount: f.length,
-      columnCount: ((_ = f[0]) == null ? void 0 : _.length) || 0,
-      unitId: this.getUnitId(),
-      sheetId: this.getSheetId(),
-      row: t,
-      column: n
-    }, d = q.create(h);
-    return e && Rn.set(o, d), d;
+    let C;
+    if (f && h)
+      C = W.createNumberArray(
+        h,
+        c,
+        l,
+        this.getUnitId(),
+        this.getSheetId(),
+        t,
+        n
+      );
+    else {
+      const E = {
+        calculateValueList: d,
+        rowCount: d.length,
+        columnCount: ((_ = d[0]) == null ? void 0 : _.length) || 0,
+        unitId: this.getUnitId(),
+        sheetId: this.getSheetId(),
+        row: t,
+        column: n
+      };
+      C = W.create(E);
+    }
+    return e && Pr.set(o, C), C;
   }
   toUnitRange() {
     return {
@@ -6672,10 +7042,10 @@ class Xn extends Hn {
       row: 0,
       column: 0
     };
-    return q.create(e);
+    return W.create(e);
   }
 }
-class $f extends Hn {
+class zf extends Qn {
   constructor(a) {
     super(), this._promise = a;
   }
@@ -6686,7 +7056,7 @@ class $f extends Hn {
     return this._promise;
   }
 }
-class Yf extends Hn {
+class Jf extends Qn {
   constructor(a) {
     super(), this._promiseList = a;
   }
@@ -6713,10 +7083,10 @@ class Yf extends Hn {
       row: 0,
       column: 0
     };
-    return q.create(e);
+    return W.create(e);
   }
 }
-class pn extends Xn {
+class Nn extends Zn {
   constructor(a, e, t) {
     super(""), this.setRangeData(a), e && this.setForcedSheetIdDirect(e), t && this.setForcedUnitIdDirect(t);
   }
@@ -6724,10 +7094,10 @@ class pn extends Xn {
     return !0;
   }
 }
-class ya extends Xn {
+class Ma extends Zn {
   constructor(a) {
     super(a);
-    const e = _r(a);
+    const e = Er(a);
     this.setForcedUnitIdDirect(e.unitId), this.setForcedSheetName(e.sheetName), this.setRangeData(e.range);
   }
   isCell() {
@@ -6749,7 +7119,7 @@ class ya extends Xn {
     return t > n ? (o.startRow = n, o.endRow = t) : (o.startRow = t, o.endRow = n), r > s ? (o.startColumn = s, o.endColumn = r) : (o.startColumn = r, o.endColumn = s), a.startAbsoluteRefType && (o.startAbsoluteRefType = a.startAbsoluteRefType), e.startAbsoluteRefType && (o.endAbsoluteRefType = e.startAbsoluteRefType), o;
   }
   _createRange(a) {
-    const e = new pn(
+    const e = new Nn(
       a,
       this.getForcedSheetId(),
       this.getForcedUnitId()
@@ -6763,10 +7133,10 @@ class ya extends Xn {
     return s && e.setForcedUnitIdDirect(s), e;
   }
 }
-class Ra extends Xn {
+class Da extends Zn {
   constructor(a) {
     super(a);
-    const e = _r(a);
+    const e = Er(a);
     this.setForcedUnitIdDirect(e.unitId), this.setForcedSheetName(e.sheetName);
     const t = {
       ...e.range,
@@ -6774,7 +7144,7 @@ class Ra extends Xn {
       startRow: Number.NaN,
       endColumn: e.range.endColumn,
       endRow: Number.NaN,
-      rangeType: Je.COLUMN
+      rangeType: et.COLUMN
     };
     this.setRangeData(t);
   }
@@ -6791,13 +7161,13 @@ class Ra extends Xn {
     if (n >= t.startColumn && n <= t.endColumn)
       return this;
     const s = t.startColumn;
-    return n > s ? t.endColumn = n : (t.startColumn = n, t.endColumn = s), r.startAbsoluteRefType && (t.endAbsoluteRefType = r.startAbsoluteRefType), t.rangeType = Je.COLUMN, this.setToken(`${this.getToken()}${K.COLON}${e.getToken()}`), this;
+    return n > s ? t.endColumn = n : (t.startColumn = n, t.endColumn = s), r.startAbsoluteRefType && (t.endAbsoluteRefType = r.startAbsoluteRefType), t.rangeType = et.COLUMN, this.setToken(`${this.getToken()}${K.COLON}${e.getToken()}`), this;
   }
 }
-class pa extends Xn {
+class La extends Zn {
   constructor(a) {
     super(a);
-    const e = _r(a);
+    const e = Er(a);
     this.setForcedUnitIdDirect(e.unitId), this.setForcedSheetName(e.sheetName);
     const t = {
       ...e.range,
@@ -6805,7 +7175,7 @@ class pa extends Xn {
       startRow: e.range.startRow,
       endColumn: Number.NaN,
       endRow: e.range.endRow,
-      rangeType: Je.ROW
+      rangeType: et.ROW
     };
     this.setRangeData(t);
   }
@@ -6822,7 +7192,7 @@ class pa extends Xn {
     if (n >= t.startRow && n <= t.endRow)
       return this;
     const s = t.startRow;
-    return n > s ? t.endRow = n : (t.startRow = n, t.endRow = s), r.startAbsoluteRefType && (t.endAbsoluteRefType = r.startAbsoluteRefType), t.rangeType = Je.ROW, this.setToken(`${this.getToken()}${K.COLON}${e.getToken()}`), this;
+    return n > s ? t.endRow = n : (t.startRow = n, t.endRow = s), r.startAbsoluteRefType && (t.endAbsoluteRefType = r.startAbsoluteRefType), t.rangeType = et.ROW, this.setToken(`${this.getToken()}${K.COLON}${e.getToken()}`), this;
   }
 }
 function O(i, a, e, t) {
@@ -6854,9 +7224,9 @@ function O(i, a, e, t) {
     }
     s.push(u);
   }
-  return Fr(s, i, a);
+  return Yr(s, i, a);
 }
-function Fr(i, a, e, t = "", r = "") {
+function Yr(i, a, e, t = "", r = "") {
   const n = {
     calculateValueList: i,
     rowCount: a,
@@ -6866,49 +7236,49 @@ function Fr(i, a, e, t = "", r = "") {
     row: -1,
     column: -1
   };
-  return q.create(n);
+  return W.create(n);
 }
-function Va(i) {
+function lr(i) {
   const a = [
-    k.EQUALS,
-    k.NOT_EQUAL,
-    k.GREATER_THAN_OR_EQUAL,
-    k.GREATER_THAN,
-    k.LESS_THAN_OR_EQUAL,
-    k.LESS_THAN
+    U.EQUALS,
+    U.NOT_EQUAL,
+    U.GREATER_THAN_OR_EQUAL,
+    U.GREATER_THAN,
+    U.LESS_THAN_OR_EQUAL,
+    U.LESS_THAN
   ];
   for (const e of a)
     if (i.startsWith(e)) {
       const t = i.substring(e.length);
-      return [e, Mt.create(t)];
+      return [e, wt.create(t)];
     }
-  return [k.EQUALS, Mt.create(i)];
+  return [U.EQUALS, wt.create(i)];
 }
-function Zn(i, a, e, t) {
+function zn(i, a, e, t) {
   if (!e)
     if (a.isString()) {
-      const r = `${a.getValue()}`, [n, s] = Va(r);
+      const r = `${a.getValue()}`, [n, s] = lr(r);
       e = n, a = s;
     } else
-      e = k.EQUALS;
+      e = U.EQUALS;
   return i.compare(a, e, t);
 }
-function Hf(i, a) {
+function eh(i, a) {
   const e = Math.max(i.isArray() ? i.getRowCount() : 1, a.isArray() ? a.getRowCount() : 1), t = Math.max(i.isArray() ? i.getColumnCount() : 1, a.isArray() ? a.getColumnCount() : 1), r = O(e, t, i), n = O(e, t, a);
   return r.mapValue((s, o, u) => {
     const c = n.get(o, u);
-    return s != null && s.isError() ? s : c != null && c.isError() ? c : s != null && s.isBoolean() && (c != null && c.isBoolean()) ? Kn(s.getValue() && c.getValue()) : T.create(!1);
+    return s != null && s.isError() ? s : c != null && c.isError() ? c : s != null && s.isBoolean() && (c != null && c.isBoolean()) ? Xn(s.getValue() && c.getValue()) : v.create(!1);
   });
 }
-function Gf(i) {
+function th(i) {
   const a = i.getValue();
   let e = 0;
   return a && (e = 1), y.create(e);
 }
-function Ri(i) {
+function Li(i) {
   return i.isArray() && i.getRowCount() === 1 && i.getColumnCount() === 1 ? !0 : i.isReferenceObject() ? !!(i.isCell() || i.getRowCount() === 1 && i.getColumnCount() === 1) : (i = i, !!(i.isString() || i.isNumber() || i.isBoolean() || i.isError() || i.isNull()));
 }
-function Qf(i) {
+function rh(i) {
   const a = i == null ? void 0 : i.getPattern();
   let e = {}, t = {};
   if (a && (e = {
@@ -6960,7 +7330,7 @@ function Qf(i) {
     };
   }
 }
-function Wf(i) {
+function nh(i) {
   let a = 0, e = 0;
   return i.forEach((t, r) => {
     if (r % 2 === 1)
@@ -6971,7 +7341,7 @@ function Wf(i) {
         a = Math.max(a, 1), e = Math.max(e, 1);
   }), { maxRowLength: a, maxColumnLength: e };
 }
-function kr(i, a) {
+function Hr(i, a) {
   if (i.length === 0 || i.length % 2 !== 0)
     return {
       isError: !0,
@@ -7011,10 +7381,10 @@ function kr(i, a) {
           targetRange: null,
           variants: []
         };
-      const h = l.toArrayValueObject(), d = h.getRowCount(), _ = h.getColumnCount();
-      c === 1 && t === -1 && r === -1 ? (t = d, r = _) : !o && (t !== d || r !== _) && (o = !0);
-      let C = f;
-      f.isReferenceObject() && (C = f.toArrayValueObject()), n = Math.max(n, C.isArray() ? C.getRowCount() : 1), s = Math.max(s, C.isArray() ? C.getColumnCount() : 1), u.push(h), u.push(C);
+      const h = l.toArrayValueObject(), d = h.getRowCount(), C = h.getColumnCount();
+      c === 1 && t === -1 && r === -1 ? (t = d, r = C) : !o && (t !== d || r !== C) && (o = !0);
+      let _ = f;
+      f.isReferenceObject() && (_ = f.toArrayValueObject()), n = Math.max(n, _.isArray() ? _.getRowCount() : 1), s = Math.max(s, _.isArray() ? _.getColumnCount() : 1), u.push(h), u.push(_);
     }
   return {
     isError: !1,
@@ -7026,10 +7396,10 @@ function kr(i, a) {
     variants: u
   };
 }
-function Gs(i) {
-  return i.isArray() ? i : q.createByArray([[i.getValue()]]);
+function Xs(i) {
+  return i.isArray() ? i : W.createByArray([[i.getValue()]]);
 }
-function $r(i, a, e, t = !1) {
+function sr(i, a, e, t = !1) {
   const r = [];
   for (let n = 0; n < i.length; n++) {
     if (n % 2 === 1) continue;
@@ -7037,25 +7407,25 @@ function $r(i, a, e, t = !1) {
     O(a, e, o, g.create(m.NA)).iterator((c, l, f) => {
       if (!c)
         return;
-      let h = Zn(s, c);
-      if (t && (h = zn(h, s, c)), r[l] === void 0 && (r[l] = []), r[l][f] === void 0) {
+      let h = zn(s, c);
+      if (t && (h = Jn(h, s, c)), r[l] === void 0 && (r[l] = []), r[l][f] === void 0) {
         r[l][f] = h;
         return;
       }
-      r[l][f] = Hf(r[l][f], h);
+      r[l][f] = eh(r[l][f], h);
     });
   }
   return r;
 }
-function zn(i, a, e) {
-  const [t, r] = Va(`${e.getValue()}`);
+function Jn(i, a, e) {
+  const [t, r] = lr(`${e.getValue()}`);
   return i.mapValue((n, s, o) => {
     const u = a.get(s, o);
-    if (u && qf(u, r))
+    if (u && Pa(u, r))
       return n;
     if (u != null && u.isError() && r.isError() && u.getValue() === r.getValue())
-      return T.create(!0);
-    if (t === k.EQUALS || t === k.NOT_EQUAL) {
+      return v.create(!0);
+    if (t === U.EQUALS || t === U.NOT_EQUAL) {
       if (u != null && u.isNumber() && r.isString()) {
         const c = r.convertToNumberObjectValue();
         if (c.isNumber())
@@ -7066,48 +7436,48 @@ function zn(i, a, e) {
         if (c.isNumber())
           return c.compare(r, t);
       }
-      if (t === k.EQUALS)
-        return T.create(!1);
-      if (t === k.NOT_EQUAL)
-        return T.create(!0);
+      if (t === U.EQUALS)
+        return v.create(!1);
+      if (t === U.NOT_EQUAL)
+        return v.create(!0);
     }
-    return T.create(!1);
+    return v.create(!1);
   });
 }
-function qf(i, a) {
+function Pa(i, a) {
   if (i.isNumber() && a.isNumber() || i.isBoolean() && a.isBoolean())
     return !0;
   const e = i.isString() && i.getValue() === "", t = a.isString() && a.getValue() === "";
   return !!((e || i.isNull()) && (t || a.isNull()) || i.isString() && !e && a.isString() && !t);
 }
-var hn = /* @__PURE__ */ ((i) => (i[i.CELL = 0] = "CELL", i[i.COLUMN = 1] = "COLUMN", i[i.ROW = 2] = "ROW", i))(hn || {});
-function Kf(i, a) {
+var gn = /* @__PURE__ */ ((i) => (i[i.CELL = 0] = "CELL", i[i.COLUMN = 1] = "COLUMN", i[i.ROW = 2] = "ROW", i))(gn || {});
+function sh(i, a) {
   let e;
   switch (a) {
     case 0:
-      e = new ya(i);
+      e = new Ma(i);
       break;
     case 1:
-      e = new Ra(i);
+      e = new Da(i);
       break;
     case 2:
-      e = new pa(i);
+      e = new La(i);
       break;
     default:
       throw new Error("Unknown reference object type");
   }
   return e;
 }
-function Xf(i, a) {
+function ah(i, a) {
   let e;
   return i.isCell() && a.isCell() || i.isRow() && a.isRow() || i.isColumn() && a.isColumn() ? e = i.unionBy(a) : e = g.create(m.NAME), e;
 }
-var Zf = Object.getOwnPropertyDescriptor, zf = (i, a, e, t) => {
-  for (var r = t > 1 ? void 0 : t ? Zf(a, e) : a, n = i.length - 1, s; n >= 0; n--)
+var ih = Object.getOwnPropertyDescriptor, oh = (i, a, e, t) => {
+  for (var r = t > 1 ? void 0 : t ? ih(a, e) : a, n = i.length - 1, s; n >= 0; n--)
     (s = i[n]) && (r = s(r) || r);
   return r;
-}, Jf = (i, a) => (e, t) => a(e, t, i);
-let Qs = class extends Ne {
+}, uh = (i, a) => (e, t) => a(e, t, i);
+let Zs = class extends Ve {
   constructor(i) {
     super(), this._univerInstanceService = i;
   }
@@ -7117,8 +7487,8 @@ let Qs = class extends Ne {
         v: ""
       };
     let e = i;
-    if (i.startsWith("#") && so(i.slice(1))) {
-      const { unitId: t, sheetName: r, range: n } = Dr(i.slice(1)), s = this._univerInstanceService.getCurrentUnitOfType(hr.UNIVER_SHEET);
+    if (i.startsWith("#") && Co(i.slice(1))) {
+      const { unitId: t, sheetName: r, range: n } = xr(i.slice(1)), s = this._univerInstanceService.getCurrentUnitOfType(gr.UNIVER_SHEET);
       if (t === "" || t === s.getUnitId())
         if (r === "")
           e = `#gid=${s.getActiveSheet().getSheetId()}&range=${Ft(n)}`;
@@ -7126,24 +7496,24 @@ let Qs = class extends Ne {
           const o = s.getSheetBySheetName(r);
           o && (e = `#gid=${o.getSheetId()}&range=${Ft(n)}`);
         }
-    } else qe.isLegalUrl(i) && (e = qe.normalizeUrl(i));
+    } else Ke.isLegalUrl(i) && (e = Ke.normalizeUrl(i));
     return {
-      p: ac.create().insertLink(a, e).getData()
+      p: Cc.create().insertLink(a, e).getData()
     };
   }
 };
-Qs = zf([
-  Jf(0, Yn)
-], Qs);
-const Lo = Ze(
+Zs = oh([
+  uh(0, Hn)
+], Zs);
+const $o = ze(
   "univer.formula.hyperlink-engine-formula.service"
 );
-var eh = Object.getOwnPropertyDescriptor, th = (i, a, e, t) => {
-  for (var r = t > 1 ? void 0 : t ? eh(a, e) : a, n = i.length - 1, s; n >= 0; n--)
+var ch = Object.getOwnPropertyDescriptor, lh = (i, a, e, t) => {
+  for (var r = t > 1 ? void 0 : t ? ch(a, e) : a, n = i.length - 1, s; n >= 0; n--)
     (s = i[n]) && (r = s(r) || r);
   return r;
-}, pi = (i, a) => (e, t) => a(e, t, i), ut = /* @__PURE__ */ ((i) => (i[i.IDLE = 0] = "IDLE", i[i.START = 1] = "START", i[i.START_DEPENDENCY = 2] = "START_DEPENDENCY", i[i.START_CALCULATION = 3] = "START_CALCULATION", i[i.CURRENTLY_CALCULATING = 4] = "CURRENTLY_CALCULATING", i[i.START_DEPENDENCY_ARRAY_FORMULA = 5] = "START_DEPENDENCY_ARRAY_FORMULA", i[i.START_CALCULATION_ARRAY_FORMULA = 6] = "START_CALCULATION_ARRAY_FORMULA", i[i.CURRENTLY_CALCULATING_ARRAY_FORMULA = 7] = "CURRENTLY_CALCULATING_ARRAY_FORMULA", i[i.CALCULATION_COMPLETED = 8] = "CALCULATION_COMPLETED", i))(ut || {}), fr = /* @__PURE__ */ ((i) => (i[i.INITIAL = 0] = "INITIAL", i[i.STOP_EXECUTION = 1] = "STOP_EXECUTION", i[i.NOT_EXECUTED = 2] = "NOT_EXECUTED", i[i.SUCCESS = 3] = "SUCCESS", i))(fr || {});
-let Ws = class extends Ne {
+}, Pi = (i, a) => (e, t) => a(e, t, i), $e = /* @__PURE__ */ ((i) => (i[i.IDLE = 0] = "IDLE", i[i.START = 1] = "START", i[i.START_DEPENDENCY = 2] = "START_DEPENDENCY", i[i.START_CALCULATION = 3] = "START_CALCULATION", i[i.CURRENTLY_CALCULATING = 4] = "CURRENTLY_CALCULATING", i[i.START_DEPENDENCY_ARRAY_FORMULA = 5] = "START_DEPENDENCY_ARRAY_FORMULA", i[i.START_CALCULATION_ARRAY_FORMULA = 6] = "START_CALCULATION_ARRAY_FORMULA", i[i.CURRENTLY_CALCULATING_ARRAY_FORMULA = 7] = "CURRENTLY_CALCULATING_ARRAY_FORMULA", i[i.CALCULATION_COMPLETED = 8] = "CALCULATION_COMPLETED", i))($e || {}), mr = /* @__PURE__ */ ((i) => (i[i.INITIAL = 0] = "INITIAL", i[i.STOP_EXECUTION = 1] = "STOP_EXECUTION", i[i.NOT_EXECUTED = 2] = "NOT_EXECUTED", i[i.SUCCESS = 3] = "SUCCESS", i))(mr || {});
+let zs = class extends Ve {
   constructor(a, e) {
     super();
     A(this, "_formulaExecuteStage", 0);
@@ -7264,7 +7634,7 @@ let Ws = class extends Ne {
     this._formulaExecuteStage = 0, this._runtimeData = {}, this._runtimeOtherData = {}, this._unitArrayFormulaRange = {}, this._runtimeArrayFormulaCellData = {}, this._runtimeClearArrayFormulaCellData = {}, this._functionDefinitionPrivacyVar.clear(), this.markedAsInitialFunctionsExecuted(), this._stopState = !1, this._isCycleDependency = !1, this._totalFormulasToCalculate = 0, this._completedFormulasCount = 0, this.clearReferenceAndNumberformatCache();
   }
   clearReferenceAndNumberformatCache() {
-    El(), Nl(), al();
+    Ml(), Ul(), dl();
   }
   setCurrent(a, e, t, r, n, s) {
     this._currentRow = a, this._currentColumn = e, this._currentRowCount = t, this._currentColumnCount = r, this._currentSubUnitId = n, this._currentUnitId = s;
@@ -7287,8 +7657,8 @@ let Ws = class extends Ne {
     let c = [];
     if (r.isReferenceObject() || r.isValueObject() && r.isArray()) {
       const l = r, { startRow: f, startColumn: h } = l.getRangePosition();
-      l.iterator((d, _, C) => {
-        const E = this._getValueObjectOfRuntimeData(d), b = _ - f, R = C - h;
+      l.iterator((d, C, _) => {
+        const E = this._getValueObjectOfRuntimeData(d), b = C - f, R = _ - h;
         c[b] == null && (c[b] = []), c[b][R] = E;
       });
     } else
@@ -7309,30 +7679,30 @@ let Ws = class extends Ne {
     f[s] == null && (f[s] = new Ce()), this._runtimeClearArrayFormulaCellData[o] === void 0 && (this._runtimeClearArrayFormulaCellData[o] = {});
     const h = this._runtimeClearArrayFormulaCellData[o];
     h[s] == null && (h[s] = new Ce());
-    const d = u[s], _ = f[s], C = h[s];
+    const d = u[s], C = f[s], _ = h[s];
     if (a.isReferenceObject() || a.isValueObject() && a.isArray()) {
       const E = a, { startRow: b, startColumn: R, endRow: p, endColumn: N } = E.getRangePosition();
       if (b === p && R === N) {
-        const w = E.getFirstCell(), S = this._getValueObjectOfRuntimeData(w);
-        d.setValue(e, t, S), C.setValue(e, t, S), We.set(
+        const S = E.getFirstCell(), M = this._getValueObjectOfRuntimeData(S);
+        d.setValue(e, t, M), _.setValue(e, t, M), He.set(
           o,
           s,
           t,
-          w.getValue(),
+          S.getValue(),
           e,
           !0
         );
         return;
       }
-      const M = {
+      const w = {
         startRow: e,
         startColumn: t,
         endRow: p - b + e,
         endColumn: N - R + t
       };
-      if (l.setValue(e, t, M), this._checkIfArrayFormulaRangeHasData(o, s, e, t, M) || this._checkIfArrayFormulaExceeded(r, n, M)) {
-        const w = this._getValueObjectOfRuntimeData(g.create(m.SPILL));
-        d.setValue(e, t, w), C.setValue(e, t, w), We.set(
+      if (l.setValue(e, t, w), this._checkIfArrayFormulaRangeHasData(o, s, e, t, w) || this._checkIfArrayFormulaExceeded(r, n, w)) {
+        const S = this._getValueObjectOfRuntimeData(g.create(m.SPILL));
+        d.setValue(e, t, S), _.setValue(e, t, S), He.set(
           o,
           s,
           t,
@@ -7340,58 +7710,58 @@ let Ws = class extends Ne {
           e,
           !0
         );
-        const S = this._currentConfigService.getUnitData();
-        E.iterator((D, L, U) => {
+        const M = this._currentConfigService.getUnitData();
+        E.iterator((D, L, T) => {
           var ne, z;
-          const x = L - b + e, F = U - R + t, Q = (z = (ne = S[o]) == null ? void 0 : ne[s]) == null ? void 0 : z.cellData.getValue(x, F);
-          if (L === b && U === R)
-            _.setValue(e, t, w);
-          else if (Q != null)
-            Q.v == null && (Q.v = ""), _.setValue(x, F, Q);
+          const x = L - b + e, k = T - R + t, G = (z = (ne = M[o]) == null ? void 0 : ne[s]) == null ? void 0 : z.cellData.getValue(x, k);
+          if (L === b && T === R)
+            C.setValue(e, t, S);
+          else if (G != null)
+            G.v == null && (G.v = ""), C.setValue(x, k, G);
           else {
-            if (this._isInOtherArrayFormulaRange(o, s, e, t, x, F))
+            if (this._isInOtherArrayFormulaRange(o, s, e, t, x, k))
               return !0;
-            _.setValue(x, F, { v: "" });
+            C.setValue(x, k, { v: "" });
           }
         });
       } else {
-        const w = g.create(m.SPILL);
-        E.iterator((S, D, L) => {
-          We.set(
+        const S = g.create(m.SPILL);
+        E.iterator((M, D, L) => {
+          He.set(
             o,
             s,
             t - R + L,
-            S ? S.getValue() : 0,
+            M ? M.getValue() : 0,
             e - b + D,
             !0
           );
-          const U = this._getValueObjectOfRuntimeData(S);
+          const T = this._getValueObjectOfRuntimeData(M);
           if (D === b && L === R) {
-            if (S != null && S.isError() && S.isEqualType(w))
-              return C.setValue(e, t, {}), d.setValue(e, t, { ...this._getValueObjectOfRuntimeData(w) }), !1;
-            d.setValue(e, t, { ...U });
+            if (M != null && M.isError() && M.isEqualType(S))
+              return _.setValue(e, t, {}), d.setValue(e, t, { ...this._getValueObjectOfRuntimeData(S) }), !1;
+            d.setValue(e, t, { ...T });
           }
-          const x = D - b + e, F = L - R + t;
-          _.setValue(x, F, U);
+          const x = D - b + e, k = L - R + t;
+          C.setValue(x, k, T);
         });
       }
     } else {
       const E = this._getValueObjectOfRuntimeData(a);
-      d.setValue(e, t, E), We.set(
+      d.setValue(e, t, E), He.set(
         o,
         s,
         t,
         a.getValue(),
         e,
         !0
-      ), C.setValue(e, t, E);
+      ), _.setValue(e, t, E);
     }
   }
   _getValueObjectOfRuntimeData(a) {
     return a != null && a.isString() && a.isHyperlink() ? this._hyperlinkEngineFormulaService.generateCellValue(
       a.getHyperlinkUrl(),
       a.getValue()
-    ) : Qf(a);
+    ) : rh(a);
   }
   getUnitData() {
     return this._runtimeData;
@@ -7444,26 +7814,26 @@ let Ws = class extends Ne {
   }
   // eslint-disable-next-line complexity
   _checkIfArrayFormulaRangeHasData(a, e, t, r, n) {
-    var h, d, _, C, E, b, R, p, N, M, w;
+    var h, d, C, _, E, b, R, p, N, w, S;
     const { startRow: s, startColumn: o, endRow: u, endColumn: c } = n, l = this._currentConfigService.getUnitData(), f = this._currentConfigService.getArrayFormulaCellData();
-    (_ = (d = (h = this._unitArrayFormulaRange[a]) == null ? void 0 : h[e]) == null ? void 0 : d[t]) == null || _[r];
-    for (let S = s; S <= u; S++)
+    (C = (d = (h = this._unitArrayFormulaRange[a]) == null ? void 0 : h[e]) == null ? void 0 : d[t]) == null || C[r];
+    for (let M = s; M <= u; M++)
       for (let D = o; D <= c; D++) {
-        if (S === t && r === D)
+        if (M === t && r === D)
           continue;
-        const L = (b = (E = (C = this._runtimeData) == null ? void 0 : C[a]) == null ? void 0 : E[e]) == null ? void 0 : b.getValue(S, D);
+        const L = (b = (E = (_ = this._runtimeData) == null ? void 0 : _[a]) == null ? void 0 : E[e]) == null ? void 0 : b.getValue(M, D);
         (p = (R = f == null ? void 0 : f[a]) == null ? void 0 : R[e]) == null || p.getValue(
-          S,
+          M,
           D
         );
-        const U = (w = (M = (N = l == null ? void 0 : l[a]) == null ? void 0 : N[e]) == null ? void 0 : M.cellData) == null ? void 0 : w.getValue(S, D), x = this._getRuntimeFeatureCellValue(S, D, e, a);
-        if (!cn(L) || this._isInOtherArrayFormulaRange(a, e, t, r, S, D) || !cn(U) || !cn(x))
+        const T = (S = (w = (N = l == null ? void 0 : l[a]) == null ? void 0 : N[e]) == null ? void 0 : w.cellData) == null ? void 0 : S.getValue(M, D), x = this._getRuntimeFeatureCellValue(M, D, e, a);
+        if (!fn(L) || this._isInOtherArrayFormulaRange(a, e, t, r, M, D) || !fn(T) || !fn(x))
           return !0;
       }
     return !1;
   }
   _getRuntimeFeatureCellValue(a, e, t, r) {
-    return Ao(a, e, t, r, this._runtimeFeatureCellData);
+    return Mo(a, e, t, r, this._runtimeFeatureCellData);
   }
   _arrayCellHasData(a) {
     return a == null ? !1 : a.v !== void 0;
@@ -7488,8 +7858,8 @@ let Ws = class extends Ne {
       var E, b;
       if (f === t && h === r)
         return;
-      const _ = this._isInArrayFormulaRange(d, n, s), C = (b = (E = this._runtimeData[a]) == null ? void 0 : E[e]) == null ? void 0 : b.getValue(f, h);
-      _ && (C == null ? void 0 : C.v) !== m.SPILL && (u = !0);
+      const C = this._isInArrayFormulaRange(d, n, s), _ = (b = (E = this._runtimeData[a]) == null ? void 0 : E[e]) == null ? void 0 : b.getValue(f, h);
+      C && (_ == null ? void 0 : _.v) !== m.SPILL && (u = !0);
     }), u;
   }
   _isInArrayFormulaRange(a, e, t) {
@@ -7503,16 +7873,16 @@ let Ws = class extends Ne {
   }
   _isInDirtyRange(a, e, t, r) {
     const n = this._currentConfigService.getDirtyRanges();
-    return n.length === 0 ? !0 : bc(n, a, e, t, r);
+    return n.length === 0 ? !0 : Dc(n, a, e, t, r);
   }
 };
-Ws = th([
-  pi(0, Yt),
-  pi(1, Lo)
-], Ws);
-const St = Ze("univer.formula.runtime.service");
+zs = lh([
+  Pi(0, Yt),
+  Pi(1, $o)
+], zs);
+const Mt = ze("univer.formula.runtime.service");
 var ie = /* @__PURE__ */ ((i) => (i[i.REFERENCE = 1] = "REFERENCE", i[i.VALUE = 2] = "VALUE", i[i.OPERATOR = 3] = "OPERATOR", i[i.FUNCTION = 4] = "FUNCTION", i[i.LAMBDA = 5] = "LAMBDA", i[i.LAMBDA_PARAMETER = 6] = "LAMBDA_PARAMETER", i[i.ERROR = 7] = "ERROR", i[i.BASE = 8] = "BASE", i[i.ROOT = 9] = "ROOT", i[i.UNION = 10] = "UNION", i[i.PREFIX = 11] = "PREFIX", i[i.SUFFIX = 12] = "SUFFIX", i[i.NULL = 13] = "NULL", i))(ie || {});
-const yt = /* @__PURE__ */ new Map([
+const Rt = /* @__PURE__ */ new Map([
   [1, 7],
   [2, 9],
   [3, 8],
@@ -7524,7 +7894,7 @@ const yt = /* @__PURE__ */ new Map([
   [11, 4],
   [12, 5]
 ]);
-class Ge {
+class We {
   constructor(a) {
     A(this, "_children", []);
     A(this, "_definedNames");
@@ -7584,6 +7954,17 @@ class Ge {
   getValue() {
     return this._valueObject;
   }
+  /**
+   * Release intermediate value objects from this node and all descendants
+   * without destroying the AST structure. The tree remains valid for
+   * re-execution on the next dirty cycle.
+   */
+  clearIntermediate() {
+    this._valueObject = null;
+    const a = this._children;
+    for (let e = 0, t = a.length; e < t; e++)
+      a[e].clearIntermediate();
+  }
   isCalculated() {
     return this._calculateState;
   }
@@ -7620,7 +8001,7 @@ class Ge {
     return this._definedNames;
   }
 }
-class xe extends Ge {
+class xe extends We {
   constructor(e) {
     super(e);
     A(this, "_errorValueObject");
@@ -7636,8 +8017,8 @@ class xe extends Ge {
     return this._errorValueObject;
   }
 }
-const Rt = 100;
-class pt {
+const pt = 100;
+class Nt {
   get zIndex() {
     return 0;
   }
@@ -7645,10 +8026,10 @@ class pt {
   }
   create(a, e, t) {
     let r;
-    return a instanceof ae ? r = a.getToken() : r = a, new Ge(r);
+    return a instanceof ae ? r = a.getToken() : r = a, new We(r);
   }
 }
-class qs extends Ge {
+class Js extends We {
   get nodeType() {
     return ie.ROOT;
   }
@@ -7662,30 +8043,30 @@ class qs extends Ge {
     e == null ? this.setValue(g.create(m.VALUE)) : this.setValue(e.getValue());
   }
 }
-class Po extends pt {
+class Yo extends Nt {
   get zIndex() {
-    return yt.get(ie.ROOT) || Rt;
+    return Rt.get(ie.ROOT) || pt;
   }
   checkAndCreateNodeType(a) {
     if (!(a instanceof ae))
       return;
     if (a.getToken() === Tt)
-      return new qs(Tt);
+      return new Js(Tt);
   }
 }
-const rh = 5e3, jr = new wt(rh);
-function Vi(i, a, e, t, r) {
-  let n = jr.get(`${i}${a}`);
-  if (n && !xo(n, r))
+const fh = 5e3, Tr = new St(fh);
+function xi(i, a, e, t, r) {
+  let n = Tr.get(`${i}${a}`);
+  if (n && !Ho(n, r))
     return n;
   const s = e.treeBuilder(a);
-  if (or.has(s))
+  if (cr.has(s))
     return xe.create(s);
   if (n = t.parse(s), n == null)
     throw new Error("astNode is null");
-  return jr.set(`${i}${a}`, n), n;
+  return Tr.set(`${i}${a}`, n), n;
 }
-function xo(i, a) {
+function Ho(i, a) {
   const e = a.getDirtyDefinedNameMap(), t = a.getExecuteUnitId();
   if (t != null && e[t] != null) {
     const r = Object.keys(e[t]);
@@ -7697,11 +8078,11 @@ function xo(i, a) {
   }
   return !1;
 }
-function nh(i, a, e) {
-  return !!(a != null && xo(a, e));
+function hh(i, a, e) {
+  return !!(a != null && Ho(a, e));
 }
-const Qt = Ze("univer.formula-function.service");
-class sh extends Ne {
+const Gt = ze("univer.formula-function.service");
+class mh extends Ve {
   constructor() {
     super(...arguments);
     A(this, "_functionExecutors", /* @__PURE__ */ new Map());
@@ -7736,7 +8117,7 @@ class sh extends Ne {
       const r = e[t];
       this._functionDescriptions.set(r.functionName, r);
     }
-    return ic(() => {
+    return _c(() => {
       for (let t = 0; t < e.length; t++) {
         const r = e[t];
         this._functionDescriptions.delete(r.functionName);
@@ -7759,19 +8140,19 @@ class sh extends Ne {
     }
   }
   deleteFormulaAstCacheKey(...e) {
-    jr.forEach((t, r) => {
+    Tr.forEach((t, r) => {
       e.forEach((n) => {
-        r.includes(n) && jr.delete(r);
+        r.includes(n) && Tr.delete(r);
       });
     });
   }
 }
-var Be = /* @__PURE__ */ ((i) => (i.COMPARE = "COMPARE", i.DIVIDED = "DIVIDED", i.MINUS = "MINUS", i.MULTIPLY = "MULTIPLY", i.PLUS = "PLUS", i.UNION = "UNION", i.CUBE = "CUBE", i))(Be || {}), ah = Object.getOwnPropertyDescriptor, ih = (i, a, e, t) => {
-  for (var r = t > 1 ? void 0 : t ? ah(a, e) : a, n = i.length - 1, s; n >= 0; n--)
+var Be = /* @__PURE__ */ ((i) => (i.COMPARE = "COMPARE", i.DIVIDED = "DIVIDED", i.MINUS = "MINUS", i.MULTIPLY = "MULTIPLY", i.PLUS = "PLUS", i.UNION = "UNION", i.CUBE = "CUBE", i))(Be || {}), gh = Object.getOwnPropertyDescriptor, dh = (i, a, e, t) => {
+  for (var r = t > 1 ? void 0 : t ? gh(a, e) : a, n = i.length - 1, s; n >= 0; n--)
     (s = i[n]) && (r = s(r) || r);
   return r;
-}, Ni = (i, a) => (e, t) => a(e, t, i);
-class Vn extends Ge {
+}, ji = (i, a) => (e, t) => a(e, t, i);
+class Vn extends We {
   constructor(a, e, t) {
     super(e), this._runtimeService = a, this._operatorString = e, this._functionExecutor = t;
   }
@@ -7782,10 +8163,10 @@ class Vn extends Ge {
     let e = this.getChildren()[0].getValue(), t;
     if (e == null)
       throw new Error("object is null");
-    this._operatorString === Me.MINUS ? (e.isReferenceObject() && (e = e.toArrayValueObject()), t = this._functionExecutor.calculate(
+    this._operatorString === we.MINUS ? (e.isReferenceObject() && (e = e.toArrayValueObject()), t = this._functionExecutor.calculate(
       y.create(0),
       e
-    )) : this._operatorString === Me.AT ? t = this._handlerAT(e) : t = g.create(m.VALUE), this.setValue(t);
+    )) : this._operatorString === we.AT ? t = this._handlerAT(e) : t = g.create(m.VALUE), this.setValue(t);
   }
   _handlerAT(a) {
     if (!a.isReferenceObject())
@@ -7797,12 +8178,12 @@ class Vn extends Ge {
     return l !== u && c !== o || o === c && u === l ? g.create(m.VALUE) : c === o && n >= u && n <= l ? e.getCellByColumn(n) : u === l && r >= o && r <= c ? e.getCellByRow(r) : e.isTable() ? e.getCellByPosition(r) : g.create(m.VALUE);
   }
 }
-let Nn = class extends pt {
+let On = class extends Nt {
   constructor(i, a) {
     super(), this._functionService = i, this._runtimeService = a;
   }
   get zIndex() {
-    return yt.get(ie.PREFIX) || Rt;
+    return Rt.get(ie.PREFIX) || pt;
   }
   checkAndCreateNodeType(i) {
     if (!(i instanceof ae))
@@ -7811,35 +8192,35 @@ let Nn = class extends pt {
     if (e.charAt(0) === '"' && e.charAt(e.length - 1) === '"')
       return;
     let t = "";
-    if (e === Me.MINUS)
+    if (e === we.MINUS)
       t = Be.MINUS;
-    else return e === Me.AT ? new Vn(this._runtimeService, e) : void 0;
+    else return e === we.AT ? new Vn(this._runtimeService, e) : void 0;
     const r = this._functionService.getExecutor(t);
     return r ? new Vn(this._runtimeService, e, r) : (console.error(`No function ${a}`), xe.create(m.NAME));
   }
 };
-Nn = ih([
-  Ni(0, Qt),
-  Ni(1, St)
-], Nn);
-new RegExp(Me.MINUS, "g");
-new RegExp(Me.AT, "g");
-function jo(i, a, e) {
+On = dh([
+  ji(0, Gt),
+  ji(1, Mt)
+], On);
+new RegExp(we.MINUS, "g");
+new RegExp(we.AT, "g");
+function Qo(i, a, e) {
   let t, r, n = i;
   const s = n.slice(0, 2);
   let o = 0;
-  if (s[0] === Me.MINUS) {
+  if (s[0] === we.MINUS) {
     const u = a.getExecutor(Be.MINUS);
-    t = new Vn(e, Me.MINUS, u), o++;
+    t = new Vn(e, we.MINUS, u), o++;
   }
-  return s[0] === Me.AT && (r = new Vn(e, Me.AT), t && r.setParent(t), o++), o > 0 && (n = n.slice(o)), { tokenTrim: n, minusPrefixNode: t, atPrefixNode: r };
+  return s[0] === we.AT && (r = new Vn(e, we.AT), t && r.setParent(t), o++), o > 0 && (n = n.slice(o)), { tokenTrim: n, minusPrefixNode: t, atPrefixNode: r };
 }
-var oh = Object.getOwnPropertyDescriptor, uh = (i, a, e, t) => {
-  for (var r = t > 1 ? void 0 : t ? oh(a, e) : a, n = i.length - 1, s; n >= 0; n--)
+var Ch = Object.getOwnPropertyDescriptor, _h = (i, a, e, t) => {
+  for (var r = t > 1 ? void 0 : t ? Ch(a, e) : a, n = i.length - 1, s; n >= 0; n--)
     (s = i[n]) && (r = s(r) || r);
   return r;
-}, ur = (i, a) => (e, t) => a(e, t, i);
-class ch extends Ge {
+}, fr = (i, a) => (e, t) => a(e, t, i);
+class Ah extends We {
   constructor(a, e, t, r, n, s) {
     super(a), this._functionExecutor = e, this._currentConfigService = t, this._runtimeService = r, this._definedNamesService = n, this._formulaDataModel = s, this._functionExecutor.isAsync() && this.setAsync(), this._functionExecutor.isAddress() && this.setAddress(), this._functionExecutor.needsLocale && this._setLocale(), this._functionExecutor.needsSheetsInfo && this._setSheetsInfo(), this._functionExecutor.needsFormulaDataModel && this._functionExecutor.setFormulaDataModel(this._formulaDataModel);
   }
@@ -7892,8 +8273,8 @@ class ch extends Ge {
       return;
     let n, s;
     if (t != null && t.isReferenceObject()) {
-      const _ = t.getRangeData(), { startRow: C, startColumn: E, endRow: b, endColumn: R } = _;
-      n = b - C + 1, s = R - E + 1;
+      const C = t.getRangeData(), { startRow: _, startColumn: E, endRow: b, endColumn: R } = C;
+      n = b - _ + 1, s = R - E + 1;
     } else
       n = t != null && t.isArray() ? t.getRowCount() : 1, s = t != null && t.isArray() ? t.getColumnCount() : 1;
     const o = r.getRangeData(), { startRow: u, startColumn: c, endRow: l, endColumn: f } = o, h = l - u + 1, d = f - c + 1;
@@ -7905,9 +8286,9 @@ class ch extends Ge {
   _handleCustomResult(a) {
     var t;
     if (typeof a != "object" || a == null)
-      return Mt.create(a);
-    const e = Do(a);
-    return q.create({
+      return wt.create(a);
+    const e = ko(a);
+    return W.create({
       calculateValueList: e,
       rowCount: e.length,
       columnCount: ((t = e[0]) == null ? void 0 : t.length) || 0,
@@ -7987,7 +8368,7 @@ class ch extends Ge {
     a.setFilteredOutRows(r);
   }
 }
-class lh extends Ge {
+class Eh extends We {
   constructor(a = "Error") {
     super(a);
   }
@@ -8001,16 +8382,16 @@ class lh extends Ge {
     this.setValue(g.create(m.NAME));
   }
 }
-let On = class extends pt {
+let wn = class extends Nt {
   constructor(i, a, e, t, r, n) {
     super(), this._functionService = i, this._currentConfigService = a, this._runtimeService = e, this._definedNamesService = t, this._injector = r, this._formulaDataModel = n;
   }
   get zIndex() {
-    return yt.get(ie.FUNCTION) || Rt;
+    return Rt.get(ie.FUNCTION) || pt;
   }
   create(i) {
     const a = this._functionService.getExecutor(i);
-    return a ? new ch(
+    return a ? new Ah(
       i,
       a,
       this._currentConfigService,
@@ -8022,7 +8403,7 @@ let On = class extends pt {
   checkAndCreateNodeType(i) {
     if (typeof i == "string")
       return;
-    const a = i.getToken(), { tokenTrim: e, minusPrefixNode: t, atPrefixNode: r } = jo(a.trim(), this._functionService, this._runtimeService);
+    const a = i.getToken(), { tokenTrim: e, minusPrefixNode: t, atPrefixNode: r } = Qo(a.trim(), this._functionService, this._runtimeService);
     if (!Number.isNaN(Number(e)) && !this._isParentUnionNode(i))
       return xe.create(m.VALUE);
     const n = e.toUpperCase();
@@ -8036,20 +8417,20 @@ let On = class extends pt {
     return ((e = (a = i.getParent()) == null ? void 0 : a.getParent()) == null ? void 0 : e.getToken()) === K.COLON;
   }
 };
-On = uh([
-  ur(0, Qt),
-  ur(1, Yt),
-  ur(2, St),
-  ur(3, Or),
-  ur(4, ye(Ki)),
-  ur(5, ye(Ar))
-], On);
-var fh = Object.getOwnPropertyDescriptor, hh = (i, a, e, t) => {
-  for (var r = t > 1 ? void 0 : t ? fh(a, e) : a, n = i.length - 1, s; n >= 0; n--)
+wn = _h([
+  fr(0, Gt),
+  fr(1, Yt),
+  fr(2, Mt),
+  fr(3, Sr),
+  fr(4, ye(io)),
+  fr(5, ye(br))
+], wn);
+var bh = Object.getOwnPropertyDescriptor, yh = (i, a, e, t) => {
+  for (var r = t > 1 ? void 0 : t ? bh(a, e) : a, n = i.length - 1, s; n >= 0; n--)
     (s = i[n]) && (r = s(r) || r);
   return r;
-}, mh = (i, a) => (e, t) => a(e, t, i);
-let yr = class extends Ne {
+}, Rh = (i, a) => (e, t) => a(e, t, i);
+let pr = class extends Ve {
   constructor(i) {
     super(), this._runtimeService = i;
   }
@@ -8095,7 +8476,7 @@ let yr = class extends Ne {
     const t = i.getChildren(), r = t.length;
     for (let n = 0; n < r; n++) {
       const s = t[n];
-      if (s.getToken().toUpperCase() === Lr && s.isEmptyParamFunction()) {
+      if (s.getToken().toUpperCase() === jr && s.isEmptyParamFunction()) {
         s.execute();
         continue;
       }
@@ -8109,7 +8490,7 @@ let yr = class extends Ne {
     const t = i.getChildren(), r = t.length;
     for (let n = 0; n < r; n++) {
       const s = t[n];
-      if (s.getToken().toUpperCase() === Lr && s.isEmptyParamFunction()) {
+      if (s.getToken().toUpperCase() === jr && s.isEmptyParamFunction()) {
         s.execute();
         continue;
       }
@@ -8118,63 +8499,63 @@ let yr = class extends Ne {
     return i.nodeType === ie.REFERENCE && i.setRefOffset(a, e), i.execute(), Ut.SUCCESS;
   }
 };
-yr = hh([
-  mh(0, St)
-], yr);
-function Uo(i) {
-  return i instanceof ae ? i.getToken() === Cr : !1;
+pr = yh([
+  Rh(0, Mt)
+], pr);
+function Go(i) {
+  return i instanceof ae ? i.getToken() === Ar : !1;
 }
-function gh(i) {
-  return i instanceof ae ? i.getToken() === mo : !1;
+function ph(i) {
+  return i instanceof ae ? i.getToken() === Vo : !1;
 }
-function Na(i, a, e) {
+function xa(i, a, e) {
   const t = i.getChildren(), r = t.length, n = t[0];
   for (let s = 0; s < r; s++) {
     const o = t[s];
-    if (!(Uo(n) && s !== 0))
+    if (!(Go(n) && s !== 0))
       if (o instanceof ae)
-        Na(o, a, e);
+        xa(o, a, e);
       else {
         const u = o.trim();
         if (e.has(u)) {
           const c = new ae();
-          c.setToken(Ir), c.setLambdaId(a), c.setLambdaPrivacyVar(e), c.setLambdaParameter(u), t[s] = c;
+          c.setToken($r), c.setLambdaId(a), c.setLambdaPrivacyVar(e), c.setLambdaParameter(u), t[s] = c;
         }
       }
   }
 }
-function dh(i) {
+function Nh(i) {
   let a = i;
   for (; a != null && a.getParent(); )
     a = a.getParent();
   return a;
 }
-function Oi(i, a = 0, e = 0) {
+function Ui(i, a = 0, e = 0) {
   return {
     node: i,
     refOffsetX: a,
     refOffsetY: e
   };
 }
-function vo(i) {
+function Wo(i) {
   if (!i)
     return;
-  if (i.getToken() !== Ir)
+  if (i.getToken() !== $r)
     return i;
   const a = i, e = a.getCurrentLambdaPrivacyVar(), t = a.getLambdaParameter();
   if (!e)
     return;
   const r = e.get(t);
-  return r == null && i.getValue() ? i : vo(r);
+  return r == null && i.getValue() ? i : Wo(r);
 }
-class Oa extends Ht {
+class ja extends Ht {
   constructor(e, t, r) {
     super(0);
     A(this, "_lambdaPrivacyValueMap", /* @__PURE__ */ new Map());
     this._lambdaNode = e, this._interpreter = t, this._lambdaPrivacyVarKeys = r, this._lambdaPrivacyValueMap.clear();
   }
   static create(e, t, r) {
-    return new Oa(e, t, r);
+    return new ja(e, t, r);
   }
   dispose() {
     this._lambdaPrivacyValueMap.clear(), this._lambdaPrivacyValueMap = /* @__PURE__ */ new Map(), this._lambdaNode = null, this._interpreter = null, this._lambdaPrivacyVarKeys = [];
@@ -8189,9 +8570,9 @@ class Oa extends Ht {
     this._setLambdaPrivacyValueMap(e), this._setLambdaNodeValue(this._lambdaNode), this._lambdaNode.setNotEmpty(!1);
     let r;
     if (this._interpreter.checkAsyncNode(this._lambdaNode))
-      r = new $f(this._interpreter.executeAsync(Oi(this._lambdaNode)));
+      r = new zf(this._interpreter.executeAsync(Ui(this._lambdaNode)));
     else {
-      const n = this._interpreter.execute(Oi(this._lambdaNode));
+      const n = this._interpreter.execute(Ui(this._lambdaNode));
       n.isReferenceObject() ? r = n.toArrayValueObject() : r = n;
     }
     return this._lambdaNode.setNotEmpty(!0), r;
@@ -8201,7 +8582,7 @@ class Oa extends Ht {
    * @param variants
    */
   executeCustom(...e) {
-    const t = e.map((r) => Mt.create(r));
+    const t = e.map((r) => wt.create(r));
     return this.execute(...t);
   }
   _setLambdaNodeValue(e) {
@@ -8210,12 +8591,12 @@ class Oa extends Ht {
     const t = e.getChildren(), r = t.length;
     for (let n = 0; n < r; n++) {
       const s = t[n];
-      if (s.getToken() === Ir) {
+      if (s.getToken() === $r) {
         const u = s.getLambdaParameter(), c = this._lambdaPrivacyValueMap.get(u);
         if (c)
           s.setValue(c);
         else {
-          const l = s.getCurrentLambdaPrivacyVar(), f = vo(l.get(u));
+          const l = s.getCurrentLambdaPrivacyVar(), f = Wo(l.get(u));
           f != null && s.setValue(f.getValue());
         }
         continue;
@@ -8233,12 +8614,12 @@ class Oa extends Ht {
     return this._lambdaPrivacyVarKeys;
   }
 }
-var Ch = Object.getOwnPropertyDescriptor, _h = (i, a, e, t) => {
-  for (var r = t > 1 ? void 0 : t ? Ch(a, e) : a, n = i.length - 1, s; n >= 0; n--)
+var Vh = Object.getOwnPropertyDescriptor, Oh = (i, a, e, t) => {
+  for (var r = t > 1 ? void 0 : t ? Vh(a, e) : a, n = i.length - 1, s; n >= 0; n--)
     (s = i[n]) && (r = s(r) || r);
   return r;
-}, Mi = (i, a) => (e, t) => a(e, t, i);
-class Ah extends Ge {
+}, vi = (i, a) => (e, t) => a(e, t, i);
+class wh extends We {
   constructor(e, t, r, n) {
     super(e);
     A(this, "_isNotEmpty", !0);
@@ -8261,7 +8642,7 @@ class Ah extends Ge {
   }
   execute() {
     if (this.isEmptyParamFunction())
-      this.setValue(Oa.create(this, this._interpreter, this._lambdaPrivacyVarKeys));
+      this.setValue(ja.create(this, this._interpreter, this._lambdaPrivacyVarKeys));
     else {
       const e = this.getChildren(), t = e.length;
       this.setValue(e[t - 1].getValue());
@@ -8278,12 +8659,12 @@ class Ah extends Ge {
   //     return Promise.resolve(AstNodePromiseType.SUCCESS);
   // }
 }
-let Mn = class extends pt {
+let Sn = class extends Nt {
   constructor(i, a) {
     super(), this._runtimeService = i, this._interpreter = a;
   }
   get zIndex() {
-    return yt.get(ie.LAMBDA) || Rt;
+    return Rt.get(ie.LAMBDA) || pt;
   }
   create(i) {
     const a = i.getChildren(), e = a[0];
@@ -8291,45 +8672,45 @@ let Mn = class extends pt {
     const r = a[a.length - 1];
     if (!(e instanceof ae && r instanceof ae))
       return xe.create(m.NAME);
-    if (e.getToken() === Cr) {
+    if (e.getToken() === Ar) {
       const o = e.getChildren();
       if (t.length !== o.length)
         return xe.create(m.VALUE);
     } else
       t = a.slice(0, -1);
-    const n = oc(8), s = /* @__PURE__ */ new Map();
+    const n = Ac(8), s = /* @__PURE__ */ new Map();
     for (let o = 0; o < t.length; o++) {
       const u = t[o];
       if (u instanceof ae) {
         const c = u.getChildren()[0];
-        u.setToken(mo), s.set(c.trim(), void 0);
+        u.setToken(Vo), s.set(c.trim(), void 0);
       } else
         return xe.create(m.VALUE);
     }
-    return this._runtimeService.registerFunctionDefinitionPrivacyVar(n, s), this._updateLambdaStatement(r, n, s), new Ah(i.getToken(), n, this._interpreter, [...s.keys()]);
+    return this._runtimeService.registerFunctionDefinitionPrivacyVar(n, s), this._updateLambdaStatement(r, n, s), new wh(i.getToken(), n, this._interpreter, [...s.keys()]);
   }
   checkAndCreateNodeType(i) {
-    if (!(!(i instanceof ae) || i.getToken().trim().toUpperCase() !== Lr))
+    if (!(!(i instanceof ae) || i.getToken().trim().toUpperCase() !== jr))
       return this.create(i);
   }
   _updateLambdaStatement(i, a, e) {
-    Na(i, a, e);
+    xa(i, a, e);
   }
 };
-Mn = _h([
-  Mi(0, St),
-  Mi(1, ye(yr))
-], Mn);
-function To(i) {
+Sn = Oh([
+  vi(0, Mt),
+  vi(1, ye(pr))
+], Sn);
+function qo(i) {
   if (!i)
     return;
-  if (i.getToken() !== Ir)
+  if (i.getToken() !== $r)
     return i;
   const a = i, e = a.getCurrentLambdaPrivacyVar(), t = a.getLambdaParameter();
   if (e)
-    return To(e.get(t));
+    return qo(e.get(t));
 }
-class Eh extends Ge {
+class Sh extends We {
   constructor(a, e, t) {
     super(a), this._lambdaParameter = e, this._currentLambdaPrivacyVar = t;
   }
@@ -8343,7 +8724,7 @@ class Eh extends Ge {
     return ie.LAMBDA_PARAMETER;
   }
   execute() {
-    const a = To(this._currentLambdaPrivacyVar.get(this._lambdaParameter));
+    const a = qo(this._currentLambdaPrivacyVar.get(this._lambdaParameter));
     if (a)
       this.setValue(a.getValue());
     else {
@@ -8352,20 +8733,20 @@ class Eh extends Ge {
     }
   }
 }
-class Bo extends pt {
+class Ko extends Nt {
   get zIndex() {
-    return yt.get(ie.LAMBDA_PARAMETER) || Rt;
+    return Rt.get(ie.LAMBDA_PARAMETER) || pt;
   }
   create(a) {
     const e = a.getFunctionDefinitionPrivacyVar(), t = a.getLambdaParameter();
-    return e ? new Eh(a.getToken(), t, e) : new xe(m.NAME);
+    return e ? new Sh(a.getToken(), t, e) : new xe(m.NAME);
   }
   checkAndCreateNodeType(a) {
-    if (!(!(a instanceof ae) || a.getToken().trim() !== Ir))
+    if (!(!(a instanceof ae) || a.getToken().trim() !== $r))
       return this.create(a);
   }
 }
-class bh extends Ge {
+class Mh extends We {
   constructor(a) {
     super(a), this._operatorString = a;
   }
@@ -8376,12 +8757,12 @@ class bh extends Ge {
     this.setValue(ue.create());
   }
 }
-var Y = /* @__PURE__ */ ((i) => (i.ABS = "ABS", i.ACOS = "ACOS", i.ACOSH = "ACOSH", i.ACOT = "ACOT", i.ACOTH = "ACOTH", i.AGGREGATE = "AGGREGATE", i.ARABIC = "ARABIC", i.ASIN = "ASIN", i.ASINH = "ASINH", i.ATAN = "ATAN", i.ATAN2 = "ATAN2", i.ATANH = "ATANH", i.BASE = "BASE", i.CEILING = "CEILING", i.CEILING_MATH = "CEILING.MATH", i.CEILING_PRECISE = "CEILING.PRECISE", i.COMBIN = "COMBIN", i.COMBINA = "COMBINA", i.COS = "COS", i.COSH = "COSH", i.COT = "COT", i.COTH = "COTH", i.CSC = "CSC", i.CSCH = "CSCH", i.DECIMAL = "DECIMAL", i.DEGREES = "DEGREES", i.EVEN = "EVEN", i.EXP = "EXP", i.FACT = "FACT", i.FACTDOUBLE = "FACTDOUBLE", i.FLOOR = "FLOOR", i.FLOOR_MATH = "FLOOR.MATH", i.FLOOR_PRECISE = "FLOOR.PRECISE", i.GCD = "GCD", i.INT = "INT", i.ISO_CEILING = "ISO.CEILING", i.LCM = "LCM", i.LET = "LET", i.LN = "LN", i.LOG = "LOG", i.LOG10 = "LOG10", i.MDETERM = "MDETERM", i.MINVERSE = "MINVERSE", i.MMULT = "MMULT", i.MOD = "MOD", i.MROUND = "MROUND", i.MULTINOMIAL = "MULTINOMIAL", i.MUNIT = "MUNIT", i.ODD = "ODD", i.PI = "PI", i.POWER = "POWER", i.PRODUCT = "PRODUCT", i.QUOTIENT = "QUOTIENT", i.RADIANS = "RADIANS", i.RAND = "RAND", i.RANDARRAY = "RANDARRAY", i.RANDBETWEEN = "RANDBETWEEN", i.ROMAN = "ROMAN", i.ROUND = "ROUND", i.ROUNDBANK = "ROUNDBANK", i.ROUNDDOWN = "ROUNDDOWN", i.ROUNDUP = "ROUNDUP", i.SEC = "SEC", i.SECH = "SECH", i.SERIESSUM = "SERIESSUM", i.SEQUENCE = "SEQUENCE", i.SIGN = "SIGN", i.SIN = "SIN", i.SINH = "SINH", i.SQRT = "SQRT", i.SQRTPI = "SQRTPI", i.SUBTOTAL = "SUBTOTAL", i.SUM = "SUM", i.SUMIF = "SUMIF", i.SUMIFS = "SUMIFS", i.SUMPRODUCT = "SUMPRODUCT", i.SUMSQ = "SUMSQ", i.SUMX2MY2 = "SUMX2MY2", i.SUMX2PY2 = "SUMX2PY2", i.SUMXMY2 = "SUMXMY2", i.TAN = "TAN", i.TANH = "TANH", i.TRUNC = "TRUNC", i))(Y || {}), se = /* @__PURE__ */ ((i) => (i.ASC = "ASC", i.ARRAYTOTEXT = "ARRAYTOTEXT", i.BAHTTEXT = "BAHTTEXT", i.CHAR = "CHAR", i.CLEAN = "CLEAN", i.CODE = "CODE", i.CONCAT = "CONCAT", i.CONCATENATE = "CONCATENATE", i.DBCS = "DBCS", i.DOLLAR = "DOLLAR", i.EXACT = "EXACT", i.FIND = "FIND", i.FINDB = "FINDB", i.FIXED = "FIXED", i.LEFT = "LEFT", i.LEFTB = "LEFTB", i.LEN = "LEN", i.LENB = "LENB", i.LOWER = "LOWER", i.MID = "MID", i.MIDB = "MIDB", i.NUMBERSTRING = "NUMBERSTRING", i.NUMBERVALUE = "NUMBERVALUE", i.PHONETIC = "PHONETIC", i.PROPER = "PROPER", i.REGEXEXTRACT = "REGEXEXTRACT", i.REGEXMATCH = "REGEXMATCH", i.REGEXREPLACE = "REGEXREPLACE", i.REPLACE = "REPLACE", i.REPLACEB = "REPLACEB", i.REPT = "REPT", i.RIGHT = "RIGHT", i.RIGHTB = "RIGHTB", i.SEARCH = "SEARCH", i.SEARCHB = "SEARCHB", i.SUBSTITUTE = "SUBSTITUTE", i.T = "T", i.TEXT = "TEXT", i.TEXTAFTER = "TEXTAFTER", i.TEXTBEFORE = "TEXTBEFORE", i.TEXTJOIN = "TEXTJOIN", i.TEXTSPLIT = "TEXTSPLIT", i.TRIM = "TRIM", i.UNICHAR = "UNICHAR", i.UNICODE = "UNICODE", i.UPPER = "UPPER", i.VALUE = "VALUE", i.VALUETOTEXT = "VALUETOTEXT", i.CALL = "CALL", i.EUROCONVERT = "EUROCONVERT", i.REGISTER_ID = "REGISTER.ID", i))(se || {}), yh = Object.getOwnPropertyDescriptor, Rh = (i, a, e, t) => {
-  for (var r = t > 1 ? void 0 : t ? yh(a, e) : a, n = i.length - 1, s; n >= 0; n--)
+var Y = /* @__PURE__ */ ((i) => (i.ABS = "ABS", i.ACOS = "ACOS", i.ACOSH = "ACOSH", i.ACOT = "ACOT", i.ACOTH = "ACOTH", i.AGGREGATE = "AGGREGATE", i.ARABIC = "ARABIC", i.ASIN = "ASIN", i.ASINH = "ASINH", i.ATAN = "ATAN", i.ATAN2 = "ATAN2", i.ATANH = "ATANH", i.BASE = "BASE", i.CEILING = "CEILING", i.CEILING_MATH = "CEILING.MATH", i.CEILING_PRECISE = "CEILING.PRECISE", i.COMBIN = "COMBIN", i.COMBINA = "COMBINA", i.COS = "COS", i.COSH = "COSH", i.COT = "COT", i.COTH = "COTH", i.CSC = "CSC", i.CSCH = "CSCH", i.DECIMAL = "DECIMAL", i.DEGREES = "DEGREES", i.EVEN = "EVEN", i.EXP = "EXP", i.FACT = "FACT", i.FACTDOUBLE = "FACTDOUBLE", i.FLOOR = "FLOOR", i.FLOOR_MATH = "FLOOR.MATH", i.FLOOR_PRECISE = "FLOOR.PRECISE", i.GCD = "GCD", i.INT = "INT", i.ISO_CEILING = "ISO.CEILING", i.LCM = "LCM", i.LET = "LET", i.LN = "LN", i.LOG = "LOG", i.LOG10 = "LOG10", i.MDETERM = "MDETERM", i.MINVERSE = "MINVERSE", i.MMULT = "MMULT", i.MOD = "MOD", i.MROUND = "MROUND", i.MULTINOMIAL = "MULTINOMIAL", i.MUNIT = "MUNIT", i.ODD = "ODD", i.PI = "PI", i.POWER = "POWER", i.PRODUCT = "PRODUCT", i.QUOTIENT = "QUOTIENT", i.RADIANS = "RADIANS", i.RAND = "RAND", i.RANDARRAY = "RANDARRAY", i.RANDBETWEEN = "RANDBETWEEN", i.ROMAN = "ROMAN", i.ROUND = "ROUND", i.ROUNDBANK = "ROUNDBANK", i.ROUNDDOWN = "ROUNDDOWN", i.ROUNDUP = "ROUNDUP", i.SEC = "SEC", i.SECH = "SECH", i.SERIESSUM = "SERIESSUM", i.SEQUENCE = "SEQUENCE", i.SIGN = "SIGN", i.SIN = "SIN", i.SINH = "SINH", i.SQRT = "SQRT", i.SQRTPI = "SQRTPI", i.SUBTOTAL = "SUBTOTAL", i.SUM = "SUM", i.SUMIF = "SUMIF", i.SUMIFS = "SUMIFS", i.SUMPRODUCT = "SUMPRODUCT", i.SUMSQ = "SUMSQ", i.SUMX2MY2 = "SUMX2MY2", i.SUMX2PY2 = "SUMX2PY2", i.SUMXMY2 = "SUMXMY2", i.TAN = "TAN", i.TANH = "TANH", i.TRUNC = "TRUNC", i))(Y || {}), se = /* @__PURE__ */ ((i) => (i.ASC = "ASC", i.ARRAYTOTEXT = "ARRAYTOTEXT", i.BAHTTEXT = "BAHTTEXT", i.CHAR = "CHAR", i.CLEAN = "CLEAN", i.CODE = "CODE", i.CONCAT = "CONCAT", i.CONCATENATE = "CONCATENATE", i.DBCS = "DBCS", i.DOLLAR = "DOLLAR", i.EXACT = "EXACT", i.FIND = "FIND", i.FINDB = "FINDB", i.FIXED = "FIXED", i.LEFT = "LEFT", i.LEFTB = "LEFTB", i.LEN = "LEN", i.LENB = "LENB", i.LOWER = "LOWER", i.MID = "MID", i.MIDB = "MIDB", i.NUMBERSTRING = "NUMBERSTRING", i.NUMBERVALUE = "NUMBERVALUE", i.PHONETIC = "PHONETIC", i.PROPER = "PROPER", i.REGEXEXTRACT = "REGEXEXTRACT", i.REGEXMATCH = "REGEXMATCH", i.REGEXREPLACE = "REGEXREPLACE", i.REPLACE = "REPLACE", i.REPLACEB = "REPLACEB", i.REPT = "REPT", i.RIGHT = "RIGHT", i.RIGHTB = "RIGHTB", i.SEARCH = "SEARCH", i.SEARCHB = "SEARCHB", i.SUBSTITUTE = "SUBSTITUTE", i.T = "T", i.TEXT = "TEXT", i.TEXTAFTER = "TEXTAFTER", i.TEXTBEFORE = "TEXTBEFORE", i.TEXTJOIN = "TEXTJOIN", i.TEXTSPLIT = "TEXTSPLIT", i.TRIM = "TRIM", i.UNICHAR = "UNICHAR", i.UNICODE = "UNICODE", i.UPPER = "UPPER", i.VALUE = "VALUE", i.VALUETOTEXT = "VALUETOTEXT", i.CALL = "CALL", i.EUROCONVERT = "EUROCONVERT", i.REGISTER_ID = "REGISTER.ID", i))(se || {}), Dh = Object.getOwnPropertyDescriptor, Lh = (i, a, e, t) => {
+  for (var r = t > 1 ? void 0 : t ? Dh(a, e) : a, n = i.length - 1, s; n >= 0; n--)
     (s = i[n]) && (r = s(r) || r);
   return r;
-}, ph = (i, a) => (e, t) => a(e, t, i);
-class Vh extends Ge {
+}, Ph = (i, a) => (e, t) => a(e, t, i);
+class xh extends We {
   constructor(a, e) {
     super(a), this._functionExecutor = e;
   }
@@ -8406,19 +8787,19 @@ class Vh extends Ge {
     );
   }
 }
-let wn = class extends pt {
+let Mn = class extends Nt {
   constructor(i) {
     super(), this._functionService = i;
   }
   get zIndex() {
-    return yt.get(ie.OPERATOR) || Rt;
+    return Rt.get(ie.OPERATOR) || pt;
   }
   create(i) {
     let a = "";
     const e = i;
-    e === X.PLUS ? a = Be.PLUS : e === X.MINUS ? a = Be.MINUS : e === X.MULTIPLY ? a = Be.MULTIPLY : e === X.DIVIDED ? a = Be.DIVIDED : e === X.CONCATENATE ? a = se.CONCATENATE : e === X.POWER ? a = Y.POWER : Rc.has(e) && (a = Be.COMPARE);
+    e === X.PLUS ? a = Be.PLUS : e === X.MINUS ? a = Be.MINUS : e === X.MULTIPLY ? a = Be.MULTIPLY : e === X.DIVIDED ? a = Be.DIVIDED : e === X.CONCATENATE ? a = se.CONCATENATE : e === X.POWER ? a = Y.POWER : Pc.has(e) && (a = Be.COMPARE);
     const t = this._functionService.getExecutor(a);
-    return t ? new Vh(e, t) : (console.error(`No function ${i}`), xe.create(m.NAME));
+    return t ? new xh(e, t) : (console.error(`No function ${i}`), xe.create(m.NAME));
   }
   checkAndCreateNodeType(i) {
     if (i instanceof ae)
@@ -8428,15 +8809,15 @@ let wn = class extends pt {
       return this.create(a);
   }
 };
-wn = Rh([
-  ph(0, Qt)
-], wn);
-var Nh = Object.getOwnPropertyDescriptor, Oh = (i, a, e, t) => {
-  for (var r = t > 1 ? void 0 : t ? Nh(a, e) : a, n = i.length - 1, s; n >= 0; n--)
+Mn = Lh([
+  Ph(0, Gt)
+], Mn);
+var jh = Object.getOwnPropertyDescriptor, Uh = (i, a, e, t) => {
+  for (var r = t > 1 ? void 0 : t ? jh(a, e) : a, n = i.length - 1, s; n >= 0; n--)
     (s = i[n]) && (r = s(r) || r);
   return r;
-}, _s = (i, a) => (e, t) => a(e, t, i);
-class As extends Ge {
+}, As = (i, a) => (e, t) => a(e, t, i);
+class Es extends We {
   constructor(e, t, r, n, s = !1) {
     super(r);
     A(this, "_refOffsetX", 0);
@@ -8447,7 +8828,7 @@ class As extends Ge {
     return ie.REFERENCE;
   }
   execute() {
-    const e = this._currentConfigService, t = this._runtimeService, r = Kf(this.getToken(), this._referenceObjectType);
+    const e = this._currentConfigService, t = this._runtimeService, r = sh(this.getToken(), this._referenceObjectType);
     r.setDefaultUnitId(t.currentUnitId), r.setDefaultSheetId(t.currentSubUnitId), r.setForcedSheetId(e.getSheetNameMap()), r.setUnitData(e.getUnitData()), r.setArrayFormulaCellData(e.getArrayFormulaCellData()), r.setRuntimeData(t.getUnitData()), r.setUnitStylesData(e.getUnitStylesData()), r.setRuntimeArrayFormulaCellData(t.getRuntimeArrayFormulaCellData()), r.setRuntimeFeatureCellData(t.getRuntimeFeatureCellData());
     const { x: n, y: s } = this.getRefOffset();
     r.setRefOffset(n, s), !this._isPrepareMerge && r.isExceedRange() ? this.setValue(g.create(m.NAME)) : this.setValue(r);
@@ -8462,22 +8843,22 @@ class As extends Ge {
     };
   }
 }
-let Sn = class extends pt {
+let Dn = class extends Nt {
   constructor(i, a, e) {
     super(), this._currentConfigService = i, this._formulaRuntimeService = a, this._functionService = e;
   }
   get zIndex() {
-    return yt.get(ie.REFERENCE) || Rt;
+    return Rt.get(ie.REFERENCE) || pt;
   }
   checkAndCreateNodeType(i) {
     var l, f;
     let a = !1, e, t = !1;
     i instanceof ae ? (a = !0, e = i.getToken().trim(), ((f = (l = i.getParent()) == null ? void 0 : l.getParent()) == null ? void 0 : f.getToken().trim()) === K.COLON && (t = !0)) : e = i.trim();
-    const r = this._currentConfigService, n = this._formulaRuntimeService, { tokenTrim: s, minusPrefixNode: o, atPrefixNode: u } = jo(e, this._functionService, n);
+    const r = this._currentConfigService, n = this._formulaRuntimeService, { tokenTrim: s, minusPrefixNode: o, atPrefixNode: u } = Qo(e, this._functionService, n);
     if (!a && s.charAt(0) === '"' && s.charAt(s.length - 1) === '"')
       return;
     let c;
-    if (Br(s) ? c = new As(r, n, s, hn.CELL, t) : a && this._checkParentIsUnionOperator(i) && (ro(s) ? c = new As(r, n, s, hn.ROW, t) : no(s) && (c = new As(r, n, s, hn.COLUMN, t))), c)
+    if (kr(s) ? c = new Es(r, n, s, gn.CELL, t) : a && this._checkParentIsUnionOperator(i) && (mo(s) ? c = new Es(r, n, s, gn.ROW, t) : go(s) && (c = new Es(r, n, s, gn.COLUMN, t))), c)
       return u ? c.setParent(u) : o && c.setParent(o), c;
   }
   _checkParentIsUnionOperator(i) {
@@ -8485,17 +8866,17 @@ let Sn = class extends pt {
     return ((e = (a = i.getParent()) == null ? void 0 : a.getParent()) == null ? void 0 : e.getToken().trim()) === K.COLON;
   }
 };
-Sn = Oh([
-  _s(0, Yt),
-  _s(1, St),
-  _s(2, Qt)
-], Sn);
-var Mh = Object.getOwnPropertyDescriptor, wh = (i, a, e, t) => {
-  for (var r = t > 1 ? void 0 : t ? Mh(a, e) : a, n = i.length - 1, s; n >= 0; n--)
+Dn = Uh([
+  As(0, Yt),
+  As(1, Mt),
+  As(2, Gt)
+], Dn);
+var vh = Object.getOwnPropertyDescriptor, Th = (i, a, e, t) => {
+  for (var r = t > 1 ? void 0 : t ? vh(a, e) : a, n = i.length - 1, s; n >= 0; n--)
     (s = i[n]) && (r = s(r) || r);
   return r;
-}, Es = (i, a) => (e, t) => a(e, t, i);
-class wi extends Ge {
+}, bs = (i, a) => (e, t) => a(e, t, i);
+class Ti extends We {
   constructor(a, e, t, r) {
     super(t), this._currentConfigService = a, this._lexer = e, this._operatorString = t, this._functionExecutor = r;
   }
@@ -8509,7 +8890,7 @@ class wi extends Ge {
       this.setValue(g.create(m.ERROR));
       return;
     }
-    if (this._operatorString === et.PERCENTAGE) {
+    if (this._operatorString === tt.PERCENTAGE) {
       if (e.isReferenceObject() && (e = e.toArrayValueObject()), t = this._functionExecutor.calculate(
         e,
         y.create(100)
@@ -8517,7 +8898,7 @@ class wi extends Ge {
         const n = Number(t.getValue());
         t = y.create(n, "0.00%");
       }
-    } else this._operatorString === et.POUND ? t = this._handlerPound(e) : t = g.create(m.VALUE);
+    } else this._operatorString === tt.POUND ? t = this._handlerPound(e) : t = g.create(m.VALUE);
     this.setValue(t);
   }
   _handlerPound(a) {
@@ -8528,12 +8909,12 @@ class wi extends Ge {
     return o && this._lexer.treeBuilder(o), g.create(m.VALUE);
   }
 }
-let Dn = class extends pt {
+let Ln = class extends Nt {
   constructor(i, a, e) {
     super(), this._functionService = i, this._lexer = a, this._currentConfigService = e;
   }
   get zIndex() {
-    return yt.get(ie.SUFFIX) || Rt;
+    return Rt.get(ie.SUFFIX) || pt;
   }
   checkAndCreateNodeType(i) {
     if (!(i instanceof ae))
@@ -8542,24 +8923,24 @@ let Dn = class extends pt {
     if (a.charAt(0) === '"' && a.charAt(a.length - 1) === '"')
       return;
     let e = "";
-    if (a === et.PERCENTAGE)
+    if (a === tt.PERCENTAGE)
       e = Be.DIVIDED;
-    else return a === et.POUND ? new wi(this._currentConfigService, this._lexer, a) : void 0;
+    else return a === tt.POUND ? new Ti(this._currentConfigService, this._lexer, a) : void 0;
     const t = this._functionService.getExecutor(e);
-    return t ? new wi(this._currentConfigService, this._lexer, a, t) : (console.error(`No function ${i}`), xe.create(m.NAME));
+    return t ? new Ti(this._currentConfigService, this._lexer, a, t) : (console.error(`No function ${i}`), xe.create(m.NAME));
   }
 };
-Dn = wh([
-  Es(0, Qt),
-  Es(1, ye(Er)),
-  Es(2, Yt)
-], Dn);
-var Sh = Object.getOwnPropertyDescriptor, Dh = (i, a, e, t) => {
-  for (var r = t > 1 ? void 0 : t ? Sh(a, e) : a, n = i.length - 1, s; n >= 0; n--)
+Ln = Th([
+  bs(0, Gt),
+  bs(1, ye(yr)),
+  bs(2, Yt)
+], Ln);
+var Bh = Object.getOwnPropertyDescriptor, Ih = (i, a, e, t) => {
+  for (var r = t > 1 ? void 0 : t ? Bh(a, e) : a, n = i.length - 1, s; n >= 0; n--)
     (s = i[n]) && (r = s(r) || r);
   return r;
-}, Lh = (i, a) => (e, t) => a(e, t, i);
-class Ph extends Ge {
+}, Fh = (i, a) => (e, t) => a(e, t, i);
+class kh extends We {
   constructor(a) {
     super(a);
   }
@@ -8574,18 +8955,18 @@ class Ph extends Ge {
     this.getToken() === K.COLON ? s = this._unionFunction(r, n) : s = g.create(m.NAME), this.setValue(s);
   }
   _unionFunction(a, e) {
-    return a.isError() || e.isError() || !a.isReferenceObject() || !e.isReferenceObject() ? g.create(m.REF) : (a = a, e = e, Xf(a, e));
+    return a.isError() || e.isError() || !a.isReferenceObject() || !e.isReferenceObject() ? g.create(m.REF) : (a = a, e = e, ah(a, e));
   }
 }
-let Ln = class extends pt {
+let Pn = class extends Nt {
   constructor(i) {
     super(), this._functionService = i;
   }
   get zIndex() {
-    return yt.get(ie.UNION) || Rt;
+    return Rt.get(ie.UNION) || pt;
   }
   create(i) {
-    return new Ph(i);
+    return new kh(i);
   }
   checkAndCreateNodeType(i) {
     if (!(i instanceof ae))
@@ -8595,10 +8976,10 @@ let Ln = class extends pt {
       return this.create(e);
   }
 };
-Ln = Dh([
-  Lh(0, Qt)
-], Ln);
-class xh extends Ge {
+Pn = Ih([
+  Fh(0, Gt)
+], Pn);
+class $h extends We {
   constructor(a) {
     super(a);
   }
@@ -8608,42 +8989,42 @@ class xh extends Ge {
   execute() {
     var e, t, r;
     const a = ((e = this.getParent()) == null ? void 0 : e.nodeType) === ie.FUNCTION && ((r = (t = this.getParent()) == null ? void 0 : t.isFunctionExecutorArgumentsIgnoreNumberPattern) == null ? void 0 : r.call(t));
-    this.setValue(Mt.create(this.getToken(), a));
+    this.setValue(wt.create(this.getToken(), a));
   }
 }
-class Io extends pt {
+class Xo extends Nt {
   get zIndex() {
-    return yt.get(ie.VALUE) || Rt;
+    return Rt.get(ie.VALUE) || pt;
   }
   _checkValueNode(a) {
     if (Number.isNaN(Number(a))) {
       const e = a.trim(), t = e.charAt(0), r = e.charAt(e.length - 1);
-      if (or.has(e))
+      if (cr.has(e))
         return this.create(e);
       if (t === '"' && r === '"')
         return this.create(e);
       if (t === "{" && r === "}")
         return this.create(e);
       const n = e.toUpperCase();
-      if (n === rr.TRUE || n === rr.FALSE)
+      if (n === nr.TRUE || n === nr.FALSE)
         return this.create(n);
     } else
       return this.create(a);
   }
   create(a) {
-    return new xh(a);
+    return new $h(a);
   }
   checkAndCreateNodeType(a) {
     if (!(a instanceof ae))
       return this._checkValueNode(a);
   }
 }
-var jh = Object.getOwnPropertyDescriptor, Uh = (i, a, e, t) => {
-  for (var r = t > 1 ? void 0 : t ? jh(a, e) : a, n = i.length - 1, s; n >= 0; n--)
+var Yh = Object.getOwnPropertyDescriptor, Hh = (i, a, e, t) => {
+  for (var r = t > 1 ? void 0 : t ? Yh(a, e) : a, n = i.length - 1, s; n >= 0; n--)
     (s = i[n]) && (r = s(r) || r);
   return r;
-}, ot = (i, a) => (e, t) => a(e, t, i);
-let Ur = class extends Ne {
+}, ut = (i, a) => (e, t) => a(e, t, i);
+let Br = class extends Ve {
   constructor(a, e, t, r, n, s, o, u, c, l, f) {
     super();
     A(this, "_astNodeFactoryList", []);
@@ -8655,20 +9036,20 @@ let Ur = class extends Ne {
     }), this._astNodeFactoryList = [];
   }
   parse(a) {
-    const e = new qs(Tt), t = this._parse(a, e);
+    const e = new Js(Tt), t = this._parse(a, e);
     return a.hasDefinedNames() && (t == null || t.setDefinedNames(a.getDefinedNames())), t;
   }
   _lambdaParameterHandler(a, e) {
     if (e.getLambdaId == null)
       return xe.create(m.VALUE);
-    const t = e.getLambdaId(), r = new qs(Tt), n = this._runtimeService.getFunctionDefinitionPrivacyVar(t);
+    const t = e.getLambdaId(), r = new Js(Tt), n = this._runtimeService.getFunctionDefinitionPrivacyVar(t);
     if (!n)
       return !1;
     const s = [...n.keys()], o = a.getChildren(), u = o.length;
     for (let c = 0; c < u; c++) {
       const l = o[c];
       if (l instanceof ae) {
-        Na(l, t, n), this._parse(l, r);
+        xa(l, t, n), this._parse(l, r);
         const h = r.getChildren()[c];
         h != null && n.set(s[c], h);
       } else
@@ -8681,9 +9062,9 @@ let Ur = class extends Ne {
     if (t % 2 !== 1 || t === 0)
       return;
     const r = new ae();
-    r.setToken(Lr);
+    r.setToken(jr);
     const n = new ae();
-    n.setToken(Cr);
+    n.setToken(Ar);
     const s = [...e];
     for (let u = 0; u < t; u++) {
       const c = s[u];
@@ -8701,15 +9082,15 @@ let Ur = class extends Ne {
     const t = a.getChildren(), r = t.length, n = [];
     let s = null;
     const o = a.getToken().trim().toUpperCase();
-    if (o === rl) {
+    if (o === hl) {
       const f = this._changeLetToLambda(a);
       return f != null ? this._parse(f, e) : xe.create(m.ERROR);
     }
-    if (o === gt) {
+    if (o === dt) {
       if (s = e, r === 0)
-        return new bh(Tt).setParent(e), s;
+        return new Mh(Tt).setParent(e), s;
     } else {
-      if (o === Cr) {
+      if (o === Ar) {
         let f = this._lambdaParameterHandler(a, e);
         return f === !1 && (f = xe.create(m.ERROR)), f;
       }
@@ -8719,16 +9100,16 @@ let Ur = class extends Ne {
     const u = t[0];
     for (let f = 0; f < r; f++) {
       const h = t[f];
-      if (Uo(u)) {
+      if (Go(u)) {
         if (f !== 0 && f !== r - 1)
           continue;
-      } else if (gh(h) && f !== r - 1)
+      } else if (ph(h) && f !== r - 1)
         continue;
       let d = null;
       if (h instanceof ae) {
-        if (h.getToken() === gt && h.getChildren().length === 0) {
-          const _ = (l = h.getParent()) == null ? void 0 : l.getChildren();
-          if (_ && _.length === 1)
+        if (h.getToken() === dt && h.getChildren().length === 0) {
+          const C = (l = h.getParent()) == null ? void 0 : l.getChildren();
+          if (C && C.length === 1)
             return xe.create(m.NAME);
         }
         if (d = this._parse(h, s), d === s)
@@ -8737,14 +9118,14 @@ let Ur = class extends Ne {
         d = this._checkAstNode(h);
       if (d == null)
         return xe.create(m.NAME);
-      if (d = dh(d), d == null || (d == null ? void 0 : d.nodeType) === ie.ERROR)
+      if (d = Nh(d), d == null || (d == null ? void 0 : d.nodeType) === ie.ERROR)
         return d;
       switch (d.nodeType) {
         // case NodeType.ERROR:
         //     return astNode;
         case ie.FUNCTION: {
-          const _ = d.getToken().trim().toUpperCase();
-          sl.has(_) && d.setForcedCalculateFunction(), n.push(d);
+          const C = d.getToken().trim().toUpperCase();
+          gl.has(C) && d.setForcedCalculateFunction(), n.push(d);
           break;
         }
         case ie.LAMBDA:
@@ -8754,8 +9135,8 @@ let Ur = class extends Ne {
           n.push(d);
           break;
         case ie.OPERATOR: {
-          const _ = n.pop(), C = n.pop();
-          C && C.setParent(d), _ && _.setParent(d), n.push(d);
+          const C = n.pop(), _ = n.pop();
+          _ && _.setParent(d), C && C.setParent(d), n.push(d);
           break;
         }
         case ie.REFERENCE:
@@ -8798,7 +9179,7 @@ let Ur = class extends Ne {
     const t = this._astNodeFactoryList.length;
     for (let r = 0; r < t && (e = this._astNodeFactoryList[r].checkAndCreateNodeType(a), e == null); r++)
       ;
-    return e == null ? new lh() : e;
+    return e == null ? new Eh() : e;
   }
   _initializeAstNode() {
     this._astNodeFactoryList = [
@@ -8812,23 +9193,23 @@ let Ur = class extends Ne {
       this._suffixNodeFactory,
       this._unionNodeFactory,
       this._valueNodeFactory
-    ].sort(uc);
+    ].sort(Ec);
   }
 };
-Ur = Uh([
-  ot(0, St),
-  ot(1, ye(Po)),
-  ot(2, ye(On)),
-  ot(3, ye(Mn)),
-  ot(4, ye(Bo)),
-  ot(5, ye(wn)),
-  ot(6, ye(Nn)),
-  ot(7, ye(Sn)),
-  ot(8, ye(Dn)),
-  ot(9, ye(Ln)),
-  ot(10, ye(Io))
-], Ur);
-class vh extends Ne {
+Br = Hh([
+  ut(0, Mt),
+  ut(1, ye(Yo)),
+  ut(2, ye(wn)),
+  ut(3, ye(Sn)),
+  ut(4, ye(Ko)),
+  ut(5, ye(Mn)),
+  ut(6, ye(On)),
+  ut(7, ye(Dn)),
+  ut(8, ye(Ln)),
+  ut(9, ye(Pn)),
+  ut(10, ye(Xo))
+], Br);
+class Qh extends Ve {
   constructor() {
     super(...arguments);
     A(this, "_otherFormulaData", /* @__PURE__ */ new Map());
@@ -8840,7 +9221,7 @@ class vh extends Ne {
     A(this, "_definedNameMap", /* @__PURE__ */ new Map());
     // unitId -> definedName -> treeId
     A(this, "_otherFormulaDataMainData", /* @__PURE__ */ new Set());
-    A(this, "_dependencyRTreeCache", new Os());
+    A(this, "_dependencyRTreeCache", new Ls());
     A(this, "_dependencyTreeIdLast", 0);
   }
   buildDependencyTree(e, t) {
@@ -8943,7 +9324,7 @@ class vh extends Ne {
       this._addDefinedName(e.unitId, s, r);
   }
 }
-class Th extends vh {
+class Gh extends Qh {
   constructor() {
     super(...arguments);
     A(this, "_allTreeMap", /* @__PURE__ */ new Map());
@@ -9172,15 +9553,15 @@ class Th extends vh {
     this._allTreeMap.set(e.treeId, e);
   }
 }
-const Jn = Ze(
+const es = ze(
   "univer.formula.dependency-manager.service"
 );
-class Bh extends Ne {
+class Wh extends Ve {
   constructor() {
     super(...arguments);
     A(this, "_referenceExecutorMap", /* @__PURE__ */ new Map());
     // unitId -> subUnitId -> featureId -> IFeatureCalculationManagerParam
-    A(this, "_onChanged$", new mr());
+    A(this, "_onChanged$", new dr());
     A(this, "onChanged$", this._onChanged$.asObservable());
   }
   dispose() {
@@ -9218,10 +9599,10 @@ class Bh extends Ne {
     return this._referenceExecutorMap;
   }
 }
-const vr = Ze(
+const Ir = ze(
   "univer.formula.feature-calculation-manager.service"
 );
-class Ih extends Ne {
+class qh extends Ve {
   constructor() {
     super(...arguments);
     A(this, "_otherFormulaData", {});
@@ -9294,14 +9675,22 @@ class Ih extends Ne {
     return this._otherFormulaData;
   }
 }
-const Ma = Ze(
+const Ua = ze(
   "univer.formula.other-formula-manager.service"
 );
-var Ks = /* @__PURE__ */ ((i) => (i[i.NORMAL_FORMULA = 0] = "NORMAL_FORMULA", i[i.OTHER_FORMULA = 1] = "OTHER_FORMULA", i[i.FEATURE_FORMULA = 2] = "FEATURE_FORMULA", i))(Ks || {});
-class Fo {
+var ea = /* @__PURE__ */ ((i) => (i[i.NORMAL_FORMULA = 0] = "NORMAL_FORMULA", i[i.OTHER_FORMULA = 1] = "OTHER_FORMULA", i[i.FEATURE_FORMULA = 2] = "FEATURE_FORMULA", i))(ea || {});
+class Zo {
   constructor() {
     A(this, "_state", 0);
     A(this, "treeId");
+    // READNOW: MEMORY HOTSPOT #4 — Every formula tree node has two Sets for
+    // dependency tracking. With 10K+ formula cells, that's 20K+ Set instances.
+    // The OOM stack trace shows Runtime_SetGrow as the final allocation that
+    // tips over the heap — Sets are resized via OrderedHashTable::Rehash which
+    // allocates FixedArrays. The Sets themselves aren't huge, but they compound
+    // with the array allocations from mapValue/_batchOperator.
+    // Also see _clearFeatureCalculationNode in formula-dependency.ts which
+    // rebuilds these Sets on every recalc pass.
     A(this, "children", /* @__PURE__ */ new Set());
     A(this, "parents", /* @__PURE__ */ new Set());
   }
@@ -9330,7 +9719,7 @@ class Fo {
     this.parents.add(a.treeId);
   }
 }
-class Si extends Fo {
+class ys extends Zo {
   constructor() {
     super(...arguments);
     A(this, "refTree");
@@ -9390,7 +9779,7 @@ class Si extends Fo {
       e.push({
         unitId: r.unitId,
         sheetId: r.sheetId,
-        range: aa(r.range, this.refOffsetX, this.refOffsetY)
+        range: ma(r.range, this.refOffsetX, this.refOffsetY)
       });
     }
     return e;
@@ -9422,11 +9811,11 @@ class Si extends Fo {
       return !1;
     for (let n = 0, s = t.length; n < s; n++) {
       const o = t[n], { unitId: u, sheetId: c, range: l } = o, f = (r = e == null ? void 0 : e[u]) == null ? void 0 : r[c];
-      let { startRow: h, endRow: d, startColumn: _, endColumn: C } = l;
-      Number.isNaN(h) && (h = 0), Number.isNaN(_) && (_ = 0), Number.isNaN(d) && (d = Number.POSITIVE_INFINITY), Number.isNaN(C) && (C = Number.POSITIVE_INFINITY);
+      let { startRow: h, endRow: d, startColumn: C, endColumn: _ } = l;
+      Number.isNaN(h) && (h = 0), Number.isNaN(C) && (C = 0), Number.isNaN(d) && (d = Number.POSITIVE_INFINITY), Number.isNaN(_) && (_ = Number.POSITIVE_INFINITY);
       let E = !1;
       if (f == null || f.forValue((b, R) => {
-        if (b >= h && b <= d && R >= _ && R <= C)
+        if (b >= h && b <= d && R >= C && R <= _)
           return E = !0, !1;
       }), E)
         return !0;
@@ -9437,7 +9826,7 @@ class Si extends Fo {
     return this.refTree == null ? "" : this.refTree.formulaId;
   }
 }
-class bs extends Fo {
+class Rs extends Zo {
   constructor(e) {
     super();
     A(this, "isCache", !1);
@@ -9504,11 +9893,11 @@ class bs extends Fo {
       return !1;
     for (let n = 0, s = t.length; n < s; n++) {
       const o = t[n], { unitId: u, sheetId: c, range: l } = o, f = (r = e == null ? void 0 : e[u]) == null ? void 0 : r[c];
-      let { startRow: h, endRow: d, startColumn: _, endColumn: C } = l;
-      Number.isNaN(h) && (h = 0), Number.isNaN(_) && (_ = 0), Number.isNaN(d) && (d = Number.POSITIVE_INFINITY), Number.isNaN(C) && (C = Number.POSITIVE_INFINITY);
+      let { startRow: h, endRow: d, startColumn: C, endColumn: _ } = l;
+      Number.isNaN(h) && (h = 0), Number.isNaN(C) && (C = 0), Number.isNaN(d) && (d = Number.POSITIVE_INFINITY), Number.isNaN(_) && (_ = Number.POSITIVE_INFINITY);
       let E = !1;
       if (f == null || f.forValue((b, R) => {
-        if (b >= h && b <= d && R >= _ && R <= C)
+        if (b >= h && b <= d && R >= C && R <= _)
           return E = !0, !1;
       }), E)
         return !0;
@@ -9574,39 +9963,76 @@ class bs extends Fo {
   //     this.parents.add(tree.treeId);
   // }
 }
-var Fh = Object.getOwnPropertyDescriptor, kh = (i, a, e, t) => {
-  for (var r = t > 1 ? void 0 : t ? Fh(a, e) : a, n = i.length - 1, s; n >= 0; n--)
+var Kh = Object.getOwnPropertyDescriptor, Xh = (i, a, e, t) => {
+  for (var r = t > 1 ? void 0 : t ? Kh(a, e) : a, n = i.length - 1, s; n >= 0; n--)
     (s = i[n]) && (r = s(r) || r);
   return r;
 }, Pt = (i, a) => (e, t) => a(e, t, i);
-function cr(i) {
+const Zh = /([A-Z]+)(\d+)/g;
+function zh(i, a) {
+  return i.replace(Zh, (e, t, r) => {
+    const n = Number.parseInt(r, 10) - a;
+    return `${t}{${n}}`;
+  });
+}
+function qt(i) {
   return i.getLastTreeId() || 0;
 }
-const Xs = Ze("engine-formula.dependency-generator");
-let Zs = class extends Ne {
+const ta = ze("engine-formula.dependency-generator");
+let ra = class extends Ve {
   constructor(a, e, t, r, n, s, o, u) {
     super();
     A(this, "_updateRangeFlattenCache", /* @__PURE__ */ new Map());
-    A(this, "_dependencyRTreeCacheForAddressFunction", new Os());
+    A(this, "_hasBuiltDependencies", !1);
+    A(this, "_dependencyRTreeCacheForAddressFunction", new Ls());
     A(this, "_executedAddressFunctionNodeIds", /* @__PURE__ */ new Set());
     this._currentConfigService = a, this._runtimeService = e, this._otherFormulaManagerService = t, this._featureCalculationManagerService = r, this._interpreter = n, this._astTreeBuilder = s, this._lexer = o, this._dependencyManagerService = u;
   }
   dispose() {
-    this._updateRangeFlattenCache.clear(), this._dependencyRTreeCacheForAddressFunction.clear(), jr.clear();
+    this._updateRangeFlattenCache.clear(), this._dependencyRTreeCacheForAddressFunction.clear(), this._hasBuiltDependencies = !1, Tr.clear();
   }
   async generate() {
+    var h, d;
     this._updateRangeFlatten();
-    const a = this._currentConfigService.getFormulaData(), e = this._otherFormulaManagerService.getOtherFormulaData(), t = this._currentConfigService.getClearDependencyTreeCache();
-    t != null && Object.keys(t).forEach((l) => {
-      l != null && Object.keys(t[l]).forEach((f) => {
-        f != null && (this._dependencyManagerService.clearOtherFormulaDependency(l, f), this._dependencyManagerService.clearFeatureFormulaDependency(l, f), this._dependencyManagerService.clearFormulaDependency(l, f));
+    const a = this._currentConfigService.isForceCalculate(), e = this._currentConfigService.getClearDependencyTreeCache(), t = e != null && Object.keys(e).length > 0;
+    if (!a && !t && this._hasBuiltDependencies) {
+      const C = this._currentConfigService.getDirtyRanges(), _ = this._currentConfigService.getFormulaData();
+      let E = !1;
+      for (const b of C) {
+        const { unitId: R, sheetId: p, range: N } = b, w = (h = _ == null ? void 0 : _[R]) == null ? void 0 : h[p];
+        if (w)
+          for (let S = N.startRow; S <= N.endRow && !E; S++)
+            for (let M = N.startColumn; M <= N.endColumn && !E; M++) {
+              const D = (d = w[S]) == null ? void 0 : d[M];
+              D && D.f && this._dependencyManagerService.getFormulaDependency(R, p, S, M) == null && (E = !0);
+            }
+      }
+      if (!E) {
+        const b = this._dependencyManagerService.searchDependency(C), R = this._dependencyRTreeCacheForAddressFunction.bulkSearch(C);
+        for (const S of R)
+          b.add(S);
+        if (b.size === 0)
+          return Promise.resolve([]);
+        const p = [];
+        for (const S of b) {
+          const M = this._dependencyManagerService.getTreeById(S);
+          M && (M.isDirty = !0, M.resetState(), p.push(M));
+        }
+        const N = this._calculateRunList(p);
+        return this._checkIsCycleDependency(N) && this._runtimeService.enableCycleDependency(), Promise.resolve(N);
+      }
+    }
+    const r = this._currentConfigService.getFormulaData(), n = this._otherFormulaManagerService.getOtherFormulaData();
+    t && Object.keys(e).forEach((C) => {
+      C != null && Object.keys(e[C]).forEach((_) => {
+        _ != null && (this._dependencyManagerService.clearOtherFormulaDependency(C, _), this._dependencyManagerService.clearFeatureFormulaDependency(C, _), this._dependencyManagerService.clearFormulaDependency(C, _));
       });
     });
-    const r = this._currentConfigService.getUnitData(), n = await this._generateTreeList(a, e, r), s = this._getUpdateTreeListAndMakeDependency(n);
-    let o = this._calculateRunList(s);
-    return this._dependencyFeatureCalculation(o) && (o.forEach((l) => {
-      l.resetState();
-    }), o = this._calculateRunList(o)), this._checkIsCycleDependency(o) && this._runtimeService.enableCycleDependency(), this._dependencyRTreeCacheForAddressFunction.clear(), Promise.resolve(o);
+    const s = this._currentConfigService.getUnitData(), o = await this._generateTreeList(r, n, s), u = this._getUpdateTreeListAndMakeDependency(o);
+    let c = this._calculateRunList(u);
+    return this._dependencyFeatureCalculation(c) && (c.forEach((C) => {
+      C.resetState();
+    }), c = this._calculateRunList(c)), this._checkIsCycleDependency(c) && this._runtimeService.enableCycleDependency(), this._dependencyRTreeCacheForAddressFunction.clear(), this._hasBuiltDependencies = !0, Promise.resolve(c);
   }
   _dependencyFeatureCalculation(a) {
     const e = this._featureCalculationManagerService.getReferenceExecutorMap();
@@ -9617,10 +10043,10 @@ let Zs = class extends Ne {
     return e.forEach((r, n) => {
       r.forEach((s, o) => {
         s.forEach((u, c) => {
-          const { unitId: l, subUnitId: f, getDirtyData: h } = u, d = h(this._currentConfigService.getDirtyData(), this._runtimeService.getAllRuntimeData()), _ = this._convertDirtyRangesToUnitRange(d.dirtyRanges), C = this._intersectFeatureCalculation(_, a, { unitId: l, subUnitId: f, featureId: c });
-          if (C.length > 0) {
+          const { unitId: l, subUnitId: f, getDirtyData: h } = u, d = h(this._currentConfigService.getDirtyData(), this._runtimeService.getAllRuntimeData()), C = this._convertDirtyRangesToUnitRange(d.dirtyRanges), _ = this._intersectFeatureCalculation(C, a, { unitId: l, subUnitId: f, featureId: c });
+          if (_.length > 0) {
             let E = this._getExistTreeList({ unitId: l, subUnitId: f, featureId: c }, a);
-            E == null && (E = this._getFeatureFormulaTree(c, cr(this._dependencyManagerService), u), a.push(E)), E.parents = /* @__PURE__ */ new Set(), C.forEach((b) => {
+            E == null && (E = this._getFeatureFormulaTree(c, qt(this._dependencyManagerService), u), a.push(E)), E.parents = /* @__PURE__ */ new Set(), _.forEach((b) => {
               b.hasChildren(E.treeId) || b.pushChildren(E);
             }), t = !0;
           }
@@ -9628,22 +10054,30 @@ let Zs = class extends Ne {
       });
     }), t;
   }
+  // READNOW: MEMORY HOTSPOT #5 — Rebuilds children and parents Sets for every
+  // tree node on each recalc pass. For 10K formulas, this allocates 20K new
+  // Sets per pass, iterates the old Sets, and discards them. This is the Set
+  // churn that shows up in the OOM stack trace as Runtime_SetGrow.
   _clearFeatureCalculationNode(a) {
     const e = this._featureCalculationManagerService.getReferenceExecutorMap();
     a.forEach((t) => {
-      var s, o, u, c;
-      const r = /* @__PURE__ */ new Set();
-      for (const l of t.children) {
-        const f = this._dependencyManagerService.getTreeById(l);
-        f && (f.featureId && (o = (s = e.get(t.unitId)) == null ? void 0 : s.get(t.subUnitId)) != null && o.has(f.featureId) || r.add(l));
+      var r, n, s, o;
+      for (const u of t.children) {
+        const c = this._dependencyManagerService.getTreeById(u);
+        if (!c) {
+          t.children.delete(u);
+          continue;
+        }
+        c.featureId && ((n = (r = e.get(t.unitId)) == null ? void 0 : r.get(t.subUnitId)) != null && n.has(c.featureId)) && t.children.delete(u);
       }
-      t.children = r;
-      const n = /* @__PURE__ */ new Set();
-      for (const l of t.parents) {
-        const f = this._dependencyManagerService.getTreeById(l);
-        f && (f.featureId && (c = (u = e.get(t.unitId)) == null ? void 0 : u.get(t.subUnitId)) != null && c.has(f.featureId) || n.add(l));
+      for (const u of t.parents) {
+        const c = this._dependencyManagerService.getTreeById(u);
+        if (!c) {
+          t.parents.delete(u);
+          continue;
+        }
+        c.featureId && ((o = (s = e.get(t.unitId)) == null ? void 0 : s.get(t.subUnitId)) != null && o.has(c.featureId)) && t.parents.delete(u);
       }
-      t.parents = n;
     });
   }
   /**
@@ -9768,10 +10202,10 @@ let Zs = class extends Ne {
     });
   }
   _getFeatureFormulaTree(a, e, t) {
-    const { unitId: r, subUnitId: n, dependencyRanges: s, getDirtyData: o } = t, u = e || cr(this._dependencyManagerService), c = new bs(u);
+    const { unitId: r, subUnitId: n, dependencyRanges: s, getDirtyData: o } = t, u = e || qt(this._dependencyManagerService), c = new Rs(u);
     c.unitId = r, c.subUnitId = n, c.rangeList = s, c.getDirtyData = o;
     const l = o(this._currentConfigService.getDirtyData(), this._runtimeService.getAllRuntimeData()), f = this._convertDirtyRangesToUnitRange(l.dirtyRanges);
-    return c.featureDirtyRanges = f, c.featureId = a, c.type = Ks.FEATURE_FORMULA, this._dependencyManagerService.addFeatureFormulaDependency(r, n, a, c), this._dependencyManagerService.getFeatureFormulaDependency(t.unitId, t.subUnitId, a) && (c.isCache = !0), c;
+    return c.featureDirtyRanges = f, c.featureId = a, c.type = ea.FEATURE_FORMULA, this._dependencyManagerService.addFeatureFormulaDependency(r, n, a, c), this._dependencyManagerService.getFeatureFormulaDependency(t.unitId, t.subUnitId, a) && (c.isCache = !0), c;
   }
   _registerOtherFormulas(a, e, t) {
     for (const r of e) {
@@ -9785,21 +10219,21 @@ let Zs = class extends Ne {
           continue;
         const c = Object.keys(u);
         for (const l of c) {
-          const f = this._dependencyManagerService.hasOtherFormulaDataMainData(l), h = u[l], { f: d, ranges: _ } = h;
-          let C = !1;
-          f && (C = !0);
-          const E = Vi(r, d, this._lexer, this._astTreeBuilder, this._currentConfigService), { firstRow: b, firstColumn: R } = this._getFirstCellOfRange(_), p = this._dependencyManagerService.getOtherFormulaDependency(r, o, l), N = (p == null ? void 0 : p.getValue(0, 0)) || cr(this._dependencyManagerService), M = new bs(N);
-          for (let w = 0; w < _.length; w++) {
-            const S = _[w], { startRow: D, startColumn: L, endRow: U, endColumn: x } = S;
-            for (let F = D; F <= U; F++)
-              for (let Q = L; Q <= x; Q++) {
-                const ne = Q - R, z = F - b;
+          const f = this._dependencyManagerService.hasOtherFormulaDataMainData(l), h = u[l], { f: d, ranges: C } = h;
+          let _ = !1;
+          f && (_ = !0);
+          const E = xi(r, d, this._lexer, this._astTreeBuilder, this._currentConfigService), { firstRow: b, firstColumn: R } = this._getFirstCellOfRange(C), p = this._dependencyManagerService.getOtherFormulaDependency(r, o, l), N = (p == null ? void 0 : p.getValue(0, 0)) || qt(this._dependencyManagerService), w = new Rs(N);
+          for (let S = 0; S < C.length; S++) {
+            const M = C[S], { startRow: D, startColumn: L, endRow: T, endColumn: x } = M;
+            for (let k = D; k <= T; k++)
+              for (let G = L; G <= x; G++) {
+                const ne = G - R, z = k - b;
                 if (ne === 0 && z === 0) {
-                  M.node = E, M.formula = d, M.unitId = r, M.subUnitId = o, M.formulaId = l, M.type = Ks.OTHER_FORMULA, M.isCache = C, t.push(M), this._dependencyManagerService.addOtherFormulaDependency(r, o, l, M), this._dependencyManagerService.addFormulaDependencyByDefinedName(M);
+                  w.node = E, w.formula = d, w.unitId = r, w.subUnitId = o, w.formulaId = l, w.type = ea.OTHER_FORMULA, w.isCache = _, t.push(w), this._dependencyManagerService.addOtherFormulaDependency(r, o, l, w), this._dependencyManagerService.addFormulaDependencyByDefinedName(w);
                   continue;
                 }
-                const G = new Si();
-                G.treeId = (p == null ? void 0 : p.getValue(ne, z)) || cr(this._dependencyManagerService), G.refTree = M, G.refOffsetX = ne, G.refOffsetY = z, G.isCache = C, this._dependencyManagerService.addOtherFormulaDependency(r, o, l, G), this._dependencyManagerService.addFormulaDependencyByDefinedName(G), t.push(G);
+                const Q = new ys();
+                Q.treeId = (p == null ? void 0 : p.getValue(ne, z)) || qt(this._dependencyManagerService), Q.refTree = w, Q.refOffsetX = ne, Q.refOffsetY = z, Q.isCache = _, this._dependencyManagerService.addOtherFormulaDependency(r, o, l, Q), this._dependencyManagerService.addFormulaDependencyByDefinedName(Q), t.push(Q);
               }
           }
           this._dependencyManagerService.addOtherFormulaDependencyMainData(l);
@@ -9822,39 +10256,65 @@ let Zs = class extends Ne {
       const o = Object.keys(s);
       for (const u of o) {
         const c = new Ce(s[u] || {}), l = /* @__PURE__ */ new Map();
-        c.forValue((f, h, d) => {
-          if (d == null)
+        c.forValue((h, d, C) => {
+          if (C == null)
             return !0;
-          const { x: _ = 0, y: C = 0, si: E } = d;
-          if (!(_ === 0 && C === 0 && E != null))
+          const { x: _ = 0, y: E = 0, si: b } = C;
+          if (!(_ === 0 && E === 0 && b != null))
             return !0;
-          const b = this._createFDtree(n, u, f, h, t, d), R = this._dependencyManagerService.getFormulaDependency(n, u, f, h);
-          R != null ? b.treeId = R : (this._dependencyManagerService.addFormulaDependency(n, u, f, h, b), this._dependencyManagerService.addFormulaDependencyByDefinedName(b)), l.set(E, b), r.push(b);
-        }), c.forValue((f, h, d) => {
-          if (d == null)
+          const R = this._dependencyManagerService.getFormulaDependency(n, u, h, d);
+          if (R != null) {
+            const N = this._dependencyManagerService.getTreeById(R);
+            if (N && N.formula === C.f)
+              return N.isCache = !0, l.set(b, N), r.push(N), !0;
+          }
+          const p = this._createFDtree(n, u, h, d, t, C);
+          R != null ? p.treeId = R : (this._dependencyManagerService.addFormulaDependency(n, u, h, d, p), this._dependencyManagerService.addFormulaDependencyByDefinedName(p)), l.set(b, p), r.push(p);
+        });
+        const f = /* @__PURE__ */ new Map();
+        c.forValue((h, d, C) => {
+          if (C == null)
             return !0;
-          const { x: _ = 0, y: C = 0, si: E } = d;
-          if (_ === 0 && C === 0 && E != null)
+          const { x: _ = 0, y: E = 0, si: b } = C;
+          if (_ === 0 && E === 0 && b != null)
             return !0;
-          let b;
-          if (E && l.has(E)) {
-            const p = l.get(E);
-            b = this._createVirtualFDtree(p, d);
-          } else
-            b = this._createFDtree(n, u, f, h, t, d);
-          const R = this._dependencyManagerService.getFormulaDependency(n, u, f, h);
-          R != null ? b.treeId = R : (this._dependencyManagerService.addFormulaDependency(n, u, f, h, b), this._dependencyManagerService.addFormulaDependencyByDefinedName(b)), r.push(b);
-        }), l.clear();
+          const R = this._dependencyManagerService.getFormulaDependency(n, u, h, d);
+          if (R != null) {
+            const N = this._dependencyManagerService.getTreeById(R);
+            if (N) {
+              const w = N.isVirtual && (b ? l.has(b) : !0), S = !N.isVirtual && N.formula === C.f;
+              if (w || S)
+                return N.isCache = !0, r.push(N), !0;
+            }
+          }
+          let p;
+          if (b && l.has(b)) {
+            const N = l.get(b);
+            p = this._createVirtualFDtree(N, C);
+          } else {
+            const N = C.f, w = h + 1, S = zh(N, w), M = f.get(d);
+            M && M.template === S && !process.env.DISABLE_FILL_DOWN_SHARING ? p = this._createFillDownVirtualFDtree(M.tree, h - M.row) : (p = this._createFDtree(n, u, h, d, t, C), f.set(d, {
+              tree: p,
+              row: h,
+              template: S
+            }));
+          }
+          R != null ? p.treeId = R : (this._dependencyManagerService.addFormulaDependency(n, u, h, d, p), this._dependencyManagerService.addFormulaDependencyByDefinedName(p)), r.push(p);
+        }), f.clear(), l.clear();
       }
     }
   }
   _createFDtree(a, e, t, r, n, s) {
-    const { f: o, x: u = 0, y: c = 0 } = s, l = new bs(cr(this._dependencyManagerService)), f = n[a][e], h = Vi(a, o, this._lexer, this._astTreeBuilder, this._currentConfigService);
+    const { f: o, x: u = 0, y: c = 0 } = s, l = new Rs(qt(this._dependencyManagerService)), f = n[a][e], h = xi(a, o, this._lexer, this._astTreeBuilder, this._currentConfigService);
     return l.node = h, l.formula = o, l.unitId = a, l.subUnitId = e, l.row = t, l.column = r, l.rowCount = f.rowCount, l.columnCount = f.columnCount, l;
   }
   _createVirtualFDtree(a, e) {
-    const { x: t = 0, y: r = 0 } = e, n = new Si();
-    return n.treeId = cr(this._dependencyManagerService), n.refTree = a, n.refOffsetX = t, n.refOffsetY = r, n;
+    const { x: t = 0, y: r = 0 } = e, n = new ys();
+    return n.treeId = qt(this._dependencyManagerService), n.refTree = a, n.refOffsetX = t, n.refOffsetY = r, n;
+  }
+  _createFillDownVirtualFDtree(a, e) {
+    const t = new ys();
+    return t.treeId = qt(this._dependencyManagerService), t.refTree = a, t.refOffsetX = 0, t.refOffsetY = e, t;
   }
   /**
    * Break down the dirty areas into ranges for subsequent matching.
@@ -9876,7 +10336,7 @@ let Zs = class extends Ne {
     n == null && (n = [], r.set(e, n)), n.push(t);
   }
   _isPreCalculateNode(a) {
-    return a.nodeType === ie.UNION || a.nodeType === ie.PREFIX && a.getToken() === Me.AT || a.nodeType === ie.SUFFIX && a.getToken() === et.POUND;
+    return a.nodeType === ie.UNION || a.nodeType === ie.PREFIX && a.getToken() === we.AT || a.nodeType === ie.SUFFIX && a.getToken() === tt.POUND;
   }
   _nodeTraversalRef(a, e) {
     const t = a.getChildren(), r = t.length;
@@ -9945,7 +10405,7 @@ let Zs = class extends Ne {
     u.length !== 0 && await this._calculateAddressFunctionRuntimeData(a, u);
   }
   async _calculateListByFunctionRefNode(a) {
-    const e = new Os();
+    const e = new Ls();
     for (let t = 0, r = a.length; t < r; t++) {
       const n = a[t];
       e.insert({
@@ -10122,7 +10582,7 @@ let Zs = class extends Ne {
   _includeTree(a, e) {
     var c, l, f;
     const t = a.unitId, r = a.subUnitId;
-    if (this._detectForcedRecalculationNode(a, e) === !0 || this._includeTreeFeature(a) === !0 || this._includeOtherFormula(a) === !0 || nh(a, e, this._currentConfigService) === !0)
+    if (this._detectForcedRecalculationNode(a, e) === !0 || this._includeTreeFeature(a) === !0 || this._includeOtherFormula(a) === !0 || hh(a, e, this._currentConfigService) === !0)
       return !0;
     const n = (l = (c = this._currentConfigService.getExcludedRange()) == null ? void 0 : c[t]) == null ? void 0 : l[r];
     if ((n == null ? void 0 : n.getValue(a.row, a.column)) != null)
@@ -10174,423 +10634,16 @@ let Zs = class extends Ne {
     return t;
   }
 };
-Zs = kh([
+ra = Xh([
   Pt(0, Yt),
-  Pt(1, St),
-  Pt(2, Ma),
-  Pt(3, vr),
-  Pt(4, ye(yr)),
-  Pt(5, ye(Ur)),
-  Pt(6, ye(Er)),
-  Pt(7, Jn)
-], Zs);
-var $h = Object.getOwnPropertyDescriptor, Yh = (i, a, e, t) => {
-  for (var r = t > 1 ? void 0 : t ? $h(a, e) : a, n = i.length - 1, s; n >= 0; n--)
-    (s = i[n]) && (r = s(r) || r);
-  return r;
-}, qt = (i, a) => (e, t) => a(e, t, i);
-const Hh = 500, zs = Ze("engine-formula.calculate-formula.service");
-let Js = class extends Ne {
-  constructor(a, e, t, r, n, s, o) {
-    super();
-    A(this, "_executionInProgressListener$", new mr());
-    A(this, "executionInProgressListener$", this._executionInProgressListener$.asObservable());
-    A(this, "_executionCompleteListener$", new mr());
-    A(this, "executionCompleteListener$", this._executionCompleteListener$.asObservable());
-    A(this, "_executeLock", new cc());
-    this._configService = a, this._lexer = e, this._currentConfigService = t, this._runtimeService = r, this._formulaDependencyGenerator = n, this._interpreter = s, this._astTreeBuilder = o;
-  }
-  dispose() {
-    super.dispose(), this._executionInProgressListener$.complete(), this._executionCompleteListener$.complete(), Rn.clear(), We.clear(), Ts.clear(), Hs.clear();
-  }
-  /**
-   * Stop the execution of the formula.
-   */
-  stopFormulaExecution() {
-    this._runtimeService.stopExecution();
-  }
-  /**
-   * When the feature is loading,
-   * the pre-calculated content needs to be input to the formula engine in advance,
-   * so that the formula can read the correct values.
-   * @param featureId
-   * @param featureData
-   */
-  setRuntimeFeatureCellData(a, e) {
-    this._runtimeService.setRuntimeFeatureCellData(a, e);
-  }
-  setRuntimeFeatureRange(a, e) {
-    this._runtimeService.setRuntimeFeatureRange(a, e);
-  }
-  async execute(a) {
-    this._runtimeService.setFormulaExecuteStage(ut.START), this._executionInProgressListener$.next(this._runtimeService.getRuntimeState()), this._currentConfigService.load(a), this._runtimeService.reset();
-    const e = a.maxIteration || Co;
-    this._executeLock.acquire("FORMULA_EXECUTION_LOCK", async () => {
-      for (let t = 0; t < e && (this._runtimeService.setFormulaCycleIndex(t), await this._executeStep(), Rn.clear(), !!this._runtimeService.isCycleDependency()); t++)
-        ;
-      this._runtimeService.setFormulaExecuteStage(ut.CALCULATION_COMPLETED), this._executionInProgressListener$.next(this._runtimeService.getRuntimeState()), this._executionCompleteListener$.next(this._runtimeService.getAllRuntimeData()), We.clear(), this._runtimeService.reset();
-    });
-  }
-  async _executeStep() {
-    const a = await this._apply();
-    if (a == null)
-      return;
-    const { arrayFormulaRange: e, runtimeFeatureRange: t } = a, { dirtyRanges: r, excludedCell: n } = this._getArrayFormulaDirtyRangeAndExcludedRange(
-      e,
-      t
-    );
-    return r == null || r.length === 0 || (this._currentConfigService.loadDirtyRangesAndExcludedCell(r, n), await this._apply(!0)), !0;
-  }
-  _getArrayFormulaDirtyRangeAndExcludedRange(a, e) {
-    const t = [], r = {};
-    return Object.keys(a).forEach((n) => {
-      const s = a[n];
-      if (s == null)
-        return !0;
-      Object.keys(s).forEach((o) => {
-        const u = new Ce(s[o]);
-        if (u == null)
-          return !0;
-        const c = new Ce();
-        u.forValue((l, f, h) => {
-          c.setValue(l, f, !0), t.push({ unitId: n, sheetId: o, range: h });
-        }), r[n] == null && (r[n] = {}), r[n][o] = c;
-      });
-    }), Object.keys(e).forEach((n) => {
-      const s = e[n];
-      Object.keys(s).forEach((o) => {
-        const u = s[o];
-        if (u == null)
-          return !0;
-        Object.keys(u).forEach((c) => {
-          const l = u[c];
-          if (l == null)
-            return !0;
-          for (const f of l)
-            t.push({ unitId: o, sheetId: c, range: f });
-        });
-      });
-    }), { dirtyRanges: t, excludedCell: r };
-  }
-  // eslint-disable-next-line max-lines-per-function
-  async _apply(a = !1) {
-    a ? this._runtimeService.setFormulaExecuteStage(ut.START_DEPENDENCY_ARRAY_FORMULA) : this._runtimeService.setFormulaExecuteStage(ut.START_DEPENDENCY), this._executionInProgressListener$.next(this._runtimeService.getRuntimeState());
-    const e = (await this._formulaDependencyGenerator.generate()).reverse(), t = this._interpreter;
-    a ? (this._runtimeService.setFormulaExecuteStage(ut.START_CALCULATION_ARRAY_FORMULA), this._runtimeService.setTotalArrayFormulasToCalculate(e.length)) : (this._runtimeService.setFormulaExecuteStage(ut.START_CALCULATION), this._runtimeService.setTotalFormulasToCalculate(e.length)), this._executionInProgressListener$.next(this._runtimeService.getRuntimeState());
-    let r = [];
-    const n = this._configService.getConfig(Ca), s = (n == null ? void 0 : n.intervalCount) || Hh, o = e.length;
-    for (let u = 0; u < o; u++) {
-      const c = e[u], l = c.nodeData, f = c.getDirtyData;
-      if (u % s === 0 && (await new Promise((d) => {
-        const _ = lc(d);
-        r.push(_);
-      }), a ? (this._runtimeService.setFormulaExecuteStage(
-        ut.CURRENTLY_CALCULATING_ARRAY_FORMULA
-      ), this._runtimeService.setCompletedArrayFormulasCount(u + 1)) : (this._runtimeService.setFormulaExecuteStage(ut.CURRENTLY_CALCULATING), this._runtimeService.setCompletedFormulasCount(u + 1)), this._executionInProgressListener$.next(this._runtimeService.getRuntimeState()), this._runtimeService.isStopExecution() || l == null && f == null)) {
-        this._runtimeService.setFormulaExecuteStage(ut.IDLE), this._runtimeService.markedAsStopFunctionsExecuted(), this._executionCompleteListener$.next(this._runtimeService.getAllRuntimeData());
-        return;
-      }
-      this._runtimeService.setCurrent(
-        c.row,
-        c.column,
-        c.rowCount,
-        c.columnCount,
-        c.subUnitId,
-        c.unitId
-      );
-      let h;
-      if (f != null && c.featureId != null) {
-        const { runtimeCellData: d, dirtyRanges: _ } = f(this._currentConfigService.getDirtyData(), this._runtimeService.getAllRuntimeData());
-        this._runtimeService.setRuntimeFeatureCellData(c.featureId, d), this._runtimeService.setRuntimeFeatureRange(c.featureId, _);
-      } else l != null && (t.checkAsyncNode(l.node) ? h = await t.executeAsync(l) : h = t.execute(l), c.formulaId != null ? this._runtimeService.setRuntimeOtherData(c.formulaId, c.refOffsetX, c.refOffsetY, h) : this._runtimeService.setRuntimeData(h));
-    }
-    return r.forEach((u) => u()), r = [], o > 0 ? this._runtimeService.markedAsSuccessfullyExecuted() : a || this._runtimeService.markedAsNoFunctionsExecuted(), this._runtimeService.getAllRuntimeData();
-  }
-  calculate(a, e = !0) {
-    const t = this._lexer.treeBuilder(a, e);
-    if (Object.values(m).includes(t))
-      return xe.create(t);
-    const r = this._astTreeBuilder.parse(t);
-    r == null || r.serialize();
-  }
-};
-Js = Yh([
-  qt(0, ia),
-  qt(1, ye(Er)),
-  qt(2, Yt),
-  qt(3, St),
-  qt(4, Xs),
-  qt(5, ye(yr)),
-  qt(6, ye(Ur))
-], Js);
-var Gh = Object.getOwnPropertyDescriptor, Qh = (i, a, e, t) => {
-  for (var r = t > 1 ? void 0 : t ? Gh(a, e) : a, n = i.length - 1, s; n >= 0; n--)
-    (s = i[n]) && (r = s(r) || r);
-  return r;
-}, ys = (i, a) => (e, t) => a(e, t, i);
-let Pn = class extends Ne {
-  constructor(i, a, e) {
-    super(), this._commandService = i, this._calculateFormulaService = a, this._formulaDataModel = e, this._initialize();
-  }
-  _initialize() {
-    this._commandExecutedListener(), this._initialExecuteFormulaListener();
-  }
-  _commandExecutedListener() {
-    this.disposeWithMe(
-      this._commandService.onCommandExecuted((i) => {
-        if (i.id === co.id)
-          this._calculateFormulaService.stopFormulaExecution();
-        else if (i.id === uo.id)
-          this._calculate(i.params);
-        else if (i.id === ws.id) {
-          const a = i.params;
-          if (a == null)
-            return;
-          const { arrayFormulaRange: e, arrayFormulaCellData: t } = a;
-          this._formulaDataModel.setArrayFormulaRange(e), this._formulaDataModel.setArrayFormulaCellData(t);
-        }
-      })
-    );
-  }
-  async _calculate(i) {
-    const { forceCalculation: a = !1, dirtyRanges: e = [], dirtyNameMap: t = {}, dirtyDefinedNameMap: r = {}, dirtyUnitFeatureMap: n = {}, dirtyUnitOtherFormulaMap: s = {}, clearDependencyTreeCache: o = {}, maxIteration: u = Co, rowData: c } = i, l = this._formulaDataModel.getFormulaData(), f = this._formulaDataModel.getArrayFormulaCellData(), h = this._formulaDataModel.getArrayFormulaRange();
-    this._calculateFormulaService.execute({
-      formulaData: l,
-      arrayFormulaCellData: f,
-      arrayFormulaRange: h,
-      forceCalculate: a,
-      dirtyRanges: e,
-      dirtyNameMap: t,
-      dirtyDefinedNameMap: r,
-      dirtyUnitFeatureMap: n,
-      dirtyUnitOtherFormulaMap: s,
-      clearDependencyTreeCache: o,
-      maxIteration: u,
-      rowData: c
-    });
-  }
-  // Notification
-  _initialExecuteFormulaListener() {
-    this._calculateFormulaService.executionCompleteListener$.subscribe(async (i) => {
-      const a = i.functionsExecutedState;
-      switch (a) {
-        case fr.NOT_EXECUTED:
-          break;
-        case fr.STOP_EXECUTION:
-          break;
-        case fr.SUCCESS:
-          await this._applyResult(i);
-          break;
-        case fr.INITIAL:
-          break;
-      }
-      this._commandService.executeCommand(
-        _n.id,
-        {
-          functionsExecutedState: a
-        },
-        {
-          onlyLocal: !0
-        }
-      );
-    }), this._calculateFormulaService.executionInProgressListener$.subscribe((i) => {
-      this._commandService.executeCommand(
-        _n.id,
-        {
-          stageInfo: i
-        },
-        {
-          onlyLocal: !0
-        }
-      );
-    });
-  }
-  async _applyResult(i) {
-    const { unitData: a, unitOtherData: e, arrayFormulaRange: t, arrayFormulaCellData: r, clearArrayFormulaCellData: n } = i;
-    if (!a) {
-      console.error("No sheetData from Formula Engine!");
-      return;
-    }
-    t && (this._formulaDataModel.clearPreviousArrayFormulaCellData(n), this._formulaDataModel.mergeArrayFormulaCellData(r), this._formulaDataModel.mergeArrayFormulaRange(t), this._commandService.executeCommand(
-      ws.id,
-      {
-        arrayFormulaRange: this._formulaDataModel.getArrayFormulaRange(),
-        arrayFormulaCellData: this._formulaDataModel.getArrayFormulaCellData()
-      },
-      {
-        onlyLocal: !0
-      }
-    )), this._commandService.executeCommand(
-      lo.id,
-      {
-        unitData: Fc(a),
-        unitOtherData: e
-      },
-      {
-        onlyLocal: !0
-      }
-    );
-  }
-};
-Pn = Qh([
-  ys(0, ir),
-  ys(1, zs),
-  ys(2, ye(Ar))
-], Pn);
-const Di = /[\[\]]/g;
-function Li(i, a) {
-  if (Di.test(i)) {
-    const e = Number(i.replace(Di, ""));
-    return a + e;
-  }
-  return Number(i) - 1;
-}
-function Rs(i, a = 0, e = 0) {
-  i = i.toLocaleUpperCase();
-  const t = i.split(/[RC]/), r = t[1], n = t[2], s = Li(r, a), o = Li(n, e);
-  return {
-    row: s,
-    column: o,
-    absoluteRefType: we.NONE
-  };
-}
-function Wh(i, a = 0, e = 0) {
-  const { refBody: t, sheetName: r, unitId: n } = ua(i), s = t.indexOf(":");
-  if (s === -1) {
-    const C = Rs(t, a, e), E = C.row, b = C.column, R = C.absoluteRefType;
-    return {
-      unitId: n,
-      sheetName: r,
-      range: {
-        startRow: E,
-        startColumn: b,
-        endRow: E,
-        endColumn: b,
-        startAbsoluteRefType: R,
-        endAbsoluteRefType: R
-      }
-    };
-  }
-  const o = t.substring(0, s), u = t.substring(s + 1), c = Rs(o, a, e), l = Rs(u, a, e), f = c.row, h = c.column, d = l.row, _ = l.column;
-  return {
-    unitId: n,
-    sheetName: r,
-    range: {
-      startRow: f,
-      startColumn: h,
-      endRow: d,
-      endColumn: _,
-      startAbsoluteRefType: c.absoluteRefType,
-      endAbsoluteRefType: l.absoluteRefType
-    }
-  };
-}
-function qh(i) {
-  const a = zr(i.startRow, i.startAbsoluteRefType, !0), e = zr(i.startColumn, i.startAbsoluteRefType, !1), t = zr(i.endRow, i.endAbsoluteRefType, !0), r = zr(i.endColumn, i.endAbsoluteRefType, !1);
-  return a === t && e === r ? `R${a}C${e}` : `R${a}C${e}:R${t}C${r}`;
-}
-function zr(i, a = we.ALL, e) {
-  switch (i += 1, a) {
-    case we.ALL:
-      return `${i}`;
-    case we.ROW:
-      return e ? `${i}` : `[${i}]`;
-    case we.COLUMN:
-      return e ? `[${i}]` : `${i}`;
-    case we.NONE:
-      return `[${i}]`;
-  }
-}
-function zt(i) {
-  let a = i;
-  if (i.isArray()) {
-    const e = i.getRowCount(), t = i.getColumnCount();
-    if (e > 1 || t > 1)
-      return g.create(m.VALUE);
-    a = i.get(0, 0);
-  }
-  return a.isError(), a;
-}
-function Yr(...i) {
-  for (let a = 0; a < i.length; a++) {
-    const e = zt(i[a]);
-    if (e.isError())
-      return {
-        isError: !0,
-        errorObject: e
-      };
-    i[a] = e;
-  }
-  return {
-    isError: !1,
-    variants: i
-  };
-}
-function H(...i) {
-  for (let a = 0; a < i.length; a++) {
-    const e = zt(i[a]);
-    if (e.isError())
-      return {
-        isError: !0,
-        errorObject: e
-      };
-    if (e.isBoolean())
-      return {
-        isError: !0,
-        errorObject: g.create(m.VALUE)
-      };
-    i[a] = e;
-  }
-  return {
-    isError: !1,
-    variants: i
-  };
-}
-function ke(...i) {
-  for (let a = 0; a < i.length; a++) {
-    let e = i[a];
-    if (e.isError())
-      return {
-        isError: !0,
-        errorObject: e
-      };
-    if (e.isNull())
-      return {
-        isError: !0,
-        errorObject: g.create(m.NA)
-      };
-    if (e = zt(i[a]), e.isError())
-      return {
-        isError: !0,
-        errorObject: e
-      };
-    if (e.isBoolean())
-      return {
-        isError: !0,
-        errorObject: g.create(m.VALUE)
-      };
-    i[a] = e;
-  }
-  return {
-    isError: !1,
-    variants: i
-  };
-}
-function B(...i) {
-  for (let a = 0; a < i.length; a++) {
-    let e = i[a];
-    if (e.isString() && (e = e.convertToNumberObjectValue()), e.isError())
-      return {
-        isError: !0,
-        errorObject: e
-      };
-    i[a] = e;
-  }
-  return {
-    isError: !1,
-    variants: i
-  };
-}
+  Pt(1, Mt),
+  Pt(2, Ua),
+  Pt(3, Ir),
+  Pt(4, ye(pr)),
+  Pt(5, ye(Br)),
+  Pt(6, ye(yr)),
+  Pt(7, es)
+], ra);
 class V {
   constructor(a) {
     A(this, "_unitId");
@@ -10802,7 +10855,7 @@ class V {
     return r ? this._getOneFirstByRaw(n) : this._getOneLastByRaw(n);
   }
   fuzzySearch(a, e, t, r = !0) {
-    const n = t.pickRaw(e.compare(a, k.EQUALS));
+    const n = t.pickRaw(e.compare(a, U.EQUALS));
     return r ? this._getOneFirstByRaw(n) : this._getOneLastByRaw(n);
   }
   orderSearch(a, e, t, r = Le.MIN, n = !1) {
@@ -10822,7 +10875,7 @@ class V {
     return r ? o = s.getFirstTruePosition() : o = s.getLastTruePosition(), o == null ? g.create(m.NA) : n === 0 ? t.slice([o.row, o.row + 1]) : t.slice(void 0, [o.column, o.column + 1]);
   }
   fuzzySearchExpand(a, e, t, r = !0, n = 0) {
-    const s = e.compare(a, k.EQUALS);
+    const s = e.compare(a, U.EQUALS);
     let o;
     return r ? o = s.getFirstTruePosition() : o = s.getLastTruePosition(), o == null ? g.create(m.NA) : n === 0 ? t.slice([o.row, o.row + 1]) : t.slice(void 0, [o.column, o.column + 1]);
   }
@@ -10850,29 +10903,753 @@ class V {
       } else
         t[0].push(n);
     }
-    return Fr(t, 1, t[0].length);
+    return Yr(t, 1, t[0].length);
   }
   _includingLogicalValuesAndText(a) {
-    if (a.isBoolean() && (a = Gf(a)), a.isString()) {
+    if (a.isBoolean() && (a = th(a)), a.isString()) {
       const e = Number(a.getValue());
       a = y.create(Number.isNaN(e) ? 0 : e);
     }
     return a;
   }
   createReferenceObject(a, e) {
-    const t = a.getForcedUnitId(), r = a.getForcedSheetId() || "", n = a.getForcedSheetName(), o = Ss({
+    const t = a.getForcedUnitId(), r = a.getForcedSheetId() || "", n = a.getForcedSheetName(), o = js({
       unitId: t,
       sheetName: n,
       range: e
     });
     let u;
-    return Br(o) ? u = new ya(o) : ro(o) ? u = new pa(o) : no(o) ? u = new Ra(o) : u = new pn(e, r, t), this._setReferenceDefault(a, u);
+    return kr(o) ? u = new Ma(o) : mo(o) ? u = new La(o) : go(o) ? u = new Da(o) : u = new Nn(e, r, t), this._setReferenceDefault(a, u);
   }
   _setReferenceDefault(a, e) {
     return this.unitId == null || this.subUnitId == null ? g.create(m.REF) : (e.setDefaultUnitId(this.unitId), e.setDefaultSheetId(this.subUnitId), e.setUnitData(a.getUnitData()), e.setRuntimeData(a.getRuntimeData()), e.setArrayFormulaCellData(a.getArrayFormulaCellData()), e.setRuntimeArrayFormulaCellData(a.getRuntimeArrayFormulaCellData()), e);
   }
 }
-class Kh extends V {
+const na = /* @__PURE__ */ new Map();
+function ps() {
+  na.clear();
+}
+function Bi(i) {
+  return typeof i == "string" ? `s${i}` : typeof i == "number" ? `n${i}` : typeof i == "boolean" ? i ? "b1" : "b0" : "x";
+}
+class Jh extends V {
+  constructor() {
+    super(...arguments);
+    A(this, "minParams", 2);
+    A(this, "maxParams", 3);
+    A(this, "needsReferenceObject", !0);
+  }
+  calculate(e, t, r) {
+    if (!e.isReferenceObject() || r && !r.isReferenceObject())
+      return g.create(m.VALUE);
+    let n = t;
+    if (t.isReferenceObject() && (n = t.toArrayValueObject()), n.isArray()) {
+      const s = n.mapValue((o) => this._handleSingleObject(e, o, r));
+      return s.getRowCount() === 1 && s.getColumnCount() === 1 ? s.get(0, 0) : s;
+    }
+    return this._handleSingleObject(e, n, r);
+  }
+  _handleSingleObject(e, t, r) {
+    if (!t.isError() && !process.env.DISABLE_FORMULA_HASH_CACHE) {
+      let l = U.EQUALS, f = t;
+      if (t.isString()) {
+        const [h, d] = lr(`${t.getValue()}`);
+        l = h, f = d;
+      }
+      if (l === U.EQUALS) {
+        const h = this._hashSumif(e, f, r);
+        if (h !== null) return h;
+      }
+    }
+    const n = e.toArrayValueObject();
+    let s = zn(n, t);
+    s = Jn(s, n, t);
+    const o = n.getRowCount(), u = n.getColumnCount();
+    let c = n;
+    if (r) {
+      c = r.toArrayValueObject();
+      const l = c.getRowCount(), f = c.getColumnCount();
+      if (o !== l || u !== f) {
+        const h = r.getRangeData();
+        h.endRow = h.startRow + o - 1, h.endColumn = h.startColumn + u - 1, r.setRangeData(h), c = r.toArrayValueObject();
+      }
+    }
+    return c.pick(s).sum();
+  }
+  _hashSumif(e, t, r) {
+    const n = e.toArrayValueObject();
+    let s = n;
+    r && (s = r.toArrayValueObject());
+    const o = n.getCurrentRow(), u = n.getCurrentColumn(), c = s.getCurrentRow(), l = s.getCurrentColumn(), f = `${n.getUnitId()}_${n.getSheetId()}_${o}_${u}_${n.getRowCount()}_${n.getColumnCount()}_${c}_${l}`;
+    let h = na.get(f);
+    if (!h) {
+      h = /* @__PURE__ */ new Map();
+      const C = n.getRowCount(), _ = n.getColumnCount();
+      for (let E = 0; E < C; E++)
+        for (let b = 0; b < _; b++) {
+          const R = n.get(E, b);
+          if (!R || R.isError()) continue;
+          const p = s.get(E, b);
+          if (!p || p.isError() || !p.isNumber()) continue;
+          const N = Bi(R.getValue()), w = p.getValue();
+          h.set(N, (h.get(N) || 0) + w);
+        }
+      na.set(f, h);
+    }
+    const d = Bi(t.getValue());
+    return y.create(h.get(d) || 0);
+  }
+}
+const sa = /* @__PURE__ */ new Map();
+function Ns() {
+  sa.clear();
+}
+function Ii(i) {
+  return typeof i == "string" ? `s${i}` : typeof i == "number" ? `n${i}` : typeof i == "boolean" ? i ? "b1" : "b0" : "x";
+}
+class em extends V {
+  constructor() {
+    super(...arguments);
+    A(this, "minParams", 2);
+    A(this, "maxParams", 2);
+    A(this, "needsReferenceObject", !0);
+  }
+  calculate(e, t) {
+    if (!e.isReferenceObject())
+      return g.create(m.VALUE);
+    let r = t;
+    if (t.isReferenceObject() && (r = t.toArrayValueObject()), r.isArray()) {
+      const n = r.mapValue((s) => this._handleSingleObject(e, s));
+      return n.getRowCount() === 1 && n.getColumnCount() === 1 ? n.get(0, 0) : n;
+    }
+    return this._handleSingleObject(e, r);
+  }
+  _handleSingleObject(e, t) {
+    if (!t.isError() && !process.env.DISABLE_FORMULA_HASH_CACHE) {
+      let o = U.EQUALS, u = t;
+      if (t.isString()) {
+        const [c, l] = lr(`${t.getValue()}`);
+        o = c, u = l;
+      }
+      if (o === U.EQUALS) {
+        const c = this._hashCountif(e, u);
+        if (c !== null) return c;
+      }
+    }
+    const r = e.toArrayValueObject();
+    let n = zn(r, t);
+    n = Jn(n, r, t);
+    const s = r.pick(n);
+    return this._countA(s);
+  }
+  _hashCountif(e, t) {
+    const r = e.toArrayValueObject(), n = `${r.getUnitId()}_${r.getSheetId()}_${r.getCurrentRow()}_${r.getCurrentColumn()}_${r.getRowCount()}_${r.getColumnCount()}`;
+    let s = sa.get(n);
+    if (!s) {
+      s = /* @__PURE__ */ new Map();
+      const u = r.getRowCount(), c = r.getColumnCount();
+      for (let l = 0; l < u; l++)
+        for (let f = 0; f < c; f++) {
+          const h = r.get(l, f);
+          if (!h || h.isError()) continue;
+          const d = Ii(h.getValue());
+          s.set(d, (s.get(d) || 0) + 1);
+        }
+      sa.set(n, s);
+    }
+    const o = Ii(t.getValue());
+    return y.create(s.get(o) || 0);
+  }
+  _countA(e) {
+    let t = y.create(0);
+    return e.iterator((r) => {
+      if (r == null)
+        return !0;
+      t = t.plusBy(1);
+    }), t;
+  }
+}
+const aa = /* @__PURE__ */ new Map();
+function Vs() {
+  aa.clear();
+}
+function Fi(i) {
+  return typeof i == "string" ? `s${i}` : typeof i == "number" ? `n${i}` : typeof i == "boolean" ? i ? "b1" : "b0" : "x";
+}
+class tm extends V {
+  constructor() {
+    super(...arguments);
+    A(this, "minParams", 2);
+    A(this, "maxParams", 255);
+    A(this, "needsReferenceObject", !0);
+  }
+  calculate(...e) {
+    const {
+      isError: t,
+      errorObject: r,
+      rangeIsDifferentSize: n,
+      criteriaMaxRowLength: s,
+      criteriaMaxColumnLength: o,
+      variants: u
+    } = Hr(e);
+    if (t)
+      return r;
+    if (n)
+      return s === 1 && o === 1 ? g.create(m.VALUE) : O(s, o, g.create(m.VALUE));
+    if (s === 1 && o === 1 && !process.env.DISABLE_SCALAR_FAST_PATH)
+      return this._scalarCountifs(u);
+    const c = sr(u, s, o, !0);
+    return this._aggregateResults(c);
+  }
+  /**
+   * Fast path: all criteria are scalar (1×1). Iterate ranges once per cell,
+   * checking all criteria per row — zero intermediate array allocations.
+   */
+  _scalarCountifs(e) {
+    const t = e.length / 2, r = new Array(t), n = new Array(t), s = new Array(t);
+    for (let l = 0; l < t; l++) {
+      const f = e[l * 2], h = e[l * 2 + 1];
+      if (!f.isArray())
+        return this._fallbackCountifs(e);
+      r[l] = f;
+      const d = h.isArray() && h.get(0, 0) || h;
+      if (d.isError())
+        return d;
+      if (d.isString()) {
+        const [C, _] = lr(`${d.getValue()}`);
+        n[l] = C, s[l] = _;
+      } else
+        n[l] = U.EQUALS, s[l] = d;
+    }
+    if (n.every((l) => l === U.EQUALS)) {
+      const l = this._hashCountifs(r, s);
+      if (l !== null) return l;
+    }
+    const o = r[0].getRowCount(), u = r[0].getColumnCount();
+    let c = 0;
+    for (let l = 0; l < o; l++)
+      for (let f = 0; f < u; f++) {
+        let h = !0;
+        for (let d = 0; d < t; d++) {
+          const C = r[d].get(l, f);
+          if (!C || C.isError()) {
+            h = !1;
+            break;
+          }
+          if (!Pa(C, s[d])) {
+            const E = n[d];
+            if (E === U.EQUALS || E === U.NOT_EQUAL) {
+              if (C.isNumber() && s[d].isString()) {
+                const b = s[d].convertToNumberObjectValue();
+                if (b.isNumber()) {
+                  const R = C.compare(b, E);
+                  (R.isError() || R.getValue() !== !0) && (h = !1);
+                  continue;
+                }
+              }
+              if (s[d].isNumber() && C.isString()) {
+                const b = C.convertToNumberObjectValue();
+                if (b.isNumber()) {
+                  const R = b.compare(s[d], E);
+                  (R.isError() || R.getValue() !== !0) && (h = !1);
+                  continue;
+                }
+              }
+              h = E === U.NOT_EQUAL;
+            } else
+              h = !1;
+            if (!h) break;
+            continue;
+          }
+          const _ = C.compare(s[d], n[d]);
+          if (_.isError() || _.getValue() !== !0) {
+            h = !1;
+            break;
+          }
+        }
+        h && c++;
+      }
+    return y.create(c);
+  }
+  _hashCountifs(e, t) {
+    const r = e.length;
+    let n = "";
+    for (let u = 0; u < r; u++) {
+      const c = e[u];
+      n += `${c.getUnitId()}_${c.getSheetId()}_${c.getCurrentRow()}_${c.getCurrentColumn()}_${c.getRowCount()}_${c.getColumnCount()};`;
+    }
+    let s = aa.get(n);
+    if (!s) {
+      s = /* @__PURE__ */ new Map();
+      const u = e[0].getRowCount(), c = e[0].getColumnCount();
+      for (let l = 0; l < u; l++)
+        for (let f = 0; f < c; f++) {
+          let h = "", d = !0;
+          for (let C = 0; C < r; C++) {
+            const _ = e[C].get(l, f);
+            if (!_ || _.isError()) {
+              d = !1;
+              break;
+            }
+            C > 0 && (h += "\0"), h += Fi(_.getValue());
+          }
+          d && s.set(h, (s.get(h) || 0) + 1);
+        }
+      aa.set(n, s);
+    }
+    let o = "";
+    for (let u = 0; u < r; u++)
+      u > 0 && (o += "\0"), o += Fi(t[u].getValue());
+    return y.create(s.get(o) || 0);
+  }
+  _fallbackCountifs(e) {
+    const t = sr(e, 1, 1, !0);
+    return this._aggregateResults(t);
+  }
+  _aggregateResults(e) {
+    const t = e.map((r) => r.map((n) => rm(n)));
+    return t.length === 1 && t[0].length === 1 ? t[0][0] : W.create({
+      calculateValueList: t,
+      rowCount: t.length,
+      columnCount: t[0].length,
+      unitId: this.unitId || "",
+      sheetId: this.subUnitId || "",
+      row: this.row,
+      column: this.column
+    });
+  }
+}
+function rm(i) {
+  let a = 0;
+  return i.iterator((e) => {
+    e != null && e.isBoolean() && e.getValue() === !0 && a++;
+  }), y.create(a);
+}
+var nm = Object.getOwnPropertyDescriptor, sm = (i, a, e, t) => {
+  for (var r = t > 1 ? void 0 : t ? nm(a, e) : a, n = i.length - 1, s; n >= 0; n--)
+    (s = i[n]) && (r = s(r) || r);
+  return r;
+}, Kt = (i, a) => (e, t) => a(e, t, i);
+const am = 500;
+function im(i) {
+  const a = Number(i == null ? void 0 : i.batchExecutionCount);
+  return !Number.isFinite(a) || a <= 0 ? Number.POSITIVE_INFINITY : Math.floor(a);
+}
+const ia = ze("engine-formula.calculate-formula.service");
+let oa = class extends Ve {
+  constructor(a, e, t, r, n, s, o) {
+    super();
+    A(this, "_executionInProgressListener$", new dr());
+    A(this, "executionInProgressListener$", this._executionInProgressListener$.asObservable());
+    A(this, "_executionCompleteListener$", new dr());
+    A(this, "executionCompleteListener$", this._executionCompleteListener$.asObservable());
+    A(this, "_executeLock", new bc());
+    this._configService = a, this._lexer = e, this._currentConfigService = t, this._runtimeService = r, this._formulaDependencyGenerator = n, this._interpreter = s, this._astTreeBuilder = o;
+  }
+  dispose() {
+    super.dispose(), this._executionInProgressListener$.complete(), this._executionCompleteListener$.complete(), Pr.clear(), He.clear(), Vs(), Ns(), ps(), $s.clear(), Ks.clear();
+  }
+  /**
+   * Stop the execution of the formula.
+   */
+  stopFormulaExecution() {
+    this._runtimeService.stopExecution();
+  }
+  /**
+   * When the feature is loading,
+   * the pre-calculated content needs to be input to the formula engine in advance,
+   * so that the formula can read the correct values.
+   * @param featureId
+   * @param featureData
+   */
+  setRuntimeFeatureCellData(a, e) {
+    this._runtimeService.setRuntimeFeatureCellData(a, e);
+  }
+  setRuntimeFeatureRange(a, e) {
+    this._runtimeService.setRuntimeFeatureRange(a, e);
+  }
+  async execute(a) {
+    Pr.clear(), He.clear(), Vs(), Ns(), ps(), this._runtimeService.setFormulaExecuteStage($e.START), this._executionInProgressListener$.next(this._runtimeService.getRuntimeState()), this._currentConfigService.load(a), this._runtimeService.reset();
+    const e = a.maxIteration || wo;
+    this._executeLock.acquire("FORMULA_EXECUTION_LOCK", async () => {
+      for (let t = 0; t < e && (this._runtimeService.setFormulaCycleIndex(t), await this._executeStep(), Pr.clear(), Vs(), Ns(), ps(), !!this._runtimeService.isCycleDependency()); t++)
+        ;
+      this._runtimeService.setFormulaExecuteStage($e.CALCULATION_COMPLETED), this._executionInProgressListener$.next(this._runtimeService.getRuntimeState()), this._executionCompleteListener$.next(this._runtimeService.getAllRuntimeData()), He.clear(), this._runtimeService.reset();
+    });
+  }
+  async _executeStep() {
+    const a = await this._apply();
+    if (a == null)
+      return;
+    const { arrayFormulaRange: e, runtimeFeatureRange: t } = a, { dirtyRanges: r, excludedCell: n } = this._getArrayFormulaDirtyRangeAndExcludedRange(
+      e,
+      t
+    );
+    return r == null || r.length === 0 || (this._currentConfigService.loadDirtyRangesAndExcludedCell(r, n), await this._apply(!0)), !0;
+  }
+  _getArrayFormulaDirtyRangeAndExcludedRange(a, e) {
+    const t = [], r = {};
+    return Object.keys(a).forEach((n) => {
+      const s = a[n];
+      if (s == null)
+        return !0;
+      Object.keys(s).forEach((o) => {
+        const u = new Ce(s[o]);
+        if (u == null)
+          return !0;
+        const c = new Ce();
+        u.forValue((l, f, h) => {
+          c.setValue(l, f, !0), t.push({ unitId: n, sheetId: o, range: h });
+        }), r[n] == null && (r[n] = {}), r[n][o] = c;
+      });
+    }), Object.keys(e).forEach((n) => {
+      const s = e[n];
+      Object.keys(s).forEach((o) => {
+        const u = s[o];
+        if (u == null)
+          return !0;
+        Object.keys(u).forEach((c) => {
+          const l = u[c];
+          if (l == null)
+            return !0;
+          for (const f of l)
+            t.push({ unitId: o, sheetId: c, range: f });
+        });
+      });
+    }), { dirtyRanges: t, excludedCell: r };
+  }
+  // eslint-disable-next-line max-lines-per-function
+  async _apply(a = !1) {
+    a ? this._runtimeService.setFormulaExecuteStage($e.START_DEPENDENCY_ARRAY_FORMULA) : this._runtimeService.setFormulaExecuteStage($e.START_DEPENDENCY), this._executionInProgressListener$.next(this._runtimeService.getRuntimeState());
+    const e = (await this._formulaDependencyGenerator.generate()).reverse(), t = this._interpreter;
+    a ? (this._runtimeService.setFormulaExecuteStage($e.START_CALCULATION_ARRAY_FORMULA), this._runtimeService.setTotalArrayFormulasToCalculate(e.length)) : (this._runtimeService.setFormulaExecuteStage($e.START_CALCULATION), this._runtimeService.setTotalFormulasToCalculate(e.length)), this._executionInProgressListener$.next(this._runtimeService.getRuntimeState());
+    let r = [];
+    const n = this._configService.getConfig(Na), s = (n == null ? void 0 : n.intervalCount) || am, o = im(n), u = e.length;
+    let c = 0;
+    for (; c < u; ) {
+      const l = Math.min(u, c + o);
+      for (let f = c; f < l; f++) {
+        const h = e[f], d = h.nodeData, C = h.getDirtyData;
+        if (f !== 0 && f % s === 0 && (await new Promise((E) => {
+          const b = ii(E);
+          r.push(b);
+        }), a ? (this._runtimeService.setFormulaExecuteStage(
+          $e.CURRENTLY_CALCULATING_ARRAY_FORMULA
+        ), this._runtimeService.setCompletedArrayFormulasCount(f)) : (this._runtimeService.setFormulaExecuteStage($e.CURRENTLY_CALCULATING), this._runtimeService.setCompletedFormulasCount(f)), this._executionInProgressListener$.next(this._runtimeService.getRuntimeState()), this._runtimeService.isStopExecution())) {
+          this._runtimeService.setFormulaExecuteStage($e.IDLE), this._runtimeService.markedAsStopFunctionsExecuted(), this._executionCompleteListener$.next(this._runtimeService.getAllRuntimeData());
+          return;
+        }
+        if (this._runtimeService.setCurrent(
+          h.row,
+          h.column,
+          h.rowCount,
+          h.columnCount,
+          h.subUnitId,
+          h.unitId
+        ), d == null && C == null)
+          continue;
+        let _;
+        if (C != null && h.featureId != null) {
+          const { runtimeCellData: E, dirtyRanges: b } = C(this._currentConfigService.getDirtyData(), this._runtimeService.getAllRuntimeData());
+          this._runtimeService.setRuntimeFeatureCellData(h.featureId, E), this._runtimeService.setRuntimeFeatureRange(h.featureId, b);
+        } else d != null && (t.checkAsyncNode(d.node) ? _ = await t.executeAsync(d) : _ = t.execute(d), h.formulaId != null ? this._runtimeService.setRuntimeOtherData(h.formulaId, h.refOffsetX, h.refOffsetY, _) : this._runtimeService.setRuntimeData(_), process.env.DISABLE_CLEAR_INTERMEDIATE || d.node.clearIntermediate());
+      }
+      if (c = l, a ? (this._runtimeService.setFormulaExecuteStage($e.CURRENTLY_CALCULATING_ARRAY_FORMULA), this._runtimeService.setCompletedArrayFormulasCount(c)) : (this._runtimeService.setFormulaExecuteStage($e.CURRENTLY_CALCULATING), this._runtimeService.setCompletedFormulasCount(c)), this._executionInProgressListener$.next(this._runtimeService.getRuntimeState()), c < u && await new Promise((f) => {
+        const h = ii(f);
+        r.push(h);
+      }), this._runtimeService.isStopExecution()) {
+        this._runtimeService.setFormulaExecuteStage($e.IDLE), this._runtimeService.markedAsStopFunctionsExecuted(), this._executionCompleteListener$.next(this._runtimeService.getAllRuntimeData());
+        return;
+      }
+    }
+    return r.forEach((l) => l()), r = [], u > 0 ? this._runtimeService.markedAsSuccessfullyExecuted() : a || this._runtimeService.markedAsNoFunctionsExecuted(), this._runtimeService.getAllRuntimeData();
+  }
+  calculate(a, e = !0) {
+    const t = this._lexer.treeBuilder(a, e);
+    if (Object.values(m).includes(t))
+      return xe.create(t);
+    const r = this._astTreeBuilder.parse(t);
+    r == null || r.serialize();
+  }
+};
+oa = sm([
+  Kt(0, ga),
+  Kt(1, ye(yr)),
+  Kt(2, Yt),
+  Kt(3, Mt),
+  Kt(4, ta),
+  Kt(5, ye(pr)),
+  Kt(6, ye(Br))
+], oa);
+var om = Object.getOwnPropertyDescriptor, um = (i, a, e, t) => {
+  for (var r = t > 1 ? void 0 : t ? om(a, e) : a, n = i.length - 1, s; n >= 0; n--)
+    (s = i[n]) && (r = s(r) || r);
+  return r;
+}, Os = (i, a) => (e, t) => a(e, t, i);
+let xn = class extends Ve {
+  constructor(i, a, e) {
+    super(), this._commandService = i, this._calculateFormulaService = a, this._formulaDataModel = e, this._initialize();
+  }
+  _initialize() {
+    this._commandExecutedListener(), this._initialExecuteFormulaListener();
+  }
+  _commandExecutedListener() {
+    this.disposeWithMe(
+      this._commandService.onCommandExecuted((i) => {
+        if (i.id === yo.id)
+          this._calculateFormulaService.stopFormulaExecution();
+        else if (i.id === bo.id)
+          this._calculate(i.params);
+        else if (i.id === xs.id) {
+          const a = i.params;
+          if (a == null)
+            return;
+          const { arrayFormulaRange: e, arrayFormulaCellData: t } = a;
+          this._formulaDataModel.setArrayFormulaRange(e), this._formulaDataModel.setArrayFormulaCellData(t);
+        }
+      })
+    );
+  }
+  async _calculate(i) {
+    const { forceCalculation: a = !1, dirtyRanges: e = [], dirtyNameMap: t = {}, dirtyDefinedNameMap: r = {}, dirtyUnitFeatureMap: n = {}, dirtyUnitOtherFormulaMap: s = {}, clearDependencyTreeCache: o = {}, maxIteration: u = wo, rowData: c } = i, l = this._formulaDataModel.getFormulaData(), f = this._formulaDataModel.getArrayFormulaCellData(), h = this._formulaDataModel.getArrayFormulaRange();
+    this._calculateFormulaService.execute({
+      formulaData: l,
+      arrayFormulaCellData: f,
+      arrayFormulaRange: h,
+      forceCalculate: a,
+      dirtyRanges: e,
+      dirtyNameMap: t,
+      dirtyDefinedNameMap: r,
+      dirtyUnitFeatureMap: n,
+      dirtyUnitOtherFormulaMap: s,
+      clearDependencyTreeCache: o,
+      maxIteration: u,
+      rowData: c
+    });
+  }
+  // Notification
+  _initialExecuteFormulaListener() {
+    this._calculateFormulaService.executionCompleteListener$.subscribe(async (i) => {
+      const a = i.functionsExecutedState;
+      switch (a) {
+        case mr.NOT_EXECUTED:
+          break;
+        case mr.STOP_EXECUTION:
+          break;
+        case mr.SUCCESS:
+          await this._applyResult(i);
+          break;
+        case mr.INITIAL:
+          break;
+      }
+      this._commandService.executeCommand(
+        En.id,
+        {
+          functionsExecutedState: a
+        },
+        {
+          onlyLocal: !0
+        }
+      );
+    }), this._calculateFormulaService.executionInProgressListener$.subscribe((i) => {
+      this._commandService.executeCommand(
+        En.id,
+        {
+          stageInfo: i
+        },
+        {
+          onlyLocal: !0
+        }
+      );
+    });
+  }
+  async _applyResult(i) {
+    const { unitData: a, unitOtherData: e, arrayFormulaRange: t, arrayFormulaCellData: r, clearArrayFormulaCellData: n } = i;
+    if (!a) {
+      console.error("No sheetData from Formula Engine!");
+      return;
+    }
+    t && (this._formulaDataModel.clearPreviousArrayFormulaCellData(n), this._formulaDataModel.mergeArrayFormulaCellData(r), this._formulaDataModel.mergeArrayFormulaRange(t), this._commandService.executeCommand(
+      xs.id,
+      {
+        arrayFormulaRange: this._formulaDataModel.getArrayFormulaRange(),
+        arrayFormulaCellData: this._formulaDataModel.getArrayFormulaCellData()
+      },
+      {
+        onlyLocal: !0
+      }
+    )), this._commandService.executeCommand(
+      Ro.id,
+      {
+        unitData: Xc(a),
+        unitOtherData: e
+      },
+      {
+        onlyLocal: !0
+      }
+    );
+  }
+};
+xn = um([
+  Os(0, ur),
+  Os(1, ia),
+  Os(2, ye(br))
+], xn);
+const ki = /[\[\]]/g;
+function $i(i, a) {
+  if (ki.test(i)) {
+    const e = Number(i.replace(ki, ""));
+    return a + e;
+  }
+  return Number(i) - 1;
+}
+function ws(i, a = 0, e = 0) {
+  i = i.toLocaleUpperCase();
+  const t = i.split(/[RC]/), r = t[1], n = t[2], s = $i(r, a), o = $i(n, e);
+  return {
+    row: s,
+    column: o,
+    absoluteRefType: Se.NONE
+  };
+}
+function cm(i, a = 0, e = 0) {
+  const { refBody: t, sheetName: r, unitId: n } = Ca(i), s = t.indexOf(":");
+  if (s === -1) {
+    const _ = ws(t, a, e), E = _.row, b = _.column, R = _.absoluteRefType;
+    return {
+      unitId: n,
+      sheetName: r,
+      range: {
+        startRow: E,
+        startColumn: b,
+        endRow: E,
+        endColumn: b,
+        startAbsoluteRefType: R,
+        endAbsoluteRefType: R
+      }
+    };
+  }
+  const o = t.substring(0, s), u = t.substring(s + 1), c = ws(o, a, e), l = ws(u, a, e), f = c.row, h = c.column, d = l.row, C = l.column;
+  return {
+    unitId: n,
+    sheetName: r,
+    range: {
+      startRow: f,
+      startColumn: h,
+      endRow: d,
+      endColumn: C,
+      startAbsoluteRefType: c.absoluteRefType,
+      endAbsoluteRefType: l.absoluteRefType
+    }
+  };
+}
+function lm(i) {
+  const a = en(i.startRow, i.startAbsoluteRefType, !0), e = en(i.startColumn, i.startAbsoluteRefType, !1), t = en(i.endRow, i.endAbsoluteRefType, !0), r = en(i.endColumn, i.endAbsoluteRefType, !1);
+  return a === t && e === r ? `R${a}C${e}` : `R${a}C${e}:R${t}C${r}`;
+}
+function en(i, a = Se.ALL, e) {
+  switch (i += 1, a) {
+    case Se.ALL:
+      return `${i}`;
+    case Se.ROW:
+      return e ? `${i}` : `[${i}]`;
+    case Se.COLUMN:
+      return e ? `[${i}]` : `${i}`;
+    case Se.NONE:
+      return `[${i}]`;
+  }
+}
+function Jt(i) {
+  let a = i;
+  if (i.isArray()) {
+    const e = i.getRowCount(), t = i.getColumnCount();
+    if (e > 1 || t > 1)
+      return g.create(m.VALUE);
+    a = i.get(0, 0);
+  }
+  return a.isError(), a;
+}
+function Qr(...i) {
+  for (let a = 0; a < i.length; a++) {
+    const e = Jt(i[a]);
+    if (e.isError())
+      return {
+        isError: !0,
+        errorObject: e
+      };
+    i[a] = e;
+  }
+  return {
+    isError: !1,
+    variants: i
+  };
+}
+function H(...i) {
+  for (let a = 0; a < i.length; a++) {
+    const e = Jt(i[a]);
+    if (e.isError())
+      return {
+        isError: !0,
+        errorObject: e
+      };
+    if (e.isBoolean())
+      return {
+        isError: !0,
+        errorObject: g.create(m.VALUE)
+      };
+    i[a] = e;
+  }
+  return {
+    isError: !1,
+    variants: i
+  };
+}
+function ke(...i) {
+  for (let a = 0; a < i.length; a++) {
+    let e = i[a];
+    if (e.isError())
+      return {
+        isError: !0,
+        errorObject: e
+      };
+    if (e.isNull())
+      return {
+        isError: !0,
+        errorObject: g.create(m.NA)
+      };
+    if (e = Jt(i[a]), e.isError())
+      return {
+        isError: !0,
+        errorObject: e
+      };
+    if (e.isBoolean())
+      return {
+        isError: !0,
+        errorObject: g.create(m.VALUE)
+      };
+    i[a] = e;
+  }
+  return {
+    isError: !1,
+    variants: i
+  };
+}
+function I(...i) {
+  for (let a = 0; a < i.length; a++) {
+    let e = i[a];
+    if (e.isString() && (e = e.convertToNumberObjectValue()), e.isError())
+      return {
+        isError: !0,
+        errorObject: e
+      };
+    i[a] = e;
+  }
+  return {
+    isError: !1,
+    variants: i
+  };
+}
+class fm extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 3);
@@ -10881,25 +11658,25 @@ class Kh extends V {
   calculate(e, t, r) {
     if (e.isError())
       return e;
-    const { isError: n, errorObject: s, variants: o } = Yr(t, r);
+    const { isError: n, errorObject: s, variants: o } = Qr(t, r);
     if (n)
       return s;
-    const { isError: u, errorObject: c, variants: l } = B(...o);
+    const { isError: u, errorObject: c, variants: l } = I(...o);
     if (u)
       return c;
-    const [f, h] = l, d = Math.floor(+f.getValue()), _ = Math.floor(+h.getValue());
-    if (d < 0 || _ < 0)
+    const [f, h] = l, d = Math.floor(+f.getValue()), C = Math.floor(+h.getValue());
+    if (d < 0 || C < 0)
       return g.create(m.NUM);
-    if (d === 0 || _ === 0)
+    if (d === 0 || C === 0)
       return g.create(m.REF);
-    const C = e.isArray() ? e.getRowCount() : 1, E = e.isArray() ? e.getColumnCount() : 1;
-    if (C === 1 && E === 1)
+    const _ = e.isArray() ? e.getRowCount() : 1, E = e.isArray() ? e.getColumnCount() : 1;
+    if (_ === 1 && E === 1)
       return e.isArray() ? e.get(0, 0) : e;
-    const b = d > C ? C : d, R = _ > E ? E : _;
+    const b = d > _ ? _ : d, R = C > E ? E : C;
     return e.slice([0, b], [0, R]);
   }
 }
-class Xh extends V {
+class hm extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -10915,7 +11692,7 @@ class Xh extends V {
           t.push([l]);
         }
     }
-    return q.create({
+    return W.create({
       calculateValueList: t,
       rowCount: t.length,
       columnCount: 1,
@@ -10926,12 +11703,12 @@ class Xh extends V {
     });
   }
 }
-var ea = /* @__PURE__ */ ((i) => (i.ARRAY_CONSTRAIN = "ARRAY_CONSTRAIN", i.FLATTEN = "FLATTEN", i))(ea || {});
-const Zh = [
-  [Kh, ea.ARRAY_CONSTRAIN],
-  [Xh, ea.FLATTEN]
+var ua = /* @__PURE__ */ ((i) => (i.ARRAY_CONSTRAIN = "ARRAY_CONSTRAIN", i.FLATTEN = "FLATTEN", i))(ua || {});
+const mm = [
+  [fm, ua.ARRAY_CONSTRAIN],
+  [hm, ua.FLATTEN]
 ];
-var Rr;
+var Nr;
 ((i) => {
   const a = 0.636619772;
   function e(n, s) {
@@ -10947,8 +11724,8 @@ var Rr;
       return u;
     const l = 2 / n;
     let f = o, h = u, d = u;
-    for (let _ = 1; _ < s; ++_)
-      d = h * _ * l + c * f, f = h, h = d;
+    for (let C = 1; C < s; ++C)
+      d = h * C * l + c * f, f = h, h = d;
     return d;
   }
   function r(n, s, o, u) {
@@ -10965,70 +11742,70 @@ var Rr;
         return s(l);
       if (f < 0)
         return Number.NaN;
-      const h = f | 0, d = n(l), _ = s(l);
-      return t(l, h, d, _, u);
+      const h = f | 0, d = n(l), C = s(l);
+      return t(l, h, d, C, u);
     };
   }
   i.besselj = /* @__PURE__ */ (() => {
     const n = [-184.9052456, 77392.33017, -1121442418e-2, 6516196407e-1, -13362590354, 57568490574], s = [1, 267.8532712, 59272.64853, 9494680718e-3, 1029532985, 57568490411], o = [2093887211e-16, -2073370639e-15, 2734510407e-14, -0.001098628627, 1], u = [-934935152e-16, 7621095161e-16, -6911147651e-15, 1430488765e-13, -0.01562499995];
-    function c(C) {
-      let E = 0, b = 0, R = 0, p = C * C;
-      if (C < 8)
+    function c(_) {
+      let E = 0, b = 0, R = 0, p = _ * _;
+      if (_ < 8)
         b = e(n, p), R = e(s, p), E = b / R;
       else {
-        const N = C - 0.785398164;
-        p = 64 / p, b = e(o, p), R = e(u, p), E = Math.sqrt(a / C) * (Math.cos(N) * b - Math.sin(N) * R * 8 / C);
+        const N = _ - 0.785398164;
+        p = 64 / p, b = e(o, p), R = e(u, p), E = Math.sqrt(a / _) * (Math.cos(N) * b - Math.sin(N) * R * 8 / _);
       }
       return E;
     }
     const l = [-30.16036606, 15704.4826, -2972611439e-3, 2423968531e-1, -7895059235, 72362614232], f = [1, 376.9991397, 99447.43394, 1858330474e-2, 2300535178, 144725228442], h = [-240337019e-15, 2457520174e-15, -3516396496e-14, 183105e-8, 1], d = [105787412e-15, -88228987e-14, 8449199096e-15, -2002690873e-13, 0.04687499995];
-    function _(C) {
-      let E = 0, b = 0, R = 0, p = C * C;
-      const N = Math.abs(C) - 2.356194491;
-      return Math.abs(C) < 8 ? (b = C * e(l, p), R = e(f, p), E = b / R) : (p = 64 / p, b = e(h, p), R = e(d, p), E = Math.sqrt(a / Math.abs(C)) * (Math.cos(N) * b - Math.sin(N) * R * 8 / Math.abs(C)), C < 0 && (E = -E)), E;
+    function C(_) {
+      let E = 0, b = 0, R = 0, p = _ * _;
+      const N = Math.abs(_) - 2.356194491;
+      return Math.abs(_) < 8 ? (b = _ * e(l, p), R = e(f, p), E = b / R) : (p = 64 / p, b = e(h, p), R = e(d, p), E = Math.sqrt(a / Math.abs(_)) * (Math.cos(N) * b - Math.sin(N) * R * 8 / Math.abs(_)), _ < 0 && (E = -E)), E;
     }
-    return function C(E, b) {
+    return function _(E, b) {
       const R = Math.round(b);
       if (!Number.isFinite(E))
         return Number.isNaN(E) ? E : 0;
       if (R < 0)
-        return (R % 2 ? -1 : 1) * C(E, -R);
+        return (R % 2 ? -1 : 1) * _(E, -R);
       if (E < 0)
-        return (R % 2 ? -1 : 1) * C(-E, R);
+        return (R % 2 ? -1 : 1) * _(-E, R);
       if (R === 0)
         return c(E);
       if (R === 1)
-        return _(E);
+        return C(E);
       if (E === 0)
         return 0;
       let p = 0;
       if (E > R)
-        p = t(E, R, c(E), _(E), -1);
+        p = t(E, R, c(E), C(E), -1);
       else {
         const N = 2 * Math.floor((R + Math.floor(Math.sqrt(40 * R))) / 2);
-        let M = !1, w = 0, S = 0, D = 1, L = 0;
-        const U = 2 / E;
+        let w = !1, S = 0, M = 0, D = 1, L = 0;
+        const T = 2 / E;
         for (let x = N; x > 0; x--)
-          if (L = x * U * D - w, w = D, D = L, Math.abs(D) > 1e10 && (D *= 1e-10, w *= 1e-10, p *= 1e-10, S *= 1e-10), M && (S += D), M = !M, x === R && (p = w), N - x > 100 && p === 0)
+          if (L = x * T * D - S, S = D, D = L, Math.abs(D) > 1e10 && (D *= 1e-10, S *= 1e-10, p *= 1e-10, M *= 1e-10), w && (M += D), w = !w, x === R && (p = S), N - x > 100 && p === 0)
             return Number.NaN;
-        S = 2 * S - D, p /= S;
+        M = 2 * M - D, p /= M;
       }
       return p;
     };
   })(), i.bessely = (() => {
     const n = [228.4622733, -86327.92757, 1087988129e-2, -5123598036e-1, 7062834065, -2957821389], s = [1, 226.1030244, 47447.2647, 7189466438e-3, 7452499648e-1, 40076544269], o = [2093887211e-16, -2073370639e-15, 2734510407e-14, -0.001098628627, 1], u = [-934945152e-16, 7621095161e-16, -6911147651e-15, 1430488765e-13, -0.01562499995];
-    function c(C) {
-      let E = 0, b = 0, R = 0, p = C * C;
-      const N = C - 0.785398164;
-      return C < 8 ? (b = e(n, p), R = e(s, p), E = b / R + a * (0, i.besselj)(C, 0) * Math.log(C)) : (p = 64 / p, b = e(o, p), R = e(u, p), E = Math.sqrt(a / C) * (Math.sin(N) * b + Math.cos(N) * R * 8 / C)), E;
+    function c(_) {
+      let E = 0, b = 0, R = 0, p = _ * _;
+      const N = _ - 0.785398164;
+      return _ < 8 ? (b = e(n, p), R = e(s, p), E = b / R + a * (0, i.besselj)(_, 0) * Math.log(_)) : (p = 64 / p, b = e(o, p), R = e(u, p), E = Math.sqrt(a / _) * (Math.sin(N) * b + Math.cos(N) * R * 8 / _)), E;
     }
     const l = [8511.937935, -4237922726e-3, 7349264551e-1, -51534381390, 127527439e4, -4900604943e3], f = [1, 354.9632885, 102042.605, 2245904002e-2, 3733650367, 424441966400, 249958057e5], h = [-240337019e-15, 2457520174e-15, -3516396496e-14, 183105e-8, 1], d = [105787412e-15, -88228987e-14, 8449199096e-15, -2002690873e-13, 0.04687499995];
-    function _(C) {
-      let E = 0, b = 0, R = 0, p = C * C;
-      const N = C - 2.356194491;
-      return C < 8 ? (b = C * e(l, p), R = e(f, p), E = b / R + a * ((0, i.besselj)(C, 1) * Math.log(C) - 1 / C)) : (p = 64 / p, b = e(h, p), R = e(d, p), E = Math.sqrt(a / C) * (Math.sin(N) * b + Math.cos(N) * R * 8 / C)), E;
+    function C(_) {
+      let E = 0, b = 0, R = 0, p = _ * _;
+      const N = _ - 2.356194491;
+      return _ < 8 ? (b = _ * e(l, p), R = e(f, p), E = b / R + a * ((0, i.besselj)(_, 1) * Math.log(_) - 1 / _)) : (p = 64 / p, b = e(h, p), R = e(d, p), E = Math.sqrt(a / _) * (Math.sin(N) * b + Math.cos(N) * R * 8 / _)), E;
     }
-    return r(c, _, 1, -1);
+    return r(c, C, 1, -1);
   })(), i.besseli = /* @__PURE__ */ (() => {
     const n = [45813e-7, 0.0360768, 0.2659732, 1.2067492, 3.0899424, 3.5156229, 1], s = [392377e-8, -0.01647633, 0.02635537, -0.02057706, 916281e-8, -157565e-8, 225319e-8, 0.01328592, 0.39894228];
     function o(f) {
@@ -11039,25 +11816,25 @@ var Rr;
       return f < 3.75 ? f * e(u, f * f / (3.75 * 3.75)) : (f < 0 ? -1 : 1) * Math.exp(Math.abs(f)) / Math.sqrt(Math.abs(f)) * e(c, 3.75 / Math.abs(f));
     }
     return function f(h, d) {
-      const _ = Math.round(d);
-      if (_ === 0)
+      const C = Math.round(d);
+      if (C === 0)
         return o(h);
-      if (_ === 1)
+      if (C === 1)
         return l(h);
-      if (_ < 0)
+      if (C < 0)
         return Number.NaN;
       if (Math.abs(h) === 0)
         return 0;
       if (h === 1 / 0)
         return 1 / 0;
-      let C = 0, E;
+      let _ = 0, E;
       const b = 2 / Math.abs(h);
       let R = 0, p = 1, N = 0;
-      const M = 2 * Math.round((_ + Math.round(Math.sqrt(40 * _))) / 2);
-      for (E = M; E > 0; E--)
-        if (N = E * b * p + R, R = p, p = N, Math.abs(p) > 1e10 && (p *= 1e-10, R *= 1e-10, C *= 1e-10), E === _ && (C = R), M - E > 100 && C === 0)
+      const w = 2 * Math.round((C + Math.round(Math.sqrt(40 * C))) / 2);
+      for (E = w; E > 0; E--)
+        if (N = E * b * p + R, R = p, p = N, Math.abs(p) > 1e10 && (p *= 1e-10, R *= 1e-10, _ *= 1e-10), E === C && (_ = R), w - E > 100 && _ === 0)
           return Number.NaN;
-      return C *= f(h, 0) / p, h < 0 && _ % 2 ? -C : C;
+      return _ *= f(h, 0) / p, h < 0 && C % 2 ? -_ : _;
     };
   })(), i.besselk = (() => {
     const n = [74e-7, 1075e-7, 262698e-8, 0.0348859, 0.23069756, 0.4227842, -0.57721566], s = [53208e-8, -25154e-7, 587872e-8, -0.01062446, 0.02189568, -0.07832358, 1.25331414];
@@ -11070,17 +11847,17 @@ var Rr;
     }
     return r(o, l, 2, 1);
   })();
-})(Rr || (Rr = {}));
-function wa(i) {
+})(Nr || (Nr = {}));
+function va(i) {
   return /^[01]{1,10}$/.test(i);
 }
-function Sa(i) {
+function Ta(i) {
   return /^[0-7]{1,10}$/.test(i);
 }
-function Da(i) {
+function Ba(i) {
   return /^[0-9A-Fa-f]{1,10}$/.test(i);
 }
-function Jt(i) {
+function er(i) {
   if (i === 0)
     return 0;
   const a = [
@@ -11123,10 +11900,10 @@ function Jt(i) {
   const c = r * Math.exp(-e * e + 0.5 * (a[0] + n * s) - o);
   return t ? c - 1 : 1 - c;
 }
-function La(i) {
-  return 1 - Jt(i);
+function Ia(i) {
+  return 1 - er(i);
 }
-function zh(i) {
+function gm(i) {
   if (i >= 2)
     return -100;
   if (i <= 0)
@@ -11134,12 +11911,12 @@ function zh(i) {
   const a = i < 1 ? i : 2 - i, e = Math.sqrt(-2 * Math.log(a / 2));
   let t = -0.70711 * ((2.30753 + e * 0.27061) / (1 + e * (0.99229 + e * 0.04481)) - e);
   for (let r = 0; r < 2; r++) {
-    const n = La(t) - a;
+    const n = Ia(t) - a;
     t += n / (1.1283791670955126 * Math.exp(-t * t) - t * n);
   }
   return i < 1 ? t : -t;
 }
-function gr(i, a = 1) {
+function Cr(i, a = 1) {
   let e = Math.floor(i);
   if (i < 0)
     return Number.NaN;
@@ -11148,14 +11925,14 @@ function gr(i, a = 1) {
     t *= e, e -= a;
   return t;
 }
-function er(i, a) {
+function tr(i, a) {
   const e = Math.min(i - a, a);
   let t = 1;
   for (let r = 1; r <= e && Number.isFinite(t); r++)
     t *= i - r + 1, t /= r;
   return t;
 }
-function ta(i, a) {
+function ca(i, a) {
   let e = Math.floor(i), t = Math.floor(a);
   for (; t !== 0; ) {
     const r = t;
@@ -11163,17 +11940,17 @@ function ta(i, a) {
   }
   return e;
 }
-function Pi(i, a) {
-  const e = ta(i, a);
+function Yi(i, a) {
+  const e = ca(i, a);
   return e === 0 ? 0 : Math.abs(i * a) / e;
 }
-function Pa(i) {
+function Fa(i) {
   const a = i.length;
   if (a === 1)
     return i[0][0];
   if (a === 2)
     return i[0][0] * i[1][1] - i[0][1] * i[1][0];
-  const { rowSwap: e, smallPivotDetected: t, luMatrix: r, permutation: n } = ko(i);
+  const { rowSwap: e, smallPivotDetected: t, luMatrix: r, permutation: n } = zo(i);
   if (t)
     return 0;
   let s = e ? 1 : -1;
@@ -11181,53 +11958,53 @@ function Pa(i) {
     s *= r[o][o];
   return s === 0 ? 0 : s;
 }
-function Jh(i) {
-  const a = Pa(i);
-  return a === 0 ? null : i.length === 1 ? [[1 / a]] : tm(i).map((r) => r.map((n) => n / a));
+function dm(i) {
+  const a = Fa(i);
+  return a === 0 ? null : i.length === 1 ? [[1 / a]] : _m(i).map((r) => r.map((n) => n / a));
 }
-function em(i, a, e) {
+function Cm(i, a, e) {
   return i.filter((t, r) => r !== a).map((t) => t.filter((r, n) => n !== e));
 }
-function tm(i) {
+function _m(i) {
   const a = i.length, e = Array.from({ length: a }, () => new Array(a).fill(0));
   for (let t = 0; t < a; t++)
     for (let r = 0; r < a; r++) {
-      const s = ((t + r) % 2 === 0 ? 1 : -1) * Pa(em(i, t, r));
+      const s = ((t + r) % 2 === 0 ? 1 : -1) * Fa(Cm(i, t, r));
       e[r][t] = s === 0 ? 0 : s;
     }
   return e;
 }
-function dr(i, a) {
+function _r(i, a) {
   return i.map((e) => a[0].map(
     (t, r) => e.reduce((n, s, o) => n + s * a[o][r], 0)
   ));
 }
-function Ct(i) {
+function _t(i) {
   return i[0].map((a, e) => i.map((t) => t[e]));
 }
-function rm(i) {
-  const { smallPivotDetected: a, luMatrix: e, permutation: t } = ko(i);
-  return a ? null : nm(e, t);
+function Am(i) {
+  const { smallPivotDetected: a, luMatrix: e, permutation: t } = zo(i);
+  return a ? null : Em(e, t);
 }
-function ko(i) {
-  const a = Ct(i), e = a.length, t = a[0].length;
+function zo(i) {
+  const a = _t(i), e = a.length, t = a[0].length;
   let r = !0, n = !1;
-  const s = ra(e, t, 0), o = new Array(t).fill(0).map((u, c) => c);
+  const s = la(e, t, 0), o = new Array(t).fill(0).map((u, c) => c);
   for (let u = 0; u < t; u++) {
     for (let h = 0; h < u; h++) {
       let d = a[h][u];
-      for (let _ = 0; _ < h; _++)
-        d -= s[h][_] * s[_][u];
+      for (let C = 0; C < h; C++)
+        d -= s[h][C] * s[C][u];
       s[h][u] = d;
     }
     let c = -1 / 0, l = u;
     for (let h = u; h < e; h++) {
       let d = a[h][u];
-      for (let C = 0; C < u; C++)
-        d -= s[h][C] * s[C][u];
+      for (let _ = 0; _ < u; _++)
+        d -= s[h][_] * s[_][u];
       s[h][u] = d;
-      const _ = Math.abs(d);
-      _ > c && (c = _, l = h);
+      const C = Math.abs(d);
+      C > c && (c = C, l = h);
     }
     if (Math.abs(s[l][u]) < 1e-11) {
       n = !0;
@@ -11245,11 +12022,11 @@ function ko(i) {
     permutation: o
   };
 }
-function nm(i, a) {
-  const e = a.length, t = ra(e, e, 0);
+function Em(i, a) {
+  const e = a.length, t = la(e, e, 0);
   for (let n = 0; n < e; n++)
     t[n][n] = 1;
-  const r = ra(e, e, 0);
+  const r = la(e, e, 0);
   for (let n = 0; n < e; n++) {
     const s = a[n];
     for (let o = 0; o < e; o++)
@@ -11275,7 +12052,7 @@ function nm(i, a) {
   }
   return r;
 }
-function ra(i, a, e) {
+function la(i, a, e) {
   const t = [];
   for (let r = 0; r < i; r++) {
     t[r] = [];
@@ -11284,90 +12061,90 @@ function ra(i, a, e) {
   }
   return t;
 }
-function sm(i) {
-  const a = am(i);
+function bm(i) {
+  const a = ym(i);
   if (!a)
     return null;
-  const { matrixU: e, matrixS: t, matrixV: r } = a, n = Ct(e), s = Array.from({ length: t.length }, () => new Array(i[0].length).fill(0)), o = Math.max(i.length, i[0].length) * Number.EPSILON * t[0];
+  const { matrixU: e, matrixS: t, matrixV: r } = a, n = _t(e), s = Array.from({ length: t.length }, () => new Array(i[0].length).fill(0)), o = Math.max(i.length, i[0].length) * Number.EPSILON * t[0];
   for (let u = 0; u < t.length; u++)
     Math.abs(t[u]) > o && (s[u][u] = 1 / t[u]);
-  return dr(r, dr(s, n));
+  return _r(r, _r(s, n));
 }
-function am(i) {
-  const a = Ct(i), e = a.length, t = a[0].length;
+function ym(i) {
+  const a = _t(i), e = a.length, t = a[0].length;
   if (e < t)
     return null;
   const r = new Array(t).fill(0), n = new Array(t).fill(0), s = Array.from({ length: t }, () => new Array(t).fill(0));
   let o = Number.EPSILON, u = 0, c = 0, l = 0;
-  for (let C = 0; C < t; C++) {
-    if (r[C] = u, c = ps(a, C, e, C, C), c <= 1e-64 / o)
+  for (let _ = 0; _ < t; _++) {
+    if (r[_] = u, c = Ss(a, _, e, _, _), c <= 1e-64 / o)
       u = 0;
     else {
-      u = Math.sqrt(c), a[C][C] >= 0 && (u = -u);
-      const b = a[C][C] * u - c;
-      a[C][C] -= u;
-      for (let R = C + 1; R < t; R++) {
-        c = ps(a, C, e, C, R);
-        for (let p = C; p < e; p++)
-          a[p][R] += c / b * a[p][C];
+      u = Math.sqrt(c), a[_][_] >= 0 && (u = -u);
+      const b = a[_][_] * u - c;
+      a[_][_] -= u;
+      for (let R = _ + 1; R < t; R++) {
+        c = Ss(a, _, e, _, R);
+        for (let p = _; p < e; p++)
+          a[p][R] += c / b * a[p][_];
       }
     }
-    if (n[C] = u, c = xi(a, C + 1, t, C, C), c <= 1e-64 / o)
+    if (n[_] = u, c = Hi(a, _ + 1, t, _, _), c <= 1e-64 / o)
       u = 0;
     else {
-      u = Math.sqrt(c), a[C][C + 1] >= 0 && (u = -u);
-      const b = a[C][C + 1] * u - c;
-      a[C][C + 1] -= u;
-      for (let R = C + 1; R < t; R++)
-        r[R] = a[C][R] / b;
-      for (let R = C + 1; R < e; R++) {
-        c = xi(a, C + 1, t, R, C);
-        for (let p = C + 1; p < t; p++)
+      u = Math.sqrt(c), a[_][_ + 1] >= 0 && (u = -u);
+      const b = a[_][_ + 1] * u - c;
+      a[_][_ + 1] -= u;
+      for (let R = _ + 1; R < t; R++)
+        r[R] = a[_][R] / b;
+      for (let R = _ + 1; R < e; R++) {
+        c = Hi(a, _ + 1, t, R, _);
+        for (let p = _ + 1; p < t; p++)
           a[R][p] += c * r[p];
       }
     }
-    const E = Math.abs(n[C]) + Math.abs(r[C]);
+    const E = Math.abs(n[_]) + Math.abs(r[_]);
     E > l && (l = E);
   }
   let f = 0;
-  for (let C = t - 1; C >= 0; C--) {
+  for (let _ = t - 1; _ >= 0; _--) {
     if (u !== 0) {
       for (let E = f; E < t; E++)
-        s[E][C] = a[C][E] / (u * a[C][C + 1]);
+        s[E][_] = a[_][E] / (u * a[_][_ + 1]);
       for (let E = f; E < t; E++) {
         c = 0;
         for (let b = f; b < t; b++)
-          c += a[C][b] * s[b][E];
+          c += a[_][b] * s[b][E];
         for (let b = f; b < t; b++)
-          s[b][E] += c * s[b][C];
+          s[b][E] += c * s[b][_];
       }
     }
     for (let E = f; E < t; E++)
-      s[C][E] = 0, s[E][C] = 0;
-    s[C][C] = 1, u = r[C], f = C;
+      s[_][E] = 0, s[E][_] = 0;
+    s[_][_] = 1, u = r[_], f = _;
   }
-  for (let C = t - 1; C >= 0; C--) {
-    u = n[C];
-    for (let E = C + 1; E < t; E++)
-      a[C][E] = 0;
+  for (let _ = t - 1; _ >= 0; _--) {
+    u = n[_];
+    for (let E = _ + 1; E < t; E++)
+      a[_][E] = 0;
     if (u !== 0) {
-      for (let E = C + 1; E < t; E++) {
-        c = ps(a, C + 1, e, C, E);
-        for (let b = C; b < e; b++)
-          a[b][E] += c / (a[C][C] * u) * a[b][C];
+      for (let E = _ + 1; E < t; E++) {
+        c = Ss(a, _ + 1, e, _, E);
+        for (let b = _; b < e; b++)
+          a[b][E] += c / (a[_][_] * u) * a[b][_];
       }
-      for (let E = C; E < e; E++)
-        a[E][C] /= u;
+      for (let E = _; E < e; E++)
+        a[E][_] /= u;
     } else
-      for (let E = C; E < e; E++)
-        a[E][C] = 0;
-    a[C][C] += 1;
+      for (let E = _; E < e; E++)
+        a[E][_] = 0;
+    a[_][_] += 1;
   }
   o *= l;
-  let h = 0, d = 0, _ = 0;
-  for (let C = t - 1; C >= 0; C--)
+  let h = 0, d = 0, C = 0;
+  for (let _ = t - 1; _ >= 0; _--)
     for (let E = 0; E < 50; E++) {
-      let b = !1, R = C;
+      let b = !1, R = _;
       for (; R >= 0; R--) {
         if (Math.abs(r[R]) <= o) {
           b = !0;
@@ -11377,59 +12154,59 @@ function am(i) {
           break;
       }
       if (!b) {
-        let w = 0, S = 1;
-        for (let D = R; D < C + 1 && (h = S * r[D], d = n[D], r[D] *= w, !(Math.abs(h) <= o)); D++) {
-          _ = Jr(h, d), n[D] = _, w = d / _, S = -h / _;
+        let S = 0, M = 1;
+        for (let D = R; D < _ + 1 && (h = M * r[D], d = n[D], r[D] *= S, !(Math.abs(h) <= o)); D++) {
+          C = tn(h, d), n[D] = C, S = d / C, M = -h / C;
           for (let L = 0; L < e; L++) {
-            const U = a[L][R - 1], x = a[L][D];
-            a[L][R - 1] = U * w + x * S, a[L][D] = -U * S + x * w;
+            const T = a[L][R - 1], x = a[L][D];
+            a[L][R - 1] = T * S + x * M, a[L][D] = -T * M + x * S;
           }
         }
       }
-      if (R === C) {
-        if (n[C] < 0) {
-          n[C] = -n[C];
-          for (let w = 0; w < t; w++)
-            s[w][C] = -s[w][C];
+      if (R === _) {
+        if (n[_] < 0) {
+          n[_] = -n[_];
+          for (let S = 0; S < t; S++)
+            s[S][_] = -s[S][_];
         }
         break;
       }
       if (E >= 49)
         return null;
       let p = n[R];
-      h = ((n[C - 1] - n[C]) * (n[C - 1] + n[C]) + (r[C - 1] - r[C]) * (r[C - 1] + r[C])) / (2 * r[C] * n[C - 1]), _ = Jr(h, 1), h < 0 ? h = ((p - n[C]) * (p + n[C]) + r[C] * (n[C - 1] / (h - _) - r[C])) / p : h = ((p - n[C]) * (p + n[C]) + r[C] * (n[C - 1] / (h + _) - r[C])) / p;
-      let N = 1, M = 1;
-      for (let w = R + 1; w < C + 1; w++) {
-        let S = r[w], D = n[w];
-        d = M * S, S *= N, _ = Jr(h, d), r[w - 1] = _, N = h / _, M = d / _, h = p * N + S * M, d = D * M, S = -p * M + S * N, D *= N;
+      h = ((n[_ - 1] - n[_]) * (n[_ - 1] + n[_]) + (r[_ - 1] - r[_]) * (r[_ - 1] + r[_])) / (2 * r[_] * n[_ - 1]), C = tn(h, 1), h < 0 ? h = ((p - n[_]) * (p + n[_]) + r[_] * (n[_ - 1] / (h - C) - r[_])) / p : h = ((p - n[_]) * (p + n[_]) + r[_] * (n[_ - 1] / (h + C) - r[_])) / p;
+      let N = 1, w = 1;
+      for (let S = R + 1; S < _ + 1; S++) {
+        let M = r[S], D = n[S];
+        d = w * M, M *= N, C = tn(h, d), r[S - 1] = C, N = h / C, w = d / C, h = p * N + M * w, d = D * w, M = -p * w + M * N, D *= N;
         for (let L = 0; L < t; L++) {
-          const U = s[L][w - 1], x = s[L][w];
-          s[L][w - 1] = U * N + x * M, s[L][w] = -U * M + x * N;
+          const T = s[L][S - 1], x = s[L][S];
+          s[L][S - 1] = T * N + x * w, s[L][S] = -T * w + x * N;
         }
-        _ = Jr(h, d), n[w - 1] = _, N = h / _, M = d / _, h = N * S + M * D, p = -M * S + N * D;
+        C = tn(h, d), n[S - 1] = C, N = h / C, w = d / C, h = N * M + w * D, p = -w * M + N * D;
         for (let L = 0; L < e; L++) {
-          const U = a[L][w - 1], x = a[L][w];
-          a[L][w - 1] = U * N + x * M, a[L][w] = -U * M + x * N;
+          const T = a[L][S - 1], x = a[L][S];
+          a[L][S - 1] = T * N + x * w, a[L][S] = -T * w + x * N;
         }
       }
-      r[R] = 0, r[C] = h, n[C] = p;
+      r[R] = 0, r[_] = h, n[_] = p;
     }
-  for (let C = 0; C < n.length; C++)
-    n[C] < o && (n[C] = 0);
-  for (let C = 0; C < t; C++)
-    for (let E = C - 1; E >= 0; E--)
-      if (n[E] < n[C]) {
+  for (let _ = 0; _ < n.length; _++)
+    n[_] < o && (n[_] = 0);
+  for (let _ = 0; _ < t; _++)
+    for (let E = _ - 1; E >= 0; E--)
+      if (n[E] < n[_]) {
         const b = n[E];
-        n[E] = n[C], n[C] = b;
+        n[E] = n[_], n[_] = b;
         for (let R = 0; R < a.length; R++) {
-          const p = a[R][C];
-          a[R][C] = a[R][E], a[R][E] = p;
+          const p = a[R][_];
+          a[R][_] = a[R][E], a[R][E] = p;
         }
         for (let R = 0; R < s.length; R++) {
-          const p = s[R][C];
-          s[R][C] = s[R][E], s[R][E] = p;
+          const p = s[R][_];
+          s[R][_] = s[R][E], s[R][E] = p;
         }
-        C = E;
+        _ = E;
       }
   return {
     matrixU: a,
@@ -11437,23 +12214,23 @@ function am(i) {
     matrixV: s
   };
 }
-function Jr(i, a) {
+function tn(i, a) {
   let e = 0;
   return Math.abs(i) > Math.abs(a) ? (e = a / i, Math.abs(i) * Math.sqrt(1 + e * e)) : a !== 0 ? (e = i / a, Math.abs(a) * Math.sqrt(1 + e * e)) : 0;
 }
-function ps(i, a, e, t, r) {
+function Ss(i, a, e, t, r) {
   let n = 0;
   for (let s = a; s < e; s++)
     n += i[s][t] * i[s][r];
   return n;
 }
-function xi(i, a, e, t, r) {
+function Hi(i, a, e, t, r) {
   let n = 0;
   for (let s = a; s < e; s++)
     n += i[t][s] * i[r][s];
   return n;
 }
-const en = /* @__PURE__ */ new Map([
+const rn = /* @__PURE__ */ new Map([
   ["I", 1],
   ["V", 5],
   ["X", 10],
@@ -11461,7 +12238,7 @@ const en = /* @__PURE__ */ new Map([
   ["C", 100],
   ["D", 500],
   ["M", 1e3]
-]), im = /* @__PURE__ */ new Map([
+]), Rm = /* @__PURE__ */ new Map([
   [1, "I"],
   [4, "IV"],
   [5, "V"],
@@ -11487,20 +12264,20 @@ const en = /* @__PURE__ */ new Map([
   [995, "VM"],
   [999, "IM"],
   [1e3, "M"]
-]), om = [
+]), pm = [
   [1, 4, 5, 9, 10, 40, 50, 90, 100, 400, 500, 900, 1e3, 4e3],
   [1, 4, 5, 9, 10, 40, 45, 50, 90, 95, 100, 400, 450, 500, 900, 950, 1e3, 4e3],
   [1, 4, 5, 9, 10, 40, 45, 49, 50, 90, 95, 99, 100, 400, 450, 490, 500, 900, 950, 990, 1e3, 4e3],
   [1, 4, 5, 9, 10, 40, 45, 49, 50, 90, 95, 99, 100, 400, 450, 490, 495, 500, 900, 950, 990, 995, 1e3, 4e3],
   [1, 4, 5, 9, 10, 40, 45, 49, 50, 90, 95, 99, 100, 400, 450, 490, 495, 499, 500, 900, 950, 990, 995, 999, 1e3, 4e3]
 ];
-function $o(i, a, e) {
-  return i <= 0 ? 0 : i >= 1 ? 1 : es(i, a, e);
+function Jo(i, a, e) {
+  return i <= 0 ? 0 : i >= 1 ? 1 : ts(i, a, e);
 }
-function um(i, a, e) {
-  return i <= 0 || i >= 1 ? 0 : a === 1 && e === 1 ? 1 : a < 512 && e < 512 ? i ** (a - 1) * (1 - i) ** (e - 1) / ja(a, e) : Math.exp((a - 1) * Math.log(i) + (e - 1) * Math.log(1 - i) - Ua(a, e));
+function Nm(i, a, e) {
+  return i <= 0 || i >= 1 ? 0 : a === 1 && e === 1 ? 1 : a < 512 && e < 512 ? i ** (a - 1) * (1 - i) ** (e - 1) / $a(a, e) : Math.exp((a - 1) * Math.log(i) + (e - 1) * Math.log(1 - i) - Ya(a, e));
 }
-function xa(i, a, e) {
+function ka(i, a, e) {
   if (i <= 0)
     return 0;
   if (i >= 1)
@@ -11516,21 +12293,21 @@ function xa(i, a, e) {
     const c = Math.exp(a * Math.log(a / (a + e))) / a, l = Math.exp(e * Math.log(e / (a + e))) / e, f = c + l;
     i < c / f ? r = (a * f * i) ** (1 / a) : r = 1 - (e * f * (1 - i)) ** (1 / e);
   }
-  const n = -Ua(a, e);
+  const n = -Ya(a, e);
   let s, o, u;
   for (let c = 0; c < 10; c++) {
     if (r === 0 || r === 1)
       return r;
-    if (s = es(r, a, e) - i, o = Math.exp((a - 1) * Math.log(r) + (e - 1) * Math.log(1 - r) + n), u = s / o, r -= o = u / (1 - 0.5 * Math.min(1, u * ((a - 1) / r - (e - 1) / (1 - r)))), r <= 0 && (r = 0.5 * (r + o)), r >= 1 && (r = 0.5 * (r + o + 1)), Math.abs(o) < t * r && c > 0)
+    if (s = ts(r, a, e) - i, o = Math.exp((a - 1) * Math.log(r) + (e - 1) * Math.log(1 - r) + n), u = s / o, r -= o = u / (1 - 0.5 * Math.min(1, u * ((a - 1) / r - (e - 1) / (1 - r)))), r <= 0 && (r = 0.5 * (r + o)), r >= 1 && (r = 0.5 * (r + o + 1)), Math.abs(o) < t * r && c > 0)
       break;
   }
   return r;
 }
-function es(i, a, e) {
-  const t = i === 0 || i === 1 ? 0 : Math.exp(ft(a + e) - ft(a) - ft(e) + a * Math.log(i) + e * Math.log(1 - i));
-  return i < (a + 1) / (a + e + 2) ? t * ji(i, a, e) / a : 1 - t * ji(1 - i, e, a) / e;
+function ts(i, a, e) {
+  const t = i === 0 || i === 1 ? 0 : Math.exp(ht(a + e) - ht(a) - ht(e) + a * Math.log(i) + e * Math.log(1 - i));
+  return i < (a + 1) / (a + e + 2) ? t * Qi(i, a, e) / a : 1 - t * Qi(1 - i, e, a) / e;
 }
-function ji(i, a, e) {
+function Qi(i, a, e) {
   let n = 1 - (a + e) * i / (a + 1);
   Math.abs(n) < 1e-8 && (n = 1e-8), n = 1 / n;
   let s = 1, o = n;
@@ -11541,13 +12318,13 @@ function ji(i, a, e) {
   }
   return o;
 }
-function ja(i, a) {
-  return i + a > 170 ? Math.exp(Ua(i, a)) : mn(i) * mn(a) / mn(i + a);
+function $a(i, a) {
+  return i + a > 170 ? Math.exp(Ya(i, a)) : dn(i) * dn(a) / dn(i + a);
 }
-function Ua(i, a) {
-  return ft(i) + ft(a) - ft(i + a);
+function Ya(i, a) {
+  return ht(i) + ht(a) - ht(i + a);
 }
-function Yo(i, a, e) {
+function eu(i, a, e) {
   if (i < 0)
     return 0;
   if (i >= a)
@@ -11556,44 +12333,44 @@ function Yo(i, a, e) {
     return Number.NaN;
   let t = 0;
   for (let r = 0; r <= i; r++)
-    t += va(r, a, e);
+    t += Ha(r, a, e);
   return t;
 }
-function va(i, a, e) {
-  return e === 0 || e === 1 ? a * e === i ? 1 : 0 : er(a, i) * e ** i * (1 - e) ** (a - i);
+function Ha(i, a, e) {
+  return e === 0 || e === 1 ? a * e === i ? 1 : 0 : tr(a, i) * e ** i * (1 - e) ** (a - i);
 }
-function Ta(i, a) {
-  return i <= 0 ? 0 : Ia(a / 2, i / 2);
+function Qa(i, a) {
+  return i <= 0 ? 0 : Wa(a / 2, i / 2);
 }
-function cm(i, a) {
-  return i < 0 ? 0 : i === 0 && a === 2 ? 0.5 : Math.exp((a / 2 - 1) * Math.log(i) - i / 2 - a / 2 * Math.log(2) - ft(a / 2));
+function Vm(i, a) {
+  return i < 0 ? 0 : i === 0 && a === 2 ? 0.5 : Math.exp((a / 2 - 1) * Math.log(i) - i / 2 - a / 2 * Math.log(2) - ht(a / 2));
 }
-function Ho(i, a) {
-  return i <= 0 ? 0 : i >= 1 ? 1 / 0 : 2 * Wo(i, a / 2);
+function tu(i, a) {
+  return i <= 0 ? 0 : i >= 1 ? 1 / 0 : 2 * su(i, a / 2);
 }
-function Ba(i, a, e) {
-  return i < 0 ? 0 : es(a * i / (a * i + e), a / 2, e / 2);
+function Ga(i, a, e) {
+  return i < 0 ? 0 : ts(a * i / (a * i + e), a / 2, e / 2);
 }
-function lm(i, a, e) {
+function Om(i, a, e) {
   if (i < 0)
     return 0;
   if (i === 0 && a < 2)
     return 1 / 0;
   if (i === 0 && a === 2)
     return 1;
-  let t = 1 / ja(a / 2, e / 2);
+  let t = 1 / $a(a / 2, e / 2);
   return t *= (a / e) ** (a / 2), t *= i ** (a / 2 - 1), t *= (1 + a / e * i) ** (-(a + e) / 2), t;
 }
-function Go(i, a, e) {
-  return i <= 0 ? 0 : i >= 1 ? 1 / 0 : e / (a * (1 / xa(i, a / 2, e / 2) - 1));
+function ru(i, a, e) {
+  return i <= 0 ? 0 : i >= 1 ? 1 / 0 : e / (a * (1 / ka(i, a / 2, e / 2) - 1));
 }
-function fm(i, a) {
+function wm(i, a) {
   return i < 0 ? 0 : 1 - Math.exp(-a * i);
 }
-function hm(i, a) {
+function Sm(i, a) {
   return i < 0 ? 0 : a * Math.exp(-a * i);
 }
-function Qo(i, a, e) {
+function nu(i, a, e) {
   const t = a.length;
   let r = 0, n = 0;
   for (let h = 0; h < t; h++)
@@ -11607,7 +12384,7 @@ function Qo(i, a, e) {
   const l = u / c;
   return s - l * o + l * i;
 }
-function mn(i) {
+function dn(i) {
   const a = [
     -1.716185138865495,
     24.76565080557592,
@@ -11653,16 +12430,16 @@ function mn(i) {
       l *= r, r++;
   return t && (l = t / l), l;
 }
-function mm(i, a, e) {
-  return i <= 0 ? 0 : Ia(a, i / e);
+function Mm(i, a, e) {
+  return i <= 0 ? 0 : Wa(a, i / e);
 }
-function gm(i, a, e) {
-  return i < 0 ? 0 : i === 0 && a === 1 ? 1 / e : Math.exp((a - 1) * Math.log(i) - i / e - ft(a) - a * Math.log(e));
+function Dm(i, a, e) {
+  return i < 0 ? 0 : i === 0 && a === 1 ? 1 / e : Math.exp((a - 1) * Math.log(i) - i / e - ht(a) - a * Math.log(e));
 }
-function dm(i, a, e) {
-  return i <= 0 ? 0 : i >= 1 ? 1 / 0 : e * Wo(i, a);
+function Lm(i, a, e) {
+  return i <= 0 ? 0 : i >= 1 ? 1 / 0 : e * su(i, a);
 }
-function ft(i) {
+function ht(i) {
   const a = [
     76.18009172947146,
     -86.50532032941678,
@@ -11679,10 +12456,10 @@ function ft(i) {
     r += a[n] / ++e;
   return -t + Math.log(2.5066282746310007 * r / i);
 }
-function Ia(i, a) {
+function Wa(i, a) {
   if (a < 0 || i <= 0)
     return Number.NaN;
-  const e = 1e-30, t = -~(Math.log(i >= 1 ? i : 1 / i) * 8.5 + i * 0.4 + 17), r = ft(i), n = Math.exp(-a + i * Math.log(a) - r);
+  const e = 1e-30, t = -~(Math.log(i >= 1 ? i : 1 / i) * 8.5 + i * 0.4 + 17), r = ht(i), n = Math.exp(-a + i * Math.log(a) - r);
   let s = i, o = 1 / i, u = o;
   if (a < i + 1) {
     if (n === 0)
@@ -11695,13 +12472,13 @@ function Ia(i, a) {
     return 1;
   let c = a + 1 - i, l = 1 / e, f = 1 / c, h = f;
   for (let d = 1; d <= t; d++) {
-    const _ = -d * (d - i);
-    if (c += 2, f = _ * f + c, Math.abs(f) < e && (f = e), l = c + _ / l, Math.abs(l) < e && (l = e), f = 1 / f, h *= f * l, Math.abs(f * l - 1) < e)
+    const C = -d * (d - i);
+    if (c += 2, f = C * f + c, Math.abs(f) < e && (f = e), l = c + C / l, Math.abs(l) < e && (l = e), f = 1 / f, h *= f * l, Math.abs(f * l - 1) < e)
       break;
   }
   return 1 - h * n;
 }
-function Wo(i, a) {
+function su(i, a) {
   if (i <= 0)
     return 0;
   if (i >= 1)
@@ -11714,80 +12491,80 @@ function Wo(i, a) {
     const o = 1 - a * (0.253 + a * 0.12);
     i < o ? e = (i / o) ** (1 / a) : e = 1 - Math.log(1 - (i - o) / (1 - o));
   }
-  const t = 1e-8, r = ft(a);
+  const t = 1e-8, r = ht(a);
   let n, s;
   for (let o = 0; o < 12; o++) {
     if (e <= 0)
       return 0;
-    if (n = Ia(a, e) - i, a > 1 ? s = Math.exp((a - 1) * (Math.log(a - 1) - 1) - r) * Math.exp(-(e - (a - 1)) + (a - 1) * (Math.log(e) - Math.log(a - 1))) : s = Math.exp(-e + (a - 1) * Math.log(e) - r), s !== 0 && (s = n / s / (1 - 0.5 * Math.min(1, n / s * ((a - 1) / e - 1)))), e -= s, e <= 0 && (e = 0.5 * (e + s)), Math.abs(s) < t * e)
+    if (n = Wa(a, e) - i, a > 1 ? s = Math.exp((a - 1) * (Math.log(a - 1) - 1) - r) * Math.exp(-(e - (a - 1)) + (a - 1) * (Math.log(e) - Math.log(a - 1))) : s = Math.exp(-e + (a - 1) * Math.log(e) - r), s !== 0 && (s = n / s / (1 - 0.5 * Math.min(1, n / s * ((a - 1) / e - 1)))), e -= s, e <= 0 && (e = 0.5 * (e + s)), Math.abs(s) < t * e)
       break;
   }
   return e;
 }
-function Cm(i, a, e, t) {
+function Pm(i, a, e, t) {
   let r = 0;
   for (let n = 0; n <= i; n++)
-    r += Fa(n, a, e, t);
+    r += qa(n, a, e, t);
   return r;
 }
-function Fa(i, a, e, t) {
-  return a - i > t - e ? 0 : er(e, i) * er(t - e, a - i) / er(t, a);
+function qa(i, a, e, t) {
+  return a - i > t - e ? 0 : tr(e, i) * tr(t - e, a - i) / tr(t, a);
 }
-function qo(i, a, e) {
-  return i < 0 ? 0 : 0.5 + 0.5 * Jt((Math.log(i) - a) / Math.sqrt(2 * e * e));
+function au(i, a, e) {
+  return i < 0 ? 0 : 0.5 + 0.5 * er((Math.log(i) - a) / Math.sqrt(2 * e * e));
 }
-function _m(i, a, e) {
+function xm(i, a, e) {
   return i <= 0 ? 0 : Math.exp(-Math.log(i) - 0.5 * Math.log(2 * Math.PI) - Math.log(e) - (Math.log(i) - a) ** 2 / (2 * e * e));
 }
-function Am(i, a, e) {
-  return Math.exp(ts(i, a, e));
+function jm(i, a, e) {
+  return Math.exp(rs(i, a, e));
 }
-function Em(i, a, e) {
+function Um(i, a, e) {
   if (i < 0)
     return 0;
   let t = 0;
   for (let r = 0; r <= i; r++)
-    t += ka(r, a, e);
+    t += Ka(r, a, e);
   return t;
 }
-function ka(i, a, e) {
-  return i < 0 ? 0 : er(i + a - 1, a - 1) * e ** a * (1 - e) ** i;
+function Ka(i, a, e) {
+  return i < 0 ? 0 : tr(i + a - 1, a - 1) * e ** a * (1 - e) ** i;
 }
-function Hr(i, a, e) {
-  return 0.5 * (1 + Jt((i - a) / Math.sqrt(2 * e * e)));
+function Gr(i, a, e) {
+  return 0.5 * (1 + er((i - a) / Math.sqrt(2 * e * e)));
 }
-function Ko(i, a, e) {
+function iu(i, a, e) {
   return Math.exp(-0.5 * Math.log(2 * Math.PI) - Math.log(e) - (i - a) ** 2 / (2 * e * e));
 }
-function ts(i, a, e) {
-  return -1.4142135623730951 * e * zh(2 * i) + a;
+function rs(i, a, e) {
+  return -1.4142135623730951 * e * gm(2 * i) + a;
 }
-function bm(i, a) {
+function vm(i, a) {
   let e = 0;
   for (let t = 0; t <= i; t++)
-    e += Xo(t, a);
+    e += ou(t, a);
   return e;
 }
-function Xo(i, a) {
-  return Math.exp(-a) * a ** i / gr(i);
+function ou(i, a) {
+  return Math.exp(-a) * a ** i / Cr(i);
 }
-function Gr(i, a) {
-  const e = 0.5 * es(a / (i ** 2 + a), a / 2, 0.5);
+function Wr(i, a) {
+  const e = 0.5 * ts(a / (i ** 2 + a), a / 2, 0.5);
   return i < 0 ? e : 1 - e;
 }
-function ym(i, a) {
+function Tm(i, a) {
   const e = (1 + i ** 2 / a) ** (-(a + 1) / 2);
-  return 1 / (Math.sqrt(a) * ja(0.5, a / 2)) * e;
+  return 1 / (Math.sqrt(a) * $a(0.5, a / 2)) * e;
 }
-function rs(i, a) {
-  let e = xa(2 * Math.min(i, 1 - i), 0.5 * a, 0.5);
+function ns(i, a) {
+  let e = ka(2 * Math.min(i, 1 - i), 0.5 * a, 0.5);
   return e = Math.sqrt(a * (1 - e) / e), i > 0.5 ? e : -e;
 }
-function tt(i, a, e, t, r) {
+function rt(i, a, e, t, r) {
   const n = [], s = [];
   let o = !0;
   for (let u = 0; u < e; u++) {
-    const c = Math.floor(u / t), l = u % t, f = Math.floor(u / r), h = u % r, d = i.isArray() ? i.get(c, l) : i, _ = a.isArray() ? a.get(f, h) : a;
+    const c = Math.floor(u / t), l = u % t, f = Math.floor(u / r), h = u % r, d = i.isArray() ? i.get(c, l) : i, C = a.isArray() ? a.get(f, h) : a;
     if (d.isError())
       return {
         isError: !0,
@@ -11796,18 +12573,18 @@ function tt(i, a, e, t, r) {
         array2Values: s,
         noCalculate: o
       };
-    if (_.isError())
+    if (C.isError())
       return {
         isError: !0,
-        errorObject: _,
+        errorObject: C,
         array1Values: n,
         array2Values: s,
         noCalculate: o
       };
-    if (d.isNull() || _.isNull() || d.isBoolean() || _.isBoolean())
+    if (d.isNull() || C.isNull() || d.isBoolean() || C.isBoolean())
       continue;
-    const C = d.getValue(), E = _.getValue();
-    !W(C) || !W(E) || (n.push(+C), s.push(+E), o = !1);
+    const _ = d.getValue(), E = C.getValue();
+    !q(_) || !q(E) || (n.push(+_), s.push(+E), o = !1);
   }
   return {
     isError: !1,
@@ -11817,7 +12594,7 @@ function tt(i, a, e, t, r) {
     noCalculate: o
   };
 }
-function ns(i, a, e) {
+function ss(i, a, e) {
   const t = i.isArray() ? i.getRowCount() : 1, r = i.isArray() ? i.getColumnCount() : 1;
   let n = t, s = r;
   if (a && !a.isNull() && (n = a.isArray() ? a.getRowCount() : 1, s = a.isArray() ? a.getColumnCount() : 1, t === 1 && s !== r || r === 1 && n !== t || t !== 1 && r !== 1 && (n !== t || s !== r)))
@@ -11838,7 +12615,7 @@ function ns(i, a, e) {
     errorObject: null
   };
 }
-function Et(i) {
+function bt(i) {
   const a = i.isArray() ? i.getRowCount() : 1, e = i.isArray() ? i.getColumnCount() : 1, t = [];
   for (let r = 0; r < a; r++) {
     t[r] = [];
@@ -11851,7 +12628,7 @@ function Et(i) {
   }
   return t;
 }
-function ss(i, a) {
+function as(i, a) {
   const e = [];
   let t = 1;
   for (let r = 0; r < i; r++) {
@@ -11861,13 +12638,13 @@ function ss(i, a) {
   }
   return e;
 }
-function as(i, a, e, t) {
+function is(i, a, e, t) {
   let r = a;
   t && (r = a.map((o) => Math.log(o)));
   let n, s;
-  return e ? { slope: n, intercept: s } = Rm(i, r) : { slope: n, intercept: s } = pm(i, r), t && (n = Math.exp(n), s = Math.exp(s)), Number.isNaN(n) && !e && (n = 0), { slope: n, intercept: s, Y: r };
+  return e ? { slope: n, intercept: s } = Bm(i, r) : { slope: n, intercept: s } = Im(i, r), t && (n = Math.exp(n), s = Math.exp(s)), Number.isNaN(n) && !e && (n = 0), { slope: n, intercept: s, Y: r };
 }
-function Rm(i, a) {
+function Bm(i, a) {
   const e = a.length;
   let t = 0, r = 0, n = 0, s = 0;
   for (let l = 0; l < e; l++)
@@ -11878,7 +12655,7 @@ function Rm(i, a) {
     intercept: c
   };
 }
-function pm(i, a) {
+function Im(i, a) {
   const e = [[...i]], t = [...a];
   let r = e.length, n = e[0].length, s = Math.min(r, n);
   const o = new Array(s).fill(0);
@@ -11891,12 +12668,12 @@ function pm(i, a) {
     if (o[c] = h, h !== 0) {
       l[c] -= h;
       for (let d = c + 1; d < r; d++) {
-        let _ = 0;
-        for (let C = c; C < n; C++)
-          _ -= e[d][C] * l[C];
-        _ /= h * l[c];
-        for (let C = c; C < n; C++)
-          e[d][C] -= _ * l[C];
+        let C = 0;
+        for (let _ = c; _ < n; _++)
+          C -= e[d][_] * l[_];
+        C /= h * l[c];
+        for (let _ = c; _ < n; _++)
+          e[d][_] -= C * l[_];
       }
     }
   }
@@ -11923,22 +12700,22 @@ function pm(i, a) {
     intercept: 0
   };
 }
-function is(i, a, e, t, r) {
+function os(i, a, e, t, r) {
   const n = i.length === 1 && i[0].length > 1;
   let s = i;
-  r && (s = i.map((C) => C.map((E) => Math.log(E))));
+  r && (s = i.map((_) => _.map((E) => Math.log(E))));
   let o = a, u = e;
-  n && (s = Ct(s), o = Ct(o), u = Ct(u)), t && (o = o.map((C) => [...C, 1]));
-  const c = Ct(o), l = dr(c, o), f = dr(c, s);
-  let h = rm(l);
-  if (!h && (h = sm(l), !h))
+  n && (s = _t(s), o = _t(o), u = _t(u)), t && (o = o.map((_) => [..._, 1]));
+  const c = _t(o), l = _r(c, o), f = _r(c, s);
+  let h = Am(l);
+  if (!h && (h = bm(l), !h))
     return g.create(m.NA);
-  let d = dr(h, f);
-  t || d.push([0]), d = Ct(d);
-  const _ = d[0].pop();
-  if (d[0].reverse(), d[0].push(_), r)
-    for (let C = 0; C < d[0].length; C++)
-      d[0][C] = Math.exp(d[0][C]);
+  let d = _r(h, f);
+  t || d.push([0]), d = _t(d);
+  const C = d[0].pop();
+  if (d[0].reverse(), d[0].push(C), r)
+    for (let _ = 0; _ < d[0].length; _++)
+      d[0][_] = Math.exp(d[0][_]);
   return {
     coefficients: d,
     Y: s,
@@ -11947,7 +12724,7 @@ function is(i, a, e, t, r) {
     XTXInverse: h
   };
 }
-class Zo extends V {
+class uu extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 3);
@@ -11968,9 +12745,9 @@ class Zo extends V {
       r.isArray() ? r.getColumnCount() : 1,
       o.isArray() ? o.getColumnCount() : 1,
       u.isArray() ? u.getColumnCount() : 1
-    ), f = O(c, l, e, g.create(m.NA)), h = O(c, l, t, g.create(m.NA)), d = O(c, l, r, g.create(m.NA)), _ = O(c, l, o, g.create(m.NA)), C = O(c, l, u, g.create(m.NA)), E = f.mapValue((b, R, p) => {
-      const N = h.get(R, p), M = d.get(R, p), w = _.get(R, p), S = C.get(R, p);
-      return this._handleSingleObject(b, N, M, w, S);
+    ), f = O(c, l, e, g.create(m.NA)), h = O(c, l, t, g.create(m.NA)), d = O(c, l, r, g.create(m.NA)), C = O(c, l, o, g.create(m.NA)), _ = O(c, l, u, g.create(m.NA)), E = f.mapValue((b, R, p) => {
+      const N = h.get(R, p), w = d.get(R, p), S = C.get(R, p), M = _.get(R, p);
+      return this._handleSingleObject(b, N, w, S, M);
     });
     return c === 1 && l === 1 ? E.get(0, 0) : E;
   }
@@ -11985,17 +12762,17 @@ class Zo extends V {
       return n;
     if (s.isError())
       return s;
-    const { isError: o, errorObject: u, variants: c } = B(e, t, r, n, s);
+    const { isError: o, errorObject: u, variants: c } = I(e, t, r, n, s);
     if (o)
       return u;
-    const [l, f, h, d, _] = c, C = +l.getValue(), E = +f.getValue(), b = +h.getValue(), R = +d.getValue(), p = +_.getValue();
-    if (E <= 0 || b <= 0 || C <= 0 || C >= 1 || R >= p)
+    const [l, f, h, d, C] = c, _ = +l.getValue(), E = +f.getValue(), b = +h.getValue(), R = +d.getValue(), p = +C.getValue();
+    if (E <= 0 || b <= 0 || _ <= 0 || _ >= 1 || R >= p)
       return g.create(m.NUM);
-    const N = xa(C, E, b) * (p - R) + R;
+    const N = ka(_, E, b) * (p - R) + R;
     return y.create(N);
   }
 }
-class zo extends V {
+class cu extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 4);
@@ -12012,24 +12789,24 @@ class zo extends V {
       t.isArray() ? t.getColumnCount() : 1,
       r.isArray() ? r.getColumnCount() : 1,
       n.isArray() ? n.getColumnCount() : 1
-    ), u = O(s, o, e, g.create(m.NA)), c = O(s, o, t, g.create(m.NA)), l = O(s, o, r, g.create(m.NA)), f = O(s, o, n, g.create(m.NA)), h = u.mapValue((d, _, C) => {
-      const E = c.get(_, C), b = l.get(_, C), R = f.get(_, C);
+    ), u = O(s, o, e, g.create(m.NA)), c = O(s, o, t, g.create(m.NA)), l = O(s, o, r, g.create(m.NA)), f = O(s, o, n, g.create(m.NA)), h = u.mapValue((d, C, _) => {
+      const E = c.get(C, _), b = l.get(C, _), R = f.get(C, _);
       return d.isError() ? d : E.isError() ? E : b.isError() ? b : R.isError() ? R : this._handleSingleObject(d, E, b, R);
     });
     return s === 1 && o === 1 ? h.get(0, 0) : h;
   }
   _handleSingleObject(e, t, r, n) {
-    const { isError: s, errorObject: o, variants: u } = B(e, t, r, n);
+    const { isError: s, errorObject: o, variants: u } = I(e, t, r, n);
     if (s)
       return o;
-    const [c, l, f, h] = u, d = Math.floor(+c.getValue()), _ = Math.floor(+l.getValue()), C = +f.getValue(), E = +h.getValue();
-    if (d < 0 || d > _ || C < 0 || C > 1)
+    const [c, l, f, h] = u, d = Math.floor(+c.getValue()), C = Math.floor(+l.getValue()), _ = +f.getValue(), E = +h.getValue();
+    if (d < 0 || d > C || _ < 0 || _ > 1)
       return g.create(m.NUM);
     let b;
-    return E ? b = Yo(d, _, C) : b = va(d, _, C), y.create(b);
+    return E ? b = eu(d, C, _) : b = Ha(d, C, _), y.create(b);
   }
 }
-class Jo extends V {
+class lu extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 3);
@@ -12045,25 +12822,25 @@ class Jo extends V {
       t.isArray() ? t.getColumnCount() : 1,
       r.isArray() ? r.getColumnCount() : 1
     ), o = O(n, s, e, g.create(m.NA)), u = O(n, s, t, g.create(m.NA)), c = O(n, s, r, g.create(m.NA)), l = o.mapValue((f, h, d) => {
-      const _ = u.get(h, d), C = c.get(h, d);
-      return f.isError() ? f : _.isError() ? _ : C.isError() ? C : this._handleSingleObject(f, _, C);
+      const C = u.get(h, d), _ = c.get(h, d);
+      return f.isError() ? f : C.isError() ? C : _.isError() ? _ : this._handleSingleObject(f, C, _);
     });
     return n === 1 && s === 1 ? l.get(0, 0) : l;
   }
   _handleSingleObject(e, t, r) {
-    const { isError: n, errorObject: s, variants: o } = B(e, t, r);
+    const { isError: n, errorObject: s, variants: o } = I(e, t, r);
     if (n)
       return s;
     const [u, c, l] = o, f = Math.floor(+u.getValue()), h = +c.getValue(), d = +l.getValue();
     if (f < 0 || h <= 0 || h >= 1 || d <= 0 || d >= 1)
       return g.create(m.NUM);
-    let _ = 0;
-    for (; _ <= f && !(Yo(_, f, h) >= d); )
-      _++;
-    return y.create(_);
+    let C = 0;
+    for (; C <= f && !(eu(C, f, h) >= d); )
+      C++;
+    return y.create(C);
   }
 }
-class eu extends V {
+class fu extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 2);
@@ -12083,17 +12860,17 @@ class eu extends V {
     return r === 1 && n === 1 ? u.get(0, 0) : u;
   }
   _handleSingleObject(e, t) {
-    const { isError: r, errorObject: n, variants: s } = B(e, t);
+    const { isError: r, errorObject: n, variants: s } = I(e, t);
     if (r)
       return n;
     const [o, u] = s, c = +o.getValue(), l = Math.floor(+u.getValue());
     if (c < 0 || l < 1 || l > 10 ** 10)
       return g.create(m.NUM);
-    const f = 1 - Ta(c, l);
+    const f = 1 - Qa(c, l);
     return y.create(f);
   }
 }
-class tu extends V {
+class hu extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 2);
@@ -12113,17 +12890,17 @@ class tu extends V {
     return r === 1 && n === 1 ? u.get(0, 0) : u;
   }
   _handleSingleObject(e, t) {
-    const { isError: r, errorObject: n, variants: s } = B(e, t);
+    const { isError: r, errorObject: n, variants: s } = I(e, t);
     if (r)
       return n;
     const [o, u] = s, c = +o.getValue(), l = Math.floor(+u.getValue());
     if (c < 0 || c > 1 || l < 1 || l > 10 ** 10)
       return g.create(m.NUM);
-    const f = Ho(1 - c, l);
+    const f = tu(1 - c, l);
     return Number.isNaN(f) || !Number.isFinite(f) ? g.create(m.NUM) : y.create(f);
   }
 }
-class ru extends V {
+class mu extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 2);
@@ -12146,15 +12923,15 @@ class ru extends V {
       errorObject: f,
       array1Values: h,
       array2Values: d,
-      noCalculate: _
-    } = tt(
+      noCalculate: C
+    } = rt(
       e,
       t,
       r * n,
       n,
       o
     );
-    return l ? f : _ ? g.create(m.DIV_BY_ZERO) : this._getResult(h, d, r, n);
+    return l ? f : C ? g.create(m.DIV_BY_ZERO) : this._getResult(h, d, r, n);
   }
   _getResult(e, t, r, n) {
     let s = 0;
@@ -12165,11 +12942,11 @@ class ru extends V {
     }
     let o = (r - 1) * (n - 1);
     r === 1 ? o = n - 1 : n === 1 && (o = r - 1);
-    const u = 1 - Ta(s, o);
+    const u = 1 - Qa(s, o);
     return y.create(u);
   }
 }
-class nu extends V {
+class gu extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 3);
@@ -12185,26 +12962,26 @@ class nu extends V {
       t.isArray() ? t.getColumnCount() : 1,
       r.isArray() ? r.getColumnCount() : 1
     ), o = O(n, s, e, g.create(m.NA)), u = O(n, s, t, g.create(m.NA)), c = O(n, s, r, g.create(m.NA)), l = o.mapValue((f, h, d) => {
-      const _ = u.get(h, d), C = c.get(h, d);
+      const C = u.get(h, d), _ = c.get(h, d);
       if (f.isError())
         return f;
-      if (_.isError())
-        return _;
       if (C.isError())
         return C;
-      const { isError: E, errorObject: b, variants: R } = B(f, _, C);
+      if (_.isError())
+        return _;
+      const { isError: E, errorObject: b, variants: R } = I(f, C, _);
       if (E)
         return b;
-      const [p, N, M] = R, w = +p.getValue(), S = +N.getValue(), D = Math.floor(+M.getValue());
-      if (w <= 0 || w >= 1 || S <= 0 || D < 1)
+      const [p, N, w] = R, S = +p.getValue(), M = +N.getValue(), D = Math.floor(+w.getValue());
+      if (S <= 0 || S >= 1 || M <= 0 || D < 1)
         return g.create(m.NUM);
-      const L = Math.abs(ts(w / 2, 0, 1) * S / Math.sqrt(D));
+      const L = Math.abs(rs(S / 2, 0, 1) * M / Math.sqrt(D));
       return y.create(L);
     });
     return n === 1 && s === 1 ? l.get(0, 0) : l;
   }
 }
-class su extends V {
+class du extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 2);
@@ -12227,15 +13004,15 @@ class su extends V {
       errorObject: f,
       array1Values: h,
       array2Values: d,
-      noCalculate: _
-    } = tt(
+      noCalculate: C
+    } = rt(
       e,
       t,
       r * n,
       n,
       o
     );
-    return l ? f : _ ? g.create(m.DIV_BY_ZERO) : this._getResult(h, d);
+    return l ? f : C ? g.create(m.DIV_BY_ZERO) : this._getResult(h, d);
   }
   _getResult(e, t) {
     if (e.length === 0)
@@ -12253,7 +13030,7 @@ class su extends V {
     return y.create(c / r);
   }
 }
-class au extends V {
+class Cu extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 3);
@@ -12269,23 +13046,23 @@ class au extends V {
       t.isArray() ? t.getColumnCount() : 1,
       r.isArray() ? r.getColumnCount() : 1
     ), o = O(n, s, e, g.create(m.NA)), u = O(n, s, t, g.create(m.NA)), c = O(n, s, r, g.create(m.NA)), l = o.mapValue((f, h, d) => {
-      const _ = u.get(h, d), C = c.get(h, d);
-      return f.isError() ? f : _.isError() ? _ : C.isError() ? C : this._handleSingleObject(f, _, C);
+      const C = u.get(h, d), _ = c.get(h, d);
+      return f.isError() ? f : C.isError() ? C : _.isError() ? _ : this._handleSingleObject(f, C, _);
     });
     return n === 1 && s === 1 ? l.get(0, 0) : l;
   }
   _handleSingleObject(e, t, r) {
-    const { isError: n, errorObject: s, variants: o } = B(e, t, r);
+    const { isError: n, errorObject: s, variants: o } = I(e, t, r);
     if (n)
       return s;
     const [u, c, l] = o, f = +u.getValue(), h = +c.getValue(), d = +l.getValue();
     if (f < 0 || h <= 0)
       return g.create(m.NUM);
-    let _;
-    return d ? _ = fm(f, h) : _ = hm(f, h), y.create(_);
+    let C;
+    return d ? C = wm(f, h) : C = Sm(f, h), y.create(C);
   }
 }
-class iu extends V {
+class _u extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 3);
@@ -12301,23 +13078,23 @@ class iu extends V {
       t.isArray() ? t.getColumnCount() : 1,
       r.isArray() ? r.getColumnCount() : 1
     ), o = O(n, s, e, g.create(m.NA)), u = O(n, s, t, g.create(m.NA)), c = O(n, s, r, g.create(m.NA)), l = o.mapValue((f, h, d) => {
-      const _ = u.get(h, d), C = c.get(h, d);
-      return f.isError() ? f : _.isError() ? _ : C.isError() ? C : this._handleSingleObject(f, _, C);
+      const C = u.get(h, d), _ = c.get(h, d);
+      return f.isError() ? f : C.isError() ? C : _.isError() ? _ : this._handleSingleObject(f, C, _);
     });
     return n === 1 && s === 1 ? l.get(0, 0) : l;
   }
   _handleSingleObject(e, t, r) {
-    const { isError: n, errorObject: s, variants: o } = B(e, t, r);
+    const { isError: n, errorObject: s, variants: o } = I(e, t, r);
     if (n)
       return s;
     const [u, c, l] = o, f = +u.getValue(), h = Math.floor(+c.getValue()), d = Math.floor(+l.getValue());
     if (f < 0 || h < 1 || h > 10 ** 10 || d < 1 || d > 10 ** 10)
       return g.create(m.NUM);
-    const _ = 1 - Ba(f, h, d);
-    return y.create(_);
+    const C = 1 - Ga(f, h, d);
+    return y.create(C);
   }
 }
-class ou extends V {
+class Au extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 3);
@@ -12333,23 +13110,23 @@ class ou extends V {
       t.isArray() ? t.getColumnCount() : 1,
       r.isArray() ? r.getColumnCount() : 1
     ), o = O(n, s, e, g.create(m.NA)), u = O(n, s, t, g.create(m.NA)), c = O(n, s, r, g.create(m.NA)), l = o.mapValue((f, h, d) => {
-      const _ = u.get(h, d), C = c.get(h, d);
-      return f.isError() ? f : _.isError() ? _ : C.isError() ? C : this._handleSingleObject(f, _, C);
+      const C = u.get(h, d), _ = c.get(h, d);
+      return f.isError() ? f : C.isError() ? C : _.isError() ? _ : this._handleSingleObject(f, C, _);
     });
     return n === 1 && s === 1 ? l.get(0, 0) : l;
   }
   _handleSingleObject(e, t, r) {
-    const { isError: n, errorObject: s, variants: o } = B(e, t, r);
+    const { isError: n, errorObject: s, variants: o } = I(e, t, r);
     if (n)
       return s;
     const [u, c, l] = o, f = +u.getValue(), h = Math.floor(+c.getValue()), d = Math.floor(+l.getValue());
     if (f < 0 || f > 1 || h < 1 || h > 10 ** 10 || d < 1 || d > 10 ** 10)
       return g.create(m.NUM);
-    const _ = Go(1 - f, h, d);
-    return Number.isNaN(_) || !Number.isFinite(_) ? g.create(m.NUM) : y.create(_);
+    const C = ru(1 - f, h, d);
+    return Number.isNaN(C) || !Number.isFinite(C) ? g.create(m.NUM) : y.create(C);
   }
 }
-class uu extends V {
+class Eu extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 2);
@@ -12372,7 +13149,7 @@ class uu extends V {
     } = this._getValues(t);
     if (u)
       return c;
-    let h = 2 * (1 - Ba(s / l, o, f));
+    let h = 2 * (1 - Ga(s / l, o, f));
     return h > 1 && (h = 2 - h), y.create(h);
   }
   // eslint-disable-next-line
@@ -12412,8 +13189,8 @@ class uu extends V {
           };
         if (d.isNull() || d.isBoolean())
           continue;
-        const _ = d.getValue();
-        W(_) && (o.push(+_), u += +_);
+        const C = d.getValue();
+        q(C) && (o.push(+C), u += +C);
       }
     if (o.length <= 1)
       return {
@@ -12439,7 +13216,7 @@ class uu extends V {
     };
   }
 }
-class cu extends V {
+class bu extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 4);
@@ -12456,24 +13233,24 @@ class cu extends V {
       t.isArray() ? t.getColumnCount() : 1,
       r.isArray() ? r.getColumnCount() : 1,
       n.isArray() ? n.getColumnCount() : 1
-    ), u = O(s, o, e, g.create(m.NA)), c = O(s, o, t, g.create(m.NA)), l = O(s, o, r, g.create(m.NA)), f = O(s, o, n, g.create(m.NA)), h = u.mapValue((d, _, C) => {
-      const E = c.get(_, C), b = l.get(_, C), R = f.get(_, C);
+    ), u = O(s, o, e, g.create(m.NA)), c = O(s, o, t, g.create(m.NA)), l = O(s, o, r, g.create(m.NA)), f = O(s, o, n, g.create(m.NA)), h = u.mapValue((d, C, _) => {
+      const E = c.get(C, _), b = l.get(C, _), R = f.get(C, _);
       return d.isError() ? d : E.isError() ? E : b.isError() ? b : R.isError() ? R : this._handleSingleObject(d, E, b, R);
     });
     return s === 1 && o === 1 ? h.get(0, 0) : h;
   }
   _handleSingleObject(e, t, r, n) {
-    const { isError: s, errorObject: o, variants: u } = B(e, t, r, n);
+    const { isError: s, errorObject: o, variants: u } = I(e, t, r, n);
     if (s)
       return o;
-    const [c, l, f, h] = u, d = +c.getValue(), _ = +l.getValue(), C = +f.getValue(), E = +h.getValue();
-    if (d < 0 || _ <= 0 || C <= 0)
+    const [c, l, f, h] = u, d = +c.getValue(), C = +l.getValue(), _ = +f.getValue(), E = +h.getValue();
+    if (d < 0 || C <= 0 || _ <= 0)
       return g.create(m.NUM);
     let b;
-    return E ? b = mm(d, _, C) : b = gm(d, _, C), y.create(b);
+    return E ? b = Mm(d, C, _) : b = Dm(d, C, _), y.create(b);
   }
 }
-class lu extends V {
+class yu extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 3);
@@ -12489,23 +13266,23 @@ class lu extends V {
       t.isArray() ? t.getColumnCount() : 1,
       r.isArray() ? r.getColumnCount() : 1
     ), o = O(n, s, e, g.create(m.NA)), u = O(n, s, t, g.create(m.NA)), c = O(n, s, r, g.create(m.NA)), l = o.mapValue((f, h, d) => {
-      const _ = u.get(h, d), C = c.get(h, d);
-      return f.isError() ? f : _.isError() ? _ : C.isError() ? C : this._handleSingleObject(f, _, C);
+      const C = u.get(h, d), _ = c.get(h, d);
+      return f.isError() ? f : C.isError() ? C : _.isError() ? _ : this._handleSingleObject(f, C, _);
     });
     return n === 1 && s === 1 ? l.get(0, 0) : l;
   }
   _handleSingleObject(e, t, r) {
-    const { isError: n, errorObject: s, variants: o } = B(e, t, r);
+    const { isError: n, errorObject: s, variants: o } = I(e, t, r);
     if (n)
       return s;
     const [u, c, l] = o, f = +u.getValue(), h = +c.getValue(), d = +l.getValue();
     if (f < 0 || f > 1 || h <= 0 || d <= 0)
       return g.create(m.NUM);
-    const _ = dm(f, h, d);
-    return Number.isNaN(_) || !Number.isFinite(_) ? g.create(m.NUM) : y.create(_);
+    const C = Lm(f, h, d);
+    return Number.isNaN(C) || !Number.isFinite(C) ? g.create(m.NUM) : y.create(C);
   }
 }
-class fu extends V {
+class Ru extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 3);
@@ -12521,23 +13298,23 @@ class fu extends V {
       t.isArray() ? t.getColumnCount() : 1,
       r.isArray() ? r.getColumnCount() : 1
     ), o = O(n, s, e, g.create(m.NA)), u = O(n, s, t, g.create(m.NA)), c = O(n, s, r, g.create(m.NA)), l = o.mapValue((f, h, d) => {
-      const _ = u.get(h, d), C = c.get(h, d);
-      return f.isError() ? f : _.isError() ? _ : C.isError() ? C : this._handleSingleObject(f, _, C);
+      const C = u.get(h, d), _ = c.get(h, d);
+      return f.isError() ? f : C.isError() ? C : _.isError() ? _ : this._handleSingleObject(f, C, _);
     });
     return n === 1 && s === 1 ? l.get(0, 0) : l;
   }
   _handleSingleObject(e, t, r) {
-    const { isError: n, errorObject: s, variants: o } = B(e, t, r);
+    const { isError: n, errorObject: s, variants: o } = I(e, t, r);
     if (n)
       return s;
     const [u, c, l] = o, f = +u.getValue(), h = +c.getValue(), d = +l.getValue();
     if (f <= 0 || f >= 1 || d <= 0)
       return g.create(m.NUM);
-    const _ = Am(f, h, d);
-    return Number.isNaN(_) || !Number.isFinite(_) ? g.create(m.NUM) : y.create(_);
+    const C = jm(f, h, d);
+    return Number.isNaN(C) || !Number.isFinite(C) ? g.create(m.NUM) : y.create(C);
   }
 }
-class hu extends V {
+class pu extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -12564,7 +13341,7 @@ class hu extends V {
           if (h.isNull() || h.isBoolean() || h.isString())
             continue;
           const d = h.getValue();
-          W(d) && (t[+d] ? (t[+d].count++, t[+d].count > n && (n = t[+d].count)) : t[+d] = { count: 1, order: r++ });
+          q(d) && (t[+d] ? (t[+d].count++, t[+d].count > n && (n = t[+d].count)) : t[+d] = { count: 1, order: r++ });
         }
     }
     return r === 0 || n === 1 ? new g(m.NA) : this._getResult(t, n);
@@ -12574,7 +13351,7 @@ class hu extends V {
     return y.create(r[0]);
   }
 }
-class mu extends V {
+class Nu extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 4);
@@ -12591,24 +13368,24 @@ class mu extends V {
       t.isArray() ? t.getColumnCount() : 1,
       r.isArray() ? r.getColumnCount() : 1,
       n.isArray() ? n.getColumnCount() : 1
-    ), u = O(s, o, e, g.create(m.NA)), c = O(s, o, t, g.create(m.NA)), l = O(s, o, r, g.create(m.NA)), f = O(s, o, n, g.create(m.NA)), h = u.mapValue((d, _, C) => {
-      const E = c.get(_, C), b = l.get(_, C), R = f.get(_, C);
+    ), u = O(s, o, e, g.create(m.NA)), c = O(s, o, t, g.create(m.NA)), l = O(s, o, r, g.create(m.NA)), f = O(s, o, n, g.create(m.NA)), h = u.mapValue((d, C, _) => {
+      const E = c.get(C, _), b = l.get(C, _), R = f.get(C, _);
       return d.isError() ? d : E.isError() ? E : b.isError() ? b : R.isError() ? R : this._handleSingleObject(d, E, b, R);
     });
     return s === 1 && o === 1 ? h.get(0, 0) : h;
   }
   _handleSingleObject(e, t, r, n) {
-    const { isError: s, errorObject: o, variants: u } = B(e, t, r, n);
+    const { isError: s, errorObject: o, variants: u } = I(e, t, r, n);
     if (s)
       return o;
-    const [c, l, f, h] = u, d = +c.getValue(), _ = +l.getValue(), C = +f.getValue(), E = +h.getValue();
-    if (C <= 0)
+    const [c, l, f, h] = u, d = +c.getValue(), C = +l.getValue(), _ = +f.getValue(), E = +h.getValue();
+    if (_ <= 0)
       return g.create(m.NUM);
     let b;
-    return E ? b = Hr(d, _, C) : b = Ko(d, _, C), y.create(b);
+    return E ? b = Gr(d, C, _) : b = iu(d, C, _), y.create(b);
   }
 }
-class gu extends V {
+class Vu extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 3);
@@ -12624,23 +13401,23 @@ class gu extends V {
       t.isArray() ? t.getColumnCount() : 1,
       r.isArray() ? r.getColumnCount() : 1
     ), o = O(n, s, e, g.create(m.NA)), u = O(n, s, t, g.create(m.NA)), c = O(n, s, r, g.create(m.NA)), l = o.mapValue((f, h, d) => {
-      const _ = u.get(h, d), C = c.get(h, d);
-      return f.isError() ? f : _.isError() ? _ : C.isError() ? C : this._handleSingleObject(f, _, C);
+      const C = u.get(h, d), _ = c.get(h, d);
+      return f.isError() ? f : C.isError() ? C : _.isError() ? _ : this._handleSingleObject(f, C, _);
     });
     return n === 1 && s === 1 ? l.get(0, 0) : l;
   }
   _handleSingleObject(e, t, r) {
-    const { isError: n, errorObject: s, variants: o } = B(e, t, r);
+    const { isError: n, errorObject: s, variants: o } = I(e, t, r);
     if (n)
       return s;
     const [u, c, l] = o, f = +u.getValue(), h = +c.getValue(), d = +l.getValue();
     if (f <= 0 || f >= 1 || d <= 0)
       return g.create(m.NUM);
-    const _ = ts(f, h, d);
-    return y.create(_);
+    const C = rs(f, h, d);
+    return y.create(C);
   }
 }
-class du extends V {
+class Ou extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -12654,17 +13431,17 @@ class du extends V {
     return this._handleSingleObject(e);
   }
   _handleSingleObject(e) {
-    const { isError: t, errorObject: r, variants: n } = B(e);
+    const { isError: t, errorObject: r, variants: n } = I(e);
     if (t)
       return r;
     const [s] = n, o = +s.getValue();
     if (o <= 0 || o >= 1)
       return g.create(m.NUM);
-    const u = ts(o, 0, 1);
+    const u = rs(o, 0, 1);
     return y.create(u);
   }
 }
-class Cu extends V {
+class wu extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 2);
@@ -12681,7 +13458,7 @@ class Cu extends V {
   _handleSingleObject(e, t) {
     if (e instanceof g)
       return e;
-    const { isError: r, errorObject: n, variants: s } = B(t);
+    const { isError: r, errorObject: n, variants: s } = I(t);
     if (r)
       return n;
     const [o] = s, u = +o.getValue(), c = e.length;
@@ -12703,12 +13480,12 @@ class Cu extends V {
         if (u.isNull() || u.isBoolean() || u.isString())
           continue;
         const c = u.getValue();
-        W(c) && n.push(+c);
+        q(c) && n.push(+c);
       }
     return n.length === 0 ? g.create(m.NUM) : n.sort((s, o) => s - o);
   }
 }
-class _u extends V {
+class Su extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 2);
@@ -12724,16 +13501,16 @@ class _u extends V {
     ), u = Math.max(
       t.isArray() ? t.getColumnCount() : 1,
       s.isArray() ? s.getColumnCount() : 1
-    ), c = O(o, u, t, g.create(m.NA)), l = O(o, u, s, g.create(m.NA)), f = c.mapValue((h, d, _) => {
-      const C = l.get(d, _);
-      return h.isError() ? h : C.isError() ? C : this._handleSingleObject(n, h, C);
+    ), c = O(o, u, t, g.create(m.NA)), l = O(o, u, s, g.create(m.NA)), f = c.mapValue((h, d, C) => {
+      const _ = l.get(d, C);
+      return h.isError() ? h : _.isError() ? _ : this._handleSingleObject(n, h, _);
     });
     return o === 1 && u === 1 ? f.get(0, 0) : f;
   }
   _handleSingleObject(e, t, r) {
     if (e instanceof g)
       return e;
-    const { isError: n, errorObject: s, variants: o } = B(t, r);
+    const { isError: n, errorObject: s, variants: o } = I(t, r);
     if (n)
       return s;
     const [u, c] = o, l = +u.getValue(), f = Math.floor(+c.getValue()), h = e.length;
@@ -12741,10 +13518,10 @@ class _u extends V {
       return g.create(m.NA);
     if (h === 1)
       return l === e[0] ? y.create(1) : g.create(m.NA);
-    let d = 0, _ = !1, C = 0;
-    for (; !_ && C < h; )
-      l === e[C] ? (d = C / (h - 1), _ = !0) : l > e[C] && C + 1 < h && l < e[C + 1] && (d = (C + (l - e[C]) / (e[C + 1] - e[C])) / (h - 1), _ = !0), C++;
-    return _ ? f < 1 ? g.create(m.NUM) : (d = Ke(d, f), y.create(d)) : g.create(m.NA);
+    let d = 0, C = !1, _ = 0;
+    for (; !C && _ < h; )
+      l === e[_] ? (d = _ / (h - 1), C = !0) : l > e[_] && _ + 1 < h && l < e[_ + 1] && (d = (_ + (l - e[_]) / (e[_ + 1] - e[_])) / (h - 1), C = !0), _++;
+    return C ? f < 1 ? g.create(m.NUM) : (d = Xe(d, f), y.create(d)) : g.create(m.NA);
   }
   _getValues(e) {
     const t = e.isArray() ? e.getRowCount() : 1, r = e.isArray() ? e.getColumnCount() : 1, n = [];
@@ -12756,12 +13533,12 @@ class _u extends V {
         if (u.isNull() || u.isBoolean())
           continue;
         const c = u.getValue();
-        W(c) && n.push(+c);
+        q(c) && n.push(+c);
       }
     return n.sort((s, o) => s - o);
   }
 }
-class Au extends V {
+class Mu extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 3);
@@ -12777,23 +13554,23 @@ class Au extends V {
       t.isArray() ? t.getColumnCount() : 1,
       r.isArray() ? r.getColumnCount() : 1
     ), o = O(n, s, e, g.create(m.NA)), u = O(n, s, t, g.create(m.NA)), c = O(n, s, r, g.create(m.NA)), l = o.mapValue((f, h, d) => {
-      const _ = u.get(h, d), C = c.get(h, d);
-      return f.isError() ? f : _.isError() ? _ : C.isError() ? C : this._handleSingleObject(f, _, C);
+      const C = u.get(h, d), _ = c.get(h, d);
+      return f.isError() ? f : C.isError() ? C : _.isError() ? _ : this._handleSingleObject(f, C, _);
     });
     return n === 1 && s === 1 ? l.get(0, 0) : l;
   }
   _handleSingleObject(e, t, r) {
-    const { isError: n, errorObject: s, variants: o } = B(e, t, r);
+    const { isError: n, errorObject: s, variants: o } = I(e, t, r);
     if (n)
       return s;
     const [u, c, l] = o, f = Math.floor(+u.getValue()), h = +c.getValue(), d = +l.getValue();
     if (f < 0 || h < 0)
       return g.create(m.NUM);
-    let _;
-    return d ? _ = bm(f, h) : _ = Xo(f, h), y.create(_);
+    let C;
+    return d ? C = vm(f, h) : C = ou(f, h), y.create(C);
   }
 }
-class Eu extends V {
+class Du extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 2);
@@ -12810,7 +13587,7 @@ class Eu extends V {
   _handleSingleObject(e, t) {
     if (e instanceof g)
       return e;
-    const { isError: r, errorObject: n, variants: s } = B(t);
+    const { isError: r, errorObject: n, variants: s } = I(t);
     if (r)
       return n;
     const [o] = s, u = Math.floor(+o.getValue());
@@ -12819,8 +13596,8 @@ class Eu extends V {
     const c = u / 4, l = e.length, f = c * (l - 1), h = Math.floor(f), d = f - h;
     if (d === 0)
       return y.create(e[h]);
-    const _ = e[h] + d * (e[h + 1] - e[h]);
-    return y.create(_);
+    const C = e[h] + d * (e[h + 1] - e[h]);
+    return y.create(C);
   }
   _getValues(e) {
     const t = e.isArray() ? e.getRowCount() : 1, r = e.isArray() ? e.getColumnCount() : 1, n = [];
@@ -12832,12 +13609,12 @@ class Eu extends V {
         if (u.isNull() || u.isBoolean())
           continue;
         const c = u.getValue();
-        W(c) && n.push(+c);
+        q(c) && n.push(+c);
       }
     return n.length === 0 ? g.create(m.NUM) : n.sort((s, o) => s - o);
   }
 }
-class bu extends V {
+class Lu extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -12848,7 +13625,7 @@ class bu extends V {
     return t.isError() ? t : t.std();
   }
 }
-class yu extends V {
+class Pu extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -12859,7 +13636,7 @@ class yu extends V {
     return t.isError() ? t : t.std(1);
   }
 }
-class Ru extends V {
+class xu extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 2);
@@ -12879,17 +13656,17 @@ class Ru extends V {
     return r === 1 && n === 1 ? u.get(0, 0) : u;
   }
   _handleSingleObject(e, t) {
-    const { isError: r, errorObject: n, variants: s } = B(e, t);
+    const { isError: r, errorObject: n, variants: s } = I(e, t);
     if (r)
       return n;
     const [o, u] = s, c = +o.getValue(), l = Math.floor(+u.getValue());
     if (c <= 0 || c > 1 || l < 1 || l > 10 ** 10)
       return g.create(m.NUM);
-    const f = Math.abs(rs(c / 2, l));
+    const f = Math.abs(ns(c / 2, l));
     return Number.isNaN(f) || !Number.isFinite(f) ? g.create(m.NUM) : y.create(f);
   }
 }
-class pu extends V {
+class ju extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 4);
@@ -12903,8 +13680,8 @@ class pu extends V {
     ), d = Math.max(
       r.isArray() ? r.getColumnCount() : 1,
       n.isArray() ? n.getColumnCount() : 1
-    ), _ = O(h, d, r, g.create(m.NA)), C = O(h, d, n, g.create(m.NA)), E = _.mapValue((b, R, p) => {
-      const N = C.get(R, p);
+    ), C = O(h, d, r, g.create(m.NA)), _ = O(h, d, n, g.create(m.NA)), E = C.mapValue((b, R, p) => {
+      const N = _.get(R, p);
       if (e.isError())
         return e;
       if (t.isError())
@@ -12913,14 +13690,14 @@ class pu extends V {
         return b;
       if (N.isError())
         return N;
-      const { isError: M, errorObject: w, variants: S } = B(b, N);
-      if (M)
-        return w;
-      const [D, L] = S, U = Math.floor(+D.getValue()), x = Math.floor(+L.getValue());
-      return ![1, 2].includes(U) || ![1, 2, 3].includes(x) ? g.create(m.NUM) : x === 1 && s ? o : x !== 1 && l instanceof g ? l : x !== 1 && f instanceof g ? f : this._handleSingleObject(
+      const { isError: w, errorObject: S, variants: M } = I(b, N);
+      if (w)
+        return S;
+      const [D, L] = M, T = Math.floor(+D.getValue()), x = Math.floor(+L.getValue());
+      return ![1, 2].includes(T) || ![1, 2, 3].includes(x) ? g.create(m.NUM) : x === 1 && s ? o : x !== 1 && l instanceof g ? l : x !== 1 && f instanceof g ? f : this._handleSingleObject(
         x === 1 ? u : l,
         x === 1 ? c : f,
-        U,
+        T,
         x
       );
     });
@@ -12932,7 +13709,7 @@ class pu extends V {
     const { isError: s, errorObject: o, x: u, degFreedom: c } = this._getTDistParamByArrayValues(e, t, n);
     if (s)
       return o;
-    let l = Gr(-u, c);
+    let l = Wr(-u, c);
     return r === 2 && (l *= 2), Number.isNaN(l) || !Number.isFinite(l) ? g.create(m.NUM) : y.create(l);
   }
   _getArrayValues(e) {
@@ -12989,8 +13766,8 @@ class pu extends V {
       errorObject: f,
       array1Values: h,
       array2Values: d,
-      noCalculate: _
-    } = tt(
+      noCalculate: C
+    } = rt(
       e,
       t,
       r * n,
@@ -13002,7 +13779,7 @@ class pu extends V {
       errorObject: f,
       array1Values: [],
       array2Values: []
-    } : _ || h.length < 2 ? {
+    } : C || h.length < 2 ? {
       isError: !0,
       errorObject: g.create(m.DIV_BY_ZERO),
       array1Values: [],
@@ -13051,22 +13828,22 @@ class pu extends V {
         x: 0,
         degFreedom: 0
       };
-    const d = r - 1 + n - 1, _ = Math.sqrt(r * n * d / (r + n));
+    const d = r - 1 + n - 1, C = Math.sqrt(r * n * d / (r + n));
     return {
       isError: !1,
       errorObject: null,
-      x: Math.abs(s / r - u / n) / h * _,
+      x: Math.abs(s / r - u / n) / h * C,
       degFreedom: d
     };
   }
   _getTDistParamByType3(e, t) {
     const r = e.length, n = t.length;
     let s = 0, o = 0;
-    for (let C = 0; C < r; C++)
-      s += e[C], o += e[C] ** 2;
+    for (let _ = 0; _ < r; _++)
+      s += e[_], o += e[_] ** 2;
     let u = 0, c = 0;
-    for (let C = 0; C < n; C++)
-      u += t[C], c += t[C] ** 2;
+    for (let _ = 0; _ < n; _++)
+      u += t[_], c += t[_] ** 2;
     const l = (o - s ** 2 / r) / (r * (r - 1)), f = (c - u ** 2 / n) / (n * (n - 1));
     if (l + f === 0)
       return {
@@ -13075,16 +13852,16 @@ class pu extends V {
         x: 0,
         degFreedom: 0
       };
-    const h = l / (l + f), d = Math.abs(s / r - u / n) / Math.sqrt(l + f), _ = 1 / (h ** 2 / (r - 1) + (1 - h) ** 2 / (n - 1));
+    const h = l / (l + f), d = Math.abs(s / r - u / n) / Math.sqrt(l + f), C = 1 / (h ** 2 / (r - 1) + (1 - h) ** 2 / (n - 1));
     return {
       isError: !1,
       errorObject: null,
       x: d,
-      degFreedom: _
+      degFreedom: C
     };
   }
 }
-class Vu extends V {
+class Uu extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -13095,7 +13872,7 @@ class Vu extends V {
     return t.isError() ? t : t.var();
   }
 }
-class Nu extends V {
+class vu extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -13106,7 +13883,7 @@ class Nu extends V {
     return t.isError() ? t : t.var(1);
   }
 }
-class Ou extends V {
+class Tu extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 4);
@@ -13123,25 +13900,25 @@ class Ou extends V {
       t.isArray() ? t.getColumnCount() : 1,
       r.isArray() ? r.getColumnCount() : 1,
       n.isArray() ? n.getColumnCount() : 1
-    ), u = O(s, o, e, g.create(m.NA)), c = O(s, o, t, g.create(m.NA)), l = O(s, o, r, g.create(m.NA)), f = O(s, o, n, g.create(m.NA)), h = u.mapValue((d, _, C) => {
-      const E = c.get(_, C), b = l.get(_, C), R = f.get(_, C);
+    ), u = O(s, o, e, g.create(m.NA)), c = O(s, o, t, g.create(m.NA)), l = O(s, o, r, g.create(m.NA)), f = O(s, o, n, g.create(m.NA)), h = u.mapValue((d, C, _) => {
+      const E = c.get(C, _), b = l.get(C, _), R = f.get(C, _);
       return d.isError() ? d : E.isError() ? E : b.isError() ? b : R.isError() ? R : this._handleSingleObject(d, E, b, R);
     });
     return s === 1 && o === 1 ? h.get(0, 0) : h;
   }
   _handleSingleObject(e, t, r, n) {
-    const { isError: s, errorObject: o, variants: u } = B(e, t, r, n);
+    const { isError: s, errorObject: o, variants: u } = I(e, t, r, n);
     if (s)
       return o;
-    const [c, l, f, h] = u, d = +c.getValue(), _ = +l.getValue(), C = +f.getValue(), E = +h.getValue();
-    if (d < 0 || _ <= 0 || C <= 0)
+    const [c, l, f, h] = u, d = +c.getValue(), C = +l.getValue(), _ = +f.getValue(), E = +h.getValue();
+    if (d < 0 || C <= 0 || _ <= 0)
       return g.create(m.NUM);
-    const b = Math.exp(-((d / C) ** _));
+    const b = Math.exp(-((d / _) ** C));
     let R;
-    return E ? R = 1 - b : R = _ / C ** _ * d ** (_ - 1) * b, Number.isNaN(R) || !Number.isFinite(R) ? g.create(m.NUM) : y.create(R);
+    return E ? R = 1 - b : R = C / _ ** C * d ** (C - 1) * b, Number.isNaN(R) || !Number.isFinite(R) ? g.create(m.NUM) : y.create(R);
   }
 }
-class Mu extends V {
+class Bu extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 2);
@@ -13159,13 +13936,13 @@ class Mu extends V {
         return n;
       if (f.isError())
         return f;
-      const _ = r ? c.get(h, d) : void 0;
-      return _ != null && _.isError() ? _ : n.length === 0 ? g.create(m.NA) : n.length === 1 ? g.create(m.DIV_BY_ZERO) : this._handleSingleObject(n, f, _);
+      const C = r ? c.get(h, d) : void 0;
+      return C != null && C.isError() ? C : n.length === 0 ? g.create(m.NA) : n.length === 1 ? g.create(m.DIV_BY_ZERO) : this._handleSingleObject(n, f, C);
     });
     return s === 1 && o === 1 ? l.get(0, 0) : l;
   }
   _handleSingleObject(e, t, r) {
-    const { isError: n, errorObject: s, variants: o } = B(t);
+    const { isError: n, errorObject: s, variants: o } = I(t);
     if (n)
       return s;
     const [u] = o, c = +u.getValue(), l = e.length;
@@ -13174,7 +13951,7 @@ class Mu extends V {
       f += e[E], h += e[E] ** 2;
     let d = 0;
     if (r !== void 0) {
-      const { isError: E, errorObject: b, variants: R } = B(r);
+      const { isError: E, errorObject: b, variants: R } = I(r);
       if (E)
         return b;
       const [p] = R;
@@ -13185,8 +13962,8 @@ class Mu extends V {
     }
     if (d <= 0)
       return g.create(m.NUM);
-    const _ = (f / l - c) / (d / Math.sqrt(l)), C = 1 - Hr(_, 0, 1);
-    return Number.isNaN(C) || !Number.isFinite(C) ? g.create(m.NUM) : y.create(C);
+    const C = (f / l - c) / (d / Math.sqrt(l)), _ = 1 - Gr(C, 0, 1);
+    return Number.isNaN(_) || !Number.isFinite(_) ? g.create(m.NUM) : y.create(_);
   }
   _getArrayValues(e) {
     const t = [], r = e.isArray() ? e.getRowCount() : 1, n = e.isArray() ? e.getColumnCount() : 1;
@@ -13198,12 +13975,12 @@ class Mu extends V {
         if (u.isNull() || u.isBoolean() || u.isString())
           continue;
         const c = u.getValue();
-        W(c) && t.push(+c);
+        q(c) && t.push(+c);
       }
     return t;
   }
 }
-class Vm extends V {
+class Fm extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 3);
@@ -13224,9 +14001,9 @@ class Vm extends V {
       r.isArray() ? r.getColumnCount() : 1,
       o.isArray() ? o.getColumnCount() : 1,
       u.isArray() ? u.getColumnCount() : 1
-    ), f = O(c, l, e, g.create(m.NA)), h = O(c, l, t, g.create(m.NA)), d = O(c, l, r, g.create(m.NA)), _ = O(c, l, o, g.create(m.NA)), C = O(c, l, u, g.create(m.NA)), E = f.mapValue((b, R, p) => {
-      const N = h.get(R, p), M = d.get(R, p), w = _.get(R, p), S = C.get(R, p);
-      return this._handleSingleObject(b, N, M, w, S);
+    ), f = O(c, l, e, g.create(m.NA)), h = O(c, l, t, g.create(m.NA)), d = O(c, l, r, g.create(m.NA)), C = O(c, l, o, g.create(m.NA)), _ = O(c, l, u, g.create(m.NA)), E = f.mapValue((b, R, p) => {
+      const N = h.get(R, p), w = d.get(R, p), S = C.get(R, p), M = _.get(R, p);
+      return this._handleSingleObject(b, N, w, S, M);
     });
     return c === 1 && l === 1 ? E.get(0, 0) : E;
   }
@@ -13241,18 +14018,18 @@ class Vm extends V {
       return n;
     if (s.isError())
       return s;
-    const { isError: o, errorObject: u, variants: c } = B(e, t, r, n, s);
+    const { isError: o, errorObject: u, variants: c } = I(e, t, r, n, s);
     if (o)
       return u;
-    const [l, f, h, d, _] = c, C = +l.getValue(), E = +f.getValue(), b = +h.getValue(), R = +d.getValue(), p = +_.getValue();
-    if (E <= 0 || b <= 0 || C < R || C > p || R === p)
+    const [l, f, h, d, C] = c, _ = +l.getValue(), E = +f.getValue(), b = +h.getValue(), R = +d.getValue(), p = +C.getValue();
+    if (E <= 0 || b <= 0 || _ < R || _ > p || R === p)
       return g.create(m.NUM);
-    const N = $o((C - R) / (p - R), E, b);
+    const N = Jo((_ - R) / (p - R), E, b);
     return y.create(N);
   }
 }
 var le = /* @__PURE__ */ ((i) => (i.BETADIST = "BETADIST", i.BETAINV = "BETAINV", i.BINOMDIST = "BINOMDIST", i.CHIDIST = "CHIDIST", i.CHIINV = "CHIINV", i.CHITEST = "CHITEST", i.CONFIDENCE = "CONFIDENCE", i.COVAR = "COVAR", i.CRITBINOM = "CRITBINOM", i.EXPONDIST = "EXPONDIST", i.FDIST = "FDIST", i.FINV = "FINV", i.FTEST = "FTEST", i.GAMMADIST = "GAMMADIST", i.GAMMAINV = "GAMMAINV", i.HYPGEOMDIST = "HYPGEOMDIST", i.LOGINV = "LOGINV", i.LOGNORMDIST = "LOGNORMDIST", i.MODE = "MODE", i.NEGBINOMDIST = "NEGBINOMDIST", i.NORMDIST = "NORMDIST", i.NORMINV = "NORMINV", i.NORMSDIST = "NORMSDIST", i.NORMSINV = "NORMSINV", i.PERCENTILE = "PERCENTILE", i.PERCENTRANK = "PERCENTRANK", i.POISSON = "POISSON", i.QUARTILE = "QUARTILE", i.RANK = "RANK", i.STDEV = "STDEV", i.STDEVP = "STDEVP", i.TDIST = "TDIST", i.TINV = "TINV", i.TTEST = "TTEST", i.VAR = "VAR", i.VARP = "VARP", i.WEIBULL = "WEIBULL", i.ZTEST = "ZTEST", i))(le || {});
-class Nm extends V {
+class km extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 4);
@@ -13269,24 +14046,24 @@ class Nm extends V {
       t.isArray() ? t.getColumnCount() : 1,
       r.isArray() ? r.getColumnCount() : 1,
       n.isArray() ? n.getColumnCount() : 1
-    ), u = O(s, o, e, g.create(m.NA)), c = O(s, o, t, g.create(m.NA)), l = O(s, o, r, g.create(m.NA)), f = O(s, o, n, g.create(m.NA)), h = u.mapValue((d, _, C) => {
-      const E = c.get(_, C), b = l.get(_, C), R = f.get(_, C);
+    ), u = O(s, o, e, g.create(m.NA)), c = O(s, o, t, g.create(m.NA)), l = O(s, o, r, g.create(m.NA)), f = O(s, o, n, g.create(m.NA)), h = u.mapValue((d, C, _) => {
+      const E = c.get(C, _), b = l.get(C, _), R = f.get(C, _);
       return d.isError() ? d : E.isError() ? E : b.isError() ? b : R.isError() ? R : this._handleSingleObject(d, E, b, R);
     });
     return s === 1 && o === 1 ? h.get(0, 0) : h;
   }
   _handleSingleObject(e, t, r, n) {
-    const { isError: s, errorObject: o, variants: u } = B(e, t, r, n);
+    const { isError: s, errorObject: o, variants: u } = I(e, t, r, n);
     if (s)
       return o;
-    const [c, l, f, h] = u, d = Math.floor(+c.getValue()), _ = Math.floor(+l.getValue()), C = Math.floor(+f.getValue()), E = Math.floor(+h.getValue());
-    if (d < 0 || d > _ || d > C || d < _ - E + C || _ <= 0 || _ > E || C <= 0 || C > E || E <= 0)
+    const [c, l, f, h] = u, d = Math.floor(+c.getValue()), C = Math.floor(+l.getValue()), _ = Math.floor(+f.getValue()), E = Math.floor(+h.getValue());
+    if (d < 0 || d > C || d > _ || d < C - E + _ || C <= 0 || C > E || _ <= 0 || _ > E || E <= 0)
       return g.create(m.NUM);
-    let b = Fa(d, _, C, E);
+    let b = qa(d, C, _, E);
     return Number.isNaN(b) && (b = 0), y.create(b);
   }
 }
-class Om extends V {
+class $m extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 3);
@@ -13302,23 +14079,23 @@ class Om extends V {
       t.isArray() ? t.getColumnCount() : 1,
       r.isArray() ? r.getColumnCount() : 1
     ), o = O(n, s, e, g.create(m.NA)), u = O(n, s, t, g.create(m.NA)), c = O(n, s, r, g.create(m.NA)), l = o.mapValue((f, h, d) => {
-      const _ = u.get(h, d), C = c.get(h, d);
-      return f.isError() ? f : _.isError() ? _ : C.isError() ? C : this._handleSingleObject(f, _, C);
+      const C = u.get(h, d), _ = c.get(h, d);
+      return f.isError() ? f : C.isError() ? C : _.isError() ? _ : this._handleSingleObject(f, C, _);
     });
     return n === 1 && s === 1 ? l.get(0, 0) : l;
   }
   _handleSingleObject(e, t, r) {
-    const { isError: n, errorObject: s, variants: o } = B(e, t, r);
+    const { isError: n, errorObject: s, variants: o } = I(e, t, r);
     if (n)
       return s;
     const [u, c, l] = o, f = +u.getValue(), h = +c.getValue(), d = +l.getValue();
     if (f <= 0 || d <= 0)
       return g.create(m.NUM);
-    const _ = qo(f, h, d);
-    return y.create(_);
+    const C = au(f, h, d);
+    return y.create(C);
   }
 }
-class Mm extends V {
+class Ym extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 3);
@@ -13334,23 +14111,23 @@ class Mm extends V {
       t.isArray() ? t.getColumnCount() : 1,
       r.isArray() ? r.getColumnCount() : 1
     ), o = O(n, s, e, g.create(m.NA)), u = O(n, s, t, g.create(m.NA)), c = O(n, s, r, g.create(m.NA)), l = o.mapValue((f, h, d) => {
-      const _ = u.get(h, d), C = c.get(h, d);
-      return f.isError() ? f : _.isError() ? _ : C.isError() ? C : this._handleSingleObject(f, _, C);
+      const C = u.get(h, d), _ = c.get(h, d);
+      return f.isError() ? f : C.isError() ? C : _.isError() ? _ : this._handleSingleObject(f, C, _);
     });
     return n === 1 && s === 1 ? l.get(0, 0) : l;
   }
   _handleSingleObject(e, t, r) {
-    const { isError: n, errorObject: s, variants: o } = B(e, t, r);
+    const { isError: n, errorObject: s, variants: o } = I(e, t, r);
     if (n)
       return s;
     const [u, c, l] = o, f = Math.floor(+u.getValue()), h = Math.floor(+c.getValue()), d = +l.getValue();
     if (f < 0 || h < 1 || d <= 0 || d >= 1)
       return g.create(m.NUM);
-    const _ = ka(f, h, d);
-    return y.create(_);
+    const C = Ka(f, h, d);
+    return y.create(C);
   }
 }
-class wm extends V {
+class Hm extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -13364,14 +14141,14 @@ class wm extends V {
     return this._handleSingleObject(e);
   }
   _handleSingleObject(e) {
-    const { isError: t, errorObject: r, variants: n } = B(e);
+    const { isError: t, errorObject: r, variants: n } = I(e);
     if (t)
       return r;
-    const [s] = n, o = +s.getValue(), u = Hr(o, 0, 1);
+    const [s] = n, o = +s.getValue(), u = Gr(o, 0, 1);
     return y.create(u);
   }
 }
-class Sm extends V {
+class Qm extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 2);
@@ -13390,7 +14167,7 @@ class Sm extends V {
     ), f = Math.max(
       n.isArray() ? n.getColumnCount() : 1,
       c.isArray() ? c.getColumnCount() : 1
-    ), h = O(l, f, n, g.create(m.NA)), d = O(l, f, c, g.create(m.NA)), _ = h.map((C, E, b) => {
+    ), h = O(l, f, n, g.create(m.NA)), d = O(l, f, c, g.create(m.NA)), C = h.map((_, E, b) => {
       const R = d.get(E, b);
       if (!e.isReferenceObject() && e.isNull())
         return g.create(m.NA);
@@ -13398,13 +14175,13 @@ class Sm extends V {
         return o;
       if (R.isError())
         return R;
-      const p = +C.getValue(), N = +R.getValue();
+      const p = +_.getValue(), N = +R.getValue();
       if (Number.isNaN(p) || Number.isNaN(N))
         return g.create(m.VALUE);
-      const w = u.sort((S, D) => N ? S - D : D - S).indexOf(p);
-      return w === -1 ? g.create(m.NA) : y.create(w + 1);
+      const S = u.sort((M, D) => N ? M - D : D - M).indexOf(p);
+      return S === -1 ? g.create(m.NA) : y.create(S + 1);
     });
-    return l === 1 && f === 1 ? _.get(0, 0) : _;
+    return l === 1 && f === 1 ? C.get(0, 0) : C;
   }
   _checkRefReferenceObject(e) {
     let t = !1, r = g.create(m.NA);
@@ -13430,7 +14207,7 @@ class Sm extends V {
     };
   }
 }
-class Dm extends V {
+class Gm extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 3);
@@ -13446,74 +14223,74 @@ class Dm extends V {
       t.isArray() ? t.getColumnCount() : 1,
       r.isArray() ? r.getColumnCount() : 1
     ), o = O(n, s, e, g.create(m.NA)), u = O(n, s, t, g.create(m.NA)), c = O(n, s, r, g.create(m.NA)), l = o.mapValue((f, h, d) => {
-      const _ = u.get(h, d), C = c.get(h, d);
-      return f.isError() ? f : _.isError() ? _ : C.isError() ? C : this._handleSingleObject(f, _, C);
+      const C = u.get(h, d), _ = c.get(h, d);
+      return f.isError() ? f : C.isError() ? C : _.isError() ? _ : this._handleSingleObject(f, C, _);
     });
     return n === 1 && s === 1 ? l.get(0, 0) : l;
   }
   _handleSingleObject(e, t, r) {
-    const { isError: n, errorObject: s, variants: o } = B(e, t, r);
+    const { isError: n, errorObject: s, variants: o } = I(e, t, r);
     if (n)
       return s;
     const [u, c, l] = o, f = +u.getValue(), h = Math.floor(+c.getValue()), d = Math.floor(+l.getValue());
     if (f < 0 || h < 1 || h > 10 ** 10 || d < 1 || d > 2)
       return g.create(m.NUM);
-    let _ = Gr(-f, h);
-    return d === 2 && (_ *= 2), Number.isNaN(_) || !Number.isFinite(_) ? g.create(m.NUM) : y.create(_);
+    let C = Wr(-f, h);
+    return d === 2 && (C *= 2), Number.isNaN(C) || !Number.isFinite(C) ? g.create(m.NUM) : y.create(C);
   }
 }
-const Lm = [
-  [Vm, le.BETADIST],
-  [Zo, le.BETAINV],
-  [zo, le.BINOMDIST],
-  [eu, le.CHIDIST],
-  [tu, le.CHIINV],
-  [ru, le.CHITEST],
-  [nu, le.CONFIDENCE],
-  [su, le.COVAR],
-  [Jo, le.CRITBINOM],
-  [au, le.EXPONDIST],
-  [iu, le.FDIST],
-  [ou, le.FINV],
-  [uu, le.FTEST],
-  [cu, le.GAMMADIST],
-  [lu, le.GAMMAINV],
-  [Nm, le.HYPGEOMDIST],
-  [Om, le.LOGNORMDIST],
-  [fu, le.LOGINV],
-  [hu, le.MODE],
-  [Mm, le.NEGBINOMDIST],
-  [mu, le.NORMDIST],
-  [gu, le.NORMINV],
-  [wm, le.NORMSDIST],
-  [du, le.NORMSINV],
-  [Cu, le.PERCENTILE],
-  [_u, le.PERCENTRANK],
-  [Au, le.POISSON],
-  [Eu, le.QUARTILE],
-  [Sm, le.RANK],
-  [yu, le.STDEV],
-  [bu, le.STDEVP],
-  [Dm, le.TDIST],
-  [Ru, le.TINV],
-  [pu, le.TTEST],
-  [Nu, le.VAR],
-  [Vu, le.VARP],
-  [Ou, le.WEIBULL],
-  [Mu, le.ZTEST]
-], Pm = [];
-var xm = /* @__PURE__ */ ((i) => (i.CUBEKPIMEMBER = "CUBEKPIMEMBER", i.CUBEMEMBER = "CUBEMEMBER", i.CUBEMEMBERPROPERTY = "CUBEMEMBERPROPERTY", i.CUBERANKEDMEMBER = "CUBERANKEDMEMBER", i.CUBESET = "CUBESET", i.CUBESETCOUNT = "CUBESETCOUNT", i.CUBEVALUE = "CUBEVALUE", i))(xm || {});
-class jm extends V {
+const Wm = [
+  [Fm, le.BETADIST],
+  [uu, le.BETAINV],
+  [cu, le.BINOMDIST],
+  [fu, le.CHIDIST],
+  [hu, le.CHIINV],
+  [mu, le.CHITEST],
+  [gu, le.CONFIDENCE],
+  [du, le.COVAR],
+  [lu, le.CRITBINOM],
+  [Cu, le.EXPONDIST],
+  [_u, le.FDIST],
+  [Au, le.FINV],
+  [Eu, le.FTEST],
+  [bu, le.GAMMADIST],
+  [yu, le.GAMMAINV],
+  [km, le.HYPGEOMDIST],
+  [$m, le.LOGNORMDIST],
+  [Ru, le.LOGINV],
+  [pu, le.MODE],
+  [Ym, le.NEGBINOMDIST],
+  [Nu, le.NORMDIST],
+  [Vu, le.NORMINV],
+  [Hm, le.NORMSDIST],
+  [Ou, le.NORMSINV],
+  [wu, le.PERCENTILE],
+  [Su, le.PERCENTRANK],
+  [Mu, le.POISSON],
+  [Du, le.QUARTILE],
+  [Qm, le.RANK],
+  [Pu, le.STDEV],
+  [Lu, le.STDEVP],
+  [Gm, le.TDIST],
+  [xu, le.TINV],
+  [ju, le.TTEST],
+  [vu, le.VAR],
+  [Uu, le.VARP],
+  [Tu, le.WEIBULL],
+  [Bu, le.ZTEST]
+], qm = [];
+var Km = /* @__PURE__ */ ((i) => (i.CUBEKPIMEMBER = "CUBEKPIMEMBER", i.CUBEMEMBER = "CUBEMEMBER", i.CUBEMEMBERPROPERTY = "CUBEMEMBERPROPERTY", i.CUBERANKEDMEMBER = "CUBERANKEDMEMBER", i.CUBESET = "CUBESET", i.CUBESETCOUNT = "CUBESETCOUNT", i.CUBEVALUE = "CUBEVALUE", i))(Km || {});
+class Xm extends V {
   isCustom() {
     return !0;
   }
 }
-class ny extends jm {
+class dy extends Xm {
   isAsync() {
     return !0;
   }
 }
-function rt(i) {
+function nt(i) {
   const a = [];
   if (i.isError())
     return {
@@ -13537,7 +14314,7 @@ function rt(i) {
         continue;
       }
       let u = `${o.getValue()}`;
-      if (o.isBoolean() && (u = u.toLocaleUpperCase()), o.isNumber() || W(u)) {
+      if (o.isBoolean() && (u = u.toLocaleUpperCase()), o.isNumber() || q(u)) {
         n.push(+u);
         continue;
       }
@@ -13551,7 +14328,7 @@ function rt(i) {
     databaseValues: a
   };
 }
-function nt(i, a) {
+function st(i, a) {
   let e = -1;
   if (i.isError())
     return {
@@ -13568,7 +14345,7 @@ function nt(i, a) {
     };
   const n = i.isArray() ? i.get(0, 0) : i;
   let s = `${n.getValue()}`;
-  if (n.isNull() ? s = 0 : n.isBoolean() ? s = n.getValue() ? 1 : 0 : (n.isNumber() || W(s)) && (s = Math.floor(+s)), typeof s == "number") {
+  if (n.isNull() ? s = 0 : n.isBoolean() ? s = n.getValue() ? 1 : 0 : (n.isNumber() || q(s)) && (s = Math.floor(+s)), typeof s == "number") {
     if (s < 1 || s > a[0].length)
       return {
         isError: !0,
@@ -13588,7 +14365,7 @@ function nt(i, a) {
     fieldIndex: e
   };
 }
-function st(i) {
+function at(i) {
   const a = [];
   if (i.isError())
     return {
@@ -13616,7 +14393,7 @@ function st(i) {
         n.push(o.getValue() ? 1 : 0);
         continue;
       }
-      if (o.isNumber() || W(u)) {
+      if (o.isNumber() || q(u)) {
         n.push(+u);
         continue;
       }
@@ -13630,7 +14407,7 @@ function st(i) {
     criteriaValues: a
   };
 }
-function at(i, a, e) {
+function it(i, a, e) {
   const t = i.length, r = i[0].length, n = {};
   let s = !1;
   for (let o = 1; o < t; o++) {
@@ -13653,8 +14430,8 @@ function at(i, a, e) {
           u = !1;
           break;
         }
-        const [d, _] = Va(`${l}`);
-        if (!Mt.create(`${h}`).compare(_, d).getValue()) {
+        const [d, C] = lr(`${l}`);
+        if (!wt.create(`${h}`).compare(C, d).getValue()) {
           u = !1;
           break;
         }
@@ -13667,345 +14444,345 @@ function at(i, a, e) {
   }
   return s;
 }
-class Um extends V {
+class Zm extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 3);
     A(this, "maxParams", 3);
   }
   calculate(e, t, r) {
-    const { isError: n, errorObject: s, databaseValues: o } = rt(e);
+    const { isError: n, errorObject: s, databaseValues: o } = nt(e);
     if (n)
       return s;
-    const { isError: u, errorObject: c, fieldIndex: l } = nt(t, o);
+    const { isError: u, errorObject: c, fieldIndex: l } = st(t, o);
     if (u)
       return c;
-    const { isError: f, errorObject: h, criteriaValues: d } = st(r);
+    const { isError: f, errorObject: h, criteriaValues: d } = at(r);
     if (f)
       return h;
-    let _ = 0, C = 0;
+    let C = 0, _ = 0;
     for (let E = 1; E < o.length; E++) {
       const b = o[E][l];
-      typeof b == "number" && at(d, o, E) && (_ += b, C++);
+      typeof b == "number" && it(d, o, E) && (C += b, _++);
     }
-    return C === 0 ? g.create(m.DIV_BY_ZERO) : y.create(_ / C);
+    return _ === 0 ? g.create(m.DIV_BY_ZERO) : y.create(C / _);
   }
 }
-class vm extends V {
+class zm extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 3);
     A(this, "maxParams", 3);
   }
   calculate(e, t, r) {
-    const { isError: n, errorObject: s, databaseValues: o } = rt(e);
+    const { isError: n, errorObject: s, databaseValues: o } = nt(e);
     if (n)
       return s;
-    const { isError: u, errorObject: c, fieldIndex: l } = nt(t, o);
+    const { isError: u, errorObject: c, fieldIndex: l } = st(t, o);
     if (u)
       return c;
-    const { isError: f, errorObject: h, criteriaValues: d } = st(r);
+    const { isError: f, errorObject: h, criteriaValues: d } = at(r);
     if (f)
       return h;
-    let _ = 0;
-    for (let C = 1; C < o.length; C++)
-      typeof o[C][l] == "number" && at(d, o, C) && _++;
-    return y.create(_);
+    let C = 0;
+    for (let _ = 1; _ < o.length; _++)
+      typeof o[_][l] == "number" && it(d, o, _) && C++;
+    return y.create(C);
   }
 }
-class Tm extends V {
+class Jm extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 3);
     A(this, "maxParams", 3);
   }
   calculate(e, t, r) {
-    const { isError: n, errorObject: s, databaseValues: o } = rt(e);
+    const { isError: n, errorObject: s, databaseValues: o } = nt(e);
     if (n)
       return s;
-    const { isError: u, errorObject: c, fieldIndex: l } = nt(t, o);
+    const { isError: u, errorObject: c, fieldIndex: l } = st(t, o);
     if (u)
       return c;
-    const { isError: f, errorObject: h, criteriaValues: d } = st(r);
+    const { isError: f, errorObject: h, criteriaValues: d } = at(r);
     if (f)
       return h;
-    let _ = 0;
-    for (let C = 1; C < o.length; C++) {
-      const E = o[C][l];
-      E != null && at(d, o, C) && _++;
+    let C = 0;
+    for (let _ = 1; _ < o.length; _++) {
+      const E = o[_][l];
+      E != null && it(d, o, _) && C++;
     }
-    return y.create(_);
+    return y.create(C);
   }
 }
-class Bm extends V {
+class eg extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 3);
     A(this, "maxParams", 3);
   }
   calculate(e, t, r) {
-    const { isError: n, errorObject: s, databaseValues: o } = rt(e);
+    const { isError: n, errorObject: s, databaseValues: o } = nt(e);
     if (n)
       return s;
-    const { isError: u, errorObject: c, fieldIndex: l } = nt(t, o);
+    const { isError: u, errorObject: c, fieldIndex: l } = st(t, o);
     if (u)
       return c;
-    const { isError: f, errorObject: h, criteriaValues: d } = st(r);
+    const { isError: f, errorObject: h, criteriaValues: d } = at(r);
     if (f)
       return h;
-    let _ = 0, C = 0;
+    let C = 0, _ = 0;
     for (let E = 1; E < o.length; E++) {
       const b = o[E][l];
-      b != null && at(d, o, E) && (_++, C = E);
+      b != null && it(d, o, E) && (C++, _ = E);
     }
-    return _ === 0 ? g.create(m.VALUE) : _ > 1 ? g.create(m.NUM) : e.get(C, l);
+    return C === 0 ? g.create(m.VALUE) : C > 1 ? g.create(m.NUM) : e.get(_, l);
   }
 }
-class Im extends V {
+class tg extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 3);
     A(this, "maxParams", 3);
   }
   calculate(e, t, r) {
-    const { isError: n, errorObject: s, databaseValues: o } = rt(e);
+    const { isError: n, errorObject: s, databaseValues: o } = nt(e);
     if (n)
       return s;
-    const { isError: u, errorObject: c, fieldIndex: l } = nt(t, o);
+    const { isError: u, errorObject: c, fieldIndex: l } = st(t, o);
     if (u)
       return c;
-    const { isError: f, errorObject: h, criteriaValues: d } = st(r);
+    const { isError: f, errorObject: h, criteriaValues: d } = at(r);
     if (f)
       return h;
-    let _ = -1 / 0, C = 0;
+    let C = -1 / 0, _ = 0;
     for (let E = 1; E < o.length; E++) {
       const b = o[E][l];
-      typeof b == "number" && at(d, o, E) && (_ = Math.max(_, b), C++);
+      typeof b == "number" && it(d, o, E) && (C = Math.max(C, b), _++);
     }
-    return C === 0 ? y.create(0) : y.create(_);
+    return _ === 0 ? y.create(0) : y.create(C);
   }
 }
-class Fm extends V {
+class rg extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 3);
     A(this, "maxParams", 3);
   }
   calculate(e, t, r) {
-    const { isError: n, errorObject: s, databaseValues: o } = rt(e);
+    const { isError: n, errorObject: s, databaseValues: o } = nt(e);
     if (n)
       return s;
-    const { isError: u, errorObject: c, fieldIndex: l } = nt(t, o);
+    const { isError: u, errorObject: c, fieldIndex: l } = st(t, o);
     if (u)
       return c;
-    const { isError: f, errorObject: h, criteriaValues: d } = st(r);
+    const { isError: f, errorObject: h, criteriaValues: d } = at(r);
     if (f)
       return h;
-    let _ = 1 / 0, C = 0;
+    let C = 1 / 0, _ = 0;
     for (let E = 1; E < o.length; E++) {
       const b = o[E][l];
-      typeof b == "number" && at(d, o, E) && (_ = Math.min(_, b), C++);
+      typeof b == "number" && it(d, o, E) && (C = Math.min(C, b), _++);
     }
-    return C === 0 ? y.create(0) : y.create(_);
+    return _ === 0 ? y.create(0) : y.create(C);
   }
 }
-class km extends V {
+class ng extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 3);
     A(this, "maxParams", 3);
   }
   calculate(e, t, r) {
-    const { isError: n, errorObject: s, databaseValues: o } = rt(e);
+    const { isError: n, errorObject: s, databaseValues: o } = nt(e);
     if (n)
       return s;
-    const { isError: u, errorObject: c, fieldIndex: l } = nt(t, o);
+    const { isError: u, errorObject: c, fieldIndex: l } = st(t, o);
     if (u)
       return c;
-    const { isError: f, errorObject: h, criteriaValues: d } = st(r);
+    const { isError: f, errorObject: h, criteriaValues: d } = at(r);
     if (f)
       return h;
-    let _ = 1, C = 0;
+    let C = 1, _ = 0;
     for (let E = 1; E < o.length; E++) {
       const b = o[E][l];
-      typeof b == "number" && at(d, o, E) && (_ *= b, C++);
+      typeof b == "number" && it(d, o, E) && (C *= b, _++);
     }
-    return C === 0 ? y.create(0) : y.create(_);
+    return _ === 0 ? y.create(0) : y.create(C);
   }
 }
-class $m extends V {
+class sg extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 3);
     A(this, "maxParams", 3);
   }
   calculate(e, t, r) {
-    const { isError: n, errorObject: s, databaseValues: o } = rt(e);
+    const { isError: n, errorObject: s, databaseValues: o } = nt(e);
     if (n)
       return s;
-    const { isError: u, errorObject: c, fieldIndex: l } = nt(t, o);
+    const { isError: u, errorObject: c, fieldIndex: l } = st(t, o);
     if (u)
       return c;
-    const { isError: f, errorObject: h, criteriaValues: d } = st(r);
+    const { isError: f, errorObject: h, criteriaValues: d } = at(r);
     if (f)
       return h;
-    const _ = [];
-    let C = 0, E = 0;
+    const C = [];
+    let _ = 0, E = 0;
     for (let N = 1; N < o.length; N++) {
-      const M = o[N][l];
-      typeof M == "number" && at(d, o, N) && (_.push(M), C += M, E++);
+      const w = o[N][l];
+      typeof w == "number" && it(d, o, N) && (C.push(w), _ += w, E++);
     }
     if (E <= 1)
       return g.create(m.DIV_BY_ZERO);
-    const b = C / E;
+    const b = _ / E;
     let R = 0;
     for (let N = 0; N < E; N++)
-      R += (_[N] - b) ** 2;
+      R += (C[N] - b) ** 2;
     const p = Math.sqrt(R / (E - 1));
     return y.create(p);
   }
 }
-class Ym extends V {
+class ag extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 3);
     A(this, "maxParams", 3);
   }
   calculate(e, t, r) {
-    const { isError: n, errorObject: s, databaseValues: o } = rt(e);
+    const { isError: n, errorObject: s, databaseValues: o } = nt(e);
     if (n)
       return s;
-    const { isError: u, errorObject: c, fieldIndex: l } = nt(t, o);
+    const { isError: u, errorObject: c, fieldIndex: l } = st(t, o);
     if (u)
       return c;
-    const { isError: f, errorObject: h, criteriaValues: d } = st(r);
+    const { isError: f, errorObject: h, criteriaValues: d } = at(r);
     if (f)
       return h;
-    const _ = [];
-    let C = 0, E = 0;
+    const C = [];
+    let _ = 0, E = 0;
     for (let N = 1; N < o.length; N++) {
-      const M = o[N][l];
-      typeof M == "number" && at(d, o, N) && (_.push(M), C += M, E++);
+      const w = o[N][l];
+      typeof w == "number" && it(d, o, N) && (C.push(w), _ += w, E++);
     }
     if (E === 0)
       return g.create(m.DIV_BY_ZERO);
-    const b = C / E;
+    const b = _ / E;
     let R = 0;
     for (let N = 0; N < E; N++)
-      R += (_[N] - b) ** 2;
+      R += (C[N] - b) ** 2;
     const p = Math.sqrt(R / E);
     return y.create(p);
   }
 }
-class Hm extends V {
+class ig extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 3);
     A(this, "maxParams", 3);
   }
   calculate(e, t, r) {
-    const { isError: n, errorObject: s, databaseValues: o } = rt(e);
+    const { isError: n, errorObject: s, databaseValues: o } = nt(e);
     if (n)
       return s;
-    const { isError: u, errorObject: c, fieldIndex: l } = nt(t, o);
+    const { isError: u, errorObject: c, fieldIndex: l } = st(t, o);
     if (u)
       return c;
-    const { isError: f, errorObject: h, criteriaValues: d } = st(r);
+    const { isError: f, errorObject: h, criteriaValues: d } = at(r);
     if (f)
       return h;
-    let _ = 0;
-    for (let C = 1; C < o.length; C++) {
-      const E = o[C][l];
-      typeof E == "number" && at(d, o, C) && (_ += E);
+    let C = 0;
+    for (let _ = 1; _ < o.length; _++) {
+      const E = o[_][l];
+      typeof E == "number" && it(d, o, _) && (C += E);
     }
-    return y.create(_);
+    return y.create(C);
   }
 }
-class Gm extends V {
+class og extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 3);
     A(this, "maxParams", 3);
   }
   calculate(e, t, r) {
-    const { isError: n, errorObject: s, databaseValues: o } = rt(e);
+    const { isError: n, errorObject: s, databaseValues: o } = nt(e);
     if (n)
       return s;
-    const { isError: u, errorObject: c, fieldIndex: l } = nt(t, o);
+    const { isError: u, errorObject: c, fieldIndex: l } = st(t, o);
     if (u)
       return c;
-    const { isError: f, errorObject: h, criteriaValues: d } = st(r);
+    const { isError: f, errorObject: h, criteriaValues: d } = at(r);
     if (f)
       return h;
-    const _ = [];
-    let C = 0, E = 0;
+    const C = [];
+    let _ = 0, E = 0;
     for (let N = 1; N < o.length; N++) {
-      const M = o[N][l];
-      typeof M == "number" && at(d, o, N) && (_.push(M), C += M, E++);
+      const w = o[N][l];
+      typeof w == "number" && it(d, o, N) && (C.push(w), _ += w, E++);
     }
     if (E <= 1)
       return g.create(m.DIV_BY_ZERO);
-    const b = C / E;
+    const b = _ / E;
     let R = 0;
     for (let N = 0; N < E; N++)
-      R += (_[N] - b) ** 2;
+      R += (C[N] - b) ** 2;
     const p = R / (E - 1);
     return y.create(p);
   }
 }
-class Qm extends V {
+class ug extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 3);
     A(this, "maxParams", 3);
   }
   calculate(e, t, r) {
-    const { isError: n, errorObject: s, databaseValues: o } = rt(e);
+    const { isError: n, errorObject: s, databaseValues: o } = nt(e);
     if (n)
       return s;
-    const { isError: u, errorObject: c, fieldIndex: l } = nt(t, o);
+    const { isError: u, errorObject: c, fieldIndex: l } = st(t, o);
     if (u)
       return c;
-    const { isError: f, errorObject: h, criteriaValues: d } = st(r);
+    const { isError: f, errorObject: h, criteriaValues: d } = at(r);
     if (f)
       return h;
-    const _ = [];
-    let C = 0, E = 0;
+    const C = [];
+    let _ = 0, E = 0;
     for (let N = 1; N < o.length; N++) {
-      const M = o[N][l];
-      typeof M == "number" && at(d, o, N) && (_.push(M), C += M, E++);
+      const w = o[N][l];
+      typeof w == "number" && it(d, o, N) && (C.push(w), _ += w, E++);
     }
     if (E === 0)
       return g.create(m.DIV_BY_ZERO);
-    const b = C / E;
+    const b = _ / E;
     let R = 0;
     for (let N = 0; N < E; N++)
-      R += (_[N] - b) ** 2;
+      R += (C[N] - b) ** 2;
     const p = R / E;
     return y.create(p);
   }
 }
-var Qe = /* @__PURE__ */ ((i) => (i.DAVERAGE = "DAVERAGE", i.DCOUNT = "DCOUNT", i.DCOUNTA = "DCOUNTA", i.DGET = "DGET", i.DMAX = "DMAX", i.DMIN = "DMIN", i.DPRODUCT = "DPRODUCT", i.DSTDEV = "DSTDEV", i.DSTDEVP = "DSTDEVP", i.DSUM = "DSUM", i.DVAR = "DVAR", i.DVARP = "DVARP", i))(Qe || {});
-const Wm = [
-  [Um, Qe.DAVERAGE],
-  [vm, Qe.DCOUNT],
-  [Tm, Qe.DCOUNTA],
-  [Bm, Qe.DGET],
-  [Im, Qe.DMAX],
-  [Fm, Qe.DMIN],
-  [km, Qe.DPRODUCT],
-  [$m, Qe.DSTDEV],
-  [Ym, Qe.DSTDEVP],
-  [Hm, Qe.DSUM],
-  [Gm, Qe.DVAR],
-  [Qm, Qe.DVARP]
-], $a = "yyyy/mm/dd;@", qm = "yyyy/mm/dd hh:mm", Km = "h:mm A/P";
+var qe = /* @__PURE__ */ ((i) => (i.DAVERAGE = "DAVERAGE", i.DCOUNT = "DCOUNT", i.DCOUNTA = "DCOUNTA", i.DGET = "DGET", i.DMAX = "DMAX", i.DMIN = "DMIN", i.DPRODUCT = "DPRODUCT", i.DSTDEV = "DSTDEV", i.DSTDEVP = "DSTDEVP", i.DSUM = "DSUM", i.DVAR = "DVAR", i.DVARP = "DVARP", i))(qe || {});
+const cg = [
+  [Zm, qe.DAVERAGE],
+  [zm, qe.DCOUNT],
+  [Jm, qe.DCOUNTA],
+  [eg, qe.DGET],
+  [tg, qe.DMAX],
+  [rg, qe.DMIN],
+  [ng, qe.DPRODUCT],
+  [sg, qe.DSTDEV],
+  [ag, qe.DSTDEVP],
+  [ig, qe.DSUM],
+  [og, qe.DVAR],
+  [ug, qe.DVARP]
+], Xa = "yyyy/mm/dd;@", lg = "yyyy/mm/dd hh:mm", fg = "h:mm A/P";
 function Re(i) {
   const a = new Date(Date.UTC(1900, 0, 1)), e = new Date(Date.UTC(1900, 1, 28)), t = Date.UTC(i.getFullYear(), i.getMonth(), i.getDate());
   let r = (t - a.getTime()) / (1e3 * 3600 * 24);
   return t > e.getTime() && (r += 1), Math.floor(r) + 1;
 }
-function Qr(i) {
+function qr(i) {
   const a = new Date(Date.UTC(1900, 0, 1, 0, 0, 0)), e = new Date(Date.UTC(1900, 1, 28, 0, 0, 0));
   let r = (i.getTime() - a.getTime()) / (1e3 * 3600 * 24);
   return i > e && (r += 1), r + 1;
@@ -14015,12 +14792,12 @@ function re(i) {
   let t = Math.floor(i) - 1;
   return t > (e.getTime() - a.getTime()) / (1e3 * 3600 * 24) && (t -= 1), new Date(a.getTime() + t * (1e3 * 3600 * 24));
 }
-function Ya(i) {
+function Za(i) {
   const a = new Date(Date.UTC(1900, 0, 1, 0, 0, 0)), e = new Date(Date.UTC(1900, 1, 28, 0, 0, 0));
   let t = i - 1;
   return t > (e.getTime() - a.getTime()) / (1e3 * 3600 * 24) && (t -= 1), t < 0 && (t = i), new Date(a.getTime() + t * (1e3 * 3600 * 24));
 }
-function Ha(i) {
+function za(i) {
   if (!/^\d{4}[-/](0?[1-9]|1[012])[-/](0?[1-9]|[12][0-9]|3[01])$/.test(i))
     return !1;
   const e = i.replace(/-/g, "/").replace(/T.+/, ""), t = /* @__PURE__ */ new Date(`${e}`);
@@ -14029,19 +14806,19 @@ function Ha(i) {
   const r = t.getFullYear(), n = (t.getMonth() + 1).toString().padStart(2, "0"), s = t.getDate().toString().padStart(2, "0"), o = `${r}-${n}-${s}`;
   return i.replace(/\//g, "-").split("-").map((c) => c.padStart(2, "0")).join("-") === o;
 }
-function xn(i) {
-  return At.parseDate(i);
-}
-function Xm(i) {
-  return At.parseValue(i);
-}
 function jn(i) {
-  return At.parseTime(i);
+  return Et.parseDate(i);
 }
-function Ga(i) {
-  return At.getFormatInfo(i).isDate;
+function hg(i) {
+  return Et.parseValue(i);
 }
-const wu = {
+function Un(i) {
+  return Et.parseTime(i);
+}
+function Ja(i) {
+  return Et.getFormatInfo(i).isDate;
+}
+const Iu = {
   1: [6, 0],
   // Saturday, Sunday
   2: [0, 1],
@@ -14071,11 +14848,11 @@ const wu = {
   17: [6]
   // Saturday only
 };
-function Tr(i) {
-  return !!(typeof i == "string" && /^[0|1]{7}/.test(i) || wu[Number(i)]);
+function Fr(i) {
+  return !!(typeof i == "string" && /^[0|1]{7}/.test(i) || Iu[Number(i)]);
 }
-function Su(i) {
-  if (!Tr(i))
+function Fu(i) {
+  if (!Fr(i))
     return [];
   if (typeof i == "string" && /^[0|1]{7}/.test(i)) {
     const a = [];
@@ -14083,23 +14860,23 @@ function Su(i) {
       `${i[e - 1]}` == "1" && (e === i.length ? a.push(0) : a.push(e));
     return a;
   }
-  return wu[Number(i)] || [];
+  return Iu[Number(i)] || [];
 }
-function Un(i, a, e = 1, t) {
-  const r = Su(e), n = Math.floor(i), s = Math.floor(a), o = s > n ? n : s;
+function vn(i, a, e = 1, t) {
+  const r = Fu(e), n = Math.floor(i), s = Math.floor(a), o = s > n ? n : s;
   let u = 0;
   const c = Math.abs(Math.floor(a) - Math.floor(i)) + 1;
   for (let l = 0; l < c; l++) {
     const f = o + l;
     if (t && t.length > 0 && t.some((d) => Math.floor(d) === f))
       continue;
-    const h = nr(f);
+    const h = ar(f);
     r.includes(h) || u++;
   }
   return s >= n ? u : -u;
 }
-function vn(i, a, e = 1, t) {
-  const r = Su(e), n = Math.floor(i);
+function Tn(i, a, e = 1, t) {
+  const r = Fu(e), n = Math.floor(i);
   let s = n, o = Math.abs(a);
   for (let u = 1; u <= o; u++) {
     const c = a < 0 ? n - u : n + u;
@@ -14109,7 +14886,7 @@ function vn(i, a, e = 1, t) {
       o++;
       continue;
     }
-    const l = nr(c);
+    const l = ar(c);
     if (r.includes(l)) {
       o++;
       continue;
@@ -14124,21 +14901,21 @@ function $(i) {
   const a = i.getValue();
   if (i.isString()) {
     let e;
-    if (xn(`${a}`))
-      e = xn(`${a}`).v;
-    else if (jn(`${a}`))
+    if (jn(`${a}`))
       e = jn(`${a}`).v;
-    else if (W(a))
+    else if (Un(`${a}`))
+      e = Un(`${a}`).v;
+    else if (q(a))
       e = +a;
     else
       return g.create(m.VALUE);
-    return e instanceof Date && (e = Qr(e)), +e < 0 || +e > 2958465 ? g.create(m.NUM) : +e;
+    return e instanceof Date && (e = qr(e)), +e < 0 || +e > 2958465 ? g.create(m.NUM) : +e;
   } else {
     const e = +i.getValue();
     return e < 0 || e > 2958465 ? g.create(m.NUM) : e;
   }
 }
-function nr(i) {
+function ar(i) {
   const a = Math.floor(i) === 60;
   let e = re(i);
   const t = new Date(Date.UTC(e.getFullYear(), e.getMonth(), e.getDate())).getTime(), r = new Date(Date.UTC(1900, 1, 28)).getTime();
@@ -14147,9 +14924,9 @@ function nr(i) {
 function _e(i, a, e) {
   switch (e) {
     case 0:
-      return Zm(i, a);
+      return mg(i, a);
     case 1:
-      return zm(i, a);
+      return gg(i, a);
     case 2:
       return {
         days: Math.abs(a - i),
@@ -14161,7 +14938,7 @@ function _e(i, a, e) {
         yearDays: 365
       };
     case 4:
-      return Jm(i, a);
+      return dg(i, a);
     default:
       return {
         days: Math.abs(a - i),
@@ -14169,7 +14946,7 @@ function _e(i, a, e) {
       };
   }
 }
-function Zm(i, a) {
+function mg(i, a) {
   const e = re(i), t = i > 0 ? e.getUTCFullYear() : 1900, r = i > 0 ? e.getUTCMonth() + 1 : 1;
   let n = i > 0 ? e.getUTCDate() : 0, s = re(a), o = a > 0 ? s.getUTCFullYear() : 1900, u = a > 0 ? s.getUTCMonth() + 1 : 1, c = a > 0 ? s.getUTCDate() : 0;
   r === 2 ? re(i + 1).getUTCMonth() + 1 === 3 && (n = 30) : n === 31 && (n = 30), c === 31 && (n < 30 ? (s = re(a + 1), o = s.getUTCFullYear(), u = s.getUTCMonth() + 1, c = s.getUTCDate()) : c = 30);
@@ -14179,7 +14956,7 @@ function Zm(i, a) {
     yearDays: 360
   };
 }
-function zm(i, a) {
+function gg(i, a) {
   const e = re(i), t = i > 0 ? e.getUTCFullYear() : 1900, r = re(a), n = a > 0 ? r.getUTCFullYear() : 1900, s = Math.abs(a - i), o = Math.abs(n - t) + 1;
   let u, c;
   if (n < t) {
@@ -14194,7 +14971,7 @@ function zm(i, a) {
     yearDays: (c - u + 1) / o
   };
 }
-function Jm(i, a) {
+function dg(i, a) {
   const e = re(i), t = i > 0 ? e.getUTCFullYear() : 1900, r = i > 0 ? e.getUTCMonth() + 1 : 1;
   let n = i > 0 ? e.getUTCDate() : 0;
   const s = re(a), o = a > 0 ? s.getUTCFullYear() : 1900, u = a > 0 ? s.getUTCMonth() + 1 : 1;
@@ -14206,42 +14983,42 @@ function Jm(i, a) {
     yearDays: 360
   };
 }
-function eg(i) {
+function Cg(i) {
   return i % 4 === 0 && i % 100 !== 0 || i % 400 === 0;
 }
-function tg(i) {
+function _g(i) {
   return i % 4 === 0 && i % 100 !== 0 || i % 400 === 0 || i === 1900;
 }
-const rg = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31], ng = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-function Wr(i, a) {
-  return eg(i) ? rg[a] : ng[a];
+const Ag = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31], Eg = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+function Kr(i, a) {
+  return Cg(i) ? Ag[a] : Eg[a];
 }
-function os(i) {
-  return tg(i) ? 366 : 365;
+function us(i) {
+  return _g(i) ? 366 : 365;
 }
-function Du(i, a) {
+function ku(i, a) {
   switch (a) {
     case 0:
     case 2:
     case 4:
       return 360;
     case 1:
-      return os(re(i).getUTCFullYear());
+      return us(re(i).getUTCFullYear());
     case 3:
       return 365;
     default:
       return -1;
   }
 }
-function pr(i, a, e) {
-  return Wr(i, a) === e;
+function Vr(i, a, e) {
+  return Kr(i, a) === e;
 }
-function Vr(i, a) {
+function Or(i, a) {
   let e = i.getUTCFullYear(), t = i.getUTCMonth();
   const r = i.getUTCDate();
-  return pr(e, t, r) ? (i.setUTCDate(1), i.setUTCMonth(i.getUTCMonth() + a), e = i.getUTCFullYear(), t = i.getUTCMonth(), i.setUTCDate(Wr(e, t))) : i.setUTCMonth(i.getUTCMonth() + a), i;
+  return Vr(e, t, r) ? (i.setUTCDate(1), i.setUTCMonth(i.getUTCMonth() + a), e = i.getUTCFullYear(), t = i.getUTCMonth(), i.setUTCDate(Kr(e, t))) : i.setUTCMonth(i.getUTCMonth() + a), i;
 }
-class sg extends V {
+class bg extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 3);
@@ -14264,26 +15041,26 @@ class sg extends V {
       r.isArray() ? r.getColumnCount() : 1
     ), o = O(n, s, e), u = O(n, s, t), c = O(n, s, r);
     return o.map((l, f, h) => {
-      const d = u.get(f, h) || ue.create(), _ = c.get(f, h) || ue.create();
+      const d = u.get(f, h) || ue.create(), C = c.get(f, h) || ue.create();
       if (l.isError())
         return l;
       if (d.isError())
         return d;
-      if (_.isError())
-        return _;
-      if (l.isString() || d.isString() || _.isString())
+      if (C.isError())
+        return C;
+      if (l.isString() || d.isString() || C.isString())
         return g.create(m.VALUE);
-      let C = +l.getValue();
-      const E = Math.floor(+d.getValue()), b = +_.getValue();
-      if (C < 0 || C > 9999)
+      let _ = +l.getValue();
+      const E = Math.floor(+d.getValue()), b = +C.getValue();
+      if (_ < 0 || _ > 9999)
         return g.create(m.NUM);
-      C >= 0 && C < 1899 && (C += 1900);
-      const R = new Date(C, E - 1, b), p = Re(R);
-      return p < 0 ? g.create(m.NUM) : y.create(p, $a);
+      _ >= 0 && _ < 1899 && (_ += 1900);
+      const R = new Date(_, E - 1, b), p = Re(R);
+      return p < 0 ? g.create(m.NUM) : y.create(p, Xa);
     });
   }
 }
-class ag extends V {
+class yg extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 3);
@@ -14305,33 +15082,33 @@ class ag extends V {
   }
   _getResultByUnit(e, t, r) {
     const n = re(e), s = n.getUTCFullYear(), o = n.getUTCMonth() + 1, u = n.getUTCDate(), c = re(t), l = c.getUTCFullYear(), f = c.getUTCMonth() + 1, h = c.getUTCDate(), d = `${r.getValue()}`.toLocaleUpperCase();
-    let _ = 0, C;
+    let C = 0, _;
     switch (d) {
       case "Y":
-        _ = l - s, (f < o || f === o && h < u) && (_ -= 1);
+        C = l - s, (f < o || f === o && h < u) && (C -= 1);
         break;
       case "M":
-        _ = (l - s) * 12 + f - o, h < u && (_ -= 1);
+        C = (l - s) * 12 + f - o, h < u && (C -= 1);
         break;
       case "D":
-        _ = Math.floor(t) - Math.floor(e);
+        C = Math.floor(t) - Math.floor(e);
         break;
       case "MD":
-        _ = h - u, h < u && (C = new Date(Date.UTC(l, f - 1, 0)), _ += Wr(C.getUTCFullYear(), C.getUTCMonth()));
+        C = h - u, h < u && (_ = new Date(Date.UTC(l, f - 1, 0)), C += Kr(_.getUTCFullYear(), _.getUTCMonth()));
         break;
       case "YM":
-        _ = f - o, (f < o || f === o && h < u) && (_ += 12), h < u && (_ -= 1);
+        C = f - o, (f < o || f === o && h < u) && (C += 12), h < u && (C -= 1);
         break;
       case "YD":
-        C = new Date(Date.UTC(s, f - 1, h)), (f < o || f === o && h < u) && (C = new Date(Date.UTC(s + 1, f - 1, h))), _ = Math.floor(Re(C)) - Math.floor(e);
+        _ = new Date(Date.UTC(s, f - 1, h)), (f < o || f === o && h < u) && (_ = new Date(Date.UTC(s + 1, f - 1, h))), C = Math.floor(Re(_)) - Math.floor(e);
         break;
       default:
         return g.create(m.NUM);
     }
-    return y.create(_);
+    return y.create(C);
   }
 }
-class ig extends V {
+class Rg extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -14348,17 +15125,17 @@ class ig extends V {
       return e;
     if (e.isString()) {
       const t = `${e.getValue()}`;
-      let r = xn(t);
-      if (r === null && (r = jn(t)), r) {
+      let r = jn(t);
+      if (r === null && (r = Un(t)), r) {
         let { v: n, z: s } = r;
-        if (s && Ga(s))
-          return n instanceof Date && (n = Qr(n)), y.create(Math.trunc(+n));
+        if (s && Ja(s))
+          return n instanceof Date && (n = qr(n)), y.create(Math.trunc(+n));
       }
     }
     return g.create(m.VALUE);
   }
 }
-class og extends V {
+class pg extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -14371,7 +15148,7 @@ class og extends V {
     let t;
     const r = e.getValue();
     if (e.isString()) {
-      if (!Ha(`${r}`))
+      if (!za(`${r}`))
         return g.create(m.VALUE);
       t = /* @__PURE__ */ new Date(`${r}`);
     } else {
@@ -14386,7 +15163,7 @@ class og extends V {
     return y.create(n);
   }
 }
-class ug extends V {
+class Ng extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 2);
@@ -14412,23 +15189,23 @@ class ug extends V {
       const d = $(c);
       if (typeof d != "number")
         return d;
-      const _ = $(h);
-      if (typeof _ != "number")
-        return _;
-      const C = Math.floor(d) - Math.floor(_);
-      return y.create(C);
+      const C = $(h);
+      if (typeof C != "number")
+        return C;
+      const _ = Math.floor(d) - Math.floor(C);
+      return y.create(_);
     });
     return r === 1 && n === 1 ? u.get(0, 0) : u;
   }
 }
-class cg extends V {
+class Vg extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 2);
     A(this, "maxParams", 3);
   }
   calculate(e, t, r) {
-    const n = r != null ? r : T.create(!1);
+    const n = r != null ? r : v.create(!1);
     if (e.isError())
       return e;
     if (t.isError())
@@ -14443,28 +15220,28 @@ class cg extends V {
       e.isArray() ? e.getColumnCount() : 1,
       t.isArray() ? t.getColumnCount() : 1,
       n.isArray() ? n.getColumnCount() : 1
-    ), u = O(s, o, e, g.create(m.NA)), c = O(s, o, t, g.create(m.NA)), l = O(s, o, n, g.create(m.NA)), f = u.map((h, d, _) => {
-      const C = c.get(d, _);
-      let E = l.get(d, _);
+    ), u = O(s, o, e, g.create(m.NA)), c = O(s, o, t, g.create(m.NA)), l = O(s, o, n, g.create(m.NA)), f = u.map((h, d, C) => {
+      const _ = c.get(d, C);
+      let E = l.get(d, C);
       if (h.isError())
         return h;
       const b = $(h);
       if (typeof b != "number")
         return b;
-      if (C.isError())
-        return C;
-      const R = $(C);
+      if (_.isError())
+        return _;
+      const R = $(_);
       if (typeof R != "number")
         return R;
       if (E.isString() && (E = E.convertToNumberObjectValue()), E.isError())
         return E;
-      const p = +E.getValue(), { days: N } = _e(b, R, p ? 4 : 0), M = R >= b ? N : -N;
-      return y.create(M);
+      const p = +E.getValue(), { days: N } = _e(b, R, p ? 4 : 0), w = R >= b ? N : -N;
+      return y.create(w);
     });
     return s === 1 && o === 1 ? f.get(0, 0) : f;
   }
 }
-class lg extends V {
+class Og extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 2);
@@ -14493,12 +15270,12 @@ class lg extends V {
       const h = +u.getValue();
       if (h < 0)
         return g.create(m.NUM);
-      const d = Math.floor(+f.getValue()), _ = re(h), C = _.getUTCFullYear(), E = _.getUTCMonth() + d, b = _.getUTCDate(), R = new Date(Date.UTC(C, E, b)), p = Re(R);
-      return y.create(p, $a);
+      const d = Math.floor(+f.getValue()), C = re(h), _ = C.getUTCFullYear(), E = C.getUTCMonth() + d, b = C.getUTCDate(), R = new Date(Date.UTC(_, E, b)), p = Re(R);
+      return y.create(p, Xa);
     });
   }
 }
-class fg extends V {
+class wg extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 2);
@@ -14507,14 +15284,14 @@ class fg extends V {
   calculate(e, t) {
     let r = e, n = t;
     if (r.isArray()) {
-      const d = r.getRowCount(), _ = r.getColumnCount();
-      if (d > 1 || _ > 1)
+      const d = r.getRowCount(), C = r.getColumnCount();
+      if (d > 1 || C > 1)
         return g.create(m.VALUE);
       r = r.get(0, 0);
     }
     if (n.isArray()) {
-      const d = n.getRowCount(), _ = n.getColumnCount();
-      if (d > 1 || _ > 1)
+      const d = n.getRowCount(), C = n.getColumnCount();
+      if (d > 1 || C > 1)
         return g.create(m.VALUE);
       n = n.get(0, 0);
     }
@@ -14534,7 +15311,7 @@ class fg extends V {
     return y.create(h);
   }
 }
-class hg extends V {
+class Sg extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -14548,19 +15325,19 @@ class hg extends V {
     if (u.isNull() || u.isBoolean() || u.isString() || !o && u.isNumber() && u.getPattern() !== "")
       return g.create(m.VALUE);
     let l = +u.getValue();
-    const { isError: f, errorObject: h, variants: d } = B(c);
+    const { isError: f, errorObject: h, variants: d } = I(c);
     if (f)
       return h;
-    const [_] = d, C = Math.floor(+_.getValue());
-    if (l < 0 || C < 1 || C > 3)
+    const [C] = d, _ = Math.floor(+C.getValue());
+    if (l < 0 || _ < 1 || _ > 3)
       return g.create(m.NUM);
-    C === 1 && (l = l * 1e3), C === 3 && (l = l / 1e3);
+    _ === 1 && (l = l * 1e3), _ === 3 && (l = l / 1e3);
     const E = new Date(Date.UTC(1970, 0, 1, 0, 0, 0, 0) + l);
     if (Number.isNaN(E.getTime())) {
       const b = 25569 + l / 864e5;
       return y.create(b);
     } else {
-      const b = Qr(E);
+      const b = qr(E);
       return y.create(b, "yyyy-MM-dd AM/PM hh:mm:ss");
     }
   }
@@ -14605,7 +15382,7 @@ class hg extends V {
   }
 }
 var be = /* @__PURE__ */ ((i) => (i.DATE = "DATE", i.DATEDIF = "DATEDIF", i.DATEVALUE = "DATEVALUE", i.DAY = "DAY", i.DAYS = "DAYS", i.DAYS360 = "DAYS360", i.EDATE = "EDATE", i.EOMONTH = "EOMONTH", i.EPOCHTODATE = "EPOCHTODATE", i.HOUR = "HOUR", i.ISOWEEKNUM = "ISOWEEKNUM", i.MINUTE = "MINUTE", i.MONTH = "MONTH", i.NETWORKDAYS = "NETWORKDAYS", i.NETWORKDAYS_INTL = "NETWORKDAYS.INTL", i.NOW = "NOW", i.SECOND = "SECOND", i.TIME = "TIME", i.TIMEVALUE = "TIMEVALUE", i.TO_DATE = "TO_DATE", i.TODAY = "TODAY", i.WEEKDAY = "WEEKDAY", i.WEEKNUM = "WEEKNUM", i.WORKDAY = "WORKDAY", i.WORKDAY_INTL = "WORKDAY.INTL", i.YEAR = "YEAR", i.YEARFRAC = "YEARFRAC", i))(be || {});
-class mg extends V {
+class Mg extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -14620,11 +15397,11 @@ class mg extends V {
       return t;
     if (t === 0)
       return y.create(0);
-    const n = Ya(t).getUTCHours();
+    const n = Za(t).getUTCHours();
     return y.create(n);
   }
 }
-class gg extends V {
+class Dg extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -14638,13 +15415,13 @@ class gg extends V {
     if (typeof t != "number")
       return t;
     const r = re(t), n = t > 0 ? r.getUTCFullYear() : 1900;
-    let s = new Date(Date.UTC(n, 0, 1)), o = Re(s), u = nr(o), c;
-    u < 1 ? c = o + 1 : u <= 4 ? c = o - (u - 1) : c = o + (11 - u), t < c && (s = new Date(Date.UTC(n - 1, 0, 1)), o = Re(s), u = nr(o), u < 1 ? c = o + 1 : u <= 4 ? c = o - (u - 1) : c = o + (11 - u));
+    let s = new Date(Date.UTC(n, 0, 1)), o = Re(s), u = ar(o), c;
+    u < 1 ? c = o + 1 : u <= 4 ? c = o - (u - 1) : c = o + (11 - u), t < c && (s = new Date(Date.UTC(n - 1, 0, 1)), o = Re(s), u = ar(o), u < 1 ? c = o + 1 : u <= 4 ? c = o - (u - 1) : c = o + (11 - u));
     const l = Math.ceil((t - c + 1) / 7);
     return y.create(l);
   }
 }
-class dg extends V {
+class Lg extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -14659,11 +15436,11 @@ class dg extends V {
       return t;
     if (t === 0)
       return y.create(0);
-    const n = Ya(t).getUTCMinutes();
+    const n = Za(t).getUTCMinutes();
     return y.create(n);
   }
 }
-class Cg extends V {
+class Pg extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -14678,7 +15455,7 @@ class Cg extends V {
     let t;
     const r = e.getValue();
     if (e.isString()) {
-      if (!Ha(`${r}`))
+      if (!za(`${r}`))
         return g.create(m.VALUE);
       t = /* @__PURE__ */ new Date(`${r}`);
     } else {
@@ -14693,7 +15470,7 @@ class Cg extends V {
     return y.create(n);
   }
 }
-class _g extends V {
+class xg extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 2);
@@ -14729,7 +15506,7 @@ class _g extends V {
       return u;
     if (r)
       return this._getResultByHolidays(o, u, r);
-    const c = Un(o, u);
+    const c = vn(o, u);
     return y.create(c);
   }
   _getResultByHolidays(e, t, r) {
@@ -14754,11 +15531,11 @@ class _g extends V {
         return o;
       n.push(o);
     }
-    const s = Un(e, t, 1, n);
+    const s = vn(e, t, 1, n);
     return y.create(s);
   }
 }
-class Ag extends V {
+class jg extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 2);
@@ -14787,9 +15564,9 @@ class Ag extends V {
       return o;
     let u = 1;
     if (r) {
-      if (u = r.getValue(), r.isBoolean() && (u = +u), r.isString() && !Tr(u))
+      if (u = r.getValue(), r.isBoolean() && (u = +u), r.isString() && !Fr(u))
         return g.create(m.VALUE);
-      if (!Tr(u))
+      if (!Fr(u))
         return g.create(m.NUM);
     }
     if (s.isBoolean() || o.isBoolean())
@@ -14802,7 +15579,7 @@ class Ag extends V {
       return l;
     if (n)
       return this._getResultByHolidays(c, l, u, n);
-    const f = Un(c, l, u);
+    const f = vn(c, l, u);
     return y.create(f);
   }
   _getResultByHolidays(e, t, r, n) {
@@ -14827,22 +15604,22 @@ class Ag extends V {
         return u;
       s.push(u);
     }
-    const o = Un(e, t, r, s);
+    const o = vn(e, t, r, s);
     return y.create(o);
   }
 }
-class Eg extends V {
+class Ug extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 0);
     A(this, "maxParams", 0);
   }
   calculate() {
-    const e = /* @__PURE__ */ new Date(), t = new Date(Date.UTC(e.getFullYear(), e.getMonth(), e.getDate(), e.getHours(), e.getMinutes(), e.getSeconds())), r = Qr(t);
-    return y.create(r, qm);
+    const e = /* @__PURE__ */ new Date(), t = new Date(Date.UTC(e.getFullYear(), e.getMonth(), e.getDate(), e.getHours(), e.getMinutes(), e.getSeconds())), r = qr(t);
+    return y.create(r, lg);
   }
 }
-class bg extends V {
+class vg extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -14857,11 +15634,11 @@ class bg extends V {
       return t;
     if (t === 0)
       return y.create(0);
-    const n = Ya(t).getUTCSeconds();
+    const n = Za(t).getUTCSeconds();
     return y.create(n);
   }
 }
-class yg extends V {
+class Tg extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 3);
@@ -14897,11 +15674,11 @@ class yg extends V {
     if (l < 0 || f < 0 || h < 0 || l > 32767 || f > 32767 || h > 32767)
       return g.create(m.NUM);
     f += Math.floor(h / 60), h %= 60, l += Math.floor(f / 60), f %= 60, l %= 24;
-    const _ = (l * 3600 + f * 60 + h) / 86400;
-    return y.create(_, Km);
+    const C = (l * 3600 + f * 60 + h) / 86400;
+    return y.create(C, fg);
   }
 }
-class Rg extends V {
+class Bg extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -14917,17 +15694,17 @@ class Rg extends V {
     if (e.isError())
       return e;
     if (e.isString()) {
-      const t = `${e.getValue()}`, r = Xm(t);
+      const t = `${e.getValue()}`, r = hg(t);
       if (r) {
         let { v: n, z: s } = r;
-        if (s && Ga(s))
-          return n instanceof Date && (n = Qr(n)), y.create(Uf(+n));
+        if (s && Ja(s))
+          return n instanceof Date && (n = qr(n)), y.create(Qf(+n));
       }
     }
     return g.create(m.VALUE);
   }
 }
-class pg extends V {
+class Ig extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -14949,7 +15726,7 @@ class pg extends V {
     return y.create(n, "yyyy-MM-dd hh:mm:ss AM/PM");
   }
 }
-class Vg extends V {
+class Fg extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 0);
@@ -14957,10 +15734,10 @@ class Vg extends V {
   }
   calculate() {
     const e = Re(/* @__PURE__ */ new Date());
-    return y.create(e, $a);
+    return y.create(e, Xa);
   }
 }
-class Ng extends V {
+class kg extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -15020,11 +15797,11 @@ class Ng extends V {
     const s = Math.floor(+r.getValue());
     if (!this._returnTypeMap[s])
       return g.create(m.NUM);
-    const o = nr(n), u = this._returnTypeMap[s][o];
+    const o = ar(n), u = this._returnTypeMap[s][o];
     return y.create(u);
   }
 }
-class Og extends V {
+class $g extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -15072,9 +15849,9 @@ class Og extends V {
   }
   _getResult(e, t) {
     const r = re(e), n = e > 0 ? r.getUTCFullYear() : 1900;
-    let s = new Date(Date.UTC(n, 0, 1)), o = Re(s), u = nr(o), c;
+    let s = new Date(Date.UTC(n, 0, 1)), o = Re(s), u = ar(o), c;
     if (t === 21)
-      u < 1 ? c = o + 1 : u <= 4 ? c = o - (u - 1) : c = o + (11 - u), e < c && (s = new Date(Date.UTC(n - 1, 0, 1)), o = Re(s), u = nr(o), u < 1 ? c = o + 1 : u <= 4 ? c = o - (u - 1) : c = o + (11 - u));
+      u < 1 ? c = o + 1 : u <= 4 ? c = o - (u - 1) : c = o + (11 - u), e < c && (s = new Date(Date.UTC(n - 1, 0, 1)), o = Re(s), u = ar(o), u < 1 ? c = o + 1 : u <= 4 ? c = o - (u - 1) : c = o + (11 - u));
     else {
       const f = this._returnTypeMap[t];
       u < f ? c = o - (u + 7 - f) : c = o - (u - f);
@@ -15083,7 +15860,7 @@ class Og extends V {
     return y.create(l);
   }
 }
-class Mg extends V {
+class Yg extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 2);
@@ -15119,7 +15896,7 @@ class Mg extends V {
       return g.create(m.VALUE);
     if (r)
       return this._getResultByHolidays(o, u, r);
-    const c = vn(o, u);
+    const c = Tn(o, u);
     return typeof c != "number" ? c : y.create(c);
   }
   _getResultByHolidays(e, t, r) {
@@ -15144,11 +15921,11 @@ class Mg extends V {
         return o;
       n.push(o);
     }
-    const s = vn(e, t, 1, n);
+    const s = Tn(e, t, 1, n);
     return typeof s != "number" ? s : y.create(s);
   }
 }
-class wg extends V {
+class Hg extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 2);
@@ -15173,13 +15950,13 @@ class wg extends V {
     if (Number.isNaN(l))
       return g.create(m.VALUE);
     let f = s.getValue();
-    if (s.isBoolean() && (f = +f), s.isString() && (!Tr(f) || f === "1111111"))
+    if (s.isBoolean() && (f = +f), s.isString() && (!Fr(f) || f === "1111111"))
       return g.create(m.VALUE);
-    if (!Tr(f))
+    if (!Fr(f))
       return g.create(m.NUM);
     if (n)
       return this._getResultByHolidays(c, l, f, n);
-    const h = vn(c, l, f);
+    const h = Tn(c, l, f);
     return typeof h != "number" ? h : y.create(h);
   }
   _checkArrayError(e) {
@@ -15214,11 +15991,11 @@ class wg extends V {
         return u;
       s.push(u);
     }
-    const o = vn(e, t, r, s);
+    const o = Tn(e, t, r, s);
     return typeof o != "number" ? o : y.create(o);
   }
 }
-class Sg extends V {
+class Qg extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -15233,7 +16010,7 @@ class Sg extends V {
     let t;
     const r = e.getValue();
     if (e.isString()) {
-      if (!Ha(`${r}`))
+      if (!za(`${r}`))
         return g.create(m.VALUE);
       t = /* @__PURE__ */ new Date(`${r}`);
     } else {
@@ -15248,7 +16025,7 @@ class Sg extends V {
     return y.create(n);
   }
 }
-class Dg extends V {
+class Gg extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 2);
@@ -15256,13 +16033,13 @@ class Dg extends V {
   }
   calculate(e, t, r) {
     let n = r != null ? r : y.create(0);
-    const s = zt(e);
+    const s = Jt(e);
     if (s.isError())
       return s;
-    const o = zt(t);
+    const o = Jt(t);
     if (o.isError())
       return o;
-    if (n = zt(n), n.isError())
+    if (n = Jt(n), n.isError())
       return n;
     if (s.isBoolean() || o.isBoolean() || n.isBoolean())
       return g.create(m.VALUE);
@@ -15281,36 +16058,36 @@ class Dg extends V {
     return y.create(d);
   }
 }
-const Lg = [
-  [sg, be.DATE],
-  [ag, be.DATEDIF],
-  [ig, be.DATEVALUE],
-  [og, be.DAY],
-  [ug, be.DAYS],
-  [cg, be.DAYS360],
-  [lg, be.EDATE],
-  [fg, be.EOMONTH],
-  [hg, be.EPOCHTODATE],
-  [mg, be.HOUR],
-  [gg, be.ISOWEEKNUM],
-  [dg, be.MINUTE],
-  [Cg, be.MONTH],
-  [_g, be.NETWORKDAYS],
-  [Ag, be.NETWORKDAYS_INTL],
-  [Eg, be.NOW],
-  [bg, be.SECOND],
-  [yg, be.TIME],
-  [Rg, be.TIMEVALUE],
-  [pg, be.TO_DATE],
-  [Vg, be.TODAY],
-  [Ng, be.WEEKDAY],
-  [Og, be.WEEKNUM],
-  [Mg, be.WORKDAY],
-  [wg, be.WORKDAY_INTL],
-  [Sg, be.YEAR],
-  [Dg, be.YEARFRAC]
+const Wg = [
+  [bg, be.DATE],
+  [yg, be.DATEDIF],
+  [Rg, be.DATEVALUE],
+  [pg, be.DAY],
+  [Ng, be.DAYS],
+  [Vg, be.DAYS360],
+  [Og, be.EDATE],
+  [wg, be.EOMONTH],
+  [Sg, be.EPOCHTODATE],
+  [Mg, be.HOUR],
+  [Dg, be.ISOWEEKNUM],
+  [Lg, be.MINUTE],
+  [Pg, be.MONTH],
+  [xg, be.NETWORKDAYS],
+  [jg, be.NETWORKDAYS_INTL],
+  [Ug, be.NOW],
+  [vg, be.SECOND],
+  [Tg, be.TIME],
+  [Bg, be.TIMEVALUE],
+  [Ig, be.TO_DATE],
+  [Fg, be.TODAY],
+  [kg, be.WEEKDAY],
+  [$g, be.WEEKNUM],
+  [Yg, be.WORKDAY],
+  [Hg, be.WORKDAY_INTL],
+  [Qg, be.YEAR],
+  [Gg, be.YEARFRAC]
 ];
-class Pg extends V {
+class qg extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 2);
@@ -15327,11 +16104,11 @@ class Pg extends V {
       return g.create(m.VALUE);
     if (l < 0)
       return g.create(m.NUM);
-    const f = Rr.besseli(c, l);
+    const f = Nr.besseli(c, l);
     return Number.isNaN(f) || !Number.isFinite(f) ? g.create(m.NUM) : y.create(f);
   }
 }
-class xg extends V {
+class Kg extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 2);
@@ -15348,11 +16125,11 @@ class xg extends V {
       return g.create(m.VALUE);
     if (l < 0)
       return g.create(m.NUM);
-    const f = Rr.besselj(c, l);
+    const f = Nr.besselj(c, l);
     return Number.isNaN(f) || !Number.isFinite(f) ? g.create(m.NUM) : y.create(f);
   }
 }
-class jg extends V {
+class Xg extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 2);
@@ -15369,11 +16146,11 @@ class jg extends V {
       return g.create(m.VALUE);
     if (l < 0)
       return g.create(m.NUM);
-    const f = Rr.besselk(c, l);
+    const f = Nr.besselk(c, l);
     return Number.isNaN(f) || !Number.isFinite(f) ? g.create(m.NUM) : y.create(f);
   }
 }
-class Ug extends V {
+class Zg extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 2);
@@ -15390,11 +16167,11 @@ class Ug extends V {
       return g.create(m.VALUE);
     if (l < 0)
       return g.create(m.NUM);
-    const f = Rr.bessely(c, l);
+    const f = Nr.bessely(c, l);
     return Number.isNaN(f) || !Number.isFinite(f) ? g.create(m.NUM) : y.create(f);
   }
 }
-class vg extends V {
+class zg extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -15405,13 +16182,13 @@ class vg extends V {
     if (t)
       return r;
     const [s] = n, o = `${s.getValue()}`;
-    if (!wa(o))
+    if (!va(o))
       return g.create(m.NUM);
     let u;
     return o.length === 10 && o.substring(0, 1) === "1" ? u = Number.parseInt(o.substring(1), 2) - 512 : u = Number.parseInt(o, 2), y.create(u);
   }
 }
-class Tg extends V {
+class Jg extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -15425,8 +16202,8 @@ class Tg extends V {
       const { isError: f, errorObject: h, variants: d } = H(t);
       if (f)
         return h;
-      const [_] = d;
-      if (r = Math.floor(+_.getValue()), Number.isNaN(r))
+      const [C] = d;
+      if (r = Math.floor(+C.getValue()), Number.isNaN(r))
         return g.create(m.VALUE);
       if (r < 0 || r > 10)
         return g.create(m.NUM);
@@ -15435,7 +16212,7 @@ class Tg extends V {
     if (n)
       return s;
     const [u] = o, c = `${u.getValue()}`;
-    if (!wa(c))
+    if (!va(c))
       return g.create(m.NUM);
     let l;
     if (c.length === 10 && c.substring(0, 1) === "1")
@@ -15448,7 +16225,7 @@ class Tg extends V {
     return j.create(l.toLocaleUpperCase());
   }
 }
-class Bg extends V {
+class e1 extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -15462,8 +16239,8 @@ class Bg extends V {
       const { isError: f, errorObject: h, variants: d } = H(t);
       if (f)
         return h;
-      const [_] = d;
-      if (r = Math.floor(+_.getValue()), Number.isNaN(r))
+      const [C] = d;
+      if (r = Math.floor(+C.getValue()), Number.isNaN(r))
         return g.create(m.VALUE);
       if (r < 0 || r > 10)
         return g.create(m.NUM);
@@ -15472,7 +16249,7 @@ class Bg extends V {
     if (n)
       return s;
     const [u] = o, c = `${u.getValue()}`;
-    if (!wa(c))
+    if (!va(c))
       return g.create(m.NUM);
     let l;
     if (c.length === 10 && c.substring(0, 1) === "1")
@@ -15485,7 +16262,7 @@ class Bg extends V {
     return j.create(l);
   }
 }
-class Ig extends V {
+class t1 extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 2);
@@ -15509,16 +16286,16 @@ class Ig extends V {
       let d = o.get(l, f);
       if (d.isString() && (d = d.convertToNumberObjectValue()), d.isError())
         return d;
-      const _ = +h.getValue(), C = +d.getValue();
-      if (_ < 0 || C < 0 || Math.floor(_) !== _ || Math.floor(C) !== C || _ > 281474976710655 || C > 281474976710655)
+      const C = +h.getValue(), _ = +d.getValue();
+      if (C < 0 || _ < 0 || Math.floor(C) !== C || Math.floor(_) !== _ || C > 281474976710655 || _ > 281474976710655)
         return g.create(m.NUM);
-      const E = _ & C;
+      const E = C & _;
       return y.create(E);
     });
     return r === 1 && n === 1 ? u.get(0, 0) : u;
   }
 }
-class Fg extends V {
+class r1 extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 2);
@@ -15542,18 +16319,18 @@ class Fg extends V {
       let d = o.get(l, f);
       if (d.isString() && (d = d.convertToNumberObjectValue()), d.isError())
         return d;
-      const _ = +h.getValue();
-      let C = +d.getValue();
-      if (_ < 0 || Math.floor(_) !== _ || _ > 281474976710655 || Math.abs(C) > 53)
+      const C = +h.getValue();
+      let _ = +d.getValue();
+      if (C < 0 || Math.floor(C) !== C || C > 281474976710655 || Math.abs(_) > 53)
         return g.create(m.NUM);
-      C = Math.trunc(C);
-      const E = Number(C >= 0 ? BigInt(_) << BigInt(C) : BigInt(_) >> BigInt(-C));
+      _ = Math.trunc(_);
+      const E = Number(_ >= 0 ? BigInt(C) << BigInt(_) : BigInt(C) >> BigInt(-_));
       return E > 281474976710655 ? g.create(m.NUM) : y.create(E);
     });
     return r === 1 && n === 1 ? u.get(0, 0) : u;
   }
 }
-class kg extends V {
+class n1 extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 2);
@@ -15577,16 +16354,16 @@ class kg extends V {
       let d = o.get(l, f);
       if (d.isString() && (d = d.convertToNumberObjectValue()), d.isError())
         return d;
-      const _ = +h.getValue(), C = +d.getValue();
-      if (_ < 0 || C < 0 || Math.floor(_) !== _ || Math.floor(C) !== C || _ > 281474976710655 || C > 281474976710655)
+      const C = +h.getValue(), _ = +d.getValue();
+      if (C < 0 || _ < 0 || Math.floor(C) !== C || Math.floor(_) !== _ || C > 281474976710655 || _ > 281474976710655)
         return g.create(m.NUM);
-      const E = Number(BigInt(_) | BigInt(C));
+      const E = Number(BigInt(C) | BigInt(_));
       return y.create(E);
     });
     return r === 1 && n === 1 ? u.get(0, 0) : u;
   }
 }
-class $g extends V {
+class s1 extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 2);
@@ -15610,18 +16387,18 @@ class $g extends V {
       let d = o.get(l, f);
       if (d.isString() && (d = d.convertToNumberObjectValue()), d.isError())
         return d;
-      const _ = +h.getValue();
-      let C = +d.getValue();
-      if (_ < 0 || Math.floor(_) !== _ || _ > 281474976710655 || Math.abs(C) > 53)
+      const C = +h.getValue();
+      let _ = +d.getValue();
+      if (C < 0 || Math.floor(C) !== C || C > 281474976710655 || Math.abs(_) > 53)
         return g.create(m.NUM);
-      C = Math.trunc(C);
-      const E = Number(C >= 0 ? BigInt(_) >> BigInt(C) : BigInt(_) << BigInt(-C));
+      _ = Math.trunc(_);
+      const E = Number(_ >= 0 ? BigInt(C) >> BigInt(_) : BigInt(C) << BigInt(-_));
       return E > 281474976710655 ? g.create(m.NUM) : y.create(E);
     });
     return r === 1 && n === 1 ? u.get(0, 0) : u;
   }
 }
-class Yg extends V {
+class a1 extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 2);
@@ -15645,10 +16422,10 @@ class Yg extends V {
       let d = o.get(l, f);
       if (d.isString() && (d = d.convertToNumberObjectValue()), d.isError())
         return d;
-      const _ = +h.getValue(), C = +d.getValue();
-      if (_ < 0 || C < 0 || Math.floor(_) !== _ || Math.floor(C) !== C || _ > 281474976710655 || C > 281474976710655)
+      const C = +h.getValue(), _ = +d.getValue();
+      if (C < 0 || _ < 0 || Math.floor(C) !== C || Math.floor(_) !== _ || C > 281474976710655 || _ > 281474976710655)
         return g.create(m.NUM);
-      const E = _ ^ C;
+      const E = C ^ _;
       return y.create(E);
     });
     return r === 1 && n === 1 ? u.get(0, 0) : u;
@@ -15943,7 +16720,7 @@ let he = class ce {
     }
   }
 };
-class Hg extends V {
+class i1 extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 2);
@@ -15953,14 +16730,14 @@ class Hg extends V {
     const n = r != null ? r : j.create("i"), { isError: s, errorObject: o, variants: u } = H(e, t, n);
     if (s)
       return o;
-    const [c, l, f] = u, h = +c.getValue(), d = +l.getValue(), _ = `${f.getValue()}`;
-    if (Number.isNaN(h) || Number.isNaN(d) || _ !== "i" && _ !== "j")
+    const [c, l, f] = u, h = +c.getValue(), d = +l.getValue(), C = `${f.getValue()}`;
+    if (Number.isNaN(h) || Number.isNaN(d) || C !== "i" && C !== "j")
       return g.create(m.VALUE);
-    const C = he.getComplex(h, d, _);
-    return typeof C == "number" ? y.create(C) : j.create(C);
+    const _ = he.getComplex(h, d, C);
+    return typeof _ == "number" ? y.create(_) : j.create(_);
   }
 }
-class Gg extends V {
+class o1 extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 3);
@@ -16160,20 +16937,20 @@ class Gg extends V {
     const [u, c, l] = o, f = +u.getValue(), h = `${c.getValue()}`, d = `${l.getValue()}`;
     if (Number.isNaN(f))
       return g.create(m.VALUE);
-    let _, C = 1, E, b = 1;
+    let C, _ = 1, E, b = 1;
     const { _from: R, _to: p } = this._lookupFromAndToUnits(h, d);
-    if (_ = R, E = p, _ === null) {
-      const { _from: M, _fromMultiplier: w } = this._lookupFromPrefix(h);
-      _ = M, C = w;
+    if (C = R, E = p, C === null) {
+      const { _from: w, _fromMultiplier: S } = this._lookupFromPrefix(h);
+      C = w, _ = S;
     }
     if (E === null) {
-      const { _to: M, _toMultiplier: w } = this._lookupToPrefix(d);
-      E = M, b = w;
+      const { _to: w, _toMultiplier: S } = this._lookupToPrefix(d);
+      E = w, b = S;
     }
-    if (_ === null || E === null || _[3] !== E[3])
+    if (C === null || E === null || C[3] !== E[3])
       return g.create(m.NA);
     let N;
-    return _[3] === "temperature" ? (N = this._getTemperatureConversion(f, _[1], E[1]), N = +N.toFixed(2)) : N = f * _[6] * C / (E[6] * b), y.create(N);
+    return C[3] === "temperature" ? (N = this._getTemperatureConversion(f, C[1], E[1]), N = +N.toFixed(2)) : N = f * C[6] * _ / (E[6] * b), y.create(N);
   }
   _lookupFromAndToUnits(e, t) {
     let r = null, n = null, s;
@@ -16295,7 +17072,7 @@ class Gg extends V {
     }
   }
 }
-class Qg extends V {
+class u1 extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -16309,8 +17086,8 @@ class Qg extends V {
       const { isError: f, errorObject: h, variants: d } = H(t);
       if (f)
         return h;
-      const [_] = d;
-      if (r = Math.floor(+_.getValue()), Number.isNaN(r))
+      const [C] = d;
+      if (r = Math.floor(+C.getValue()), Number.isNaN(r))
         return g.create(m.VALUE);
       if (r < 0 || r > 10)
         return g.create(m.NUM);
@@ -16335,7 +17112,7 @@ class Qg extends V {
     return j.create(l);
   }
 }
-class Wg extends V {
+class c1 extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -16349,8 +17126,8 @@ class Wg extends V {
       const { isError: f, errorObject: h, variants: d } = H(t);
       if (f)
         return h;
-      const [_] = d;
-      if (r = Math.floor(+_.getValue()), Number.isNaN(r))
+      const [C] = d;
+      if (r = Math.floor(+C.getValue()), Number.isNaN(r))
         return g.create(m.VALUE);
       if (r < 0 || r > 10)
         return g.create(m.NUM);
@@ -16374,7 +17151,7 @@ class Wg extends V {
     return j.create(l.toLocaleUpperCase());
   }
 }
-class qg extends V {
+class l1 extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -16388,8 +17165,8 @@ class qg extends V {
       const { isError: f, errorObject: h, variants: d } = H(t);
       if (f)
         return h;
-      const [_] = d;
-      if (r = Math.floor(+_.getValue()), Number.isNaN(r))
+      const [C] = d;
+      if (r = Math.floor(+C.getValue()), Number.isNaN(r))
         return g.create(m.VALUE);
       if (r < 0 || r > 10)
         return g.create(m.NUM);
@@ -16413,7 +17190,7 @@ class qg extends V {
     return j.create(l);
   }
 }
-class Kg extends V {
+class f1 extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -16430,7 +17207,7 @@ class Kg extends V {
     return y.create(h);
   }
 }
-class Xg extends V {
+class h1 extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -16445,7 +17222,7 @@ class Xg extends V {
       const [u, c] = o, l = +u.getValue(), f = +c.getValue();
       if (Number.isNaN(l) || Number.isNaN(f))
         return g.create(m.VALUE);
-      r = Jt(f) - Jt(l);
+      r = er(f) - er(l);
     } else {
       const { isError: n, errorObject: s, variants: o } = H(e);
       if (n)
@@ -16453,12 +17230,12 @@ class Xg extends V {
       const [u] = o, c = +u.getValue();
       if (Number.isNaN(c))
         return g.create(m.VALUE);
-      r = Jt(c);
+      r = er(c);
     }
     return y.create(r);
   }
 }
-class Zg extends V {
+class m1 extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -16471,11 +17248,11 @@ class Zg extends V {
     const [s] = n, o = +s.getValue();
     if (Number.isNaN(o))
       return g.create(m.VALUE);
-    const u = Jt(o);
+    const u = er(o);
     return y.create(u);
   }
 }
-class zg extends V {
+class g1 extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -16488,11 +17265,11 @@ class zg extends V {
     const [s] = n, o = +s.getValue();
     if (Number.isNaN(o))
       return g.create(m.VALUE);
-    const u = La(o);
+    const u = Ia(o);
     return y.create(u);
   }
 }
-class Jg extends V {
+class d1 extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -16505,12 +17282,12 @@ class Jg extends V {
     const [s] = n, o = +s.getValue();
     if (Number.isNaN(o))
       return g.create(m.VALUE);
-    const u = La(o);
+    const u = Ia(o);
     return y.create(u);
   }
 }
 var Z = /* @__PURE__ */ ((i) => (i.BESSELI = "BESSELI", i.BESSELJ = "BESSELJ", i.BESSELK = "BESSELK", i.BESSELY = "BESSELY", i.BIN2DEC = "BIN2DEC", i.BIN2HEX = "BIN2HEX", i.BIN2OCT = "BIN2OCT", i.BITAND = "BITAND", i.BITLSHIFT = "BITLSHIFT", i.BITOR = "BITOR", i.BITRSHIFT = "BITRSHIFT", i.BITXOR = "BITXOR", i.COMPLEX = "COMPLEX", i.CONVERT = "CONVERT", i.DEC2BIN = "DEC2BIN", i.DEC2HEX = "DEC2HEX", i.DEC2OCT = "DEC2OCT", i.DELTA = "DELTA", i.ERF = "ERF", i.ERF_PRECISE = "ERF.PRECISE", i.ERFC = "ERFC", i.ERFC_PRECISE = "ERFC.PRECISE", i.GESTEP = "GESTEP", i.HEX2BIN = "HEX2BIN", i.HEX2DEC = "HEX2DEC", i.HEX2OCT = "HEX2OCT", i.IMABS = "IMABS", i.IMAGINARY = "IMAGINARY", i.IMARGUMENT = "IMARGUMENT", i.IMCONJUGATE = "IMCONJUGATE", i.IMCOS = "IMCOS", i.IMCOSH = "IMCOSH", i.IMCOT = "IMCOT", i.IMCOTH = "IMCOTH", i.IMCSC = "IMCSC", i.IMCSCH = "IMCSCH", i.IMDIV = "IMDIV", i.IMEXP = "IMEXP", i.IMLN = "IMLN", i.IMLOG = "IMLOG", i.IMLOG10 = "IMLOG10", i.IMLOG2 = "IMLOG2", i.IMPOWER = "IMPOWER", i.IMPRODUCT = "IMPRODUCT", i.IMREAL = "IMREAL", i.IMSEC = "IMSEC", i.IMSECH = "IMSECH", i.IMSIN = "IMSIN", i.IMSINH = "IMSINH", i.IMSQRT = "IMSQRT", i.IMSUB = "IMSUB", i.IMSUM = "IMSUM", i.IMTAN = "IMTAN", i.IMTANH = "IMTANH", i.OCT2BIN = "OCT2BIN", i.OCT2DEC = "OCT2DEC", i.OCT2HEX = "OCT2HEX", i))(Z || {});
-class e1 extends V {
+class C1 extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -16529,7 +17306,7 @@ class e1 extends V {
     return y.create(h);
   }
 }
-class t1 extends V {
+class _1 extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -16540,10 +17317,10 @@ class t1 extends V {
       return g.create(m.NA);
     let r = 0;
     if (t) {
-      const { isError: d, errorObject: _, variants: C } = H(t);
+      const { isError: d, errorObject: C, variants: _ } = H(t);
       if (d)
-        return _;
-      const [E] = C;
+        return C;
+      const [E] = _;
       if (r = Math.floor(+E.getValue()), Number.isNaN(r))
         return g.create(m.VALUE);
       if (r < 0 || r > 10)
@@ -16553,7 +17330,7 @@ class t1 extends V {
     if (n)
       return s;
     const [u] = o, c = `${u.getValue()}`;
-    if (!Da(c))
+    if (!Ba(c))
       return g.create(m.NUM);
     const l = c.length === 10 && c.substring(0, 1).toLocaleUpperCase() === "F", f = l ? Number.parseInt(c, 16) - 1099511627776 : Number.parseInt(c, 16);
     if (f < -512 || f > 511)
@@ -16570,7 +17347,7 @@ class t1 extends V {
     return j.create(h);
   }
 }
-class r1 extends V {
+class A1 extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -16581,13 +17358,13 @@ class r1 extends V {
     if (t)
       return r;
     const [s] = n, o = `${s.getValue()}`;
-    if (!Da(o))
+    if (!Ba(o))
       return g.create(m.NUM);
     let u = Number.parseInt(o, 16);
     return u >= 549755813888 && (u -= 1099511627776), y.create(u);
   }
 }
-class n1 extends V {
+class E1 extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -16598,11 +17375,11 @@ class n1 extends V {
       return g.create(m.NA);
     let r = 0;
     if (t) {
-      const { isError: h, errorObject: d, variants: _ } = H(t);
+      const { isError: h, errorObject: d, variants: C } = H(t);
       if (h)
         return d;
-      const [C] = _;
-      if (r = Math.floor(+C.getValue()), Number.isNaN(r))
+      const [_] = C;
+      if (r = Math.floor(+_.getValue()), Number.isNaN(r))
         return g.create(m.VALUE);
       if (r < 0 || r > 10)
         return g.create(m.NUM);
@@ -16611,7 +17388,7 @@ class n1 extends V {
     if (n)
       return s;
     const [u] = o, c = `${u.getValue()}`;
-    if (!Da(c))
+    if (!Ba(c))
       return g.create(m.NUM);
     const l = Number.parseInt(c, 16);
     if (l > 536870911 && l < 1098974756864)
@@ -16627,7 +17404,7 @@ class n1 extends V {
     return j.create(f);
   }
 }
-class s1 extends V {
+class b1 extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -16644,7 +17421,7 @@ class s1 extends V {
     return y.create(c);
   }
 }
-class a1 extends V {
+class y1 extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -16661,7 +17438,7 @@ class a1 extends V {
     return y.create(c);
   }
 }
-class i1 extends V {
+class R1 extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -16680,7 +17457,7 @@ class i1 extends V {
     return y.create(c);
   }
 }
-class o1 extends V {
+class p1 extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -16694,10 +17471,10 @@ class o1 extends V {
     if (u.isError())
       return g.create(m.NUM);
     const c = u.Conjugate();
-    return typeof c == "number" || W(c) ? y.create(+c) : j.create(c);
+    return typeof c == "number" || q(c) ? y.create(+c) : j.create(c);
   }
 }
-class u1 extends V {
+class N1 extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -16711,10 +17488,10 @@ class u1 extends V {
     if (u.isError())
       return g.create(m.NUM);
     const c = u.Cos();
-    return typeof c == "number" || W(c) ? y.create(+c) : j.create(c);
+    return typeof c == "number" || q(c) ? y.create(+c) : j.create(c);
   }
 }
-class c1 extends V {
+class V1 extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -16728,10 +17505,10 @@ class c1 extends V {
     if (u.isError())
       return g.create(m.NUM);
     const c = u.Cosh();
-    return u.isError() ? g.create(m.NUM) : typeof c == "number" || W(c) ? y.create(+c) : j.create(c);
+    return u.isError() ? g.create(m.NUM) : typeof c == "number" || q(c) ? y.create(+c) : j.create(c);
   }
 }
-class l1 extends V {
+class O1 extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -16745,10 +17522,10 @@ class l1 extends V {
     if (u.isError() || u.getRealNum() === 0 && u.getINum() === 0)
       return g.create(m.NUM);
     const c = u.Cot();
-    return typeof c == "number" || W(c) ? y.create(+c) : j.create(c);
+    return typeof c == "number" || q(c) ? y.create(+c) : j.create(c);
   }
 }
-class f1 extends V {
+class w1 extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -16762,10 +17539,10 @@ class f1 extends V {
     if (u.isError() || u.getRealNum() === 0 && u.getINum() === 0)
       return g.create(m.NUM);
     const c = u.Coth();
-    return u.isError() ? g.create(m.NUM) : typeof c == "number" || W(c) ? y.create(+c) : j.create(c);
+    return u.isError() ? g.create(m.NUM) : typeof c == "number" || q(c) ? y.create(+c) : j.create(c);
   }
 }
-class h1 extends V {
+class S1 extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -16779,10 +17556,10 @@ class h1 extends V {
     if (u.isError() || u.getRealNum() === 0 && u.getINum() === 0)
       return g.create(m.NUM);
     const c = u.Csc();
-    return typeof c == "number" || W(c) ? y.create(+c) : j.create(c);
+    return typeof c == "number" || q(c) ? y.create(+c) : j.create(c);
   }
 }
-class m1 extends V {
+class M1 extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -16796,10 +17573,10 @@ class m1 extends V {
     if (u.isError() || u.getRealNum() === 0 && u.getINum() === 0)
       return g.create(m.NUM);
     const c = u.Csch();
-    return typeof c == "number" || W(c) ? y.create(+c) : j.create(c);
+    return typeof c == "number" || q(c) ? y.create(+c) : j.create(c);
   }
 }
-class g1 extends V {
+class D1 extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 2);
@@ -16815,10 +17592,10 @@ class g1 extends V {
     if (f.isError() || h.isError() || f.isDifferentSuffixes(h) || h.getRealNum() === 0 && h.getINum() === 0)
       return g.create(m.NUM);
     const d = f.Div(h);
-    return typeof d == "number" || W(d) ? y.create(+d) : j.create(d);
+    return typeof d == "number" || q(d) ? y.create(+d) : j.create(d);
   }
 }
-class d1 extends V {
+class L1 extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -16832,10 +17609,10 @@ class d1 extends V {
     if (u.isError())
       return g.create(m.NUM);
     const c = u.Exp();
-    return u.isError() ? g.create(m.NUM) : typeof c == "number" || W(c) ? y.create(+c) : j.create(c);
+    return u.isError() ? g.create(m.NUM) : typeof c == "number" || q(c) ? y.create(+c) : j.create(c);
   }
 }
-class C1 extends V {
+class P1 extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -16849,10 +17626,10 @@ class C1 extends V {
     if (u.isError() || u.getRealNum() === 0 && u.getINum() === 0)
       return g.create(m.NUM);
     const c = u.Ln();
-    return typeof c == "number" || W(c) ? y.create(+c) : j.create(c);
+    return typeof c == "number" || q(c) ? y.create(+c) : j.create(c);
   }
 }
-class _1 extends V {
+class x1 extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -16870,17 +17647,17 @@ class _1 extends V {
         return g.create(m.VALUE);
       u = u.get(0, 0);
     }
-    const { isError: c, errorObject: l, variants: f } = B(u);
+    const { isError: c, errorObject: l, variants: f } = I(u);
     if (c)
       return l;
-    const [h] = f, d = `${o.getValue()}`, _ = +h.getValue(), C = new he(d);
-    if (C.isError() || C.getRealNum() === 0 && C.getINum() === 0 || _ <= 0)
+    const [h] = f, d = `${o.getValue()}`, C = +h.getValue(), _ = new he(d);
+    if (_.isError() || _.getRealNum() === 0 && _.getINum() === 0 || C <= 0)
       return g.create(m.NUM);
-    const E = C.Log(_);
-    return C.isError() ? g.create(m.NUM) : typeof E == "number" || W(E) ? y.create(+E) : j.create(E);
+    const E = _.Log(C);
+    return _.isError() ? g.create(m.NUM) : typeof E == "number" || q(E) ? y.create(+E) : j.create(E);
   }
 }
-class A1 extends V {
+class j1 extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -16894,10 +17671,10 @@ class A1 extends V {
     if (u.isError() || u.getRealNum() === 0 && u.getINum() === 0)
       return g.create(m.NUM);
     const c = u.Log(2);
-    return typeof c == "number" || W(c) ? y.create(+c) : j.create(c);
+    return typeof c == "number" || q(c) ? y.create(+c) : j.create(c);
   }
 }
-class E1 extends V {
+class U1 extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -16911,10 +17688,10 @@ class E1 extends V {
     if (u.isError() || u.getRealNum() === 0 && u.getINum() === 0)
       return g.create(m.NUM);
     const c = u.Log(10);
-    return typeof c == "number" || W(c) ? y.create(+c) : j.create(c);
+    return typeof c == "number" || q(c) ? y.create(+c) : j.create(c);
   }
 }
-class b1 extends V {
+class v1 extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 2);
@@ -16933,10 +17710,10 @@ class b1 extends V {
     if (Number.isNaN(f))
       return g.create(m.VALUE);
     const h = l.Power(f);
-    return l.isError() ? g.create(m.NUM) : typeof h == "number" || W(h) ? y.create(+h) : j.create(h);
+    return l.isError() ? g.create(m.NUM) : typeof h == "number" || q(h) ? y.create(+h) : j.create(h);
   }
 }
-class y1 extends V {
+class T1 extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -16958,7 +17735,7 @@ class y1 extends V {
       } else
         t = this._handleSingleObject(n, t);
     }
-    return t instanceof g ? t : typeof t == "number" || W(t) ? y.create(+t) : j.create(t);
+    return t instanceof g ? t : typeof t == "number" || q(t) ? y.create(+t) : j.create(t);
   }
   _handleSingleObject(e, t) {
     let r = t;
@@ -16983,7 +17760,7 @@ class y1 extends V {
     return r;
   }
 }
-class R1 extends V {
+class B1 extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -17000,7 +17777,7 @@ class R1 extends V {
     return y.create(c);
   }
 }
-class p1 extends V {
+class I1 extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -17014,10 +17791,10 @@ class p1 extends V {
     if (u.isError())
       return g.create(m.NUM);
     const c = u.Sec();
-    return typeof c == "number" || W(c) ? y.create(+c) : j.create(c);
+    return typeof c == "number" || q(c) ? y.create(+c) : j.create(c);
   }
 }
-class V1 extends V {
+class F1 extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -17031,10 +17808,10 @@ class V1 extends V {
     if (u.isError())
       return g.create(m.NUM);
     const c = u.Sech();
-    return typeof c == "number" || W(c) ? y.create(+c) : j.create(c);
+    return typeof c == "number" || q(c) ? y.create(+c) : j.create(c);
   }
 }
-class N1 extends V {
+class k1 extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -17048,10 +17825,10 @@ class N1 extends V {
     if (u.isError())
       return g.create(m.NUM);
     const c = u.Sin();
-    return typeof c == "number" || W(c) ? y.create(+c) : j.create(c);
+    return typeof c == "number" || q(c) ? y.create(+c) : j.create(c);
   }
 }
-class O1 extends V {
+class $1 extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -17065,10 +17842,10 @@ class O1 extends V {
     if (u.isError())
       return g.create(m.NUM);
     const c = u.Sinh();
-    return u.isError() ? g.create(m.NUM) : typeof c == "number" || W(c) ? y.create(+c) : j.create(c);
+    return u.isError() ? g.create(m.NUM) : typeof c == "number" || q(c) ? y.create(+c) : j.create(c);
   }
 }
-class M1 extends V {
+class Y1 extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -17084,10 +17861,10 @@ class M1 extends V {
     if (u.getRealNum() === 0 && u.getINum() === 0)
       return y.create(0);
     const c = u.Sqrt();
-    return typeof c == "number" || W(c) ? y.create(+c) : j.create(c);
+    return typeof c == "number" || q(c) ? y.create(+c) : j.create(c);
   }
 }
-class w1 extends V {
+class H1 extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 2);
@@ -17103,10 +17880,10 @@ class w1 extends V {
     if (f.isError() || h.isError() || f.isDifferentSuffixes(h))
       return g.create(m.NUM);
     const d = f.Sub(h);
-    return typeof d == "number" || W(d) ? y.create(+d) : j.create(d);
+    return typeof d == "number" || q(d) ? y.create(+d) : j.create(d);
   }
 }
-class S1 extends V {
+class Q1 extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -17128,7 +17905,7 @@ class S1 extends V {
       } else
         t = this._handleSingleObject(n, t);
     }
-    return t instanceof g ? t : typeof t == "number" || W(t) ? y.create(+t) : j.create(t);
+    return t instanceof g ? t : typeof t == "number" || q(t) ? y.create(+t) : j.create(t);
   }
   _handleSingleObject(e, t) {
     let r = t;
@@ -17153,7 +17930,7 @@ class S1 extends V {
     return r;
   }
 }
-class D1 extends V {
+class G1 extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -17167,10 +17944,10 @@ class D1 extends V {
     if (u.isError())
       return g.create(m.NUM);
     const c = u.Tan();
-    return typeof c == "number" || W(c) ? y.create(+c) : j.create(c);
+    return typeof c == "number" || q(c) ? y.create(+c) : j.create(c);
   }
 }
-class L1 extends V {
+class W1 extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -17184,10 +17961,10 @@ class L1 extends V {
     if (u.isError())
       return g.create(m.NUM);
     const c = u.Tanh();
-    return u.isError() ? g.create(m.NUM) : typeof c == "number" || W(c) ? y.create(+c) : j.create(c);
+    return u.isError() ? g.create(m.NUM) : typeof c == "number" || q(c) ? y.create(+c) : j.create(c);
   }
 }
-class P1 extends V {
+class q1 extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -17198,10 +17975,10 @@ class P1 extends V {
       return g.create(m.NA);
     let r = 0;
     if (t) {
-      const { isError: d, errorObject: _, variants: C } = H(t);
+      const { isError: d, errorObject: C, variants: _ } = H(t);
       if (d)
-        return _;
-      const [E] = C;
+        return C;
+      const [E] = _;
       if (r = Math.floor(+E.getValue()), Number.isNaN(r))
         return g.create(m.VALUE);
       if (r < 0 || r > 10)
@@ -17211,7 +17988,7 @@ class P1 extends V {
     if (n)
       return s;
     const [u] = o, c = `${u.getValue()}`;
-    if (!Sa(c))
+    if (!Ta(c))
       return g.create(m.NUM);
     const l = c.length === 10 && c.substring(0, 1) === "7", f = l ? Number.parseInt(c, 8) - 1073741824 : Number.parseInt(c, 8);
     if (f < -512 || f > 511)
@@ -17228,7 +18005,7 @@ class P1 extends V {
     return j.create(h);
   }
 }
-class x1 extends V {
+class K1 extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -17239,13 +18016,13 @@ class x1 extends V {
     if (t)
       return r;
     const [s] = n, o = `${s.getValue()}`;
-    if (!Sa(o))
+    if (!Ta(o))
       return g.create(m.NUM);
     let u = Number.parseInt(o, 8);
     return u >= 536870912 && (u -= 1073741824), y.create(u);
   }
 }
-class j1 extends V {
+class X1 extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -17256,11 +18033,11 @@ class j1 extends V {
       return g.create(m.NA);
     let r = 0;
     if (t) {
-      const { isError: h, errorObject: d, variants: _ } = H(t);
+      const { isError: h, errorObject: d, variants: C } = H(t);
       if (h)
         return d;
-      const [C] = _;
-      if (r = Math.floor(+C.getValue()), Number.isNaN(r))
+      const [_] = C;
+      if (r = Math.floor(+_.getValue()), Number.isNaN(r))
         return g.create(m.VALUE);
       if (r < 0 || r > 10)
         return g.create(m.NUM);
@@ -17269,7 +18046,7 @@ class j1 extends V {
     if (n)
       return s;
     const [u] = o, c = `${u.getValue()}`;
-    if (!Sa(c))
+    if (!Ta(c))
       return g.create(m.NUM);
     const l = Number.parseInt(c, 8);
     let f;
@@ -17283,114 +18060,114 @@ class j1 extends V {
     return j.create(f.toLocaleUpperCase());
   }
 }
-const U1 = [
-  [Pg, Z.BESSELI],
-  [xg, Z.BESSELJ],
-  [jg, Z.BESSELK],
-  [Ug, Z.BESSELY],
-  [vg, Z.BIN2DEC],
-  [Tg, Z.BIN2HEX],
-  [Bg, Z.BIN2OCT],
-  [Ig, Z.BITAND],
-  [Fg, Z.BITLSHIFT],
-  [kg, Z.BITOR],
-  [$g, Z.BITRSHIFT],
-  [Yg, Z.BITXOR],
-  [Hg, Z.COMPLEX],
-  [Gg, Z.CONVERT],
-  [Qg, Z.DEC2BIN],
-  [Wg, Z.DEC2HEX],
-  [qg, Z.DEC2OCT],
-  [Kg, Z.DELTA],
-  [Xg, Z.ERF],
-  [Zg, Z.ERF_PRECISE],
-  [zg, Z.ERFC],
-  [Jg, Z.ERFC_PRECISE],
-  [e1, Z.GESTEP],
-  [t1, Z.HEX2BIN],
-  [r1, Z.HEX2DEC],
-  [n1, Z.HEX2OCT],
-  [s1, Z.IMABS],
-  [a1, Z.IMAGINARY],
-  [i1, Z.IMARGUMENT],
-  [o1, Z.IMCONJUGATE],
-  [u1, Z.IMCOS],
-  [c1, Z.IMCOSH],
-  [l1, Z.IMCOT],
-  [f1, Z.IMCOTH],
-  [h1, Z.IMCSC],
-  [m1, Z.IMCSCH],
-  [g1, Z.IMDIV],
-  [d1, Z.IMEXP],
-  [C1, Z.IMLN],
-  [_1, Z.IMLOG],
-  [E1, Z.IMLOG10],
-  [A1, Z.IMLOG2],
-  [b1, Z.IMPOWER],
-  [y1, Z.IMPRODUCT],
-  [R1, Z.IMREAL],
-  [p1, Z.IMSEC],
-  [V1, Z.IMSECH],
-  [N1, Z.IMSIN],
-  [O1, Z.IMSINH],
-  [M1, Z.IMSQRT],
-  [w1, Z.IMSUB],
-  [S1, Z.IMSUM],
-  [D1, Z.IMTAN],
-  [L1, Z.IMTANH],
-  [P1, Z.OCT2BIN],
-  [x1, Z.OCT2DEC],
-  [j1, Z.OCT2HEX]
+const Z1 = [
+  [qg, Z.BESSELI],
+  [Kg, Z.BESSELJ],
+  [Xg, Z.BESSELK],
+  [Zg, Z.BESSELY],
+  [zg, Z.BIN2DEC],
+  [Jg, Z.BIN2HEX],
+  [e1, Z.BIN2OCT],
+  [t1, Z.BITAND],
+  [r1, Z.BITLSHIFT],
+  [n1, Z.BITOR],
+  [s1, Z.BITRSHIFT],
+  [a1, Z.BITXOR],
+  [i1, Z.COMPLEX],
+  [o1, Z.CONVERT],
+  [u1, Z.DEC2BIN],
+  [c1, Z.DEC2HEX],
+  [l1, Z.DEC2OCT],
+  [f1, Z.DELTA],
+  [h1, Z.ERF],
+  [m1, Z.ERF_PRECISE],
+  [g1, Z.ERFC],
+  [d1, Z.ERFC_PRECISE],
+  [C1, Z.GESTEP],
+  [_1, Z.HEX2BIN],
+  [A1, Z.HEX2DEC],
+  [E1, Z.HEX2OCT],
+  [b1, Z.IMABS],
+  [y1, Z.IMAGINARY],
+  [R1, Z.IMARGUMENT],
+  [p1, Z.IMCONJUGATE],
+  [N1, Z.IMCOS],
+  [V1, Z.IMCOSH],
+  [O1, Z.IMCOT],
+  [w1, Z.IMCOTH],
+  [S1, Z.IMCSC],
+  [M1, Z.IMCSCH],
+  [D1, Z.IMDIV],
+  [L1, Z.IMEXP],
+  [P1, Z.IMLN],
+  [x1, Z.IMLOG],
+  [U1, Z.IMLOG10],
+  [j1, Z.IMLOG2],
+  [v1, Z.IMPOWER],
+  [T1, Z.IMPRODUCT],
+  [B1, Z.IMREAL],
+  [I1, Z.IMSEC],
+  [F1, Z.IMSECH],
+  [k1, Z.IMSIN],
+  [$1, Z.IMSINH],
+  [Y1, Z.IMSQRT],
+  [H1, Z.IMSUB],
+  [Q1, Z.IMSUM],
+  [G1, Z.IMTAN],
+  [W1, Z.IMTANH],
+  [q1, Z.OCT2BIN],
+  [K1, Z.OCT2DEC],
+  [X1, Z.OCT2HEX]
 ];
 var ee = /* @__PURE__ */ ((i) => (i.ACCRINT = "ACCRINT", i.ACCRINTM = "ACCRINTM", i.AMORDEGRC = "AMORDEGRC", i.AMORLINC = "AMORLINC", i.COUPDAYBS = "COUPDAYBS", i.COUPDAYS = "COUPDAYS", i.COUPDAYSNC = "COUPDAYSNC", i.COUPNCD = "COUPNCD", i.COUPNUM = "COUPNUM", i.COUPPCD = "COUPPCD", i.CUMIPMT = "CUMIPMT", i.CUMPRINC = "CUMPRINC", i.DB = "DB", i.DDB = "DDB", i.DISC = "DISC", i.DOLLARDE = "DOLLARDE", i.DOLLARFR = "DOLLARFR", i.DURATION = "DURATION", i.EFFECT = "EFFECT", i.FV = "FV", i.FVSCHEDULE = "FVSCHEDULE", i.INTRATE = "INTRATE", i.IPMT = "IPMT", i.IRR = "IRR", i.ISPMT = "ISPMT", i.MDURATION = "MDURATION", i.MIRR = "MIRR", i.NOMINAL = "NOMINAL", i.NPER = "NPER", i.NPV = "NPV", i.ODDFPRICE = "ODDFPRICE", i.ODDFYIELD = "ODDFYIELD", i.ODDLPRICE = "ODDLPRICE", i.ODDLYIELD = "ODDLYIELD", i.PDURATION = "PDURATION", i.PMT = "PMT", i.PPMT = "PPMT", i.PRICE = "PRICE", i.PRICEDISC = "PRICEDISC", i.PRICEMAT = "PRICEMAT", i.PV = "PV", i.RATE = "RATE", i.RECEIVED = "RECEIVED", i.RRI = "RRI", i.SLN = "SLN", i.SYD = "SYD", i.TBILLEQ = "TBILLEQ", i.TBILLPRICE = "TBILLPRICE", i.TBILLYIELD = "TBILLYIELD", i.VDB = "VDB", i.XIRR = "XIRR", i.XNPV = "XNPV", i.YIELD = "YIELD", i.YIELDDISC = "YIELDDISC", i.YIELDMAT = "YIELDMAT", i))(ee || {});
-function us(i, a, e, t) {
+function cs(i, a, e, t) {
   const r = $t(i, a, e), { days: n } = _e(r, i, t);
   return n;
 }
-function Xe(i, a, e, t) {
+function Ze(i, a, e, t) {
   let r;
   if (t === 1) {
     const n = $t(i, a, e);
     let s = re(n);
-    s = Vr(s, 12 / e);
+    s = Or(s, 12 / e);
     const o = Re(s);
     n < 0 && e === 1 ? r = 365 : r = o - n;
   } else t === 3 ? r = 365 / e : r = 360 / e;
   return r;
 }
-function Lu(i, a, e) {
+function $u(i, a, e) {
   const t = re(i);
   let r = re(a);
   for (r.setUTCFullYear(t.getUTCFullYear()), r < t && r.setUTCFullYear(r.getUTCFullYear() + 1); r > t; )
-    r = Vr(r, -12 / e);
-  return r = Vr(r, 12 / e), Re(r);
+    r = Or(r, -12 / e);
+  return r = Or(r, 12 / e), Re(r);
 }
-function sr(i, a, e) {
+function ir(i, a, e) {
   let t = 0;
   const r = re(i);
   let n = re(a);
   for (; n > r; )
-    n = Vr(n, -12 / e), t++;
+    n = Or(n, -12 / e), t++;
   return t;
 }
 function $t(i, a, e) {
   const t = re(i);
   let r = re(a);
   for (r.setUTCFullYear(t.getUTCFullYear()), r < t && r.setUTCFullYear(r.getUTCFullYear() + 1); r > t; )
-    r = Vr(r, -12 / e);
+    r = Or(r, -12 / e);
   return Re(r);
 }
-function Pu(i, a, e, t, r, n) {
-  const s = us(i, a, r, n), o = Xe(i, a, r, n), u = sr(i, a, r), c = (o - s) / o - 1, l = t / r + 1, f = e * 100 / r;
+function Yu(i, a, e, t, r, n) {
+  const s = cs(i, a, r, n), o = Ze(i, a, r, n), u = ir(i, a, r), c = (o - s) / o - 1, l = t / r + 1, f = e * 100 / r;
   let h = 0, d = 0;
   for (let E = 1; E <= u; E++) {
     const b = E + c, R = f / l ** b;
     h += b * R, d += R;
   }
-  const _ = u + c, C = 100 / l ** _;
-  return h += _ * C, d += C, h / d / r;
+  const C = u + c, _ = 100 / l ** C;
+  return h += C * _, d += _, h / d / r;
 }
-function qr(i, a, e, t, r) {
+function Xr(i, a, e, t, r) {
   let n;
   if (i === 0)
     n = (e + t) / a;
@@ -17400,7 +18177,7 @@ function qr(i, a, e, t, r) {
   }
   return -n;
 }
-function ar(i, a, e, t, r) {
+function or(i, a, e, t, r) {
   let n;
   if (i === 0)
     n = t + e * a;
@@ -17412,19 +18189,19 @@ function ar(i, a, e, t, r) {
   }
   return -n;
 }
-function xu(i, a, e, t, r, n) {
-  const s = qr(i, e, t, r, n);
-  return (a === 1 ? n === 1 ? 0 : -t : n === 1 ? ar(i, a - 2, s, t, 1) - s : ar(i, a - 1, s, t, 0)) * i;
+function Hu(i, a, e, t, r, n) {
+  const s = Xr(i, e, t, r, n);
+  return (a === 1 ? n === 1 ? 0 : -t : n === 1 ? or(i, a - 2, s, t, 1) - s : or(i, a - 1, s, t, 0)) * i;
 }
-function ju(i, a) {
+function Qu(i, a) {
   let e = 0;
   for (let t = 1; t <= a.length; t++)
     e += a[t - 1] / (1 + i) ** t;
   return e;
 }
-function Uu(i, a, e, t, r, n, s, o, u) {
-  const c = Zt(e, t, u), l = Xe(i, t, o, u);
-  return c < l ? v1(
+function Gu(i, a, e, t, r, n, s, o, u) {
+  const c = zt(e, t, u), l = Ze(i, t, o, u);
+  return c < l ? z1(
     i,
     a,
     e,
@@ -17436,7 +18213,7 @@ function Uu(i, a, e, t, r, n, s, o, u) {
     u,
     c,
     l
-  ) : T1(
+  ) : J1(
     i,
     a,
     e,
@@ -17449,75 +18226,75 @@ function Uu(i, a, e, t, r, n, s, o, u) {
     l
   );
 }
-function v1(i, a, e, t, r, n, s, o, u, c, l) {
+function z1(i, a, e, t, r, n, s, o, u, c, l) {
   let f = 0;
-  const h = sr(i, a, o), d = Zt(i, t, u);
+  const h = ir(i, a, o), d = zt(i, t, u);
   f += s / (1 + n / o) ** (h - 1 + d / l), f += 100 * r / o * c / l / (1 + n / o) ** (d / l);
-  for (let C = 2; C <= h; C++)
-    f += 100 * r / o / (1 + n / o) ** (C - 1 + d / l);
-  const _ = Zt(e, i, u);
-  return f -= 100 * r / o * _ / l, f;
+  for (let _ = 2; _ <= h; _++)
+    f += 100 * r / o / (1 + n / o) ** (_ - 1 + d / l);
+  const C = zt(e, i, u);
+  return f -= 100 * r / o * C / l, f;
 }
-function T1(i, a, e, t, r, n, s, o, u, c) {
+function J1(i, a, e, t, r, n, s, o, u, c) {
   let l = 0;
-  const f = sr(t, a, o), h = B1(t, i, 12 / o);
+  const f = ir(t, a, o), h = e0(t, i, 12 / o);
   let d;
   if (u === 2 || u === 3) {
-    const R = Lu(i, t, o);
-    d = Zt(i, R, u);
+    const R = $u(i, t, o);
+    d = zt(i, R, u);
   } else {
     const R = $t(i, t, o), { days: p } = _e(R, i, u);
     d = c - p;
   }
   l += s / (1 + n / o) ** (f + h + d / c);
-  const _ = sr(e, t, o);
-  let C = t, E = 0, b = 0;
-  for (let R = _; R >= 1; R--) {
-    const p = tr(C, -12 / o, !1), N = u === 1 ? Zt(p, C, u) : c, M = R > 1 ? N : Zt(e, C, u);
-    E += M / N;
-    const w = e > p ? e : p, S = i < C ? i : C, D = Zt(w, S, u);
-    b += D / N, C = p;
+  const C = ir(e, t, o);
+  let _ = t, E = 0, b = 0;
+  for (let R = C; R >= 1; R--) {
+    const p = rr(_, -12 / o, !1), N = u === 1 ? zt(p, _, u) : c, w = R > 1 ? N : zt(e, _, u);
+    E += w / N;
+    const S = e > p ? e : p, M = i < _ ? i : _, D = zt(S, M, u);
+    b += D / N, _ = p;
   }
   l += 100 * r / o * E / (1 + n / o) ** (h + d / c);
   for (let R = 1; R <= f; R++)
     l += 100 * r / o / (1 + n / o) ** (R + h + d / c);
   return l -= 100 * r / o * b, l;
 }
-function Zt(i, a, e) {
+function zt(i, a, e) {
   const { days: t } = _e(i, a, e);
   return i < a ? t : 0;
 }
-function vu(i, a, e) {
-  const t = re(i), r = t.getUTCFullYear(), n = t.getUTCMonth(), s = t.getUTCDate(), o = pr(r, n, s), u = re(a), c = u.getUTCFullYear(), l = u.getUTCMonth(), f = u.getUTCDate(), h = pr(c, l, f);
+function Wu(i, a, e) {
+  const t = re(i), r = t.getUTCFullYear(), n = t.getUTCMonth(), s = t.getUTCDate(), o = Vr(r, n, s), u = re(a), c = u.getUTCFullYear(), l = u.getUTCMonth(), f = u.getUTCDate(), h = Vr(c, l, f);
   return !(s !== f && !(o && h) || Math.abs((c - r) * 12 + (l - n)) % (12 / e) !== 0);
 }
-function wr(i, a, e) {
+function Dr(i, a, e) {
   return $t(i, a, e) >= 0;
 }
-function tr(i, a, e) {
+function rr(i, a, e) {
   let t = re(i);
-  if (t = Vr(t, a), e) {
-    const r = t.getUTCFullYear(), n = t.getUTCMonth(), s = Wr(r, n);
+  if (t = Or(t, a), e) {
+    const r = t.getUTCFullYear(), n = t.getUTCMonth(), s = Kr(r, n);
     t.setUTCDate(s);
   }
   return Re(t);
 }
-function B1(i, a, e, t) {
-  const r = re(i), n = re(a), s = r.getUTCFullYear(), o = r.getUTCMonth(), u = r.getUTCDate(), c = n.getUTCFullYear(), l = n.getUTCMonth(), f = n.getUTCDate(), h = pr(s, o, u), d = !h && o !== 1 && u > 28 && u < Wr(s, o) ? pr(c, l, f) : h, _ = tr(a, 0, d);
-  let C = 1 + +(a < _), E = tr(_, e, d);
+function e0(i, a, e, t) {
+  const r = re(i), n = re(a), s = r.getUTCFullYear(), o = r.getUTCMonth(), u = r.getUTCDate(), c = n.getUTCFullYear(), l = n.getUTCMonth(), f = n.getUTCDate(), h = Vr(s, o, u), d = !h && o !== 1 && u > 28 && u < Kr(s, o) ? Vr(c, l, f) : h, C = rr(a, 0, d);
+  let _ = 1 + +(a < C), E = rr(C, e, d);
   for (; !(e > 0 ? E >= a : E <= a); )
-    E = tr(E, e, d), C++;
-  return C;
+    E = rr(E, e, d), _++;
+  return _;
 }
-function Qa(i, a) {
+function ei(i, a) {
   let n = 1, s = 0, o = i, u;
   for (; n > 1e-7 && s < 500; ) {
     const c = (a(o + 1e-7) - a(o - 1e-7)) / 2e-7;
     u = o - a(o) / c, s++, n = Math.abs(u - o), o = u;
   }
-  return Number.isNaN(o) || Math.abs(o) === 1 / 0 || s === 500 ? I1(i, a) : o;
+  return Number.isNaN(o) || Math.abs(o) === 1 / 0 || s === 500 ? t0(i, a) : o;
 }
-function I1(i, a) {
+function t0(i, a) {
   const r = Number.MAX_VALUE, n = -1, s = 1.6;
   let o = i - 0.01 <= n ? n + 1e-7 : i - 0.01, u = i + 0.01 >= r ? r - 1e-7 : i + 0.01, c, l, f = 0;
   if (i <= n || i >= r)
@@ -17537,19 +18314,19 @@ function I1(i, a) {
   c = c, l = l;
   let h = a(c);
   const d = a(l);
-  let _, C;
+  let C, _;
   if (Math.abs(h) < 1e-7 || Math.abs(d) < 1e-7)
     return g.create(m.NUM);
   do
-    C = c + (l - c) / 2, _ = a(C), h * _ < 0 ? l = C : c = C, h = a(c), f++;
-  while (Math.abs(_) > 1e-7 && f < 60);
-  return C;
+    _ = c + (l - c) / 2, C = a(_), h * C < 0 ? l = _ : c = _, h = a(c), f++;
+  while (Math.abs(C) > 1e-7 && f < 60);
+  return _;
 }
-function gn(i, a, e, t, r, n, s) {
-  const o = sr(i, a, n), u = Xe(i, a, n, s), c = us(i, a, n, s);
+function Cn(i, a, e, t, r, n, s) {
+  const o = ir(i, a, n), u = Ze(i, a, n, s), c = cs(i, a, n, s);
   if (o === 1) {
-    const h = u - c, d = 100 * e / n + r, _ = t / n * h / u + 1, C = 100 * e / n * c / u;
-    return d / _ - C;
+    const h = u - c, d = 100 * e / n + r, C = t / n * h / u + 1, _ = 100 * e / n * c / u;
+    return d / C - _;
   }
   const l = u - c;
   let f = r / (1 + t / n) ** (o - 1 + l / u);
@@ -17557,70 +18334,70 @@ function gn(i, a, e, t, r, n, s) {
     f += 100 * e / n / (1 + t / n) ** (h - 1 + l / u);
   return f -= 100 * e / n * c / u, f;
 }
-function na(i, a, e, t, r) {
+function fa(i, a, e, t, r) {
   let n = 0, s = r / e;
   s >= 1 ? (s = 1, n = t === 1 ? i : 0) : n = i * (1 - s) ** (t - 1);
   const o = i * (1 - s) ** t;
   let u = 0;
   return o < a ? u = n - a : u = n - o, u < 0 && (u = 0), u;
 }
-class F1 extends V {
+class r0 extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 6);
     A(this, "maxParams", 8);
   }
   calculate(e, t, r, n, s, o, u, c) {
-    const l = u != null ? u : y.create(0), f = c != null ? c : T.create(!0), { isError: h, errorObject: d, variants: _ } = H(e, t, r, n, s, o, l);
+    const l = u != null ? u : y.create(0), f = c != null ? c : v.create(!0), { isError: h, errorObject: d, variants: C } = H(e, t, r, n, s, o, l);
     if (h)
       return d;
-    const [C, E, b, R, p, N, M] = _, w = $(C);
-    if (typeof w != "number")
-      return w;
-    const S = $(E);
+    const [_, E, b, R, p, N, w] = C, S = $(_);
     if (typeof S != "number")
       return S;
+    const M = $(E);
+    if (typeof M != "number")
+      return M;
     const D = $(b);
     if (typeof D != "number")
       return D;
-    const L = +R.getValue(), U = +p.getValue(), x = Math.floor(+N.getValue()), F = Math.floor(+M.getValue()), Q = +f.getValue();
-    return Number.isNaN(L) || Number.isNaN(U) || Number.isNaN(x) || Number.isNaN(F) || Number.isNaN(Q) ? g.create(m.VALUE) : L <= 0 || U <= 0 || ![1, 2, 4].includes(x) || F < 0 || F > 4 || Math.floor(w) >= Math.floor(D) ? g.create(m.NUM) : this._getResult(w, S, D, L, U, x, F, Q);
+    const L = +R.getValue(), T = +p.getValue(), x = Math.floor(+N.getValue()), k = Math.floor(+w.getValue()), G = +f.getValue();
+    return Number.isNaN(L) || Number.isNaN(T) || Number.isNaN(x) || Number.isNaN(k) || Number.isNaN(G) ? g.create(m.VALUE) : L <= 0 || T <= 0 || ![1, 2, 4].includes(x) || k < 0 || k > 4 || Math.floor(S) >= Math.floor(D) ? g.create(m.NUM) : this._getResult(S, M, D, L, T, x, k, G);
   }
   _getResult(e, t, r, n, s, o, u, c) {
     let l = $t(e, t, o);
     if (l <= 0)
       return y.create(0);
     l = $t(r, t, o);
-    const f = 12 / o, h = re(t), d = h.getUTCFullYear(), _ = h.getUTCMonth(), C = h.getUTCDate(), E = pr(d, _, C);
-    let b = tr(t, -f, E);
+    const f = 12 / o, h = re(t), d = h.getUTCFullYear(), C = h.getUTCMonth(), _ = h.getUTCDate(), E = Vr(d, C, _);
+    let b = rr(t, -f, E);
     if (r > t && c)
       for (b = t; b < r; )
-        b = tr(b, f, E);
+        b = rr(b, f, E);
     let R = e > b ? e : b, { days: p } = _e(R, r, u);
     if (l >= e) {
       const { days: L } = _e(R, r, u ? 4 : 0);
       p = L;
     }
     r < R && (p = -p);
-    let N = Xe(b, t, o, u), M = p / N, w = b, S = e;
-    for (; w > e; ) {
-      S = w, w = tr(w, -f, E), R = e > w ? e : w;
-      const { days: L } = _e(R, S, u);
+    let N = Ze(b, t, o, u), w = p / N, S = b, M = e;
+    for (; S > e; ) {
+      M = S, S = rr(S, -f, E), R = e > S ? e : S;
+      const { days: L } = _e(R, M, u);
       if (u === 0)
-        S >= R || e <= w ? p = L : p = -L, N = Xe(w, S, o, u);
-      else if (p = S < R ? -L : L, u === 3)
+        M >= R || e <= S ? p = L : p = -L, N = Ze(S, M, o, u);
+      else if (p = M < R ? -L : L, u === 3)
         N = 365 / o;
       else {
-        const { days: U } = _e(w, S, u);
-        N = S < w ? -U : U;
+        const { days: T } = _e(S, M, u);
+        N = M < S ? -T : T;
       }
-      M += e <= w ? c ? 1 : 0 : p / N;
+      w += e <= S ? c ? 1 : 0 : p / N;
     }
-    const D = s * n / o * M;
+    const D = s * n / o * w;
     return y.create(D);
   }
 }
-class k1 extends V {
+class n0 extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 4);
@@ -17630,24 +18407,24 @@ class k1 extends V {
     const o = s != null ? s : y.create(0), { isError: u, errorObject: c, variants: l } = H(e, t, r, n, o);
     if (u)
       return c;
-    const [f, h, d, _, C] = l, E = $(f);
+    const [f, h, d, C, _] = l, E = $(f);
     if (typeof E != "number")
       return E;
     const b = $(h);
     if (typeof b != "number")
       return b;
-    const R = +d.getValue(), p = +_.getValue(), N = Math.floor(+C.getValue());
+    const R = +d.getValue(), p = +C.getValue(), N = Math.floor(+_.getValue());
     if (Number.isNaN(R) || Number.isNaN(p) || Number.isNaN(N))
       return g.create(m.VALUE);
     if (R <= 0 || p <= 0 || N < 0 || N > 4 || Math.floor(E) > Math.floor(b))
       return g.create(m.NUM);
     if (Math.floor(E) === Math.floor(b))
       return y.create(0);
-    const { days: M, yearDays: w } = _e(E, b, N), S = p * R * M / w;
-    return y.create(S);
+    const { days: w, yearDays: S } = _e(E, b, N), M = p * R * w / S;
+    return y.create(M);
   }
 }
-class $1 extends V {
+class s0 extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 6);
@@ -17657,26 +18434,26 @@ class $1 extends V {
     const c = u != null ? u : y.create(0), { isError: l, errorObject: f, variants: h } = H(e, t, r, n, s, o, c);
     if (l)
       return f;
-    const [d, _, C, E, b, R, p] = h, N = $(_);
+    const [d, C, _, E, b, R, p] = h, N = $(C);
     if (typeof N != "number")
       return N;
-    const M = $(C);
-    if (typeof M != "number")
-      return M;
-    const w = +d.getValue(), S = +E.getValue();
+    const w = $(_);
+    if (typeof w != "number")
+      return w;
+    const S = +d.getValue(), M = +E.getValue();
     let D = +b.getValue();
-    const L = +R.getValue(), U = Math.floor(+p.getValue());
-    return Number.isNaN(w) || Number.isNaN(S) || Number.isNaN(D) || Number.isNaN(L) || Number.isNaN(U) ? g.create(m.VALUE) : w <= 0 || S < 0 || w < S || Math.floor(N) > Math.floor(M) || D < 0 || L <= 0 || ![0, 1, 3, 4].includes(U) ? g.create(m.NUM) : (D > 1 ? D = Math.floor(D) : D = Math.ceil(D), this._getResult(w, N, M, S, D, L, U));
+    const L = +R.getValue(), T = Math.floor(+p.getValue());
+    return Number.isNaN(S) || Number.isNaN(M) || Number.isNaN(D) || Number.isNaN(L) || Number.isNaN(T) ? g.create(m.VALUE) : S <= 0 || M < 0 || S < M || Math.floor(N) > Math.floor(w) || D < 0 || L <= 0 || ![0, 1, 3, 4].includes(T) ? g.create(m.NUM) : (D > 1 ? D = Math.floor(D) : D = Math.ceil(D), this._getResult(S, N, w, M, D, L, T));
   }
   _getResult(e, t, r, n, s, o, u) {
-    const c = e - n, l = e * o, { days: f, yearDays: h } = _e(t, r, u), d = f / h, _ = Math.ceil(c / l - d);
-    if (_ < 0)
+    const c = e - n, l = e * o, { days: f, yearDays: h } = _e(t, r, u), d = f / h, C = Math.ceil(c / l - d);
+    if (C < 0)
       return y.create(0);
-    let C = l;
-    return s === 0 ? C = l * d : s === _ ? C = c - l * (d + s - 1) : s > _ && (C = 0), y.create(C);
+    let _ = l;
+    return s === 0 ? _ = l * d : s === C ? _ = c - l * (d + s - 1) : s > C && (_ = 0), y.create(_);
   }
 }
-class Y1 extends V {
+class a0 extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 3);
@@ -17686,22 +18463,22 @@ class Y1 extends V {
     const s = n != null ? n : y.create(0), { isError: o, errorObject: u, variants: c } = H(e, t, r, s);
     if (o)
       return u;
-    const [l, f, h, d] = c, _ = $(l);
-    if (typeof _ != "number")
-      return _;
-    const C = $(f);
+    const [l, f, h, d] = c, C = $(l);
     if (typeof C != "number")
       return C;
+    const _ = $(f);
+    if (typeof _ != "number")
+      return _;
     const E = Math.floor(+h.getValue()), b = Math.floor(+d.getValue());
     if (Number.isNaN(E) || Number.isNaN(b))
       return g.create(m.VALUE);
-    if (![1, 2, 4].includes(E) || b < 0 || b > 4 || Math.floor(_) >= Math.floor(C))
+    if (![1, 2, 4].includes(E) || b < 0 || b > 4 || Math.floor(C) >= Math.floor(_))
       return g.create(m.NUM);
-    const R = us(_, C, E, b);
+    const R = cs(C, _, E, b);
     return y.create(R);
   }
 }
-class H1 extends V {
+class i0 extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 3);
@@ -17711,22 +18488,22 @@ class H1 extends V {
     const s = n != null ? n : y.create(0), { isError: o, errorObject: u, variants: c } = H(e, t, r, s);
     if (o)
       return u;
-    const [l, f, h, d] = c, _ = $(l);
-    if (typeof _ != "number")
-      return _;
-    const C = $(f);
+    const [l, f, h, d] = c, C = $(l);
     if (typeof C != "number")
       return C;
+    const _ = $(f);
+    if (typeof _ != "number")
+      return _;
     const E = Math.floor(+h.getValue()), b = Math.floor(+d.getValue());
     if (Number.isNaN(E) || Number.isNaN(b))
       return g.create(m.VALUE);
-    if (![1, 2, 4].includes(E) || b < 0 || b > 4 || Math.floor(_) >= Math.floor(C))
+    if (![1, 2, 4].includes(E) || b < 0 || b > 4 || Math.floor(C) >= Math.floor(_))
       return g.create(m.NUM);
-    const R = Xe(_, C, E, b);
+    const R = Ze(C, _, E, b);
     return y.create(R);
   }
 }
-class G1 extends V {
+class o0 extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 3);
@@ -17736,26 +18513,26 @@ class G1 extends V {
     const s = n != null ? n : y.create(0), { isError: o, errorObject: u, variants: c } = H(e, t, r, s);
     if (o)
       return u;
-    const [l, f, h, d] = c, _ = $(l);
-    if (typeof _ != "number")
-      return _;
-    const C = $(f);
+    const [l, f, h, d] = c, C = $(l);
     if (typeof C != "number")
       return C;
+    const _ = $(f);
+    if (typeof _ != "number")
+      return _;
     const E = Math.floor(+h.getValue()), b = Math.floor(+d.getValue());
     if (Number.isNaN(E) || Number.isNaN(b))
       return g.create(m.VALUE);
-    if (![1, 2, 4].includes(E) || b < 0 || b > 4 || Math.floor(_) >= Math.floor(C))
+    if (![1, 2, 4].includes(E) || b < 0 || b > 4 || Math.floor(C) >= Math.floor(_))
       return g.create(m.NUM);
-    const R = re(_), p = re(C);
+    const R = re(C), p = re(_);
     for (p.setUTCFullYear(R.getUTCFullYear()), p < R && p.setUTCFullYear(p.getUTCFullYear() + 1); p > R; )
       p.setUTCMonth(p.getUTCMonth() - 12 / E);
     p.setUTCMonth(p.getUTCMonth() + 12 / E);
-    const N = Re(p), { days: M } = _e(_, N, b);
-    return y.create(M);
+    const N = Re(p), { days: w } = _e(C, N, b);
+    return y.create(w);
   }
 }
-class Q1 extends V {
+class u0 extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 3);
@@ -17765,22 +18542,22 @@ class Q1 extends V {
     const s = n != null ? n : y.create(0), { isError: o, errorObject: u, variants: c } = H(e, t, r, s);
     if (o)
       return u;
-    const [l, f, h, d] = c, _ = $(l);
-    if (typeof _ != "number")
-      return _;
-    const C = $(f);
+    const [l, f, h, d] = c, C = $(l);
     if (typeof C != "number")
       return C;
+    const _ = $(f);
+    if (typeof _ != "number")
+      return _;
     const E = Math.floor(+h.getValue()), b = Math.floor(+d.getValue());
     if (Number.isNaN(E) || Number.isNaN(b))
       return g.create(m.VALUE);
-    if (![1, 2, 4].includes(E) || b < 0 || b > 4 || Math.floor(_) >= Math.floor(C))
+    if (![1, 2, 4].includes(E) || b < 0 || b > 4 || Math.floor(C) >= Math.floor(_))
       return g.create(m.NUM);
-    const R = Lu(_, C, E);
+    const R = $u(C, _, E);
     return y.create(R);
   }
 }
-class W1 extends V {
+class c0 extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 3);
@@ -17790,22 +18567,22 @@ class W1 extends V {
     const s = n != null ? n : y.create(0), { isError: o, errorObject: u, variants: c } = H(e, t, r, s);
     if (o)
       return u;
-    const [l, f, h, d] = c, _ = $(l);
-    if (typeof _ != "number")
-      return _;
-    const C = $(f);
+    const [l, f, h, d] = c, C = $(l);
     if (typeof C != "number")
       return C;
+    const _ = $(f);
+    if (typeof _ != "number")
+      return _;
     const E = Math.floor(+h.getValue()), b = Math.floor(+d.getValue());
     if (Number.isNaN(E) || Number.isNaN(b))
       return g.create(m.VALUE);
-    if (![1, 2, 4].includes(E) || b < 0 || b > 4 || Math.floor(_) >= Math.floor(C) || $t(_, C, E) < 0)
+    if (![1, 2, 4].includes(E) || b < 0 || b > 4 || Math.floor(C) >= Math.floor(_) || $t(C, _, E) < 0)
       return g.create(m.NUM);
-    const p = sr(_, C, E);
+    const p = ir(C, _, E);
     return y.create(p);
   }
 }
-class q1 extends V {
+class l0 extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 3);
@@ -17815,22 +18592,22 @@ class q1 extends V {
     const s = n != null ? n : y.create(0), { isError: o, errorObject: u, variants: c } = H(e, t, r, s);
     if (o)
       return u;
-    const [l, f, h, d] = c, _ = $(l);
-    if (typeof _ != "number")
-      return _;
-    const C = $(f);
+    const [l, f, h, d] = c, C = $(l);
     if (typeof C != "number")
       return C;
+    const _ = $(f);
+    if (typeof _ != "number")
+      return _;
     const E = Math.floor(+h.getValue()), b = Math.floor(+d.getValue());
     if (Number.isNaN(E) || Number.isNaN(b))
       return g.create(m.VALUE);
-    if (![1, 2, 4].includes(E) || b < 0 || b > 4 || Math.floor(_) >= Math.floor(C))
+    if (![1, 2, 4].includes(E) || b < 0 || b > 4 || Math.floor(C) >= Math.floor(_))
       return g.create(m.NUM);
-    let R = $t(_, C, E);
+    let R = $t(C, _, E);
     return R < 0 && (R = 0), y.create(R);
   }
 }
-class K1 extends V {
+class f0 extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 6);
@@ -17840,16 +18617,16 @@ class K1 extends V {
     const { isError: u, errorObject: c, variants: l } = H(e, t, r, n, s, o);
     if (u)
       return c;
-    const [f, h, d, _, C, E] = l, b = +f.getValue(), R = +h.getValue(), p = +d.getValue(), N = +_.getValue(), M = +C.getValue(), w = +E.getValue();
-    return Number.isNaN(b) || Number.isNaN(R) || Number.isNaN(p) || Number.isNaN(N) || Number.isNaN(M) || Number.isNaN(w) ? g.create(m.VALUE) : b <= 0 || R <= 0 || p <= 0 || N < 1 || M < 1 || N > M || N > R || M > R || ![0, 1].includes(w) ? g.create(m.NUM) : Math.trunc(N) !== N && Math.trunc(M) !== M && Math.trunc(N) === Math.trunc(M) ? y.create(0) : this._getResult(b, R, p, N, M, w);
+    const [f, h, d, C, _, E] = l, b = +f.getValue(), R = +h.getValue(), p = +d.getValue(), N = +C.getValue(), w = +_.getValue(), S = +E.getValue();
+    return Number.isNaN(b) || Number.isNaN(R) || Number.isNaN(p) || Number.isNaN(N) || Number.isNaN(w) || Number.isNaN(S) ? g.create(m.VALUE) : b <= 0 || R <= 0 || p <= 0 || N < 1 || w < 1 || N > w || N > R || w > R || ![0, 1].includes(S) ? g.create(m.NUM) : Math.trunc(N) !== N && Math.trunc(w) !== w && Math.trunc(N) === Math.trunc(w) ? y.create(0) : this._getResult(b, R, p, N, w, S);
   }
   _getResult(e, t, r, n, s, o) {
-    const u = qr(e, t, r, 0, o);
+    const u = Xr(e, t, r, 0, o);
     let c = 0, l = Math.ceil(n);
     l === 1 && (o === 0 && (c = -r), l++);
     let f = !1;
     for (let h = l; h <= s; h++) {
-      const d = o === 1 ? ar(e, h - 2, u, r, 1) : ar(e, h - 1, u, r, 0);
+      const d = o === 1 ? or(e, h - 2, u, r, 1) : or(e, h - 1, u, r, 0);
       if (d === 0) {
         f = !0;
         break;
@@ -17859,7 +18636,7 @@ class K1 extends V {
     return c *= e, (c < u * (s - n + 1) || f) && (c = u * (s - n + 1)), y.create(c);
   }
 }
-class X1 extends V {
+class h0 extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 6);
@@ -17869,19 +18646,19 @@ class X1 extends V {
     const { isError: u, errorObject: c, variants: l } = H(e, t, r, n, s, o);
     if (u)
       return c;
-    const [f, h, d, _, C, E] = l, b = +f.getValue(), R = +h.getValue(), p = +d.getValue(), N = +_.getValue(), M = +C.getValue(), w = +E.getValue();
-    return Number.isNaN(b) || Number.isNaN(R) || Number.isNaN(p) || Number.isNaN(N) || Number.isNaN(M) || Number.isNaN(w) ? g.create(m.VALUE) : b <= 0 || R <= 0 || p <= 0 || N < 1 || M < 1 || N > M || ![0, 1].includes(w) ? g.create(m.NUM) : Math.trunc(N) !== N && Math.trunc(M) !== M && Math.trunc(N) === Math.trunc(M) ? y.create(0) : this._getResult(b, R, p, N, M, w);
+    const [f, h, d, C, _, E] = l, b = +f.getValue(), R = +h.getValue(), p = +d.getValue(), N = +C.getValue(), w = +_.getValue(), S = +E.getValue();
+    return Number.isNaN(b) || Number.isNaN(R) || Number.isNaN(p) || Number.isNaN(N) || Number.isNaN(w) || Number.isNaN(S) ? g.create(m.VALUE) : b <= 0 || R <= 0 || p <= 0 || N < 1 || w < 1 || N > w || ![0, 1].includes(S) ? g.create(m.NUM) : Math.trunc(N) !== N && Math.trunc(w) !== w && Math.trunc(N) === Math.trunc(w) ? y.create(0) : this._getResult(b, R, p, N, w, S);
   }
   _getResult(e, t, r, n, s, o) {
-    const u = qr(e, t, r, 0, o);
+    const u = Xr(e, t, r, 0, o);
     let c = 0, l = Math.ceil(n);
     l === 1 && (c = o === 0 ? u + r * e : u, l++);
     for (let f = l; f <= s; f++)
-      c += o === 1 ? u - (ar(e, f - 2, u, r, 1) - u) * e : u - ar(e, f - 1, u, r, 0) * e;
+      c += o === 1 ? u - (or(e, f - 2, u, r, 1) - u) * e : u - or(e, f - 1, u, r, 0) * e;
     return y.create(c);
   }
 }
-class Z1 extends V {
+class m0 extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 4);
@@ -17903,28 +18680,28 @@ class Z1 extends V {
       r.isArray() ? r.getColumnCount() : 1,
       n.isArray() ? n.getColumnCount() : 1,
       o.isArray() ? o.getColumnCount() : 1
-    ), l = O(u, c, e, g.create(m.NA)), f = O(u, c, t, g.create(m.NA)), h = O(u, c, r, g.create(m.NA)), d = O(u, c, n, g.create(m.NA)), _ = O(u, c, o, g.create(m.NA)), C = l.map((E, b, R) => {
-      const p = f.get(b, R), N = h.get(b, R), M = d.get(b, R), w = _.get(b, R), { isError: S, errorObject: D, variants: L } = B(E, p, N, M, w);
-      if (S)
+    ), l = O(u, c, e, g.create(m.NA)), f = O(u, c, t, g.create(m.NA)), h = O(u, c, r, g.create(m.NA)), d = O(u, c, n, g.create(m.NA)), C = O(u, c, o, g.create(m.NA)), _ = l.map((E, b, R) => {
+      const p = f.get(b, R), N = h.get(b, R), w = d.get(b, R), S = C.get(b, R), { isError: M, errorObject: D, variants: L } = I(E, p, N, w, S);
+      if (M)
         return D;
-      const [U, x, F, Q, ne] = L, z = +U.getValue(), G = +x.getValue(), ge = +F.getValue();
-      let de = +Q.getValue();
+      const [T, x, k, G, ne] = L, z = +T.getValue(), Q = +x.getValue(), ge = +k.getValue();
+      let de = +G.getValue();
       const Ee = Math.floor(+ne.getValue());
-      return z < 0 || G < 0 || ge <= 0 || de <= 0 || Math.floor(de) > Math.floor(ge) || Ee < 1 || Ee > 12 ? g.create(m.NUM) : (de < 1 && (de = 1), de = Math.floor(de), this._getResult(z, G, ge, de, Ee, b, R));
+      return z < 0 || Q < 0 || ge <= 0 || de <= 0 || Math.floor(de) > Math.floor(ge) || Ee < 1 || Ee > 12 ? g.create(m.NUM) : (de < 1 && (de = 1), de = Math.floor(de), this._getResult(z, Q, ge, de, Ee, b, R));
     });
-    return u === 1 && c === 1 ? C.get(0, 0) : C;
+    return u === 1 && c === 1 ? _.get(0, 0) : _;
   }
   _getResult(e, t, r, n, s, o, u) {
     const c = +(1 - (t / e) ** (1 / r)).toFixed(3), l = e * c * s / 12;
     let f = l, h = 0;
     const d = n === r ? r - 1 : n;
-    for (let C = 2; C <= d; C++)
+    for (let _ = 2; _ <= d; _++)
       h = (e - f) * c, f += h;
-    let _;
-    return n === 1 ? _ = l : n === r ? _ = (e - f) * c : _ = h, Number.isNaN(_) || !Number.isFinite(_) ? g.create(m.NUM) : o === 0 && u === 0 ? y.create(_, ze(this.getLocale())) : y.create(_);
+    let C;
+    return n === 1 ? C = l : n === r ? C = (e - f) * c : C = h, Number.isNaN(C) || !Number.isFinite(C) ? g.create(m.NUM) : o === 0 && u === 0 ? y.create(C, Je(this.getLocale())) : y.create(C);
   }
 }
-class z1 extends V {
+class g0 extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 4);
@@ -17946,20 +18723,20 @@ class z1 extends V {
       r.isArray() ? r.getColumnCount() : 1,
       n.isArray() ? n.getColumnCount() : 1,
       o.isArray() ? o.getColumnCount() : 1
-    ), l = O(u, c, e, g.create(m.NA)), f = O(u, c, t, g.create(m.NA)), h = O(u, c, r, g.create(m.NA)), d = O(u, c, n, g.create(m.NA)), _ = O(u, c, o, g.create(m.NA)), C = l.map((E, b, R) => {
-      const p = f.get(b, R), N = h.get(b, R), M = d.get(b, R), w = _.get(b, R), { isError: S, errorObject: D, variants: L } = B(E, p, N, M, w);
-      if (S)
+    ), l = O(u, c, e, g.create(m.NA)), f = O(u, c, t, g.create(m.NA)), h = O(u, c, r, g.create(m.NA)), d = O(u, c, n, g.create(m.NA)), C = O(u, c, o, g.create(m.NA)), _ = l.map((E, b, R) => {
+      const p = f.get(b, R), N = h.get(b, R), w = d.get(b, R), S = C.get(b, R), { isError: M, errorObject: D, variants: L } = I(E, p, N, w, S);
+      if (M)
         return D;
-      const [U, x, F, Q, ne] = L, z = +U.getValue(), G = +x.getValue(), ge = +F.getValue(), de = +Q.getValue(), Ee = +ne.getValue();
-      if (z < 0 || G < 0 || ge <= 0 || de <= 0 || de > ge || Ee <= 0)
+      const [T, x, k, G, ne] = L, z = +T.getValue(), Q = +x.getValue(), ge = +k.getValue(), de = +G.getValue(), Ee = +ne.getValue();
+      if (z < 0 || Q < 0 || ge <= 0 || de <= 0 || de > ge || Ee <= 0)
         return g.create(m.NUM);
-      const pe = na(z, G, ge, de, Ee);
-      return Number.isNaN(pe) || !Number.isFinite(pe) ? g.create(m.NUM) : b === 0 && R === 0 ? y.create(pe, ze(this.getLocale())) : y.create(pe);
+      const pe = fa(z, Q, ge, de, Ee);
+      return Number.isNaN(pe) || !Number.isFinite(pe) ? g.create(m.NUM) : b === 0 && R === 0 ? y.create(pe, Je(this.getLocale())) : y.create(pe);
     });
-    return u === 1 && c === 1 ? C.get(0, 0) : C;
+    return u === 1 && c === 1 ? _.get(0, 0) : _;
   }
 }
-class J1 extends V {
+class d0 extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 4);
@@ -17969,22 +18746,22 @@ class J1 extends V {
     const o = s != null ? s : y.create(0), { isError: u, errorObject: c, variants: l } = H(e, t, r, n, o);
     if (u)
       return c;
-    const [f, h, d, _, C] = l, E = $(f);
+    const [f, h, d, C, _] = l, E = $(f);
     if (typeof E != "number")
       return E;
     const b = $(h);
     if (typeof b != "number")
       return b;
-    const R = +d.getValue(), p = +_.getValue(), N = Math.floor(+C.getValue());
+    const R = +d.getValue(), p = +C.getValue(), N = Math.floor(+_.getValue());
     if (Number.isNaN(R) || Number.isNaN(p) || Number.isNaN(N))
       return g.create(m.VALUE);
     if (R <= 0 || p <= 0 || N < 0 || N > 4 || Math.floor(E) >= Math.floor(b))
       return g.create(m.NUM);
-    const { days: M, yearDays: w } = _e(E, b, N), S = (p - R) / p * (w / M);
-    return y.create(S);
+    const { days: w, yearDays: S } = _e(E, b, N), M = (p - R) / p * (S / w);
+    return y.create(M);
   }
 }
-class e0 extends V {
+class C0 extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 2);
@@ -18009,7 +18786,7 @@ class e0 extends V {
     return f = Math.round(f * h) / h, y.create(f);
   }
 }
-class t0 extends V {
+class _0 extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 2);
@@ -18032,7 +18809,7 @@ class t0 extends V {
     return f += c % 1 * 10 ** -Math.ceil(Math.log(l) / Math.LN10) * l, y.create(f);
   }
 }
-class r0 extends V {
+class A0 extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 5);
@@ -18044,22 +18821,22 @@ class r0 extends V {
     const { isError: c, errorObject: l, variants: f } = ke(e, t, r, n, s, u);
     if (c)
       return l;
-    const [h, d, _, C, E, b] = f, R = $(h);
+    const [h, d, C, _, E, b] = f, R = $(h);
     if (typeof R != "number")
       return R;
     const p = $(d);
     if (typeof p != "number")
       return p;
-    const N = +_.getValue(), M = +C.getValue(), w = Math.floor(+E.getValue()), S = Math.floor(+b.getValue());
-    if (Number.isNaN(N) || Number.isNaN(M) || Number.isNaN(w) || Number.isNaN(S))
+    const N = +C.getValue(), w = +_.getValue(), S = Math.floor(+E.getValue()), M = Math.floor(+b.getValue());
+    if (Number.isNaN(N) || Number.isNaN(w) || Number.isNaN(S) || Number.isNaN(M))
       return g.create(m.VALUE);
-    if (N < 0 || M < 0 || ![1, 2, 4].includes(w) || S < 0 || S > 4 || Math.floor(R) >= Math.floor(p) || R <= 0 || p <= 366)
+    if (N < 0 || w < 0 || ![1, 2, 4].includes(S) || M < 0 || M > 4 || Math.floor(R) >= Math.floor(p) || R <= 0 || p <= 366)
       return g.create(m.NUM);
-    const D = Pu(R, p, N, M, w, S);
+    const D = Yu(R, p, N, w, S, M);
     return y.create(D);
   }
 }
-class n0 extends V {
+class E0 extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 2);
@@ -18080,7 +18857,7 @@ class n0 extends V {
     return y.create(f);
   }
 }
-class s0 extends V {
+class b0 extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 3);
@@ -18100,17 +18877,17 @@ class s0 extends V {
       r.isArray() ? r.getColumnCount() : 1,
       o.isArray() ? o.getColumnCount() : 1,
       u.isArray() ? u.getColumnCount() : 1
-    ), f = O(c, l, e, g.create(m.NA)), h = O(c, l, t, g.create(m.NA)), d = O(c, l, r, g.create(m.NA)), _ = O(c, l, o, g.create(m.NA)), C = O(c, l, u, g.create(m.NA)), E = f.map((b, R, p) => {
-      const N = h.get(R, p), M = d.get(R, p), w = _.get(R, p), S = C.get(R, p), { isError: D, errorObject: L, variants: U } = B(b, N, M, w, S);
+    ), f = O(c, l, e, g.create(m.NA)), h = O(c, l, t, g.create(m.NA)), d = O(c, l, r, g.create(m.NA)), C = O(c, l, o, g.create(m.NA)), _ = O(c, l, u, g.create(m.NA)), E = f.map((b, R, p) => {
+      const N = h.get(R, p), w = d.get(R, p), S = C.get(R, p), M = _.get(R, p), { isError: D, errorObject: L, variants: T } = I(b, N, w, S, M);
       if (D)
         return L;
-      const [x, F, Q, ne, z] = U, G = +x.getValue(), ge = +F.getValue(), de = +Q.getValue(), Ee = +ne.getValue(), pe = +z.getValue(), me = ar(G, ge, de, Ee, pe ? 1 : 0);
-      return Number.isNaN(me) || !Number.isFinite(me) ? g.create(m.NUM) : R === 0 && p === 0 ? y.create(me, ze(this.getLocale())) : y.create(me);
+      const [x, k, G, ne, z] = T, Q = +x.getValue(), ge = +k.getValue(), de = +G.getValue(), Ee = +ne.getValue(), pe = +z.getValue(), me = or(Q, ge, de, Ee, pe ? 1 : 0);
+      return Number.isNaN(me) || !Number.isFinite(me) ? g.create(m.NUM) : R === 0 && p === 0 ? y.create(me, Je(this.getLocale())) : y.create(me);
     });
     return c === 1 && l === 1 ? E.get(0, 0) : E;
   }
 }
-class a0 extends V {
+class y0 extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 2);
@@ -18146,7 +18923,7 @@ class a0 extends V {
     return y.create(c);
   }
 }
-class i0 extends V {
+class R0 extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 4);
@@ -18156,22 +18933,22 @@ class i0 extends V {
     const o = s != null ? s : y.create(0), { isError: u, errorObject: c, variants: l } = H(e, t, r, n, o);
     if (u)
       return c;
-    const [f, h, d, _, C] = l, E = $(f);
+    const [f, h, d, C, _] = l, E = $(f);
     if (typeof E != "number")
       return E;
     const b = $(h);
     if (typeof b != "number")
       return b;
-    const R = +d.getValue(), p = +_.getValue(), N = Math.floor(+C.getValue());
+    const R = +d.getValue(), p = +C.getValue(), N = Math.floor(+_.getValue());
     if (Number.isNaN(R) || Number.isNaN(p) || Number.isNaN(N))
       return g.create(m.VALUE);
     if (R <= 0 || p <= 0 || N < 0 || N > 4 || Math.floor(E) >= Math.floor(b))
       return g.create(m.NUM);
-    const { days: M, yearDays: w } = _e(E, b, N), S = (p - R) / R * (w / M);
-    return y.create(S);
+    const { days: w, yearDays: S } = _e(E, b, N), M = (p - R) / R * (S / w);
+    return y.create(M);
   }
 }
-class o0 extends V {
+class p0 extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 4);
@@ -18193,20 +18970,20 @@ class o0 extends V {
       n.isArray() ? n.getColumnCount() : 1,
       u.isArray() ? u.getColumnCount() : 1,
       c.isArray() ? c.getColumnCount() : 1
-    ), h = O(l, f, e, g.create(m.NA)), d = O(l, f, t, g.create(m.NA)), _ = O(l, f, r, g.create(m.NA)), C = O(l, f, n, g.create(m.NA)), E = O(l, f, u, g.create(m.NA)), b = O(l, f, c, g.create(m.NA)), R = h.map((p, N, M) => {
-      const w = d.get(N, M), S = _.get(N, M), D = C.get(N, M), L = E.get(N, M), U = b.get(N, M), { isError: x, errorObject: F, variants: Q } = B(p, w, S, D, L, U);
+    ), h = O(l, f, e, g.create(m.NA)), d = O(l, f, t, g.create(m.NA)), C = O(l, f, r, g.create(m.NA)), _ = O(l, f, n, g.create(m.NA)), E = O(l, f, u, g.create(m.NA)), b = O(l, f, c, g.create(m.NA)), R = h.map((p, N, w) => {
+      const S = d.get(N, w), M = C.get(N, w), D = _.get(N, w), L = E.get(N, w), T = b.get(N, w), { isError: x, errorObject: k, variants: G } = I(p, S, M, D, L, T);
       if (x)
-        return F;
-      const [ne, z, G, ge, de, Ee] = Q, pe = +ne.getValue(), me = +z.getValue(), ve = +G.getValue(), ht = +ge.getValue(), Dt = +de.getValue(), Lt = +Ee.getValue();
+        return k;
+      const [ne, z, Q, ge, de, Ee] = G, pe = +ne.getValue(), me = +z.getValue(), ve = +Q.getValue(), mt = +ge.getValue(), Dt = +de.getValue(), Lt = +Ee.getValue();
       if (me < 1 || Math.floor(me) > Math.ceil(ve))
         return g.create(m.NUM);
-      const it = xu(pe, me, ve, ht, Dt, Lt ? 1 : 0);
-      return Number.isNaN(it) || !Number.isFinite(it) ? g.create(m.NUM) : N === 0 && M === 0 ? y.create(it, ze(this.getLocale())) : y.create(it);
+      const ot = Hu(pe, me, ve, mt, Dt, Lt ? 1 : 0);
+      return Number.isNaN(ot) || !Number.isFinite(ot) ? g.create(m.NUM) : N === 0 && w === 0 ? y.create(ot, Je(this.getLocale())) : y.create(ot);
     });
     return l === 1 && f === 1 ? R.get(0, 0) : R;
   }
 }
-class u0 extends V {
+class N0 extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -18234,7 +19011,7 @@ class u0 extends V {
     const c = +u.getValue(), { positive: l, negative: f } = this._checkValues(s);
     if (!l || !f)
       return g.create(m.NUM);
-    const h = Qa(c, (d) => ju(d, s));
+    const h = ei(c, (d) => Qu(d, s));
     return typeof h != "number" ? h : r === 0 && n === 0 ? y.create(h, "0%") : y.create(h);
   }
   _getValues(e) {
@@ -18265,7 +19042,7 @@ class u0 extends V {
     };
   }
 }
-class c0 extends V {
+class V0 extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 4);
@@ -18282,20 +19059,20 @@ class c0 extends V {
       t.isArray() ? t.getColumnCount() : 1,
       r.isArray() ? r.getColumnCount() : 1,
       n.isArray() ? n.getColumnCount() : 1
-    ), u = O(s, o, e, g.create(m.NA)), c = O(s, o, t, g.create(m.NA)), l = O(s, o, r, g.create(m.NA)), f = O(s, o, n, g.create(m.NA)), h = u.map((d, _, C) => {
-      const E = c.get(_, C), b = l.get(_, C), R = f.get(_, C), { isError: p, errorObject: N, variants: M } = B(d, E, b, R);
+    ), u = O(s, o, e, g.create(m.NA)), c = O(s, o, t, g.create(m.NA)), l = O(s, o, r, g.create(m.NA)), f = O(s, o, n, g.create(m.NA)), h = u.map((d, C, _) => {
+      const E = c.get(C, _), b = l.get(C, _), R = f.get(C, _), { isError: p, errorObject: N, variants: w } = I(d, E, b, R);
       if (p)
         return N;
-      const [w, S, D, L] = M, U = +w.getValue(), x = +S.getValue(), F = +D.getValue(), Q = +L.getValue();
-      if (F === 0)
+      const [S, M, D, L] = w, T = +S.getValue(), x = +M.getValue(), k = +D.getValue(), G = +L.getValue();
+      if (k === 0)
         return g.create(m.DIV_BY_ZERO);
-      const ne = Q * U * (x / F - 1);
+      const ne = G * T * (x / k - 1);
       return y.create(ne);
     });
     return s === 1 && o === 1 ? h.get(0, 0) : h;
   }
 }
-class l0 extends V {
+class O0 extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 5);
@@ -18307,22 +19084,22 @@ class l0 extends V {
     const { isError: c, errorObject: l, variants: f } = ke(e, t, r, n, s, u);
     if (c)
       return l;
-    const [h, d, _, C, E, b] = f, R = $(h);
+    const [h, d, C, _, E, b] = f, R = $(h);
     if (typeof R != "number")
       return R;
     const p = $(d);
     if (typeof p != "number")
       return p;
-    const N = +_.getValue(), M = +C.getValue(), w = Math.floor(+E.getValue()), S = Math.floor(+b.getValue());
-    if (Number.isNaN(N) || Number.isNaN(M) || Number.isNaN(w) || Number.isNaN(S))
+    const N = +C.getValue(), w = +_.getValue(), S = Math.floor(+E.getValue()), M = Math.floor(+b.getValue());
+    if (Number.isNaN(N) || Number.isNaN(w) || Number.isNaN(S) || Number.isNaN(M))
       return g.create(m.VALUE);
-    if (N < 0 || M < 0 || ![1, 2, 4].includes(w) || S < 0 || S > 4 || Math.floor(R) >= Math.floor(p))
+    if (N < 0 || w < 0 || ![1, 2, 4].includes(S) || M < 0 || M > 4 || Math.floor(R) >= Math.floor(p))
       return g.create(m.NUM);
-    let D = Pu(R, p, N, M, w, S);
-    return D /= 1 + M / w, y.create(D);
+    let D = Yu(R, p, N, w, S, M);
+    return D /= 1 + w / S, y.create(D);
   }
 }
-class f0 extends V {
+class w0 extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 3);
@@ -18335,8 +19112,8 @@ class f0 extends V {
     ), l = Math.max(
       t.isArray() ? t.getColumnCount() : 1,
       r.isArray() ? r.getColumnCount() : 1
-    ), f = O(c, l, t, g.create(m.NA)), h = O(c, l, r, g.create(m.NA)), d = f.map((_, C, E) => {
-      const b = h.get(C, E);
+    ), f = O(c, l, t, g.create(m.NA)), h = O(c, l, r, g.create(m.NA)), d = f.map((C, _, E) => {
+      const b = h.get(_, E);
       if (e.isError())
         return e;
       if (b.isError())
@@ -18345,13 +19122,13 @@ class f0 extends V {
         return n;
       if (!o || !u)
         return g.create(m.DIV_BY_ZERO);
-      const R = +_.getValue(), p = +b.getValue();
+      const R = +C.getValue(), p = +b.getValue();
       if (Number.isNaN(R) || Number.isNaN(p))
         return g.create(m.VALUE);
       if (p === -1)
         return g.create(m.DIV_BY_ZERO);
       const N = this._getResult(s, R, p);
-      return C === 0 && E === 0 ? y.create(N, "0%") : y.create(N);
+      return _ === 0 && E === 0 ? y.create(N, "0%") : y.create(N);
     });
     return c === 1 && l === 1 ? d.get(0, 0) : d;
   }
@@ -18410,7 +19187,7 @@ class f0 extends V {
     return n;
   }
 }
-class h0 extends V {
+class S0 extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 2);
@@ -18431,7 +19208,7 @@ class h0 extends V {
     return y.create(f);
   }
 }
-class m0 extends V {
+class M0 extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 3);
@@ -18450,27 +19227,27 @@ class m0 extends V {
       r.isArray() ? r.getColumnCount() : 1,
       o.isArray() ? o.getColumnCount() : 1,
       u.isArray() ? u.getColumnCount() : 1
-    ), f = O(c, l, e, g.create(m.NA)), h = O(c, l, t, g.create(m.NA)), d = O(c, l, r, g.create(m.NA)), _ = O(c, l, o, g.create(m.NA)), C = O(c, l, u, g.create(m.NA)), E = f.map((b, R, p) => {
-      const N = h.get(R, p), M = d.get(R, p), w = _.get(R, p), S = C.get(R, p), { isError: D, errorObject: L, variants: U } = B(b, N, M, w, S);
+    ), f = O(c, l, e, g.create(m.NA)), h = O(c, l, t, g.create(m.NA)), d = O(c, l, r, g.create(m.NA)), C = O(c, l, o, g.create(m.NA)), _ = O(c, l, u, g.create(m.NA)), E = f.map((b, R, p) => {
+      const N = h.get(R, p), w = d.get(R, p), S = C.get(R, p), M = _.get(R, p), { isError: D, errorObject: L, variants: T } = I(b, N, w, S, M);
       if (D)
         return L;
-      const [x, F, Q, ne, z] = U, G = +x.getValue(), ge = +F.getValue(), de = +Q.getValue(), Ee = +ne.getValue();
+      const [x, k, G, ne, z] = T, Q = +x.getValue(), ge = +k.getValue(), de = +G.getValue(), Ee = +ne.getValue();
       let pe = +z.getValue();
-      if (pe = pe ? 1 : 0, G === 0 && ge === 0)
+      if (pe = pe ? 1 : 0, Q === 0 && ge === 0)
         return g.create(m.DIV_BY_ZERO);
       let me;
-      if (G === 0)
+      if (Q === 0)
         me = -(de + Ee) / ge;
       else {
-        const ve = ge * (1 + G * pe) - Ee * G, ht = de * G + ge * (1 + G * pe);
-        me = Math.log(ve / ht) / Math.log(1 + G);
+        const ve = ge * (1 + Q * pe) - Ee * Q, mt = de * Q + ge * (1 + Q * pe);
+        me = Math.log(ve / mt) / Math.log(1 + Q);
       }
       return Number.isNaN(me) || !Number.isFinite(me) ? g.create(m.NUM) : y.create(me);
     });
     return c === 1 && l === 1 ? E.get(0, 0) : E;
   }
 }
-class g0 extends V {
+class D0 extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 2);
@@ -18489,8 +19266,8 @@ class g0 extends V {
       return u;
     if (t)
       return r;
-    const c = +e.getValue(), l = ju(c, n);
-    return Number.isNaN(l) || Math.abs(l) === 1 / 0 ? g.create(m.DIV_BY_ZERO) : s === 0 && o === 0 ? y.create(l, ze(this.getLocale())) : y.create(l);
+    const c = +e.getValue(), l = Qu(c, n);
+    return Number.isNaN(l) || Math.abs(l) === 1 / 0 ? g.create(m.DIV_BY_ZERO) : s === 0 && o === 0 ? y.create(l, Je(this.getLocale())) : y.create(l);
   }
   _getValues(e) {
     const t = [];
@@ -18534,7 +19311,7 @@ class g0 extends V {
     };
   }
 }
-class d0 extends V {
+class L0 extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 8);
@@ -18543,37 +19320,37 @@ class d0 extends V {
   calculate(e, t, r, n, s, o, u, c, l) {
     let f = l != null ? l : y.create(0);
     f.isNull() && (f = y.create(0));
-    const { isError: h, errorObject: d, variants: _ } = ke(e, t, r, n, s, o, u, c, f);
+    const { isError: h, errorObject: d, variants: C } = ke(e, t, r, n, s, o, u, c, f);
     if (h)
       return d;
-    const [C, E, b, R, p, N, M, w, S] = _, D = $(C);
+    const [_, E, b, R, p, N, w, S, M] = C, D = $(_);
     if (typeof D != "number")
       return D;
     const L = $(E);
     if (typeof L != "number")
       return L;
-    const U = $(b);
-    if (typeof U != "number")
-      return U;
+    const T = $(b);
+    if (typeof T != "number")
+      return T;
     const x = $(R);
     if (typeof x != "number")
       return x;
-    const F = +p.getValue(), Q = +N.getValue(), ne = +M.getValue(), z = Math.floor(+w.getValue()), G = Math.floor(+S.getValue());
-    if (Number.isNaN(F) || Number.isNaN(Q) || Number.isNaN(ne) || Number.isNaN(z) || Number.isNaN(G))
+    const k = +p.getValue(), G = +N.getValue(), ne = +w.getValue(), z = Math.floor(+S.getValue()), Q = Math.floor(+M.getValue());
+    if (Number.isNaN(k) || Number.isNaN(G) || Number.isNaN(ne) || Number.isNaN(z) || Number.isNaN(Q))
       return g.create(m.VALUE);
-    if (F < 0 || Q < 0 || ne <= 0 || ![1, 2, 4].includes(z) || G < 0 || G > 4 || !this._validDate(L, x, D, U, z))
+    if (k < 0 || G < 0 || ne <= 0 || ![1, 2, 4].includes(z) || Q < 0 || Q > 4 || !this._validDate(L, x, D, T, z))
       return g.create(m.NUM);
-    const ge = Uu(D, L, U, x, F, Q, ne, z, G);
+    const ge = Gu(D, L, T, x, k, G, ne, z, Q);
     return y.create(ge);
   }
   _validDate(e, t, r, n, s) {
-    return this._getDateCorrectOrder(e, t, r, n) && vu(e, t, s) && wr(n, e, s);
+    return this._getDateCorrectOrder(e, t, r, n) && Wu(e, t, s) && Dr(n, e, s);
   }
   _getDateCorrectOrder(e, t, r, n) {
     return Math.floor(e) > Math.floor(t) && Math.floor(t) > Math.floor(r) && Math.floor(r) > Math.floor(n);
   }
 }
-class C0 extends V {
+class P0 extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 8);
@@ -18582,40 +19359,40 @@ class C0 extends V {
   calculate(e, t, r, n, s, o, u, c, l) {
     let f = l != null ? l : y.create(0);
     f.isNull() && (f = y.create(0));
-    const { isError: h, errorObject: d, variants: _ } = ke(e, t, r, n, s, o, u, c, f);
+    const { isError: h, errorObject: d, variants: C } = ke(e, t, r, n, s, o, u, c, f);
     if (h)
       return d;
-    const [C, E, b, R, p, N, M, w, S] = _, D = $(C);
+    const [_, E, b, R, p, N, w, S, M] = C, D = $(_);
     if (typeof D != "number")
       return D;
     const L = $(E);
     if (typeof L != "number")
       return L;
-    const U = $(b);
-    if (typeof U != "number")
-      return U;
+    const T = $(b);
+    if (typeof T != "number")
+      return T;
     const x = $(R);
     if (typeof x != "number")
       return x;
-    const F = +p.getValue(), Q = +N.getValue(), ne = +M.getValue(), z = Math.floor(+w.getValue()), G = Math.floor(+S.getValue());
-    return Number.isNaN(F) || Number.isNaN(Q) || Number.isNaN(ne) || Number.isNaN(z) || Number.isNaN(G) ? g.create(m.VALUE) : F < 0 || Q <= 0 || ne <= 0 || ![1, 2, 4].includes(z) || G < 0 || G > 4 || !this._validDate(L, x, D, U, z) ? g.create(m.NUM) : this._getResult(D, L, U, x, F, Q, ne, z, G);
+    const k = +p.getValue(), G = +N.getValue(), ne = +w.getValue(), z = Math.floor(+S.getValue()), Q = Math.floor(+M.getValue());
+    return Number.isNaN(k) || Number.isNaN(G) || Number.isNaN(ne) || Number.isNaN(z) || Number.isNaN(Q) ? g.create(m.VALUE) : k < 0 || G <= 0 || ne <= 0 || ![1, 2, 4].includes(z) || Q < 0 || Q > 4 || !this._validDate(L, x, D, T, z) ? g.create(m.NUM) : this._getResult(D, L, T, x, k, G, ne, z, Q);
   }
   _validDate(e, t, r, n, s) {
-    return this._getDateCorrectOrder(e, t, r, n) && vu(e, t, s) && wr(n, e, s);
+    return this._getDateCorrectOrder(e, t, r, n) && Wu(e, t, s) && Dr(n, e, s);
   }
   _getDateCorrectOrder(e, t, r, n) {
     return Math.floor(e) > Math.floor(t) && Math.floor(t) > Math.floor(r) && Math.floor(r) > Math.floor(n);
   }
   _getResult(e, t, r, n, s, o, u, c, l) {
     const { days: f } = _e(e, t, l), h = (s * f * 100 - (o - 100)) / ((o - 100) * 0.25 * (1 + 2 * f) + f * 100);
-    function d(C) {
-      return o - Uu(e, t, r, n, s, C, u, c, l);
+    function d(_) {
+      return o - Gu(e, t, r, n, s, _, u, c, l);
     }
-    const _ = Qa(h, (C) => d(C));
-    return typeof _ != "number" ? _ : y.create(_);
+    const C = ei(h, (_) => d(_));
+    return typeof C != "number" ? C : y.create(C);
   }
 }
-class _0 extends V {
+class x0 extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 7);
@@ -18627,25 +19404,25 @@ class _0 extends V {
     const { isError: f, errorObject: h, variants: d } = ke(e, t, r, n, s, o, u, l);
     if (f)
       return h;
-    const [_, C, E, b, R, p, N, M] = d, w = $(_);
-    if (typeof w != "number")
-      return w;
-    const S = $(C);
+    const [C, _, E, b, R, p, N, w] = d, S = $(C);
     if (typeof S != "number")
       return S;
+    const M = $(_);
+    if (typeof M != "number")
+      return M;
     const D = $(E);
     if (typeof D != "number")
       return D;
-    const L = +b.getValue(), U = +R.getValue(), x = +p.getValue(), F = Math.floor(+N.getValue()), Q = Math.floor(+M.getValue());
-    if (Number.isNaN(L) || Number.isNaN(U) || Number.isNaN(x) || Number.isNaN(F) || Number.isNaN(Q))
+    const L = +b.getValue(), T = +R.getValue(), x = +p.getValue(), k = Math.floor(+N.getValue()), G = Math.floor(+w.getValue());
+    if (Number.isNaN(L) || Number.isNaN(T) || Number.isNaN(x) || Number.isNaN(k) || Number.isNaN(G))
       return g.create(m.VALUE);
-    if (L < 0 || U < 0 || x <= 0 || ![1, 2, 4].includes(F) || Q < 0 || Q > 4 || !this._validDate(S, w, D, F))
+    if (L < 0 || T < 0 || x <= 0 || ![1, 2, 4].includes(k) || G < 0 || G > 4 || !this._validDate(M, S, D, k))
       return g.create(m.NUM);
-    const ne = this._getResult(w, S, D, L, U, x, F, Q);
+    const ne = this._getResult(S, M, D, L, T, x, k, G);
     return y.create(ne);
   }
   _validDate(e, t, r, n) {
-    return Math.floor(e) > Math.floor(t) && Math.floor(t) > Math.floor(r) && wr(r, e, n);
+    return Math.floor(e) > Math.floor(t) && Math.floor(t) > Math.floor(r) && Dr(r, e, n);
   }
   _getResult(e, t, r, n, s, o, u, c) {
     const l = this._getCoupDate(t, r, u), f = this._getFrac(r, e, l, u, c), h = this._getFrac(r, t, l, u, c), d = this._getFrac(e, t, l, u, c);
@@ -18665,20 +19442,20 @@ class _0 extends V {
     c.setUTCMonth(c.getUTCMonth() + 12 / n);
     let f = Re(c);
     if (f >= t) {
-      const { days: p } = _e(e, t, s), N = Xe(l, f, n, s);
+      const { days: p } = _e(e, t, s), N = Ze(l, f, n, s);
       return p / N;
     }
-    const { days: h } = _e(e, f, s), d = Xe(l, f, n, s);
-    let _ = h / d;
-    const C = re(f), E = re(f);
+    const { days: h } = _e(e, f, s), d = Ze(l, f, n, s);
+    let C = h / d;
+    const _ = re(f), E = re(f);
     for (E.setUTCMonth(E.getUTCMonth() + 12 / n); E < u; )
-      C.setUTCMonth(C.getUTCMonth() + 12 / n), E.setUTCMonth(E.getUTCMonth() + 12 / n), _ += 1;
-    l = Re(C), f = Re(E);
-    const { days: b } = _e(l, t, s), R = Xe(l, f, n, s);
-    return _ += b / R, _;
+      _.setUTCMonth(_.getUTCMonth() + 12 / n), E.setUTCMonth(E.getUTCMonth() + 12 / n), C += 1;
+    l = Re(_), f = Re(E);
+    const { days: b } = _e(l, t, s), R = Ze(l, f, n, s);
+    return C += b / R, C;
   }
 }
-class A0 extends V {
+class j0 extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 8);
@@ -18690,25 +19467,25 @@ class A0 extends V {
     const { isError: f, errorObject: h, variants: d } = ke(e, t, r, n, s, o, u, l);
     if (f)
       return h;
-    const [_, C, E, b, R, p, N, M] = d, w = $(_);
-    if (typeof w != "number")
-      return w;
-    const S = $(C);
+    const [C, _, E, b, R, p, N, w] = d, S = $(C);
     if (typeof S != "number")
       return S;
+    const M = $(_);
+    if (typeof M != "number")
+      return M;
     const D = $(E);
     if (typeof D != "number")
       return D;
-    const L = +b.getValue(), U = +R.getValue(), x = +p.getValue(), F = Math.floor(+N.getValue()), Q = Math.floor(+M.getValue());
-    if (Number.isNaN(L) || Number.isNaN(U) || Number.isNaN(x) || Number.isNaN(F) || Number.isNaN(Q))
+    const L = +b.getValue(), T = +R.getValue(), x = +p.getValue(), k = Math.floor(+N.getValue()), G = Math.floor(+w.getValue());
+    if (Number.isNaN(L) || Number.isNaN(T) || Number.isNaN(x) || Number.isNaN(k) || Number.isNaN(G))
       return g.create(m.VALUE);
-    if (L < 0 || U <= 0 || x <= 0 || ![1, 2, 4].includes(F) || Q < 0 || Q > 4 || !this._validDate(S, w, D, F))
+    if (L < 0 || T <= 0 || x <= 0 || ![1, 2, 4].includes(k) || G < 0 || G > 4 || !this._validDate(M, S, D, k))
       return g.create(m.NUM);
-    const ne = this._getResult(w, S, D, L, U, x, F, Q);
+    const ne = this._getResult(S, M, D, L, T, x, k, G);
     return y.create(ne);
   }
   _validDate(e, t, r, n) {
-    return Math.floor(e) > Math.floor(t) && Math.floor(t) > Math.floor(r) && wr(r, e, n);
+    return Math.floor(e) > Math.floor(t) && Math.floor(t) > Math.floor(r) && Dr(r, e, n);
   }
   _getResult(e, t, r, n, s, o, u, c) {
     const l = this._getCoupDate(t, r, u), f = this._getFrac(r, e, l, u, c), h = this._getFrac(r, t, l, u, c), d = this._getFrac(e, t, l, u, c);
@@ -18728,20 +19505,20 @@ class A0 extends V {
     c.setUTCMonth(c.getUTCMonth() + 12 / n);
     let f = Re(c);
     if (f >= t) {
-      const { days: p } = _e(e, t, s), N = Xe(l, f, n, s);
+      const { days: p } = _e(e, t, s), N = Ze(l, f, n, s);
       return p / N;
     }
-    const { days: h } = _e(e, f, s), d = Xe(l, f, n, s);
-    let _ = h / d;
-    const C = re(f), E = re(f);
+    const { days: h } = _e(e, f, s), d = Ze(l, f, n, s);
+    let C = h / d;
+    const _ = re(f), E = re(f);
     for (E.setUTCMonth(E.getUTCMonth() + 12 / n); E < u; )
-      C.setUTCMonth(C.getUTCMonth() + 12 / n), E.setUTCMonth(E.getUTCMonth() + 12 / n), _ += 1;
-    l = Re(C), f = Re(E);
-    const { days: b } = _e(l, t, s), R = Xe(l, f, n, s);
-    return _ += b / R, _;
+      _.setUTCMonth(_.getUTCMonth() + 12 / n), E.setUTCMonth(E.getUTCMonth() + 12 / n), C += 1;
+    l = Re(_), f = Re(E);
+    const { days: b } = _e(l, t, s), R = Ze(l, f, n, s);
+    return C += b / R, C;
   }
 }
-class E0 extends V {
+class U0 extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 3);
@@ -18757,19 +19534,19 @@ class E0 extends V {
       t.isArray() ? t.getColumnCount() : 1,
       r.isArray() ? r.getColumnCount() : 1
     ), o = O(n, s, e, g.create(m.NA)), u = O(n, s, t, g.create(m.NA)), c = O(n, s, r, g.create(m.NA)), l = o.map((f, h, d) => {
-      const _ = u.get(h, d), C = c.get(h, d), { isError: E, errorObject: b, variants: R } = B(f, _, C);
+      const C = u.get(h, d), _ = c.get(h, d), { isError: E, errorObject: b, variants: R } = I(f, C, _);
       if (E)
         return b;
-      const [p, N, M] = R, w = +p.getValue(), S = +N.getValue(), D = +M.getValue();
-      if (w <= -1)
+      const [p, N, w] = R, S = +p.getValue(), M = +N.getValue(), D = +w.getValue();
+      if (S <= -1)
         return g.create(m.NUM);
-      const L = (Math.log(D) - Math.log(S)) / Math.log(1 + w);
+      const L = (Math.log(D) - Math.log(M)) / Math.log(1 + S);
       return Number.isNaN(L) || !Number.isFinite(L) ? g.create(m.NUM) : y.create(L);
     });
     return n === 1 && s === 1 ? l.get(0, 0) : l;
   }
 }
-class b0 extends V {
+class v0 extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 3);
@@ -18789,20 +19566,20 @@ class b0 extends V {
       r.isArray() ? r.getColumnCount() : 1,
       o.isArray() ? o.getColumnCount() : 1,
       u.isArray() ? u.getColumnCount() : 1
-    ), f = O(c, l, e, g.create(m.NA)), h = O(c, l, t, g.create(m.NA)), d = O(c, l, r, g.create(m.NA)), _ = O(c, l, o, g.create(m.NA)), C = O(c, l, u, g.create(m.NA)), E = f.map((b, R, p) => {
-      const N = h.get(R, p), M = d.get(R, p), w = _.get(R, p), S = C.get(R, p), { isError: D, errorObject: L, variants: U } = B(b, N, M, w, S);
+    ), f = O(c, l, e, g.create(m.NA)), h = O(c, l, t, g.create(m.NA)), d = O(c, l, r, g.create(m.NA)), C = O(c, l, o, g.create(m.NA)), _ = O(c, l, u, g.create(m.NA)), E = f.map((b, R, p) => {
+      const N = h.get(R, p), w = d.get(R, p), S = C.get(R, p), M = _.get(R, p), { isError: D, errorObject: L, variants: T } = I(b, N, w, S, M);
       if (D)
         return L;
-      const [x, F, Q, ne, z] = U, G = +x.getValue(), ge = +F.getValue(), de = +Q.getValue(), Ee = +ne.getValue(), pe = +z.getValue();
-      if (G <= -1)
+      const [x, k, G, ne, z] = T, Q = +x.getValue(), ge = +k.getValue(), de = +G.getValue(), Ee = +ne.getValue(), pe = +z.getValue();
+      if (Q <= -1)
         return g.create(m.NUM);
-      const me = qr(G, ge, de, Ee, pe ? 1 : 0);
-      return Number.isNaN(me) || !Number.isFinite(me) ? g.create(m.NUM) : R === 0 && p === 0 ? y.create(me, ze(this.getLocale())) : y.create(me);
+      const me = Xr(Q, ge, de, Ee, pe ? 1 : 0);
+      return Number.isNaN(me) || !Number.isFinite(me) ? g.create(m.NUM) : R === 0 && p === 0 ? y.create(me, Je(this.getLocale())) : y.create(me);
     });
     return c === 1 && l === 1 ? E.get(0, 0) : E;
   }
 }
-class y0 extends V {
+class T0 extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 4);
@@ -18824,20 +19601,20 @@ class y0 extends V {
       n.isArray() ? n.getColumnCount() : 1,
       u.isArray() ? u.getColumnCount() : 1,
       c.isArray() ? c.getColumnCount() : 1
-    ), h = O(l, f, e, g.create(m.NA)), d = O(l, f, t, g.create(m.NA)), _ = O(l, f, r, g.create(m.NA)), C = O(l, f, n, g.create(m.NA)), E = O(l, f, u, g.create(m.NA)), b = O(l, f, c, g.create(m.NA)), R = h.map((p, N, M) => {
-      const w = d.get(N, M), S = _.get(N, M), D = C.get(N, M), L = E.get(N, M), U = b.get(N, M), { isError: x, errorObject: F, variants: Q } = B(p, w, S, D, L, U);
+    ), h = O(l, f, e, g.create(m.NA)), d = O(l, f, t, g.create(m.NA)), C = O(l, f, r, g.create(m.NA)), _ = O(l, f, n, g.create(m.NA)), E = O(l, f, u, g.create(m.NA)), b = O(l, f, c, g.create(m.NA)), R = h.map((p, N, w) => {
+      const S = d.get(N, w), M = C.get(N, w), D = _.get(N, w), L = E.get(N, w), T = b.get(N, w), { isError: x, errorObject: k, variants: G } = I(p, S, M, D, L, T);
       if (x)
-        return F;
-      const [ne, z, G, ge, de, Ee] = Q, pe = +ne.getValue(), me = +z.getValue(), ve = +G.getValue(), ht = +ge.getValue(), Dt = +de.getValue(), Lt = +Ee.getValue();
+        return k;
+      const [ne, z, Q, ge, de, Ee] = G, pe = +ne.getValue(), me = +z.getValue(), ve = +Q.getValue(), mt = +ge.getValue(), Dt = +de.getValue(), Lt = +Ee.getValue();
       if (me < 1 || Math.floor(me) > Math.ceil(ve) || me - ve >= 1)
         return g.create(m.NUM);
-      const it = qr(pe, ve, ht, Dt, Lt ? 1 : 0) - xu(pe, me, ve, ht, Dt, Lt ? 1 : 0);
-      return Number.isNaN(it) || !Number.isFinite(it) ? g.create(m.NUM) : N === 0 && M === 0 ? y.create(it, ze(this.getLocale())) : y.create(it);
+      const ot = Xr(pe, ve, mt, Dt, Lt ? 1 : 0) - Hu(pe, me, ve, mt, Dt, Lt ? 1 : 0);
+      return Number.isNaN(ot) || !Number.isFinite(ot) ? g.create(m.NUM) : N === 0 && w === 0 ? y.create(ot, Je(this.getLocale())) : y.create(ot);
     });
     return l === 1 && f === 1 ? R.get(0, 0) : R;
   }
 }
-class R0 extends V {
+class B0 extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 6);
@@ -18849,22 +19626,22 @@ class R0 extends V {
     const { isError: l, errorObject: f, variants: h } = ke(e, t, r, n, s, o, c);
     if (l)
       return f;
-    const [d, _, C, E, b, R, p] = h, N = $(d);
+    const [d, C, _, E, b, R, p] = h, N = $(d);
     if (typeof N != "number")
       return N;
-    const M = $(_);
-    if (typeof M != "number")
-      return M;
-    const w = +C.getValue(), S = +E.getValue(), D = +b.getValue(), L = Math.floor(+R.getValue()), U = Math.floor(+p.getValue());
-    if (Number.isNaN(w) || Number.isNaN(S) || Number.isNaN(D) || Number.isNaN(L) || Number.isNaN(U))
+    const w = $(C);
+    if (typeof w != "number")
+      return w;
+    const S = +_.getValue(), M = +E.getValue(), D = +b.getValue(), L = Math.floor(+R.getValue()), T = Math.floor(+p.getValue());
+    if (Number.isNaN(S) || Number.isNaN(M) || Number.isNaN(D) || Number.isNaN(L) || Number.isNaN(T))
       return g.create(m.VALUE);
-    if (w < 0 || S < 0 || D <= 0 || ![1, 2, 4].includes(L) || U < 0 || U > 4 || N >= M || !wr(N, M, L))
+    if (S < 0 || M < 0 || D <= 0 || ![1, 2, 4].includes(L) || T < 0 || T > 4 || N >= w || !Dr(N, w, L))
       return g.create(m.NUM);
-    const x = gn(N, M, w, S, D, L, U);
+    const x = Cn(N, w, S, M, D, L, T);
     return y.create(x);
   }
 }
-class p0 extends V {
+class I0 extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 4);
@@ -18876,22 +19653,22 @@ class p0 extends V {
     const { isError: u, errorObject: c, variants: l } = ke(e, t, r, n, o);
     if (u)
       return c;
-    const [f, h, d, _, C] = l, E = $(f);
+    const [f, h, d, C, _] = l, E = $(f);
     if (typeof E != "number")
       return E;
     const b = $(h);
     if (typeof b != "number")
       return b;
-    const R = +d.getValue(), p = +_.getValue(), N = Math.floor(+C.getValue());
+    const R = +d.getValue(), p = +C.getValue(), N = Math.floor(+_.getValue());
     if (Number.isNaN(R) || Number.isNaN(p) || Number.isNaN(N))
       return g.create(m.VALUE);
     if (R <= 0 || p <= 0 || N < 0 || N > 4 || E >= b)
       return g.create(m.NUM);
-    const { days: M, yearDays: w } = _e(E, b, N), S = p - R * p * M / w;
-    return y.create(S);
+    const { days: w, yearDays: S } = _e(E, b, N), M = p - R * p * w / S;
+    return y.create(M);
   }
 }
-class V0 extends V {
+class F0 extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 5);
@@ -18903,29 +19680,29 @@ class V0 extends V {
     const { isError: c, errorObject: l, variants: f } = ke(e, t, r, n, s, u);
     if (c)
       return l;
-    const [h, d, _, C, E, b] = f, R = $(h);
+    const [h, d, C, _, E, b] = f, R = $(h);
     if (typeof R != "number")
       return R;
     const p = $(d);
     if (typeof p != "number")
       return p;
-    const N = $(_);
+    const N = $(C);
     if (typeof N != "number")
       return N;
-    const M = +C.getValue(), w = +E.getValue(), S = Math.floor(+b.getValue());
-    if (Number.isNaN(M) || Number.isNaN(w) || Number.isNaN(S))
+    const w = +_.getValue(), S = +E.getValue(), M = Math.floor(+b.getValue());
+    if (Number.isNaN(w) || Number.isNaN(S) || Number.isNaN(M))
       return g.create(m.VALUE);
     const D = this._getDateCorrectOrder(p, R, N);
-    if (M < 0 || w < 0 || S < 0 || S > 4 || !D)
+    if (w < 0 || S < 0 || M < 0 || M > 4 || !D)
       return g.create(m.NUM);
-    const L = Du(R, S), { days: U } = _e(R, p, S), { days: x } = _e(N, p, S), { days: F } = _e(N, R, S), Q = (100 + x / L * M * 100) / (1 + U / L * w) - F / L * M * 100;
-    return y.create(Q);
+    const L = ku(R, M), { days: T } = _e(R, p, M), { days: x } = _e(N, p, M), { days: k } = _e(N, R, M), G = (100 + x / L * w * 100) / (1 + T / L * S) - k / L * w * 100;
+    return y.create(G);
   }
   _getDateCorrectOrder(e, t, r) {
     return Math.floor(e) > Math.floor(t) && Math.floor(t) > Math.floor(r);
   }
 }
-class N0 extends V {
+class k0 extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 3);
@@ -18945,20 +19722,20 @@ class N0 extends V {
       r.isArray() ? r.getColumnCount() : 1,
       o.isArray() ? o.getColumnCount() : 1,
       u.isArray() ? u.getColumnCount() : 1
-    ), f = O(c, l, e, g.create(m.NA)), h = O(c, l, t, g.create(m.NA)), d = O(c, l, r, g.create(m.NA)), _ = O(c, l, o, g.create(m.NA)), C = O(c, l, u, g.create(m.NA)), E = f.map((b, R, p) => {
-      const N = h.get(R, p), M = d.get(R, p), w = _.get(R, p), S = C.get(R, p), { isError: D, errorObject: L, variants: U } = B(b, N, M, w, S);
+    ), f = O(c, l, e, g.create(m.NA)), h = O(c, l, t, g.create(m.NA)), d = O(c, l, r, g.create(m.NA)), C = O(c, l, o, g.create(m.NA)), _ = O(c, l, u, g.create(m.NA)), E = f.map((b, R, p) => {
+      const N = h.get(R, p), w = d.get(R, p), S = C.get(R, p), M = _.get(R, p), { isError: D, errorObject: L, variants: T } = I(b, N, w, S, M);
       if (D)
         return L;
-      const [x, F, Q, ne, z] = U, G = +x.getValue(), ge = +F.getValue(), de = +Q.getValue(), Ee = +ne.getValue();
+      const [x, k, G, ne, z] = T, Q = +x.getValue(), ge = +k.getValue(), de = +G.getValue(), Ee = +ne.getValue();
       let pe = +z.getValue();
       pe = pe ? 1 : 0;
-      const me = G === 0 ? -de * ge - Ee : ((1 - (1 + G) ** ge) / G * de * (1 + G * pe) - Ee) / (1 + G) ** ge;
-      return Number.isNaN(me) || !Number.isFinite(me) ? g.create(m.NUM) : R === 0 && p === 0 ? y.create(me, ze(this.getLocale())) : y.create(me);
+      const me = Q === 0 ? -de * ge - Ee : ((1 - (1 + Q) ** ge) / Q * de * (1 + Q * pe) - Ee) / (1 + Q) ** ge;
+      return Number.isNaN(me) || !Number.isFinite(me) ? g.create(m.NUM) : R === 0 && p === 0 ? y.create(me, Je(this.getLocale())) : y.create(me);
     });
     return c === 1 && l === 1 ? E.get(0, 0) : E;
   }
 }
-class O0 extends V {
+class $0 extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 3);
@@ -18979,14 +19756,14 @@ class O0 extends V {
       u.isArray() ? u.getColumnCount() : 1,
       c.isArray() ? c.getColumnCount() : 1,
       l.isArray() ? l.getColumnCount() : 1
-    ), d = O(f, h, e, g.create(m.NA)), _ = O(f, h, t, g.create(m.NA)), C = O(f, h, r, g.create(m.NA)), E = O(f, h, u, g.create(m.NA)), b = O(f, h, c, g.create(m.NA)), R = O(f, h, l, g.create(m.NA)), p = d.map((N, M, w) => {
-      const S = _.get(M, w), D = C.get(M, w), L = E.get(M, w), U = b.get(M, w), x = R.get(M, w), { isError: F, errorObject: Q, variants: ne } = B(N, S, D, L, U, x);
-      if (F)
-        return Q;
-      const [z, G, ge, de, Ee, pe] = ne, me = +z.getValue(), ve = +G.getValue(), ht = +ge.getValue(), Dt = +de.getValue();
+    ), d = O(f, h, e, g.create(m.NA)), C = O(f, h, t, g.create(m.NA)), _ = O(f, h, r, g.create(m.NA)), E = O(f, h, u, g.create(m.NA)), b = O(f, h, c, g.create(m.NA)), R = O(f, h, l, g.create(m.NA)), p = d.map((N, w, S) => {
+      const M = C.get(w, S), D = _.get(w, S), L = E.get(w, S), T = b.get(w, S), x = R.get(w, S), { isError: k, errorObject: G, variants: ne } = I(N, M, D, L, T, x);
+      if (k)
+        return G;
+      const [z, Q, ge, de, Ee, pe] = ne, me = +z.getValue(), ve = +Q.getValue(), mt = +ge.getValue(), Dt = +de.getValue();
       let Lt = +Ee.getValue();
-      const it = +pe.getValue();
-      return Lt = Lt ? 1 : 0, me <= 0 || ve >= 0 && ht >= 0 && Dt >= 0 || ve <= 0 && ht <= 0 && Dt <= 0 ? g.create(m.NUM) : this._getResult(me, ve, ht, Dt, Lt, it, M, w);
+      const ot = +pe.getValue();
+      return Lt = Lt ? 1 : 0, me <= 0 || ve >= 0 && mt >= 0 && Dt >= 0 || ve <= 0 && mt <= 0 && Dt <= 0 ? g.create(m.NUM) : this._getResult(me, ve, mt, Dt, Lt, ot, w, S);
     });
     return f === 1 && h === 1 ? p.get(0, 0) : p;
   }
@@ -18995,23 +19772,23 @@ class O0 extends V {
     for (let d = 0; d < 20; d++) {
       if (h <= -1)
         return g.create(m.NUM);
-      let _, C;
-      if (Math.abs(h) < 1e-10 ? _ = r * (1 + e * h) + t * (1 + h * s) * e + n : (C = (1 + h) ** e, _ = r * C + t * (1 / h + s) * (C - 1) + n), Math.abs(_) < 1e-10)
+      let C, _;
+      if (Math.abs(h) < 1e-10 ? C = r * (1 + e * h) + t * (1 + h * s) * e + n : (_ = (1 + h) ** e, C = r * _ + t * (1 / h + s) * (_ - 1) + n), Math.abs(C) < 1e-10)
         break;
       let E;
       if (Math.abs(h) < 1e-10)
         E = r * e + t * s * e;
       else {
-        C = (1 + h) ** e;
+        _ = (1 + h) ** e;
         const b = e * (1 + h) ** (e - 1);
-        E = r * b + t * (1 / h + s) * b + t * (-1 / (h * h)) * (C - 1);
+        E = r * b + t * (1 / h + s) * b + t * (-1 / (h * h)) * (_ - 1);
       }
-      h -= _ / E;
+      h -= C / E;
     }
     return u === 0 && c === 0 ? y.create(h, "0%") : y.create(h);
   }
 }
-class M0 extends V {
+class Y0 extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 4);
@@ -19023,22 +19800,22 @@ class M0 extends V {
     const { isError: u, errorObject: c, variants: l } = ke(e, t, r, n, o);
     if (u)
       return c;
-    const [f, h, d, _, C] = l, E = $(f);
+    const [f, h, d, C, _] = l, E = $(f);
     if (typeof E != "number")
       return E;
     const b = $(h);
     if (typeof b != "number")
       return b;
-    const R = +d.getValue(), p = +_.getValue(), N = Math.floor(+C.getValue());
+    const R = +d.getValue(), p = +C.getValue(), N = Math.floor(+_.getValue());
     if (Number.isNaN(R) || Number.isNaN(p) || Number.isNaN(N))
       return g.create(m.VALUE);
     if (R <= 0 || p <= 0 || N < 0 || N > 4 || E >= b)
       return g.create(m.NUM);
-    const { days: M, yearDays: w } = _e(E, b, N), S = R / (1 - p * M / w);
-    return S < 0 ? g.create(m.NUM) : y.create(S);
+    const { days: w, yearDays: S } = _e(E, b, N), M = R / (1 - p * w / S);
+    return M < 0 ? g.create(m.NUM) : y.create(M);
   }
 }
-class w0 extends V {
+class H0 extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 3);
@@ -19054,21 +19831,21 @@ class w0 extends V {
       t.isArray() ? t.getColumnCount() : 1,
       r.isArray() ? r.getColumnCount() : 1
     ), o = O(n, s, e, g.create(m.NA)), u = O(n, s, t, g.create(m.NA)), c = O(n, s, r, g.create(m.NA)), l = o.map((f, h, d) => {
-      const _ = u.get(h, d), C = c.get(h, d), { isError: E, errorObject: b, variants: R } = B(f, _, C);
+      const C = u.get(h, d), _ = c.get(h, d), { isError: E, errorObject: b, variants: R } = I(f, C, _);
       if (E)
         return b;
-      const [p, N, M] = R, w = +p.getValue(), S = +N.getValue(), D = +M.getValue();
-      if (w <= 0)
+      const [p, N, w] = R, S = +p.getValue(), M = +N.getValue(), D = +w.getValue();
+      if (S <= 0)
         return g.create(m.NUM);
-      if (S === 0 && D === 0)
+      if (M === 0 && D === 0)
         return y.create(0);
-      const L = (D / S) ** (1 / w) - 1;
-      return Number.isNaN(L) || !Number.isFinite(L) || D / S < 0 ? g.create(m.NUM) : y.create(L);
+      const L = (D / M) ** (1 / S) - 1;
+      return Number.isNaN(L) || !Number.isFinite(L) || D / M < 0 ? g.create(m.NUM) : y.create(L);
     });
     return n === 1 && s === 1 ? l.get(0, 0) : l;
   }
 }
-class S0 extends V {
+class Q0 extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 3);
@@ -19085,23 +19862,23 @@ class S0 extends V {
       t.isArray() ? t.getColumnCount() : 1,
       r.isArray() ? r.getColumnCount() : 1
     ), o = O(n, s, e, g.create(m.NA)), u = O(n, s, t, g.create(m.NA)), c = O(n, s, r, g.create(m.NA)), l = o.map((f, h, d) => {
-      const _ = u.get(h, d), C = c.get(h, d);
-      if (_.isError())
-        return _;
+      const C = u.get(h, d), _ = c.get(h, d);
       if (C.isError())
         return C;
-      const E = +f.getValue(), b = +_.getValue(), R = +C.getValue();
+      if (_.isError())
+        return _;
+      const E = +f.getValue(), b = +C.getValue(), R = +_.getValue();
       if (Number.isNaN(E) || Number.isNaN(b) || Number.isNaN(R))
         return g.create(m.VALUE);
       if (R === 0)
         return g.create(m.DIV_BY_ZERO);
       const p = (E - b) / R;
-      return h === 0 && d === 0 ? y.create(p, ze(this.getLocale())) : y.create(p);
+      return h === 0 && d === 0 ? y.create(p, Je(this.getLocale())) : y.create(p);
     });
     return n === 1 && s === 1 ? l.get(0, 0) : l;
   }
 }
-class D0 extends V {
+class G0 extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 4);
@@ -19119,26 +19896,26 @@ class D0 extends V {
       t.isArray() ? t.getColumnCount() : 1,
       r.isArray() ? r.getColumnCount() : 1,
       n.isArray() ? n.getColumnCount() : 1
-    ), u = O(s, o, e, g.create(m.NA)), c = O(s, o, t, g.create(m.NA)), l = O(s, o, r, g.create(m.NA)), f = O(s, o, n, g.create(m.NA)), h = u.map((d, _, C) => {
-      const E = c.get(_, C), b = l.get(_, C), R = f.get(_, C);
+    ), u = O(s, o, e, g.create(m.NA)), c = O(s, o, t, g.create(m.NA)), l = O(s, o, r, g.create(m.NA)), f = O(s, o, n, g.create(m.NA)), h = u.map((d, C, _) => {
+      const E = c.get(C, _), b = l.get(C, _), R = f.get(C, _);
       if (E.isError())
         return E;
       if (b.isError())
         return b;
       if (R.isError())
         return R;
-      const p = +d.getValue(), N = +E.getValue(), M = +b.getValue(), w = +R.getValue();
-      if (Number.isNaN(p) || Number.isNaN(N) || Number.isNaN(M) || Number.isNaN(w))
+      const p = +d.getValue(), N = +E.getValue(), w = +b.getValue(), S = +R.getValue();
+      if (Number.isNaN(p) || Number.isNaN(N) || Number.isNaN(w) || Number.isNaN(S))
         return g.create(m.VALUE);
-      if (N < 0 || M <= 0 || w > M)
+      if (N < 0 || w <= 0 || S > w)
         return g.create(m.NUM);
-      const S = (p - N) * (M - w + 1) * 2 / (M * (M + 1));
-      return _ === 0 && C === 0 ? y.create(S, ze(this.getLocale())) : y.create(S);
+      const M = (p - N) * (w - S + 1) * 2 / (w * (w + 1));
+      return C === 0 && _ === 0 ? y.create(M, Je(this.getLocale())) : y.create(M);
     });
     return s === 1 && o === 1 ? h.get(0, 0) : h;
   }
 }
-class L0 extends V {
+class W0 extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 3);
@@ -19159,19 +19936,19 @@ class L0 extends V {
       return g.create(m.VALUE);
     if (d <= 0 || f >= h)
       return g.create(m.NUM);
-    const _ = Math.floor(h) - Math.floor(f), E = re(f).getUTCFullYear(), b = os(E);
-    if (_ > b)
+    const C = Math.floor(h) - Math.floor(f), E = re(f).getUTCFullYear(), b = us(E);
+    if (C > b)
       return g.create(m.NUM);
-    let R = 365 * d / (360 - d * _);
-    if (_ > 182) {
-      const p = 100 * (1 - d * _ / 360), N = _ / 365;
+    let R = 365 * d / (360 - d * C);
+    if (C > 182) {
+      const p = 100 * (1 - d * C / 360), N = C / 365;
       if (R = (-N + Math.sqrt(N * N - (N * 2 - 1) * (1 - 100 / p))) / (N - 0.5), Number.isNaN(R))
         return g.create(m.NUM);
     }
     return R < 0 ? g.create(m.NUM) : y.create(R);
   }
 }
-class P0 extends V {
+class q0 extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 3);
@@ -19193,14 +19970,14 @@ class P0 extends V {
       return g.create(m.VALUE);
     if (d <= 0 || f >= h)
       return g.create(m.NUM);
-    const _ = Math.floor(h) - Math.floor(f), E = re(f).getUTCFullYear(), b = os(E);
-    if (_ > b)
+    const C = Math.floor(h) - Math.floor(f), E = re(f).getUTCFullYear(), b = us(E);
+    if (C > b)
       return g.create(m.NUM);
-    const R = 100 * (1 - d * _ / 360);
-    return R < 0 ? g.create(m.NUM) : y.create(R, ze(this.getLocale()));
+    const R = 100 * (1 - d * C / 360);
+    return R < 0 ? g.create(m.NUM) : y.create(R, Je(this.getLocale()));
   }
 }
-class x0 extends V {
+class K0 extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 3);
@@ -19221,14 +19998,14 @@ class x0 extends V {
       return g.create(m.VALUE);
     if (d <= 0 || f >= h)
       return g.create(m.NUM);
-    const _ = Math.floor(h) - Math.floor(f), E = re(f).getUTCFullYear(), b = os(E);
-    if (_ > b)
+    const C = Math.floor(h) - Math.floor(f), E = re(f).getUTCFullYear(), b = us(E);
+    if (C > b)
       return g.create(m.NUM);
-    const R = (100 - d) / d * 360 / _;
+    const R = (100 - d) / d * 360 / C;
     return y.create(R);
   }
 }
-class j0 extends V {
+class X0 extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 5);
@@ -19238,8 +20015,8 @@ class j0 extends V {
   calculate(e, t, r, n, s, o, u) {
     let c = o != null ? o : y.create(2);
     c.isNull() && (c = y.create(2));
-    let l = u != null ? u : T.create(!1);
-    l.isNull() && (l = T.create(!1));
+    let l = u != null ? u : v.create(!1);
+    l.isNull() && (l = v.create(!1));
     const f = Math.max(
       e.isArray() ? e.getRowCount() : 1,
       t.isArray() ? t.getRowCount() : 1,
@@ -19256,11 +20033,11 @@ class j0 extends V {
       s.isArray() ? s.getColumnCount() : 1,
       c.isArray() ? c.getColumnCount() : 1,
       l.isArray() ? l.getColumnCount() : 1
-    ), d = O(f, h, e, g.create(m.NA)), _ = O(f, h, t, g.create(m.NA)), C = O(f, h, r, g.create(m.NA)), E = O(f, h, n, g.create(m.NA)), b = O(f, h, s, g.create(m.NA)), R = O(f, h, c, g.create(m.NA)), p = O(f, h, l, g.create(m.NA));
+    ), d = O(f, h, e, g.create(m.NA)), C = O(f, h, t, g.create(m.NA)), _ = O(f, h, r, g.create(m.NA)), E = O(f, h, n, g.create(m.NA)), b = O(f, h, s, g.create(m.NA)), R = O(f, h, c, g.create(m.NA)), p = O(f, h, l, g.create(m.NA));
     return this._getResultArray(
       d,
-      _,
       C,
+      _,
       E,
       b,
       R,
@@ -19270,17 +20047,17 @@ class j0 extends V {
     );
   }
   _getResultArray(e, t, r, n, s, o, u, c, l) {
-    const f = e.map((h, d, _) => {
-      const C = t.get(d, _), E = r.get(d, _), b = n.get(d, _), R = s.get(d, _), p = o.get(d, _), N = u.get(d, _), { isError: M, errorObject: w, variants: S } = B(h, C, E, b, R, p, N);
-      if (M)
-        return w;
-      const [D, L, U, x, F, Q, ne] = S, z = +D.getValue(), G = +L.getValue(), ge = +U.getValue(), de = +x.getValue(), Ee = +F.getValue(), pe = +Q.getValue(), me = +ne.getValue();
-      if (z < 0 || G < 0 || ge < 0 || de < 0 || Ee < 0 || Ee > ge || de > Ee || pe < 0)
+    const f = e.map((h, d, C) => {
+      const _ = t.get(d, C), E = r.get(d, C), b = n.get(d, C), R = s.get(d, C), p = o.get(d, C), N = u.get(d, C), { isError: w, errorObject: S, variants: M } = I(h, _, E, b, R, p, N);
+      if (w)
+        return S;
+      const [D, L, T, x, k, G, ne] = M, z = +D.getValue(), Q = +L.getValue(), ge = +T.getValue(), de = +x.getValue(), Ee = +k.getValue(), pe = +G.getValue(), me = +ne.getValue();
+      if (z < 0 || Q < 0 || ge < 0 || de < 0 || Ee < 0 || Ee > ge || de > Ee || pe < 0)
         return g.create(m.NUM);
       if (ge === 0 && de === 0 && Ee === 0)
         return g.create(m.DIV_BY_ZERO);
-      const ve = this._getResult(z, G, ge, de, Ee, pe, me);
-      return d === 0 && _ === 0 ? y.create(ve, ze(this.getLocale())) : y.create(ve);
+      const ve = this._getResult(z, Q, ge, de, Ee, pe, me);
+      return d === 0 && C === 0 ? y.create(ve, Je(this.getLocale())) : y.create(ve);
     });
     return c === 1 && l === 1 ? f.get(0, 0) : f;
   }
@@ -19295,7 +20072,7 @@ class j0 extends V {
     }
     if (u)
       for (let h = c + 1; h <= l; h++) {
-        let d = na(e, t, r, h, o);
+        let d = fa(e, t, r, h, o);
         h === c + 1 ? d *= Math.min(s, c + 1) - n : h === l && (d *= s + 1 - l), f += d;
       }
     else {
@@ -19307,19 +20084,19 @@ class j0 extends V {
   _getVdb(e, t, r, n, s, o) {
     const u = Math.ceil(s);
     let c = 0, l = e - t, f = 0, h = 0, d = !1;
-    for (let _ = 1; _ <= u; _++) {
+    for (let C = 1; C <= u; C++) {
       if (d)
         h = f;
       else {
-        const C = na(e, t, r, _, o);
-        f = l / (n - (_ - 1)), f > C ? (h = f, d = !0) : (h = C, l -= C);
+        const _ = fa(e, t, r, C, o);
+        f = l / (n - (C - 1)), f > _ ? (h = f, d = !0) : (h = _, l -= _);
       }
-      _ === u && (h *= s + 1 - u), c += h;
+      C === u && (h *= s + 1 - u), c += h;
     }
     return c;
   }
 }
-class U0 extends V {
+class Z0 extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 2);
@@ -19336,13 +20113,13 @@ class U0 extends V {
     const { isError: l, errorObject: f, variants: h } = H(c);
     if (l)
       return f;
-    const [d] = h, _ = +d.getValue();
-    if (Number.isNaN(_))
+    const [d] = h, C = +d.getValue();
+    if (Number.isNaN(C))
       return g.create(m.VALUE);
-    const { positive: C, negative: E } = this._checkValues(o);
-    if (!C || !E || (o == null ? void 0 : o.length) !== (u == null ? void 0 : u.length) || _ < 0)
+    const { positive: _, negative: E } = this._checkValues(o);
+    if (!_ || !E || (o == null ? void 0 : o.length) !== (u == null ? void 0 : u.length) || C < 0)
       return g.create(m.NUM);
-    const b = Qa(_, (R) => this._iterF(o, u, R));
+    const b = ei(C, (R) => this._iterF(o, u, R));
     return typeof b != "number" ? b : y.create(b);
   }
   _checkErrors(e, t) {
@@ -19398,7 +20175,7 @@ class U0 extends V {
       };
     } else {
       const r = e.getValue();
-      return e.isBoolean() || e.isString() && !W(r) ? {
+      return e.isBoolean() || e.isString() && !q(r) ? {
         isError: !0,
         errorObejct: g.create(m.VALUE)
       } : {
@@ -19434,7 +20211,7 @@ class U0 extends V {
       };
     } else {
       const r = e.getValue();
-      return e.isBoolean() || e.isString() && !W(r) ? {
+      return e.isBoolean() || e.isString() && !q(r) ? {
         isError: !0,
         errorObejct: g.create(m.VALUE)
       } : +r < 0 ? {
@@ -19459,7 +20236,7 @@ class U0 extends V {
     return e.reduce((n, s, o) => n + s / (1 + r) ** ((t[o] - t[0]) / 365), 0);
   }
 }
-class v0 extends V {
+class z0 extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 3);
@@ -19479,13 +20256,13 @@ class v0 extends V {
       return f;
     if (h = h, d = d, c < 0 || h.length !== d.length)
       return g.create(m.NUM);
-    let _ = 0;
-    const C = d[0];
+    let C = 0;
+    const _ = d[0];
     for (let E = 0; E < d.length; E++) {
       const b = d[E], R = h[E];
-      _ += R / (1 + c) ** ((b - C) / 365);
+      C += R / (1 + c) ** ((b - _) / 365);
     }
-    return y.create(_);
+    return y.create(C);
   }
   _checkErrors(e, t) {
     if (e.isError())
@@ -19604,7 +20381,7 @@ class v0 extends V {
     }
   }
 }
-class T0 extends V {
+class J0 extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 6);
@@ -19616,32 +20393,32 @@ class T0 extends V {
     const { isError: l, errorObject: f, variants: h } = ke(e, t, r, n, s, o, c);
     if (l)
       return f;
-    const [d, _, C, E, b, R, p] = h, N = $(d);
+    const [d, C, _, E, b, R, p] = h, N = $(d);
     if (typeof N != "number")
       return N;
-    const M = $(_);
-    if (typeof M != "number")
-      return M;
-    const w = +C.getValue(), S = +E.getValue(), D = +b.getValue(), L = Math.floor(+R.getValue()), U = Math.floor(+p.getValue());
-    if (Number.isNaN(w) || Number.isNaN(S) || Number.isNaN(D) || Number.isNaN(L) || Number.isNaN(U))
+    const w = $(C);
+    if (typeof w != "number")
+      return w;
+    const S = +_.getValue(), M = +E.getValue(), D = +b.getValue(), L = Math.floor(+R.getValue()), T = Math.floor(+p.getValue());
+    if (Number.isNaN(S) || Number.isNaN(M) || Number.isNaN(D) || Number.isNaN(L) || Number.isNaN(T))
       return g.create(m.VALUE);
-    if (w < 0 || S <= 0 || D <= 0 || ![1, 2, 4].includes(L) || U < 0 || U > 4 || N >= M || !wr(N, M, L))
+    if (S < 0 || M <= 0 || D <= 0 || ![1, 2, 4].includes(L) || T < 0 || T > 4 || N >= w || !Dr(N, w, L))
       return g.create(m.NUM);
-    const x = this._getResult(N, M, w, S, D, L, U);
+    const x = this._getResult(N, w, S, M, D, L, T);
     return y.create(x);
   }
   _getResult(e, t, r, n, s, o, u) {
-    if (sr(e, t, o) > 1) {
-      let E = r || 0.01, b = gn(e, t, r, E, s, o, u), R = b - n;
+    if (ir(e, t, o) > 1) {
+      let E = r || 0.01, b = Cn(e, t, r, E, s, o, u), R = b - n;
       for (let p = 0; p < 100 && Math.abs(R) > 1e-7; p++)
-        b = gn(e, t, r, 1.01 * E, s, o, u), E += -R / (b - n - R) * E * 0.01, R = gn(e, t, r, E, s, o, u) - n;
+        b = Cn(e, t, r, 1.01 * E, s, o, u), E += -R / (b - n - R) * E * 0.01, R = Cn(e, t, r, E, s, o, u) - n;
       return E;
     }
-    const l = us(e, t, o, u), f = Xe(e, t, o, u), { days: h } = _e(e, t, u), d = n / 100 + l / f * r / o;
+    const l = cs(e, t, o, u), f = Ze(e, t, o, u), { days: h } = _e(e, t, u), d = n / 100 + l / f * r / o;
     return (s / 100 + r / o - d) / d * o * f / h;
   }
 }
-class B0 extends V {
+class ed extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 4);
@@ -19653,22 +20430,22 @@ class B0 extends V {
     const { isError: u, errorObject: c, variants: l } = ke(e, t, r, n, o);
     if (u)
       return c;
-    const [f, h, d, _, C] = l, E = $(f);
+    const [f, h, d, C, _] = l, E = $(f);
     if (typeof E != "number")
       return E;
     const b = $(h);
     if (typeof b != "number")
       return b;
-    const R = +d.getValue(), p = +_.getValue(), N = Math.floor(+C.getValue());
+    const R = +d.getValue(), p = +C.getValue(), N = Math.floor(+_.getValue());
     if (Number.isNaN(R) || Number.isNaN(p) || Number.isNaN(N))
       return g.create(m.VALUE);
     if (R <= 0 || p <= 0 || N < 0 || N > 4 || E >= b)
       return g.create(m.NUM);
-    const { days: M, yearDays: w } = _e(E, b, N), S = (p / R - 1) / (M / w);
-    return y.create(S);
+    const { days: w, yearDays: S } = _e(E, b, N), M = (p / R - 1) / (w / S);
+    return y.create(M);
   }
 }
-class I0 extends V {
+class td extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 5);
@@ -19680,85 +20457,85 @@ class I0 extends V {
     const { isError: c, errorObject: l, variants: f } = ke(e, t, r, n, s, u);
     if (c)
       return l;
-    const [h, d, _, C, E, b] = f, R = $(h);
+    const [h, d, C, _, E, b] = f, R = $(h);
     if (typeof R != "number")
       return R;
     const p = $(d);
     if (typeof p != "number")
       return p;
-    const N = $(_);
+    const N = $(C);
     if (typeof N != "number")
       return N;
-    const M = +C.getValue(), w = +E.getValue(), S = Math.floor(+b.getValue());
-    if (Number.isNaN(M) || Number.isNaN(w) || Number.isNaN(S))
+    const w = +_.getValue(), S = +E.getValue(), M = Math.floor(+b.getValue());
+    if (Number.isNaN(w) || Number.isNaN(S) || Number.isNaN(M))
       return g.create(m.VALUE);
     const D = this._getDateCorrectOrder(p, R, N);
-    if (M < 0 || w <= 0 || S < 0 || S > 4 || !D)
+    if (w < 0 || S <= 0 || M < 0 || M > 4 || !D)
       return g.create(m.NUM);
-    const L = Du(R, S), { days: U } = _e(R, p, S), { days: x } = _e(N, p, S), { days: F } = _e(N, R, S), Q = ((1 + x / L * M) / (w / 100 + F / L * M) - 1) / (U / L);
-    return y.create(Q);
+    const L = ku(R, M), { days: T } = _e(R, p, M), { days: x } = _e(N, p, M), { days: k } = _e(N, R, M), G = ((1 + x / L * w) / (S / 100 + k / L * w) - 1) / (T / L);
+    return y.create(G);
   }
   _getDateCorrectOrder(e, t, r) {
     return Math.floor(e) > Math.floor(t) && Math.floor(t) > Math.floor(r);
   }
 }
-const F0 = [
-  [F1, ee.ACCRINT],
-  [k1, ee.ACCRINTM],
-  [$1, ee.AMORLINC],
-  [Y1, ee.COUPDAYBS],
-  [H1, ee.COUPDAYS],
-  [G1, ee.COUPDAYSNC],
-  [Q1, ee.COUPNCD],
-  [W1, ee.COUPNUM],
-  [q1, ee.COUPPCD],
-  [K1, ee.CUMIPMT],
-  [X1, ee.CUMPRINC],
-  [Z1, ee.DB],
-  [z1, ee.DDB],
-  [J1, ee.DISC],
-  [e0, ee.DOLLARDE],
-  [t0, ee.DOLLARFR],
-  [r0, ee.DURATION],
-  [n0, ee.EFFECT],
-  [s0, ee.FV],
-  [a0, ee.FVSCHEDULE],
-  [i0, ee.INTRATE],
-  [o0, ee.IPMT],
-  [u0, ee.IRR],
-  [c0, ee.ISPMT],
-  [l0, ee.MDURATION],
-  [f0, ee.MIRR],
-  [h0, ee.NOMINAL],
-  [m0, ee.NPER],
-  [g0, ee.NPV],
-  [d0, ee.ODDFPRICE],
-  [C0, ee.ODDFYIELD],
-  [_0, ee.ODDLPRICE],
-  [A0, ee.ODDLYIELD],
-  [E0, ee.PDURATION],
-  [b0, ee.PMT],
-  [y0, ee.PPMT],
-  [R0, ee.PRICE],
-  [p0, ee.PRICEDISC],
-  [V0, ee.PRICEMAT],
-  [N0, ee.PV],
-  [O0, ee.RATE],
-  [M0, ee.RECEIVED],
-  [w0, ee.RRI],
-  [S0, ee.SLN],
-  [D0, ee.SYD],
-  [L0, ee.TBILLEQ],
-  [P0, ee.TBILLPRICE],
-  [x0, ee.TBILLYIELD],
-  [j0, ee.VDB],
-  [U0, ee.XIRR],
-  [v0, ee.XNPV],
-  [T0, ee.YIELD],
-  [B0, ee.YIELDDISC],
-  [I0, ee.YIELDMAT]
+const rd = [
+  [r0, ee.ACCRINT],
+  [n0, ee.ACCRINTM],
+  [s0, ee.AMORLINC],
+  [a0, ee.COUPDAYBS],
+  [i0, ee.COUPDAYS],
+  [o0, ee.COUPDAYSNC],
+  [u0, ee.COUPNCD],
+  [c0, ee.COUPNUM],
+  [l0, ee.COUPPCD],
+  [f0, ee.CUMIPMT],
+  [h0, ee.CUMPRINC],
+  [m0, ee.DB],
+  [g0, ee.DDB],
+  [d0, ee.DISC],
+  [C0, ee.DOLLARDE],
+  [_0, ee.DOLLARFR],
+  [A0, ee.DURATION],
+  [E0, ee.EFFECT],
+  [b0, ee.FV],
+  [y0, ee.FVSCHEDULE],
+  [R0, ee.INTRATE],
+  [p0, ee.IPMT],
+  [N0, ee.IRR],
+  [V0, ee.ISPMT],
+  [O0, ee.MDURATION],
+  [w0, ee.MIRR],
+  [S0, ee.NOMINAL],
+  [M0, ee.NPER],
+  [D0, ee.NPV],
+  [L0, ee.ODDFPRICE],
+  [P0, ee.ODDFYIELD],
+  [x0, ee.ODDLPRICE],
+  [j0, ee.ODDLYIELD],
+  [U0, ee.PDURATION],
+  [v0, ee.PMT],
+  [T0, ee.PPMT],
+  [B0, ee.PRICE],
+  [I0, ee.PRICEDISC],
+  [F0, ee.PRICEMAT],
+  [k0, ee.PV],
+  [$0, ee.RATE],
+  [Y0, ee.RECEIVED],
+  [H0, ee.RRI],
+  [Q0, ee.SLN],
+  [G0, ee.SYD],
+  [W0, ee.TBILLEQ],
+  [q0, ee.TBILLPRICE],
+  [K0, ee.TBILLYIELD],
+  [X0, ee.VDB],
+  [Z0, ee.XIRR],
+  [z0, ee.XNPV],
+  [J0, ee.YIELD],
+  [ed, ee.YIELDDISC],
+  [td, ee.YIELDMAT]
 ];
-class k0 extends V {
+class nd extends V {
   constructor() {
     super(...arguments);
     A(this, "needsReferenceObject", !0);
@@ -19793,7 +20570,7 @@ class k0 extends V {
     let h;
     switch (f.toLocaleLowerCase()) {
       case "address":
-        return j.create(`$${qe.chatAtABC(l)}$${c + 1}`);
+        return j.create(`$${Ke.chatAtABC(l)}$${c + 1}`);
       case "col":
         return y.create(l + 1);
       case "color":
@@ -19826,10 +20603,10 @@ class k0 extends V {
     if (!s && s !== 0 && (s = t), n)
       return y.create(s);
     const o = [[s, s === t]];
-    return q.createByArray(o);
+    return W.createByArray(o);
   }
 }
-class $0 extends V {
+class sd extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -19855,36 +20632,36 @@ class $0 extends V {
   }
 }
 var Oe = /* @__PURE__ */ ((i) => (i.CELL = "CELL", i.ERROR_TYPE = "ERROR.TYPE", i.INFO = "INFO", i.ISBETWEEN = "ISBETWEEN", i.ISBLANK = "ISBLANK", i.ISDATE = "ISDATE", i.ISEMAIL = "ISEMAIL", i.ISERR = "ISERR", i.ISERROR = "ISERROR", i.ISEVEN = "ISEVEN", i.ISFORMULA = "ISFORMULA", i.ISLOGICAL = "ISLOGICAL", i.ISNA = "ISNA", i.ISNONTEXT = "ISNONTEXT", i.ISNUMBER = "ISNUMBER", i.ISODD = "ISODD", i.ISOMITTED = "ISOMITTED", i.ISREF = "ISREF", i.ISTEXT = "ISTEXT", i.ISURL = "ISURL", i.N = "N", i.NA = "NA", i.SHEET = "SHEET", i.SHEETS = "SHEETS", i.TYPE = "TYPE", i))(Oe || {});
-class Y0 extends V {
+class ad extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 3);
     A(this, "maxParams", 5);
   }
   calculate(e, t, r, n, s) {
-    const o = n != null ? n : T.create(!0), u = s != null ? s : T.create(!0), { isError: c, errorObject: l, variants: f } = Yr(e, t, r, o, u);
+    const o = n != null ? n : v.create(!0), u = s != null ? s : v.create(!0), { isError: c, errorObject: l, variants: f } = Qr(e, t, r, o, u);
     if (c)
       return l;
-    const [h, d, _, C, E] = f;
-    if (C.isString() || E.isString())
+    const [h, d, C, _, E] = f;
+    if (_.isString() || E.isString())
       return g.create(m.VALUE);
-    if (d.compare(_, ">").getValue() === !0)
+    if (d.compare(C, ">").getValue() === !0)
       return g.create(m.NUM);
-    const R = +C.getValue(), p = +E.getValue(), N = R ? ">=" : ">", M = p ? "<=" : "<";
-    return h.compare(d, N).getValue() === !1 || h.compare(_, M).getValue() === !1 ? T.create(!1) : T.create(!0);
+    const R = +_.getValue(), p = +E.getValue(), N = R ? ">=" : ">", w = p ? "<=" : "<";
+    return h.compare(d, N).getValue() === !1 || h.compare(C, w).getValue() === !1 ? v.create(!1) : v.create(!0);
   }
 }
-class H0 extends V {
+class id extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
     A(this, "maxParams", 1);
   }
   calculate(e) {
-    return e.isNull() ? T.create(!0) : e.isArray() ? e.mapValue((t) => t.isNull() ? T.create(!0) : T.create(!1)) : T.create(!1);
+    return e.isNull() ? v.create(!0) : e.isArray() ? e.mapValue((t) => t.isNull() ? v.create(!0) : v.create(!1)) : v.create(!1);
   }
 }
-class G0 extends V {
+class od extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -19898,10 +20675,10 @@ class G0 extends V {
         return g.create(m.VALUE);
       t = t.get(0, 0);
     }
-    return t.isError() ? t : t.isNumber() && t.getPattern() !== "" ? T.create(Ga(t.getPattern())) : t.isString() && (xn(`${t.getValue()}`) || jn(`${t.getValue()}`)) ? T.create(!0) : T.create(!1);
+    return t.isError() ? t : t.isNumber() && t.getPattern() !== "" ? v.create(Ja(t.getPattern())) : t.isString() && (jn(`${t.getValue()}`) || Un(`${t.getValue()}`)) ? v.create(!0) : v.create(!1);
   }
 }
-class Q0 extends V {
+class ud extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -19918,38 +20695,38 @@ class Q0 extends V {
     if (t.isError())
       return t;
     if (t.isNull() || t.isBoolean() || t.isNumber())
-      return T.create(!1);
+      return v.create(!1);
     const r = `${t.getValue()}`;
     if (r.length > 254)
-      return T.create(!1);
-    const n = qe.topLevelDomainCombiningString(), s = new RegExp(
+      return v.create(!1);
+    const n = Ke.topLevelDomainCombiningString(), s = new RegExp(
       `^(?:[\\w+-]+\\.)*[\\w+-]+@[a-z0-9_-]+(?:\\.[a-z0-9_-]+)*\\.(?:${n})$`,
       "i"
     );
-    return T.create(s.test(r));
+    return v.create(s.test(r));
   }
 }
-class W0 extends V {
+class cd extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
     A(this, "maxParams", 1);
   }
   calculate(e) {
-    return e.getValue() === m.NA ? T.create(!1) : e.isError() ? T.create(!0) : e.isArray() ? e.mapValue((t) => t.getValue() === m.NA ? T.create(!1) : t.isError() ? T.create(!0) : T.create(!1)) : T.create(!1);
+    return e.getValue() === m.NA ? v.create(!1) : e.isError() ? v.create(!0) : e.isArray() ? e.mapValue((t) => t.getValue() === m.NA ? v.create(!1) : t.isError() ? v.create(!0) : v.create(!1)) : v.create(!1);
   }
 }
-class q0 extends V {
+class ld extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
     A(this, "maxParams", 1);
   }
   calculate(e) {
-    return e.isError() ? T.create(!0) : e.isArray() ? e.mapValue((t) => t.isError() ? T.create(!0) : T.create(!1)) : T.create(!1);
+    return e.isError() ? v.create(!0) : e.isArray() ? e.mapValue((t) => t.isError() ? v.create(!0) : v.create(!1)) : v.create(!1);
   }
 }
-class K0 extends V {
+class fd extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -19971,10 +20748,10 @@ class K0 extends V {
     if (Number.isNaN(r))
       return g.create(m.VALUE);
     const n = r % 2 === 0;
-    return T.create(n);
+    return v.create(n);
   }
 }
-class X0 extends V {
+class hd extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -19990,52 +20767,52 @@ class X0 extends V {
     const t = (u = e.getCurrentActiveSheetData()) == null ? void 0 : u.cellData.getMatrix(), { startRow: r, startColumn: n } = e.getRangePosition(), s = e.toArrayValueObject(), o = s.mapValue((c, l, f) => {
       var d;
       const h = (d = t == null ? void 0 : t[r + l]) == null ? void 0 : d[n + f];
-      return h != null && h.f || h != null && h.si ? T.create(!0) : T.create(!1);
+      return h != null && h.f || h != null && h.si ? v.create(!0) : v.create(!1);
     });
     return s.getRowCount() === 1 && s.getColumnCount() === 1 ? o.get(0, 0) : o;
   }
 }
-class Z0 extends V {
+class md extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
     A(this, "maxParams", 1);
   }
   calculate(e) {
-    return e.isBoolean() ? T.create(!0) : e.isArray() ? e.mapValue((t) => t.isBoolean() ? T.create(!0) : T.create(!1)) : T.create(!1);
+    return e.isBoolean() ? v.create(!0) : e.isArray() ? e.mapValue((t) => t.isBoolean() ? v.create(!0) : v.create(!1)) : v.create(!1);
   }
 }
-class z0 extends V {
+class gd extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
     A(this, "maxParams", 1);
   }
   calculate(e) {
-    return e.getValue() === m.NA ? T.create(!0) : e.isArray() ? e.mapValue((t) => t.getValue() === m.NA ? T.create(!0) : T.create(!1)) : T.create(!1);
+    return e.getValue() === m.NA ? v.create(!0) : e.isArray() ? e.mapValue((t) => t.getValue() === m.NA ? v.create(!0) : v.create(!1)) : v.create(!1);
   }
 }
-class J0 extends V {
+class dd extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
     A(this, "maxParams", 1);
   }
   calculate(e) {
-    return !e.isArray() && !e.isString() ? T.create(!0) : e.isArray() ? e.mapValue((t) => t.isString() ? T.create(!1) : T.create(!0)) : T.create(!1);
+    return !e.isArray() && !e.isString() ? v.create(!0) : e.isArray() ? e.mapValue((t) => t.isString() ? v.create(!1) : v.create(!0)) : v.create(!1);
   }
 }
-class ed extends V {
+class Cd extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
     A(this, "maxParams", 1);
   }
   calculate(e) {
-    return e.isNumber() ? T.create(!0) : e.isArray() ? e.mapValue((t) => t.isNumber() ? T.create(!0) : T.create(!1)) : T.create(!1);
+    return e.isNumber() ? v.create(!0) : e.isArray() ? e.mapValue((t) => t.isNumber() ? v.create(!0) : v.create(!1)) : v.create(!1);
   }
 }
-class td extends V {
+class _d extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -20057,10 +20834,10 @@ class td extends V {
     if (Number.isNaN(r))
       return g.create(m.VALUE);
     const n = r % 2 !== 0;
-    return T.create(n);
+    return v.create(n);
   }
 }
-class rd extends V {
+class Ad extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -20068,20 +20845,20 @@ class rd extends V {
     A(this, "needsReferenceObject", !0);
   }
   calculate(e) {
-    return e.isReferenceObject() ? T.create(!0) : T.create(!1);
+    return e.isReferenceObject() ? v.create(!0) : v.create(!1);
   }
 }
-class nd extends V {
+class Ed extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
     A(this, "maxParams", 1);
   }
   calculate(e) {
-    return e.isString() ? T.create(!0) : e.isArray() ? e.mapValue((t) => t.isString() ? T.create(!0) : T.create(!1)) : T.create(!1);
+    return e.isString() ? v.create(!0) : e.isArray() ? e.mapValue((t) => t.isString() ? v.create(!0) : v.create(!1)) : v.create(!1);
   }
 }
-class sd extends V {
+class bd extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -20098,18 +20875,18 @@ class sd extends V {
     if (t.isError())
       return t;
     if (t.isNull() || t.isBoolean() || t.isNumber())
-      return T.create(!1);
+      return v.create(!1);
     const r = `${t.getValue()}`.replace(/^\s+|\s+$/g, "");
     if (r.length > 1e3)
-      return T.create(!1);
-    const n = qe.topLevelDomainCombiningString(), s = new RegExp(
+      return v.create(!1);
+    const n = Ke.topLevelDomainCombiningString(), s = new RegExp(
       `^(?:(?:https?|s?ftp|ftps|nfs|ssh)://+[a-z0-9_-]+(?:\\.[a-z0-9_-]+)*(?::[0-9]+)?(?:/(?:[A-Za-z0-9\\-._~!$&'()*+,;=:@]|%[A-Fa-f0-9]{2})*)*/?(?:[?#]\\S*)?|[a-z0-9_-]+(?:\\.[a-z0-9_-]+)*\\.(?:${n})(?::[0-9]+)?(?:/(?:[A-Za-z0-9\\-._~!$&'()*+,;=:@]|%[A-Fa-f0-9]{2})*)*/?(?:[?#]\\S*)?|mailto:(?:[\\w+-]+\\.)*[\\w+-]+@[a-z0-9_-]+(?:\\.[a-z0-9_-]+)*\\.(?:${n})|(?:news|aim):[%a-z0-9$_\\.+!*(),;/?#:@&~=-]+)$`,
       "i"
     );
-    return T.create(s.test(r));
+    return v.create(s.test(r));
   }
 }
-class ad extends V {
+class yd extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -20125,7 +20902,7 @@ class ad extends V {
     return y.create(r);
   }
 }
-class id extends V {
+class Rd extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 0);
@@ -20135,7 +20912,7 @@ class id extends V {
     return g.create(m.NA);
   }
 }
-class od extends V {
+class pd extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 0);
@@ -20165,7 +20942,7 @@ class od extends V {
     return y.create(o + 1);
   }
 }
-class ud extends V {
+class Nd extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 0);
@@ -20177,7 +20954,7 @@ class ud extends V {
     return y.create(e.length);
   }
 }
-class cd extends V {
+class Vd extends V {
   constructor() {
     super(...arguments);
     A(this, "needsReferenceObject", !0);
@@ -20214,32 +20991,32 @@ class cd extends V {
     return y.create(128);
   }
 }
-const ld = [
-  [k0, Oe.CELL],
-  [$0, Oe.ERROR_TYPE],
-  [Y0, Oe.ISBETWEEN],
-  [H0, Oe.ISBLANK],
-  [G0, Oe.ISDATE],
-  [Q0, Oe.ISEMAIL],
-  [W0, Oe.ISERR],
-  [q0, Oe.ISERROR],
-  [K0, Oe.ISEVEN],
-  [X0, Oe.ISFORMULA],
-  [Z0, Oe.ISLOGICAL],
-  [z0, Oe.ISNA],
-  [J0, Oe.ISNONTEXT],
-  [ed, Oe.ISNUMBER],
-  [td, Oe.ISODD],
-  [rd, Oe.ISREF],
-  [nd, Oe.ISTEXT],
-  [sd, Oe.ISURL],
-  [ad, Oe.N],
-  [id, Oe.NA],
-  [od, Oe.SHEET],
-  [ud, Oe.SHEETS],
-  [cd, Oe.TYPE]
+const Od = [
+  [nd, Oe.CELL],
+  [sd, Oe.ERROR_TYPE],
+  [ad, Oe.ISBETWEEN],
+  [id, Oe.ISBLANK],
+  [od, Oe.ISDATE],
+  [ud, Oe.ISEMAIL],
+  [cd, Oe.ISERR],
+  [ld, Oe.ISERROR],
+  [fd, Oe.ISEVEN],
+  [hd, Oe.ISFORMULA],
+  [md, Oe.ISLOGICAL],
+  [gd, Oe.ISNA],
+  [dd, Oe.ISNONTEXT],
+  [Cd, Oe.ISNUMBER],
+  [_d, Oe.ISODD],
+  [Ad, Oe.ISREF],
+  [Ed, Oe.ISTEXT],
+  [bd, Oe.ISURL],
+  [yd, Oe.N],
+  [Rd, Oe.NA],
+  [pd, Oe.SHEET],
+  [Nd, Oe.SHEETS],
+  [Vd, Oe.TYPE]
 ];
-class fd extends V {
+class wd extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -20259,10 +21036,10 @@ class fd extends V {
           return n;
       } else (s.isBoolean() || s.isNumber()) && (t = t && !!s.getValue(), r = !1);
     }
-    return r ? g.create(m.VALUE) : T.create(t);
+    return r ? g.create(m.VALUE) : v.create(t);
   }
 }
-class hd extends V {
+class Sd extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 2);
@@ -20283,11 +21060,11 @@ class hd extends V {
     const c = [[]];
     for (let l = 0; l < u; l++) {
       const f = [];
-      for (let _ = 0; _ < o; _++) {
-        const C = r.get(_, l);
-        f.push([C]);
+      for (let C = 0; C < o; C++) {
+        const _ = r.get(C, l);
+        f.push([_]);
       }
-      let h = q.create({
+      let h = W.create({
         calculateValueList: f,
         rowCount: o,
         columnCount: 1,
@@ -20297,24 +21074,24 @@ class hd extends V {
         column: 0
       });
       if (n) {
-        const { startRow: _, startColumn: C } = n.getRangePosition(), E = {
-          startRow: _,
-          startColumn: C + l,
-          endRow: _ + o - 1,
-          endColumn: C + l
+        const { startRow: C, startColumn: _ } = n.getRangePosition(), E = {
+          startRow: C,
+          startColumn: _ + l,
+          endRow: C + o - 1,
+          endColumn: _ + l
         };
         h = this.createReferenceObject(n, E);
       }
       let d = s.execute(h);
       if (d.isArray()) {
-        const _ = d.getRowCount(), C = d.getColumnCount();
-        if (_ > 1 || C > 1)
+        const C = d.getRowCount(), _ = d.getColumnCount();
+        if (C > 1 || _ > 1)
           return g.create(m.CALC);
         d = d.get(0, 0);
       }
       d.isNull() && (d = y.create(0)), c[0].push(d);
     }
-    return u === 1 ? c[0][0] : q.create({
+    return u === 1 ? c[0][0] : W.create({
       calculateValueList: c,
       rowCount: 1,
       columnCount: u,
@@ -20325,7 +21102,7 @@ class hd extends V {
     });
   }
 }
-class md extends V {
+class Md extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 2);
@@ -20346,11 +21123,11 @@ class md extends V {
     const c = [];
     for (let l = 0; l < o; l++) {
       const f = [[]];
-      for (let _ = 0; _ < u; _++) {
-        const C = r.get(l, _);
-        f[0].push(C);
+      for (let C = 0; C < u; C++) {
+        const _ = r.get(l, C);
+        f[0].push(_);
       }
-      let h = q.create({
+      let h = W.create({
         calculateValueList: f,
         rowCount: 1,
         columnCount: u,
@@ -20360,24 +21137,24 @@ class md extends V {
         column: 0
       });
       if (n) {
-        const { startRow: _, startColumn: C } = n.getRangePosition(), E = {
-          startRow: _ + l,
-          startColumn: C,
-          endRow: _ + l,
-          endColumn: C + u - 1
+        const { startRow: C, startColumn: _ } = n.getRangePosition(), E = {
+          startRow: C + l,
+          startColumn: _,
+          endRow: C + l,
+          endColumn: _ + u - 1
         };
         h = this.createReferenceObject(n, E);
       }
       let d = s.execute(h);
       if (d.isArray()) {
-        const _ = d.getRowCount(), C = d.getColumnCount();
-        if (_ > 1 || C > 1)
+        const C = d.getRowCount(), _ = d.getColumnCount();
+        if (C > 1 || _ > 1)
           return g.create(m.CALC);
         d = d.get(0, 0);
       }
       d.isNull() && (d = y.create(0)), c.push([d]);
     }
-    return o === 1 ? c[0][0] : q.create({
+    return o === 1 ? c[0][0] : W.create({
       calculateValueList: c,
       rowCount: o,
       columnCount: 1,
@@ -20388,24 +21165,24 @@ class md extends V {
     });
   }
 }
-class gd extends V {
+class Dd extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 0);
     A(this, "maxParams", 0);
   }
   calculate() {
-    return T.create(!1);
+    return v.create(!1);
   }
 }
 var De = /* @__PURE__ */ ((i) => (i.AND = "AND", i.BYCOL = "BYCOL", i.BYROW = "BYROW", i.FALSE = "FALSE", i.IF = "IF", i.IFERROR = "IFERROR", i.IFNA = "IFNA", i.IFS = "IFS", i.LAMBDA = "LAMBDA", i.LET = "LET", i.MAKEARRAY = "MAKEARRAY", i.MAP = "MAP", i.NOT = "NOT", i.OR = "OR", i.REDUCE = "REDUCE", i.SCAN = "SCAN", i.SWITCH = "SWITCH", i.TRUE = "TRUE", i.XOR = "XOR", i))(De || {});
-class dd extends V {
+class Ld extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 2);
     A(this, "maxParams", 3);
   }
-  calculate(e, t, r = T.create(!1)) {
+  calculate(e, t, r = v.create(!1)) {
     let n = e;
     if (e.isArray()) {
       const f = e.getRowCount(), h = e.getColumnCount();
@@ -20423,15 +21200,15 @@ class dd extends V {
       r.isArray() ? r.getColumnCount() : 1
     ), u = O(s, o, n, g.create(m.NA)), c = O(s, o, t, g.create(m.NA)), l = O(s, o, r, g.create(m.NA));
     return u.mapValue((f, h, d) => {
-      const _ = c.get(h, d), C = l.get(h, d);
-      return this._handleSingleObject(f, _, C);
+      const C = c.get(h, d), _ = l.get(h, d);
+      return this._handleSingleObject(f, C, _);
     });
   }
   _handleSingleObject(e, t, r) {
     return e.isError() ? e : e.getValue() ? t.isNull() ? y.create(0) : t : r.isNull() ? y.create(0) : r;
   }
 }
-class Cd extends V {
+class Pd extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 2);
@@ -20452,7 +21229,7 @@ class Cd extends V {
     }), s;
   }
 }
-class _d extends V {
+class xd extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 2);
@@ -20477,7 +21254,7 @@ class _d extends V {
     }), s;
   }
 }
-class Ad extends V {
+class jd extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 2);
@@ -20518,7 +21295,7 @@ class Ad extends V {
     return t === 1 && r === 1 ? s.get(0, 0) : s;
   }
 }
-class Ed extends V {
+class Ud extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -20528,7 +21305,7 @@ class Ed extends V {
     return g.create(m.VALUE);
   }
 }
-class bd extends V {
+class vd extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 3);
@@ -20538,7 +21315,7 @@ class bd extends V {
     return g.create(m.VALUE);
   }
 }
-class yd extends V {
+class Td extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 3);
@@ -20561,13 +21338,13 @@ class yd extends V {
         c.isArray() && (c = c.get(0, 0)), s[o][u] = c;
       }
     }
-    return new Yf(s);
+    return new Jf(s);
   }
   isAsync() {
     return !0;
   }
 }
-let Rd = class extends V {
+let Bd = class extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 2);
@@ -20590,7 +21367,7 @@ let Rd = class extends V {
         t.push(c), n = Math.max(n, l.isArray() ? l.getRowCount() : 1), s = Math.max(s, l.isArray() ? l.getColumnCount() : 1);
     }
     const o = this._getResultArray(t, r, n, s);
-    return o instanceof g ? o : n === 1 && s === 1 ? o[0][0] : q.create({
+    return o instanceof g ? o : n === 1 && s === 1 ? o[0][0] : W.create({
       calculateValueList: o,
       rowCount: n,
       columnCount: s,
@@ -20609,28 +21386,28 @@ let Rd = class extends V {
         const l = [];
         let f = !1;
         for (let d = 0; d < e.length; d++) {
-          let _ = e[d], C = null;
-          if (_.isReferenceObject() && (C = _, _ = _.toArrayValueObject()), !_.isArray())
+          let C = e[d], _ = null;
+          if (C.isReferenceObject() && (_ = C, C = C.toArrayValueObject()), !C.isArray())
             if (o === 0 && c === 0) {
-              l.push(C || _);
+              l.push(_ || C);
               continue;
             } else {
               u.push(g.create(m.NA)), f = !0;
               break;
             }
-          let E = _.get(o, c);
+          let E = C.get(o, c);
           if (!E) {
             u.push(g.create(m.NA)), f = !0;
             break;
           }
-          if (C) {
-            const { startRow: b, startColumn: R } = C.getRangePosition(), p = {
+          if (_) {
+            const { startRow: b, startColumn: R } = _.getRangePosition(), p = {
               startRow: b + o,
               startColumn: R + c,
               endRow: b + o,
               endColumn: R + c
             };
-            E = this.createReferenceObject(C, p);
+            E = this.createReferenceObject(_, p);
           }
           l.push(E);
         }
@@ -20638,8 +21415,8 @@ let Rd = class extends V {
           continue;
         let h = t.execute(...l);
         if (h.isArray()) {
-          const d = h.getRowCount(), _ = h.getColumnCount();
-          if (d > 1 || _ > 1)
+          const d = h.getRowCount(), C = h.getColumnCount();
+          if (d > 1 || C > 1)
             return g.create(m.CALC);
           h = h.get(0, 0);
         }
@@ -20650,7 +21427,7 @@ let Rd = class extends V {
     return s;
   }
 };
-class pd extends V {
+class Id extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -20663,10 +21440,10 @@ class pd extends V {
     if (e.isError())
       return e;
     const t = +e.getValue();
-    return Number.isNaN(t) ? g.create(m.VALUE) : T.create(!t);
+    return Number.isNaN(t) ? g.create(m.VALUE) : v.create(!t);
   }
 }
-class Vd extends V {
+class Fd extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -20686,10 +21463,10 @@ class Vd extends V {
           return n;
       } else (s.isBoolean() || s.isNumber()) && (t = t || !!s.getValue(), r = !1);
     }
-    return r ? new g(m.VALUE) : new T(t);
+    return r ? new g(m.VALUE) : new v(t);
   }
 }
-class Nd extends V {
+class kd extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 3);
@@ -20720,23 +21497,23 @@ class Nd extends V {
         if (d.isError())
           return d;
         if (s) {
-          const { startRow: C, startColumn: E } = s.getRangePosition(), b = {
-            startRow: C + f,
+          const { startRow: _, startColumn: E } = s.getRangePosition(), b = {
+            startRow: _ + f,
             startColumn: E + h,
-            endRow: C + f,
+            endRow: _ + f,
             endColumn: E + h
           };
           d = this.createReferenceObject(s, b);
         }
-        let _ = o.execute(l, d);
-        if (_.isError())
-          return _;
-        _.isNull() && (_ = y.create(0)), l = _;
+        let C = o.execute(l, d);
+        if (C.isError())
+          return C;
+        C.isNull() && (C = y.create(0)), l = C;
       }
     return l.isReferenceObject() ? l.toArrayValueObject() : l;
   }
 }
-class Od extends V {
+class $d extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 3);
@@ -20775,9 +21552,9 @@ class Od extends V {
           h.push(l);
           continue;
         }
-        let _ = t.isArray() ? t.get(f, d) : t;
-        if (_.isError()) {
-          l = _, h.push(_);
+        let C = t.isArray() ? t.get(f, d) : t;
+        if (C.isError()) {
+          l = C, h.push(C);
           continue;
         }
         if (s) {
@@ -20787,20 +21564,20 @@ class Od extends V {
             endRow: E + f,
             endColumn: b + d
           };
-          _ = this.createReferenceObject(s, R);
+          C = this.createReferenceObject(s, R);
         }
-        let C = r.execute(l, _);
-        if (C.isArray()) {
-          const E = C.getRowCount(), b = C.getColumnCount();
+        let _ = r.execute(l, C);
+        if (_.isArray()) {
+          const E = _.getRowCount(), b = _.getColumnCount();
           if (E > 1 || b > 1)
             return g.create(m.CALC);
-          C = C.get(0, 0);
+          _ = _.get(0, 0);
         }
-        C.isNull() && (C = y.create(0)), l = C, h.push(C);
+        _.isNull() && (_ = y.create(0)), l = _, h.push(_);
       }
       o.push(h);
     }
-    return u === 1 && c === 1 ? o[0][0] : q.create({
+    return u === 1 && c === 1 ? o[0][0] : W.create({
       calculateValueList: o,
       rowCount: u,
       columnCount: c,
@@ -20811,7 +21588,7 @@ class Od extends V {
     });
   }
 }
-class Md extends V {
+class Yd extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 3);
@@ -20847,8 +21624,8 @@ class Md extends V {
       (f) => O(s, o, f, g.create(m.NA))
     ), l = O(s, o, r, g.create(m.NA));
     return u.map((f, h, d) => {
-      for (let C = 0; C < c.length - (n ? 1 : 0); C += 2) {
-        const E = c[C].get(h, d) || ue.create(), b = c[C + 1].get(h, d) || ue.create();
+      for (let _ = 0; _ < c.length - (n ? 1 : 0); _ += 2) {
+        const E = c[_].get(h, d) || ue.create(), b = c[_ + 1].get(h, d) || ue.create();
         if (!E.isNull()) {
           if (E.isError() || f.isError())
             return E.isError() ? E : f;
@@ -20856,22 +21633,22 @@ class Md extends V {
             return b.isNull() ? g.create(m.NA) : b;
         }
       }
-      const _ = l.get(h, d) || ue.create();
-      return _.isNull() ? g.create(m.NA) : _;
+      const C = l.get(h, d) || ue.create();
+      return C.isNull() ? g.create(m.NA) : C;
     });
   }
 }
-class wd extends V {
+class Hd extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 0);
     A(this, "maxParams", 0);
   }
   calculate() {
-    return T.create(!0);
+    return v.create(!0);
   }
 }
-class Sd extends V {
+class Qd extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -20891,31 +21668,31 @@ class Sd extends V {
           return n;
       } else (s.isBoolean() || s.isNumber()) && (s.getValue() && t++, r = !1);
     }
-    return r ? g.create(m.VALUE) : T.create(t % 2 === 1);
+    return r ? g.create(m.VALUE) : v.create(t % 2 === 1);
   }
 }
-const Dd = [
-  [fd, De.AND],
-  [hd, De.BYCOL],
-  [md, De.BYROW],
-  [gd, De.FALSE],
-  [dd, De.IF],
-  [Cd, De.IFERROR],
-  [_d, De.IFNA],
-  [Ad, De.IFS],
-  [Ed, De.LAMBDA],
-  [bd, De.LET],
-  [yd, De.MAKEARRAY],
-  [Rd, De.MAP],
-  [pd, De.NOT],
-  [Vd, De.OR],
-  [Nd, De.REDUCE],
-  [Od, De.SCAN],
-  [Md, De.SWITCH],
-  [wd, De.TRUE],
-  [Sd, De.XOR]
+const Gd = [
+  [wd, De.AND],
+  [Sd, De.BYCOL],
+  [Md, De.BYROW],
+  [Dd, De.FALSE],
+  [Ld, De.IF],
+  [Pd, De.IFERROR],
+  [xd, De.IFNA],
+  [jd, De.IFS],
+  [Ud, De.LAMBDA],
+  [vd, De.LET],
+  [Td, De.MAKEARRAY],
+  [Bd, De.MAP],
+  [Id, De.NOT],
+  [Fd, De.OR],
+  [kd, De.REDUCE],
+  [$d, De.SCAN],
+  [Yd, De.SWITCH],
+  [Hd, De.TRUE],
+  [Qd, De.XOR]
 ];
-class Ld extends V {
+class Wd extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 2);
@@ -20933,7 +21710,7 @@ class Ld extends V {
       return n;
     if (s != null && s.isError())
       return s;
-    const o = r != null ? r : y.create(1), u = n != null ? n : T.create(!0), c = s != null ? s : j.create(""), l = Math.max(
+    const o = r != null ? r : y.create(1), u = n != null ? n : v.create(!0), c = s != null ? s : j.create(""), l = Math.max(
       e.isArray() ? e.getRowCount() : 1,
       t.isArray() ? t.getRowCount() : 1,
       o.isArray() ? o.getRowCount() : 1,
@@ -20945,42 +21722,42 @@ class Ld extends V {
       o.isArray() ? o.getColumnCount() : 1,
       u.isArray() ? u.getColumnCount() : 1,
       c.isArray() ? c.getColumnCount() : 1
-    ), h = O(l, f, e, g.create(m.NA)), d = O(l, f, t, g.create(m.NA)), _ = O(l, f, o, g.create(m.NA)), C = O(l, f, u, g.create(m.NA)), E = O(l, f, c, g.create(m.NA));
+    ), h = O(l, f, e, g.create(m.NA)), d = O(l, f, t, g.create(m.NA)), C = O(l, f, o, g.create(m.NA)), _ = O(l, f, u, g.create(m.NA)), E = O(l, f, c, g.create(m.NA));
     return h.map((b, R, p) => {
-      const N = d.get(R, p) || g.create(m.NA), M = _.get(R, p) || g.create(m.NA), w = C.get(R, p) || g.create(m.NA), S = E.get(R, p) || g.create(m.NA);
-      return b.isError() ? b : N.isError() ? N : M.isError() ? M : w.isError() ? w : S.isError() ? S : this._calculateSingleCell(b, N, M, w, S);
+      const N = d.get(R, p) || g.create(m.NA), w = C.get(R, p) || g.create(m.NA), S = _.get(R, p) || g.create(m.NA), M = E.get(R, p) || g.create(m.NA);
+      return b.isError() ? b : N.isError() ? N : w.isError() ? w : S.isError() ? S : M.isError() ? M : this._calculateSingleCell(b, N, w, S, M);
     });
   }
   _calculateSingleCell(e, t, r, n, s) {
     const o = Number.parseInt(`${Number(e.getValue()) - 1}`), u = Number.parseInt(`${Number(t.getValue()) - 1}`), c = Number.parseInt(`${Number(r.getValue())}`);
     if (Number.isNaN(o) || Number.isNaN(u) || Number.isNaN(c) || c < 1 || c > 4)
       return g.create(m.VALUE);
-    const l = Pd(c), f = this.getZeroOrOneByOneDefault(n), h = `${s.getValue()}`, d = io(h), _ = {
+    const l = qd(c), f = this.getZeroOrOneByOneDefault(n), h = `${s.getValue()}`, d = Ao(h), C = {
       startRow: o,
       startColumn: u,
       endRow: o,
       endColumn: u,
       startAbsoluteRefType: l,
       endAbsoluteRefType: l
-    }, C = n && !f ? qh(_) : Ft(_);
-    return j.create(d !== "" ? `${d}!${C}` : C);
+    }, _ = n && !f ? lm(C) : Ft(C);
+    return j.create(d !== "" ? `${d}!${_}` : _);
   }
 }
-function Pd(i) {
+function qd(i) {
   switch (i) {
     case 1:
-      return we.ALL;
+      return Se.ALL;
     case 2:
-      return we.ROW;
+      return Se.ROW;
     case 3:
-      return we.COLUMN;
+      return Se.COLUMN;
     case 4:
-      return we.NONE;
+      return Se.NONE;
     default:
-      return we.ALL;
+      return Se.ALL;
   }
 }
-class xd extends V {
+class Kd extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -20991,7 +21768,7 @@ class xd extends V {
     return e.isReferenceObject() ? y.create(1) : g.create(m.VALUE);
   }
 }
-class jd extends V {
+class Xd extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 2);
@@ -21025,12 +21802,12 @@ class jd extends V {
       if (h.isError())
         return h;
       const d = u[Math.trunc(+h.getValue()) - 1];
-      let _ = (d == null ? void 0 : d.get(l, f)) || g.create(m.VALUE);
-      return _ != null && _.isNull() && (_ = y.create(0)), _;
+      let C = (d == null ? void 0 : d.get(l, f)) || g.create(m.VALUE);
+      return C != null && C.isNull() && (C = y.create(0)), C;
     });
   }
 }
-class Ud extends V {
+class Zd extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 2);
@@ -21058,7 +21835,7 @@ class Ud extends V {
       for (let f = 0; f < r; f++)
         s[f] || (s[f] = []), e.isArray() ? s[f].push(l.get(f, 0)) : s[f].push(e);
     }
-    return q.create({
+    return W.create({
       calculateValueList: s,
       rowCount: s.length,
       columnCount: s[0].length || 0,
@@ -21069,7 +21846,7 @@ class Ud extends V {
     });
   }
 }
-class vd extends V {
+class zd extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 2);
@@ -21095,7 +21872,7 @@ class vd extends V {
       let c = e;
       r > 1 && (u < 0 ? c = e.slice([u + r, u + 1 + r]) : c = e.slice([u - 1, u])), e.isArray() ? n.push(c.getArrayValue()[0]) : n.push([e]);
     }
-    return q.create({
+    return W.create({
       calculateValueList: n,
       rowCount: n.length,
       columnCount: n[0].length || 0,
@@ -21106,7 +21883,7 @@ class vd extends V {
     });
   }
 }
-class Td extends V {
+class Jd extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 0);
@@ -21131,10 +21908,10 @@ class Td extends V {
       row: this.row,
       column: this.column
     };
-    return q.create(s);
+    return W.create(s);
   }
 }
-class Bd extends V {
+class eC extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -21151,7 +21928,7 @@ class Bd extends V {
     return y.create(t);
   }
 }
-class Id extends V {
+class tC extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 2);
@@ -21167,20 +21944,20 @@ class Id extends V {
     ), l = O(u, c, t, g.create(m.NA)), f = O(u, c, n, g.create(m.NA));
     if (u > 1 || c > 1)
       return l.mapValue((R, p, N) => {
-        const M = f.get(p, N);
+        const w = f.get(p, N);
         if (e.isError())
           return e;
         if (e.isNull())
           return g.create(m.VALUE);
-        const { isError: w, errorObject: S } = this._checkRowsColumns(R, M, s, o);
-        return w ? S : e.isArray() ? g.create(m.VALUE) : e;
+        const { isError: S, errorObject: M } = this._checkRowsColumns(R, w, s, o);
+        return S ? M : e.isArray() ? g.create(m.VALUE) : e;
       });
     if (e.isError())
       return e;
     if (e.isNull())
       return g.create(m.VALUE);
-    const h = t.isArray() ? t.get(0, 0) : t, d = n.isArray() ? n.get(0, 0) : n, { isError: _, errorObject: C, rowsValue: E, columnsValue: b } = this._checkRowsColumns(h, d, s, o);
-    return _ ? C : this._getResultArray(e, E, b, s, o);
+    const h = t.isArray() ? t.get(0, 0) : t, d = n.isArray() ? n.get(0, 0) : n, { isError: C, errorObject: _, rowsValue: E, columnsValue: b } = this._checkRowsColumns(h, d, s, o);
+    return C ? _ : this._getResultArray(e, E, b, s, o);
   }
   _checkRowsColumns(e, t, r, n) {
     if (e.isError())
@@ -21212,7 +21989,7 @@ class Id extends V {
     return t === 0 && r === 0 ? c = e : t === 0 ? c = e.slice(void 0, u) : r === 0 ? c = e.slice(o, void 0) : c = e.slice(o, u), c = c.map((l) => l.isNull() ? y.create(0) : l), n - t === 1 && s - r === 1 ? c.get(0, 0) : c;
   }
 }
-class Fd extends V {
+class rC extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 2);
@@ -21229,23 +22006,23 @@ class Fd extends V {
     ), h = Math.max(
       u.isArray() ? u.getColumnCount() : 1,
       c.isArray() ? c.getColumnCount() : 1
-    ), d = O(f, h, u, g.create(m.NA)), _ = O(f, h, c, g.create(m.NA));
+    ), d = O(f, h, u, g.create(m.NA)), C = O(f, h, c, g.create(m.NA));
     if (f > 1 || h > 1)
-      return d.mapValue((w, S, D) => {
-        const L = _.get(S, D);
+      return d.mapValue((S, M, D) => {
+        const L = C.get(M, D);
         if (e.isError())
           return e;
         if (e.isNull())
           return g.create(m.VALUE);
-        const { isError: U, errorObject: x } = this._checkRowsColumnsPadWith(w, L, l, s, o);
-        return U ? x : e.isArray() ? e.get(0, 0) : e;
+        const { isError: T, errorObject: x } = this._checkRowsColumnsPadWith(S, L, l, s, o);
+        return T ? x : e.isArray() ? e.get(0, 0) : e;
       });
     if (e.isError())
       return e;
     if (e.isNull())
       return g.create(m.VALUE);
-    const C = u.isArray() ? u.get(0, 0) : u, E = c.isArray() ? c.get(0, 0) : c, { isError: b, errorObject: R, rowsValue: p, columnsValue: N, padWithObject: M } = this._checkRowsColumnsPadWith(C, E, l, s, o);
-    return b ? R : this._getResultArray(e, p, N, M, s, o);
+    const _ = u.isArray() ? u.get(0, 0) : u, E = c.isArray() ? c.get(0, 0) : c, { isError: b, errorObject: R, rowsValue: p, columnsValue: N, padWithObject: w } = this._checkRowsColumnsPadWith(_, E, l, s, o);
+    return b ? R : this._getResultArray(e, p, N, w, s, o);
   }
   _checkRowsColumnsPadWith(e, t, r, n, s) {
     if (e.isError())
@@ -21296,7 +22073,7 @@ class Fd extends V {
       u.forEach((h) => {
         h.push(n);
       });
-    return t === 1 && r === 1 ? u[0][0] : q.create({
+    return t === 1 && r === 1 ? u[0][0] : W.create({
       calculateValueList: u,
       rowCount: u.length,
       columnCount: u[0].length,
@@ -21307,7 +22084,7 @@ class Fd extends V {
     });
   }
 }
-class kd extends V {
+class nC extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 2);
@@ -21339,7 +22116,7 @@ class kd extends V {
           o[f].push(h);
         }
     }
-    return o.length === 0 ? s : q.create({
+    return o.length === 0 ? s : W.create({
       calculateValueList: o,
       rowCount: o.length,
       columnCount: o[0].length || 0,
@@ -21364,7 +22141,7 @@ class kd extends V {
       }
       o.push(f);
     }
-    return o.length === 0 ? s : q.create({
+    return o.length === 0 ? s : W.create({
       calculateValueList: o,
       rowCount: o.length,
       columnCount: o[0].length || 0,
@@ -21375,7 +22152,7 @@ class kd extends V {
     });
   }
 }
-class $d extends V {
+class sC extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -21387,10 +22164,10 @@ class $d extends V {
     var f, h;
     if (!e.isReferenceObject())
       return g.create(m.NA);
-    const t = e.getUnitId(), r = e.getSheetId(), s = (h = (f = e.getUnitData()[t]) == null ? void 0 : f[r]) == null ? void 0 : h.cellData, { startRow: o, startColumn: u } = e.getRangePosition(), l = e.toArrayValueObject().mapValue((d, _, C) => {
-      const E = s.getValue(o + _, u + C);
+    const t = e.getUnitId(), r = e.getSheetId(), s = (h = (f = e.getUnitData()[t]) == null ? void 0 : f[r]) == null ? void 0 : h.cellData, { startRow: o, startColumn: u } = e.getRangePosition(), l = e.toArrayValueObject().mapValue((d, C, _) => {
+      const E = s.getValue(o + C, u + _);
       if (E != null && E.f || E != null && E.si) {
-        const b = this._formulaDataModel.getFormulaStringByCell(o + _, u + C, r, t);
+        const b = this._formulaDataModel.getFormulaStringByCell(o + C, u + _, r, t);
         return j.create(b);
       }
       return g.create(m.NA);
@@ -21399,7 +22176,7 @@ class $d extends V {
   }
 }
 var fe = /* @__PURE__ */ ((i) => (i.ADDRESS = "ADDRESS", i.AREAS = "AREAS", i.CHOOSE = "CHOOSE", i.CHOOSECOLS = "CHOOSECOLS", i.CHOOSEROWS = "CHOOSEROWS", i.COLUMN = "COLUMN", i.COLUMNS = "COLUMNS", i.DROP = "DROP", i.EXPAND = "EXPAND", i.FILTER = "FILTER", i.FORMULATEXT = "FORMULATEXT", i.GETPIVOTDATA = "GETPIVOTDATA", i.HLOOKUP = "HLOOKUP", i.HSTACK = "HSTACK", i.HYPERLINK = "HYPERLINK", i.IMAGE = "IMAGE", i.INDEX = "INDEX", i.INDIRECT = "INDIRECT", i.LOOKUP = "LOOKUP", i.MATCH = "MATCH", i.OFFSET = "OFFSET", i.ROW = "ROW", i.ROWS = "ROWS", i.RTD = "RTD", i.SORT = "SORT", i.SORTBY = "SORTBY", i.TAKE = "TAKE", i.TOCOL = "TOCOL", i.TOROW = "TOROW", i.TRANSPOSE = "TRANSPOSE", i.UNIQUE = "UNIQUE", i.VLOOKUP = "VLOOKUP", i.VSTACK = "VSTACK", i.WRAPCOLS = "WRAPCOLS", i.WRAPROWS = "WRAPROWS", i.XLOOKUP = "XLOOKUP", i.XMATCH = "XMATCH", i))(fe || {});
-class Yd extends V {
+class aC extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 3);
@@ -21425,7 +22202,7 @@ class Yd extends V {
     return n === 0 ? this.equalSearch(e, t, r) : this.binarySearch(e, t, r);
   }
 }
-class Hd extends V {
+class iC extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -21448,7 +22225,7 @@ class Hd extends V {
         }
       }
     }
-    return q.create({
+    return W.create({
       calculateValueList: r,
       rowCount: r.length,
       columnCount: r[0].length || 0,
@@ -21459,7 +22236,7 @@ class Hd extends V {
     });
   }
 }
-class Gd extends V {
+class oC extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -21481,7 +22258,7 @@ class Gd extends V {
     });
   }
 }
-class Qd extends V {
+class uC extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 2);
@@ -21517,9 +22294,9 @@ class Qd extends V {
         s
       );
     {
-      const h = O(l, f, o, g.create(m.NA)), d = u ? O(l, f, u, g.create(m.NA)) : [], _ = O(l, f, c, g.create(m.NA));
-      return h.mapValue((C, E, b) => {
-        const R = u ? d.get(E, b) : void 0, p = _.get(E, b), N = this._handleSingleObject(e, C, R, p, s);
+      const h = O(l, f, o, g.create(m.NA)), d = u ? O(l, f, u, g.create(m.NA)) : [], C = O(l, f, c, g.create(m.NA));
+      return h.mapValue((_, E, b) => {
+        const R = u ? d.get(E, b) : void 0, p = C.get(E, b), N = this._handleSingleObject(e, _, R, p, s);
         return N.isReferenceObject() ? N.getCellByPosition() : N;
       });
     }
@@ -21527,13 +22304,13 @@ class Qd extends V {
   _handleSingleObject(e, t, r, n, s) {
     let o, u, c;
     if (r) {
-      const { isError: C, errorObject: E, variants: b } = B(t, r, n);
-      if (C)
+      const { isError: _, errorObject: E, variants: b } = I(t, r, n);
+      if (_)
         return E;
       o = b[0], u = b[1], c = b[2];
     } else {
-      const { isError: C, errorObject: E, variants: b } = B(t, n);
-      if (C)
+      const { isError: _, errorObject: E, variants: b } = I(t, n);
+      if (_)
         return E;
       o = b[0], c = b[1];
     }
@@ -21548,8 +22325,8 @@ class Qd extends V {
       return g.create(m.VALUE);
     if (h > f.rowCount || d > f.columnCount)
       return g.create(m.REF);
-    let _ = e;
-    return l > 1 && (_ = e.getCubeValues()[l - 1]), _.isReferenceObject() ? this._calculateReferenceObject(_, h, d) : this._calculateArrayObject(_, h, d);
+    let C = e;
+    return l > 1 && (C = e.getCubeValues()[l - 1]), C.isReferenceObject() ? this._calculateReferenceObject(C, h, d) : this._calculateArrayObject(C, h, d);
   }
   _getReferenceCounts(e) {
     let t = [
@@ -21590,7 +22367,7 @@ class Qd extends V {
     return !e.isArray() || t === 0 && r === 0 ? e : t === 0 ? e.slice(void 0, [r - 1, r]) : r === 0 ? e.slice([t - 1, t], void 0) : e.get(t - 1, r - 1);
   }
 }
-class Wd extends V {
+class cC extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -21621,19 +22398,19 @@ class Wd extends V {
       return g.create(m.REF);
     const n = this._convertToDefinedName(r);
     if (t === 0) {
-      const f = Wh(n), { range: h, sheetName: d, unitId: _ } = f, C = new pn(h);
-      return C.setForcedUnitIdDirect(_), C.setForcedSheetName(d), this._setDefault(C);
+      const f = cm(n), { range: h, sheetName: d, unitId: C } = f, _ = new Nn(h);
+      return _.setForcedUnitIdDirect(C), _.setForcedSheetName(d), this._setDefault(_);
     }
-    if (Br(n))
-      return this._setDefault(new ya(n));
-    if (eo(n))
-      return this._setDefault(new pa(n));
-    if (to(n))
-      return this._setDefault(new Ra(n));
-    const s = _r(n), { range: o, sheetName: u, unitId: c } = s;
+    if (kr(n))
+      return this._setDefault(new Ma(n));
+    if (fo(n))
+      return this._setDefault(new La(n));
+    if (ho(n))
+      return this._setDefault(new Da(n));
+    const s = Er(n), { range: o, sheetName: u, unitId: c } = s;
     if (Number.isNaN(o.startRow) || o.endRow + 1 > 1048576 || Number.isNaN(o.startColumn) || o.endColumn + 1 > 16384)
       return g.create(m.REF);
-    const l = new pn(o);
+    const l = new Nn(o);
     return l.setForcedUnitIdDirect(c), l.setForcedSheetName(u), this._setDefault(l);
   }
   _setDefault(e) {
@@ -21653,7 +22430,7 @@ class Wd extends V {
     return r == null ? e : r.startsWith(X.EQUALS) ? r.slice(1) : r;
   }
 }
-class qd extends V {
+class lC extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 2);
@@ -21677,7 +22454,7 @@ class qd extends V {
     return n > r ? (s = t.slice([0, 1]), o = t.slice([r - 1, r])) : (s = t.slice(void 0, [0, 1]), o = t.slice(void 0, [n - 1, n])), s == null || o == null ? g.create(m.VALUE) : e.isArray() ? e.map((u) => this.binarySearch(u, s, o)) : this.binarySearch(e, s, o);
   }
 }
-class Kd extends V {
+class fC extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 2);
@@ -21724,7 +22501,7 @@ class Kd extends V {
     }
   }
 }
-class Xd extends V {
+class hC extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 3);
@@ -21762,18 +22539,18 @@ class Xd extends V {
       l.isArray() ? l.getRowCount() : 1,
       f.isArray() ? f.getRowCount() : 1,
       h.isArray() ? h.getRowCount() : 1
-    ), _ = Math.max(
+    ), C = Math.max(
       c.isArray() ? c.getColumnCount() : 1,
       l.isArray() ? l.getColumnCount() : 1,
       f.isArray() ? f.getColumnCount() : 1,
       h.isArray() ? h.getColumnCount() : 1
     );
-    if (c = c, l = l, f = f, h = h, d === 1 && _ === 1)
+    if (c = c, l = l, f = f, h = h, d === 1 && C === 1)
       return c = c.isArray() ? c.get(0, 0) : c, l = l.isArray() ? l.get(0, 0) : l, f = f.isArray() ? f.get(0, 0) : f, h = h.isArray() ? h.get(0, 0) : h, this._handleSingleObject(e, c, l, f, h);
-    const C = O(d, _, c, g.create(m.NA)), E = O(d, _, l, g.create(m.NA)), b = O(d, _, f, g.create(m.NA)), R = O(d, _, h, g.create(m.NA));
-    return C.mapValue((p, N, M) => {
-      const w = E.get(N, M), S = b.get(N, M), D = R.get(N, M);
-      return p.isError() ? p : w.isError() ? w : S.isError() ? S : D.isError() ? D : this._handleSingleObject(e, p, w, S, D, !0);
+    const _ = O(d, C, c, g.create(m.NA)), E = O(d, C, l, g.create(m.NA)), b = O(d, C, f, g.create(m.NA)), R = O(d, C, h, g.create(m.NA));
+    return _.mapValue((p, N, w) => {
+      const S = E.get(N, w), M = b.get(N, w), D = R.get(N, w);
+      return p.isError() ? p : S.isError() ? S : M.isError() ? M : D.isError() ? D : this._handleSingleObject(e, p, S, M, D, !0);
     });
   }
   // eslint-disable-next-line
@@ -21788,29 +22565,29 @@ class Xd extends V {
     const h = +l.getValue(), d = +f.getValue();
     if (typeof h != "number" || typeof d != "number")
       return g.create(m.VALUE);
-    const _ = u + h, C = c + d;
-    if (_ < 0 || C < 0)
+    const C = u + h, _ = c + d;
+    if (C < 0 || _ < 0)
       return g.create(m.REF);
     const E = this.getIndexNumValue(n), b = this.getIndexNumValue(s);
     if (typeof E != "number" || typeof b != "number")
       return g.create(m.VALUE);
     if (E === 0 || b === 0)
       return g.create(m.REF);
-    const R = E > 0 ? _ + E - 1 : _ + E + 1, p = b > 0 ? C + b - 1 : C + b + 1;
+    const R = E > 0 ? C + E - 1 : C + E + 1, p = b > 0 ? _ + b - 1 : _ + b + 1;
     if (R < 0 || p < 0)
       return g.create(m.REF);
     if (o)
       return g.create(m.VALUE);
-    const N = _ < R ? _ : R, M = C < p ? C : p, w = _ > R ? _ : R, S = C > p ? C : p, D = {
+    const N = C < R ? C : R, w = _ < p ? _ : p, S = C > R ? C : R, M = _ > p ? _ : p, D = {
       startRow: N,
-      startColumn: M,
-      endRow: w,
-      endColumn: S
+      startColumn: w,
+      endRow: S,
+      endColumn: M
     };
     return this.createReferenceObject(e, D);
   }
 }
-class Zd extends V {
+class mC extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 0);
@@ -21835,10 +22612,10 @@ class Zd extends V {
       row: this.row,
       column: this.column
     };
-    return q.create(s);
+    return W.create(s);
   }
 }
-class zd extends V {
+class gC extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -21855,14 +22632,14 @@ class zd extends V {
     return y.create(t);
   }
 }
-class Jd extends V {
+class dC extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
     A(this, "maxParams", 4);
   }
   calculate(e, t, r, n) {
-    const s = t != null ? t : y.create(1), o = r != null ? r : y.create(1), u = n != null ? n : T.create(!1);
+    const s = t != null ? t : y.create(1), o = r != null ? r : y.create(1), u = n != null ? n : v.create(!1);
     if (u.isArray()) {
       const c = u.getRowCount(), l = u.getColumnCount();
       if (c === 1 && l === 1) {
@@ -21914,7 +22691,7 @@ class Jd extends V {
       if (t > s)
         return g.create(m.VALUE);
       const u = e.transpose().getArrayValue();
-      return u.sort(this._sort(t - 1, r)), q.create({
+      return u.sort(this._sort(t - 1, r)), W.create({
         calculateValueList: u,
         rowCount: u.length,
         columnCount: u[0].length || 0,
@@ -21927,7 +22704,7 @@ class Jd extends V {
       if (t > o)
         return g.create(m.VALUE);
       const u = e.getArrayValue();
-      return u.sort(this._sort(t - 1, r)), q.create({
+      return u.sort(this._sort(t - 1, r)), W.create({
         calculateValueList: u,
         rowCount: u.length,
         columnCount: u[0].length || 0,
@@ -21939,7 +22716,7 @@ class Jd extends V {
     }
   }
   _sort(e, t = 1) {
-    const r = An();
+    const r = bn();
     return t === 1 ? this._sortAsc(e, r) : this._sortDesc(e, r);
   }
   _sortAsc(e, t) {
@@ -21983,7 +22760,7 @@ class Jd extends V {
     };
   }
 }
-class eC extends V {
+class CC extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 2);
@@ -21991,13 +22768,13 @@ class eC extends V {
   }
   calculate(e, ...t) {
     t.length === 1 && t.push(y.create(1));
-    const r = this._getVariantsError(e, ...t), { maxRowLength: n, maxColumnLength: s } = Wf(t);
+    const r = this._getVariantsError(e, ...t), { maxRowLength: n, maxColumnLength: s } = nh(t);
     if (r.isError()) {
       const c = O(n, s, r);
       return n === 1 && s === 1 ? c.get(0, 0) : c;
     }
     const o = t.map((c, l) => l % 2 === 0 ? c : O(n, s, c, g.create(m.NA))), u = this._getResultArray(e, o, n, s);
-    return n === 1 && s === 1 ? u[0][0] : q.create({
+    return n === 1 && s === 1 ? u[0][0] : W.create({
       calculateValueList: u,
       rowCount: u.length,
       columnCount: u[0].length || 0,
@@ -22028,16 +22805,16 @@ class eC extends V {
       if (c !== s || l !== o)
         return g.create(m.VALUE);
     }
-    return T.create(!0);
+    return v.create(!0);
   }
   _getResultArray(e, t, r, n) {
     const s = e.isArray() ? e.getRowCount() : 1, o = e.isArray() ? e.getColumnCount() : 1, u = t[0].isArray() ? t[0].getRowCount() : 1, c = t[0].isArray() ? t[0].getColumnCount() : 1, l = [];
     for (let f = 0; f < r; f++) {
       l[f] = [];
       for (let h = 0; h < n; h++) {
-        const { isError: d, errorObject: _, byArrays: C, sortOrders: E } = this._getByArraysAndSortOrders(t, f, h, c);
+        const { isError: d, errorObject: C, byArrays: _, sortOrders: E } = this._getByArraysAndSortOrders(t, f, h, c);
         if (d) {
-          l[f].push(_);
+          l[f].push(C);
           continue;
         }
         if (!e.isArray() || s === 1 && o === 1) {
@@ -22045,8 +22822,8 @@ class eC extends V {
           continue;
         }
         let b = e.getArrayValue();
-        u === 1 && c === 1 || (u === 1 ? (b = b.concat(C), b = this._transposeArray(b), b.sort(this._sort(s, E)), b = this._transposeArray(b).slice(0, s)) : c === 1 && (b = this._transposeArray(b), b = b.concat(C), b = this._transposeArray(b), b.sort(this._sort(o, E)), b = b.map((p) => p.slice(0, o))));
-        const R = q.create({
+        u === 1 && c === 1 || (u === 1 ? (b = b.concat(_), b = this._transposeArray(b), b.sort(this._sort(s, E)), b = this._transposeArray(b).slice(0, s)) : c === 1 && (b = this._transposeArray(b), b = b.concat(_), b = this._transposeArray(b), b.sort(this._sort(o, E)), b = b.map((p) => p.slice(0, o))));
+        const R = W.create({
           calculateValueList: b,
           rowCount: b.length,
           columnCount: b[0].length || 0,
@@ -22082,8 +22859,8 @@ class eC extends V {
         break;
       }
       if (o.push(d), f.isArray()) {
-        let _ = f.getArrayValue();
-        n === 1 && (_ = this._transposeArray(_)), s.push(_[0]);
+        let C = f.getArrayValue();
+        n === 1 && (C = this._transposeArray(C)), s.push(C[0]);
       } else
         s.push([f]);
     }
@@ -22104,7 +22881,7 @@ class eC extends V {
     return n;
   }
   _sort(e, t) {
-    const r = An();
+    const r = bn();
     return (n, s) => {
       let o = n[e], u = s[e], c = this._compare(o, u, t[0], r);
       if (c === 0 && t.length > 1) {
@@ -22153,7 +22930,7 @@ class eC extends V {
     );
   }
 }
-class tC extends V {
+class _C extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 2);
@@ -22171,21 +22948,21 @@ class tC extends V {
       u.isArray() ? u.getColumnCount() : 1
     ), f = O(c, l, o, g.create(m.NA)), h = O(c, l, u, g.create(m.NA));
     if (c > 1 || l > 1)
-      return f.mapValue((p, N, M) => {
-        const w = h.get(N, M);
+      return f.mapValue((p, N, w) => {
+        const S = h.get(N, w);
         if (e.isError())
           return e;
         if (e.isNull())
           return g.create(m.VALUE);
-        const { isError: S, errorObject: D } = this._checkRowsColumns(p, w, n, s);
-        return S ? D : e.isArray() ? g.create(m.VALUE) : e;
+        const { isError: M, errorObject: D } = this._checkRowsColumns(p, S, n, s);
+        return M ? D : e.isArray() ? g.create(m.VALUE) : e;
       });
     if (e.isError())
       return e;
     if (e.isNull())
       return g.create(m.VALUE);
-    const d = o.isArray() ? o.get(0, 0) : o, _ = u.isArray() ? u.get(0, 0) : u, { isError: C, errorObject: E, rowsValue: b, columnsValue: R } = this._checkRowsColumns(d, _, n, s);
-    return C ? E : this._getResultArray(e, b, R, n, s);
+    const d = o.isArray() ? o.get(0, 0) : o, C = u.isArray() ? u.get(0, 0) : u, { isError: _, errorObject: E, rowsValue: b, columnsValue: R } = this._checkRowsColumns(d, C, n, s);
+    return _ ? E : this._getResultArray(e, b, R, n, s);
   }
   _checkRowsColumns(e, t, r, n) {
     if (e.isError())
@@ -22219,36 +22996,36 @@ class tC extends V {
     return t === n && r === s ? c = e : t === n ? c = e.slice(void 0, u) : r === s ? c = e.slice(o, void 0) : c = e.slice(o, u), c = c.map((l) => l.isNull() ? y.create(0) : l), t === 1 && r === 1 ? c.get(0, 0) : c;
   }
 }
-class rC extends V {
+class AC extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
     A(this, "maxParams", 3);
   }
   calculate(e, t, r) {
-    const n = t != null ? t : y.create(0), s = r != null ? r : T.create(!1), o = Math.max(
+    const n = t != null ? t : y.create(0), s = r != null ? r : v.create(!1), o = Math.max(
       n.isArray() ? n.getRowCount() : 1,
       s.isArray() ? s.getRowCount() : 1
     ), u = Math.max(
       n.isArray() ? n.getColumnCount() : 1,
       s.isArray() ? s.getColumnCount() : 1
-    ), c = O(o, u, n, g.create(m.NA)), l = O(o, u, s, g.create(m.NA)), f = c.mapValue((h, d, _) => {
-      const C = l.get(d, _);
+    ), c = O(o, u, n, g.create(m.NA)), l = O(o, u, s, g.create(m.NA)), f = c.mapValue((h, d, C) => {
+      const _ = l.get(d, C);
       if (e.isError())
         return e;
       if (e.isNull())
         return g.create(m.VALUE);
       if (h.isError())
         return h;
-      if (C.isError())
-        return C;
-      const E = Math.trunc(+h.getValue()), b = +C.getValue();
+      if (_.isError())
+        return _;
+      const E = Math.trunc(+h.getValue()), b = +_.getValue();
       if (Number.isNaN(E) || E < 0 || E > 3 || Number.isNaN(b))
         return g.create(m.VALUE);
       if (!e.isArray())
         return e;
       let R = [];
-      return b ? R = this._getArrayValueByColumn(e, E) : R = this._getArrayValueByRow(e, E), R.length === 0 ? g.create(m.CALC) : o > 1 || u > 1 || R.length === 1 ? R[0] : q.create({
+      return b ? R = this._getArrayValueByColumn(e, E) : R = this._getArrayValueByRow(e, E), R.length === 0 ? g.create(m.CALC) : o > 1 || u > 1 || R.length === 1 ? R[0] : W.create({
         calculateValueList: R.map((p) => [p]),
         rowCount: R.length,
         columnCount: 1,
@@ -22293,34 +23070,34 @@ class rC extends V {
     }
   }
 }
-class nC extends V {
+class EC extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
     A(this, "maxParams", 3);
   }
   calculate(e, t, r) {
-    const n = t != null ? t : y.create(0), s = r != null ? r : T.create(!1), o = Math.max(
+    const n = t != null ? t : y.create(0), s = r != null ? r : v.create(!1), o = Math.max(
       n.isArray() ? n.getRowCount() : 1,
       s.isArray() ? s.getRowCount() : 1
     ), u = Math.max(
       n.isArray() ? n.getColumnCount() : 1,
       s.isArray() ? s.getColumnCount() : 1
-    ), c = O(o, u, n, g.create(m.NA)), l = O(o, u, s, g.create(m.NA)), f = c.mapValue((h, d, _) => {
-      const C = l.get(d, _);
+    ), c = O(o, u, n, g.create(m.NA)), l = O(o, u, s, g.create(m.NA)), f = c.mapValue((h, d, C) => {
+      const _ = l.get(d, C);
       if (e.isError())
         return e;
       if (h.isError())
         return h;
-      if (C.isError())
-        return C;
-      const E = Math.trunc(+h.getValue()), b = +C.getValue();
+      if (_.isError())
+        return _;
+      const E = Math.trunc(+h.getValue()), b = +_.getValue();
       if (Number.isNaN(E) || E < 0 || E > 3 || Number.isNaN(b) || e.isNull())
         return g.create(m.VALUE);
       if (!e.isArray())
         return e;
       let R = [];
-      return b ? R = this._getArrayValueByColumn(e, E) : R = this._getArrayValueByRow(e, E), R.length === 0 ? g.create(m.CALC) : o > 1 || u > 1 || R.length === 1 ? R[0] : q.create({
+      return b ? R = this._getArrayValueByColumn(e, E) : R = this._getArrayValueByRow(e, E), R.length === 0 ? g.create(m.CALC) : o > 1 || u > 1 || R.length === 1 ? R[0] : W.create({
         calculateValueList: [R],
         rowCount: 1,
         columnCount: R.length,
@@ -22365,7 +23142,7 @@ class nC extends V {
     }
   }
 }
-class sC extends V {
+class bC extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -22381,21 +23158,21 @@ class sC extends V {
     return e;
   }
 }
-class aC extends V {
+class yC extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
     A(this, "maxParams", 3);
   }
   calculate(e, t, r) {
-    const n = t != null ? t : T.create(!1), s = r != null ? r : T.create(!1), o = e.isArray() ? e.getRowCount() : 1, u = e.isArray() ? e.getColumnCount() : 1, c = Math.max(
+    const n = t != null ? t : v.create(!1), s = r != null ? r : v.create(!1), o = e.isArray() ? e.getRowCount() : 1, u = e.isArray() ? e.getColumnCount() : 1, c = Math.max(
       n.isArray() ? n.getRowCount() : 1,
       s.isArray() ? s.getRowCount() : 1
     ), l = Math.max(
       n.isArray() ? n.getColumnCount() : 1,
       s.isArray() ? s.getColumnCount() : 1
-    ), f = O(c, l, n, g.create(m.NA)), h = O(c, l, s, g.create(m.NA)), d = f.map((_, C, E) => {
-      let b = _, R = h.get(C, E);
+    ), f = O(c, l, n, g.create(m.NA)), h = O(c, l, s, g.create(m.NA)), d = f.map((C, _, E) => {
+      let b = C, R = h.get(_, E);
       if (e.isError())
         return e;
       if (b.isString() && (b = b.convertToNumberObjectValue()), b.isError())
@@ -22403,8 +23180,8 @@ class aC extends V {
       if (R.isString() && (R = R.convertToNumberObjectValue()), R.isError())
         return R;
       const p = +b.getValue(), N = +R.getValue();
-      let M;
-      return !p && o === 1 || p && u === 1 ? M = e : M = this._getResult(e, p, N), (c > 1 || l > 1) && (M != null && M.isArray()) ? M.get(0, 0) : M;
+      let w;
+      return !p && o === 1 || p && u === 1 ? w = e : w = this._getResult(e, p, N), (c > 1 || l > 1) && (w != null && w.isArray()) ? w.get(0, 0) : w;
     });
     return c === 1 && l === 1 ? d.get(0, 0) : d;
   }
@@ -22416,12 +23193,12 @@ class aC extends V {
     if (l.length > 0) {
       const f = [];
       l.forEach((h) => {
-        h.forEach((d, _) => {
-          (_ !== 0 || r) && f.push(d);
+        h.forEach((d, C) => {
+          (C !== 0 || r) && f.push(d);
         });
       }), o = o.filter((h, d) => !f.includes(d));
     }
-    return o.length === 0 ? g.create(m.CALC) : (t && (o = this._transposeArray(o)), q.create({
+    return o.length === 0 ? g.create(m.CALC) : (t && (o = this._transposeArray(o)), W.create({
       calculateValueList: o,
       rowCount: o.length,
       columnCount: o[0].length || 0,
@@ -22459,7 +23236,7 @@ class aC extends V {
     return e.forEach((r) => {
       const n = r.r, s = r.valueObject;
       let o = s.getValue();
-      if (s.isNull() ? o = null : s.isString() && W(o) && (o = +o), !t.has(o))
+      if (s.isNull() ? o = null : s.isString() && q(o) && (o = +o), !t.has(o))
         t.set(o, [n]);
       else {
         const u = t.get(o);
@@ -22477,7 +23254,7 @@ class aC extends V {
     return n;
   }
 }
-class iC extends V {
+class RC extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 3);
@@ -22494,8 +23271,8 @@ class iC extends V {
       return r;
     if (n != null && n.isError())
       return n;
-    const s = n != null ? n : T.create(!0);
-    return Ri(e) && Ri(s) && r.isArray() ? this._handleArrayColIndexNum(e, t, r, s) : this._handleNonArrayColIndexNum(e, t, r, s);
+    const s = n != null ? n : v.create(!0);
+    return Li(e) && Li(s) && r.isArray() ? this._handleArrayColIndexNum(e, t, r, s) : this._handleNonArrayColIndexNum(e, t, r, s);
   }
   _handleArrayColIndexNum(e, t, r, n) {
     const s = e.isArray() ? e.getFirstCell() : e, o = this.getZeroOrOneByOneDefault(n);
@@ -22510,7 +23287,7 @@ class iC extends V {
       if (d.isError())
         return u = d, !1;
       c[f] === void 0 && (c[f] = []), c[f][h] = d;
-    }), u || Fr(c, c.length, c[0].length, this.unitId || "", this.subUnitId || "");
+    }), u || Yr(c, c.length, c[0].length, this.unitId || "", this.subUnitId || "");
   }
   _handleNonArrayColIndexNum(e, t, r, n) {
     const s = Math.max(
@@ -22528,8 +23305,8 @@ class iC extends V {
         return g.create(m.VALUE);
       if (d.isError())
         return d;
-      const _ = this.getZeroOrOneByOneDefault(d);
-      return _ == null ? g.create(m.VALUE) : this._handleTableArray(l, t, r, _);
+      const C = this.getZeroOrOneByOneDefault(d);
+      return C == null ? g.create(m.VALUE) : this._handleTableArray(l, t, r, C);
     });
   }
   _handleTableArray(e, t, r, n) {
@@ -22548,7 +23325,7 @@ class iC extends V {
     return n === 0 ? this.equalSearch(e, t, r) : this.binarySearch(e, t, r);
   }
 }
-class oC extends V {
+class pC extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -22572,7 +23349,7 @@ class oC extends V {
         r.push(l);
       }
     }
-    return q.create({
+    return W.create({
       calculateValueList: r,
       rowCount: r.length,
       columnCount: r[0].length || 0,
@@ -22583,7 +23360,7 @@ class oC extends V {
     });
   }
 }
-class uC extends V {
+class NC extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 2);
@@ -22598,8 +23375,8 @@ class uC extends V {
     ), c = Math.max(
       t.isArray() ? t.getColumnCount() : 1,
       n.isArray() ? n.getColumnCount() : 1
-    ), l = O(u, c, t, g.create(m.NA)), f = O(u, c, n, g.create(m.NA)), h = l.mapValue((d, _, C) => {
-      const E = f.get(_, C);
+    ), l = O(u, c, t, g.create(m.NA)), f = O(u, c, n, g.create(m.NA)), h = l.mapValue((d, C, _) => {
+      const E = f.get(C, _);
       if (e.isError())
         return e;
       if (e.isNull())
@@ -22612,7 +23389,7 @@ class uC extends V {
       if (b < 1)
         return g.create(m.NUM);
       const R = e.isArray() ? e.getArrayValue().flat() : [e], p = this._getWrapArray(R, b, E);
-      return u > 1 || c > 1 || p.length === 1 && p[0].length === 1 ? p[0][0] : q.create({
+      return u > 1 || c > 1 || p.length === 1 && p[0].length === 1 ? p[0][0] : W.create({
         calculateValueList: p,
         rowCount: p.length,
         columnCount: p[0].length,
@@ -22635,7 +23412,7 @@ class uC extends V {
     return o;
   }
 }
-class cC extends V {
+class VC extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 2);
@@ -22650,8 +23427,8 @@ class cC extends V {
     ), c = Math.max(
       t.isArray() ? t.getColumnCount() : 1,
       n.isArray() ? n.getColumnCount() : 1
-    ), l = O(u, c, t, g.create(m.NA)), f = O(u, c, n, g.create(m.NA)), h = l.mapValue((d, _, C) => {
-      const E = f.get(_, C);
+    ), l = O(u, c, t, g.create(m.NA)), f = O(u, c, n, g.create(m.NA)), h = l.mapValue((d, C, _) => {
+      const E = f.get(C, _);
       if (e.isError())
         return e;
       if (e.isNull())
@@ -22664,7 +23441,7 @@ class cC extends V {
       if (b < 1)
         return g.create(m.NUM);
       const R = e.isArray() ? e.getArrayValue().flat() : [e], p = this._getWrapArray(R, b, E);
-      return u > 1 || c > 1 || p.length === 1 && p[0].length === 1 ? p[0][0] : q.create({
+      return u > 1 || c > 1 || p.length === 1 && p[0].length === 1 ? p[0][0] : W.create({
         calculateValueList: p,
         rowCount: p.length,
         columnCount: p[0].length,
@@ -22689,7 +23466,7 @@ class cC extends V {
     return o;
   }
 }
-class lC extends V {
+class OC extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 3);
@@ -22704,28 +23481,28 @@ class lC extends V {
     let l = o != null ? o : y.create(1);
     if (o != null && o.isNull() && (l = y.create(1)), e.isError())
       return e;
-    const f = t.isArray() ? t.getRowCount() : 1, h = t.isArray() ? t.getColumnCount() : 1, d = r.isArray() ? r.getRowCount() : 1, _ = r.isArray() ? r.getColumnCount() : 1;
-    if (f !== 1 && h !== 1 || f === 1 && h > 1 && h !== _ || h === 1 && f > 1 && f !== d)
+    const f = t.isArray() ? t.getRowCount() : 1, h = t.isArray() ? t.getColumnCount() : 1, d = r.isArray() ? r.getRowCount() : 1, C = r.isArray() ? r.getColumnCount() : 1;
+    if (f !== 1 && h !== 1 || f === 1 && h > 1 && h !== C || h === 1 && f > 1 && f !== d)
       return g.create(m.VALUE);
     if (c.isError())
       return c;
     if (l.isError())
       return l;
-    const C = this.getIndexNumValue(c);
-    if (C instanceof g)
-      return C;
+    const _ = this.getIndexNumValue(c);
+    if (_ instanceof g)
+      return _;
     const E = this.getIndexNumValue(l);
     return E instanceof g ? E : this._getResult(
       e,
-      Gs(t),
-      Gs(r),
+      Xs(t),
+      Xs(r),
       u,
-      C,
+      _,
       E,
       f,
       h,
       d,
-      _
+      C
     );
   }
   _getResult(e, t, r, n, s, o, u, c, l, f) {
@@ -22740,22 +23517,22 @@ class lC extends V {
         return N.isError() ? n : N;
       });
     }
-    const _ = e.isArray() ? e.get(0, 0) : e;
+    const C = e.isArray() ? e.get(0, 0) : e;
     if (c === f && u === l) {
       const b = this._checkErrorCombination(s, o);
       if (b)
         return b;
-      const R = this._handleSingleObject(_, t, r, s, o);
+      const R = this._handleSingleObject(C, t, r, s, o);
       return R.isError() ? n : R;
     }
-    let C = 0;
-    c === f && (C = 1);
-    const E = this._handleExpandObject(_, t, r, s, o, C);
+    let _ = 0;
+    c === f && (_ = 1);
+    const E = this._handleExpandObject(C, t, r, s, o, _);
     return E == null ? g.create(m.NA) : E;
   }
   _handleExpandObject(e, t, r, n, s, o = 0) {
     if ((s === 2 || s === -2) && n !== 2) {
-      const u = Is(s), c = Bs(n);
+      const u = Hs(s), c = Ys(n);
       return this.binarySearchExpand(
         e,
         t,
@@ -22776,7 +23553,7 @@ class lC extends V {
   }
   _handleSingleObject(e, t, r, n, s) {
     if ((s === 2 || s === -2) && n !== 2) {
-      const o = Is(s), u = Bs(n);
+      const o = Hs(s), u = Ys(n);
       return this.binarySearch(e, t, r, o, u);
     }
     return n === 2 ? this.fuzzySearch(e, t, r, s !== -1) : n === -1 || n === 1 ? this.orderSearch(
@@ -22797,7 +23574,7 @@ class lC extends V {
     return e === 2 && (t === -2 || t === 2) ? g.create(m.VALUE) : null;
   }
 }
-class fC extends V {
+class wC extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 2);
@@ -22816,11 +23593,11 @@ class fC extends V {
       e.isArray() ? e.getColumnCount() : 1,
       s.isArray() ? s.getColumnCount() : 1,
       o.isArray() ? o.getColumnCount() : 1
-    ), l = O(u, c, e, g.create(m.NA)), f = O(u, c, s, g.create(m.NA)), h = O(u, c, o, g.create(m.NA)), d = l.mapValue((_, C, E) => {
-      if (_.isError())
-        return _;
-      const b = f.get(C, E), R = h.get(C, E);
-      return b.isError() ? b : R.isError() ? R : this._handleSingleObject(_, t, b, R);
+    ), l = O(u, c, e, g.create(m.NA)), f = O(u, c, s, g.create(m.NA)), h = O(u, c, o, g.create(m.NA)), d = l.mapValue((C, _, E) => {
+      if (C.isError())
+        return C;
+      const b = f.get(_, E), R = h.get(_, E);
+      return b.isError() ? b : R.isError() ? R : this._handleSingleObject(C, t, b, R);
     });
     return u === 1 && c === 1 ? d.get(0, 0) : d;
   }
@@ -22838,13 +23615,13 @@ class fC extends V {
     return ![-1, 0, 1, 2].includes(l) || ![-1, 1, 2].includes(f) ? g.create(m.VALUE) : this._getResult(e, t, l, f);
   }
   _getResult(e, t, r, n) {
-    const s = Gs(t);
+    const s = Xs(t);
     let o;
     if ((n === 2 || n === -2) && r !== 2) {
-      const u = Is(n), c = Bs(r);
+      const u = Hs(n), c = Ys(r);
       o = s.binarySearch(e, u, c);
     } else if (r === 2) {
-      const u = s.compare(e, k.EQUALS);
+      const u = s.compare(e, U.EQUALS);
       let c;
       if (n !== -1 ? c = u.getFirstTruePosition() : c = u.getLastTruePosition(), c == null)
         return g.create(m.NA);
@@ -22866,43 +23643,43 @@ class fC extends V {
     return o == null ? g.create(m.NA) : y.create(o + 1);
   }
 }
-const hC = [
-  [Ld, fe.ADDRESS],
-  [xd, fe.AREAS],
-  [jd, fe.CHOOSE],
-  [Ud, fe.CHOOSECOLS],
-  [vd, fe.CHOOSEROWS],
-  [Td, fe.COLUMN],
-  [Bd, fe.COLUMNS],
-  [Id, fe.DROP],
-  [Fd, fe.EXPAND],
-  [kd, fe.FILTER],
-  [$d, fe.FORMULATEXT],
-  [Yd, fe.HLOOKUP],
-  [Hd, fe.HSTACK],
-  [Gd, fe.HYPERLINK],
-  [Qd, fe.INDEX],
-  [Wd, fe.INDIRECT],
-  [qd, fe.LOOKUP],
-  [Kd, fe.MATCH],
-  [Xd, fe.OFFSET],
-  [Zd, fe.ROW],
-  [zd, fe.ROWS],
-  [Jd, fe.SORT],
-  [eC, fe.SORTBY],
-  [tC, fe.TAKE],
-  [rC, fe.TOCOL],
-  [nC, fe.TOROW],
-  [sC, fe.TRANSPOSE],
-  [aC, fe.UNIQUE],
-  [iC, fe.VLOOKUP],
-  [oC, fe.VSTACK],
-  [uC, fe.WRAPCOLS],
-  [cC, fe.WRAPROWS],
-  [lC, fe.XLOOKUP],
-  [fC, fe.XMATCH]
+const SC = [
+  [Wd, fe.ADDRESS],
+  [Kd, fe.AREAS],
+  [Xd, fe.CHOOSE],
+  [Zd, fe.CHOOSECOLS],
+  [zd, fe.CHOOSEROWS],
+  [Jd, fe.COLUMN],
+  [eC, fe.COLUMNS],
+  [tC, fe.DROP],
+  [rC, fe.EXPAND],
+  [nC, fe.FILTER],
+  [sC, fe.FORMULATEXT],
+  [aC, fe.HLOOKUP],
+  [iC, fe.HSTACK],
+  [oC, fe.HYPERLINK],
+  [uC, fe.INDEX],
+  [cC, fe.INDIRECT],
+  [lC, fe.LOOKUP],
+  [fC, fe.MATCH],
+  [hC, fe.OFFSET],
+  [mC, fe.ROW],
+  [gC, fe.ROWS],
+  [dC, fe.SORT],
+  [CC, fe.SORTBY],
+  [_C, fe.TAKE],
+  [AC, fe.TOCOL],
+  [EC, fe.TOROW],
+  [bC, fe.TRANSPOSE],
+  [yC, fe.UNIQUE],
+  [RC, fe.VLOOKUP],
+  [pC, fe.VSTACK],
+  [NC, fe.WRAPCOLS],
+  [VC, fe.WRAPROWS],
+  [OC, fe.XLOOKUP],
+  [wC, fe.XMATCH]
 ];
-class mC extends V {
+class MC extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -22913,7 +23690,7 @@ class mC extends V {
     return t.isString() && (t = t.convertToNumberObjectValue()), t.isError() ? t : t.abs();
   }
 }
-class gC extends V {
+class DC extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -22924,7 +23701,7 @@ class gC extends V {
     return t.isString() && (t = t.convertToNumberObjectValue()), t.isError() ? t : t.acos();
   }
 }
-class dC extends V {
+class LC extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -22935,7 +23712,7 @@ class dC extends V {
     return t.isString() && (t = t.convertToNumberObjectValue()), t.isError() ? t : t.acosh();
   }
 }
-class CC extends V {
+class PC extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -22943,10 +23720,10 @@ class CC extends V {
   }
   calculate(e) {
     let t = e;
-    return t.isString() && (t = t.convertToNumberObjectValue()), t.isError() ? t : t.isArray() ? t.map((r) => r.isError() ? r : Ui(r)) : Ui(t);
+    return t.isString() && (t = t.convertToNumberObjectValue()), t.isError() ? t : t.isArray() ? t.map((r) => r.isError() ? r : Gi(r)) : Gi(t);
   }
 }
-function Ui(i) {
+function Gi(i) {
   let a = i.getValue();
   if (i.isBoolean() && (a = a ? 1 : 0), !Number.isFinite(a))
     return g.create(m.VALUE);
@@ -22954,7 +23731,7 @@ function Ui(i) {
   let e = Math.atan(1 / a);
   return a < 0 && (e += Math.PI), Number.isNaN(e) ? g.create(m.VALUE) : y.create(e);
 }
-class _C extends V {
+class xC extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -22962,10 +23739,10 @@ class _C extends V {
   }
   calculate(e) {
     let t = e;
-    return t.isString() && (t = t.convertToNumberObjectValue()), t.isError() ? t : t.isArray() ? t.map((r) => r.isError() ? r : vi(r)) : vi(t);
+    return t.isString() && (t = t.convertToNumberObjectValue()), t.isError() ? t : t.isArray() ? t.map((r) => r.isError() ? r : Wi(r)) : Wi(t);
   }
 }
-function vi(i) {
+function Wi(i) {
   let a = i.getValue();
   if (i.isBoolean() && (a = a ? 1 : 0), !Number.isFinite(a))
     return g.create(m.VALUE);
@@ -22974,7 +23751,7 @@ function vi(i) {
   const e = 1 / 2 * Math.log((a + 1) / (a - 1));
   return Number.isNaN(e) ? g.create(m.VALUE) : y.create(e);
 }
-class AC extends V {
+class jC extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -23002,7 +23779,7 @@ class AC extends V {
     r && (t = t.slice(1));
     let n = 0;
     for (let s = 0; s < t.length; s++) {
-      const o = en.get(t[s]) || 0, u = en.get(t[s + 1]) || 0, c = en.get(t[s + 2]) || 0, l = en.get(t[s + 3]) || 0;
+      const o = rn.get(t[s]) || 0, u = rn.get(t[s + 1]) || 0, c = rn.get(t[s + 2]) || 0, l = rn.get(t[s + 3]) || 0;
       if (!o || c >= u && c > o || o === u && o === c && o === l || o === u / 2)
         return g.create(m.VALUE);
       o < u ? n -= o : n += o;
@@ -23010,7 +23787,7 @@ class AC extends V {
     return y.create(r ? -n : n);
   }
 }
-class EC extends V {
+class UC extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -23021,7 +23798,7 @@ class EC extends V {
     return t.isString() && (t = t.convertToNumberObjectValue()), t.isError() ? t : t.asin();
   }
 }
-class bC extends V {
+class vC extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -23032,7 +23809,7 @@ class bC extends V {
     return t.isString() && (t = t.convertToNumberObjectValue()), t.isError() ? t : t.asinh();
   }
 }
-class yC extends V {
+class TC extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -23043,7 +23820,7 @@ class yC extends V {
     return t.isString() && (t = t.convertToNumberObjectValue()), t.isError() ? t : t.atan();
   }
 }
-class RC extends V {
+class BC extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 2);
@@ -23054,7 +23831,7 @@ class RC extends V {
     return r.isString() && (r = r.convertToNumberObjectValue()), r.isError() ? r : (n.isString() && (n = n.convertToNumberObjectValue()), n.isError() ? n : n.atan2(r));
   }
 }
-class pC extends V {
+class IC extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -23065,7 +23842,7 @@ class pC extends V {
     return t.isString() && (t = t.convertToNumberObjectValue()), t.isError() ? t : t.atanh();
   }
 }
-class VC extends V {
+class FC extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 2);
@@ -23087,9 +23864,9 @@ class VC extends V {
       e.isArray() ? e.getColumnCount() : 1,
       t.isArray() ? t.getColumnCount() : 1,
       n.isArray() ? n.getColumnCount() : 1
-    ), u = O(s, o, e, g.create(m.NA)), c = O(s, o, t, g.create(m.NA)), l = O(s, o, n, g.create(m.NA)), f = u.map((h, d, _) => {
-      const C = c.get(d, _), E = l.get(d, _);
-      return this._handleSingleObject(h, C, E);
+    ), u = O(s, o, e, g.create(m.NA)), c = O(s, o, t, g.create(m.NA)), l = O(s, o, n, g.create(m.NA)), f = u.map((h, d, C) => {
+      const _ = c.get(d, C), E = l.get(d, C);
+      return this._handleSingleObject(h, _, E);
     });
     return f.getRowCount() === 1 && f.getColumnCount() === 1 ? f.getArrayValue()[0][0] : f;
   }
@@ -23110,7 +23887,7 @@ class VC extends V {
     return f.length < l && (f = new Array(l - f.length + 1).join("0") + f), j.create(f.toLocaleUpperCase());
   }
 }
-class NC extends V {
+class kC extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 2);
@@ -23133,18 +23910,18 @@ class NC extends V {
         return h;
       if (d.isString() && (d = d.convertToNumberObjectValue()), d.isError())
         return d;
-      const _ = +h.getValue(), C = +d.getValue();
-      if (_ > 0 && C < 0)
+      const C = +h.getValue(), _ = +d.getValue();
+      if (C > 0 && _ < 0)
         return g.create(m.NUM);
-      if (_ === 0 || C === 0)
+      if (C === 0 || _ === 0)
         return y.create(0);
-      const E = Ye(_ / C, 0) * C;
+      const E = Qe(C / _, 0) * _;
       return y.create(E);
     });
     return u.getRowCount() === 1 && u.getColumnCount() === 1 ? u.getArrayValue()[0][0] : u;
   }
 }
-class OC extends V {
+class $C extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -23166,25 +23943,25 @@ class OC extends V {
       e.isArray() ? e.getColumnCount() : 1,
       n.isArray() ? n.getColumnCount() : 1,
       s.isArray() ? s.getColumnCount() : 1
-    ), c = O(o, u, e, g.create(m.NA)), l = O(o, u, n, g.create(m.NA)), f = O(o, u, s, g.create(m.NA)), h = c.map((d, _, C) => {
-      let E = d, b = l.get(_, C), R = f.get(_, C);
+    ), c = O(o, u, e, g.create(m.NA)), l = O(o, u, n, g.create(m.NA)), f = O(o, u, s, g.create(m.NA)), h = c.map((d, C, _) => {
+      let E = d, b = l.get(C, _), R = f.get(C, _);
       if (E.isString() && (E = E.convertToNumberObjectValue()), E.isError())
         return E;
       if (b.isString() && (b = b.convertToNumberObjectValue()), b.isError())
         return b;
       if (R.isString() && (R = R.convertToNumberObjectValue()), R.isError())
         return R;
-      const p = +E.getValue(), N = +b.getValue(), M = +R.getValue();
-      return p === 0 || N === 0 ? y.create(0) : this._getResult(p, N, M);
+      const p = +E.getValue(), N = +b.getValue(), w = +R.getValue();
+      return p === 0 || N === 0 ? y.create(0) : this._getResult(p, N, w);
     });
     return o === 1 && u === 1 ? h.get(0, 0) : h;
   }
   _getResult(e, t, r) {
     let n;
-    return e < 0 && r !== 0 ? n = (t < 0 ? Ye(Math.abs(e) / Math.abs(t), 0) : -Ye(Math.abs(e) / t, 0)) * t : n = (t < 0 ? -Ye(e / Math.abs(t), 0) : Ye(e / t, 0)) * t, y.create(n);
+    return e < 0 && r !== 0 ? n = (t < 0 ? Qe(Math.abs(e) / Math.abs(t), 0) : -Qe(Math.abs(e) / t, 0)) * t : n = (t < 0 ? -Qe(e / Math.abs(t), 0) : Qe(e / t, 0)) * t, y.create(n);
   }
 }
-class MC extends V {
+class YC extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -23203,21 +23980,21 @@ class MC extends V {
       e.isArray() ? e.getColumnCount() : 1,
       r.isArray() ? r.getColumnCount() : 1
     ), o = O(n, s, e, g.create(m.NA)), u = O(n, s, r, g.create(m.NA)), c = o.map((l, f, h) => {
-      let d = u.get(f, h), _ = l;
-      if (_.isString() && (_ = _.convertToNumberObjectValue()), _.isError())
-        return _;
+      let d = u.get(f, h), C = l;
+      if (C.isString() && (C = C.convertToNumberObjectValue()), C.isError())
+        return C;
       if (d.isString() && (d = d.convertToNumberObjectValue()), d.isError())
         return d;
-      const C = +_.getValue(), E = +d.getValue();
-      if (C === 0 || E === 0)
+      const _ = +C.getValue(), E = +d.getValue();
+      if (_ === 0 || E === 0)
         return y.create(0);
-      const b = (E < 0 ? -Ye(C / Math.abs(E), 0) : Ye(C / E, 0)) * E;
+      const b = (E < 0 ? -Qe(_ / Math.abs(E), 0) : Qe(_ / E, 0)) * E;
       return y.create(b);
     });
     return n === 1 && s === 1 ? c.get(0, 0) : c;
   }
 }
-class wC extends V {
+class HC extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 2);
@@ -23236,16 +24013,16 @@ class wC extends V {
         return h;
       if (d.isError())
         return d;
-      const _ = Math.floor(+h.getValue()), C = Math.floor(+d.getValue());
-      if (_ < 0 || C < 0 || _ < C)
+      const C = Math.floor(+h.getValue()), _ = Math.floor(+d.getValue());
+      if (C < 0 || _ < 0 || C < _)
         return g.create(m.NUM);
-      const E = er(_, C);
+      const E = tr(C, _);
       return Number.isNaN(E) || !Number.isFinite(E) ? g.create(m.NUM) : y.create(E);
     });
     return r === 1 && n === 1 ? u.get(0, 0) : u;
   }
 }
-class SC extends V {
+class QC extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 2);
@@ -23264,16 +24041,16 @@ class SC extends V {
         return h;
       if (d.isError())
         return d;
-      const _ = Math.floor(+h.getValue()), C = Math.floor(+d.getValue());
-      if (_ < 0 || C < 0 || _ === 0 && _ < C)
+      const C = Math.floor(+h.getValue()), _ = Math.floor(+d.getValue());
+      if (C < 0 || _ < 0 || C === 0 && C < _)
         return g.create(m.NUM);
-      const E = er(_ + C - 1, _ - 1);
+      const E = tr(C + _ - 1, C - 1);
       return Number.isNaN(E) || !Number.isFinite(E) ? g.create(m.NUM) : y.create(E);
     });
     return r === 1 && n === 1 ? u.get(0, 0) : u;
   }
 }
-class DC extends V {
+class GC extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -23284,7 +24061,7 @@ class DC extends V {
     return t.isString() && (t = t.convertToNumberObjectValue()), t.isError() ? t : t.cos();
   }
 }
-class LC extends V {
+class WC extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -23295,7 +24072,7 @@ class LC extends V {
     return t.isString() && (t = t.convertToNumberObjectValue()), t.isError() ? t : t.cosh();
   }
 }
-class PC extends V {
+class qC extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -23312,7 +24089,7 @@ class PC extends V {
     return Math.abs(r) >= 2 ** 27 ? g.create(m.NUM) : r === 0 ? g.create(m.DIV_BY_ZERO) : t.tan().getReciprocal();
   }
 }
-class xC extends V {
+class KC extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -23326,7 +24103,7 @@ class xC extends V {
     return t.isString() && (t = t.convertToNumberObjectValue()), t.isError() ? t : +t.getValue() === 0 ? g.create(m.DIV_BY_ZERO) : t.tanh().getReciprocal();
   }
 }
-class jC extends V {
+class XC extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -23343,7 +24120,7 @@ class jC extends V {
     return Math.abs(r) >= 2 ** 27 ? g.create(m.NUM) : r === 0 ? g.create(m.DIV_BY_ZERO) : t.sin().getReciprocal();
   }
 }
-class UC extends V {
+class ZC extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -23360,7 +24137,7 @@ class UC extends V {
     return r === 0 ? g.create(m.DIV_BY_ZERO) : !Number.isNaN(r) && !Number.isFinite(Math.sinh(r)) ? y.create(0) : t.sinh().getReciprocal();
   }
 }
-class vC extends V {
+class zC extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 2);
@@ -23383,15 +24160,15 @@ class vC extends V {
       let h = o.get(l, f);
       if (h.isString() && (h = h.convertToNumberObjectValue()), h.isError())
         return h;
-      const d = `${c.getValue()}`, _ = Math.floor(+h.getValue());
-      if (W(d) && (+d < 0 || +d >= 2 ** 53 || !Number.isInteger(+d)) || d.toLocaleLowerCase() === "true" || d.toLocaleLowerCase() === "false" || _ < 2 || _ > 36)
+      const d = `${c.getValue()}`, C = Math.floor(+h.getValue());
+      if (q(d) && (+d < 0 || +d >= 2 ** 53 || !Number.isInteger(+d)) || d.toLocaleLowerCase() === "true" || d.toLocaleLowerCase() === "false" || C < 2 || C > 36)
         return g.create(m.NUM);
       if (d.replace(/\s/g, "") === "")
         return y.create(0);
-      if (!this._isValidCharForRadix(d, _))
+      if (!this._isValidCharForRadix(d, C))
         return g.create(m.NUM);
-      const C = Number.parseInt(d, _);
-      return Number.isNaN(C) ? g.create(m.NUM) : y.create(C);
+      const _ = Number.parseInt(d, C);
+      return Number.isNaN(_) ? g.create(m.NUM) : y.create(_);
     });
     return r === 1 && n === 1 ? u.get(0, 0) : u;
   }
@@ -23404,7 +24181,7 @@ class vC extends V {
     return !0;
   }
 }
-class TC extends V {
+class JC extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -23424,7 +24201,7 @@ class TC extends V {
     return Number.isNaN(n) ? g.create(m.VALUE) : y.create(n);
   }
 }
-class BC extends V {
+class e_ extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -23440,11 +24217,11 @@ class BC extends V {
     const r = +t.getValue();
     if (!Number.isFinite(r))
       return g.create(m.VALUE);
-    const n = (r < 0 ? -Ye(Math.abs(r) / 2, 0) : Ye(r / 2, 0)) * 2;
+    const n = (r < 0 ? -Qe(Math.abs(r) / 2, 0) : Qe(r / 2, 0)) * 2;
     return Number.isNaN(n) ? g.create(m.VALUE) : n === 0 ? y.create(0) : y.create(n);
   }
 }
-class IC extends V {
+class t_ extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -23455,7 +24232,7 @@ class IC extends V {
     return t.isString() && (t = t.convertToNumberObjectValue()), t.isError() ? t : t.exp();
   }
 }
-class FC extends V {
+class r_ extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -23468,11 +24245,11 @@ class FC extends V {
     let t = e;
     if (t.isString() && (t = t.convertToNumberObjectValue()), t.isError())
       return t;
-    const r = Math.floor(+t.getValue()), n = gr(r);
+    const r = Math.floor(+t.getValue()), n = Cr(r);
     return Number.isNaN(n) || !Number.isFinite(n) ? g.create(m.NUM) : y.create(n);
   }
 }
-class kC extends V {
+class n_ extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -23492,11 +24269,11 @@ class kC extends V {
     let t = e;
     if (t.isString() && (t = t.convertToNumberObjectValue()), t.isError())
       return t;
-    const r = Math.floor(+t.getValue()), n = gr(r, 2);
+    const r = Math.floor(+t.getValue()), n = Cr(r, 2);
     return Number.isNaN(n) || !Number.isFinite(n) ? g.create(m.NUM) : y.create(n);
   }
 }
-class $C extends V {
+class s_ extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 2);
@@ -23519,20 +24296,20 @@ class $C extends V {
         return d;
       if (h.isString() && (h = h.convertToNumberObjectValue()), h.isError())
         return h;
-      const _ = +d.getValue(), C = +h.getValue();
-      if (_ > 0 && C < 0)
+      const C = +d.getValue(), _ = +h.getValue();
+      if (C > 0 && _ < 0)
         return g.create(m.NUM);
-      if (_ === 0)
-        return y.create(0);
       if (C === 0)
+        return y.create(0);
+      if (_ === 0)
         return g.create(m.DIV_BY_ZERO);
-      const E = Ke(_ / C, 0) * C;
+      const E = Xe(C / _, 0) * _;
       return y.create(E);
     });
     return r === 1 && n === 1 ? u.get(0, 0) : u;
   }
 }
-class YC extends V {
+class a_ extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -23547,24 +24324,24 @@ class YC extends V {
       e.isArray() ? e.getColumnCount() : 1,
       n.isArray() ? n.getColumnCount() : 1,
       s.isArray() ? s.getColumnCount() : 1
-    ), c = O(o, u, e, g.create(m.NA)), l = O(o, u, n, g.create(m.NA)), f = O(o, u, s, g.create(m.NA)), h = c.map((d, _, C) => {
-      let E = d, b = l.get(_, C), R = f.get(_, C);
+    ), c = O(o, u, e, g.create(m.NA)), l = O(o, u, n, g.create(m.NA)), f = O(o, u, s, g.create(m.NA)), h = c.map((d, C, _) => {
+      let E = d, b = l.get(C, _), R = f.get(C, _);
       if (E.isString() && (E = E.convertToNumberObjectValue()), E.isError())
         return E;
       if (b.isString() && (b = b.convertToNumberObjectValue()), b.isError())
         return b;
       if (R.isString() && (R = R.convertToNumberObjectValue()), R.isError())
         return R;
-      const p = +E.getValue(), N = +b.getValue(), M = +R.getValue();
+      const p = +E.getValue(), N = +b.getValue(), w = +R.getValue();
       if (p === 0 || N === 0)
         return y.create(0);
-      let w;
-      return p < 0 && M !== 0 ? w = (N < 0 ? Ke(Math.abs(p) / Math.abs(N), 0) : -Ke(Math.abs(p) / N, 0)) * N : w = (N < 0 ? -Ke(p / Math.abs(N), 0) : Ke(p / N, 0)) * N, y.create(w);
+      let S;
+      return p < 0 && w !== 0 ? S = (N < 0 ? Xe(Math.abs(p) / Math.abs(N), 0) : -Xe(Math.abs(p) / N, 0)) * N : S = (N < 0 ? -Xe(p / Math.abs(N), 0) : Xe(p / N, 0)) * N, y.create(S);
     });
     return o === 1 && u === 1 ? h.get(0, 0) : h;
   }
 }
-class HC extends V {
+class i_ extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -23583,21 +24360,21 @@ class HC extends V {
       e.isArray() ? e.getColumnCount() : 1,
       r.isArray() ? r.getColumnCount() : 1
     ), o = O(n, s, e, g.create(m.NA)), u = O(n, s, r, g.create(m.NA)), c = o.map((l, f, h) => {
-      let d = u.get(f, h), _ = l;
-      if (_.isString() && (_ = _.convertToNumberObjectValue()), _.isError())
-        return _;
+      let d = u.get(f, h), C = l;
+      if (C.isString() && (C = C.convertToNumberObjectValue()), C.isError())
+        return C;
       if (d.isString() && (d = d.convertToNumberObjectValue()), d.isError())
         return d;
-      const C = +_.getValue(), E = +d.getValue();
-      if (C === 0 || E === 0)
+      const _ = +C.getValue(), E = +d.getValue();
+      if (_ === 0 || E === 0)
         return y.create(0);
-      const b = (E < 0 ? -Ke(C / Math.abs(E), 0) : Ke(C / E, 0)) * E;
+      const b = (E < 0 ? -Xe(_ / Math.abs(E), 0) : Xe(_ / E, 0)) * E;
       return y.create(b);
     });
     return n === 1 && s === 1 ? c.get(0, 0) : c;
   }
 }
-class GC extends V {
+class o_ extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -23616,14 +24393,14 @@ class GC extends V {
             const { isError: c, errorObject: l, number: f } = this._handleSingleObject(u);
             if (c)
               return s = !0, o = l, !1;
-            t = ta(t, f);
+            t = ca(t, f);
           }), s)
             return o;
         } else {
           const { isError: s, errorObject: o, number: u } = this._handleSingleObject(n);
           if (s)
             return o;
-          t = ta(t, u);
+          t = ca(t, u);
         }
     }
     return y.create(t);
@@ -23654,7 +24431,7 @@ class GC extends V {
     };
   }
 }
-class QC extends V {
+class u_ extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -23671,7 +24448,7 @@ class QC extends V {
     return y.create(r);
   }
 }
-class WC extends V {
+class c_ extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -23690,14 +24467,14 @@ class WC extends V {
             const { isError: l, errorObject: f, number: h } = this._handleSingleObject(c);
             if (l)
               return o = !0, u = f, !1;
-            t = Pi(t, h), r = !1;
+            t = Yi(t, h), r = !1;
           }), o)
             return u;
         } else {
           const { isError: o, errorObject: u, number: c } = this._handleSingleObject(s);
           if (o)
             return u;
-          t = Pi(t, c), r = !1;
+          t = Yi(t, c), r = !1;
         }
     }
     return r ? y.create(0) : Number.isNaN(t) || !Number.isFinite(t) || t >= 2 ** 53 ? g.create(m.VALUE) : y.create(t);
@@ -23728,7 +24505,7 @@ class WC extends V {
     };
   }
 }
-class qC extends V {
+class l_ extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -23739,7 +24516,7 @@ class qC extends V {
     return t.isString() && (t = t.convertToNumberObjectValue()), t.isError() ? t : t.log();
   }
 }
-class KC extends V {
+class f_ extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -23758,24 +24535,24 @@ class KC extends V {
       e.isArray() ? e.getColumnCount() : 1,
       r.isArray() ? r.getColumnCount() : 1
     ), o = O(n, s, e, g.create(m.NA)), u = O(n, s, r, g.create(m.NA)), c = o.map((l, f, h) => {
-      let d = u.get(f, h), _ = l;
-      if (_.isString() && (_ = _.convertToNumberObjectValue()), _.isError())
-        return _;
+      let d = u.get(f, h), C = l;
+      if (C.isString() && (C = C.convertToNumberObjectValue()), C.isError())
+        return C;
       if (d.isString() && (d = d.convertToNumberObjectValue()), d.isError())
         return d;
-      const C = +_.getValue(), E = +d.getValue();
-      if (C <= 0 || E <= 0)
+      const _ = +C.getValue(), E = +d.getValue();
+      if (_ <= 0 || E <= 0)
         return g.create(m.NUM);
       const b = Math.log(E);
       if (b === 0)
         return g.create(m.DIV_BY_ZERO);
-      const R = Math.log(C) / b;
+      const R = Math.log(_) / b;
       return y.create(R);
     });
     return n === 1 && s === 1 ? c.get(0, 0) : c;
   }
 }
-class XC extends V {
+class h_ extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -23786,7 +24563,7 @@ class XC extends V {
     return t.isString() && (t = t.convertToNumberObjectValue()), t.isError() ? t : t.log10();
   }
 }
-class ZC extends V {
+class m_ extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -23811,11 +24588,11 @@ class ZC extends V {
     }
     if (t !== r)
       return g.create(m.VALUE);
-    const s = Pa(n);
+    const s = Fa(n);
     return y.create(s);
   }
 }
-class zC extends V {
+class g_ extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -23840,11 +24617,11 @@ class zC extends V {
     }
     if (t !== r)
       return g.create(m.VALUE);
-    const s = Jh(n);
-    return s === null ? g.create(m.NUM) : q.createByArray(s);
+    const s = dm(n);
+    return s === null ? g.create(m.NUM) : W.createByArray(s);
   }
 }
-class JC extends V {
+class d_ extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 2);
@@ -23859,8 +24636,8 @@ class JC extends V {
       return u;
     if (c instanceof g)
       return c;
-    const l = dr(u, c);
-    return q.createByArray(l);
+    const l = _r(u, c);
+    return W.createByArray(l);
   }
   _getMatrix(e, t, r) {
     const n = [];
@@ -23882,7 +24659,7 @@ class JC extends V {
     return n;
   }
 }
-class e_ extends V {
+class C_ extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 2);
@@ -23896,7 +24673,7 @@ class e_ extends V {
     return n.isString() && (n = n.convertToNumberObjectValue()), n.isError() ? n : r.mod(n);
   }
 }
-class t_ extends V {
+class __ extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 2);
@@ -23934,7 +24711,7 @@ class t_ extends V {
     return y.create(u);
   }
 }
-class r_ extends V {
+class A_ extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -23955,7 +24732,7 @@ class r_ extends V {
               return u = !0, c = h, !1;
             if (t += d, t > 170)
               return u = !0, c = g.create(m.NUM), !1;
-            r *= gr(d);
+            r *= Cr(d);
           }), u)
             return c;
         } else {
@@ -23964,10 +24741,10 @@ class r_ extends V {
             return c;
           if (t += l, t > 170)
             return g.create(m.NUM);
-          r *= gr(l);
+          r *= Cr(l);
         }
     }
-    const n = gr(t) / r;
+    const n = Cr(t) / r;
     return y.create(n);
   }
   _handleSingleObject(e) {
@@ -23996,7 +24773,7 @@ class r_ extends V {
     };
   }
 }
-class n_ extends V {
+class E_ extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -24025,10 +24802,10 @@ class n_ extends V {
       for (let o = 0; o < r; o++)
         n[s][o] = s === o ? 1 : 0;
     }
-    return q.createByArray(n);
+    return W.createByArray(n);
   }
 }
-class s_ extends V {
+class b_ extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -24044,11 +24821,11 @@ class s_ extends V {
     const r = +t.getValue();
     if (!Number.isFinite(r))
       return g.create(m.VALUE);
-    let n = r < 0 ? -Ye(Math.abs(r), 0) : Ye(r, 0);
+    let n = r < 0 ? -Qe(Math.abs(r), 0) : Qe(r, 0);
     return Number.isNaN(n) ? g.create(m.VALUE) : (Math.abs(n) % 2 === 0 && (r < 0 ? n-- : n++), y.create(n));
   }
 }
-class a_ extends V {
+class y_ extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 0);
@@ -24058,7 +24835,7 @@ class a_ extends V {
     return y.create(Math.PI);
   }
 }
-class i_ extends V {
+class R_ extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 2);
@@ -24072,7 +24849,7 @@ class i_ extends V {
     return n.isString() && (n = n.convertToNumberObjectValue()), n.isError() ? n : r.pow(n);
   }
 }
-class o_ extends V {
+class p_ extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -24107,7 +24884,7 @@ class o_ extends V {
     return r ? y.create(0) : t;
   }
 }
-class u_ extends V {
+class N_ extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 2);
@@ -24126,7 +24903,7 @@ class u_ extends V {
     return y.create(f);
   }
 }
-class c_ extends V {
+class V_ extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -24146,7 +24923,7 @@ class c_ extends V {
     return Number.isNaN(n) ? g.create(m.VALUE) : y.create(n);
   }
 }
-class l_ extends V {
+class O_ extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 0);
@@ -24156,7 +24933,7 @@ class l_ extends V {
     return y.create(Math.random());
   }
 }
-class f_ extends V {
+class w_ extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 0);
@@ -24194,12 +24971,12 @@ class f_ extends V {
     if (o === 1 && u === 1)
       return this._calculateSingleCell(e, t, r, n, s);
     const c = O(o, u, e, g.create(m.NA)), l = O(o, u, t, g.create(m.NA)), f = O(o, u, r, g.create(m.NA)), h = O(o, u, n, g.create(m.NA)), d = O(o, u, s, g.create(m.NA));
-    return c.map((_, C, E) => {
-      const b = l.get(C, E), R = f.get(C, E), p = h.get(C, E), N = d.get(C, E), M = this._handleError(_, b, R, p, N);
-      if (M.errorObject)
-        return M.errorObject;
-      let { minValue: w, maxValue: S, wholeNumberValue: D } = M, L;
-      return D ? (w = Math.ceil(w), S = Math.floor(S), L = Math.floor(Math.random() * (S - w + 1)) + w) : L = Math.random() * (S - w) + w, L < w || L > S ? g.create(m.VALUE) : y.create(L);
+    return c.map((C, _, E) => {
+      const b = l.get(_, E), R = f.get(_, E), p = h.get(_, E), N = d.get(_, E), w = this._handleError(C, b, R, p, N);
+      if (w.errorObject)
+        return w.errorObject;
+      let { minValue: S, maxValue: M, wholeNumberValue: D } = w, L;
+      return D ? (S = Math.ceil(S), M = Math.floor(M), L = Math.floor(Math.random() * (M - S + 1)) + S) : L = Math.random() * (M - S) + S, L < S || L > M ? g.create(m.VALUE) : y.create(L);
     });
   }
   _calculateSingleCell(e, t, r, n, s) {
@@ -24216,17 +24993,17 @@ class f_ extends V {
     const h = this._handleError(o, u, c, l, f);
     if (h.errorObject)
       return h.errorObject;
-    let { rowsValue: d, columnsValue: _, minValue: C, maxValue: E, wholeNumberValue: b } = h;
-    if (b && (C = Math.ceil(C), E = Math.floor(E), C > E))
+    let { rowsValue: d, columnsValue: C, minValue: _, maxValue: E, wholeNumberValue: b } = h;
+    if (b && (_ = Math.ceil(_), E = Math.floor(E), _ > E))
       return g.create(m.VALUE);
     const R = [];
     for (let p = 0; p < d; p++) {
       const N = [];
-      for (let M = 0; M < _; M++)
-        b ? N.push(Math.floor(Math.random() * (E - C + 1)) + C) : N.push(Math.random() * (E - C) + C);
+      for (let w = 0; w < C; w++)
+        b ? N.push(Math.floor(Math.random() * (E - _ + 1)) + _) : N.push(Math.random() * (E - _) + _);
       R.push(N);
     }
-    return d === 1 && _ === 1 ? y.create(R[0][0]) : q.createByArray(R);
+    return d === 1 && C === 1 ? y.create(R[0][0]) : W.createByArray(R);
   }
   _handleError(e, t, r, n, s) {
     let o = e;
@@ -24283,7 +25060,7 @@ class f_ extends V {
     };
   }
 }
-class h_ extends V {
+class S_ extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 2);
@@ -24320,7 +25097,7 @@ class h_ extends V {
     return y.create(u);
   }
 }
-class m_ extends V {
+class M_ extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -24340,7 +25117,7 @@ class m_ extends V {
     return n === 1 && s === 1 ? c.get(0, 0) : c;
   }
   _handleSingleObject(e, t) {
-    const { isError: r, errorObject: n, variants: s } = B(e);
+    const { isError: r, errorObject: n, variants: s } = I(e);
     if (r)
       return n;
     const [o] = s;
@@ -24350,12 +25127,12 @@ class m_ extends V {
     let l = Math.floor(+c.getValue());
     if (c.isBoolean() && (l = c.getValue() ? 0 : 4), u < 0 || u > 3999 || l < 0 || l > 4)
       return g.create(m.VALUE);
-    const f = om[l];
+    const f = pm[l];
     let h = f.length - 1, d = "";
     for (; u > 0; ) {
       h = this._binarySearch(u, 0, h, f);
-      const _ = f[h];
-      u -= _, d += im.get(_);
+      const C = f[h];
+      u -= C, d += Rm.get(C);
     }
     return j.create(d);
   }
@@ -24370,7 +25147,7 @@ class m_ extends V {
     return s !== o && n[o] <= e ? o : s;
   }
 }
-class g_ extends V {
+class D_ extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 2);
@@ -24384,7 +25161,7 @@ class g_ extends V {
     return n.isString() && (n = n.convertToNumberObjectValue()), n.isError() ? n : r.round(n);
   }
 }
-class d_ extends V {
+class L_ extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 2);
@@ -24403,10 +25180,10 @@ class d_ extends V {
         return c;
       if (h.isError())
         return h;
-      const { isError: d, errorObject: _, variants: C } = B(c, h);
+      const { isError: d, errorObject: C, variants: _ } = I(c, h);
       if (d)
-        return _;
-      const [E, b] = C, R = +E.getValue(), p = Math.trunc(+b.getValue()), N = this._roundBank(R, p);
+        return C;
+      const [E, b] = _, R = +E.getValue(), p = Math.trunc(+b.getValue()), N = this._roundBank(R, p);
       return y.create(N);
     });
     return r === 1 && n === 1 ? u.get(0, 0) : u;
@@ -24421,7 +25198,7 @@ class d_ extends V {
     return u > 0.5 - r && u < 0.5 + r && (c = o % 2 === 0 ? o : o + 1), t ? c / n : c;
   }
 }
-class C_ extends V {
+class P_ extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 2);
@@ -24435,7 +25212,7 @@ class C_ extends V {
     return n.isString() && (n = n.convertToNumberObjectValue()), n.isError() ? n : r.floor(n);
   }
 }
-class __ extends V {
+class x_ extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 2);
@@ -24449,7 +25226,7 @@ class __ extends V {
     return n.isString() && (n = n.convertToNumberObjectValue()), n.isError() ? n : r.ceil(n);
   }
 }
-class A_ extends V {
+class j_ extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -24466,7 +25243,7 @@ class A_ extends V {
     return Math.abs(r) >= 2 ** 27 ? g.create(m.NUM) : t.cos().getReciprocal();
   }
 }
-class E_ extends V {
+class U_ extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -24483,7 +25260,7 @@ class E_ extends V {
     return Number.isFinite(Math.cosh(r)) ? Math.abs(r) >= 2 ** 27 ? g.create(m.NUM) : t.cosh().getReciprocal() : y.create(0);
   }
 }
-class b_ extends V {
+class v_ extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -24503,34 +25280,34 @@ class b_ extends V {
       o.isArray() ? o.getColumnCount() : 1,
       u.isArray() ? u.getColumnCount() : 1,
       c.isArray() ? c.getColumnCount() : 1
-    ), h = O(l, f, s, g.create(m.NA)), d = O(l, f, o, g.create(m.NA)), _ = O(l, f, u, g.create(m.NA)), C = O(l, f, c, g.create(m.NA)), E = h.mapValue((b, R, p) => {
-      const N = d.get(R, p), M = _.get(R, p), w = C.get(R, p);
-      return b.isError() ? b : N.isError() ? N : M.isError() ? M : w.isError() ? w : this._getResult(b, N, M, w, l, f);
+    ), h = O(l, f, s, g.create(m.NA)), d = O(l, f, o, g.create(m.NA)), C = O(l, f, u, g.create(m.NA)), _ = O(l, f, c, g.create(m.NA)), E = h.mapValue((b, R, p) => {
+      const N = d.get(R, p), w = C.get(R, p), S = _.get(R, p);
+      return b.isError() ? b : N.isError() ? N : w.isError() ? w : S.isError() ? S : this._getResult(b, N, w, S, l, f);
     });
     return l === 1 && f === 1 ? E.get(0, 0) : E;
   }
   _getResult(e, t, r, n, s, o) {
-    const { isError: u, errorObject: c, variants: l } = B(e, t, r, n);
+    const { isError: u, errorObject: c, variants: l } = I(e, t, r, n);
     if (u)
       return c;
-    const [f, h, d, _] = l, C = Math.floor(+f.getValue()), E = Math.floor(+h.getValue()), b = +d.getValue(), R = +_.getValue();
-    if (C < 0 || E < 0 || C * E > 10 ** 7)
+    const [f, h, d, C] = l, _ = Math.floor(+f.getValue()), E = Math.floor(+h.getValue()), b = +d.getValue(), R = +C.getValue();
+    if (_ < 0 || E < 0 || _ * E > 10 ** 7)
       return g.create(m.VALUE);
-    if (C === 0 || E === 0)
+    if (_ === 0 || E === 0)
       return g.create(m.CALC);
     const p = this._rowCount - this.row, N = this._columnCount - this.column;
-    if (C > p || E > N)
+    if (_ > p || E > N)
       return g.create(m.REF);
-    const M = [];
-    for (let w = 0; w < C; w++) {
-      M[w] = [];
-      for (let S = 0; S < E; S++)
-        M[w][S] = b + (w * E + S) * R;
+    const w = [];
+    for (let S = 0; S < _; S++) {
+      w[S] = [];
+      for (let M = 0; M < E; M++)
+        w[S][M] = b + (S * E + M) * R;
     }
-    return s > 1 || o > 1 ? y.create(M[0][0]) : q.createByArray(M);
+    return s > 1 || o > 1 ? y.create(w[0][0]) : W.createByArray(w);
   }
 }
-class y_ extends V {
+class T_ extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 4);
@@ -24542,30 +25319,30 @@ class y_ extends V {
     const { isError: s, errorObject: o, variants: u } = H(e, t, r);
     if (s)
       return o;
-    const { isError: c, errorObject: l, variants: f } = B(...u);
+    const { isError: c, errorObject: l, variants: f } = I(...u);
     if (c)
       return l;
-    const [h, d, _] = f, C = +h.getValue(), E = +d.getValue(), b = +_.getValue(), R = [];
+    const [h, d, C] = f, _ = +h.getValue(), E = +d.getValue(), b = +C.getValue(), R = [];
     if (n.isArray()) {
-      let N = !1, M = g.create(m.VALUE);
-      if (n.iterator((w) => {
-        const { isError: S, errorObject: D, coefficientsObject: L } = this._handleSingleObject(w);
-        if (S)
-          return N = !0, M = D, !1;
-        const U = +L.getValue();
-        R.push(U);
+      let N = !1, w = g.create(m.VALUE);
+      if (n.iterator((S) => {
+        const { isError: M, errorObject: D, coefficientsObject: L } = this._handleSingleObject(S);
+        if (M)
+          return N = !0, w = D, !1;
+        const T = +L.getValue();
+        R.push(T);
       }), N)
-        return M;
+        return w;
     } else {
-      const { isError: N, errorObject: M, coefficientsObject: w } = this._handleSingleObject(n);
+      const { isError: N, errorObject: w, coefficientsObject: S } = this._handleSingleObject(n);
       if (N)
-        return M;
-      const S = +w.getValue();
-      R.push(S);
+        return w;
+      const M = +S.getValue();
+      R.push(M);
     }
     let p = 0;
     for (let N = 0; N < R.length; N++)
-      p += R[N] * C ** (E + N * b);
+      p += R[N] * _ ** (E + N * b);
     return Number.isNaN(p) || !Number.isFinite(p) ? g.create(m.NUM) : y.create(p);
   }
   _handleSingleObject(e) {
@@ -24593,7 +25370,7 @@ class y_ extends V {
     };
   }
 }
-class R_ extends V {
+class B_ extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -24609,14 +25386,14 @@ class R_ extends V {
   _handleSingleObject(e) {
     if (e.isError())
       return e;
-    const { isError: t, errorObject: r, variants: n } = B(e);
+    const { isError: t, errorObject: r, variants: n } = I(e);
     if (t)
       return r;
     const [s] = n, o = +s.getValue();
     return o > 0 ? y.create(1) : o < 0 ? y.create(-1) : y.create(0);
   }
 }
-class p_ extends V {
+class I_ extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -24627,7 +25404,7 @@ class p_ extends V {
     return t.isString() && (t = t.convertToNumberObjectValue()), t.isError() ? t : t.sin();
   }
 }
-class V_ extends V {
+class F_ extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -24638,7 +25415,7 @@ class V_ extends V {
     return t.isString() && (t = t.convertToNumberObjectValue()), t.isError() ? t : t.sinh();
   }
 }
-class N_ extends V {
+class k_ extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -24649,7 +25426,7 @@ class N_ extends V {
     return t.isString() && (t = t.convertToNumberObjectValue()), t.isError() ? t : t.sqrt();
   }
 }
-class O_ extends V {
+class $_ extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -24672,7 +25449,7 @@ class O_ extends V {
     return y.create(n);
   }
 }
-class M_ extends V {
+class Y_ extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 2);
@@ -24854,12 +25631,12 @@ class M_ extends V {
         return u;
       if (!u.isReferenceObject())
         return g.create(m.VALUE);
-      const c = u.getFilteredOutRows(), l = u.getRowData(), f = u.getUnitId(), h = u.getSheetId(), _ = (s = (n = u.getUnitData()[f]) == null ? void 0 : n[h]) == null ? void 0 : s.cellData;
-      let C;
+      const c = u.getFilteredOutRows(), l = u.getRowData(), f = u.getUnitId(), h = u.getSheetId(), C = (s = (n = u.getUnitData()[f]) == null ? void 0 : n[h]) == null ? void 0 : s.cellData;
+      let _;
       if (u.iterator((E, b, R) => {
         if (c.includes(b) || e && this._isRowHidden(l, b))
           return !0;
-        const p = _.getValue(b, R);
+        const p = C.getValue(b, R);
         if (p != null && p.f || p != null && p.si) {
           const N = this._formulaDataModel.getFormulaStringByCell(b, R, h, f);
           if (N && N.indexOf(`${this.name}(`) > -1)
@@ -24868,22 +25645,22 @@ class M_ extends V {
         if (E == null || E.isNull() || E.isString() || E.isBoolean())
           return !0;
         if (E.isError())
-          return C = E, !1;
+          return _ = E, !1;
         r[0].push(E);
-      }), C != null && C.isError())
-        return C;
+      }), _ != null && _.isError())
+        return _;
     }
-    return Fr(r, 1, r[0].length);
+    return Yr(r, 1, r[0].length);
   }
   _isRowHidden(e, t) {
     const r = e[t];
-    return r ? r.hd === qi.TRUE : !1;
+    return r ? r.hd === ao.TRUE : !1;
   }
   _isBlankArrayObject(e) {
     return e.getArrayValue()[0].length === 0;
   }
 }
-class w_ extends V {
+class H_ extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -24901,41 +25678,7 @@ class w_ extends V {
     return t;
   }
 }
-class S_ extends V {
-  constructor() {
-    super(...arguments);
-    A(this, "minParams", 2);
-    A(this, "maxParams", 3);
-    A(this, "needsReferenceObject", !0);
-  }
-  calculate(e, t, r) {
-    if (!e.isReferenceObject() || r && !r.isReferenceObject())
-      return g.create(m.VALUE);
-    let n = t;
-    if (t.isReferenceObject() && (n = t.toArrayValueObject()), n.isArray()) {
-      const s = n.mapValue((o) => this._handleSingleObject(e, o, r));
-      return s.getRowCount() === 1 && s.getColumnCount() === 1 ? s.get(0, 0) : s;
-    }
-    return this._handleSingleObject(e, n, r);
-  }
-  _handleSingleObject(e, t, r) {
-    const n = e.toArrayValueObject();
-    let s = Zn(n, t);
-    s = zn(s, n, t);
-    const o = n.getRowCount(), u = n.getColumnCount();
-    let c = n;
-    if (r) {
-      c = r.toArrayValueObject();
-      const l = c.getRowCount(), f = c.getColumnCount();
-      if (o !== l || u !== f) {
-        const h = r.getRangeData();
-        h.endRow = h.startRow + o - 1, h.endColumn = h.startColumn + u - 1, r.setRangeData(h), c = r.toArrayValueObject();
-      }
-    }
-    return c.pick(s).sum();
-  }
-}
-class D_ extends V {
+class Q_ extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 3);
@@ -24951,17 +25694,94 @@ class D_ extends V {
       criteriaMaxColumnLength: u,
       targetRange: c,
       variants: l
-    } = kr(t, e);
+    } = Hr(t, e);
     if (r)
       return n;
     if (s)
       return o === 1 && u === 1 ? g.create(m.VALUE) : O(o, u, g.create(m.VALUE));
-    const f = $r(l, o, u, !0);
+    if (o === 1 && u === 1 && !process.env.DISABLE_SCALAR_FAST_PATH)
+      return this._scalarSumifs(c, l);
+    const f = sr(l, o, u, !0);
     return this._aggregateResults(c, f);
+  }
+  /**
+   * Fast path: all criteria are scalar. Single pass over range data,
+   * accumulating the sum-range value when all criteria match.
+   */
+  _scalarSumifs(e, t) {
+    if (!e.isArray())
+      return this._fallbackSumifs(e, t);
+    const r = e, n = t.length / 2, s = new Array(n), o = new Array(n), u = new Array(n);
+    for (let h = 0; h < n; h++) {
+      const d = t[h * 2], C = t[h * 2 + 1];
+      if (!d.isArray())
+        return this._fallbackSumifs(e, t);
+      s[h] = d;
+      const _ = C.isArray() && C.get(0, 0) || C;
+      if (_.isError())
+        return _;
+      if (_.isString()) {
+        const [E, b] = lr(`${_.getValue()}`);
+        o[h] = E, u[h] = b;
+      } else
+        o[h] = U.EQUALS, u[h] = _;
+    }
+    const c = s[0].getRowCount(), l = s[0].getColumnCount();
+    let f = 0;
+    for (let h = 0; h < c; h++)
+      for (let d = 0; d < l; d++) {
+        let C = !0;
+        for (let _ = 0; _ < n; _++) {
+          const E = s[_].get(h, d);
+          if (!E || E.isError()) {
+            C = !1;
+            break;
+          }
+          if (!Pa(E, u[_])) {
+            const R = o[_];
+            if (R === U.EQUALS || R === U.NOT_EQUAL) {
+              if (E.isNumber() && u[_].isString()) {
+                const p = u[_].convertToNumberObjectValue();
+                if (p.isNumber()) {
+                  const N = E.compare(p, R);
+                  (N.isError() || N.getValue() !== !0) && (C = !1);
+                  continue;
+                }
+              }
+              if (u[_].isNumber() && E.isString()) {
+                const p = E.convertToNumberObjectValue();
+                if (p.isNumber()) {
+                  const N = p.compare(u[_], R);
+                  (N.isError() || N.getValue() !== !0) && (C = !1);
+                  continue;
+                }
+              }
+              C = R === U.NOT_EQUAL;
+            } else
+              C = !1;
+            if (!C) break;
+            continue;
+          }
+          const b = E.compare(u[_], o[_]);
+          if (b.isError() || b.getValue() !== !0) {
+            C = !1;
+            break;
+          }
+        }
+        if (C) {
+          const _ = r.get(h, d);
+          _ && _.isNumber() && (f += _.getValue());
+        }
+      }
+    return y.create(f);
+  }
+  _fallbackSumifs(e, t) {
+    const r = sr(t, 1, 1, !0);
+    return this._aggregateResults(e, r);
   }
   _aggregateResults(e, t) {
     const r = t.map((n) => n.map((s) => e.pick(s).sum()));
-    return r.length === 1 && r[0].length === 1 ? r[0][0] : q.create({
+    return r.length === 1 && r[0].length === 1 ? r[0][0] : W.create({
       calculateValueList: r,
       rowCount: r.length,
       columnCount: r[0].length,
@@ -24972,47 +25792,54 @@ class D_ extends V {
     });
   }
 }
-class L_ extends V {
+class G_ extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
     A(this, "maxParams", 255);
   }
+  // READNOW: MEMORY HOTSPOT #3 — SUMPRODUCT creates intermediate number[][]
+  // arrays per variant. For SUMPRODUCT((A=B)*(C*D)), the comparison (A=B)
+  // already materialized a full ArrayValueObject via mapValue before reaching
+  // here. Then this method allocates another number[][] to accumulate products.
+  // With 10K rows and 3 variants, that's 30K+ row arrays. The real cost is
+  // upstream in mapValue — by the time we're here, the arrays are already in
+  // memory. But the concat+reduce on line 90 creates yet another copy.
   calculate(e, ...t) {
     if (e.isError())
       return e;
     const r = this._initArray1(e);
     if (t.length > 0) {
       const n = r.getRowCount(), s = r.getColumnCount();
-      let o = this._getResultArrayByArray1(n, s, r);
-      if (o instanceof g)
-        return o;
-      o = o;
-      for (let c = 0; c < t.length; c++) {
-        if (t[c].isError())
-          return t[c];
-        let l = 1, f = 1;
-        if (t[c].isArray() && (l = t[c].getRowCount(), f = t[c].getColumnCount()), l !== n || f !== s)
+      for (let u = 0; u < t.length; u++) {
+        if (t[u].isError())
+          return t[u];
+        let c = 1, l = 1;
+        if (t[u].isArray() && (c = t[u].getRowCount(), l = t[u].getColumnCount()), c !== n || l !== s)
           return g.create(m.VALUE);
-        for (let h = 0; h < n; h++) {
-          const d = [];
-          for (let _ = 0; _ < s; _++) {
-            let C = t[c];
-            if (t[c].isArray() && (C = t[c].get(h, _)), C.isError())
-              return C;
-            C.isNumber() ? d.push(C.getValue() * o[h][_]) : d.push(0);
-          }
-          o[h] = d;
-        }
       }
-      const u = o.reduce((c, l) => c.concat(l)).reduce((c, l) => c + l, 0);
-      return y.create(u);
+      let o = 0;
+      for (let u = 0; u < n; u++)
+        for (let c = 0; c < s; c++) {
+          const l = r.get(u, c);
+          if (l.isError())
+            return l;
+          let f = l.isNumber() ? l.getValue() : 0;
+          for (let h = 0; h < t.length; h++) {
+            let d = t[h];
+            if (t[h].isArray() && (d = t[h].get(u, c)), d.isError())
+              return d;
+            d.isNumber() ? f *= d.getValue() : f = 0;
+          }
+          o += f;
+        }
+      return y.create(o);
     } else
       return r.sum();
   }
   _initArray1(e) {
     let t = e;
-    return t.isArray() || (t = q.create({
+    return t.isArray() || (t = W.create({
       calculateValueList: [[t]],
       rowCount: 1,
       columnCount: 1,
@@ -25022,22 +25849,8 @@ class L_ extends V {
       column: 0
     })), t;
   }
-  _getResultArrayByArray1(e, t, r) {
-    const n = [];
-    for (let s = 0; s < e; s++) {
-      const o = [];
-      for (let u = 0; u < t; u++) {
-        const c = r.get(s, u);
-        if (c.isError())
-          return c;
-        c.isNumber() ? o.push(c.getValue()) : o.push(0);
-      }
-      n.push(o);
-    }
-    return n;
-  }
 }
-class P_ extends V {
+class W_ extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -25064,7 +25877,7 @@ class P_ extends V {
     return t;
   }
 }
-class x_ extends V {
+class q_ extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 2);
@@ -25083,8 +25896,8 @@ class x_ extends V {
     {
       const l = e.flatten(), f = t.flatten();
       let h = ue.create();
-      const d = [], _ = [];
-      let C = 0;
+      const d = [], C = [];
+      let _ = 0;
       return l.iterator((E, b, R) => {
         const p = f.get(b, R);
         if (E == null || E.isString() || E.isBoolean() || E.isNull())
@@ -25095,9 +25908,9 @@ class x_ extends V {
           return !0;
         if (p != null && p.isError())
           return h = p, !1;
-        const N = +E.getValue(), M = +p.getValue();
-        d.push(N), _.push(M), C += N ** 2 - M ** 2;
-      }), h.isError() ? h : d.length === 0 || _.length === 0 ? g.create(m.DIV_BY_ZERO) : y.create(C);
+        const N = +E.getValue(), w = +p.getValue();
+        d.push(N), C.push(w), _ += N ** 2 - w ** 2;
+      }), h.isError() ? h : d.length === 0 || C.length === 0 ? g.create(m.DIV_BY_ZERO) : y.create(_);
     }
   }
   _calculateSingleCell(e, t) {
@@ -25110,13 +25923,13 @@ class x_ extends V {
     if (r.isNull() || n.isNull())
       return g.create(m.VALUE);
     const s = +r.getValue(), o = +n.getValue();
-    if (r.isString() && !W(s) || r.isBoolean() || n.isString() && !W(o) || n.isBoolean())
+    if (r.isString() && !q(s) || r.isBoolean() || n.isString() && !q(o) || n.isBoolean())
       return g.create(m.DIV_BY_ZERO);
     const u = s ** 2 - o ** 2;
     return y.create(u);
   }
 }
-class j_ extends V {
+class K_ extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 2);
@@ -25135,8 +25948,8 @@ class j_ extends V {
     {
       const l = e.flatten(), f = t.flatten();
       let h = ue.create();
-      const d = [], _ = [];
-      let C = 0;
+      const d = [], C = [];
+      let _ = 0;
       return l.iterator((E, b, R) => {
         const p = f.get(b, R);
         if (E == null || E.isString() || E.isBoolean() || E.isNull())
@@ -25147,9 +25960,9 @@ class j_ extends V {
           return !0;
         if (p != null && p.isError())
           return h = p, !1;
-        const N = +E.getValue(), M = +p.getValue();
-        d.push(N), _.push(M), C += N ** 2 + M ** 2;
-      }), h.isError() ? h : d.length === 0 || _.length === 0 ? g.create(m.DIV_BY_ZERO) : y.create(C);
+        const N = +E.getValue(), w = +p.getValue();
+        d.push(N), C.push(w), _ += N ** 2 + w ** 2;
+      }), h.isError() ? h : d.length === 0 || C.length === 0 ? g.create(m.DIV_BY_ZERO) : y.create(_);
     }
   }
   _calculateSingleCell(e, t) {
@@ -25162,13 +25975,13 @@ class j_ extends V {
     if (r.isNull() || n.isNull())
       return g.create(m.VALUE);
     const s = +r.getValue(), o = +n.getValue();
-    if (r.isString() && !W(s) || r.isBoolean() || n.isString() && !W(o) || n.isBoolean())
+    if (r.isString() && !q(s) || r.isBoolean() || n.isString() && !q(o) || n.isBoolean())
       return g.create(m.DIV_BY_ZERO);
     const u = s ** 2 + o ** 2;
     return y.create(u);
   }
 }
-class U_ extends V {
+class X_ extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 2);
@@ -25187,8 +26000,8 @@ class U_ extends V {
     {
       const l = e.flatten(), f = t.flatten();
       let h = ue.create();
-      const d = [], _ = [];
-      let C = 0;
+      const d = [], C = [];
+      let _ = 0;
       return l.iterator((E, b, R) => {
         const p = f.get(b, R);
         if (E == null || E.isString() || E.isBoolean() || E.isNull())
@@ -25199,9 +26012,9 @@ class U_ extends V {
           return !0;
         if (p != null && p.isError())
           return h = p, !1;
-        const N = +E.getValue(), M = +p.getValue();
-        d.push(N), _.push(M), C += (N - M) ** 2;
-      }), h.isError() ? h : d.length === 0 || _.length === 0 ? g.create(m.DIV_BY_ZERO) : y.create(C);
+        const N = +E.getValue(), w = +p.getValue();
+        d.push(N), C.push(w), _ += (N - w) ** 2;
+      }), h.isError() ? h : d.length === 0 || C.length === 0 ? g.create(m.DIV_BY_ZERO) : y.create(_);
     }
   }
   _calculateSingleCell(e, t) {
@@ -25214,13 +26027,13 @@ class U_ extends V {
     if (r.isNull() || n.isNull())
       return g.create(m.VALUE);
     const s = +r.getValue(), o = +n.getValue();
-    if (r.isString() && !W(s) || r.isBoolean() || n.isString() && !W(o) || n.isBoolean())
+    if (r.isString() && !q(s) || r.isBoolean() || n.isString() && !q(o) || n.isBoolean())
       return g.create(m.DIV_BY_ZERO);
     const u = (s - o) ** 2;
     return y.create(u);
   }
 }
-class v_ extends V {
+class Z_ extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -25231,7 +26044,7 @@ class v_ extends V {
     return t.isString() && (t = t.convertToNumberObjectValue()), t.isError() ? t : t.tan();
   }
 }
-class T_ extends V {
+class z_ extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -25242,7 +26055,7 @@ class T_ extends V {
     return t.isString() && (t = t.convertToNumberObjectValue()), t.isError() ? t : t.tanh();
   }
 }
-class B_ extends V {
+class J_ extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -25256,105 +26069,105 @@ class B_ extends V {
       e.isArray() ? e.getColumnCount() : 1,
       r.isArray() ? r.getColumnCount() : 1
     ), o = O(n, s, e, g.create(m.NA)), u = O(n, s, r, g.create(m.NA)), c = o.map((l, f, h) => {
-      let d = u.get(f, h), _ = l;
-      if (_.isString() && (_ = _.convertToNumberObjectValue()), _.isError())
-        return _;
+      let d = u.get(f, h), C = l;
+      if (C.isString() && (C = C.convertToNumberObjectValue()), C.isError())
+        return C;
       if (d.isString() && (d = d.convertToNumberObjectValue()), d.isError())
         return d;
-      const C = +_.getValue(), E = +d.getValue(), b = 10 ** Math.trunc(E), R = qn(C, b), p = Math.trunc(Mr(C, b) + R) / b;
+      const _ = +C.getValue(), E = +d.getValue(), b = 10 ** Math.trunc(E), R = Kn(_, b), p = Math.trunc(Mr(_, b) + R) / b;
       return y.create(p);
     });
     return n === 1 && s === 1 ? c.get(0, 0) : c;
   }
 }
-const I_ = [
-  [mC, Y.ABS],
-  [gC, Y.ACOS],
-  [dC, Y.ACOSH],
-  [CC, Y.ACOT],
-  [_C, Y.ACOTH],
-  [AC, Y.ARABIC],
-  [EC, Y.ASIN],
-  [bC, Y.ASINH],
-  [yC, Y.ATAN],
-  [RC, Y.ATAN2],
-  [pC, Y.ATANH],
-  [VC, Y.BASE],
-  [NC, Y.CEILING],
-  [OC, Y.CEILING_MATH],
-  [MC, Y.CEILING_PRECISE],
-  [wC, Y.COMBIN],
-  [SC, Y.COMBINA],
-  [DC, Y.COS],
-  [LC, Y.COSH],
-  [PC, Y.COT],
-  [xC, Y.COTH],
-  [jC, Y.CSC],
-  [UC, Y.CSCH],
-  [vC, Y.DECIMAL],
-  [TC, Y.DEGREES],
-  [BC, Y.EVEN],
-  [IC, Y.EXP],
-  [FC, Y.FACT],
-  [kC, Y.FACTDOUBLE],
-  [$C, Y.FLOOR],
-  [YC, Y.FLOOR_MATH],
-  [HC, Y.FLOOR_PRECISE],
-  [GC, Y.GCD],
-  [QC, Y.INT],
-  [WC, Y.LCM],
-  [qC, Y.LN],
-  [KC, Y.LOG],
-  [XC, Y.LOG10],
-  [ZC, Y.MDETERM],
-  [zC, Y.MINVERSE],
-  [JC, Y.MMULT],
-  [e_, Y.MOD],
-  [t_, Y.MROUND],
-  [r_, Y.MULTINOMIAL],
-  [n_, Y.MUNIT],
-  [s_, Y.ODD],
-  [a_, Y.PI],
-  [i_, Y.POWER],
-  [o_, Y.PRODUCT],
-  [u_, Y.QUOTIENT],
-  [c_, Y.RADIANS],
-  [l_, Y.RAND],
-  [f_, Y.RANDARRAY],
-  [h_, Y.RANDBETWEEN],
-  [m_, Y.ROMAN],
-  [g_, Y.ROUND],
-  [d_, Y.ROUNDBANK],
-  [C_, Y.ROUNDDOWN],
-  [__, Y.ROUNDUP],
-  [A_, Y.SEC],
-  [E_, Y.SECH],
-  [y_, Y.SERIESSUM],
-  [b_, Y.SEQUENCE],
-  [R_, Y.SIGN],
-  [p_, Y.SIN],
-  [V_, Y.SINH],
-  [N_, Y.SQRT],
-  [O_, Y.SQRTPI],
-  [M_, Y.SUBTOTAL],
-  [w_, Y.SUM],
-  [S_, Y.SUMIF],
-  [D_, Y.SUMIFS],
-  [L_, Y.SUMPRODUCT],
-  [P_, Y.SUMSQ],
-  [x_, Y.SUMX2MY2],
-  [j_, Y.SUMX2PY2],
-  [U_, Y.SUMXMY2],
-  [v_, Y.TAN],
-  [T_, Y.TANH],
-  [B_, Y.TRUNC]
+const eA = [
+  [MC, Y.ABS],
+  [DC, Y.ACOS],
+  [LC, Y.ACOSH],
+  [PC, Y.ACOT],
+  [xC, Y.ACOTH],
+  [jC, Y.ARABIC],
+  [UC, Y.ASIN],
+  [vC, Y.ASINH],
+  [TC, Y.ATAN],
+  [BC, Y.ATAN2],
+  [IC, Y.ATANH],
+  [FC, Y.BASE],
+  [kC, Y.CEILING],
+  [$C, Y.CEILING_MATH],
+  [YC, Y.CEILING_PRECISE],
+  [HC, Y.COMBIN],
+  [QC, Y.COMBINA],
+  [GC, Y.COS],
+  [WC, Y.COSH],
+  [qC, Y.COT],
+  [KC, Y.COTH],
+  [XC, Y.CSC],
+  [ZC, Y.CSCH],
+  [zC, Y.DECIMAL],
+  [JC, Y.DEGREES],
+  [e_, Y.EVEN],
+  [t_, Y.EXP],
+  [r_, Y.FACT],
+  [n_, Y.FACTDOUBLE],
+  [s_, Y.FLOOR],
+  [a_, Y.FLOOR_MATH],
+  [i_, Y.FLOOR_PRECISE],
+  [o_, Y.GCD],
+  [u_, Y.INT],
+  [c_, Y.LCM],
+  [l_, Y.LN],
+  [f_, Y.LOG],
+  [h_, Y.LOG10],
+  [m_, Y.MDETERM],
+  [g_, Y.MINVERSE],
+  [d_, Y.MMULT],
+  [C_, Y.MOD],
+  [__, Y.MROUND],
+  [A_, Y.MULTINOMIAL],
+  [E_, Y.MUNIT],
+  [b_, Y.ODD],
+  [y_, Y.PI],
+  [R_, Y.POWER],
+  [p_, Y.PRODUCT],
+  [N_, Y.QUOTIENT],
+  [V_, Y.RADIANS],
+  [O_, Y.RAND],
+  [w_, Y.RANDARRAY],
+  [S_, Y.RANDBETWEEN],
+  [M_, Y.ROMAN],
+  [D_, Y.ROUND],
+  [L_, Y.ROUNDBANK],
+  [P_, Y.ROUNDDOWN],
+  [x_, Y.ROUNDUP],
+  [j_, Y.SEC],
+  [U_, Y.SECH],
+  [T_, Y.SERIESSUM],
+  [v_, Y.SEQUENCE],
+  [B_, Y.SIGN],
+  [I_, Y.SIN],
+  [F_, Y.SINH],
+  [k_, Y.SQRT],
+  [$_, Y.SQRTPI],
+  [Y_, Y.SUBTOTAL],
+  [H_, Y.SUM],
+  [Jh, Y.SUMIF],
+  [Q_, Y.SUMIFS],
+  [G_, Y.SUMPRODUCT],
+  [W_, Y.SUMSQ],
+  [q_, Y.SUMX2MY2],
+  [K_, Y.SUMX2PY2],
+  [X_, Y.SUMXMY2],
+  [Z_, Y.TAN],
+  [z_, Y.TANH],
+  [J_, Y.TRUNC]
 ];
-class F_ extends V {
+class tA extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 2);
     A(this, "maxParams", 2);
-    A(this, "_compareType", k.EQUALS);
+    A(this, "_compareType", U.EQUALS);
   }
   setCompareType(e) {
     this._compareType = e;
@@ -25363,14 +26176,14 @@ class F_ extends V {
     return e.isError() ? e : t.isError() ? t : e.compare(t, this._compareType);
   }
 }
-class Wa extends Ht {
+class ti extends Ht {
   constructor(e) {
     super("");
     A(this, "_values", []);
     this._values = e;
   }
   static create(e) {
-    return new Wa(e);
+    return new ti(e);
   }
   isCube() {
     return !0;
@@ -25425,7 +26238,7 @@ class Wa extends Ht {
     }), e;
   }
 }
-class k_ extends V {
+class rA extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -25441,10 +26254,10 @@ class k_ extends V {
         return g.create(m.VALUE);
       t.push(n);
     }
-    return Wa.create(t);
+    return ti.create(t);
   }
 }
-class $_ extends V {
+class nA extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 2);
@@ -25454,7 +26267,7 @@ class $_ extends V {
     return e.isError() ? e : t.isError() ? t : !t.isArray() && t.getValue() === 0 ? g.create(m.DIV_BY_ZERO) : e.divided(t);
   }
 }
-class Y_ extends V {
+class sA extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 2);
@@ -25464,7 +26277,7 @@ class Y_ extends V {
     return e.isError() ? e : t.isError() ? t : e.minus(t);
   }
 }
-class H_ extends V {
+class aA extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 2);
@@ -25474,7 +26287,7 @@ class H_ extends V {
     return e.isError() ? e : t.isError() ? t : e.multiply(t);
   }
 }
-class G_ extends V {
+class iA extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 2);
@@ -25484,15 +26297,15 @@ class G_ extends V {
     return e.isError() ? e : t.isError() ? t : e.plus(t);
   }
 }
-const Q_ = [
-  [F_, Be.COMPARE],
-  [$_, Be.DIVIDED],
-  [Y_, Be.MINUS],
-  [H_, Be.MULTIPLY],
-  [G_, Be.PLUS],
-  [k_, Be.CUBE]
+const oA = [
+  [tA, Be.COMPARE],
+  [nA, Be.DIVIDED],
+  [sA, Be.MINUS],
+  [aA, Be.MULTIPLY],
+  [iA, Be.PLUS],
+  [rA, Be.CUBE]
 ];
-class W_ extends V {
+class uA extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -25505,7 +26318,7 @@ class W_ extends V {
       if (u.isString() && (u = u.convertToNumberObjectValue()), u.isError())
         return u;
       if (u.isArray()) {
-        if (u = q_(u), u.isError())
+        if (u = cA(u), u.isError())
           return u;
         if (e[o] = u, t = t.plus(u.sum()), t.isError())
           return t;
@@ -25530,7 +26343,7 @@ class W_ extends V {
     return s.divided(r);
   }
 }
-function q_(i) {
+function cA(i) {
   const a = [];
   a[0] = [];
   let e = null;
@@ -25538,9 +26351,9 @@ function q_(i) {
     if (t != null && t.isError())
       return e = t, !1;
     t != null && t.isNumber() && a[0].push(t);
-  }), e || Fr(a, 1, a[0].length);
+  }), e || Yr(a, 1, a[0].length);
 }
-class K_ extends V {
+class lA extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -25561,7 +26374,7 @@ class K_ extends V {
     return t.divided(r);
   }
 }
-class X_ extends V {
+class fA extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 2);
@@ -25574,9 +26387,9 @@ class X_ extends V {
     const n = [], s = [];
     for (let o = 0; o < e.length; o += 2) {
       const u = e[o], c = u.isArray() ? u.getRowCount() : 1, l = u.isArray() ? u.getColumnCount() : 1;
-      for (let _ = 0; _ < c; _++)
-        for (let C = 0; C < l; C++) {
-          const E = u.isArray() ? u.get(_, C) : u;
+      for (let C = 0; C < c; C++)
+        for (let _ = 0; _ < l; _++) {
+          const E = u.isArray() ? u.get(C, _) : u;
           if (E.isError())
             return E;
           if (t)
@@ -25588,9 +26401,9 @@ class X_ extends V {
         continue;
       const f = e[o + 1], h = f.isArray() ? f.getRowCount() : 1, d = f.isArray() ? f.getColumnCount() : 1;
       (h !== c || d !== l) && (t = !0, r = g.create(m.VALUE));
-      for (let _ = 0; _ < h; _++)
-        for (let C = 0; C < d; C++) {
-          const E = f.isArray() ? f.get(_, C) : f;
+      for (let C = 0; C < h; C++)
+        for (let _ = 0; _ < d; _++) {
+          const E = f.isArray() ? f.get(C, _) : f;
           if (E.isError())
             return E;
           if (t)
@@ -25618,7 +26431,7 @@ class X_ extends V {
     return y.create(o);
   }
 }
-class Z_ extends V {
+class hA extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -25645,7 +26458,7 @@ class Z_ extends V {
     return t.divided(r);
   }
 }
-class z_ extends V {
+class mA extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 2);
@@ -25664,23 +26477,23 @@ class z_ extends V {
   }
   _handleSingleObject(e, t, r) {
     const n = e.toArrayValueObject();
-    let s = Zn(n, t);
-    s = zn(s, n, t);
+    let s = zn(n, t);
+    s = Jn(s, n, t);
     const o = n.getRowCount(), u = n.getColumnCount();
     let c = n;
     if (r) {
       c = r.toArrayValueObject();
-      const d = c.getRowCount(), _ = c.getColumnCount();
-      if (o !== d || u !== _) {
-        const C = r.getRangeData();
-        C.endRow = C.startRow + o - 1, C.endColumn = C.startColumn + u - 1, r.setRangeData(C), c = r.toArrayValueObject();
+      const d = c.getRowCount(), C = c.getColumnCount();
+      if (o !== d || u !== C) {
+        const _ = r.getRangeData();
+        _.endRow = _.startRow + o - 1, _.endColumn = _.startColumn + u - 1, r.setRangeData(_), c = r.toArrayValueObject();
       }
     }
     const l = c.pick(s), f = l.sum(), h = l.count();
     return f.divided(h);
   }
 }
-class J_ extends V {
+class gA extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 3);
@@ -25696,12 +26509,12 @@ class J_ extends V {
       criteriaMaxColumnLength: u,
       targetRange: c,
       variants: l
-    } = kr(t, e);
+    } = Hr(t, e);
     if (r)
       return n;
     if (s)
       return o === 1 && u === 1 ? g.create(m.VALUE) : O(o, u, g.create(m.VALUE));
-    const f = $r(l, o, u, !0);
+    const f = sr(l, o, u, !0);
     return this._aggregateResults(c, f);
   }
   _aggregateResults(e, t) {
@@ -25709,7 +26522,7 @@ class J_ extends V {
       const o = e.pick(s), u = o.sum(), c = o.count();
       return u.divided(c);
     }));
-    return r.length === 1 && r[0].length === 1 ? r[0][0] : q.create({
+    return r.length === 1 && r[0].length === 1 ? r[0][0] : W.create({
       calculateValueList: r,
       rowCount: r.length,
       columnCount: r[0].length,
@@ -25720,7 +26533,7 @@ class J_ extends V {
     });
   }
 }
-class eA extends V {
+class dA extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 4);
@@ -25743,9 +26556,9 @@ class eA extends V {
       n.isArray() ? n.getColumnCount() : 1,
       u.isArray() ? u.getColumnCount() : 1,
       c.isArray() ? c.getColumnCount() : 1
-    ), h = O(l, f, e, g.create(m.NA)), d = O(l, f, t, g.create(m.NA)), _ = O(l, f, r, g.create(m.NA)), C = O(l, f, n, g.create(m.NA)), E = O(l, f, u, g.create(m.NA)), b = O(l, f, c, g.create(m.NA)), R = h.mapValue((p, N, M) => {
-      const w = d.get(N, M), S = _.get(N, M), D = C.get(N, M), L = E.get(N, M), U = b.get(N, M);
-      return this._handleSingleObject(p, w, S, D, L, U);
+    ), h = O(l, f, e, g.create(m.NA)), d = O(l, f, t, g.create(m.NA)), C = O(l, f, r, g.create(m.NA)), _ = O(l, f, n, g.create(m.NA)), E = O(l, f, u, g.create(m.NA)), b = O(l, f, c, g.create(m.NA)), R = h.mapValue((p, N, w) => {
+      const S = d.get(N, w), M = C.get(N, w), D = _.get(N, w), L = E.get(N, w), T = b.get(N, w);
+      return this._handleSingleObject(p, S, M, D, L, T);
     });
     return l === 1 && f === 1 ? R.get(0, 0) : R;
   }
@@ -25762,17 +26575,17 @@ class eA extends V {
       return s;
     if (o.isError())
       return o;
-    const { isError: u, errorObject: c, variants: l } = B(e, t, r, n, s, o);
+    const { isError: u, errorObject: c, variants: l } = I(e, t, r, n, s, o);
     if (u)
       return c;
-    const [f, h, d, _, C, E] = l, b = +f.getValue(), R = +h.getValue(), p = +d.getValue(), N = +_.getValue(), M = +C.getValue(), w = +E.getValue();
-    if (R <= 0 || p <= 0 || b < M || b > w || M === w)
+    const [f, h, d, C, _, E] = l, b = +f.getValue(), R = +h.getValue(), p = +d.getValue(), N = +C.getValue(), w = +_.getValue(), S = +E.getValue();
+    if (R <= 0 || p <= 0 || b < w || b > S || w === S)
       return g.create(m.NUM);
-    let S;
-    return N ? S = $o((b - M) / (w - M), R, p) : S = um((b - M) / (w - M), R, p) / (w - M), y.create(S);
+    let M;
+    return N ? M = Jo((b - w) / (S - w), R, p) : M = Nm((b - w) / (S - w), R, p) / (S - w), y.create(M);
   }
 }
-class tA extends V {
+class CA extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 3);
@@ -25791,26 +26604,26 @@ class tA extends V {
       t.isArray() ? t.getColumnCount() : 1,
       r.isArray() ? r.getColumnCount() : 1,
       s.isArray() ? s.getColumnCount() : 1
-    ), c = O(o, u, e, g.create(m.NA)), l = O(o, u, t, g.create(m.NA)), f = O(o, u, r, g.create(m.NA)), h = O(o, u, s, g.create(m.NA)), d = c.mapValue((_, C, E) => {
-      const b = l.get(C, E), R = f.get(C, E), p = h.get(C, E);
-      return _.isError() ? _ : b.isError() ? b : R.isError() ? R : p.isError() ? p : this._handleSingleObject(_, b, R, p);
+    ), c = O(o, u, e, g.create(m.NA)), l = O(o, u, t, g.create(m.NA)), f = O(o, u, r, g.create(m.NA)), h = O(o, u, s, g.create(m.NA)), d = c.mapValue((C, _, E) => {
+      const b = l.get(_, E), R = f.get(_, E), p = h.get(_, E);
+      return C.isError() ? C : b.isError() ? b : R.isError() ? R : p.isError() ? p : this._handleSingleObject(C, b, R, p);
     });
     return o === 1 && u === 1 ? d.get(0, 0) : d;
   }
   _handleSingleObject(e, t, r, n) {
-    const { isError: s, errorObject: o, variants: u } = B(e, t, r, n);
+    const { isError: s, errorObject: o, variants: u } = I(e, t, r, n);
     if (s)
       return o;
-    const [c, l, f, h] = u, d = Math.floor(+c.getValue()), _ = +l.getValue(), C = Math.floor(+f.getValue()), E = Math.floor(+h.getValue());
-    if (d < 0 || _ < 0 || _ > 1 || C < 0 || C > d || E < 0 || E < C || E > d)
+    const [c, l, f, h] = u, d = Math.floor(+c.getValue()), C = +l.getValue(), _ = Math.floor(+f.getValue()), E = Math.floor(+h.getValue());
+    if (d < 0 || C < 0 || C > 1 || _ < 0 || _ > d || E < 0 || E < _ || E > d)
       return g.create(m.NUM);
     let b = 0;
-    for (let R = C; R <= E; R++)
-      b += va(R, d, _);
+    for (let R = _; R <= E; R++)
+      b += Ha(R, d, C);
     return y.create(b);
   }
 }
-class rA extends V {
+class _A extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 3);
@@ -25826,23 +26639,23 @@ class rA extends V {
       t.isArray() ? t.getColumnCount() : 1,
       r.isArray() ? r.getColumnCount() : 1
     ), o = O(n, s, e, g.create(m.NA)), u = O(n, s, t, g.create(m.NA)), c = O(n, s, r, g.create(m.NA)), l = o.mapValue((f, h, d) => {
-      const _ = u.get(h, d), C = c.get(h, d);
-      return f.isError() ? f : _.isError() ? _ : C.isError() ? C : this._handleSingleObject(f, _, C);
+      const C = u.get(h, d), _ = c.get(h, d);
+      return f.isError() ? f : C.isError() ? C : _.isError() ? _ : this._handleSingleObject(f, C, _);
     });
     return n === 1 && s === 1 ? l.get(0, 0) : l;
   }
   _handleSingleObject(e, t, r) {
-    const { isError: n, errorObject: s, variants: o } = B(e, t, r);
+    const { isError: n, errorObject: s, variants: o } = I(e, t, r);
     if (n)
       return s;
     const [u, c, l] = o, f = +u.getValue(), h = Math.floor(+c.getValue()), d = +l.getValue();
     if (f < 0 || h < 1 || h > 10 ** 10)
       return g.create(m.NUM);
-    let _;
-    return d ? _ = Ta(f, h) : _ = cm(f, h), y.create(_);
+    let C;
+    return d ? C = Qa(f, h) : C = Vm(f, h), y.create(C);
   }
 }
-class nA extends V {
+class AA extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 2);
@@ -25862,17 +26675,17 @@ class nA extends V {
     return r === 1 && n === 1 ? u.get(0, 0) : u;
   }
   _handleSingleObject(e, t) {
-    const { isError: r, errorObject: n, variants: s } = B(e, t);
+    const { isError: r, errorObject: n, variants: s } = I(e, t);
     if (r)
       return n;
     const [o, u] = s, c = +o.getValue(), l = Math.floor(+u.getValue());
     if (c < 0 || c > 1 || l < 1 || l > 10 ** 10)
       return g.create(m.NUM);
-    const f = Ho(c, l);
+    const f = tu(c, l);
     return Number.isNaN(f) || !Number.isFinite(f) ? g.create(m.NUM) : y.create(f);
   }
 }
-class sA extends V {
+class EA extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 3);
@@ -25888,28 +26701,28 @@ class sA extends V {
       t.isArray() ? t.getColumnCount() : 1,
       r.isArray() ? r.getColumnCount() : 1
     ), o = O(n, s, e, g.create(m.NA)), u = O(n, s, t, g.create(m.NA)), c = O(n, s, r, g.create(m.NA)), l = o.mapValue((f, h, d) => {
-      const _ = u.get(h, d), C = c.get(h, d);
+      const C = u.get(h, d), _ = c.get(h, d);
       if (f.isError())
         return f;
-      if (_.isError())
-        return _;
       if (C.isError())
         return C;
-      const { isError: E, errorObject: b, variants: R } = B(f, _, C);
+      if (_.isError())
+        return _;
+      const { isError: E, errorObject: b, variants: R } = I(f, C, _);
       if (E)
         return b;
-      const [p, N, M] = R, w = +p.getValue(), S = +N.getValue(), D = Math.floor(+M.getValue());
-      if (w <= 0 || w >= 1 || S <= 0 || D < 1)
+      const [p, N, w] = R, S = +p.getValue(), M = +N.getValue(), D = Math.floor(+w.getValue());
+      if (S <= 0 || S >= 1 || M <= 0 || D < 1)
         return g.create(m.NUM);
       if (D === 1)
         return g.create(m.DIV_BY_ZERO);
-      const L = Math.abs(rs(w / 2, D - 1) * S / Math.sqrt(D));
+      const L = Math.abs(ns(S / 2, D - 1) * M / Math.sqrt(D));
       return y.create(L);
     });
     return n === 1 && s === 1 ? l.get(0, 0) : l;
   }
 }
-class aA extends V {
+class bA extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 2);
@@ -25932,15 +26745,15 @@ class aA extends V {
       errorObject: f,
       array1Values: h,
       array2Values: d,
-      noCalculate: _
-    } = tt(
+      noCalculate: C
+    } = rt(
       e,
       t,
       r * n,
       n,
       o
     );
-    return l ? f : _ ? g.create(m.DIV_BY_ZERO) : this._getResult(h, d);
+    return l ? f : C ? g.create(m.DIV_BY_ZERO) : this._getResult(h, d);
   }
   _getResult(e, t) {
     const r = e.length;
@@ -25950,14 +26763,14 @@ class aA extends V {
     const o = n / r, u = s / r;
     let c = 0, l = 0, f = 0;
     for (let d = 0; d < r; d++) {
-      const _ = e[d] - o, C = t[d] - u;
-      c += _ * C, l += _ ** 2, f += C ** 2;
+      const C = e[d] - o, _ = t[d] - u;
+      c += C * _, l += C ** 2, f += _ ** 2;
     }
     const h = Math.sqrt(l * f);
     return h === 0 ? g.create(m.DIV_BY_ZERO) : y.create(c / h);
   }
 }
-class iA extends V {
+class yA extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -25972,7 +26785,7 @@ class iA extends V {
     return t;
   }
 }
-class oA extends V {
+class RA extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -25991,7 +26804,7 @@ class oA extends V {
     return t;
   }
 }
-class uA extends V {
+class pA extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -26001,82 +26814,7 @@ class uA extends V {
     return e.isError() ? e : e.getValue() === "" || e.isNull() ? y.create(1) : e.isArray() ? e.countBlank() : y.create(0);
   }
 }
-class cA extends V {
-  constructor() {
-    super(...arguments);
-    A(this, "minParams", 2);
-    A(this, "maxParams", 2);
-    A(this, "needsReferenceObject", !0);
-  }
-  calculate(e, t) {
-    if (!e.isReferenceObject())
-      return g.create(m.VALUE);
-    let r = t;
-    if (t.isReferenceObject() && (r = t.toArrayValueObject()), r.isArray()) {
-      const n = r.mapValue((s) => this._handleSingleObject(e, s));
-      return n.getRowCount() === 1 && n.getColumnCount() === 1 ? n.get(0, 0) : n;
-    }
-    return this._handleSingleObject(e, r);
-  }
-  _handleSingleObject(e, t) {
-    const r = e.toArrayValueObject();
-    let n = Zn(r, t);
-    n = zn(n, r, t);
-    const s = r.pick(n);
-    return this._countA(s);
-  }
-  _countA(e) {
-    let t = y.create(0);
-    return e.iterator((r) => {
-      if (r == null)
-        return !0;
-      t = t.plusBy(1);
-    }), t;
-  }
-}
-class lA extends V {
-  constructor() {
-    super(...arguments);
-    A(this, "minParams", 2);
-    A(this, "maxParams", 255);
-    A(this, "needsReferenceObject", !0);
-  }
-  calculate(...e) {
-    const {
-      isError: t,
-      errorObject: r,
-      rangeIsDifferentSize: n,
-      criteriaMaxRowLength: s,
-      criteriaMaxColumnLength: o,
-      variants: u
-    } = kr(e);
-    if (t)
-      return r;
-    if (n)
-      return s === 1 && o === 1 ? g.create(m.VALUE) : O(s, o, g.create(m.VALUE));
-    const c = $r(u, s, o, !0);
-    return this._aggregateResults(c);
-  }
-  _aggregateResults(e) {
-    const t = e.map((r) => r.map((n) => fA(n)));
-    return t.length === 1 && t[0].length === 1 ? t[0][0] : q.create({
-      calculateValueList: t,
-      rowCount: t.length,
-      columnCount: t[0].length,
-      unitId: this.unitId || "",
-      sheetId: this.subUnitId || "",
-      row: this.row,
-      column: this.column
-    });
-  }
-}
-function fA(i) {
-  let a = 0;
-  return i.iterator((e) => {
-    e != null && e.isBoolean() && e.getValue() === !0 && a++;
-  }), y.create(a);
-}
-class hA extends V {
+class NA extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 2);
@@ -26099,15 +26837,15 @@ class hA extends V {
       errorObject: f,
       array1Values: h,
       array2Values: d,
-      noCalculate: _
-    } = tt(
+      noCalculate: C
+    } = rt(
       e,
       t,
       r * n,
       n,
       o
     );
-    return l ? f : _ ? g.create(m.DIV_BY_ZERO) : this._getResult(h, d);
+    return l ? f : C ? g.create(m.DIV_BY_ZERO) : this._getResult(h, d);
   }
   _getResult(e, t) {
     if (e.length <= 1)
@@ -26125,7 +26863,7 @@ class hA extends V {
     return y.create(c / (r - 1));
   }
 }
-class mA extends V {
+class VA extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -26144,8 +26882,8 @@ class mA extends V {
             return l = !0, f = d, !1;
           if (d.isNull())
             return !0;
-          const _ = d.getValue();
-          t.push(_), r += _, n = !1;
+          const C = d.getValue();
+          t.push(C), r += C, n = !1;
         }), l)
           return f;
       } else {
@@ -26172,10 +26910,10 @@ class mA extends V {
     if (e.isNull() || e.isBoolean())
       return ue.create();
     const t = e.getValue();
-    return W(t) ? y.create(+t) : ue.create();
+    return q(t) ? y.create(+t) : ue.create();
   }
 }
-class gA extends V {
+class OA extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 4);
@@ -26192,24 +26930,24 @@ class gA extends V {
       t.isArray() ? t.getColumnCount() : 1,
       r.isArray() ? r.getColumnCount() : 1,
       n.isArray() ? n.getColumnCount() : 1
-    ), u = O(s, o, e, g.create(m.NA)), c = O(s, o, t, g.create(m.NA)), l = O(s, o, r, g.create(m.NA)), f = O(s, o, n, g.create(m.NA)), h = u.mapValue((d, _, C) => {
-      const E = c.get(_, C), b = l.get(_, C), R = f.get(_, C);
+    ), u = O(s, o, e, g.create(m.NA)), c = O(s, o, t, g.create(m.NA)), l = O(s, o, r, g.create(m.NA)), f = O(s, o, n, g.create(m.NA)), h = u.mapValue((d, C, _) => {
+      const E = c.get(C, _), b = l.get(C, _), R = f.get(C, _);
       return d.isError() ? d : E.isError() ? E : b.isError() ? b : R.isError() ? R : this._handleSingleObject(d, E, b, R);
     });
     return s === 1 && o === 1 ? h.get(0, 0) : h;
   }
   _handleSingleObject(e, t, r, n) {
-    const { isError: s, errorObject: o, variants: u } = B(e, t, r, n);
+    const { isError: s, errorObject: o, variants: u } = I(e, t, r, n);
     if (s)
       return o;
-    const [c, l, f, h] = u, d = +c.getValue(), _ = Math.floor(+l.getValue()), C = Math.floor(+f.getValue()), E = +h.getValue();
-    if (d < 0 || _ < 1 || _ > 10 ** 10 || C < 1 || C > 10 ** 10)
+    const [c, l, f, h] = u, d = +c.getValue(), C = Math.floor(+l.getValue()), _ = Math.floor(+f.getValue()), E = +h.getValue();
+    if (d < 0 || C < 1 || C > 10 ** 10 || _ < 1 || _ > 10 ** 10)
       return g.create(m.NUM);
     let b;
-    return E ? b = Ba(d, _, C) : b = lm(d, _, C), Number.isNaN(b) || !Number.isFinite(b) ? g.create(m.NUM) : y.create(b);
+    return E ? b = Ga(d, C, _) : b = Om(d, C, _), Number.isNaN(b) || !Number.isFinite(b) ? g.create(m.NUM) : y.create(b);
   }
 }
-class dA extends V {
+class wA extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 3);
@@ -26225,23 +26963,23 @@ class dA extends V {
       t.isArray() ? t.getColumnCount() : 1,
       r.isArray() ? r.getColumnCount() : 1
     ), o = O(n, s, e, g.create(m.NA)), u = O(n, s, t, g.create(m.NA)), c = O(n, s, r, g.create(m.NA)), l = o.mapValue((f, h, d) => {
-      const _ = u.get(h, d), C = c.get(h, d);
-      return f.isError() ? f : _.isError() ? _ : C.isError() ? C : this._handleSingleObject(f, _, C);
+      const C = u.get(h, d), _ = c.get(h, d);
+      return f.isError() ? f : C.isError() ? C : _.isError() ? _ : this._handleSingleObject(f, C, _);
     });
     return n === 1 && s === 1 ? l.get(0, 0) : l;
   }
   _handleSingleObject(e, t, r) {
-    const { isError: n, errorObject: s, variants: o } = B(e, t, r);
+    const { isError: n, errorObject: s, variants: o } = I(e, t, r);
     if (n)
       return s;
     const [u, c, l] = o, f = +u.getValue(), h = Math.floor(+c.getValue()), d = Math.floor(+l.getValue());
     if (f < 0 || f > 1 || h < 1 || h > 10 ** 10 || d < 1 || d > 10 ** 10)
       return g.create(m.NUM);
-    const _ = Go(f, h, d);
-    return Number.isNaN(_) || !Number.isFinite(_) ? g.create(m.NUM) : y.create(_);
+    const C = ru(f, h, d);
+    return Number.isNaN(C) || !Number.isFinite(C) ? g.create(m.NUM) : y.create(C);
   }
 }
-class CA extends V {
+class SA extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -26251,7 +26989,7 @@ class CA extends V {
     return e.isArray() ? e.mapValue((t) => this._handleSingleObject(t)) : this._handleSingleObject(e);
   }
   _handleSingleObject(e) {
-    const { isError: t, errorObject: r, variants: n } = B(e);
+    const { isError: t, errorObject: r, variants: n } = I(e);
     if (t)
       return r;
     const [s] = n, o = s.getValue();
@@ -26261,7 +26999,7 @@ class CA extends V {
     return y.create(u);
   }
 }
-class _A extends V {
+class MA extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -26271,14 +27009,14 @@ class _A extends V {
     return e.isArray() ? e.mapValue((t) => this._handleSingleObject(t)) : this._handleSingleObject(e);
   }
   _handleSingleObject(e) {
-    const { isError: t, errorObject: r, variants: n } = B(e);
+    const { isError: t, errorObject: r, variants: n } = I(e);
     if (t)
       return r;
     const [s] = n, o = +s.getValue(), u = Math.exp(2 * o) - 1, c = Math.exp(2 * o) + 1;
     return !Number.isFinite(u) && u > 0 && !Number.isFinite(c) && c > 0 ? y.create(1) : y.create(u / c);
   }
 }
-class Ti extends V {
+class qi extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 3);
@@ -26312,9 +27050,9 @@ class Ti extends V {
       isError: f,
       errorObject: h,
       array1Values: d,
-      array2Values: _,
-      noCalculate: C
-    } = tt(
+      array2Values: C,
+      noCalculate: _
+    } = rt(
       t,
       r,
       n * s,
@@ -26323,13 +27061,13 @@ class Ti extends V {
     );
     if (f)
       return h;
-    if (C)
+    if (_)
       return g.create(m.DIV_BY_ZERO);
-    const E = Qo(l, d, _);
+    const E = nu(l, d, C);
     return Number.isFinite(E) ? y.create(E) : g.create(m.DIV_BY_ZERO);
   }
 }
-class AA extends V {
+class DA extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 2);
@@ -26348,7 +27086,7 @@ class AA extends V {
       const f = s[l], h = u.findIndex((d) => f > d.start && f <= d.end);
       c[h]++;
     }
-    return q.createByArray(c.map((l) => [l]));
+    return W.createByArray(c.map((l) => [l]));
   }
   _getValues(e, t = !1) {
     const r = [], n = e.isArray() ? e.getRowCount() : 1, s = e.isArray() ? e.getColumnCount() : 1;
@@ -26367,7 +27105,7 @@ class AA extends V {
         if (c.isNull() || c.isBoolean())
           continue;
         const l = c.getValue();
-        W(l) && r.push(+l);
+        q(l) && r.push(+l);
       }
     return {
       isError: !1,
@@ -26400,8 +27138,8 @@ class AA extends V {
     }), r;
   }
 }
-var v = /* @__PURE__ */ ((i) => (i.AVEDEV = "AVEDEV", i.AVERAGE = "AVERAGE", i.AVERAGE_WEIGHTED = "AVERAGE.WEIGHTED", i.AVERAGEA = "AVERAGEA", i.AVERAGEIF = "AVERAGEIF", i.AVERAGEIFS = "AVERAGEIFS", i.BETA_DIST = "BETA.DIST", i.BETA_INV = "BETA.INV", i.BINOM_DIST = "BINOM.DIST", i.BINOM_DIST_RANGE = "BINOM.DIST.RANGE", i.BINOM_INV = "BINOM.INV", i.CHISQ_DIST = "CHISQ.DIST", i.CHISQ_DIST_RT = "CHISQ.DIST.RT", i.CHISQ_INV = "CHISQ.INV", i.CHISQ_INV_RT = "CHISQ.INV.RT", i.CHISQ_TEST = "CHISQ.TEST", i.CONFIDENCE_NORM = "CONFIDENCE.NORM", i.CONFIDENCE_T = "CONFIDENCE.T", i.CORREL = "CORREL", i.COUNT = "COUNT", i.COUNTA = "COUNTA", i.COUNTBLANK = "COUNTBLANK", i.COUNTIF = "COUNTIF", i.COUNTIFS = "COUNTIFS", i.COVARIANCE_P = "COVARIANCE.P", i.COVARIANCE_S = "COVARIANCE.S", i.DEVSQ = "DEVSQ", i.EXPON_DIST = "EXPON.DIST", i.F_DIST = "F.DIST", i.F_DIST_RT = "F.DIST.RT", i.F_INV = "F.INV", i.F_INV_RT = "F.INV.RT", i.F_TEST = "F.TEST", i.FISHER = "FISHER", i.FISHERINV = "FISHERINV", i.FORECAST = "FORECAST", i.FORECAST_ETS = "FORECAST.ETS", i.FORECAST_ETS_CONFINT = "FORECAST.ETS.CONFINT", i.FORECAST_ETS_SEASONALITY = "FORECAST.ETS.SEASONALITY", i.FORECAST_ETS_STAT = "FORECAST.ETS.STAT", i.FORECAST_LINEAR = "FORECAST.LINEAR", i.FREQUENCY = "FREQUENCY", i.GAMMA = "GAMMA", i.GAMMA_DIST = "GAMMA.DIST", i.GAMMA_INV = "GAMMA.INV", i.GAMMALN = "GAMMALN", i.GAMMALN_PRECISE = "GAMMALN.PRECISE", i.GAUSS = "GAUSS", i.GEOMEAN = "GEOMEAN", i.GROWTH = "GROWTH", i.HARMEAN = "HARMEAN", i.HYPGEOM_DIST = "HYPGEOM.DIST", i.INTERCEPT = "INTERCEPT", i.KURT = "KURT", i.LARGE = "LARGE", i.LINEST = "LINEST", i.LOGEST = "LOGEST", i.LOGNORM_DIST = "LOGNORM.DIST", i.LOGNORM_INV = "LOGNORM.INV", i.MARGINOFERROR = "MARGINOFERROR", i.MAX = "MAX", i.MAXA = "MAXA", i.MAXIFS = "MAXIFS", i.MEDIAN = "MEDIAN", i.MIN = "MIN", i.MINA = "MINA", i.MINIFS = "MINIFS", i.MODE_MULT = "MODE.MULT", i.MODE_SNGL = "MODE.SNGL", i.NEGBINOM_DIST = "NEGBINOM.DIST", i.NORM_DIST = "NORM.DIST", i.NORM_INV = "NORM.INV", i.NORM_S_DIST = "NORM.S.DIST", i.NORM_S_INV = "NORM.S.INV", i.PEARSON = "PEARSON", i.PERCENTILE_EXC = "PERCENTILE.EXC", i.PERCENTILE_INC = "PERCENTILE.INC", i.PERCENTRANK_EXC = "PERCENTRANK.EXC", i.PERCENTRANK_INC = "PERCENTRANK.INC", i.PERMUT = "PERMUT", i.PERMUTATIONA = "PERMUTATIONA", i.PHI = "PHI", i.POISSON_DIST = "POISSON.DIST", i.PROB = "PROB", i.QUARTILE_EXC = "QUARTILE.EXC", i.QUARTILE_INC = "QUARTILE.INC", i.RANK_AVG = "RANK.AVG", i.RANK_EQ = "RANK.EQ", i.RSQ = "RSQ", i.SKEW = "SKEW", i.SKEW_P = "SKEW.P", i.SLOPE = "SLOPE", i.SMALL = "SMALL", i.STANDARDIZE = "STANDARDIZE", i.STDEV_P = "STDEV.P", i.STDEV_S = "STDEV.S", i.STDEVA = "STDEVA", i.STDEVPA = "STDEVPA", i.STEYX = "STEYX", i.T_DIST = "T.DIST", i.T_DIST_2T = "T.DIST.2T", i.T_DIST_RT = "T.DIST.RT", i.T_INV = "T.INV", i.T_INV_2T = "T.INV.2T", i.T_TEST = "T.TEST", i.TREND = "TREND", i.TRIMMEAN = "TRIMMEAN", i.VAR_P = "VAR.P", i.VAR_S = "VAR.S", i.VARA = "VARA", i.VARPA = "VARPA", i.WEIBULL_DIST = "WEIBULL.DIST", i.Z_TEST = "Z.TEST", i))(v || {});
-class EA extends V {
+var B = /* @__PURE__ */ ((i) => (i.AVEDEV = "AVEDEV", i.AVERAGE = "AVERAGE", i.AVERAGE_WEIGHTED = "AVERAGE.WEIGHTED", i.AVERAGEA = "AVERAGEA", i.AVERAGEIF = "AVERAGEIF", i.AVERAGEIFS = "AVERAGEIFS", i.BETA_DIST = "BETA.DIST", i.BETA_INV = "BETA.INV", i.BINOM_DIST = "BINOM.DIST", i.BINOM_DIST_RANGE = "BINOM.DIST.RANGE", i.BINOM_INV = "BINOM.INV", i.CHISQ_DIST = "CHISQ.DIST", i.CHISQ_DIST_RT = "CHISQ.DIST.RT", i.CHISQ_INV = "CHISQ.INV", i.CHISQ_INV_RT = "CHISQ.INV.RT", i.CHISQ_TEST = "CHISQ.TEST", i.CONFIDENCE_NORM = "CONFIDENCE.NORM", i.CONFIDENCE_T = "CONFIDENCE.T", i.CORREL = "CORREL", i.COUNT = "COUNT", i.COUNTA = "COUNTA", i.COUNTBLANK = "COUNTBLANK", i.COUNTIF = "COUNTIF", i.COUNTIFS = "COUNTIFS", i.COVARIANCE_P = "COVARIANCE.P", i.COVARIANCE_S = "COVARIANCE.S", i.DEVSQ = "DEVSQ", i.EXPON_DIST = "EXPON.DIST", i.F_DIST = "F.DIST", i.F_DIST_RT = "F.DIST.RT", i.F_INV = "F.INV", i.F_INV_RT = "F.INV.RT", i.F_TEST = "F.TEST", i.FISHER = "FISHER", i.FISHERINV = "FISHERINV", i.FORECAST = "FORECAST", i.FORECAST_ETS = "FORECAST.ETS", i.FORECAST_ETS_CONFINT = "FORECAST.ETS.CONFINT", i.FORECAST_ETS_SEASONALITY = "FORECAST.ETS.SEASONALITY", i.FORECAST_ETS_STAT = "FORECAST.ETS.STAT", i.FORECAST_LINEAR = "FORECAST.LINEAR", i.FREQUENCY = "FREQUENCY", i.GAMMA = "GAMMA", i.GAMMA_DIST = "GAMMA.DIST", i.GAMMA_INV = "GAMMA.INV", i.GAMMALN = "GAMMALN", i.GAMMALN_PRECISE = "GAMMALN.PRECISE", i.GAUSS = "GAUSS", i.GEOMEAN = "GEOMEAN", i.GROWTH = "GROWTH", i.HARMEAN = "HARMEAN", i.HYPGEOM_DIST = "HYPGEOM.DIST", i.INTERCEPT = "INTERCEPT", i.KURT = "KURT", i.LARGE = "LARGE", i.LINEST = "LINEST", i.LOGEST = "LOGEST", i.LOGNORM_DIST = "LOGNORM.DIST", i.LOGNORM_INV = "LOGNORM.INV", i.MARGINOFERROR = "MARGINOFERROR", i.MAX = "MAX", i.MAXA = "MAXA", i.MAXIFS = "MAXIFS", i.MEDIAN = "MEDIAN", i.MIN = "MIN", i.MINA = "MINA", i.MINIFS = "MINIFS", i.MODE_MULT = "MODE.MULT", i.MODE_SNGL = "MODE.SNGL", i.NEGBINOM_DIST = "NEGBINOM.DIST", i.NORM_DIST = "NORM.DIST", i.NORM_INV = "NORM.INV", i.NORM_S_DIST = "NORM.S.DIST", i.NORM_S_INV = "NORM.S.INV", i.PEARSON = "PEARSON", i.PERCENTILE_EXC = "PERCENTILE.EXC", i.PERCENTILE_INC = "PERCENTILE.INC", i.PERCENTRANK_EXC = "PERCENTRANK.EXC", i.PERCENTRANK_INC = "PERCENTRANK.INC", i.PERMUT = "PERMUT", i.PERMUTATIONA = "PERMUTATIONA", i.PHI = "PHI", i.POISSON_DIST = "POISSON.DIST", i.PROB = "PROB", i.QUARTILE_EXC = "QUARTILE.EXC", i.QUARTILE_INC = "QUARTILE.INC", i.RANK_AVG = "RANK.AVG", i.RANK_EQ = "RANK.EQ", i.RSQ = "RSQ", i.SKEW = "SKEW", i.SKEW_P = "SKEW.P", i.SLOPE = "SLOPE", i.SMALL = "SMALL", i.STANDARDIZE = "STANDARDIZE", i.STDEV_P = "STDEV.P", i.STDEV_S = "STDEV.S", i.STDEVA = "STDEVA", i.STDEVPA = "STDEVPA", i.STEYX = "STEYX", i.T_DIST = "T.DIST", i.T_DIST_2T = "T.DIST.2T", i.T_DIST_RT = "T.DIST.RT", i.T_INV = "T.INV", i.T_INV_2T = "T.INV.2T", i.T_TEST = "T.TEST", i.TREND = "TREND", i.TRIMMEAN = "TRIMMEAN", i.VAR_P = "VAR.P", i.VAR_S = "VAR.S", i.VARA = "VARA", i.VARPA = "VARPA", i.WEIBULL_DIST = "WEIBULL.DIST", i.Z_TEST = "Z.TEST", i))(B || {});
+class LA extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -26415,17 +27153,17 @@ class EA extends V {
     return this._handleSingleObject(e);
   }
   _handleSingleObject(e) {
-    const { isError: t, errorObject: r, variants: n } = B(e);
+    const { isError: t, errorObject: r, variants: n } = I(e);
     if (t)
       return r;
     const [s] = n, o = +s.getValue();
     if (o === 0 || o < 0 && o % 1 === 0)
       return g.create(m.NUM);
-    const u = mn(o);
+    const u = dn(o);
     return Number.isNaN(u) || !Number.isFinite(u) ? g.create(m.NUM) : y.create(u);
   }
 }
-class Bi extends V {
+class Ki extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -26439,17 +27177,17 @@ class Bi extends V {
     return this._handleSingleObject(e);
   }
   _handleSingleObject(e) {
-    const { isError: t, errorObject: r, variants: n } = B(e);
+    const { isError: t, errorObject: r, variants: n } = I(e);
     if (t)
       return r;
     const [s] = n, o = +s.getValue();
     if (o <= 0)
       return g.create(m.NUM);
-    const u = ft(o);
+    const u = ht(o);
     return Math.abs(u) < 1e-15 ? y.create(0) : y.create(u);
   }
 }
-class bA extends V {
+class PA extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -26463,14 +27201,14 @@ class bA extends V {
     return this._handleSingleObject(e);
   }
   _handleSingleObject(e) {
-    const { isError: t, errorObject: r, variants: n } = B(e);
+    const { isError: t, errorObject: r, variants: n } = I(e);
     if (t)
       return r;
-    const [s] = n, o = +s.getValue(), u = Hr(o, 0, 1) - 0.5;
+    const [s] = n, o = +s.getValue(), u = Gr(o, 0, 1) - 0.5;
     return y.create(u);
   }
 }
-class yA extends V {
+class xA extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -26488,7 +27226,7 @@ class yA extends V {
           if (f != null && f.isNull() || f != null && f.isBoolean())
             return !0;
           const h = f.getValue();
-          if (!W(h))
+          if (!q(h))
             return !0;
           +h <= 0 && (n = !0), t *= +h, r++;
         }), c)
@@ -26504,7 +27242,7 @@ class yA extends V {
         if (u.isNull() || u.isBoolean())
           continue;
         const c = u.getValue();
-        if (!W(c))
+        if (!q(c))
           continue;
         +c <= 0 && (n = !0), t *= +c, r++;
       }
@@ -26515,17 +27253,17 @@ class yA extends V {
     return y.create(s);
   }
 }
-class RA extends V {
+class jA extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
     A(this, "maxParams", 4);
   }
   calculate(e, t, r, n) {
-    const { isError: s, errorObject: o } = ns(e, t, r);
+    const { isError: s, errorObject: o } = ss(e, t, r);
     if (s)
       return o;
-    const u = Et(e);
+    const u = bt(e);
     if (u instanceof g)
       return u;
     const c = this._getKnownXsValues(u, t);
@@ -26534,7 +27272,7 @@ class RA extends V {
     const l = this._getNewXsValues(c, r);
     if (l instanceof g)
       return l;
-    let f = n != null ? n : T.create(!0);
+    let f = n != null ? n : v.create(!0);
     if (f.isArray() && (f = f.get(0, 0)), f.isString() && (f = f.convertToNumberObjectValue()), f.isError())
       return f;
     const h = +f.getValue();
@@ -26544,32 +27282,32 @@ class RA extends V {
     return e.length === 1 && t.length > 1 || e[0].length === 1 && t[0].length > 1 ? e.length === 1 && t.length > 1 && (n ? t.length + 1 : t.length) > e[0].length || e[0].length === 1 && t[0].length > 1 && (n ? t[0].length + 1 : t[0].length) > e.length ? g.create(m.NA) : this._getResultByMultipleVariables(e, t, r, n) : this._getResultBySimpleVariables(e, t, r, n);
   }
   _getResultByMultipleVariables(e, t, r, n) {
-    const s = e.length === 1 && e[0].length > 1, o = is(e, t, r, n, !0);
+    const s = e.length === 1 && e[0].length > 1, o = os(e, t, r, n, !0);
     if (o instanceof g)
       return o;
     const { coefficients: u, newX: c } = o, l = u[0].length, f = u[0][l - 1];
     let h = [];
     for (let d = 0; d < c.length; d++) {
       h[d] = [];
-      let _ = f;
-      for (let C = l - 2; C >= 0; C--)
-        _ *= u[0][l - 2 - C] ** c[d][C];
-      h[d].push(_);
+      let C = f;
+      for (let _ = l - 2; _ >= 0; _--)
+        C *= u[0][l - 2 - _] ** c[d][_];
+      h[d].push(C);
     }
-    return s && (h = Ct(h)), q.createByArray(h);
+    return s && (h = _t(h)), W.createByArray(h);
   }
   _getResultBySimpleVariables(e, t, r, n) {
-    const s = e.flat(), o = t.flat(), { slope: u, intercept: c } = as(o, s, n, !0), l = r.map((f) => f.map((h) => c * u ** h));
-    return q.createByArray(l);
+    const s = e.flat(), o = t.flat(), { slope: u, intercept: c } = is(o, s, n, !0), l = r.map((f) => f.map((h) => c * u ** h));
+    return W.createByArray(l);
   }
   _getKnownXsValues(e, t) {
-    return !t || t.isNull() ? ss(e.length, e[0].length) : Et(t);
+    return !t || t.isNull() ? as(e.length, e[0].length) : bt(t);
   }
   _getNewXsValues(e, t) {
-    return !t || t.isNull() ? e : Et(t);
+    return !t || t.isNull() ? e : bt(t);
   }
 }
-class pA extends V {
+class UA extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -26587,7 +27325,7 @@ class pA extends V {
           if (f != null && f.isNull() || f != null && f.isBoolean())
             return !0;
           const h = f.getValue();
-          if (!W(h))
+          if (!q(h))
             return !0;
           +h <= 0 && (n = !0), t += 1 / +h, r++;
         }), c)
@@ -26603,7 +27341,7 @@ class pA extends V {
         if (u.isNull() || u.isBoolean())
           continue;
         const c = u.getValue();
-        if (!W(c))
+        if (!q(c))
           continue;
         +c <= 0 && (n = !0), t += 1 / +c, r++;
       }
@@ -26616,7 +27354,7 @@ class pA extends V {
     return y.create(s);
   }
 }
-class VA extends V {
+class vA extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 5);
@@ -26635,24 +27373,24 @@ class VA extends V {
       r.isArray() ? r.getColumnCount() : 1,
       n.isArray() ? n.getColumnCount() : 1,
       s.isArray() ? s.getColumnCount() : 1
-    ), c = O(o, u, e, g.create(m.NA)), l = O(o, u, t, g.create(m.NA)), f = O(o, u, r, g.create(m.NA)), h = O(o, u, n, g.create(m.NA)), d = O(o, u, s, g.create(m.NA)), _ = c.mapValue((C, E, b) => {
-      const R = l.get(E, b), p = f.get(E, b), N = h.get(E, b), M = d.get(E, b);
-      return C.isError() ? C : R.isError() ? R : p.isError() ? p : N.isError() ? N : M.isError() ? M : this._handleSingleObject(C, R, p, N, M);
+    ), c = O(o, u, e, g.create(m.NA)), l = O(o, u, t, g.create(m.NA)), f = O(o, u, r, g.create(m.NA)), h = O(o, u, n, g.create(m.NA)), d = O(o, u, s, g.create(m.NA)), C = c.mapValue((_, E, b) => {
+      const R = l.get(E, b), p = f.get(E, b), N = h.get(E, b), w = d.get(E, b);
+      return _.isError() ? _ : R.isError() ? R : p.isError() ? p : N.isError() ? N : w.isError() ? w : this._handleSingleObject(_, R, p, N, w);
     });
-    return o === 1 && u === 1 ? _.get(0, 0) : _;
+    return o === 1 && u === 1 ? C.get(0, 0) : C;
   }
   _handleSingleObject(e, t, r, n, s) {
-    const { isError: o, errorObject: u, variants: c } = B(e, t, r, n, s);
+    const { isError: o, errorObject: u, variants: c } = I(e, t, r, n, s);
     if (o)
       return u;
-    const [l, f, h, d, _] = c, C = Math.floor(+l.getValue()), E = Math.floor(+f.getValue()), b = Math.floor(+h.getValue()), R = Math.floor(+d.getValue()), p = +_.getValue();
-    if (C < 0 || C > E || C > b || C < E - R + b || E <= 0 || E > R || b <= 0 || b > R || R <= 0)
+    const [l, f, h, d, C] = c, _ = Math.floor(+l.getValue()), E = Math.floor(+f.getValue()), b = Math.floor(+h.getValue()), R = Math.floor(+d.getValue()), p = +C.getValue();
+    if (_ < 0 || _ > E || _ > b || _ < E - R + b || E <= 0 || E > R || b <= 0 || b > R || R <= 0)
       return g.create(m.NUM);
     let N;
-    return p ? N = Cm(C, E, b, R) : N = Fa(C, E, b, R), Number.isNaN(N) && (N = 0), y.create(N);
+    return p ? N = Pm(_, E, b, R) : N = qa(_, E, b, R), Number.isNaN(N) && (N = 0), y.create(N);
   }
 }
-class NA extends V {
+class TA extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 2);
@@ -26675,22 +27413,22 @@ class NA extends V {
       errorObject: f,
       array1Values: h,
       array2Values: d,
-      noCalculate: _
-    } = tt(
+      noCalculate: C
+    } = rt(
       e,
       t,
       r * n,
       n,
       o
     );
-    return l ? f : _ ? g.create(m.DIV_BY_ZERO) : this._getResult(h, d);
+    return l ? f : C ? g.create(m.DIV_BY_ZERO) : this._getResult(h, d);
   }
   _getResult(e, t) {
-    const r = Qo(0, e, t);
+    const r = nu(0, e, t);
     return Number.isFinite(r) ? y.create(r) : g.create(m.DIV_BY_ZERO);
   }
 }
-class OA extends V {
+class BA extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -26717,7 +27455,7 @@ class OA extends V {
           if (f.isNull() || f.isBoolean())
             continue;
           const h = f.getValue();
-          W(h) && (t.push(+h), r += +h);
+          q(h) && (t.push(+h), r += +h);
         }
     }
     return t.length <= 3 ? g.create(m.DIV_BY_ZERO) : this._getResult(t, r);
@@ -26737,7 +27475,7 @@ class OA extends V {
     return y.create(c);
   }
 }
-class MA extends V {
+class IA extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 2);
@@ -26754,7 +27492,7 @@ class MA extends V {
   _handleSingleObject(e, t) {
     if (e instanceof g)
       return e;
-    const { isError: r, errorObject: n, variants: s } = B(t);
+    const { isError: r, errorObject: n, variants: s } = I(t);
     if (r)
       return n;
     const [o] = s;
@@ -26771,78 +27509,78 @@ class MA extends V {
         if (u.isNull() || u.isBoolean() || u.isString())
           continue;
         const c = u.getValue();
-        W(c) && n.push(+c);
+        q(c) && n.push(+c);
       }
     return n.length === 0 ? g.create(m.NUM) : n.sort((s, o) => o - s);
   }
 }
-class wA extends V {
+class FA extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
     A(this, "maxParams", 4);
   }
   calculate(e, t, r, n) {
-    const { isError: s, errorObject: o } = ns(e, t);
+    const { isError: s, errorObject: o } = ss(e, t);
     if (s)
       return o;
-    const u = Et(e);
+    const u = bt(e);
     if (u instanceof g)
       return u;
     const c = this._getKnownXsValues(u, t);
     if (c instanceof g)
       return c;
-    let l = r != null ? r : T.create(!0);
+    let l = r != null ? r : v.create(!0);
     l.isArray() && (l = l.get(0, 0));
-    let f = n != null ? n : T.create(!1);
+    let f = n != null ? n : v.create(!1);
     f.isArray() && (f = f.get(0, 0));
-    const { isError: h, errorObject: d, variants: _ } = B(l, f);
+    const { isError: h, errorObject: d, variants: C } = I(l, f);
     if (h)
       return d;
-    const [C, E] = _;
-    return this._getResult(u, c, +C.getValue(), +E.getValue());
+    const [_, E] = C;
+    return this._getResult(u, c, +_.getValue(), +E.getValue());
   }
   _getResult(e, t, r, n) {
     return e.length === 1 && t.length > 1 || e[0].length === 1 && t[0].length > 1 ? e.length === 1 && t.length > 1 && (r ? t.length + 1 : t.length) > e[0].length || e[0].length === 1 && t[0].length > 1 && (r ? t[0].length + 1 : t[0].length) > e.length ? g.create(m.NA) : this._getResultByMultipleVariables(e, t, r, n) : this._getResultBySimpleVariables(e, t, r, n);
   }
   _getResultByMultipleVariables(e, t, r, n) {
-    const s = is(e, t, t, r, !1);
+    const s = os(e, t, t, r, !1);
     if (s instanceof g)
       return s;
     const { coefficients: o, X: u, XTXInverse: c } = s;
     let l = [];
     if (n) {
-      const f = e.flat(), h = f.length, d = r ? f.reduce((x, F) => x + F, 0) / h : 0, _ = c.length, C = h - _, E = o[0].length, b = new Array(E - 2).fill(m.NA), R = o[0][E - 1], p = [];
+      const f = e.flat(), h = f.length, d = r ? f.reduce((x, k) => x + k, 0) / h : 0, C = c.length, _ = h - C, E = o[0].length, b = new Array(E - 2).fill(m.NA), R = o[0][E - 1], p = [];
       for (let x = 0; x < u.length; x++) {
-        let F = R;
-        for (let Q = E - 2; Q >= 0; Q--)
-          F += o[0][E - 2 - Q] * u[x][Q];
-        p.push(F);
+        let k = R;
+        for (let G = E - 2; G >= 0; G--)
+          k += o[0][E - 2 - G] * u[x][G];
+        p.push(k);
       }
-      let N = 0, M = 0;
+      let N = 0, w = 0;
       for (let x = 0; x < h; x++)
-        N += (f[x] - d) ** 2, M += (f[x] - p[x]) ** 2;
-      const w = N - M, S = N === 0 ? 0 : w / N, D = [];
-      for (let x = _ - 1; x >= 0; x--) {
-        const F = C > 0 ? Math.sqrt(M / C * c[x][x]) : 0;
-        D.push(F);
+        N += (f[x] - d) ** 2, w += (f[x] - p[x]) ** 2;
+      const S = N - w, M = N === 0 ? 0 : S / N, D = [];
+      for (let x = C - 1; x >= 0; x--) {
+        const k = _ > 0 ? Math.sqrt(w / _ * c[x][x]) : 0;
+        D.push(k);
       }
       if (r) {
         const x = D.shift();
         D.push(x);
       } else
         D.push(m.NA);
-      const L = C > 0 ? Math.sqrt(M / C) : 0, U = C > 0 ? w / (E - 1) / (M / C) : m.NUM;
+      const L = _ > 0 ? Math.sqrt(w / _) : 0, T = _ > 0 ? S / (E - 1) / (w / _) : m.NUM;
       l = [
         o[0],
         // [mn, mn-1, ..., m1, b]
         [...D],
         // [sen, sen-1, ..., se1, seb]
-        [S, L, ...b],
+        [M, L, ...b],
         // [r2, sey]
-        [U, C, ...b],
+        [T, _, ...b],
         // [F, df]
-        [w, M, ...b]
+        [S, w, ...b]
         // [ssreg, ssresid]
       ];
     } else
@@ -26850,37 +27588,37 @@ class wA extends V {
         o[0]
         // [mn, mn-1, ..., m1, b]
       ];
-    return q.createByArray(l);
+    return W.createByArray(l);
   }
   _getResultBySimpleVariables(e, t, r, n) {
-    const s = e.flat(), o = t.flat(), { slope: u, intercept: c } = as(o, s, r, !1);
+    const s = e.flat(), o = t.flat(), { slope: u, intercept: c } = is(o, s, r, !1);
     if (Number.isNaN(u))
       return g.create(m.NA);
     let l = [];
     if (n) {
       const f = s.length;
-      let h = 0, d = 0, _ = f - 1;
+      let h = 0, d = 0, C = f - 1;
       if (r) {
         let D = 0, L = 0;
-        for (let U = 0; U < f; U++)
-          D += s[U], L += o[U];
-        h = D / f, d = L / f, _ = f - 2;
+        for (let T = 0; T < f; T++)
+          D += s[T], L += o[T];
+        h = D / f, d = L / f, C = f - 2;
       }
-      let C = 0, E = 0, b = 0;
+      let _ = 0, E = 0, b = 0;
       for (let D = 0; D < f; D++)
-        C += (s[D] - h) ** 2, E += (s[D] - (u * o[D] + c)) ** 2, b += (o[D] - d) ** 2;
-      const R = C - E, p = R === C ? 1 : R / C;
-      let N = 0, M = 0, w = 0;
-      _ > 0 && (b > 0 && (N = Math.sqrt(E / _ / b), M = Math.sqrt(E / _ * (1 / f + d ** 2 / b))), w = Math.sqrt(E / _));
-      const S = _ > 0 ? R / 1 / (E / _) : m.NUM;
-      r || (M = m.NA), l = [
+        _ += (s[D] - h) ** 2, E += (s[D] - (u * o[D] + c)) ** 2, b += (o[D] - d) ** 2;
+      const R = _ - E, p = R === _ ? 1 : R / _;
+      let N = 0, w = 0, S = 0;
+      C > 0 && (b > 0 && (N = Math.sqrt(E / C / b), w = Math.sqrt(E / C * (1 / f + d ** 2 / b))), S = Math.sqrt(E / C));
+      const M = C > 0 ? R / 1 / (E / C) : m.NUM;
+      r || (w = m.NA), l = [
         [u, c],
         // [m, b]
-        [N, M],
+        [N, w],
         // [se, seb]
-        [p, w],
+        [p, S],
         // [r2, sey]
-        [S, _],
+        [M, C],
         // [F, df]
         [R, E]
         // [ssreg, ssresid]
@@ -26890,81 +27628,81 @@ class wA extends V {
         [u, c]
         // [m, b]
       ];
-    return q.createByArray(l);
+    return W.createByArray(l);
   }
   _getKnownXsValues(e, t) {
-    return !t || t.isNull() ? ss(e.length, e[0].length) : Et(t);
+    return !t || t.isNull() ? as(e.length, e[0].length) : bt(t);
   }
 }
-class SA extends V {
+class kA extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
     A(this, "maxParams", 4);
   }
   calculate(e, t, r, n) {
-    const { isError: s, errorObject: o } = ns(e, t);
+    const { isError: s, errorObject: o } = ss(e, t);
     if (s)
       return o;
-    const u = Et(e);
+    const u = bt(e);
     if (u instanceof g)
       return u;
     const c = this._getKnownXsValues(u, t);
     if (c instanceof g)
       return c;
-    let l = r != null ? r : T.create(!0);
+    let l = r != null ? r : v.create(!0);
     l.isArray() && (l = l.get(0, 0));
-    let f = n != null ? n : T.create(!1);
+    let f = n != null ? n : v.create(!1);
     f.isArray() && (f = f.get(0, 0));
-    const { isError: h, errorObject: d, variants: _ } = B(l, f);
+    const { isError: h, errorObject: d, variants: C } = I(l, f);
     if (h)
       return d;
-    const [C, E] = _;
-    return this._getResult(u, c, +C.getValue(), +E.getValue());
+    const [_, E] = C;
+    return this._getResult(u, c, +_.getValue(), +E.getValue());
   }
   _getResult(e, t, r, n) {
     return e.length === 1 && t.length > 1 || e[0].length === 1 && t[0].length > 1 ? e.length === 1 && t.length > 1 && (r ? t.length + 1 : t.length) > e[0].length || e[0].length === 1 && t[0].length > 1 && (r ? t[0].length + 1 : t[0].length) > e.length ? g.create(m.NA) : this._getResultByMultipleVariables(e, t, r, n) : this._getResultBySimpleVariables(e, t, r, n);
   }
   // eslint-disable-next-line max-lines-per-function
   _getResultByMultipleVariables(e, t, r, n) {
-    const s = is(e, t, t, r, !0);
+    const s = os(e, t, t, r, !0);
     if (s instanceof g)
       return s;
     const { coefficients: o, Y: u, X: c, XTXInverse: l } = s;
     let f = [];
     if (n) {
-      const h = u.flat(), d = h.length, _ = r ? h.reduce((F, Q) => F + Q, 0) / d : 0, C = l.length, E = d - C, b = o[0].length, R = new Array(b - 2).fill(m.NA), p = o[0][b - 1], N = [];
-      for (let F = 0; F < c.length; F++) {
-        let Q = p;
+      const h = u.flat(), d = h.length, C = r ? h.reduce((k, G) => k + G, 0) / d : 0, _ = l.length, E = d - _, b = o[0].length, R = new Array(b - 2).fill(m.NA), p = o[0][b - 1], N = [];
+      for (let k = 0; k < c.length; k++) {
+        let G = p;
         for (let ne = b - 2; ne >= 0; ne--)
-          Q *= o[0][b - 2 - ne] ** c[F][ne];
-        N.push(Math.log(Q));
+          G *= o[0][b - 2 - ne] ** c[k][ne];
+        N.push(Math.log(G));
       }
-      let M = 0, w = 0;
-      for (let F = 0; F < d; F++)
-        M += (h[F] - _) ** 2, !(!r && !Number.isFinite(N[F])) && (w += (h[F] - N[F]) ** 2);
-      Number.isFinite(w) || (w = 0);
-      const S = M - w, D = M === 0 ? 0 : S / M, L = [];
-      for (let F = C - 1; F >= 0; F--) {
-        const Q = E > 0 ? Math.sqrt(w / E * l[F][F]) : 0;
-        L.push(Q);
+      let w = 0, S = 0;
+      for (let k = 0; k < d; k++)
+        w += (h[k] - C) ** 2, !(!r && !Number.isFinite(N[k])) && (S += (h[k] - N[k]) ** 2);
+      Number.isFinite(S) || (S = 0);
+      const M = w - S, D = w === 0 ? 0 : M / w, L = [];
+      for (let k = _ - 1; k >= 0; k--) {
+        const G = E > 0 ? Math.sqrt(S / E * l[k][k]) : 0;
+        L.push(G);
       }
       if (r) {
-        const F = L.shift();
-        L.push(F);
+        const k = L.shift();
+        L.push(k);
       } else
         L.push(m.NA);
-      const U = E > 0 ? Math.sqrt(w / E) : 0, x = E > 0 ? S / (b - 1) / (w / E) : m.NUM;
+      const T = E > 0 ? Math.sqrt(S / E) : 0, x = E > 0 ? M / (b - 1) / (S / E) : m.NUM;
       f = [
         o[0],
         // [mn, mn-1, ..., m1, b]
         [...L],
         // [sen, sen-1, ..., se1, seb]
-        [D, U, ...R],
+        [D, T, ...R],
         // [r2, sey]
         [x, E, ...R],
         // [F, df]
-        [S, w, ...R]
+        [M, S, ...R]
         // [ssreg, ssresid]
       ];
     } else
@@ -26972,35 +27710,35 @@ class SA extends V {
         o[0]
         // [mn, mn-1, ..., m1, b]
       ];
-    return q.createByArray(f);
+    return W.createByArray(f);
   }
   _getResultBySimpleVariables(e, t, r, n) {
-    const s = e.flat(), o = t.flat(), { slope: u, intercept: c, Y: l } = as(o, s, r, !0);
+    const s = e.flat(), o = t.flat(), { slope: u, intercept: c, Y: l } = is(o, s, r, !0);
     if (Number.isNaN(u))
       return g.create(m.NA);
     let f = [];
     if (n) {
       const h = l.length;
-      let d = 0, _ = 0, C = h - 1;
+      let d = 0, C = 0, _ = h - 1;
       if (r) {
-        let L = 0, U = 0;
+        let L = 0, T = 0;
         for (let x = 0; x < h; x++)
-          L += l[x], U += o[x];
-        d = L / h, _ = U / h, C = h - 2;
+          L += l[x], T += o[x];
+        d = L / h, C = T / h, _ = h - 2;
       }
       let E = 0, b = 0, R = 0;
       for (let L = 0; L < h; L++)
-        E += (l[L] - d) ** 2, b += (l[L] - Math.log(c * u ** o[L])) ** 2, R += (o[L] - _) ** 2;
+        E += (l[L] - d) ** 2, b += (l[L] - Math.log(c * u ** o[L])) ** 2, R += (o[L] - C) ** 2;
       const p = E - b, N = E === 0 ? 0 : p / E;
-      let M = 0, w = 0, S = 0, D = 0;
-      C > 0 && (R > 0 && (M = Math.sqrt(b / C / R), w = Math.sqrt(b / C * (1 / h + _ ** 2 / R))), S = Math.sqrt(b / C), D = p / 1 / (b / C)), r || (w = m.NA), f = [
+      let w = 0, S = 0, M = 0, D = 0;
+      _ > 0 && (R > 0 && (w = Math.sqrt(b / _ / R), S = Math.sqrt(b / _ * (1 / h + C ** 2 / R))), M = Math.sqrt(b / _), D = p / 1 / (b / _)), r || (S = m.NA), f = [
         [u, c],
         // [m, b]
-        [M, w],
+        [w, S],
         // [se, seb]
-        [N, S],
+        [N, M],
         // [r2, sey]
-        [D, C],
+        [D, _],
         // [F, df]
         [p, b]
         // [ssreg, ssresid]
@@ -27010,13 +27748,13 @@ class SA extends V {
         [u, c]
         // [m, b]
       ];
-    return q.createByArray(f);
+    return W.createByArray(f);
   }
   _getKnownXsValues(e, t) {
-    return !t || t.isNull() ? ss(e.length, e[0].length) : Et(t);
+    return !t || t.isNull() ? as(e.length, e[0].length) : bt(t);
   }
 }
-class DA extends V {
+class $A extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 4);
@@ -27033,24 +27771,24 @@ class DA extends V {
       t.isArray() ? t.getColumnCount() : 1,
       r.isArray() ? r.getColumnCount() : 1,
       n.isArray() ? n.getColumnCount() : 1
-    ), u = O(s, o, e, g.create(m.NA)), c = O(s, o, t, g.create(m.NA)), l = O(s, o, r, g.create(m.NA)), f = O(s, o, n, g.create(m.NA)), h = u.mapValue((d, _, C) => {
-      const E = c.get(_, C), b = l.get(_, C), R = f.get(_, C);
+    ), u = O(s, o, e, g.create(m.NA)), c = O(s, o, t, g.create(m.NA)), l = O(s, o, r, g.create(m.NA)), f = O(s, o, n, g.create(m.NA)), h = u.mapValue((d, C, _) => {
+      const E = c.get(C, _), b = l.get(C, _), R = f.get(C, _);
       return d.isError() ? d : E.isError() ? E : b.isError() ? b : R.isError() ? R : this._handleSingleObject(d, E, b, R);
     });
     return s === 1 && o === 1 ? h.get(0, 0) : h;
   }
   _handleSingleObject(e, t, r, n) {
-    const { isError: s, errorObject: o, variants: u } = B(e, t, r, n);
+    const { isError: s, errorObject: o, variants: u } = I(e, t, r, n);
     if (s)
       return o;
-    const [c, l, f, h] = u, d = +c.getValue(), _ = +l.getValue(), C = +f.getValue(), E = +h.getValue();
-    if (d <= 0 || C <= 0)
+    const [c, l, f, h] = u, d = +c.getValue(), C = +l.getValue(), _ = +f.getValue(), E = +h.getValue();
+    if (d <= 0 || _ <= 0)
       return g.create(m.NUM);
     let b;
-    return E ? b = qo(d, _, C) : b = _m(d, _, C), y.create(b);
+    return E ? b = au(d, C, _) : b = xm(d, C, _), y.create(b);
   }
 }
-class LA extends V {
+class YA extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 2);
@@ -27060,10 +27798,10 @@ class LA extends V {
     const r = this._getRangeValues(e);
     if (r instanceof g)
       return r;
-    const n = zt(t);
+    const n = Jt(t);
     if (n.isError())
       return n;
-    const { isError: s, errorObject: o, variants: u } = B(n);
+    const { isError: s, errorObject: o, variants: u } = I(n);
     if (s)
       return o;
     const [c] = u, l = +c.getValue();
@@ -27071,10 +27809,10 @@ class LA extends V {
       return g.create(m.NUM);
     if (r.length < 2)
       return g.create(m.DIV_BY_ZERO);
-    const f = 1 - l, h = r.length, d = r.reduce((b, R) => b + R, 0) / h, _ = r.reduce((b, R) => b + (R - d) ** 2, 0) / (h - 1), C = Math.sqrt(_);
-    if (C <= 0)
+    const f = 1 - l, h = r.length, d = r.reduce((b, R) => b + R, 0) / h, C = r.reduce((b, R) => b + (R - d) ** 2, 0) / (h - 1), _ = Math.sqrt(C);
+    if (_ <= 0)
       return g.create(m.NUM);
-    const E = Math.abs(rs(f / 2, h - 1) * C / Math.sqrt(h));
+    const E = Math.abs(ns(f / 2, h - 1) * _ / Math.sqrt(h));
     return y.create(E);
   }
   _getRangeValues(e) {
@@ -27089,7 +27827,7 @@ class LA extends V {
     return t;
   }
 }
-class PA extends V {
+class HA extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -27113,7 +27851,7 @@ class PA extends V {
     return r.getValue() && (n = t), n;
   }
 }
-class xA extends V {
+class QA extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -27144,7 +27882,7 @@ class xA extends V {
     return r.getValue() && (n = t), n;
   }
 }
-class jA extends V {
+class GA extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 3);
@@ -27160,20 +27898,20 @@ class jA extends V {
       criteriaMaxColumnLength: u,
       targetRange: c,
       variants: l
-    } = kr(t, e);
+    } = Hr(t, e);
     if (r)
       return n;
     if (s)
       return o === 1 && u === 1 ? g.create(m.VALUE) : O(o, u, g.create(m.VALUE));
-    const f = $r(l, o, u, !0);
+    const f = sr(l, o, u, !0);
     return this._aggregateResults(c, f);
   }
   _aggregateResults(e, t) {
     const r = t.map((n) => n.map((s) => {
       const o = e.pick(s);
-      return o.getColumnCount() === 0 ? q.create("0") : o.max();
+      return o.getColumnCount() === 0 ? W.create("0") : o.max();
     }));
-    return r.length === 1 && r[0].length === 1 ? r[0][0] : q.create({
+    return r.length === 1 && r[0].length === 1 ? r[0][0] : W.create({
       calculateValueList: r,
       rowCount: r.length,
       columnCount: r[0].length,
@@ -27184,7 +27922,7 @@ class jA extends V {
     });
   }
 }
-class UA extends V {
+class WA extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -27202,7 +27940,7 @@ class UA extends V {
           if (u != null && u.isNull() || u != null && u.isBoolean())
             return !0;
           const c = u.getValue();
-          if (!W(c))
+          if (!q(c))
             return !0;
           t.push(+c);
         }), s)
@@ -27218,7 +27956,7 @@ class UA extends V {
             return o;
         }
         const s = n.getValue();
-        if (!W(s))
+        if (!q(s))
           continue;
         t.push(+s);
       }
@@ -27236,7 +27974,7 @@ class UA extends V {
     return y.create(r);
   }
 }
-class vA extends V {
+class qA extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -27260,7 +27998,7 @@ class vA extends V {
     return r.getValue() && (n = t), n;
   }
 }
-class TA extends V {
+class KA extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -27291,7 +28029,7 @@ class TA extends V {
     return r.getValue() && (n = t), n;
   }
 }
-class BA extends V {
+class XA extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 3);
@@ -27307,20 +28045,20 @@ class BA extends V {
       criteriaMaxColumnLength: u,
       targetRange: c,
       variants: l
-    } = kr(t, e);
+    } = Hr(t, e);
     if (r)
       return n;
     if (s)
       return o === 1 && u === 1 ? g.create(m.VALUE) : O(o, u, g.create(m.VALUE));
-    const f = $r(l, o, u, !0);
+    const f = sr(l, o, u, !0);
     return this._aggregateResults(c, f);
   }
   _aggregateResults(e, t) {
     const r = t.map((n) => n.map((s) => {
       const o = e.pick(s);
-      return o.getColumnCount() === 0 ? q.create("0") : o.min();
+      return o.getColumnCount() === 0 ? W.create("0") : o.min();
     }));
-    return r.length === 1 && r[0].length === 1 ? r[0][0] : q.create({
+    return r.length === 1 && r[0].length === 1 ? r[0][0] : W.create({
       calculateValueList: r,
       rowCount: r.length,
       columnCount: r[0].length,
@@ -27331,7 +28069,7 @@ class BA extends V {
     });
   }
 }
-class IA extends V {
+class ZA extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -27358,17 +28096,17 @@ class IA extends V {
           if (h.isNull() || h.isBoolean() || h.isString())
             continue;
           const d = h.getValue();
-          W(d) && (t[+d] ? (t[+d].count++, t[+d].count > n && (n = t[+d].count)) : t[+d] = { count: 1, order: r++ });
+          q(d) && (t[+d] ? (t[+d].count++, t[+d].count > n && (n = t[+d].count)) : t[+d] = { count: 1, order: r++ });
         }
     }
     return r === 0 || n === 1 ? new g(m.NA) : this._getResult(t, n);
   }
   _getResult(e, t) {
     const r = Object.entries(e).filter(([n, { count: s }]) => s === t).sort((n, s) => n[1].order - s[1].order).map(([n]) => +n);
-    return r.length === 1 ? y.create(r[0]) : q.createByArray(r.map((n) => [n]));
+    return r.length === 1 ? y.create(r[0]) : W.createByArray(r.map((n) => [n]));
   }
 }
-class FA extends V {
+class zA extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 4);
@@ -27385,24 +28123,24 @@ class FA extends V {
       t.isArray() ? t.getColumnCount() : 1,
       r.isArray() ? r.getColumnCount() : 1,
       n.isArray() ? n.getColumnCount() : 1
-    ), u = O(s, o, e, g.create(m.NA)), c = O(s, o, t, g.create(m.NA)), l = O(s, o, r, g.create(m.NA)), f = O(s, o, n, g.create(m.NA)), h = u.mapValue((d, _, C) => {
-      const E = c.get(_, C), b = l.get(_, C), R = f.get(_, C);
+    ), u = O(s, o, e, g.create(m.NA)), c = O(s, o, t, g.create(m.NA)), l = O(s, o, r, g.create(m.NA)), f = O(s, o, n, g.create(m.NA)), h = u.mapValue((d, C, _) => {
+      const E = c.get(C, _), b = l.get(C, _), R = f.get(C, _);
       return d.isError() ? d : E.isError() ? E : b.isError() ? b : R.isError() ? R : this._handleSingleObject(d, E, b, R);
     });
     return s === 1 && o === 1 ? h.get(0, 0) : h;
   }
   _handleSingleObject(e, t, r, n) {
-    const { isError: s, errorObject: o, variants: u } = B(e, t, r, n);
+    const { isError: s, errorObject: o, variants: u } = I(e, t, r, n);
     if (s)
       return o;
-    const [c, l, f, h] = u, d = Math.floor(+c.getValue()), _ = Math.floor(+l.getValue()), C = +f.getValue(), E = +h.getValue();
-    if (d < 0 || _ < 1 || C <= 0 || C >= 1)
+    const [c, l, f, h] = u, d = Math.floor(+c.getValue()), C = Math.floor(+l.getValue()), _ = +f.getValue(), E = +h.getValue();
+    if (d < 0 || C < 1 || _ <= 0 || _ >= 1)
       return g.create(m.NUM);
     let b;
-    return E ? b = Em(d, _, C) : b = ka(d, _, C), y.create(b);
+    return E ? b = Um(d, C, _) : b = Ka(d, C, _), y.create(b);
   }
 }
-class kA extends V {
+class JA extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 2);
@@ -27422,15 +28160,15 @@ class kA extends V {
     return r === 1 && n === 1 ? u.get(0, 0) : u;
   }
   _handleSingleObject(e, t) {
-    const { isError: r, errorObject: n, variants: s } = B(e, t);
+    const { isError: r, errorObject: n, variants: s } = I(e, t);
     if (r)
       return n;
     const [o, u] = s, c = +o.getValue(), l = +u.getValue();
     let f;
-    return l ? f = Hr(c, 0, 1) : f = Ko(c, 0, 1), y.create(f);
+    return l ? f = Gr(c, 0, 1) : f = iu(c, 0, 1), y.create(f);
   }
 }
-class $A extends V {
+class eE extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 2);
@@ -27453,15 +28191,15 @@ class $A extends V {
       errorObject: f,
       array1Values: h,
       array2Values: d,
-      noCalculate: _
-    } = tt(
+      noCalculate: C
+    } = rt(
       e,
       t,
       r * n,
       n,
       o
     );
-    return l ? f : _ ? g.create(m.DIV_BY_ZERO) : this._getResult(h, d);
+    return l ? f : C ? g.create(m.DIV_BY_ZERO) : this._getResult(h, d);
   }
   _getResult(e, t) {
     const r = e.length;
@@ -27478,7 +28216,7 @@ class $A extends V {
     return y.create(h);
   }
 }
-class YA extends V {
+class tE extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 2);
@@ -27495,7 +28233,7 @@ class YA extends V {
   _handleSingleObject(e, t) {
     if (e instanceof g)
       return e;
-    const { isError: r, errorObject: n, variants: s } = B(t);
+    const { isError: r, errorObject: n, variants: s } = I(t);
     if (r)
       return n;
     const [o] = s, u = +o.getValue(), c = e.length;
@@ -27517,12 +28255,12 @@ class YA extends V {
         if (u.isNull() || u.isBoolean() || u.isString())
           continue;
         const c = u.getValue();
-        W(c) && n.push(+c);
+        q(c) && n.push(+c);
       }
     return n.length === 0 ? g.create(m.NUM) : n.sort((s, o) => s - o);
   }
 }
-class HA extends V {
+class rE extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 2);
@@ -27538,16 +28276,16 @@ class HA extends V {
     ), u = Math.max(
       t.isArray() ? t.getColumnCount() : 1,
       s.isArray() ? s.getColumnCount() : 1
-    ), c = O(o, u, t, g.create(m.NA)), l = O(o, u, s, g.create(m.NA)), f = c.mapValue((h, d, _) => {
-      const C = l.get(d, _);
-      return h.isError() ? h : C.isError() ? C : this._handleSingleObject(n, h, C);
+    ), c = O(o, u, t, g.create(m.NA)), l = O(o, u, s, g.create(m.NA)), f = c.mapValue((h, d, C) => {
+      const _ = l.get(d, C);
+      return h.isError() ? h : _.isError() ? _ : this._handleSingleObject(n, h, _);
     });
     return o === 1 && u === 1 ? f.get(0, 0) : f;
   }
   _handleSingleObject(e, t, r) {
     if (e instanceof g)
       return e;
-    const { isError: n, errorObject: s, variants: o } = B(t, r);
+    const { isError: n, errorObject: s, variants: o } = I(t, r);
     if (n)
       return s;
     const [u, c] = o, l = +u.getValue(), f = Math.floor(+c.getValue()), h = e.length;
@@ -27555,10 +28293,10 @@ class HA extends V {
       return g.create(m.NA);
     if (h === 1)
       return l === e[0] ? y.create(1) : g.create(m.NA);
-    let d = 0, _ = !1, C = 0;
-    for (; !_ && C < h; )
-      l === e[C] ? (d = (C + 1) / (h + 1), _ = !0) : l > e[C] && C + 1 < h && l < e[C + 1] && (d = (C + 1 + (l - e[C]) / (e[C + 1] - e[C])) / (h + 1), _ = !0), C++;
-    return _ ? f < 1 ? g.create(m.NUM) : (d = Ke(d, f), y.create(d)) : g.create(m.NA);
+    let d = 0, C = !1, _ = 0;
+    for (; !C && _ < h; )
+      l === e[_] ? (d = (_ + 1) / (h + 1), C = !0) : l > e[_] && _ + 1 < h && l < e[_ + 1] && (d = (_ + 1 + (l - e[_]) / (e[_ + 1] - e[_])) / (h + 1), C = !0), _++;
+    return C ? f < 1 ? g.create(m.NUM) : (d = Xe(d, f), y.create(d)) : g.create(m.NA);
   }
   _getValues(e) {
     const t = e.isArray() ? e.getRowCount() : 1, r = e.isArray() ? e.getColumnCount() : 1, n = [];
@@ -27570,12 +28308,12 @@ class HA extends V {
         if (u.isNull() || u.isBoolean())
           continue;
         const c = u.getValue();
-        W(c) && n.push(+c);
+        q(c) && n.push(+c);
       }
     return n.sort((s, o) => s - o);
   }
 }
-class GA extends V {
+class nE extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 2);
@@ -27594,21 +28332,21 @@ class GA extends V {
         return c;
       if (h.isError())
         return h;
-      const { isError: d, errorObject: _, variants: C } = B(c, h);
+      const { isError: d, errorObject: C, variants: _ } = I(c, h);
       if (d)
-        return _;
-      const [E, b] = C, R = Math.floor(+E.getValue()), p = Math.floor(+b.getValue());
+        return C;
+      const [E, b] = _, R = Math.floor(+E.getValue()), p = Math.floor(+b.getValue());
       if (R < 0 || R >= 2147483647 || p < 0 || R < p)
         return g.create(m.NUM);
       let N = 1;
-      for (let M = R - p + 1; M <= R; M++)
-        N *= M;
+      for (let w = R - p + 1; w <= R; w++)
+        N *= w;
       return Number.isFinite(N) ? y.create(N) : g.create(m.NUM);
     });
     return r === 1 && n === 1 ? u.get(0, 0) : u;
   }
 }
-class QA extends V {
+class sE extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 2);
@@ -27627,10 +28365,10 @@ class QA extends V {
         return c;
       if (h.isError())
         return h;
-      const { isError: d, errorObject: _, variants: C } = B(c, h);
+      const { isError: d, errorObject: C, variants: _ } = I(c, h);
       if (d)
-        return _;
-      const [E, b] = C, R = Math.floor(+E.getValue()), p = Math.floor(+b.getValue());
+        return C;
+      const [E, b] = _, R = Math.floor(+E.getValue()), p = Math.floor(+b.getValue());
       if (R < 0 || R >= 2147483647 || p < 0)
         return g.create(m.NUM);
       if (R === 0)
@@ -27641,7 +28379,7 @@ class QA extends V {
     return r === 1 && n === 1 ? u.get(0, 0) : u;
   }
 }
-class WA extends V {
+class aE extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -27655,14 +28393,14 @@ class WA extends V {
     return this._handleSingleObject(e);
   }
   _handleSingleObject(e) {
-    const { isError: t, errorObject: r, variants: n } = B(e);
+    const { isError: t, errorObject: r, variants: n } = I(e);
     if (t)
       return r;
     const [s] = n, o = +s.getValue(), u = Math.exp(-0.5 * o * o) / Math.sqrt(2 * Math.PI);
     return y.create(u);
   }
 }
-class qA extends V {
+class iE extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 3);
@@ -27678,22 +28416,22 @@ class qA extends V {
     ), h = Math.max(
       r.isArray() ? r.getColumnCount() : 1,
       l.isArray() ? l.getColumnCount() : 1
-    ), d = O(f, h, r, g.create(m.NA)), _ = O(f, h, l, g.create(m.NA)), C = d.mapValue((E, b, R) => {
-      const p = _.get(b, R);
+    ), d = O(f, h, r, g.create(m.NA)), C = O(f, h, l, g.create(m.NA)), _ = d.mapValue((E, b, R) => {
+      const p = C.get(b, R);
       return e.isError() ? e : t.isError() ? t : E.isError() ? E : p.isError() ? p : s ? o : this._handleSingleObject(u, c, E, p);
     });
-    return f === 1 && h === 1 ? C.get(0, 0) : C;
+    return f === 1 && h === 1 ? _.get(0, 0) : _;
   }
   _handleSingleObject(e, t, r, n) {
-    const { isError: s, errorObject: o, variants: u } = B(r, n);
+    const { isError: s, errorObject: o, variants: u } = I(r, n);
     if (s)
       return o;
     const [c, l] = u, f = +c.getValue(), h = +l.getValue();
-    if (t.reduce((_, C) => _ + C, 0) !== 1)
+    if (t.reduce((C, _) => C + _, 0) !== 1)
       return g.create(m.NUM);
     let d = 0;
-    for (let _ = 0; _ < e.length; _++)
-      e[_] >= f && e[_] <= h && (d += t[_]);
+    for (let C = 0; C < e.length; C++)
+      e[C] >= f && e[C] <= h && (d += t[C]);
     return y.create(d);
   }
   // eslint-disable-next-line
@@ -27734,8 +28472,8 @@ class qA extends V {
       errorObject: f,
       array1Values: h,
       array2Values: d,
-      noCalculate: _
-    } = tt(
+      noCalculate: C
+    } = rt(
       e,
       t,
       r * n,
@@ -27747,7 +28485,7 @@ class qA extends V {
       errorObject: f,
       xRangeValues: [],
       probRangeValues: []
-    } : _ ? {
+    } : C ? {
       isError: !0,
       errorObject: g.create(m.DIV_BY_ZERO),
       xRangeValues: [],
@@ -27760,7 +28498,7 @@ class qA extends V {
     };
   }
 }
-class KA extends V {
+class oE extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 2);
@@ -27777,7 +28515,7 @@ class KA extends V {
   _handleSingleObject(e, t) {
     if (e instanceof g)
       return e;
-    const { isError: r, errorObject: n, variants: s } = B(t);
+    const { isError: r, errorObject: n, variants: s } = I(t);
     if (r)
       return n;
     const [o] = s, u = Math.floor(+o.getValue());
@@ -27789,8 +28527,8 @@ class KA extends V {
     const f = c * (l + 1) - 1, h = Math.floor(f), d = f - h;
     if (d === 0)
       return y.create(e[h]);
-    const _ = e[h] + d * (e[h + 1] - e[h]);
-    return y.create(_);
+    const C = e[h] + d * (e[h + 1] - e[h]);
+    return y.create(C);
   }
   _getValues(e) {
     const t = e.isArray() ? e.getRowCount() : 1, r = e.isArray() ? e.getColumnCount() : 1, n = [];
@@ -27802,12 +28540,12 @@ class KA extends V {
         if (u.isNull() || u.isBoolean())
           continue;
         const c = u.getValue();
-        W(c) && n.push(+c);
+        q(c) && n.push(+c);
       }
     return n.length === 0 ? g.create(m.NUM) : n.sort((s, o) => s - o);
   }
 }
-class XA extends V {
+class uE extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 2);
@@ -27826,7 +28564,7 @@ class XA extends V {
     ), f = Math.max(
       n.isArray() ? n.getColumnCount() : 1,
       c.isArray() ? c.getColumnCount() : 1
-    ), h = O(l, f, n, g.create(m.NA)), d = O(l, f, c, g.create(m.NA)), _ = h.map((C, E, b) => {
+    ), h = O(l, f, n, g.create(m.NA)), d = O(l, f, c, g.create(m.NA)), C = h.map((_, E, b) => {
       const R = d.get(E, b);
       if (!e.isReferenceObject() && e.isNull())
         return g.create(m.NA);
@@ -27834,10 +28572,10 @@ class XA extends V {
         return o;
       if (R.isError())
         return R;
-      const p = +C.getValue(), N = +R.getValue();
+      const p = +_.getValue(), N = +R.getValue();
       return Number.isNaN(p) || Number.isNaN(N) ? g.create(m.VALUE) : this._getResult(p, N, u);
     });
-    return l === 1 && f === 1 ? _.get(0, 0) : _;
+    return l === 1 && f === 1 ? C.get(0, 0) : C;
   }
   _getResult(e, t, r) {
     const n = r.sort((c, l) => t ? c - l : l - c);
@@ -27876,7 +28614,7 @@ class XA extends V {
     };
   }
 }
-class ZA extends V {
+class cE extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 2);
@@ -27895,7 +28633,7 @@ class ZA extends V {
     ), f = Math.max(
       n.isArray() ? n.getColumnCount() : 1,
       c.isArray() ? c.getColumnCount() : 1
-    ), h = O(l, f, n, g.create(m.NA)), d = O(l, f, c, g.create(m.NA)), _ = h.map((C, E, b) => {
+    ), h = O(l, f, n, g.create(m.NA)), d = O(l, f, c, g.create(m.NA)), C = h.map((_, E, b) => {
       const R = d.get(E, b);
       if (!e.isReferenceObject() && e.isNull())
         return g.create(m.NA);
@@ -27903,13 +28641,13 @@ class ZA extends V {
         return o;
       if (R.isError())
         return R;
-      const p = +C.getValue(), N = +R.getValue();
+      const p = +_.getValue(), N = +R.getValue();
       if (Number.isNaN(p) || Number.isNaN(N))
         return g.create(m.VALUE);
-      const w = u.sort((S, D) => N ? S - D : D - S).indexOf(p);
-      return w === -1 ? g.create(m.NA) : y.create(w + 1);
+      const S = u.sort((M, D) => N ? M - D : D - M).indexOf(p);
+      return S === -1 ? g.create(m.NA) : y.create(S + 1);
     });
-    return l === 1 && f === 1 ? _.get(0, 0) : _;
+    return l === 1 && f === 1 ? C.get(0, 0) : C;
   }
   _checkRefReferenceObject(e) {
     let t = !1, r = g.create(m.NA);
@@ -27935,7 +28673,7 @@ class ZA extends V {
     };
   }
 }
-class zA extends V {
+class lE extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 2);
@@ -27958,15 +28696,15 @@ class zA extends V {
       errorObject: f,
       array1Values: h,
       array2Values: d,
-      noCalculate: _
-    } = tt(
+      noCalculate: C
+    } = rt(
       e,
       t,
       r * n,
       n,
       o
     );
-    return l ? f : _ ? g.create(m.DIV_BY_ZERO) : this._getResult(h, d);
+    return l ? f : C ? g.create(m.DIV_BY_ZERO) : this._getResult(h, d);
   }
   _getResult(e, t) {
     if (e.length === 0)
@@ -27985,7 +28723,7 @@ class zA extends V {
     return y.create(h);
   }
 }
-class JA extends V {
+class fE extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -28012,7 +28750,7 @@ class JA extends V {
           if (f.isNull() || f.isBoolean())
             continue;
           const h = f.getValue();
-          W(h) && (t.push(+h), r += +h);
+          q(h) && (t.push(+h), r += +h);
         }
     }
     return t.length <= 2 ? g.create(m.DIV_BY_ZERO) : this._getResult(t, r);
@@ -28032,7 +28770,7 @@ class JA extends V {
     return y.create(c);
   }
 }
-class eE extends V {
+class hE extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -28059,7 +28797,7 @@ class eE extends V {
           if (f.isNull() || f.isBoolean())
             continue;
           const h = f.getValue();
-          W(h) && (t.push(+h), r += +h);
+          q(h) && (t.push(+h), r += +h);
         }
     }
     return t.length <= 2 ? g.create(m.DIV_BY_ZERO) : this._getResult(t, r);
@@ -28079,7 +28817,7 @@ class eE extends V {
     return y.create(c);
   }
 }
-class tE extends V {
+class mE extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 2);
@@ -28102,15 +28840,15 @@ class tE extends V {
       errorObject: f,
       array1Values: h,
       array2Values: d,
-      noCalculate: _
-    } = tt(
+      noCalculate: C
+    } = rt(
       e,
       t,
       r * n,
       n,
       o
     );
-    return l ? f : _ ? g.create(m.DIV_BY_ZERO) : this._getResult(h, d);
+    return l ? f : C ? g.create(m.DIV_BY_ZERO) : this._getResult(h, d);
   }
   _getResult(e, t) {
     const r = e.length;
@@ -28127,7 +28865,7 @@ class tE extends V {
     return y.create(f);
   }
 }
-class rE extends V {
+class gE extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 2);
@@ -28144,7 +28882,7 @@ class rE extends V {
   _handleSingleObject(e, t) {
     if (e instanceof g)
       return e;
-    const { isError: r, errorObject: n, variants: s } = B(t);
+    const { isError: r, errorObject: n, variants: s } = I(t);
     if (r)
       return n;
     const [o] = s;
@@ -28161,12 +28899,12 @@ class rE extends V {
         if (u.isNull() || u.isBoolean() || u.isString())
           continue;
         const c = u.getValue();
-        W(c) && n.push(+c);
+        q(c) && n.push(+c);
       }
     return n.length === 0 ? g.create(m.NUM) : n.sort((s, o) => s - o);
   }
 }
-class nE extends V {
+class dE extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 3);
@@ -28182,23 +28920,23 @@ class nE extends V {
       t.isArray() ? t.getColumnCount() : 1,
       r.isArray() ? r.getColumnCount() : 1
     ), o = O(n, s, e, g.create(m.NA)), u = O(n, s, t, g.create(m.NA)), c = O(n, s, r, g.create(m.NA)), l = o.mapValue((f, h, d) => {
-      const _ = u.get(h, d), C = c.get(h, d);
-      return f.isError() ? f : _.isError() ? _ : C.isError() ? C : this._handleSingleObject(f, _, C);
+      const C = u.get(h, d), _ = c.get(h, d);
+      return f.isError() ? f : C.isError() ? C : _.isError() ? _ : this._handleSingleObject(f, C, _);
     });
     return n === 1 && s === 1 ? l.get(0, 0) : l;
   }
   _handleSingleObject(e, t, r) {
-    const { isError: n, errorObject: s, variants: o } = B(e, t, r);
+    const { isError: n, errorObject: s, variants: o } = I(e, t, r);
     if (n)
       return s;
     const [u, c, l] = o, f = +u.getValue(), h = +c.getValue(), d = +l.getValue();
     if (d <= 0)
       return g.create(m.NUM);
-    const _ = (f - h) / d;
-    return y.create(_);
+    const C = (f - h) / d;
+    return y.create(C);
   }
 }
-class sE extends V {
+class CE extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -28209,7 +28947,7 @@ class sE extends V {
     return t.isError() ? t : t.std(1);
   }
 }
-class aE extends V {
+class _E extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -28220,7 +28958,7 @@ class aE extends V {
     return t.isError() ? t : t.std();
   }
 }
-class iE extends V {
+class AE extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 2);
@@ -28243,15 +28981,15 @@ class iE extends V {
       errorObject: f,
       array1Values: h,
       array2Values: d,
-      noCalculate: _
-    } = tt(
+      noCalculate: C
+    } = rt(
       e,
       t,
       r * n,
       n,
       o
     );
-    return l ? f : _ ? g.create(m.DIV_BY_ZERO) : this._getResult(h, d);
+    return l ? f : C ? g.create(m.DIV_BY_ZERO) : this._getResult(h, d);
   }
   _getResult(e, t) {
     const r = e.length;
@@ -28270,7 +29008,7 @@ class iE extends V {
     return Number.isNaN(h) || !Number.isFinite(h) ? g.create(m.NUM) : y.create(h);
   }
 }
-class oE extends V {
+class EE extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 3);
@@ -28286,23 +29024,23 @@ class oE extends V {
       t.isArray() ? t.getColumnCount() : 1,
       r.isArray() ? r.getColumnCount() : 1
     ), o = O(n, s, e, g.create(m.NA)), u = O(n, s, t, g.create(m.NA)), c = O(n, s, r, g.create(m.NA)), l = o.mapValue((f, h, d) => {
-      const _ = u.get(h, d), C = c.get(h, d);
-      return f.isError() ? f : _.isError() ? _ : C.isError() ? C : this._handleSingleObject(f, _, C);
+      const C = u.get(h, d), _ = c.get(h, d);
+      return f.isError() ? f : C.isError() ? C : _.isError() ? _ : this._handleSingleObject(f, C, _);
     });
     return n === 1 && s === 1 ? l.get(0, 0) : l;
   }
   _handleSingleObject(e, t, r) {
-    const { isError: n, errorObject: s, variants: o } = B(e, t, r);
+    const { isError: n, errorObject: s, variants: o } = I(e, t, r);
     if (n)
       return s;
     const [u, c, l] = o, f = +u.getValue(), h = Math.floor(+c.getValue()), d = +l.getValue();
     if (h < 1)
       return g.create(m.NUM);
-    let _;
-    return d ? _ = Gr(f, h) : _ = ym(f, h), Number.isNaN(_) || !Number.isFinite(_) ? g.create(m.NUM) : y.create(_);
+    let C;
+    return d ? C = Wr(f, h) : C = Tm(f, h), Number.isNaN(C) || !Number.isFinite(C) ? g.create(m.NUM) : y.create(C);
   }
 }
-class uE extends V {
+class bE extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 2);
@@ -28322,17 +29060,17 @@ class uE extends V {
     return r === 1 && n === 1 ? u.get(0, 0) : u;
   }
   _handleSingleObject(e, t) {
-    const { isError: r, errorObject: n, variants: s } = B(e, t);
+    const { isError: r, errorObject: n, variants: s } = I(e, t);
     if (r)
       return n;
     const [o, u] = s, c = +o.getValue(), l = Math.floor(+u.getValue());
     if (c < 0 || l < 1 || l > 10 ** 10)
       return g.create(m.NUM);
-    const f = Gr(-c, l) * 2;
+    const f = Wr(-c, l) * 2;
     return Number.isNaN(f) || !Number.isFinite(f) ? g.create(m.NUM) : y.create(f);
   }
 }
-class cE extends V {
+class yE extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 2);
@@ -28352,17 +29090,17 @@ class cE extends V {
     return r === 1 && n === 1 ? u.get(0, 0) : u;
   }
   _handleSingleObject(e, t) {
-    const { isError: r, errorObject: n, variants: s } = B(e, t);
+    const { isError: r, errorObject: n, variants: s } = I(e, t);
     if (r)
       return n;
     const [o, u] = s, c = +o.getValue(), l = Math.floor(+u.getValue());
     if (l < 1 || l > 10 ** 10)
       return g.create(m.NUM);
-    const f = Gr(-c, l);
+    const f = Wr(-c, l);
     return Number.isNaN(f) || !Number.isFinite(f) ? g.create(m.NUM) : y.create(f);
   }
 }
-class lE extends V {
+class RE extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 2);
@@ -28382,27 +29120,27 @@ class lE extends V {
     return r === 1 && n === 1 ? u.get(0, 0) : u;
   }
   _handleSingleObject(e, t) {
-    const { isError: r, errorObject: n, variants: s } = B(e, t);
+    const { isError: r, errorObject: n, variants: s } = I(e, t);
     if (r)
       return n;
     const [o, u] = s, c = +o.getValue(), l = Math.floor(+u.getValue());
     if (c <= 0 || c > 1 || l < 1 || l > 10 ** 10)
       return g.create(m.NUM);
-    const f = rs(c, l);
+    const f = ns(c, l);
     return Number.isNaN(f) || !Number.isFinite(f) ? g.create(m.NUM) : y.create(f);
   }
 }
-class fE extends V {
+class pE extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
     A(this, "maxParams", 4);
   }
   calculate(e, t, r, n) {
-    const { isError: s, errorObject: o } = ns(e, t, r);
+    const { isError: s, errorObject: o } = ss(e, t, r);
     if (s)
       return o;
-    const u = Et(e);
+    const u = bt(e);
     if (u instanceof g)
       return u;
     const c = this._getKnownXsValues(u, t);
@@ -28411,7 +29149,7 @@ class fE extends V {
     const l = this._getNewXsValues(c, r);
     if (l instanceof g)
       return l;
-    let f = n != null ? n : T.create(!0);
+    let f = n != null ? n : v.create(!0);
     if (f.isArray() && (f = f.get(0, 0)), f.isString() && (f = f.convertToNumberObjectValue()), f.isError())
       return f;
     const h = +f.getValue();
@@ -28421,35 +29159,35 @@ class fE extends V {
     return e.length === 1 && t.length > 1 || e[0].length === 1 && t[0].length > 1 ? e.length === 1 && t.length > 1 && (n ? t.length + 1 : t.length) > e[0].length || e[0].length === 1 && t[0].length > 1 && (n ? t[0].length + 1 : t[0].length) > e.length ? g.create(m.NA) : this._getResultByMultipleVariables(e, t, r, n) : this._getResultBySimpleVariables(e, t, r, n);
   }
   _getResultByMultipleVariables(e, t, r, n) {
-    const s = e.length === 1 && e[0].length > 1, o = is(e, t, r, n, !1);
+    const s = e.length === 1 && e[0].length > 1, o = os(e, t, r, n, !1);
     if (o instanceof g)
       return o;
     const { coefficients: u, newX: c } = o, l = u[0].length, f = u[0][l - 1];
     let h = [];
     for (let d = 0; d < c.length; d++) {
       h[d] = [];
-      let _ = f;
-      for (let C = l - 2; C >= 0; C--)
-        _ += u[0][l - 2 - C] * c[d][C];
-      h[d].push(_);
+      let C = f;
+      for (let _ = l - 2; _ >= 0; _--)
+        C += u[0][l - 2 - _] * c[d][_];
+      h[d].push(C);
     }
-    return s && (h = Ct(h)), q.createByArray(h);
+    return s && (h = _t(h)), W.createByArray(h);
   }
   _getResultBySimpleVariables(e, t, r, n) {
-    const s = e.flat(), o = t.flat(), { slope: u, intercept: c } = as(o, s, n, !1);
+    const s = e.flat(), o = t.flat(), { slope: u, intercept: c } = is(o, s, n, !1);
     if (Number.isNaN(u))
       return g.create(m.NA);
     const l = r.map((f) => f.map((h) => u * h + c));
-    return q.createByArray(l);
+    return W.createByArray(l);
   }
   _getKnownXsValues(e, t) {
-    return !t || t.isNull() ? ss(e.length, e[0].length) : Et(t);
+    return !t || t.isNull() ? as(e.length, e[0].length) : bt(t);
   }
   _getNewXsValues(e, t) {
-    return !t || t.isNull() ? e : Et(t);
+    return !t || t.isNull() ? e : bt(t);
   }
 }
-class hE extends V {
+class NE extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 2);
@@ -28466,13 +29204,13 @@ class hE extends V {
   _handleSingleObject(e, t) {
     if (e instanceof g)
       return e;
-    const { isError: r, errorObject: n, variants: s } = B(t);
+    const { isError: r, errorObject: n, variants: s } = I(t);
     if (r)
       return n;
     const [o] = s, u = +o.getValue();
     if (u < 0 || u >= 1)
       return g.create(m.NUM);
-    const c = Ke(e.length * u / 2, 0) * 2, l = e.slice(c / 2, e.length - c / 2), f = l.reduce((h, d) => h + d, 0) / l.length;
+    const c = Xe(e.length * u / 2, 0) * 2, l = e.slice(c / 2, e.length - c / 2), f = l.reduce((h, d) => h + d, 0) / l.length;
     return y.create(f);
   }
   _getValues(e) {
@@ -28485,12 +29223,12 @@ class hE extends V {
         if (u.isNull() || u.isBoolean())
           continue;
         const c = u.getValue();
-        W(c) && n.push(+c);
+        q(c) && n.push(+c);
       }
     return n.length === 0 ? g.create(m.NUM) : n.sort((s, o) => s - o);
   }
 }
-class mE extends V {
+class VE extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -28501,7 +29239,7 @@ class mE extends V {
     return t.isError() ? t : t.var(1);
   }
 }
-class gE extends V {
+class OE extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -28512,118 +29250,118 @@ class gE extends V {
     return t.isError() ? t : t.var();
   }
 }
-const dE = [
-  [W_, v.AVEDEV],
-  [K_, v.AVERAGE],
-  [X_, v.AVERAGE_WEIGHTED],
-  [Z_, v.AVERAGEA],
-  [z_, v.AVERAGEIF],
-  [J_, v.AVERAGEIFS],
-  [eA, v.BETA_DIST],
-  [Zo, v.BETA_INV],
-  [zo, v.BINOM_DIST],
-  [tA, v.BINOM_DIST_RANGE],
-  [Jo, v.BINOM_INV],
-  [rA, v.CHISQ_DIST],
-  [eu, v.CHISQ_DIST_RT],
-  [nA, v.CHISQ_INV],
-  [tu, v.CHISQ_INV_RT],
-  [ru, v.CHISQ_TEST],
-  [nu, v.CONFIDENCE_NORM],
-  [sA, v.CONFIDENCE_T],
-  [aA, v.CORREL],
-  [iA, v.COUNT],
-  [oA, v.COUNTA],
-  [uA, v.COUNTBLANK],
-  [cA, v.COUNTIF],
-  [lA, v.COUNTIFS],
-  [su, v.COVARIANCE_P],
-  [hA, v.COVARIANCE_S],
-  [mA, v.DEVSQ],
-  [au, v.EXPON_DIST],
-  [gA, v.F_DIST],
-  [iu, v.F_DIST_RT],
-  [dA, v.F_INV],
-  [ou, v.F_INV_RT],
-  [uu, v.F_TEST],
-  [CA, v.FISHER],
-  [_A, v.FISHERINV],
-  [Ti, v.FORECAST],
-  [Ti, v.FORECAST_LINEAR],
-  [AA, v.FREQUENCY],
-  [EA, v.GAMMA],
-  [cu, v.GAMMA_DIST],
-  [lu, v.GAMMA_INV],
-  [Bi, v.GAMMALN],
-  [Bi, v.GAMMALN_PRECISE],
-  [bA, v.GAUSS],
-  [yA, v.GEOMEAN],
-  [RA, v.GROWTH],
-  [pA, v.HARMEAN],
-  [VA, v.HYPGEOM_DIST],
-  [NA, v.INTERCEPT],
-  [OA, v.KURT],
-  [MA, v.LARGE],
-  [wA, v.LINEST],
-  [SA, v.LOGEST],
-  [DA, v.LOGNORM_DIST],
-  [fu, v.LOGNORM_INV],
-  [LA, v.MARGINOFERROR],
-  [PA, v.MAX],
-  [xA, v.MAXA],
-  [jA, v.MAXIFS],
-  [UA, v.MEDIAN],
-  [vA, v.MIN],
-  [TA, v.MINA],
-  [BA, v.MINIFS],
-  [IA, v.MODE_MULT],
-  [hu, v.MODE_SNGL],
-  [FA, v.NEGBINOM_DIST],
-  [mu, v.NORM_DIST],
-  [gu, v.NORM_INV],
-  [kA, v.NORM_S_DIST],
-  [du, v.NORM_S_INV],
-  [$A, v.PEARSON],
-  [YA, v.PERCENTILE_EXC],
-  [Cu, v.PERCENTILE_INC],
-  [HA, v.PERCENTRANK_EXC],
-  [_u, v.PERCENTRANK_INC],
-  [GA, v.PERMUT],
-  [QA, v.PERMUTATIONA],
-  [WA, v.PHI],
-  [Au, v.POISSON_DIST],
-  [qA, v.PROB],
-  [KA, v.QUARTILE_EXC],
-  [Eu, v.QUARTILE_INC],
-  [XA, v.RANK_AVG],
-  [ZA, v.RANK_EQ],
-  [zA, v.RSQ],
-  [JA, v.SKEW],
-  [eE, v.SKEW_P],
-  [tE, v.SLOPE],
-  [rE, v.SMALL],
-  [nE, v.STANDARDIZE],
-  [bu, v.STDEV_P],
-  [yu, v.STDEV_S],
-  [sE, v.STDEVA],
-  [aE, v.STDEVPA],
-  [iE, v.STEYX],
-  [oE, v.T_DIST],
-  [uE, v.T_DIST_2T],
-  [cE, v.T_DIST_RT],
-  [lE, v.T_INV],
-  [Ru, v.T_INV_2T],
-  [pu, v.T_TEST],
-  [fE, v.TREND],
-  [hE, v.TRIMMEAN],
-  [Vu, v.VAR_P],
-  [Nu, v.VAR_S],
-  [mE, v.VARA],
-  [gE, v.VARPA],
-  [Ou, v.WEIBULL_DIST],
-  [Mu, v.Z_TEST]
+const wE = [
+  [uA, B.AVEDEV],
+  [lA, B.AVERAGE],
+  [fA, B.AVERAGE_WEIGHTED],
+  [hA, B.AVERAGEA],
+  [mA, B.AVERAGEIF],
+  [gA, B.AVERAGEIFS],
+  [dA, B.BETA_DIST],
+  [uu, B.BETA_INV],
+  [cu, B.BINOM_DIST],
+  [CA, B.BINOM_DIST_RANGE],
+  [lu, B.BINOM_INV],
+  [_A, B.CHISQ_DIST],
+  [fu, B.CHISQ_DIST_RT],
+  [AA, B.CHISQ_INV],
+  [hu, B.CHISQ_INV_RT],
+  [mu, B.CHISQ_TEST],
+  [gu, B.CONFIDENCE_NORM],
+  [EA, B.CONFIDENCE_T],
+  [bA, B.CORREL],
+  [yA, B.COUNT],
+  [RA, B.COUNTA],
+  [pA, B.COUNTBLANK],
+  [em, B.COUNTIF],
+  [tm, B.COUNTIFS],
+  [du, B.COVARIANCE_P],
+  [NA, B.COVARIANCE_S],
+  [VA, B.DEVSQ],
+  [Cu, B.EXPON_DIST],
+  [OA, B.F_DIST],
+  [_u, B.F_DIST_RT],
+  [wA, B.F_INV],
+  [Au, B.F_INV_RT],
+  [Eu, B.F_TEST],
+  [SA, B.FISHER],
+  [MA, B.FISHERINV],
+  [qi, B.FORECAST],
+  [qi, B.FORECAST_LINEAR],
+  [DA, B.FREQUENCY],
+  [LA, B.GAMMA],
+  [bu, B.GAMMA_DIST],
+  [yu, B.GAMMA_INV],
+  [Ki, B.GAMMALN],
+  [Ki, B.GAMMALN_PRECISE],
+  [PA, B.GAUSS],
+  [xA, B.GEOMEAN],
+  [jA, B.GROWTH],
+  [UA, B.HARMEAN],
+  [vA, B.HYPGEOM_DIST],
+  [TA, B.INTERCEPT],
+  [BA, B.KURT],
+  [IA, B.LARGE],
+  [FA, B.LINEST],
+  [kA, B.LOGEST],
+  [$A, B.LOGNORM_DIST],
+  [Ru, B.LOGNORM_INV],
+  [YA, B.MARGINOFERROR],
+  [HA, B.MAX],
+  [QA, B.MAXA],
+  [GA, B.MAXIFS],
+  [WA, B.MEDIAN],
+  [qA, B.MIN],
+  [KA, B.MINA],
+  [XA, B.MINIFS],
+  [ZA, B.MODE_MULT],
+  [pu, B.MODE_SNGL],
+  [zA, B.NEGBINOM_DIST],
+  [Nu, B.NORM_DIST],
+  [Vu, B.NORM_INV],
+  [JA, B.NORM_S_DIST],
+  [Ou, B.NORM_S_INV],
+  [eE, B.PEARSON],
+  [tE, B.PERCENTILE_EXC],
+  [wu, B.PERCENTILE_INC],
+  [rE, B.PERCENTRANK_EXC],
+  [Su, B.PERCENTRANK_INC],
+  [nE, B.PERMUT],
+  [sE, B.PERMUTATIONA],
+  [aE, B.PHI],
+  [Mu, B.POISSON_DIST],
+  [iE, B.PROB],
+  [oE, B.QUARTILE_EXC],
+  [Du, B.QUARTILE_INC],
+  [uE, B.RANK_AVG],
+  [cE, B.RANK_EQ],
+  [lE, B.RSQ],
+  [fE, B.SKEW],
+  [hE, B.SKEW_P],
+  [mE, B.SLOPE],
+  [gE, B.SMALL],
+  [dE, B.STANDARDIZE],
+  [Lu, B.STDEV_P],
+  [Pu, B.STDEV_S],
+  [CE, B.STDEVA],
+  [_E, B.STDEVPA],
+  [AE, B.STEYX],
+  [EE, B.T_DIST],
+  [bE, B.T_DIST_2T],
+  [yE, B.T_DIST_RT],
+  [RE, B.T_INV],
+  [xu, B.T_INV_2T],
+  [ju, B.T_TEST],
+  [pE, B.TREND],
+  [NE, B.TRIMMEAN],
+  [Uu, B.VAR_P],
+  [vu, B.VAR_S],
+  [VE, B.VARA],
+  [OE, B.VARPA],
+  [Tu, B.WEIBULL_DIST],
+  [Bu, B.Z_TEST]
 ];
-class CE extends V {
+class SE extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -28641,16 +29379,16 @@ class CE extends V {
     const r = this._checkArray(e);
     if (r.isError())
       return r;
-    const { isError: n, errorObject: s, variants: o } = B(t);
+    const { isError: n, errorObject: s, variants: o } = I(t);
     if (n)
       return s;
     const [u] = o, c = +u.getValue(), l = e.isArray() ? e.getRowCount() : 1, f = e.isArray() ? e.getColumnCount() : 1;
     let h = "";
     for (let d = 0; d < l; d++)
-      for (let _ = 0; _ < f; _++) {
-        const C = e.isArray() ? e.get(d, _) : e;
-        let E = `${C.getValue()}`;
-        C.isNull() && (E = ""), C.isBoolean() && (E = E.toLocaleUpperCase()), C.isString() && c ? h += `"${E}"` : h += E, d === l - 1 && _ === f - 1 || (c ? _ === f - 1 ? h += ";" : h += "," : h += ", ");
+      for (let C = 0; C < f; C++) {
+        const _ = e.isArray() ? e.get(d, C) : e;
+        let E = `${_.getValue()}`;
+        _.isNull() && (E = ""), _.isBoolean() && (E = E.toLocaleUpperCase()), _.isString() && c ? h += `"${E}"` : h += E, d === l - 1 && C === f - 1 || (c ? C === f - 1 ? h += ";" : h += "," : h += ", ");
       }
     return c && (h = `{${h}}`), h.length > 32767 ? g.create(m.CALC) : j.create(h);
   }
@@ -28662,7 +29400,7 @@ class CE extends V {
     return e;
   }
 }
-class _E extends V {
+class ME extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -28687,7 +29425,7 @@ class _E extends V {
     return j.create(r);
   }
 }
-class AE extends V {
+class DE extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -28701,7 +29439,7 @@ class AE extends V {
     return this._handleSingleObject(e);
   }
   _handleSingleObject(e) {
-    const { isError: t, errorObject: r, variants: n } = B(e);
+    const { isError: t, errorObject: r, variants: n } = I(e);
     if (t)
       return r;
     const [s] = n, o = +s.getValue(), u = Math.abs(Number.parseInt(o.toString(), 10)), c = Number.parseFloat((Math.abs(o) - u).toFixed(2));
@@ -28737,7 +29475,7 @@ class AE extends V {
     return u;
   }
 }
-const EE = Object.values(Te).filter((i) => [
+const LE = Object.values(Te).filter((i) => [
   Te.TABLE_START,
   Te.TABLE_ROW_START,
   Te.TABLE_CELL_START,
@@ -28746,7 +29484,7 @@ const EE = Object.values(Te).filter((i) => [
   Te.TABLE_END,
   Te.CUSTOM_BLOCK
 ].includes(i));
-class bE extends V {
+class PE extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -28760,17 +29498,17 @@ class bE extends V {
     return this._handleSingleObject(e);
   }
   _handleSingleObject(e) {
-    const { isError: t, errorObject: r, variants: n } = B(e);
+    const { isError: t, errorObject: r, variants: n } = I(e);
     if (t)
       return r;
     const [s] = n, o = Math.floor(+s.getValue());
     if (o <= 0)
       return g.create(m.VALUE);
     let u = String.fromCharCode(o);
-    return EE.some((c) => c === u) && (u = ""), j.create(u);
+    return LE.some((c) => c === u) && (u = ""), j.create(u);
   }
 }
-class yE extends V {
+class xE extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -28792,7 +29530,7 @@ class yE extends V {
     return j.create(r);
   }
 }
-class RE extends V {
+class jE extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -28817,7 +29555,7 @@ class RE extends V {
     return y.create(r);
   }
 }
-class pE extends V {
+class UE extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -28839,7 +29577,7 @@ class pE extends V {
     return j.create(t);
   }
 }
-class VE extends V {
+class vE extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -28864,13 +29602,13 @@ class VE extends V {
           return u;
         let h = f == null ? void 0 : f.getValue(), d = u == null ? void 0 : u.getValue();
         f != null && f.isBoolean() && (h = `${h}`.toLocaleUpperCase()), u != null && u.isBoolean() && (d = `${d}`.toLocaleUpperCase());
-        const _ = f != null && f.isNull() ? "" : h != null ? h : "", C = u != null && u.isNull() ? "" : d != null ? d : "";
-        return j.create(`${_}${C}`);
+        const C = f != null && f.isNull() ? "" : h != null ? h : "", _ = u != null && u.isNull() ? "" : d != null ? d : "";
+        return j.create(`${C}${_}`);
       });
     return n || g.create(m.VALUE);
   }
 }
-class NE extends V {
+class TE extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -28898,7 +29636,7 @@ class NE extends V {
     return j.create(r);
   }
 }
-class OE extends V {
+class BE extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -28921,7 +29659,7 @@ class OE extends V {
     return n === 1 && s === 1 ? c.get(0, 0) : c;
   }
   _handleSingleObject(e, t) {
-    const { isError: r, errorObject: n, variants: s } = B(e, t);
+    const { isError: r, errorObject: n, variants: s } = I(e, t);
     if (r)
       return n;
     const [o, u] = s;
@@ -28929,11 +29667,11 @@ class OE extends V {
     if (l > 127)
       return g.create(m.VALUE);
     l < 0 && (`${c}`.length < Math.abs(l) ? c = 0 : c = c < 0 ? -Bt(Math.abs(c), l) : Bt(c, l), l = 0);
-    const f = pl(this.getLocale(), c, l);
+    const f = xl(this.getLocale(), c, l);
     return j.create(f);
   }
 }
-class ME extends V {
+class IE extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 2);
@@ -28955,21 +29693,21 @@ class ME extends V {
   _handleSingleObject(e, t) {
     if (e.isNull() || t.isNull()) {
       const o = e.isNull() && t.isNull();
-      return T.create(o);
+      return v.create(o);
     }
     let r = `${e.getValue()}`;
     e.isBoolean() && (r = r.toLocaleUpperCase());
     let n = `${t.getValue()}`;
     t.isBoolean() && (n = n.toLocaleUpperCase());
     const s = r === n;
-    return T.create(s);
+    return v.create(s);
   }
 }
-const qa = (i, a) => At.format(i, a, { throws: !1 }), Se = (i) => {
+const ri = (i, a) => Et.format(i, a, { throws: !1 }), Me = (i) => {
   let a = `${i.getValue()}`;
-  return i.isNull() && (a = ""), i.isBoolean() && (a = a.toLocaleUpperCase()), i.isNumber() && (i.getPattern() !== "" ? a = qa(i.getPattern(), +i.getValue()) : a = `${ba(+i.getValue())}`), a;
+  return i.isNull() && (a = ""), i.isBoolean() && (a = a.toLocaleUpperCase()), i.isNumber() && (i.getPattern() !== "" ? a = ri(i.getPattern(), +i.getValue()) : a = `${Sa(+i.getValue())}`), a;
 };
-class wE extends V {
+class FE extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 2);
@@ -28984,14 +29722,14 @@ class wE extends V {
       e.isArray() ? e.getColumnCount() : 1,
       t.isArray() ? t.getColumnCount() : 1,
       n.isArray() ? n.getColumnCount() : 1
-    ), u = O(s, o, e, g.create(m.NA)), c = O(s, o, t, g.create(m.NA)), l = O(s, o, n, g.create(m.NA)), f = u.mapValue((h, d, _) => {
-      const C = c.get(d, _), E = l.get(d, _);
-      return h.isError() ? h : C.isError() ? C : E.isError() ? E : this._handleSingleObject(h, C, E);
+    ), u = O(s, o, e, g.create(m.NA)), c = O(s, o, t, g.create(m.NA)), l = O(s, o, n, g.create(m.NA)), f = u.mapValue((h, d, C) => {
+      const _ = c.get(d, C), E = l.get(d, C);
+      return h.isError() ? h : _.isError() ? _ : E.isError() ? E : this._handleSingleObject(h, _, E);
     });
     return s === 1 && o === 1 ? f.get(0, 0) : f;
   }
   _handleSingleObject(e, t, r) {
-    const n = Se(e), s = Se(t), { isError: o, errorObject: u, variants: c } = B(r);
+    const n = Me(e), s = Me(t), { isError: o, errorObject: u, variants: c } = I(r);
     if (o)
       return u;
     const [l] = c, f = Math.floor(+l.getValue());
@@ -29003,40 +29741,40 @@ class wE extends V {
     return h === -1 ? g.create(m.VALUE) : y.create(h + 1);
   }
 }
-function Ka(i) {
+function ni(i) {
   let a = 0;
   for (let e = 0; e < i.length; e++)
-    a += Kr(i, e);
+    a += Zr(i, e);
   return a;
 }
-function Kr(i, a, e = "ltr") {
-  return SE(i, a, e) > 255 ? 2 : 1;
+function Zr(i, a, e = "ltr") {
+  return kE(i, a, e) > 255 ? 2 : 1;
 }
-function Ii(i) {
+function Xi(i) {
   return i >= 55296 && i <= 56319;
 }
-function Fi(i) {
+function Zi(i) {
   return i >= 56320 && i <= 57343;
 }
-function ki(i, a) {
+function zi(i, a) {
   const e = (i & 1023) << 10, t = a & 1023;
   return e + t + 65536;
 }
-function SE(i, a, e = "ltr") {
+function kE(i, a, e = "ltr") {
   const t = i.charCodeAt(a);
-  if (e === "ltr" && Ii(t) && a + 1 < i.length) {
+  if (e === "ltr" && Xi(t) && a + 1 < i.length) {
     const r = i.charCodeAt(a + 1);
-    if (Fi(r))
-      return ki(t, r);
+    if (Zi(r))
+      return zi(t, r);
   }
-  if (e === "rtl" && Fi(t) && a - 1 >= 0) {
+  if (e === "rtl" && Zi(t) && a - 1 >= 0) {
     const r = i.charCodeAt(a - 1);
-    if (Ii(r))
-      return ki(r, t);
+    if (Xi(r))
+      return zi(r, t);
   }
   return t;
 }
-class DE extends V {
+class $E extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 2);
@@ -29051,14 +29789,14 @@ class DE extends V {
       e.isArray() ? e.getColumnCount() : 1,
       t.isArray() ? t.getColumnCount() : 1,
       n.isArray() ? n.getColumnCount() : 1
-    ), u = O(s, o, e, g.create(m.NA)), c = O(s, o, t, g.create(m.NA)), l = O(s, o, n, g.create(m.NA)), f = u.mapValue((h, d, _) => {
-      const C = c.get(d, _), E = l.get(d, _);
-      return h.isError() ? h : C.isError() ? C : E.isError() ? E : this._handleSingleObject(h, C, E);
+    ), u = O(s, o, e, g.create(m.NA)), c = O(s, o, t, g.create(m.NA)), l = O(s, o, n, g.create(m.NA)), f = u.mapValue((h, d, C) => {
+      const _ = c.get(d, C), E = l.get(d, C);
+      return h.isError() ? h : _.isError() ? _ : E.isError() ? E : this._handleSingleObject(h, _, E);
     });
     return s === 1 && o === 1 ? f.get(0, 0) : f;
   }
   _handleSingleObject(e, t, r) {
-    const n = Se(e), s = Se(t), { isError: o, errorObject: u, variants: c } = B(r);
+    const n = Me(e), s = Me(t), { isError: o, errorObject: u, variants: c } = I(r);
     if (o)
       return u;
     const [l] = c, f = Math.floor(+l.getValue());
@@ -29069,11 +29807,11 @@ class DE extends V {
     const h = s.indexOf(n, f - 1);
     if (h === -1)
       return g.create(m.VALUE);
-    const d = Ka(s.substring(0, h)) + 1;
+    const d = ni(s.substring(0, h)) + 1;
     return y.create(d);
   }
 }
-class LE extends V {
+class YE extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -29082,8 +29820,8 @@ class LE extends V {
   calculate(e, t, r) {
     let n = t != null ? t : y.create(2);
     n.isNull() && (n = y.create(2));
-    let s = r != null ? r : T.create(!1);
-    s.isNull() && (s = T.create(!1));
+    let s = r != null ? r : v.create(!1);
+    s.isNull() && (s = v.create(!1));
     const o = Math.max(
       e.isArray() ? e.getRowCount() : 1,
       n.isArray() ? n.getRowCount() : 1,
@@ -29092,14 +29830,14 @@ class LE extends V {
       e.isArray() ? e.getColumnCount() : 1,
       n.isArray() ? n.getColumnCount() : 1,
       s.isArray() ? s.getColumnCount() : 1
-    ), c = O(o, u, e, g.create(m.NA)), l = O(o, u, n, g.create(m.NA)), f = O(o, u, s, g.create(m.NA)), h = c.mapValue((d, _, C) => {
-      const E = l.get(_, C), b = f.get(_, C);
+    ), c = O(o, u, e, g.create(m.NA)), l = O(o, u, n, g.create(m.NA)), f = O(o, u, s, g.create(m.NA)), h = c.mapValue((d, C, _) => {
+      const E = l.get(C, _), b = f.get(C, _);
       return d.isError() ? d : E.isError() ? E : b.isError() ? b : this._handleSingleObject(d, E, b);
     });
     return o === 1 && u === 1 ? h.get(0, 0) : h;
   }
   _handleSingleObject(e, t, r) {
-    const { isError: n, errorObject: s, variants: o } = B(e, t, r);
+    const { isError: n, errorObject: s, variants: o } = I(e, t, r);
     if (n)
       return s;
     const [u, c, l] = o;
@@ -29108,13 +29846,13 @@ class LE extends V {
     if (h > 127)
       return g.create(m.VALUE);
     h < 0 && (`${f}`.length < Math.abs(h) ? f = 0 : f = f < 0 ? -Bt(Math.abs(f), h) : Bt(f, h), h = 0);
-    let _ = d ? "###0" : "#,##0";
-    h > 0 && (_ += `.${"0".repeat(h)}`);
-    const C = qa(_, f);
-    return j.create(C);
+    let C = d ? "###0" : "#,##0";
+    h > 0 && (C += `.${"0".repeat(h)}`);
+    const _ = ri(C, f);
+    return j.create(_);
   }
 }
-class PE extends V {
+class HE extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -29134,7 +29872,7 @@ class PE extends V {
     return n === 1 && s === 1 ? c.get(0, 0) : c;
   }
   _handleSingleObject(e, t) {
-    const r = Se(e), { isError: n, errorObject: s, variants: o } = B(t);
+    const r = Me(e), { isError: n, errorObject: s, variants: o } = I(t);
     if (n)
       return s;
     const [u] = o, c = Math.floor(+u.getValue());
@@ -29148,7 +29886,7 @@ class PE extends V {
     return j.create(l);
   }
 }
-class xE extends V {
+class QE extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -29168,7 +29906,7 @@ class xE extends V {
     return n === 1 && s === 1 ? c.get(0, 0) : c;
   }
   _handleSingleObject(e, t) {
-    const r = Se(e), { isError: n, errorObject: s, variants: o } = B(t);
+    const r = Me(e), { isError: n, errorObject: s, variants: o } = I(t);
     if (n)
       return s;
     const [u] = o, c = Math.floor(+u.getValue());
@@ -29178,11 +29916,11 @@ class xE extends V {
       return j.create("");
     let l = 0, f = 0, h = "";
     for (; f < c && l < r.length; )
-      f += Kr(r, l), h += r.charAt(l), l++;
+      f += Zr(r, l), h += r.charAt(l), l++;
     return j.create(h);
   }
 }
-class jE extends V {
+class GE extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -29198,11 +29936,11 @@ class jE extends V {
   _handleSingleText(e) {
     if (e.isError())
       return e;
-    const t = Se(e);
+    const t = Me(e);
     return y.create(t.length);
   }
 }
-class UE extends V {
+class WE extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -29218,11 +29956,11 @@ class UE extends V {
   _handleSingleText(e) {
     if (e.isError())
       return e;
-    const t = Se(e), r = Ka(t);
+    const t = Me(e), r = ni(t);
     return y.create(r);
   }
 }
-class vE extends V {
+class qE extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -29244,7 +29982,7 @@ class vE extends V {
     return j.create(t);
   }
 }
-class TE extends V {
+class KE extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 3);
@@ -29260,13 +29998,13 @@ class TE extends V {
       t.isArray() ? t.getColumnCount() : 1,
       r.isArray() ? r.getColumnCount() : 1
     ), o = O(n, s, e, g.create(m.NA)), u = O(n, s, t, g.create(m.NA)), c = O(n, s, r, g.create(m.NA)), l = o.mapValue((f, h, d) => {
-      const _ = u.get(h, d), C = c.get(h, d);
-      return f.isError() ? f : _.isError() ? _ : C.isError() ? C : this._handleSingleObject(f, _, C);
+      const C = u.get(h, d), _ = c.get(h, d);
+      return f.isError() ? f : C.isError() ? C : _.isError() ? _ : this._handleSingleObject(f, C, _);
     });
     return n === 1 && s === 1 ? l.get(0, 0) : l;
   }
   _handleSingleObject(e, t, r) {
-    const n = Se(e), { isError: s, errorObject: o, variants: u } = B(t, r);
+    const n = Me(e), { isError: s, errorObject: o, variants: u } = I(t, r);
     if (s)
       return o;
     const [c, l] = u, f = Math.floor(+c.getValue()), h = Math.floor(+l.getValue());
@@ -29278,7 +30016,7 @@ class TE extends V {
     return j.create(d);
   }
 }
-class BE extends V {
+class XE extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 3);
@@ -29294,14 +30032,14 @@ class BE extends V {
       t.isArray() ? t.getColumnCount() : 1,
       r.isArray() ? r.getColumnCount() : 1
     ), o = O(n, s, e, g.create(m.NA)), u = O(n, s, t, g.create(m.NA)), c = O(n, s, r, g.create(m.NA)), l = o.mapValue((f, h, d) => {
-      const _ = u.get(h, d), C = c.get(h, d);
-      return f.isError() ? f : _.isError() ? _ : C.isError() ? C : this._handleSingleObject(f, _, C);
+      const C = u.get(h, d), _ = c.get(h, d);
+      return f.isError() ? f : C.isError() ? C : _.isError() ? _ : this._handleSingleObject(f, C, _);
     });
     return n === 1 && s === 1 ? l.get(0, 0) : l;
   }
   _handleSingleObject(e, t, r) {
-    let n = Se(e);
-    const { isError: s, errorObject: o, variants: u } = B(t, r);
+    let n = Me(e);
+    const { isError: s, errorObject: o, variants: u } = I(t, r);
     if (s)
       return o;
     const [c, l] = u, f = Math.floor(+c.getValue()), h = Math.floor(+l.getValue());
@@ -29310,14 +30048,14 @@ class BE extends V {
     if (e.isNull() || f > n.length || h === 0)
       return j.create("");
     n = n.substring(f - 1);
-    let d = 0, _ = 0, C = "";
-    for (; _ < h && d < n.length; )
-      _ += Kr(n, d), C += n.charAt(d), d++;
-    return j.create(C);
+    let d = 0, C = 0, _ = "";
+    for (; C < h && d < n.length; )
+      C += Zr(n, d), _ += n.charAt(d), d++;
+    return j.create(_);
   }
 }
-const Sr = ["〇", "一", "二", "三", "四", "五", "六", "七", "八", "九"], tn = ["零", "壹", "贰", "叁", "肆", "伍", "陆", "柒", "捌", "玖"], IE = ["", "十", "百", "千"], FE = ["", "拾", "佰", "仟"], kE = ["", "万", "亿", "兆"];
-class $E extends V {
+const Lr = ["〇", "一", "二", "三", "四", "五", "六", "七", "八", "九"], nn = ["零", "壹", "贰", "叁", "肆", "伍", "陆", "柒", "捌", "玖"], ZE = ["", "十", "百", "千"], zE = ["", "拾", "佰", "仟"], JE = ["", "万", "亿", "兆"];
+class eb extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 2);
@@ -29354,25 +30092,25 @@ class $E extends V {
     for (let h = 0; h < c; h++) {
       const d = Number(u[h]);
       if (c === 1 && d === 0) {
-        l += o === 2 ? tn[0] : Sr[0];
+        l += o === 2 ? nn[0] : Lr[0];
         break;
       }
       if (o === 3) {
-        l += Sr[d];
+        l += Lr[d];
         continue;
       }
-      const _ = c - h - 1, C = _ % 4, E = Math.trunc(_ / 4);
+      const C = c - h - 1, _ = C % 4, E = Math.trunc(C / 4);
       if (c >= 17 && E > 2) {
-        if (l += o === 1 ? Sr[d] : tn[d], E > 3)
+        if (l += o === 1 ? Lr[d] : nn[d], E > 3)
           continue;
       } else
-        d === 0 ? f = C !== 0 : (f && (l += o === 1 ? Sr[0] : tn[0], f = !1), l += o === 1 ? Sr[d] + IE[C] : tn[d] + FE[C]);
-      C === 0 && E > 0 && u.slice(Math.max(0, h - 3), h + 1) !== "0000" && (l += kE[E]);
+        d === 0 ? f = _ !== 0 : (f && (l += o === 1 ? Lr[0] : nn[0], f = !1), l += o === 1 ? Lr[d] + ZE[_] : nn[d] + zE[_]);
+      _ === 0 && E > 0 && u.slice(Math.max(0, h - 3), h + 1) !== "0000" && (l += JE[E]);
     }
     return j.create(l);
   }
 }
-class YE extends V {
+class tb extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -29390,9 +30128,9 @@ class YE extends V {
       e.isArray() ? e.getColumnCount() : 1,
       n.isArray() ? n.getColumnCount() : 1,
       r != null && r.isArray() ? r.getColumnCount() : 1
-    ), u = O(s, o, e, g.create(m.NA)), c = O(s, o, n, g.create(m.NA)), l = r ? O(s, o, r, g.create(m.NA)) : void 0, f = u.mapValue((h, d, _) => {
-      const C = c.get(d, _), E = r ? l.get(d, _) : void 0;
-      return h.isError() ? h : C.isError() ? C : E != null && E.isError() ? E : C.isNull() || E != null && E.isNull() ? g.create(m.VALUE) : h.isNull() ? y.create(0) : this._handleSingleObject(h, C, E);
+    ), u = O(s, o, e, g.create(m.NA)), c = O(s, o, n, g.create(m.NA)), l = r ? O(s, o, r, g.create(m.NA)) : void 0, f = u.mapValue((h, d, C) => {
+      const _ = c.get(d, C), E = r ? l.get(d, C) : void 0;
+      return h.isError() ? h : _.isError() ? _ : E != null && E.isError() ? E : _.isNull() || E != null && E.isNull() ? g.create(m.VALUE) : h.isNull() ? y.create(0) : this._handleSingleObject(h, _, E);
     });
     return s === 1 && o === 1 ? f.get(0, 0) : f;
   }
@@ -29422,20 +30160,20 @@ class YE extends V {
         c = c.slice(0, -1), f++;
       f > 0 ? l = +c / 100 ** f : l = +c;
     } else {
-      if (!W(c))
+      if (!q(c))
         return g.create(m.VALUE);
       let f = u[1], h = 0;
       for (; f.endsWith("%"); )
         f = f.slice(0, -1), h++;
       const d = `${c}.${f}`;
-      if (!W(d))
+      if (!q(d))
         return g.create(m.VALUE);
       h > 0 ? l = +d / 100 ** h : l = +d;
     }
     return Number.isNaN(l) ? g.create(m.VALUE) : y.create(l);
   }
 }
-class HE extends V {
+class rb extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -29455,13 +30193,13 @@ class HE extends V {
     return j.create(r);
   }
 }
-const Tu = () => [
+const qu = () => [
   {
     type: 4,
     from: 48,
     to: 57
   }
-], Bu = () => [
+], Ku = () => [
   {
     type: 7,
     value: 95
@@ -29481,7 +30219,7 @@ const Tu = () => [
     from: 48,
     to: 57
   }
-], Iu = () => [
+], Xu = () => [
   {
     type: 7,
     value: 9
@@ -29543,31 +30281,31 @@ const Tu = () => [
     type: 7,
     value: 65279
   }
-], Fu = () => ({
+], Zu = () => ({
   type: 3,
-  set: Bu(),
+  set: Ku(),
   not: !1
-}), ku = () => ({
+}), zu = () => ({
   type: 3,
-  set: Bu(),
+  set: Ku(),
   not: !0
-}), $u = () => ({
+}), Ju = () => ({
   type: 3,
-  set: Tu(),
+  set: qu(),
   not: !1
-}), Yu = () => ({
+}), ec = () => ({
   type: 3,
-  set: Tu(),
+  set: qu(),
   not: !0
-}), Hu = () => ({
+}), tc = () => ({
   type: 3,
-  set: Iu(),
+  set: Xu(),
   not: !1
-}), Gu = () => ({
+}), rc = () => ({
   type: 3,
-  set: Iu(),
+  set: Xu(),
   not: !0
-}), GE = () => ({
+}), nb = () => ({
   type: 3,
   set: [
     {
@@ -29589,7 +30327,7 @@ const Tu = () => [
   ],
   not: !0
 });
-function QE(i) {
+function sb(i) {
   const a = {
     type: 0,
     stack: []
@@ -29599,7 +30337,7 @@ function QE(i) {
   let s = 0;
   const o = (f) => {
     throw new SyntaxError(`Invalid regular expression: /${i}/: Nothing to repeat at column ${f - 1}`);
-  }, u = qE(i);
+  }, u = ib(i);
   let c = 0, l;
   for (; c < u.length; )
     switch (l = u[c++], l) {
@@ -29620,22 +30358,22 @@ function QE(i) {
             });
             break;
           case "w":
-            t.push(Fu());
+            t.push(Zu());
             break;
           case "W":
-            t.push(ku());
+            t.push(zu());
             break;
           case "d":
-            t.push($u());
+            t.push(Ju());
             break;
           case "D":
-            t.push(Yu());
+            t.push(ec());
             break;
           case "s":
-            t.push(Hu());
+            t.push(tc());
             break;
           case "S":
-            t.push(Gu());
+            t.push(rc());
             break;
           default:
             if (/\d/.test(l)) {
@@ -29675,7 +30413,7 @@ function QE(i) {
       case "[": {
         const f = u[c] === "^";
         f && c++;
-        const h = WE(u.slice(c), i);
+        const h = ab(u.slice(c), i);
         c += h[1], t.push({
           type: 3,
           set: h[0],
@@ -29684,7 +30422,7 @@ function QE(i) {
         break;
       }
       case ".":
-        t.push(GE());
+        t.push(nb());
         break;
       case "(": {
         const f = {
@@ -29769,25 +30507,25 @@ function QE(i) {
     }
   if (r.length > 0)
     throw new SyntaxError(`Invalid regular expression: /${i}/: Unterminated group`);
-  return KE(n, s), a;
+  return ob(n, s), a;
 }
-function WE(i, a) {
+function ab(i, a) {
   let e;
   const t = [], r = /\\(?:(w)|(d)|(s)|(W)|(D)|(S))|((?:(?:\\)(.)|([^\]\\]))-(((?:\\)])|(((?:\\)?([^\]])))))|(\])|(?:\\)?([^])/g;
   for (; (e = r.exec(i)) !== null; ) {
     let n = null;
-    const [, s, o, u, c, l, f, h, d, _, C] = e;
+    const [, s, o, u, c, l, f, h, d, C, _] = e;
     if (s || o || u || c || l || f ? n = (() => {
       let E = {
         type: 3,
         set: [],
         not: !1
       };
-      return s ? E = Fu() : o ? E = $u() : u ? E = Hu() : c ? E = ku() : l ? E = Yu() : f && (E = Gu()), E;
-    })() : h && C ? n = {
+      return s ? E = Zu() : o ? E = Ju() : u ? E = tc() : c ? E = zu() : l ? E = ec() : f && (E = rc()), E;
+    })() : h && _ ? n = {
       type: 4,
-      from: (d || _).charCodeAt(0),
-      to: C.charCodeAt(C.length - 1)
+      from: (d || C).charCodeAt(0),
+      to: _.charCodeAt(_.length - 1)
     } : e[16] && (n = {
       type: 7,
       value: e[16].charCodeAt(0)
@@ -29797,7 +30535,7 @@ function WE(i, a) {
   }
   throw new SyntaxError(`Invalid regular expression: /${a}/: Unterminated character class`);
 }
-function qE(i) {
+function ib(i) {
   return i.replace(
     /(\[\\b\])|(\\)?\\(?:u([A-F0-9]{4})|x([A-F0-9]{2})|c([@A-Z[\\\]^?])|([0tnvfr]))/g,
     (a, e, t, r, n, s, o) => {
@@ -29817,7 +30555,7 @@ function qE(i) {
     }
   );
 }
-function KE(i, a) {
+function ob(i, a) {
   for (const e of i.reverse()) {
     const t = e.reference.value;
     if (a < t) {
@@ -29840,15 +30578,15 @@ function KE(i, a) {
     }
   }
 }
-function Xa(i, a) {
-  if (!XE(i))
+function si(i, a) {
+  if (!ub(i))
     return {
       isError: !0,
       regExp: null
     };
   try {
     const e = new RegExp(i, a ? "ug" : "u");
-    return ZE(e) ? {
+    return cb(e) ? {
       isError: !1,
       regExp: e
     } : {
@@ -29862,15 +30600,15 @@ function Xa(i, a) {
     };
   }
 }
-function XE(i) {
+function ub(i) {
   return !(/\(\?<=.*?\)/g.test(i) && !/\[.*?(\?<=.*?)\]/g.test(i) || /\(\?<!.*?\)/g.test(i) && !/\[.*?(\?<!.*?)\]/g.test(i));
 }
-function ZE(i, a) {
+function cb(i, a) {
   let t;
   Object.prototype.toString.call(i) === "[object RegExp]" ? t = i.source : i && typeof i != "string" && (t = `${i}`);
   let r;
   try {
-    r = QE(t);
+    r = sb(t);
   } catch {
     return !1;
   }
@@ -29894,14 +30632,14 @@ function ZE(i, a) {
   };
   return s(r, 0);
 }
-class zE extends V {
+class lb extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 2);
     A(this, "maxParams", 2);
   }
   calculate(e, t) {
-    const { isError: r, errorObject: n, variants: s } = Yr(e, t);
+    const { isError: r, errorObject: n, variants: s } = Qr(e, t);
     if (r)
       return n;
     const [o, u] = s;
@@ -29909,35 +30647,35 @@ class zE extends V {
     o.isNull() && (c = ""), o.isBoolean() && (c = c ? "TRUE" : "FALSE"), c = `${c}`;
     let l = u.getValue();
     u.isNull() && (l = ""), u.isBoolean() && (l = l ? "TRUE" : "FALSE"), l = `${l}`;
-    const { isError: f, regExp: h } = Xa(l, !1);
+    const { isError: f, regExp: h } = si(l, !1);
     if (f)
       return g.create(m.REF);
     const d = c.match(h);
     if (d === null)
       return g.create(m.NA);
     if (d.length > 1) {
-      const _ = d.slice(1).map((C) => j.create(C));
-      return _.length > 1 ? q.create({
-        calculateValueList: [_],
+      const C = d.slice(1).map((_) => j.create(_));
+      return C.length > 1 ? W.create({
+        calculateValueList: [C],
         rowCount: 1,
-        columnCount: _.length,
+        columnCount: C.length,
         unitId: this.unitId,
         sheetId: this.subUnitId,
         row: this.row,
         column: this.column
-      }) : _[0];
+      }) : C[0];
     }
     return j.create(d[0]);
   }
 }
-class JE extends V {
+class fb extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 2);
     A(this, "maxParams", 2);
   }
   calculate(e, t) {
-    const { isError: r, errorObject: n, variants: s } = Yr(e, t);
+    const { isError: r, errorObject: n, variants: s } = Qr(e, t);
     if (r)
       return n;
     const [o, u] = s;
@@ -29945,18 +30683,18 @@ class JE extends V {
     o.isNull() && (c = ""), o.isBoolean() && (c = c ? "TRUE" : "FALSE"), c = `${c}`;
     let l = u.getValue();
     u.isNull() && (l = ""), u.isBoolean() && (l = l ? "TRUE" : "FALSE"), l = `${l}`;
-    const { isError: f, regExp: h } = Xa(l, !1);
-    return f ? g.create(m.REF) : c.match(h) === null ? T.create(!1) : T.create(!0);
+    const { isError: f, regExp: h } = si(l, !1);
+    return f ? g.create(m.REF) : c.match(h) === null ? v.create(!1) : v.create(!0);
   }
 }
-class eb extends V {
+class hb extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 3);
     A(this, "maxParams", 3);
   }
   calculate(e, t, r) {
-    const { isError: n, errorObject: s, variants: o } = Yr(e, t, r);
+    const { isError: n, errorObject: s, variants: o } = Qr(e, t, r);
     if (n)
       return s;
     const [u, c, l] = o;
@@ -29966,14 +30704,14 @@ class eb extends V {
     c.isNull() && (h = ""), c.isBoolean() && (h = h ? "TRUE" : "FALSE"), h = `${h}`;
     let d = l.getValue();
     l.isNull() && (d = ""), l.isBoolean() && (d = d ? "TRUE" : "FALSE"), d = `${d}`;
-    const { isError: _, regExp: C } = Xa(h, !0);
-    if (_)
+    const { isError: C, regExp: _ } = si(h, !0);
+    if (C)
       return g.create(m.REF);
-    const E = f.replace(C, d);
+    const E = f.replace(_, d);
     return j.create(E);
   }
 }
-class tb extends V {
+class mb extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 4);
@@ -29990,24 +30728,24 @@ class tb extends V {
       t.isArray() ? t.getColumnCount() : 1,
       r.isArray() ? r.getColumnCount() : 1,
       n.isArray() ? n.getColumnCount() : 1
-    ), u = O(s, o, e, g.create(m.NA)), c = O(s, o, t, g.create(m.NA)), l = O(s, o, r, g.create(m.NA)), f = O(s, o, n, g.create(m.NA)), h = u.mapValue((d, _, C) => {
-      const E = c.get(_, C), b = l.get(_, C), R = f.get(_, C);
+    ), u = O(s, o, e, g.create(m.NA)), c = O(s, o, t, g.create(m.NA)), l = O(s, o, r, g.create(m.NA)), f = O(s, o, n, g.create(m.NA)), h = u.mapValue((d, C, _) => {
+      const E = c.get(C, _), b = l.get(C, _), R = f.get(C, _);
       return d.isError() ? d : E.isError() ? E : b.isError() ? b : R.isError() ? R : this._handleSingleObject(d, E, b, R);
     });
     return s === 1 && o === 1 ? h.get(0, 0) : h;
   }
   _handleSingleObject(e, t, r, n) {
-    const { isError: s, errorObject: o, variants: u } = B(t, r);
+    const { isError: s, errorObject: o, variants: u } = I(t, r);
     if (s)
       return o;
     const [c, l] = u, f = Math.floor(+c.getValue()), h = Math.floor(+l.getValue());
     if (f <= 0 || h < 0)
       return g.create(m.VALUE);
-    const d = Se(e), _ = Se(n), C = d.substring(0, f - 1) + _ + d.substring(f - 1 + h);
-    return j.create(C);
+    const d = Me(e), C = Me(n), _ = d.substring(0, f - 1) + C + d.substring(f - 1 + h);
+    return j.create(_);
   }
 }
-class rb extends V {
+class gb extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 4);
@@ -30024,30 +30762,30 @@ class rb extends V {
       t.isArray() ? t.getColumnCount() : 1,
       r.isArray() ? r.getColumnCount() : 1,
       n.isArray() ? n.getColumnCount() : 1
-    ), u = O(s, o, e, g.create(m.NA)), c = O(s, o, t, g.create(m.NA)), l = O(s, o, r, g.create(m.NA)), f = O(s, o, n, g.create(m.NA)), h = u.mapValue((d, _, C) => {
-      const E = c.get(_, C), b = l.get(_, C), R = f.get(_, C);
+    ), u = O(s, o, e, g.create(m.NA)), c = O(s, o, t, g.create(m.NA)), l = O(s, o, r, g.create(m.NA)), f = O(s, o, n, g.create(m.NA)), h = u.mapValue((d, C, _) => {
+      const E = c.get(C, _), b = l.get(C, _), R = f.get(C, _);
       return d.isError() ? d : E.isError() ? E : b.isError() ? b : R.isError() ? R : this._handleSingleObject(d, E, b, R);
     });
     return s === 1 && o === 1 ? h.get(0, 0) : h;
   }
   _handleSingleObject(e, t, r, n) {
-    const { isError: s, errorObject: o, variants: u } = B(t, r);
+    const { isError: s, errorObject: o, variants: u } = I(t, r);
     if (s)
       return o;
     const [c, l] = u, f = Math.floor(+c.getValue()), h = Math.floor(+l.getValue());
     if (f <= 0 || h < 0)
       return g.create(m.VALUE);
-    let d = Se(e);
-    const _ = Se(n);
-    let C = d.substring(0, f - 1);
+    let d = Me(e);
+    const C = Me(n);
+    let _ = d.substring(0, f - 1);
     d = d.substring(f - 1);
     let E = 0, b = 0;
     for (; b < h && E < d.length; )
-      b += Kr(d, E), E++;
-    return C += _ + d.substring(E), j.create(C);
+      b += Zr(d, E), E++;
+    return _ += C + d.substring(E), j.create(_);
   }
 }
-class nb extends V {
+class db extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 2);
@@ -30071,16 +30809,16 @@ class nb extends V {
       let d = c.getValue();
       if (c.isNull() && (d = ""), c.isBoolean() && (d = d ? "TRUE" : "FALSE"), d += "", h.isString() && (h = h.convertToNumberObjectValue()), h.isError())
         return h;
-      const _ = 32767, C = Math.floor(+h.getValue());
-      if (C < 0 || C > _ / d.length)
+      const C = 32767, _ = Math.floor(+h.getValue());
+      if (_ < 0 || _ > C / d.length)
         return g.create(m.VALUE);
-      const E = d.repeat(C);
+      const E = d.repeat(_);
       return j.create(E);
     });
     return r === 1 && n === 1 ? u.get(0, 0) : u;
   }
 }
-class sb extends V {
+class Cb extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -30100,7 +30838,7 @@ class sb extends V {
     return n === 1 && s === 1 ? c.get(0, 0) : c;
   }
   _handleSingleObject(e, t) {
-    const r = Se(e), { isError: n, errorObject: s, variants: o } = B(t);
+    const r = Me(e), { isError: n, errorObject: s, variants: o } = I(t);
     if (n)
       return s;
     const [u] = o, c = Math.floor(+u.getValue());
@@ -30114,7 +30852,7 @@ class sb extends V {
     return j.create(l);
   }
 }
-class ab extends V {
+class _b extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -30134,7 +30872,7 @@ class ab extends V {
     return n === 1 && s === 1 ? c.get(0, 0) : c;
   }
   _handleSingleObject(e, t) {
-    const r = Se(e), { isError: n, errorObject: s, variants: o } = B(t);
+    const r = Me(e), { isError: n, errorObject: s, variants: o } = I(t);
     if (n)
       return s;
     const [u] = o, c = Math.floor(+u.getValue());
@@ -30144,11 +30882,11 @@ class ab extends V {
       return j.create("");
     let l = r.length - 1, f = 0, h = "";
     for (; f < c && l >= 0; )
-      f += Kr(r, l, "rtl"), h = r.charAt(l) + h, l--;
+      f += Zr(r, l, "rtl"), h = r.charAt(l) + h, l--;
     return j.create(h);
   }
 }
-class ib extends V {
+class Ab extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 2);
@@ -30163,14 +30901,14 @@ class ib extends V {
       e.isArray() ? e.getColumnCount() : 1,
       t.isArray() ? t.getColumnCount() : 1,
       n.isArray() ? n.getColumnCount() : 1
-    ), u = O(s, o, e, g.create(m.NA)), c = O(s, o, t, g.create(m.NA)), l = O(s, o, n, g.create(m.NA)), f = u.mapValue((h, d, _) => {
-      const C = c.get(d, _), E = l.get(d, _);
-      return h.isError() ? h : C.isError() ? C : E.isError() ? E : this._handleSingleObject(h, C, E);
+    ), u = O(s, o, e, g.create(m.NA)), c = O(s, o, t, g.create(m.NA)), l = O(s, o, n, g.create(m.NA)), f = u.mapValue((h, d, C) => {
+      const _ = c.get(d, C), E = l.get(d, C);
+      return h.isError() ? h : _.isError() ? _ : E.isError() ? E : this._handleSingleObject(h, _, E);
     });
     return s === 1 && o === 1 ? f.get(0, 0) : f;
   }
   _handleSingleObject(e, t, r) {
-    const n = Se(e).toLocaleUpperCase(), s = Se(t).toLocaleUpperCase(), { isError: o, errorObject: u, variants: c } = B(r);
+    const n = Me(e).toLocaleUpperCase(), s = Me(t).toLocaleUpperCase(), { isError: o, errorObject: u, variants: c } = I(r);
     if (o)
       return u;
     const [l] = c, f = Math.floor(+l.getValue());
@@ -30182,7 +30920,7 @@ class ib extends V {
     return h === -1 ? g.create(m.VALUE) : y.create(h + 1);
   }
 }
-class ob extends V {
+class Eb extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 2);
@@ -30197,14 +30935,14 @@ class ob extends V {
       e.isArray() ? e.getColumnCount() : 1,
       t.isArray() ? t.getColumnCount() : 1,
       n.isArray() ? n.getColumnCount() : 1
-    ), u = O(s, o, e, g.create(m.NA)), c = O(s, o, t, g.create(m.NA)), l = O(s, o, n, g.create(m.NA)), f = u.mapValue((h, d, _) => {
-      const C = c.get(d, _), E = l.get(d, _);
-      return h.isError() ? h : C.isError() ? C : E.isError() ? E : this._handleSingleObject(h, C, E);
+    ), u = O(s, o, e, g.create(m.NA)), c = O(s, o, t, g.create(m.NA)), l = O(s, o, n, g.create(m.NA)), f = u.mapValue((h, d, C) => {
+      const _ = c.get(d, C), E = l.get(d, C);
+      return h.isError() ? h : _.isError() ? _ : E.isError() ? E : this._handleSingleObject(h, _, E);
     });
     return s === 1 && o === 1 ? f.get(0, 0) : f;
   }
   _handleSingleObject(e, t, r) {
-    const n = Se(e).toLocaleUpperCase(), s = Se(t).toLocaleUpperCase(), { isError: o, errorObject: u, variants: c } = B(r);
+    const n = Me(e).toLocaleUpperCase(), s = Me(t).toLocaleUpperCase(), { isError: o, errorObject: u, variants: c } = I(r);
     if (o)
       return u;
     const [l] = c, f = Math.floor(+l.getValue());
@@ -30215,11 +30953,11 @@ class ob extends V {
     const h = s.indexOf(n, f - 1);
     if (h === -1)
       return g.create(m.VALUE);
-    const d = Ka(s.substring(0, h)) + 1;
+    const d = ni(s.substring(0, h)) + 1;
     return y.create(d);
   }
 }
-class ub extends V {
+class bb extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 3);
@@ -30236,9 +30974,9 @@ class ub extends V {
       t.isArray() ? t.getColumnCount() : 1,
       r.isArray() ? r.getColumnCount() : 1,
       n != null && n.isArray() ? n.getColumnCount() : 1
-    ), u = O(s, o, e, g.create(m.NA)), c = O(s, o, t, g.create(m.NA)), l = O(s, o, r, g.create(m.NA)), f = n ? O(s, o, n, g.create(m.NA)) : void 0, h = u.mapValue((d, _, C) => {
-      const E = c.get(_, C), b = l.get(_, C);
-      let R = n ? f.get(_, C) : void 0;
+    ), u = O(s, o, e, g.create(m.NA)), c = O(s, o, t, g.create(m.NA)), l = O(s, o, r, g.create(m.NA)), f = n ? O(s, o, n, g.create(m.NA)) : void 0, h = u.mapValue((d, C, _) => {
+      const E = c.get(C, _), b = l.get(C, _);
+      let R = n ? f.get(C, _) : void 0;
       return d.isError() ? d : E.isError() ? E : b.isError() ? b : R != null && R.isError() ? R : R != null && R.isNull() || R != null && R.isBoolean() ? g.create(m.VALUE) : (R != null && R.isString() && (R = R.convertToNumberObjectValue()), R != null && R.isError() ? R : this._handleSingleObject(d, E, b, R));
     });
     return s === 1 && o === 1 ? h.get(0, 0) : h;
@@ -30268,7 +31006,7 @@ class ub extends V {
     return e.isNull() && (t = ""), e.isBoolean() && (t = t.toLocaleUpperCase()), t;
   }
 }
-class cb extends V {
+class yb extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -30283,7 +31021,7 @@ class cb extends V {
     return e.isError() ? e : e.isNull() || e.isBoolean() || e.isNumber() ? j.create("") : e;
   }
 }
-class lb extends V {
+class Rb extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 2);
@@ -30315,18 +31053,18 @@ class lb extends V {
         return c;
       let d = c.getValue();
       if (c.isNull() && (d = 0), c.isString()) {
-        if (!W(d))
+        if (!q(d))
           return c;
         d = Number(d);
       }
       h.isNull() && (h = j.create(" "));
-      const _ = `${h.getValue()}`, C = qa(_, d);
-      return j.create(_ === " " ? C.trimEnd() : C);
+      const C = `${h.getValue()}`, _ = ri(C, d);
+      return j.create(C === " " ? _.trimEnd() : _);
     });
     return u.getRowCount() === 1 && u.getColumnCount() === 1 ? u.get(0, 0) : u;
   }
 }
-class fb extends V {
+class pb extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 2);
@@ -30335,34 +31073,34 @@ class fb extends V {
   calculate(e, t, r, n, s, o) {
     let u = !1, c = r != null ? r : y.create(1);
     c.isNull() && (u = !0, c = y.create(1));
-    const l = !n, f = n != null ? n : y.create(0), h = s != null ? s : y.create(0), d = o != null ? o : g.create(m.NA), _ = Math.max(
+    const l = !n, f = n != null ? n : y.create(0), h = s != null ? s : y.create(0), d = o != null ? o : g.create(m.NA), C = Math.max(
       e.isArray() ? e.getRowCount() : 1,
       c.isArray() ? c.getRowCount() : 1,
       f.isArray() ? f.getRowCount() : 1,
       h.isArray() ? h.getRowCount() : 1,
       d.isArray() ? d.getRowCount() : 1
-    ), C = Math.max(
+    ), _ = Math.max(
       e.isArray() ? e.getColumnCount() : 1,
       c.isArray() ? c.getColumnCount() : 1,
       f.isArray() ? f.getColumnCount() : 1,
       h.isArray() ? h.getColumnCount() : 1,
       d.isArray() ? d.getColumnCount() : 1
-    ), E = O(_, C, e, g.create(m.NA)), b = O(_, C, c, g.create(m.NA)), R = O(_, C, f, g.create(m.NA)), p = O(_, C, h, g.create(m.NA)), N = O(_, C, d, g.create(m.NA)), M = this._getResultArray(E, t, b, R, p, N, u, l);
-    return _ === 1 && C === 1 ? M.get(0, 0) : M;
+    ), E = O(C, _, e, g.create(m.NA)), b = O(C, _, c, g.create(m.NA)), R = O(C, _, f, g.create(m.NA)), p = O(C, _, h, g.create(m.NA)), N = O(C, _, d, g.create(m.NA)), w = this._getResultArray(E, t, b, R, p, N, u, l);
+    return C === 1 && _ === 1 ? w.get(0, 0) : w;
   }
   _getResultArray(e, t, r, n, s, o, u, c) {
     return e.map((f, h, d) => {
-      const _ = r.get(h, d), C = n.get(h, d), E = s.get(h, d), b = o.get(h, d), R = this._checkVariantsError(f, _, C, E);
+      const C = r.get(h, d), _ = n.get(h, d), E = s.get(h, d), b = o.get(h, d), R = this._checkVariantsError(f, C, _, E);
       if (R.isError())
         return R;
       const p = this._getStringValue(f), N = this._getDelimiterValue(t);
       if (N instanceof g)
         return N;
-      const M = this._getVariantsNumberFloorValue(_, C, E);
-      if (M instanceof g)
-        return M;
-      const [w, S, D] = M;
-      return w === 0 || S < 0 || S > 1 || D < 0 || D > 1 ? g.create(m.VALUE) : N.includes("") ? w > 0 ? j.create(p) : j.create("") : !u && Math.abs(w) > p.length ? g.create(m.VALUE) : N.every((L) => L.length > p.length) ? g.create(m.NA) : this._getResult(p, N, w, S, D, b, c);
+      const w = this._getVariantsNumberFloorValue(C, _, E);
+      if (w instanceof g)
+        return w;
+      const [S, M, D] = w;
+      return S === 0 || M < 0 || M > 1 || D < 0 || D > 1 ? g.create(m.VALUE) : N.includes("") ? S > 0 ? j.create(p) : j.create("") : !u && Math.abs(S) > p.length ? g.create(m.VALUE) : N.every((L) => L.length > p.length) ? g.create(m.NA) : this._getResult(p, N, S, M, D, b, c);
     });
   }
   _checkVariantsError(...e) {
@@ -30371,7 +31109,7 @@ class fb extends V {
       if (r.isError())
         return r;
     }
-    return T.create(!0);
+    return v.create(!0);
   }
   _getStringValue(e) {
     let t = `${e.getValue()}`;
@@ -30408,9 +31146,9 @@ class fb extends V {
   }
   _getResult(e, t, r, n, s, o, u) {
     let c = n ? e.toLocaleLowerCase() : e;
-    const l = n ? t.map((C) => C.toLocaleLowerCase()) : t;
+    const l = n ? t.map((_) => _.toLocaleLowerCase()) : t;
     let f = 0, h = 0, d = 0;
-    for (let C = 0; C < Math.abs(r); C++)
+    for (let _ = 0; _ < Math.abs(r); _++)
       if (r < 0) {
         const E = l.map((b) => ({
           index: c.lastIndexOf(b),
@@ -30432,11 +31170,11 @@ class fb extends V {
       return g.create(m.NA);
     if (!h || h < Math.abs(r))
       return s ? r > 0 ? j.create("") : j.create(e) : o;
-    const _ = e.substr(f + d);
-    return j.create(_);
+    const C = e.substr(f + d);
+    return j.create(C);
   }
 }
-class hb extends V {
+class Nb extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 2);
@@ -30445,34 +31183,34 @@ class hb extends V {
   calculate(e, t, r, n, s, o) {
     let u = !1, c = r != null ? r : y.create(1);
     c.isNull() && (u = !0, c = y.create(1));
-    const l = !n, f = n != null ? n : y.create(0), h = s != null ? s : y.create(0), d = o != null ? o : g.create(m.NA), _ = Math.max(
+    const l = !n, f = n != null ? n : y.create(0), h = s != null ? s : y.create(0), d = o != null ? o : g.create(m.NA), C = Math.max(
       e.isArray() ? e.getRowCount() : 1,
       c.isArray() ? c.getRowCount() : 1,
       f.isArray() ? f.getRowCount() : 1,
       h.isArray() ? h.getRowCount() : 1,
       d.isArray() ? d.getRowCount() : 1
-    ), C = Math.max(
+    ), _ = Math.max(
       e.isArray() ? e.getColumnCount() : 1,
       c.isArray() ? c.getColumnCount() : 1,
       f.isArray() ? f.getColumnCount() : 1,
       h.isArray() ? h.getColumnCount() : 1,
       d.isArray() ? d.getColumnCount() : 1
-    ), E = O(_, C, e, g.create(m.NA)), b = O(_, C, c, g.create(m.NA)), R = O(_, C, f, g.create(m.NA)), p = O(_, C, h, g.create(m.NA)), N = O(_, C, d, g.create(m.NA)), M = this._getResultArray(E, t, b, R, p, N, u, l);
-    return _ === 1 && C === 1 ? M.get(0, 0) : M;
+    ), E = O(C, _, e, g.create(m.NA)), b = O(C, _, c, g.create(m.NA)), R = O(C, _, f, g.create(m.NA)), p = O(C, _, h, g.create(m.NA)), N = O(C, _, d, g.create(m.NA)), w = this._getResultArray(E, t, b, R, p, N, u, l);
+    return C === 1 && _ === 1 ? w.get(0, 0) : w;
   }
   _getResultArray(e, t, r, n, s, o, u, c) {
     return e.map((f, h, d) => {
-      const _ = r.get(h, d), C = n.get(h, d), E = s.get(h, d), b = o.get(h, d), R = this._checkVariantsError(f, _, C, E);
+      const C = r.get(h, d), _ = n.get(h, d), E = s.get(h, d), b = o.get(h, d), R = this._checkVariantsError(f, C, _, E);
       if (R.isError())
         return R;
       const p = this._getStringValue(f), N = this._getDelimiterValue(t);
       if (N instanceof g)
         return N;
-      const M = this._getVariantsNumberFloorValue(_, C, E);
-      if (M instanceof g)
-        return M;
-      const [w, S, D] = M;
-      return w === 0 || S < 0 || S > 1 || D < 0 || D > 1 ? g.create(m.VALUE) : N.includes("") ? w > 0 ? j.create("") : j.create(p) : !u && Math.abs(w) > p.length ? g.create(m.VALUE) : N.every((L) => L.length > p.length) ? g.create(m.NA) : this._getResult(p, N, w, S, D, b, c);
+      const w = this._getVariantsNumberFloorValue(C, _, E);
+      if (w instanceof g)
+        return w;
+      const [S, M, D] = w;
+      return S === 0 || M < 0 || M > 1 || D < 0 || D > 1 ? g.create(m.VALUE) : N.includes("") ? S > 0 ? j.create("") : j.create(p) : !u && Math.abs(S) > p.length ? g.create(m.VALUE) : N.every((L) => L.length > p.length) ? g.create(m.NA) : this._getResult(p, N, S, M, D, b, c);
     });
   }
   _checkVariantsError(...e) {
@@ -30481,7 +31219,7 @@ class hb extends V {
       if (r.isError())
         return r;
     }
-    return T.create(!0);
+    return v.create(!0);
   }
   _getStringValue(e) {
     let t = `${e.getValue()}`;
@@ -30518,9 +31256,9 @@ class hb extends V {
   }
   _getResult(e, t, r, n, s, o, u) {
     let c = n ? e.toLocaleLowerCase() : e;
-    const l = n ? t.map((C) => C.toLocaleLowerCase()) : t;
+    const l = n ? t.map((_) => _.toLocaleLowerCase()) : t;
     let f = 0, h = 0, d = 0;
-    for (let C = 0; C < Math.abs(r); C++)
+    for (let _ = 0; _ < Math.abs(r); _++)
       if (r < 0) {
         const E = l.map((b) => ({
           index: c.lastIndexOf(b),
@@ -30542,11 +31280,11 @@ class hb extends V {
       return g.create(m.NA);
     if (!h || h < Math.abs(r))
       return s ? r > 0 ? j.create(e) : j.create("") : o;
-    const _ = e.substr(0, f);
-    return j.create(_);
+    const C = e.substr(0, f);
+    return j.create(C);
   }
 }
-class mb extends V {
+class Vb extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 3);
@@ -30562,16 +31300,16 @@ class mb extends V {
     if (o.isString()) {
       const u = `${o.getValue()}`.toLocaleUpperCase();
       if (u === "TRUE")
-        return this._handleSingleObject(n, T.create(!0), s);
+        return this._handleSingleObject(n, v.create(!0), s);
       if (u === "FALSE")
-        return this._handleSingleObject(n, T.create(!1), s);
+        return this._handleSingleObject(n, v.create(!1), s);
     }
     return this._handleSingleObject(n, t, s);
   }
   _handleSingleObject(e, t, r) {
     if (e instanceof g)
       return e;
-    const { isError: n, errorObject: s, variants: o } = B(t);
+    const { isError: n, errorObject: s, variants: o } = I(t);
     if (n)
       return s;
     if (r instanceof g)
@@ -30616,7 +31354,7 @@ class mb extends V {
     return t;
   }
 }
-class gb extends V {
+class Ob extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 2);
@@ -30624,8 +31362,8 @@ class gb extends V {
   }
   calculate(e, t, r, n, s, o) {
     let u = r != null ? r : j.create("\\s");
-    const c = n != null ? n : y.create(0), l = s != null ? s : y.create(0), f = o != null ? o : j.create(m.NA), { _variant: h, values: d } = this._getStringValues(t), { _variant: _, values: C } = this._getStringValues(u, !1);
-    u = _;
+    const c = n != null ? n : y.create(0), l = s != null ? s : y.create(0), f = o != null ? o : j.create(m.NA), { _variant: h, values: d } = this._getStringValues(t), { _variant: C, values: _ } = this._getStringValues(u, !1);
+    u = C;
     const E = Math.max(
       e.isArray() ? e.getRowCount() : 1,
       c.isArray() ? c.getRowCount() : 1,
@@ -30634,7 +31372,7 @@ class gb extends V {
       e.isArray() ? e.getColumnCount() : 1,
       c.isArray() ? c.getColumnCount() : 1,
       l.isArray() ? l.getColumnCount() : 1
-    ), R = O(E, b, e, g.create(m.NA)), p = O(E, b, c, g.create(m.NA)), N = O(E, b, l, g.create(m.NA)), M = this._getResultArray(
+    ), R = O(E, b, e, g.create(m.NA)), p = O(E, b, c, g.create(m.NA)), N = O(E, b, l, g.create(m.NA)), w = this._getResultArray(
       R,
       h,
       u,
@@ -30642,9 +31380,9 @@ class gb extends V {
       N,
       f,
       d,
-      C
+      _
     );
-    return E === 1 && b === 1 ? M.get(0, 0) : M.map((w) => w.get(0, 0));
+    return E === 1 && b === 1 ? w.get(0, 0) : w.map((S) => S.get(0, 0));
   }
   _getStringValues(e, t = !0) {
     let r = e;
@@ -30672,42 +31410,42 @@ class gb extends V {
   }
   _getResultArray(e, t, r, n, s, o, u, c) {
     return e.map((f, h, d) => {
-      let _ = n.get(h, d), C = s.get(h, d);
-      const E = this._checkVariantsError(f, t, r, _, C);
+      let C = n.get(h, d), _ = s.get(h, d);
+      const E = this._checkVariantsError(f, t, r, C, _);
       if (E.isError())
         return E;
       if (f.isNull())
         return g.create(m.VALUE);
       let b = o;
       if (b.isArray()) {
-        const w = b.getRowCount(), S = b.getColumnCount();
-        if (w > 1 || S > 1)
+        const S = b.getRowCount(), M = b.getColumnCount();
+        if (S > 1 || M > 1)
           return g.create(m.VALUE);
         b = b.get(0, 0);
       }
       let R = `${f.getValue()}`;
-      if (f.isBoolean() && (R = R.toLocaleUpperCase()), _.isString() && (_ = _.convertToNumberObjectValue(), _.isError()))
-        return _;
-      const p = Math.floor(+_.getValue());
-      if (C.isString() && (C = C.convertToNumberObjectValue(), C.isError()))
+      if (f.isBoolean() && (R = R.toLocaleUpperCase()), C.isString() && (C = C.convertToNumberObjectValue(), C.isError()))
         return C;
-      const N = Math.floor(+C.getValue());
+      const p = Math.floor(+C.getValue());
+      if (_.isString() && (_ = _.convertToNumberObjectValue(), _.isError()))
+        return _;
+      const N = Math.floor(+_.getValue());
       if (N < 0 || N > 1)
         return g.create(m.VALUE);
-      let M = `${b.getValue()}`;
-      return b.isBoolean() && (M = M.toLocaleUpperCase()), this._getResult(R, u, c, p, N, M);
+      let w = `${b.getValue()}`;
+      return b.isBoolean() && (w = w.toLocaleUpperCase()), this._getResult(R, u, c, p, N, w);
     });
   }
   _getResult(e, t, r, n, s, o) {
     const u = new RegExp(r.join("|"), `g${s ? "i" : ""}`), c = new RegExp(t.join("|"), `g${s ? "i" : ""}`), l = e.split(u);
     let f = 1, h = l.map((d) => {
-      let _ = d.split(c);
-      return n && (_ = _.filter((C) => C !== "")), f = Math.max(f, _.length), _;
+      let C = d.split(c);
+      return n && (C = C.filter((_) => _ !== "")), f = Math.max(f, C.length), C;
     });
     return h = h.map((d) => {
-      let _ = d;
-      return _.length < f && (_ = _.concat(new Array(f - _.length).fill(o))), _;
-    }), q.createByArray(h);
+      let C = d;
+      return C.length < f && (C = C.concat(new Array(f - C.length).fill(o))), C;
+    }), W.createByArray(h);
   }
   _checkVariantsError(...e) {
     for (let t = 0; t < e.length; t++) {
@@ -30715,7 +31453,7 @@ class gb extends V {
       if (r.isError())
         return r;
     }
-    return T.create(!0);
+    return v.create(!0);
   }
   _getRegExpStringValue(e) {
     let t = e.getValue();
@@ -30725,7 +31463,7 @@ class gb extends V {
     return e.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
   }
 }
-class db extends V {
+class wb extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -30747,7 +31485,7 @@ class db extends V {
     return e.isBoolean() && (t = t.toLocaleUpperCase()), t = t.trim().replace(/\s+/g, " "), j.create(t);
   }
 }
-const Cb = Object.values(Te).filter((i) => [
+const Sb = Object.values(Te).filter((i) => [
   Te.TABLE_START,
   Te.TABLE_ROW_START,
   Te.TABLE_CELL_START,
@@ -30756,7 +31494,7 @@ const Cb = Object.values(Te).filter((i) => [
   Te.TABLE_END,
   Te.CUSTOM_BLOCK
 ].includes(i));
-class _b extends V {
+class Mb extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -30770,7 +31508,7 @@ class _b extends V {
     return this._handleSingleObject(e);
   }
   _handleSingleObject(e) {
-    const { isError: t, errorObject: r, variants: n } = B(e);
+    const { isError: t, errorObject: r, variants: n } = I(e);
     if (t)
       return r;
     const [s] = n, o = Math.floor(+s.getValue());
@@ -30779,10 +31517,10 @@ class _b extends V {
     if (o === 1114111 || o === 1114110)
       return g.create(m.NA);
     let u = String.fromCharCode(o);
-    return Cb.some((c) => c === u) && (u = ""), j.create(u);
+    return Sb.some((c) => c === u) && (u = ""), j.create(u);
   }
 }
-class Ab extends V {
+class Db extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -30806,7 +31544,7 @@ class Ab extends V {
     return y.create(r);
   }
 }
-class Eb extends V {
+class Lb extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -30828,7 +31566,7 @@ class Eb extends V {
     return j.create(t);
   }
 }
-class bb extends V {
+class Pb extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -30853,7 +31591,7 @@ class bb extends V {
     return y.create(r);
   }
 }
-class yb extends V {
+class xb extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -30873,7 +31611,7 @@ class yb extends V {
     return n === 1 && s === 1 ? c.get(0, 0) : c;
   }
   _handleSingleObject(e, t) {
-    const { isError: r, errorObject: n, variants: s } = B(t);
+    const { isError: r, errorObject: n, variants: s } = I(t);
     if (r)
       return n;
     const [o] = s, u = Math.floor(+o.getValue());
@@ -30889,57 +31627,57 @@ class yb extends V {
     return j.create(c);
   }
 }
-const Rb = [
-  [_E, se.ASC],
-  [CE, se.ARRAYTOTEXT],
-  [AE, se.BAHTTEXT],
-  [bE, se.CHAR],
-  [yE, se.CLEAN],
-  [RE, se.CODE],
-  [pE, se.CONCAT],
-  [VE, se.CONCATENATE],
-  [NE, se.DBCS],
-  [OE, se.DOLLAR],
-  [ME, se.EXACT],
-  [wE, se.FIND],
-  [DE, se.FINDB],
-  [LE, se.FIXED],
-  [PE, se.LEFT],
-  [xE, se.LEFTB],
-  [jE, se.LEN],
-  [UE, se.LENB],
-  [vE, se.LOWER],
-  [TE, se.MID],
-  [BE, se.MIDB],
-  [$E, se.NUMBERSTRING],
-  [YE, se.NUMBERVALUE],
-  [zE, se.REGEXEXTRACT],
-  [JE, se.REGEXMATCH],
-  [eb, se.REGEXREPLACE],
-  [HE, se.PROPER],
-  [tb, se.REPLACE],
-  [rb, se.REPLACEB],
-  [nb, se.REPT],
-  [sb, se.RIGHT],
-  [ab, se.RIGHTB],
-  [ib, se.SEARCH],
-  [ob, se.SEARCHB],
-  [ub, se.SUBSTITUTE],
-  [cb, se.T],
-  [lb, se.TEXT],
-  [fb, se.TEXTAFTER],
-  [hb, se.TEXTBEFORE],
-  [mb, se.TEXTJOIN],
-  [gb, se.TEXTSPLIT],
-  [db, se.TRIM],
-  [_b, se.UNICHAR],
-  [Ab, se.UNICODE],
-  [Eb, se.UPPER],
-  [bb, se.VALUE],
-  [yb, se.VALUETOTEXT]
-], pb = [];
-var Vb = /* @__PURE__ */ ((i) => i)(Vb || {});
-class Nb extends Ne {
+const jb = [
+  [ME, se.ASC],
+  [SE, se.ARRAYTOTEXT],
+  [DE, se.BAHTTEXT],
+  [PE, se.CHAR],
+  [xE, se.CLEAN],
+  [jE, se.CODE],
+  [UE, se.CONCAT],
+  [vE, se.CONCATENATE],
+  [TE, se.DBCS],
+  [BE, se.DOLLAR],
+  [IE, se.EXACT],
+  [FE, se.FIND],
+  [$E, se.FINDB],
+  [YE, se.FIXED],
+  [HE, se.LEFT],
+  [QE, se.LEFTB],
+  [GE, se.LEN],
+  [WE, se.LENB],
+  [qE, se.LOWER],
+  [KE, se.MID],
+  [XE, se.MIDB],
+  [eb, se.NUMBERSTRING],
+  [tb, se.NUMBERVALUE],
+  [lb, se.REGEXEXTRACT],
+  [fb, se.REGEXMATCH],
+  [hb, se.REGEXREPLACE],
+  [rb, se.PROPER],
+  [mb, se.REPLACE],
+  [gb, se.REPLACEB],
+  [db, se.REPT],
+  [Cb, se.RIGHT],
+  [_b, se.RIGHTB],
+  [Ab, se.SEARCH],
+  [Eb, se.SEARCHB],
+  [bb, se.SUBSTITUTE],
+  [yb, se.T],
+  [Rb, se.TEXT],
+  [pb, se.TEXTAFTER],
+  [Nb, se.TEXTBEFORE],
+  [Vb, se.TEXTJOIN],
+  [Ob, se.TEXTSPLIT],
+  [wb, se.TRIM],
+  [Mb, se.UNICHAR],
+  [Db, se.UNICODE],
+  [Lb, se.UPPER],
+  [Pb, se.VALUE],
+  [xb, se.VALUETOTEXT]
+], Ub = [];
+var vb = /* @__PURE__ */ ((i) => i)(vb || {});
+class Tb extends Ve {
   constructor() {
     super(...arguments);
     // 18.5.1.2 table (Table)
@@ -30968,24 +31706,24 @@ class Nb extends Ne {
     this._tableOptionMap.set(e, t);
   }
 }
-const Qu = Ze("univer.formula.super-table.service");
-function $i(i) {
-  return i.map((a) => a.map((e) => typeof e == "number" ? ba(e) : e));
+const nc = ze("univer.formula.super-table.service");
+function Ji(i) {
+  return i.map((a) => a.map((e) => typeof e == "number" ? Sa(e) : e));
 }
-function ay(i, a = !1) {
+function _y(i, a = !1) {
   if (i.isReferenceObject()) {
     const e = i.toArrayValueObject().toValue();
-    return a ? $i(e) : e;
+    return a ? Ji(e) : e;
   } else if (i.isArray()) {
     const e = i.toValue();
-    return a ? $i(e) : e;
+    return a ? Ji(e) : e;
   } else if (i.isNumber()) {
     const e = i.getValue();
-    return a ? ba(e) : e;
+    return a ? Sa(e) : e;
   }
   return i.getValue();
 }
-class Ob extends V {
+class Bb extends V {
   constructor() {
     super(...arguments);
     A(this, "minParams", 1);
@@ -31001,20 +31739,20 @@ class Ob extends V {
   _handleSingleObject(e) {
     if (e.isError())
       return e;
-    const t = Se(e), r = encodeURIComponent(t).replace(/[!~'()*]/g, (n) => `%${n.charCodeAt(0).toString(16).toLocaleUpperCase()}`);
+    const t = Me(e), r = encodeURIComponent(t).replace(/[!~'()*]/g, (n) => `%${n.charCodeAt(0).toString(16).toLocaleUpperCase()}`);
     return j.create(r);
   }
 }
-var Wu = /* @__PURE__ */ ((i) => (i.ENCODEURL = "ENCODEURL", i.FILTERXML = "FILTERXML", i.WEBSERVICE = "WEBSERVICE", i))(Wu || {});
-const Mb = [
-  [Ob, Wu.ENCODEURL]
+var sc = /* @__PURE__ */ ((i) => (i.ENCODEURL = "ENCODEURL", i.FILTERXML = "FILTERXML", i.WEBSERVICE = "WEBSERVICE", i))(sc || {});
+const Ib = [
+  [Bb, sc.ENCODEURL]
 ];
-class qu extends Ne {
+class ac extends Ve {
   constructor() {
     super(...arguments);
     A(this, "_allSubjects", []);
-    A(this, "_computingStatus$", new Xi(!0));
-    A(this, "computingStatus$", this._computingStatus$.pipe(Zi()));
+    A(this, "_computingStatus$", new oo(!0));
+    A(this, "computingStatus$", this._computingStatus$.pipe(uo()));
     A(this, "_computingSubscription");
   }
   get computingStatus() {
@@ -31040,45 +31778,45 @@ class qu extends Ne {
       this._computingStatus$.next(!0);
       return;
     }
-    this._computingSubscription = dc(this._allSubjects).pipe(Cc((t) => t.every((r) => r))).subscribe((t) => this._computingStatus$.next(t));
+    this._computingSubscription = Vc(this._allSubjects).pipe(Oc((t) => t.every((r) => r))).subscribe((t) => this._computingStatus$.next(t));
   }
 }
-var wb = Object.getOwnPropertyDescriptor, Sb = (i, a, e, t) => {
-  for (var r = t > 1 ? void 0 : t ? wb(a, e) : a, n = i.length - 1, s; n >= 0; n--)
+var Fb = Object.getOwnPropertyDescriptor, kb = (i, a, e, t) => {
+  for (var r = t > 1 ? void 0 : t ? Fb(a, e) : a, n = i.length - 1, s; n >= 0; n--)
     (s = i[n]) && (r = s(r) || r);
   return r;
-}, Yi = (i, a) => (e, t) => a(e, t, i);
-let sa = class extends Ne {
+}, eo = (i, a) => (e, t) => a(e, t, i);
+let ha = class extends Ve {
   constructor(a, e) {
     super();
-    A(this, "_computingCompleted$", new _c((a) => {
+    A(this, "_computingCompleted$", new wc((a) => {
       this._commandService.onCommandExecuted((e) => {
-        if (e.id !== _n.id) return;
+        if (e.id !== En.id) return;
         const t = e.params;
         if (t.functionsExecutedState !== void 0)
-          return a.next(t.functionsExecutedState === fr.SUCCESS);
+          return a.next(t.functionsExecutedState === mr.SUCCESS);
         if (t.stageInfo)
-          return a.next(t.stageInfo.stage === ut.IDLE);
+          return a.next(t.stageInfo.stage === $e.IDLE);
       });
     }).pipe(
-      Zi(),
-      Ac()
+      uo(),
+      Sc()
     ));
     this._commandService = a, this._globalComputingSrv = e;
-    const t = new fc(), r = new Xi(!0);
+    const t = new yc(), r = new oo(!0);
     t.add(this._globalComputingSrv.pushComputingStatusSubject(r)), t.add(this._computingCompleted$.subscribe((n) => r.next(n))), t.add(() => r.complete()), this.disposeWithMe(t);
   }
 };
-sa = Sb([
-  Yi(0, ir),
-  Yi(1, ye(qu))
-], sa);
-var Db = Object.getOwnPropertyDescriptor, Lb = (i, a, e, t) => {
-  for (var r = t > 1 ? void 0 : t ? Db(a, e) : a, n = i.length - 1, s; n >= 0; n--)
+ha = kb([
+  eo(0, ur),
+  eo(1, ye(ac))
+], ha);
+var $b = Object.getOwnPropertyDescriptor, Yb = (i, a, e, t) => {
+  for (var r = t > 1 ? void 0 : t ? $b(a, e) : a, n = i.length - 1, s; n >= 0; n--)
     (s = i[n]) && (r = s(r) || r);
   return r;
-}, rn = (i, a) => (e, t) => a(e, t, i);
-let Tn = class extends Ne {
+}, sn = (i, a) => (e, t) => a(e, t, i);
+let Bn = class extends Ve {
   constructor(i, a, e, t) {
     super(), this._commandService = i, this._functionService = a, this._configService = e, this._dataSyncPrimaryController = t, this._initialize();
   }
@@ -31087,22 +31825,22 @@ let Tn = class extends Ne {
   }
   _registerCommands() {
     [
-      fo,
-      ws,
-      uo,
-      co,
-      _n,
-      lo,
-      ca,
-      oo,
-      la,
-      fa,
-      ha,
-      ma,
-      el,
-      tl,
-      ho,
-      kc
+      po,
+      xs,
+      bo,
+      yo,
+      En,
+      Ro,
+      _a,
+      Eo,
+      Aa,
+      Ea,
+      ba,
+      ya,
+      ll,
+      fl,
+      No,
+      Zc
     ].forEach((i) => {
       var a;
       this._commandService.registerCommand(i), (a = this._dataSyncPrimaryController) == null || a.registerSyncingMutations(i);
@@ -31110,23 +31848,23 @@ let Tn = class extends Ne {
   }
   _registerFunctions() {
     var e;
-    const i = this._configService.getConfig(Ca), a = [
-      ...Zh,
-      ...Lm,
-      ...Pm,
+    const i = this._configService.getConfig(Na), a = [
+      ...mm,
       ...Wm,
-      ...Lg,
-      ...U1,
-      ...F0,
-      ...ld,
-      ...Dd,
-      ...hC,
-      ...I_,
-      ...Q_,
-      ...dE,
-      ...Rb,
-      ...pb,
-      ...Mb
+      ...qm,
+      ...cg,
+      ...Wg,
+      ...Z1,
+      ...rd,
+      ...Od,
+      ...Gd,
+      ...SC,
+      ...eA,
+      ...oA,
+      ...wE,
+      ...jb,
+      ...Ub,
+      ...Ib
     ].concat((e = i == null ? void 0 : i.function) != null ? e : []).map((t) => {
       const r = t[0], n = t[1];
       return new r(n);
@@ -31134,18 +31872,18 @@ let Tn = class extends Ne {
     this._functionService.registerExecutors(...a);
   }
 };
-Tn = Lb([
-  rn(0, ir),
-  rn(1, Qt),
-  rn(2, ia),
-  rn(3, hc(Ec))
-], Tn);
-var Pb = Object.getOwnPropertyDescriptor, xb = (i, a, e, t) => {
-  for (var r = t > 1 ? void 0 : t ? Pb(a, e) : a, n = i.length - 1, s; n >= 0; n--)
+Bn = Yb([
+  sn(0, ur),
+  sn(1, Gt),
+  sn(2, ga),
+  sn(3, Rc(Mc))
+], Bn);
+var Hb = Object.getOwnPropertyDescriptor, Qb = (i, a, e, t) => {
+  for (var r = t > 1 ? void 0 : t ? Hb(a, e) : a, n = i.length - 1, s; n >= 0; n--)
     (s = i[n]) && (r = s(r) || r);
   return r;
-}, nn = (i, a) => (e, t) => a(e, t, i);
-let Bn = class extends Ne {
+}, an = (i, a) => (e, t) => a(e, t, i);
+let In = class extends Ve {
   constructor(i, a, e) {
     super(), this._commandService = i, this._dependencyManagerService = a, this._featureCalculationManagerService = e, this._initialize();
   }
@@ -31163,24 +31901,24 @@ let Bn = class extends Ne {
   _commandExecutedListener() {
     this.disposeWithMe(
       this._commandService.onCommandExecuted((i) => {
-        if (i.id === fa.id) {
+        if (i.id === Ea.id) {
           const a = i.params;
           if (a == null)
             return;
           const { featureIds: e, unitId: t, subUnitId: r } = a;
           this._dependencyManagerService.removeFeatureFormulaDependency(t, r, e);
-        } else if (i.id === la.id) {
+        } else if (i.id === Aa.id) {
           const a = i.params;
           if (a == null)
             return;
           const { featureId: e, calculationParam: t } = a, { unitId: r, subUnitId: n } = t;
           this._dependencyManagerService.removeFeatureFormulaDependency(r, n, [e]);
-        } else if (i.id === ma.id) {
+        } else if (i.id === ya.id) {
           const a = i.params;
           if (a == null)
             return;
           this._dependencyManagerService.removeOtherFormulaDependency(a.unitId, a.subUnitId, a.formulaIdList);
-        } else if (i.id === ha.id) {
+        } else if (i.id === ba.id) {
           const a = i.params;
           if (a == null)
             return;
@@ -31188,7 +31926,7 @@ let Bn = class extends Ne {
           Object.keys(e).forEach((r) => {
             t.push(r);
           }), this._dependencyManagerService.removeOtherFormulaDependency(a.unitId, a.subUnitId, t);
-        } else if (i.id === fo.id) {
+        } else if (i.id === po.id) {
           const a = i.params.formulaData;
           Object.keys(a).forEach((e) => {
             const t = a[e];
@@ -31209,7 +31947,7 @@ let Bn = class extends Ne {
               });
             }
           });
-        } else i.id === ca.id && this._handleSetDefinedName(i);
+        } else i.id === _a.id && this._handleSetDefinedName(i);
       })
     );
   }
@@ -31221,18 +31959,18 @@ let Bn = class extends Ne {
     this._dependencyManagerService.removeFormulaDependencyByDefinedName(e, t);
   }
 };
-Bn = xb([
-  nn(0, ir),
-  nn(1, vr),
-  nn(1, Jn),
-  nn(2, vr)
-], Bn);
-var jb = Object.getOwnPropertyDescriptor, Ub = (i, a, e, t) => {
-  for (var r = t > 1 ? void 0 : t ? jb(a, e) : a, n = i.length - 1, s; n >= 0; n--)
+In = Qb([
+  an(0, ur),
+  an(1, Ir),
+  an(1, es),
+  an(2, Ir)
+], In);
+var Gb = Object.getOwnPropertyDescriptor, Wb = (i, a, e, t) => {
+  for (var r = t > 1 ? void 0 : t ? Gb(a, e) : a, n = i.length - 1, s; n >= 0; n--)
     (s = i[n]) && (r = s(r) || r);
   return r;
-}, Hi = (i, a) => (e, t) => a(e, t, i);
-let In = class extends Ne {
+}, to = (i, a) => (e, t) => a(e, t, i);
+let Fn = class extends Ve {
   constructor(i, a) {
     super(), this._commandService = i, this._featureCalculationManagerService = a, this._initialize();
   }
@@ -31242,13 +31980,13 @@ let In = class extends Ne {
   _commandExecutedListener() {
     this.disposeWithMe(
       this._commandService.onCommandExecuted((i) => {
-        if (i.id === la.id) {
+        if (i.id === Aa.id) {
           const a = i.params;
           if (a == null)
             return;
           const { featureId: e, calculationParam: t } = a, { unitId: r, subUnitId: n } = t;
           this._featureCalculationManagerService.register(r, n, e, t);
-        } else if (i.id === fa.id) {
+        } else if (i.id === Ea.id) {
           const a = i.params;
           if (a == null)
             return;
@@ -31259,16 +31997,16 @@ let In = class extends Ne {
     );
   }
 };
-In = Ub([
-  Hi(0, ir),
-  Hi(1, vr)
-], In);
-var vb = Object.getOwnPropertyDescriptor, Tb = (i, a, e, t) => {
-  for (var r = t > 1 ? void 0 : t ? vb(a, e) : a, n = i.length - 1, s; n >= 0; n--)
+Fn = Wb([
+  to(0, ur),
+  to(1, Ir)
+], Fn);
+var qb = Object.getOwnPropertyDescriptor, Kb = (i, a, e, t) => {
+  for (var r = t > 1 ? void 0 : t ? qb(a, e) : a, n = i.length - 1, s; n >= 0; n--)
     (s = i[n]) && (r = s(r) || r);
   return r;
-}, Vs = (i, a) => (e, t) => a(e, t, i);
-let Fn = class extends Ne {
+}, Ms = (i, a) => (e, t) => a(e, t, i);
+let kn = class extends Ve {
   constructor(i, a, e) {
     super(), this._commandService = i, this._otherFormulaManagerService = a, this._dependencyManagerService = e, this._initialize();
   }
@@ -31278,13 +32016,13 @@ let Fn = class extends Ne {
   _commandExecutedListener() {
     this.disposeWithMe(
       this._commandService.onCommandExecuted((i) => {
-        if (i.id === ha.id) {
+        if (i.id === ba.id) {
           const a = i.params;
           if (a == null)
             return;
           const e = { [a.unitId]: { [a.subUnitId]: a.formulaMap } };
           this._otherFormulaManagerService.batchRegister(e);
-        } else if (i.id === ma.id) {
+        } else if (i.id === ya.id) {
           const a = i.params;
           if (a == null)
             return;
@@ -31297,17 +32035,17 @@ let Fn = class extends Ne {
     );
   }
 };
-Fn = Tb([
-  Vs(0, ir),
-  Vs(1, Ma),
-  Vs(2, Jn)
-], Fn);
-var Bb = Object.getOwnPropertyDescriptor, Ib = (i, a, e, t) => {
-  for (var r = t > 1 ? void 0 : t ? Bb(a, e) : a, n = i.length - 1, s; n >= 0; n--)
+kn = Kb([
+  Ms(0, ur),
+  Ms(1, Ua),
+  Ms(2, es)
+], kn);
+var Xb = Object.getOwnPropertyDescriptor, Zb = (i, a, e, t) => {
+  for (var r = t > 1 ? void 0 : t ? Xb(a, e) : a, n = i.length - 1, s; n >= 0; n--)
     (s = i[n]) && (r = s(r) || r);
   return r;
-}, Gi = (i, a) => (e, t) => a(e, t, i);
-let kn = class extends Ne {
+}, ro = (i, a) => (e, t) => a(e, t, i);
+let $n = class extends Ve {
   constructor(i, a) {
     super(), this._commandService = i, this._superTableService = a, this._initialize();
   }
@@ -31317,19 +32055,19 @@ let kn = class extends Ne {
   _commandExecutedListener() {
     this.disposeWithMe(
       this._commandService.onCommandExecuted((i) => {
-        if (i.id === ca.id) {
+        if (i.id === _a.id) {
           const a = i.params;
           if (a == null)
             return;
           const { unitId: e, tableName: t, reference: r } = a;
           this._superTableService.registerTable(e, t, r);
-        } else if (i.id === oo.id) {
+        } else if (i.id === Eo.id) {
           const a = i.params;
           if (a == null)
             return;
           const { unitId: e, tableName: t } = a;
           this._superTableService.remove(e, t);
-        } else if (i.id === ho.id) {
+        } else if (i.id === No.id) {
           const a = i.params;
           if (a == null)
             return;
@@ -31340,11 +32078,11 @@ let kn = class extends Ne {
     );
   }
 };
-kn = Ib([
-  Gi(0, ir),
-  Gi(1, Qu)
-], kn);
-class Fb extends Ne {
+$n = Zb([
+  ro(0, ur),
+  ro(1, nc)
+], $n);
+class zb extends Ve {
   constructor() {
     super(...arguments);
     A(this, "_dirtyConversionMap", /* @__PURE__ */ new Map());
@@ -31368,137 +32106,137 @@ class Fb extends Ne {
     return this._dirtyConversionMap;
   }
 }
-const kb = Ze(
+const Jb = ze(
   "univer.formula.active-dirty-manager.service"
 );
-var $b = Object.getOwnPropertyDescriptor, Yb = (i, a, e, t) => {
-  for (var r = t > 1 ? void 0 : t ? $b(a, e) : a, n = i.length - 1, s; n >= 0; n--)
+var ey = Object.getOwnPropertyDescriptor, ty = (i, a, e, t) => {
+  for (var r = t > 1 ? void 0 : t ? ey(a, e) : a, n = i.length - 1, s; n >= 0; n--)
     (s = i[n]) && (r = s(r) || r);
   return r;
-}, Qi = (i, a) => (e, t) => a(e, t, i);
-const Hb = "UNIVER_ENGINE_FORMULA_PLUGIN";
-var Ns;
-let Wi = (Ns = class extends mc {
-  constructor(i = hi, a, e) {
+}, no = (i, a) => (e, t) => a(e, t, i);
+const ry = "UNIVER_ENGINE_FORMULA_PLUGIN";
+var Ds;
+let so = (Ds = class extends pc {
+  constructor(i = yi, a, e) {
     super(), this._config = i, this._injector = a, this._configService = e;
-    const { ...t } = gc(
+    const { ...t } = Nc(
       {},
-      hi,
+      yi,
       this._config
     );
-    this._configService.setConfig(Ca, t);
+    this._configService.setConfig(Na, t);
   }
   onStarting() {
     this._initialize(), this._initializeWithOverride();
   }
   onReady() {
     var i;
-    cs(this._injector, [
-      [Tn],
-      [kn]
-    ]), (i = this._config) != null && i.notExecuteFormula || cs(this._injector, [
+    ls(this._injector, [
+      [Bn],
+      [$n]
+    ]), (i = this._config) != null && i.notExecuteFormula || ls(this._injector, [
+      [kn],
       [Fn],
       [In],
-      [Bn],
-      [Pn]
+      [xn]
     ]);
   }
   onRendered() {
     var i;
-    (i = this._config) != null && i.notExecuteFormula || cs(this._injector, [
-      [zs],
-      [Xs]
+    (i = this._config) != null && i.notExecuteFormula || ls(this._injector, [
+      [ia],
+      [ta]
     ]);
   }
   _initialize() {
     const i = !this._config.notExecuteFormula, a = [
       // Services
-      [Qt, { useClass: sh }],
-      [Or, { useClass: Ps }],
-      [kb, { useClass: Fb }],
-      [Lo, { useClass: Qs }],
-      [_o, { useClass: hl }],
-      [Qu, { useClass: Nb }],
-      [qu],
+      [Gt, { useClass: mh }],
+      [Sr, { useClass: Ts }],
+      [Jb, { useClass: zb }],
+      [$o, { useClass: Zs }],
+      [So, { useClass: Rl }],
+      [nc, { useClass: Tb }],
+      [ac],
       // Models
-      [Ar],
+      [br],
       // Engine
-      [ga],
+      [Ra],
       //Controllers
-      [Tn],
-      [kn],
-      [sa]
+      [Bn],
+      [$n],
+      [ha]
     ];
     i && a.push(
       // Services
-      [Ma, { useClass: Ih }],
-      [St, { useClass: Ws }],
-      [Yt, { useClass: Us }],
-      [vr, { useClass: Bh }],
+      [Ua, { useClass: qh }],
+      [Mt, { useClass: zs }],
+      [Yt, { useClass: Fs }],
+      [Ir, { useClass: Wh }],
       //Controller
-      [Pn],
-      [Fn],
-      [Bn],
+      [xn],
+      [kn],
       [In],
+      [Fn],
       // Calculation engine
+      [pr],
+      [Br],
       [yr],
-      [Ur],
-      [Er],
       // AstNode factory
-      [Po],
-      [On],
-      [Mn],
-      [Bo],
+      [Yo],
       [wn],
-      [Nn],
       [Sn],
+      [Ko],
+      [Mn],
+      [On],
       [Dn],
       [Ln],
-      [Io]
+      [Pn],
+      [Xo]
     ), a.forEach((e) => this._injector.add(e));
   }
   _initializeWithOverride() {
     var i;
     (i = this._config) != null && i.notExecuteFormula || [
-      [zs, { useClass: Js }],
-      [Jn, { useClass: Th }],
-      [Xs, { useClass: Zs }]
+      [ia, { useClass: oa }],
+      [es, { useClass: Gh }],
+      [ta, { useClass: ra }]
     ].forEach((e) => this._injector.add(e));
   }
-}, A(Ns, "pluginName", Hb), Ns);
-Wi = Yb([
-  Qi(1, ye(Ki)),
-  Qi(2, ia)
-], Wi);
+}, A(Ds, "pluginName", ry), Ds);
+so = ty([
+  no(1, ye(io)),
+  no(2, ga)
+], so);
 export {
-  Fb as ActiveDirtyManagerService,
-  q as ArrayValueObject,
-  Po as AstRootNodeFactory,
-  Ur as AstTreeBuilder,
-  Yf as AsyncArrayObject,
-  ny as AsyncCustomFunction,
-  $f as AsyncObject,
+  zb as ActiveDirtyManagerService,
+  W as ArrayValueObject,
+  Yo as AstRootNodeFactory,
+  Br as AstTreeBuilder,
+  Jf as AsyncArrayObject,
+  dy as AsyncCustomFunction,
+  zf as AsyncObject,
   V as BaseFunction,
-  Xn as BaseReferenceObject,
+  Zn as BaseReferenceObject,
   Ht as BaseValueObject,
-  rr as BooleanValue,
-  T as BooleanValueObject,
-  Pn as CalculateController,
-  Js as CalculateFormulaService,
-  jm as CustomFunction,
-  Hh as DEFAULT_INTERVAL_COUNT,
-  Ps as DefinedNamesService,
-  vh as DependencyManagerBaseService,
-  Th as DependencyManagerService,
-  ey as ENGINE_FORMULA_CYCLE_REFERENCE_COUNT,
-  Ca as ENGINE_FORMULA_PLUGIN_CONFIG_KEY,
-  or as ERROR_TYPE_SET,
+  nr as BooleanValue,
+  v as BooleanValueObject,
+  xn as CalculateController,
+  oa as CalculateFormulaService,
+  Xm as CustomFunction,
+  am as DEFAULT_INTERVAL_COUNT,
+  Ts as DefinedNamesService,
+  Qh as DependencyManagerBaseService,
+  Gh as DependencyManagerService,
+  hy as ENGINE_FORMULA_CYCLE_REFERENCE_COUNT,
+  Na as ENGINE_FORMULA_PLUGIN_CONFIG_KEY,
+  cr as ERROR_TYPE_SET,
   m as ErrorType,
   g as ErrorValueObject,
-  ea as FUNCTION_NAMES_ARRAY,
+  ua as FUNCTION_NAMES_ARRAY,
   le as FUNCTION_NAMES_COMPATIBILITY,
-  xm as FUNCTION_NAMES_CUBE,
-  Qe as FUNCTION_NAMES_DATABASE,
+  Km as FUNCTION_NAMES_CUBE,
+  qe as FUNCTION_NAMES_DATABASE,
   be as FUNCTION_NAMES_DATE,
   Z as FUNCTION_NAMES_ENGINEERING,
   ee as FUNCTION_NAMES_FINANCIAL,
@@ -31506,126 +32244,126 @@ export {
   De as FUNCTION_NAMES_LOGICAL,
   fe as FUNCTION_NAMES_LOOKUP,
   Y as FUNCTION_NAMES_MATH,
-  v as FUNCTION_NAMES_STATISTICAL,
+  B as FUNCTION_NAMES_STATISTICAL,
   se as FUNCTION_NAMES_TEXT,
-  Vb as FUNCTION_NAMES_UNIVER,
-  Wu as FUNCTION_NAMES_WEB,
-  Bh as FeatureCalculationManagerService,
-  Us as FormulaCurrentConfigService,
-  Ar as FormulaDataModel,
-  Zs as FormulaDependencyGenerator,
-  bs as FormulaDependencyTree,
-  Ks as FormulaDependencyTreeType,
-  Si as FormulaDependencyTreeVirtual,
-  ut as FormulaExecuteStageType,
-  fr as FormulaExecutedStateType,
-  Ws as FormulaRuntimeService,
-  On as FunctionNodeFactory,
-  sh as FunctionService,
-  yc as FunctionType,
-  qu as GlobalComputingStatusService,
-  Qs as HyperlinkEngineFormulaService,
-  kb as IActiveDirtyManagerService,
-  zs as ICalculateFormulaService,
-  Or as IDefinedNamesService,
-  Jn as IDependencyManagerService,
-  vr as IFeatureCalculationManagerService,
+  vb as FUNCTION_NAMES_UNIVER,
+  sc as FUNCTION_NAMES_WEB,
+  Wh as FeatureCalculationManagerService,
+  Fs as FormulaCurrentConfigService,
+  br as FormulaDataModel,
+  ra as FormulaDependencyGenerator,
+  Rs as FormulaDependencyTree,
+  ea as FormulaDependencyTreeType,
+  ys as FormulaDependencyTreeVirtual,
+  $e as FormulaExecuteStageType,
+  mr as FormulaExecutedStateType,
+  zs as FormulaRuntimeService,
+  wn as FunctionNodeFactory,
+  mh as FunctionService,
+  Lc as FunctionType,
+  ac as GlobalComputingStatusService,
+  Zs as HyperlinkEngineFormulaService,
+  Jb as IActiveDirtyManagerService,
+  ia as ICalculateFormulaService,
+  Sr as IDefinedNamesService,
+  es as IDependencyManagerService,
+  Ir as IFeatureCalculationManagerService,
   Yt as IFormulaCurrentConfigService,
-  Xs as IFormulaDependencyGenerator,
-  St as IFormulaRuntimeService,
-  Qt as IFunctionService,
-  Lo as IHyperlinkEngineFormulaService,
-  Ma as IOtherFormulaManagerService,
-  _o as ISheetRowFilteredService,
-  Qu as ISuperTableService,
-  yr as Interpreter,
-  Mn as LambdaNodeFactory,
-  Bo as LambdaParameterNodeFactory,
-  Oa as LambdaValueObjectObject,
-  Er as Lexer,
+  ta as IFormulaDependencyGenerator,
+  Mt as IFormulaRuntimeService,
+  Gt as IFunctionService,
+  $o as IHyperlinkEngineFormulaService,
+  Ua as IOtherFormulaManagerService,
+  So as ISheetRowFilteredService,
+  nc as ISuperTableService,
+  pr as Interpreter,
+  Sn as LambdaNodeFactory,
+  Ko as LambdaParameterNodeFactory,
+  ja as LambdaValueObjectObject,
+  yr as Lexer,
   ae as LexerNode,
-  ga as LexerTreeBuilder,
+  Ra as LexerTreeBuilder,
   ue as NullValueObject,
   y as NumberValueObject,
-  wn as OperatorNodeFactory,
-  Ih as OtherFormulaManagerService,
-  Nn as PrefixNodeFactory,
-  pn as RangeReferenceObject,
-  Sn as ReferenceNodeFactory,
-  kc as RegisterFunctionMutation,
-  oo as RemoveDefinedNameMutation,
-  fa as RemoveFeatureCalculationMutation,
-  ma as RemoveOtherFormulaMutation,
-  tl as RemoveSuperTableMutation,
-  ws as SetArrayFormulaDataMutation,
-  ca as SetDefinedNameMutation,
-  Jb as SetDefinedNameMutationFactory,
-  la as SetFeatureCalculationMutation,
-  _n as SetFormulaCalculationNotificationMutation,
-  lo as SetFormulaCalculationResultMutation,
-  uo as SetFormulaCalculationStartMutation,
-  co as SetFormulaCalculationStopMutation,
-  fo as SetFormulaDataMutation,
-  ha as SetOtherFormulaMutation,
-  el as SetSuperTableMutation,
-  ho as SetSuperTableOptionMutation,
-  hl as SheetRowFilteredService,
+  Mn as OperatorNodeFactory,
+  qh as OtherFormulaManagerService,
+  On as PrefixNodeFactory,
+  Nn as RangeReferenceObject,
+  Dn as ReferenceNodeFactory,
+  Zc as RegisterFunctionMutation,
+  Eo as RemoveDefinedNameMutation,
+  Ea as RemoveFeatureCalculationMutation,
+  ya as RemoveOtherFormulaMutation,
+  fl as RemoveSuperTableMutation,
+  xs as SetArrayFormulaDataMutation,
+  _a as SetDefinedNameMutation,
+  fy as SetDefinedNameMutationFactory,
+  Aa as SetFeatureCalculationMutation,
+  En as SetFormulaCalculationNotificationMutation,
+  Ro as SetFormulaCalculationResultMutation,
+  bo as SetFormulaCalculationStartMutation,
+  yo as SetFormulaCalculationStopMutation,
+  po as SetFormulaDataMutation,
+  ba as SetOtherFormulaMutation,
+  ll as SetSuperTableMutation,
+  No as SetSuperTableOptionMutation,
+  Rl as SheetRowFilteredService,
   j as StringValueObject,
-  Dn as SuffixNodeFactory,
-  Nb as SuperTableService,
-  Ln as UnionNodeFactory,
-  Wi as UniverFormulaEnginePlugin,
-  Io as ValueNodeFactory,
-  Mt as ValueObjectFactory,
-  k as compareToken,
-  Ic as convertUnitDataToRuntime,
-  Wh as deserializeRangeForR1C1,
-  Dr as deserializeRangeWithSheet,
-  _r as deserializeRangeWithSheetWithCache,
-  ry as extractFormulaError,
-  Zh as functionArray,
-  Lm as functionCompatibility,
-  Pm as functionCube,
-  Wm as functionDatabase,
-  Lg as functionDate,
-  U1 as functionEngineering,
-  F0 as functionFinancial,
-  ld as functionInformation,
-  Dd as functionLogical,
-  hC as functionLookup,
-  I_ as functionMath,
-  Q_ as functionMeta,
-  dE as functionStatistical,
-  Rb as functionText,
-  pb as functionUniver,
-  Mb as functionWeb,
-  Vi as generateAstNode,
-  Oi as generateExecuteAstNodeData,
-  cr as generateRandomDependencyTreeId,
-  ci as generateStringWithSequence,
-  Zb as getAbsoluteRefTypeWitString,
-  on as getAbsoluteRefTypeWithSingleString,
-  ay as getObjectValue,
-  zb as getRangeWithRefsString,
-  ty as handleNumfmtInCell,
-  ua as handleRefStringInfo,
-  Vc as includeFormulaLexerToken,
-  fi as initSheetFormulaData,
-  an as isFormulaLexerToken,
-  bc as isInDirtyRange,
-  so as isReferenceString,
-  un as isReferenceStringWithEffectiveColumn,
-  Wc as isReferenceStrings,
-  Xb as matchRefDrawToken,
+  Ln as SuffixNodeFactory,
+  Tb as SuperTableService,
+  Pn as UnionNodeFactory,
+  so as UniverFormulaEnginePlugin,
+  Xo as ValueNodeFactory,
+  wt as ValueObjectFactory,
+  U as compareToken,
+  Kc as convertUnitDataToRuntime,
+  cm as deserializeRangeForR1C1,
+  xr as deserializeRangeWithSheet,
+  Er as deserializeRangeWithSheetWithCache,
+  gy as extractFormulaError,
+  mm as functionArray,
+  Wm as functionCompatibility,
+  qm as functionCube,
+  cg as functionDatabase,
+  Wg as functionDate,
+  Z1 as functionEngineering,
+  rd as functionFinancial,
+  Od as functionInformation,
+  Gd as functionLogical,
+  SC as functionLookup,
+  eA as functionMath,
+  oA as functionMeta,
+  wE as functionStatistical,
+  jb as functionText,
+  Ub as functionUniver,
+  Ib as functionWeb,
+  xi as generateAstNode,
+  Ui as generateExecuteAstNodeData,
+  qt as generateRandomDependencyTreeId,
+  Ai as generateStringWithSequence,
+  cy as getAbsoluteRefTypeWitString,
+  cn as getAbsoluteRefTypeWithSingleString,
+  _y as getObjectValue,
+  ly as getRangeWithRefsString,
+  my as handleNumfmtInCell,
+  Ca as handleRefStringInfo,
+  jc as includeFormulaLexerToken,
+  bi as initSheetFormulaData,
+  un as isFormulaLexerToken,
+  Dc as isInDirtyRange,
+  Co as isReferenceString,
+  ln as isReferenceStringWithEffectiveColumn,
+  nl as isReferenceStrings,
+  uy as matchRefDrawToken,
   K as matchToken,
-  Kb as normalizeSheetName,
+  oy as normalizeSheetName,
   X as operatorToken,
-  $e as sequenceNodeType,
+  Ye as sequenceNodeType,
   Ft as serializeRange,
-  Ss as serializeRangeToRefString,
-  Hc as serializeRangeWithSheet,
-  Gc as serializeRangeWithSpreadsheet,
-  fs as singleReferenceToGrid,
-  yi as strip,
-  ba as stripErrorMargin
+  js as serializeRangeToRefString,
+  el as serializeRangeWithSheet,
+  tl as serializeRangeWithSpreadsheet,
+  hs as singleReferenceToGrid,
+  Di as strip,
+  Sa as stripErrorMargin
 };

@@ -375,7 +375,9 @@ export class CalculateFormulaService extends Disposable implements ICalculateFor
                         this._runtimeService.setRuntimeData(value);
                     }
 
-                    nodeData.node.clearIntermediate();
+                    if (!process.env.DISABLE_CLEAR_INTERMEDIATE) {
+                        nodeData.node.clearIntermediate();
+                    }
                 }
             }
 

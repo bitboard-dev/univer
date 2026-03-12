@@ -557,7 +557,7 @@ export class BaseReferenceObject extends ObjectClassType {
             return this._getBlankArrayValueObject();
         }
 
-        let allNumeric = rowSize > 0 && columnSize > 0;
+        let allNumeric = rowSize > 0 && columnSize > 0 && !process.env.DISABLE_TYPED_ARRAY;
         const numericBuf = allNumeric ? new Float64Array(rowSize * columnSize) : null;
         const arrayValueList: BaseValueObject[][] = allNumeric ? [] : new Array(rowSize);
 

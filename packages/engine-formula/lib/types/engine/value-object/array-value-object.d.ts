@@ -18,7 +18,9 @@ export declare class ArrayValueObject extends BaseValueObject {
      * @returns
      */
     static createByArray(array: Array<Array<number | string | boolean | null>>): ArrayValueObject;
+    static createNumberArray(data: Float64Array, rowCount: number, columnCount: number, unitId?: string, sheetId?: string, row?: number, column?: number): ArrayValueObject;
     private _values;
+    private _numericData;
     private _rowCount;
     private _columnCount;
     private _unitId;
@@ -34,6 +36,9 @@ export declare class ArrayValueObject extends BaseValueObject {
     private _flattenPosition;
     constructor(rawValue: string | IArrayValueObject);
     dispose(): void;
+    isNumericArray(): boolean;
+    getNumericData(): Float64Array | null;
+    private _materialize;
     clone(): ArrayValueObject;
     getRowCount(): number;
     setRowCount(rowCount: number): void;
@@ -216,6 +221,11 @@ export declare class ArrayValueObject extends BaseValueObject {
     private _clearCache;
     private _sort;
     private _transposeArray;
+    private _extractNumericData;
+    private _typedCompareEquals;
+    private _typedArithmeticFromValues;
+    private _typedBinaryScalar;
+    private _typedBinaryArray;
     private _batchOperator;
     private _batchOperatorValue;
     private __batchOperatorRowValue;

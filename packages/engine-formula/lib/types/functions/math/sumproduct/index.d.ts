@@ -5,5 +5,4 @@ export declare class Sumproduct extends BaseFunction {
     maxParams: number;
     calculate(array1: BaseValueObject, ...variants: BaseValueObject[]): BaseValueObject;
     private _initArray1;
-    private _getResultArrayByArray1;
 }
