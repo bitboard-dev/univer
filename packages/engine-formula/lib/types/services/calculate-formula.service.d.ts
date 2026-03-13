@@ -11,6 +11,13 @@ import { IFormulaCurrentConfigService } from './current-data.service';
 export declare const DEFAULT_INTERVAL_COUNT = 500;
 export declare const CYCLE_REFERENCE_COUNT = "cycleReferenceCount";
 export declare const EVERY_N_FUNCTION_EXECUTION_PAUSE = 100;
+export interface ITraceSample {
+    i: number;
+    total: number;
+    heapMB: number;
+    rssMB: number;
+    ms: number;
+}
 export interface ICalculateFormulaService {
     readonly executionInProgressListener$: Observable<IExecutionInProgressParams>;
     readonly executionCompleteListener$: Observable<IAllRuntimeData>;
@@ -19,6 +26,7 @@ export interface ICalculateFormulaService {
     execute(formulaDatasetConfig: IFormulaDatasetConfig): Promise<void>;
     stopFormulaExecution(): void;
     calculate(formulaString: string, transformSuffix?: boolean): void;
+    getExecutionTrace(): ITraceSample[];
 }
 export declare const ICalculateFormulaService: import('@wendellhu/redi').IdentifierDecorator<ICalculateFormulaService>;
 export declare class CalculateFormulaService extends Disposable implements ICalculateFormulaService {
@@ -34,8 +42,11 @@ export declare class CalculateFormulaService extends Disposable implements ICalc
     protected readonly _executionCompleteListener$: Subject<IAllRuntimeData>;
     readonly executionCompleteListener$: Observable<IAllRuntimeData>;
     private _executeLock;
+    private _executionTrace;
     constructor(_configService: IConfigService, _lexer: Lexer, _currentConfigService: IFormulaCurrentConfigService, _runtimeService: IFormulaRuntimeService, _formulaDependencyGenerator: IFormulaDependencyGenerator, _interpreter: Interpreter, _astTreeBuilder: AstTreeBuilder);
     dispose(): void;
+    getExecutionTrace(): ITraceSample[];
+    private _recordTraceSample;
     /**
      * Stop the execution of the formula.
      */

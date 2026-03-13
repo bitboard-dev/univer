@@ -19,8 +19,7 @@ import { ILogService, Inject, Injector, IUniverInstanceService, LocaleService, L
 import { FormulaCurrentConfigService, FormulaDataModel, FormulaRuntimeService, HyperlinkEngineFormulaService, IFormulaCurrentConfigService, IFormulaRuntimeService, IHyperlinkEngineFormulaService, LexerTreeBuilder } from '@univerjs/engine-formula';
 import { SheetInterceptorService, SheetsSelectionsService } from '@univerjs/sheets';
 import { FormulaReorderController } from '@univerjs/sheets-formula-ui';
-import { SheetsSortService } from '@univerjs/sheets-sort';
-import { SheetsSortController } from '@univerjs/sheets-sort/controllers/sheets-sort.controller.js';
+import { SheetsSortController, SheetsSortService } from '@univerjs/sheets-sort';
 import zhCN from '../../../locale/zh-CN';
 import { SheetsSortUIService } from '../../../services/sheets-sort-ui.service';
 

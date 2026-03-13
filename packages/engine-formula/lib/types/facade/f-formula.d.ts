@@ -118,7 +118,7 @@ export declare class FFormula extends FBase {
      * @deprecated Use `whenComputingCompleteAsync` instead.
      * @returns {Promise<void>} This method returns a promise that resolves when the calculation is complete.
      */
-    onCalculationEnd(): Promise<void>;
+    onCalculationEnd(timeout?: number): Promise<void>;
     /**
      * Listening calculation processing.
      * @param {Function} callback - The callback function to be called when the formula calculation is in progress.

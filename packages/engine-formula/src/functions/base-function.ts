@@ -23,6 +23,7 @@ import type { BaseValueObject } from '../engine/value-object/base-value-object';
 import type { FormulaFunctionResultValueType, FormulaFunctionValueType } from '../engine/value-object/primitive-object';
 import type { FormulaDataModel } from '../models/formula-data.model';
 import type { IDefinedNameMapItem } from '../services/defined-names.service';
+import { isEqualSearchIndexEnabled } from '../basics/common';
 import { ErrorType } from '../basics/error-type';
 import { regexTestSingeRange, regexTestSingleColumn, regexTestSingleRow } from '../basics/regex';
 import { compareToken } from '../basics/token';
@@ -369,13 +370,18 @@ export class BaseFunction {
     }
 
     equalSearch(value: BaseValueObject, searchArray: ArrayValueObject, resultArray: ArrayValueObject, isFirst = true) {
-        const resultArrayValue = resultArray.pickRaw(searchArray.isEqual(value) as ArrayValueObject);
-
-        if (isFirst) {
-            return this._getOneFirstByRaw(resultArrayValue);
+        if (!isEqualSearchIndexEnabled()) {
+            return this.fuzzySearch(value, searchArray, resultArray, isFirst);
         }
 
-        return this._getOneLastByRaw(resultArrayValue);
+        const raw = value.getValue();
+        const target = typeof raw === 'string' ? (raw as string).toLocaleLowerCase() : raw;
+        const index = searchArray.getEqualSearchIndex(isFirst);
+        const pos = index.get(target as string | number | boolean);
+        if (pos) {
+            return resultArray.get(pos.row, pos.column) || ErrorValueObject.create(ErrorType.NA);
+        }
+        return ErrorValueObject.create(ErrorType.NA);
     }
 
     fuzzySearch(value: BaseValueObject, searchArray: ArrayValueObject, resultArray: ArrayValueObject, isFirst = true) {

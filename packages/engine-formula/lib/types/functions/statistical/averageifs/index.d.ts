@@ -6,5 +6,7 @@ export declare class Averageifs extends BaseFunction {
     maxParams: number;
     needsReferenceObject: boolean;
     calculate(averageRange: FunctionVariantType, ...variants: FunctionVariantType[]): BaseValueObject;
+    private _scalarAverageifs;
+    private _fallbackAverageifs;
     private _aggregateResults;
 }

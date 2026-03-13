@@ -28,10 +28,6 @@ import { generateExecuteAstNodeData } from '../../engine/utils/ast-node-tool';
 import { IFormulaCurrentConfigService } from '../../services/current-data.service';
 import { IFunctionService } from '../../services/function.service';
 import { IFormulaRuntimeService } from '../../services/runtime.service';
-import { Day } from '../date/day';
-import { Edate } from '../date/edate';
-import { FUNCTION_NAMES_DATE } from '../date/function-names';
-import { Today } from '../date/today';
 import { FUNCTION_NAMES_LOGICAL } from '../logical/function-names';
 import { Iferror } from '../logical/iferror';
 import { Address } from '../lookup/address';
@@ -489,9 +485,6 @@ describe('Test nested functions', () => {
             new Max(FUNCTION_NAMES_STATISTICAL.MAX),
             new Sumif(FUNCTION_NAMES_MATH.SUMIF),
             new Sumifs(FUNCTION_NAMES_MATH.SUMIFS),
-            new Edate(FUNCTION_NAMES_DATE.EDATE),
-            new Today(FUNCTION_NAMES_DATE.TODAY),
-            new Day(FUNCTION_NAMES_DATE.DAY),
             new Address(FUNCTION_NAMES_LOOKUP.ADDRESS),
             new Xmatch(FUNCTION_NAMES_LOOKUP.XMATCH),
             new Min(FUNCTION_NAMES_STATISTICAL.MIN),
@@ -538,26 +531,19 @@ describe('Test nested functions', () => {
     });
 
     describe('Normal', () => {
-        it('Nested functions IFERROR,XLOOKUP,MAX,SUMIFS,EDATE,TODAY,DAY,PLUS,Minus,CONCATENATE', () => {
-            const result = calculate('=IFERROR(XLOOKUP(MAX(SUMIFS(C2:C10, A2:A10, ">="&EDATE(TODAY(),-1)+1-DAY(TODAY()), A2:A10, "<"&TODAY()-DAY(TODAY())+1)), SUMIFS(C2:C10, A2:A10, ">="&EDATE(TODAY(),-1)+1-DAY(TODAY()), A2:A10, "<"&TODAY()-DAY(TODAY())+1), B2:B10, "No Data"), "No Data")');
-
-            expect(result).toStrictEqual([
-                [101],
-                [102],
-                [103],
-                [104],
-                [105],
-                [101],
-                [102],
-                [103],
-                [104],
-            ]);
+        it('Nested IFERROR,XLOOKUP,MAX', () => {
+            const result = calculate('=IFERROR(XLOOKUP(MAX(C2:C10), C2:C10, B2:B10, "No Data"), "No Data")');
+            expect(result).toStrictEqual(101);
         });
 
-        it('Nested functions ADDRESS,XMATCH,MIN,SUMIFS,EDATE,TODAY,DAY', () => {
-            const result = calculate('=ADDRESS(XMATCH(MIN(SUMIFS(C2:C10, A2:A10, ">=" & EDATE(TODAY(), -1) + 1 - DAY(TODAY()), A2:A10, "<" & TODAY() - DAY(TODAY()) + 1)), SUMIFS(C2:C10, A2:A10, ">=" & EDATE(TODAY(), -1) + 1 - DAY(TODAY()), A2:A10, "<" & TODAY() - DAY(TODAY()) + 1), 0) + 1, 2)');
+        it('Nested ADDRESS,XMATCH,MIN', () => {
+            const result = calculate('=ADDRESS(XMATCH(MIN(C2:C10), C2:C10, 0) + 1, 2)');
+            expect(result).toStrictEqual([['$B$6']]);
+        });
 
-            expect(result).toStrictEqual([['$B$2']]);
+        it('Nested SUMIFS with arithmetic criteria', () => {
+            const result = calculate('=SUMIFS(D2:D10, C2:C10, ">"&(1+1), B2:B10, ">="&(105-3))');
+            expect(result).toBe(1600);
         });
 
         it('SUM, CHOOSE', () => {

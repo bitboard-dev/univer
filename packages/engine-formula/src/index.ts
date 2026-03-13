@@ -154,6 +154,7 @@ export type { IRangeChange } from './models/formula-data.model';
 export { UniverFormulaEnginePlugin } from './plugin';
 export { ActiveDirtyManagerService, IActiveDirtyManagerService } from './services/active-dirty-manager.service';
 export { CalculateFormulaService, ICalculateFormulaService } from './services/calculate-formula.service';
+export type { ITraceSample } from './services/calculate-formula.service';
 export { DEFAULT_INTERVAL_COUNT } from './services/calculate-formula.service';
 export { FormulaCurrentConfigService, IFormulaCurrentConfigService, type IFormulaDirtyData } from './services/current-data.service';
 export { DefinedNamesService, type IDefinedNameMapItem, IDefinedNamesService, type IDefinedNamesServiceParam } from './services/defined-names.service';

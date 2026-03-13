@@ -191,7 +191,7 @@ describe('arrayValueObject test', () => {
             ]);
         });
 
-        it('not boolean', () => {
+        it('numeric 1 treated as truthy', () => {
             const pickArrayValueObject = ArrayValueObject.create({
                 calculateValueList: transformToValueObject([
                     [true, false, false, 1, false],
@@ -208,7 +208,7 @@ describe('arrayValueObject test', () => {
             const result = originArrayValueObject.pick(pickArrayValueObject);
 
             expect(getObjectValue(result)).toStrictEqual([
-                [1, 6, 11],
+                [1, 4, 6, 8, 11, 13],
             ]);
         });
 

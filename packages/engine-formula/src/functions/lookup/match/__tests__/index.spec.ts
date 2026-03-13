@@ -15,6 +15,7 @@
  */
 
 import { describe, expect, it } from 'vitest';
+import { resetFormulaOptimizationRuntimeFlags, setFormulaOptimizationRuntimeFlags } from '../../../../basics/common';
 import { ErrorType } from '../../../../basics/error-type';
 import { ArrayValueObject, transformToValueObject } from '../../../../engine/value-object/array-value-object';
 import {
@@ -140,6 +141,32 @@ describe('Test match', () => {
             const resultObject = testFunction.calculate(lookupValue, lookupArray, matchType);
 
             expect(resultObject.getValue()).toBe(2);
+        });
+
+        it('returns the same exact-match result with equality index enabled or disabled', async () => {
+            const lookupValue = NumberValueObject.create(6);
+            const lookupArray = ArrayValueObject.create({
+                calculateValueList: transformToValueObject([
+                    [2, 3, 6, 7],
+                ]),
+                rowCount: 1,
+                columnCount: 4,
+                unitId: '',
+                sheetId: '',
+                row: 0,
+                column: 0,
+            });
+            const matchType = NumberValueObject.create(0);
+
+            setFormulaOptimizationRuntimeFlags({ disableEqualSearchIndex: false });
+            const optimized = testFunction.calculate(lookupValue, lookupArray, matchType);
+
+            setFormulaOptimizationRuntimeFlags({ disableEqualSearchIndex: true });
+            const unoptimized = testFunction.calculate(lookupValue, lookupArray, matchType);
+
+            expect(optimized.getValue()).toBe(3);
+            expect(unoptimized.getValue()).toBe(3);
+            resetFormulaOptimizationRuntimeFlags();
         });
     });
 });

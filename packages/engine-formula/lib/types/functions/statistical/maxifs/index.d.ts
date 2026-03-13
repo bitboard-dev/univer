@@ -6,5 +6,7 @@ export declare class Maxifs extends BaseFunction {
     maxParams: number;
     needsReferenceObject: boolean;
     calculate(maxRange: FunctionVariantType, ...variants: FunctionVariantType[]): BaseValueObject;
+    private _scalarMaxifs;
+    private _fallbackMaxifs;
     private _aggregateResults;
 }

@@ -181,3 +181,24 @@ export declare enum ConcatenateType {
     FRONT = 0,
     BACK = 1
 }
+export declare function setFormulaOptimizationRuntimeFlags(config?: {
+    disableTypedArrayOptimization?: boolean;
+    disableClearIntermediate?: boolean;
+    disableScalarFastPath?: boolean;
+    disableFillDownSharing?: boolean;
+    disableFormulaHashCache?: boolean;
+    disableEqualSearchIndex?: boolean;
+    disableRankEqNumericFastPath?: boolean;
+    disableSortedNumericCache?: boolean;
+    disableRankEqIndexMap?: boolean;
+}): void;
+export declare function resetFormulaOptimizationRuntimeFlags(): void;
+export declare function isTypedArrayOptimizationEnabled(): boolean;
+export declare function isClearIntermediateEnabled(): boolean;
+export declare function isScalarFastPathEnabled(): boolean;
+export declare function isFillDownSharingEnabled(): boolean;
+export declare function isFormulaHashCacheEnabled(): boolean;
+export declare function isEqualSearchIndexEnabled(): boolean;
+export declare function isRankEqNumericFastPathEnabled(): boolean;
+export declare function isSortedNumericCacheEnabled(): boolean;
+export declare function isRankEqIndexMapEnabled(): boolean;

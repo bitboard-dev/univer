@@ -17,6 +17,7 @@
 import type { BaseReferenceObject, FunctionVariantType } from '../../../engine/reference-object/base-reference-object';
 import type { ArrayValueObject } from '../../../engine/value-object/array-value-object';
 import type { BaseValueObject } from '../../../engine/value-object/base-value-object';
+import { isRankEqIndexMapEnabled, isRankEqNumericFastPathEnabled } from '../../../basics/common';
 import { ErrorType } from '../../../basics/error-type';
 import { expandArrayValueObject } from '../../../engine/utils/array-object';
 import { ErrorValueObject } from '../../../engine/value-object/base-value-object';
@@ -64,6 +65,21 @@ export class RankEq extends BaseFunction {
         const numberArray = expandArrayValueObject(maxRowLength, maxColumnLength, _number as BaseValueObject, ErrorValueObject.create(ErrorType.NA));
         const orderArray = expandArrayValueObject(maxRowLength, maxColumnLength, _order as BaseValueObject, ErrorValueObject.create(ErrorType.NA));
 
+        const refDesc = [...refNumbers].sort((a, b) => b - a);
+        const refAsc = [...refNumbers].sort((a, b) => a - b);
+
+        const useIndexMap = isRankEqIndexMapEnabled();
+        const descIndex = new Map<number, number>();
+        const ascIndex = new Map<number, number>();
+        if (useIndexMap) {
+            for (let j = 0; j < refDesc.length; j++) {
+                if (!descIndex.has(refDesc[j])) descIndex.set(refDesc[j], j);
+            }
+            for (let j = 0; j < refAsc.length; j++) {
+                if (!ascIndex.has(refAsc[j])) ascIndex.set(refAsc[j], j);
+            }
+        }
+
         const resultArray = numberArray.map((numberObject, rowIndex, columnIndex) => {
             const orderObject = orderArray.get(rowIndex, columnIndex) as BaseValueObject;
 
@@ -86,11 +102,12 @@ export class RankEq extends BaseFunction {
                 return ErrorValueObject.create(ErrorType.VALUE);
             }
 
-            const refOrderNumbers = refNumbers.sort((a, b) => !orderValue ? b - a : a - b);
+            const refOrderNumbers = !orderValue ? refDesc : refAsc;
+            const result = useIndexMap
+                ? (!orderValue ? descIndex.get(numberValue) : ascIndex.get(numberValue))
+                : refOrderNumbers.indexOf(numberValue);
 
-            const result = refOrderNumbers.indexOf(numberValue);
-
-            if (result === -1) {
+            if (result === undefined || result < 0) {
                 return ErrorValueObject.create(ErrorType.NA);
             }
 
@@ -118,6 +135,15 @@ export class RankEq extends BaseFunction {
         }
 
         const _ref = (ref as BaseReferenceObject).toArrayValueObject();
+
+        const numericData = isRankEqNumericFastPathEnabled() ? _ref.getNumericData() : null;
+        if (numericData) {
+            for (let i = 0; i < numericData.length; i++) {
+                const v = numericData[i];
+                if (Number.isFinite(v)) refNumbers.push(v);
+            }
+            return { refHasError, refErrorObject, refNumbers };
+        }
 
         _ref.iterator((refObject) => {
             const _refObject = refObject as BaseValueObject;

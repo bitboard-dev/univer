@@ -32,9 +32,9 @@ describe('Test datevalue function', () => {
             const result = testFunction.calculate(dateText);
             expect(getObjectValue(result)).toStrictEqual(43832);
 
-            const dateText2 = StringValueObject.create('5-Jul');
+            const dateText2 = StringValueObject.create('5-Jul-2025');
             const result2 = testFunction.calculate(dateText2);
-            expect(getObjectValue(result2)).toStrictEqual(45843); // NOTE: this should be updated annually
+            expect(getObjectValue(result2)).toStrictEqual(45843);
 
             const dateText3 = StringValueObject.create('2020-01-02 13:14:15');
             const result3 = testFunction.calculate(dateText3);

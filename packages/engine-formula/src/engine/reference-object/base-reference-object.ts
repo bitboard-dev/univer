@@ -19,6 +19,7 @@ import type { IRuntimeUnitDataType, IUnitData, IUnitSheetNameMap, IUnitStylesDat
 import type { BaseValueObject, IArrayValueObject } from '../value-object/base-value-object';
 import { CellValueType, isTextFormat, moveRangeByOffset } from '@univerjs/core';
 import { FormulaAstLRU } from '../../basics/cache-lru';
+import { isTypedArrayOptimizationEnabled } from '../../basics/common';
 import { ERROR_TYPE_SET, ErrorType } from '../../basics/error-type';
 import { isNullCellForFormula } from '../../basics/is-null-cell';
 import { ObjectClassType } from '../../basics/object-class-type';
@@ -557,32 +558,70 @@ export class BaseReferenceObject extends ObjectClassType {
             return this._getBlankArrayValueObject();
         }
 
-        const arrayValueList: BaseValueObject[][] = new Array(rowSize);
+        let allNumeric = rowSize > 0 && columnSize > 0 && isTypedArrayOptimizationEnabled();
+        const numericBuf = allNumeric ? new Float64Array(rowSize * columnSize) : null;
+        const arrayValueList: BaseValueObject[][] = allNumeric ? [] : new Array(rowSize);
+
         this.iterator((valueObject: Nullable<BaseValueObject>, rowIndex: number, columnIndex: number) => {
             const row = rowIndex - startRow;
             const column = columnIndex - startColumn;
-            if (!arrayValueList[row]) {
-                arrayValueList[row] = new Array(columnSize);
-            }
 
             if (valueObject == null) {
                 valueObject = NullValueObject.create();
             }
 
-            arrayValueList[row][column] = valueObject;
+            if (allNumeric) {
+                if (valueObject.isNumber()) {
+                    numericBuf![row * columnSize + column] = valueObject.getValue() as number;
+                } else {
+                    allNumeric = false;
+                }
+            }
+
+            if (!allNumeric) {
+                if (arrayValueList.length === 0) {
+                    for (let r = 0; r < rowSize; r++) {
+                        arrayValueList[r] = new Array(columnSize);
+                    }
+                    for (let r = 0; r <= row; r++) {
+                        const offset = r * columnSize;
+                        const maxC = r < row ? columnSize : column;
+                        for (let c = 0; c < maxC; c++) {
+                            arrayValueList[r][c] = NumberValueObject.create(numericBuf![offset + c]);
+                        }
+                    }
+                }
+                if (!arrayValueList[row]) {
+                    arrayValueList[row] = new Array(columnSize);
+                }
+                arrayValueList[row][column] = valueObject;
+            }
         });
 
-        const arrayValueObjectData: IArrayValueObject = {
-            calculateValueList: arrayValueList,
-            rowCount: arrayValueList.length,
-            columnCount: arrayValueList[0]?.length || 0,
-            unitId: this.getUnitId(),
-            sheetId: this.getSheetId(),
-            row: startRow,
-            column: startColumn,
-        };
+        let arrayValueObject: ArrayValueObject;
 
-        const arrayValueObject = ArrayValueObject.create(arrayValueObjectData);
+        if (allNumeric && numericBuf) {
+            arrayValueObject = ArrayValueObject.createNumberArray(
+                numericBuf,
+                rowSize,
+                columnSize,
+                this.getUnitId(),
+                this.getSheetId(),
+                startRow,
+                startColumn
+            );
+        } else {
+            const arrayValueObjectData: IArrayValueObject = {
+                calculateValueList: arrayValueList,
+                rowCount: arrayValueList.length,
+                columnCount: arrayValueList[0]?.length || 0,
+                unitId: this.getUnitId(),
+                sheetId: this.getSheetId(),
+                row: startRow,
+                column: startColumn,
+            };
+            arrayValueObject = ArrayValueObject.create(arrayValueObjectData);
+        }
 
         useCache && FORMULA_REF_TO_ARRAY_CACHE.set(key, arrayValueObject);
 

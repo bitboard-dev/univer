@@ -1,0 +1,24 @@
+name: 🧪 Bitboard Formula Tests
+
+on:
+    pull_request:
+        branches:
+            - bitboard-v0.10.14
+
+permissions:
+    contents: read
+
+jobs:
+    test:
+        runs-on: ubuntu-latest
+        timeout-minutes: 30
+
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v4
+
+            - name: Setup Node.js
+              uses: ./.github/actions/setup-node
+
+            - name: Run all tests
+              run: TZ=UTC pnpm test

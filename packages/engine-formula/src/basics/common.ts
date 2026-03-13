@@ -202,3 +202,95 @@ export enum ConcatenateType {
     FRONT,
     BACK,
 }
+
+interface FormulaOptimizationRuntimeFlags {
+    typedArrayEnabled: boolean;
+    clearIntermediateEnabled: boolean;
+    scalarFastPathEnabled: boolean;
+    fillDownSharingEnabled: boolean;
+    formulaHashCacheEnabled: boolean;
+    equalSearchIndexEnabled: boolean;
+    rankEqNumericFastPathEnabled: boolean;
+    sortedNumericCacheEnabled: boolean;
+    rankEqIndexMapEnabled: boolean;
+}
+
+const defaultFormulaOptimizationRuntimeFlags: FormulaOptimizationRuntimeFlags = {
+    typedArrayEnabled: true,
+    clearIntermediateEnabled: true,
+    scalarFastPathEnabled: true,
+    fillDownSharingEnabled: true,
+    formulaHashCacheEnabled: true,
+    equalSearchIndexEnabled: true,
+    rankEqNumericFastPathEnabled: true,
+    sortedNumericCacheEnabled: true,
+    rankEqIndexMapEnabled: true,
+};
+
+let formulaOptimizationRuntimeFlags: FormulaOptimizationRuntimeFlags = {
+    ...defaultFormulaOptimizationRuntimeFlags,
+};
+
+export function setFormulaOptimizationRuntimeFlags(config?: {
+    disableTypedArrayOptimization?: boolean;
+    disableClearIntermediate?: boolean;
+    disableScalarFastPath?: boolean;
+    disableFillDownSharing?: boolean;
+    disableFormulaHashCache?: boolean;
+    disableEqualSearchIndex?: boolean;
+    disableRankEqNumericFastPath?: boolean;
+    disableSortedNumericCache?: boolean;
+    disableRankEqIndexMap?: boolean;
+}) {
+    formulaOptimizationRuntimeFlags = {
+        typedArrayEnabled: config?.disableTypedArrayOptimization !== true,
+        clearIntermediateEnabled: config?.disableClearIntermediate !== true,
+        scalarFastPathEnabled: config?.disableScalarFastPath !== true,
+        fillDownSharingEnabled: config?.disableFillDownSharing !== true,
+        formulaHashCacheEnabled: config?.disableFormulaHashCache !== true,
+        equalSearchIndexEnabled: config?.disableEqualSearchIndex !== true,
+        rankEqNumericFastPathEnabled: config?.disableRankEqNumericFastPath !== true,
+        sortedNumericCacheEnabled: config?.disableSortedNumericCache !== true,
+        rankEqIndexMapEnabled: config?.disableRankEqIndexMap !== true,
+    };
+}
+
+export function resetFormulaOptimizationRuntimeFlags() {
+    formulaOptimizationRuntimeFlags = { ...defaultFormulaOptimizationRuntimeFlags };
+}
+
+export function isTypedArrayOptimizationEnabled() {
+    return formulaOptimizationRuntimeFlags.typedArrayEnabled;
+}
+
+export function isClearIntermediateEnabled() {
+    return formulaOptimizationRuntimeFlags.clearIntermediateEnabled;
+}
+
+export function isScalarFastPathEnabled() {
+    return formulaOptimizationRuntimeFlags.scalarFastPathEnabled;
+}
+
+export function isFillDownSharingEnabled() {
+    return formulaOptimizationRuntimeFlags.fillDownSharingEnabled;
+}
+
+export function isFormulaHashCacheEnabled() {
+    return formulaOptimizationRuntimeFlags.formulaHashCacheEnabled;
+}
+
+export function isEqualSearchIndexEnabled() {
+    return formulaOptimizationRuntimeFlags.equalSearchIndexEnabled;
+}
+
+export function isRankEqNumericFastPathEnabled() {
+    return formulaOptimizationRuntimeFlags.rankEqNumericFastPathEnabled;
+}
+
+export function isSortedNumericCacheEnabled() {
+    return formulaOptimizationRuntimeFlags.sortedNumericCacheEnabled;
+}
+
+export function isRankEqIndexMapEnabled() {
+    return formulaOptimizationRuntimeFlags.rankEqIndexMapEnabled;
+}

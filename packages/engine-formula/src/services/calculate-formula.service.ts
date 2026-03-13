@@ -38,6 +38,7 @@ import {
     requestImmediateMacroTask,
 } from '@univerjs/core';
 import { Subject } from 'rxjs';
+import { isClearIntermediateEnabled, setFormulaOptimizationRuntimeFlags } from '../basics/common';
 import { ErrorType } from '../basics/error-type';
 import { CELL_INVERTED_INDEX_CACHE } from '../basics/inverted-index-cache';
 import { DEFAULT_CYCLE_REFERENCE_COUNT, ENGINE_FORMULA_PLUGIN_CONFIG_KEY } from '../controller/config.schema';
@@ -49,6 +50,9 @@ import { Interpreter } from '../engine/interpreter/interpreter';
 import { FORMULA_REF_TO_ARRAY_CACHE } from '../engine/reference-object/base-reference-object';
 import { ErrorValueObjectCache } from '../engine/value-object/base-value-object';
 import { StringValueObjectCache } from '../engine/value-object/primitive-object';
+import { clearSumifHashCache } from '../functions/math/sumif';
+import { clearCountifHashCache } from '../functions/statistical/countif';
+import { clearCountifsHashCache } from '../functions/statistical/countifs';
 import { IFormulaCurrentConfigService } from './current-data.service';
 import { FormulaExecuteStageType, IFormulaRuntimeService } from './runtime.service';
 
@@ -58,6 +62,36 @@ export const CYCLE_REFERENCE_COUNT = 'cycleReferenceCount';
 
 export const EVERY_N_FUNCTION_EXECUTION_PAUSE = 100;
 
+function getBatchExecutionCount(config?: IUniverEngineFormulaConfig) {
+    const batchExecutionCount = Number(config?.batchExecutionCount);
+    if (!Number.isFinite(batchExecutionCount) || batchExecutionCount <= 0) {
+        return Number.POSITIVE_INFINITY;
+    }
+
+    return Math.floor(batchExecutionCount);
+}
+
+function getTraceIntervalCount(config?: IUniverEngineFormulaConfig) {
+    const traceIntervalCount = Number(config?.traceIntervalCount);
+    if (!Number.isFinite(traceIntervalCount) || traceIntervalCount <= 0) {
+        return 0;
+    }
+
+    return Math.floor(traceIntervalCount);
+}
+
+function shouldTraceToStderr(config?: IUniverEngineFormulaConfig) {
+    return config?.traceToStderr === true;
+}
+
+export interface ITraceSample {
+    i: number;
+    total: number;
+    heapMB: number;
+    rssMB: number;
+    ms: number;
+}
+
 export interface ICalculateFormulaService {
     readonly executionInProgressListener$: Observable<IExecutionInProgressParams>;
     readonly executionCompleteListener$: Observable<IAllRuntimeData>;
@@ -66,6 +100,7 @@ export interface ICalculateFormulaService {
     execute(formulaDatasetConfig: IFormulaDatasetConfig): Promise<void>;
     stopFormulaExecution(): void;
     calculate(formulaString: string, transformSuffix?: boolean): void;
+    getExecutionTrace(): ITraceSample[];
 }
 
 export const ICalculateFormulaService = createIdentifier<ICalculateFormulaService>('engine-formula.calculate-formula.service');
@@ -78,6 +113,7 @@ export class CalculateFormulaService extends Disposable implements ICalculateFor
     readonly executionCompleteListener$ = this._executionCompleteListener$.asObservable();
 
     private _executeLock = new AsyncLock();
+    private _executionTrace: ITraceSample[] = [];
 
     constructor(
         @IConfigService protected readonly _configService: IConfigService,
@@ -98,8 +134,50 @@ export class CalculateFormulaService extends Disposable implements ICalculateFor
         this._executionCompleteListener$.complete();
         FORMULA_REF_TO_ARRAY_CACHE.clear();
         CELL_INVERTED_INDEX_CACHE.clear();
+        clearCountifsHashCache();
+        clearCountifHashCache();
+        clearSumifHashCache();
         ErrorValueObjectCache.clear();
         StringValueObjectCache.clear();
+    }
+
+    getExecutionTrace(): ITraceSample[] {
+        return this._executionTrace;
+    }
+
+    private _recordTraceSample(i: number, total: number, traceStartMs: number, traceToStderr: boolean) {
+        const runtimeProcess = Reflect.get(globalThis as object, 'process') as
+            | {
+                memoryUsage?: () => { heapUsed: number; rss: number };
+                stderr?: { write?: (s: string) => void };
+            }
+            | undefined;
+        const memoryUsage = runtimeProcess?.memoryUsage;
+        const mem =
+            typeof memoryUsage === 'function'
+                ? memoryUsage()
+                : { heapUsed: 0, rss: 0 };
+        const sample: ITraceSample = {
+            i,
+            total,
+            heapMB: Math.round(mem.heapUsed / 1048576),
+            rssMB: Math.round(mem.rss / 1048576),
+            ms: Date.now() - traceStartMs,
+        };
+        this._executionTrace.push(sample);
+
+        if (!traceToStderr) {
+            return;
+        }
+
+        const writer = runtimeProcess?.stderr?.write;
+        if (typeof writer !== 'function') {
+            return;
+        }
+
+        const pct = total > 0 ? Math.round((i / total) * 100) : 100;
+        const bar = '█'.repeat(Math.round(pct / 2.5));
+        writer(`  ${String(pct).padStart(3)}% │ ${String(sample.heapMB).padStart(5)} MB │ ${String(sample.ms).padStart(7)} ms │${bar}\n`);
     }
 
     /**
@@ -125,12 +203,23 @@ export class CalculateFormulaService extends Disposable implements ICalculateFor
     }
 
     async execute(formulaDatasetConfig: IFormulaDatasetConfig) {
+        FORMULA_REF_TO_ARRAY_CACHE.clear();
+        CELL_INVERTED_INDEX_CACHE.clear();
+        clearCountifsHashCache();
+        clearCountifHashCache();
+        clearSumifHashCache();
+
         this._runtimeService.setFormulaExecuteStage(FormulaExecuteStageType.START);
         this._executionInProgressListener$.next(this._runtimeService.getRuntimeState());
 
         this._currentConfigService.load(formulaDatasetConfig);
 
         this._runtimeService.reset();
+
+        const config = this._configService.getConfig(ENGINE_FORMULA_PLUGIN_CONFIG_KEY) as IUniverEngineFormulaConfig;
+        if (getTraceIntervalCount(config) > 0) {
+            this._executionTrace.length = 0;
+        }
 
         const cycleReferenceCount = (formulaDatasetConfig.maxIteration || DEFAULT_CYCLE_REFERENCE_COUNT) as number;
 
@@ -140,6 +229,9 @@ export class CalculateFormulaService extends Disposable implements ICalculateFor
                 await this._executeStep();
 
                 FORMULA_REF_TO_ARRAY_CACHE.clear();
+                clearCountifsHashCache();
+                clearCountifHashCache();
+                clearSumifHashCache();
 
                 const isCycleDependency = this._runtimeService.isCycleDependency();
                 if (!isCycleDependency) {
@@ -271,81 +363,130 @@ export class CalculateFormulaService extends Disposable implements ICalculateFor
         let pendingTasks: (() => void)[] = [];
 
         const config = this._configService.getConfig(ENGINE_FORMULA_PLUGIN_CONFIG_KEY) as IUniverEngineFormulaConfig;
+        setFormulaOptimizationRuntimeFlags(config);
         const intervalCount = config?.intervalCount || DEFAULT_INTERVAL_COUNT;
+        const batchExecutionCount = getBatchExecutionCount(config);
+        const traceIntervalCount = getTraceIntervalCount(config);
+        const traceToStderr = shouldTraceToStderr(config);
 
         const treeCount = treeList.length;
-        for (let i = 0; i < treeCount; i++) {
-            const tree = treeList[i];
-            const nodeData = tree.nodeData;
-            const getDirtyData = tree.getDirtyData;
+        const traceStartMs = traceIntervalCount > 0 ? Date.now() : 0;
 
-            // Execute the await every 100 iterations
-            if (i % intervalCount === 0) {
-                /**
-                 * For every functions, execute a setTimeout to wait for external command input.
-                 */
+        let processedCount = 0;
+        while (processedCount < treeCount) {
+            const batchEnd = Math.min(treeCount, processedCount + batchExecutionCount);
+
+            for (let i = processedCount; i < batchEnd; i++) {
+                const tree = treeList[i];
+                const nodeData = tree.nodeData;
+                const getDirtyData = tree.getDirtyData;
+
+                if (traceIntervalCount > 0 && i % traceIntervalCount === 0) {
+                    this._recordTraceSample(i, treeCount, traceStartMs, traceToStderr);
+                }
+
+                if (i !== 0 && i % intervalCount === 0) {
+                    await new Promise((resolve) => {
+                        const calCancelTask = requestImmediateMacroTask(resolve);
+                        pendingTasks.push(calCancelTask);
+                    });
+
+                    if (isArrayFormulaState) {
+                        this._runtimeService.setFormulaExecuteStage(
+                            FormulaExecuteStageType.CURRENTLY_CALCULATING_ARRAY_FORMULA
+                        );
+
+                        this._runtimeService.setCompletedArrayFormulasCount(i);
+                    } else {
+                        this._runtimeService.setFormulaExecuteStage(FormulaExecuteStageType.CURRENTLY_CALCULATING);
+
+                        this._runtimeService.setCompletedFormulasCount(i);
+                    }
+
+                    this._executionInProgressListener$.next(this._runtimeService.getRuntimeState());
+
+                    if (this._runtimeService.isStopExecution()) {
+                        this._runtimeService.setFormulaExecuteStage(FormulaExecuteStageType.IDLE);
+                        this._runtimeService.markedAsStopFunctionsExecuted();
+                        this._executionCompleteListener$.next(this._runtimeService.getAllRuntimeData());
+                        return;
+                    }
+                }
+
+                this._runtimeService.setCurrent(
+                    tree.row,
+                    tree.column,
+                    tree.rowCount,
+                    tree.columnCount,
+                    tree.subUnitId,
+                    tree.unitId
+                );
+
+                if (nodeData == null && getDirtyData == null) {
+                    continue;
+                }
+
+                let value: FunctionVariantType;
+
+                if (getDirtyData != null && tree.featureId != null) {
+                    /**
+                     * Execute the dependencies registered by the feature,
+                     * and return the dirty area marked by the feature,
+                     * so as to allow the formulas depending on the dirty area to continue the calculation.
+                     */
+                    const { runtimeCellData, dirtyRanges } = getDirtyData(this._currentConfigService.getDirtyData(), this._runtimeService.getAllRuntimeData());
+
+                    this._runtimeService.setRuntimeFeatureCellData(tree.featureId, runtimeCellData);
+
+                    this._runtimeService.setRuntimeFeatureRange(tree.featureId, dirtyRanges);
+                } else if (nodeData != null) {
+                    if (interpreter.checkAsyncNode(nodeData.node)) {
+                        value = await interpreter.executeAsync(nodeData);
+                    } else {
+                        value = interpreter.execute(nodeData);
+                    }
+
+                    if (tree.formulaId != null) {
+                        this._runtimeService.setRuntimeOtherData(tree.formulaId, tree.refOffsetX, tree.refOffsetY, value);
+                    } else {
+                        this._runtimeService.setRuntimeData(value);
+                    }
+
+                    if (isClearIntermediateEnabled()) {
+                        nodeData.node?.clearIntermediate();
+                    }
+                }
+            }
+
+            processedCount = batchEnd;
+
+            if (isArrayFormulaState) {
+                this._runtimeService.setFormulaExecuteStage(FormulaExecuteStageType.CURRENTLY_CALCULATING_ARRAY_FORMULA);
+                this._runtimeService.setCompletedArrayFormulasCount(processedCount);
+            } else {
+                this._runtimeService.setFormulaExecuteStage(FormulaExecuteStageType.CURRENTLY_CALCULATING);
+                this._runtimeService.setCompletedFormulasCount(processedCount);
+            }
+
+            this._executionInProgressListener$.next(this._runtimeService.getRuntimeState());
+
+            if (processedCount < treeCount) {
                 await new Promise((resolve) => {
                     const calCancelTask = requestImmediateMacroTask(resolve);
                     pendingTasks.push(calCancelTask);
                 });
-
-                if (isArrayFormulaState) {
-                    this._runtimeService.setFormulaExecuteStage(
-                        FormulaExecuteStageType.CURRENTLY_CALCULATING_ARRAY_FORMULA
-                    );
-
-                    this._runtimeService.setCompletedArrayFormulasCount(i + 1);
-                } else {
-                    this._runtimeService.setFormulaExecuteStage(FormulaExecuteStageType.CURRENTLY_CALCULATING);
-
-                    this._runtimeService.setCompletedFormulasCount(i + 1);
-                }
-
-                this._executionInProgressListener$.next(this._runtimeService.getRuntimeState());
-
-                if (this._runtimeService.isStopExecution() || (nodeData == null && getDirtyData == null)) {
-                    this._runtimeService.setFormulaExecuteStage(FormulaExecuteStageType.IDLE);
-                    this._runtimeService.markedAsStopFunctionsExecuted();
-                    this._executionCompleteListener$.next(this._runtimeService.getAllRuntimeData());
-                    return;
-                }
             }
 
-            this._runtimeService.setCurrent(
-                tree.row,
-                tree.column,
-                tree.rowCount,
-                tree.columnCount,
-                tree.subUnitId,
-                tree.unitId
-            );
-
-            let value: FunctionVariantType;
-
-            if (getDirtyData != null && tree.featureId != null) {
-                /**
-                 * Execute the dependencies registered by the feature,
-                 * and return the dirty area marked by the feature,
-                 * so as to allow the formulas depending on the dirty area to continue the calculation.
-                 */
-                const { runtimeCellData, dirtyRanges } = getDirtyData(this._currentConfigService.getDirtyData(), this._runtimeService.getAllRuntimeData());
-
-                this._runtimeService.setRuntimeFeatureCellData(tree.featureId, runtimeCellData);
-
-                this._runtimeService.setRuntimeFeatureRange(tree.featureId, dirtyRanges);
-            } else if (nodeData != null) {
-                if (interpreter.checkAsyncNode(nodeData.node)) {
-                    value = await interpreter.executeAsync(nodeData);
-                } else {
-                    value = interpreter.execute(nodeData);
-                }
-
-                if (tree.formulaId != null) {
-                    this._runtimeService.setRuntimeOtherData(tree.formulaId, tree.refOffsetX, tree.refOffsetY, value);
-                } else {
-                    this._runtimeService.setRuntimeData(value);
-                }
+            if (this._runtimeService.isStopExecution()) {
+                this._runtimeService.setFormulaExecuteStage(FormulaExecuteStageType.IDLE);
+                this._runtimeService.markedAsStopFunctionsExecuted();
+                this._executionCompleteListener$.next(this._runtimeService.getAllRuntimeData());
+                return;
             }
+        }
+
+        if (traceIntervalCount > 0) {
+            this._recordTraceSample(treeCount, treeCount, traceStartMs, traceToStderr);
         }
 
         // clear all pending tasks

@@ -1,12 +1,12 @@
 import { FBase as f, FUniver as d } from "@univerjs/core/facade";
 import { Inject as c, ICommandService as p, Injector as _, IConfigService as C } from "@univerjs/core";
-import { LexerTreeBuilder as v, SetFormulaCalculationStartMutation as l, SetFormulaCalculationStopMutation as S, SetFormulaCalculationNotificationMutation as m, GlobalComputingStatusService as x, ENGINE_FORMULA_CYCLE_REFERENCE_COUNT as h } from "@univerjs/engine-formula";
+import { LexerTreeBuilder as v, SetFormulaCalculationStartMutation as u, SetFormulaCalculationStopMutation as S, SetFormulaCalculationNotificationMutation as m, GlobalComputingStatusService as x, ENGINE_FORMULA_CYCLE_REFERENCE_COUNT as h } from "@univerjs/engine-formula";
 import { firstValueFrom as g, race as E, filter as F, timer as B, map as I } from "rxjs";
 var T = Object.getOwnPropertyDescriptor, N = (e, t, r, i) => {
-  for (var o = i > 1 ? void 0 : i ? T(t, r) : t, a = e.length - 1, u; a >= 0; a--)
-    (u = e[a]) && (o = u(o) || o);
-  return o;
-}, n = (e, t) => (r, i) => t(r, i, e);
+  for (var n = i > 1 ? void 0 : i ? T(t, r) : t, a = e.length - 1, l; a >= 0; a--)
+    (l = e[a]) && (n = l(n) || n);
+  return n;
+}, o = (e, t) => (r, i) => t(r, i, e);
 let s = class extends f {
   constructor(e, t, r, i) {
     super(), this._commandService = e, this._injector = t, this._lexerTreeBuilder = r, this._configService = i, this._initialize();
@@ -66,7 +66,7 @@ let s = class extends f {
    * ```
    */
   executeCalculation() {
-    this._commandService.executeCommand(l.id, { commands: [], forceCalculation: !0 }, { onlyLocal: !0 });
+    this._commandService.executeCommand(u.id, { commands: [], forceCalculation: !0 }, { onlyLocal: !0 });
   }
   /**
    * Stop the calculation of the formula.
@@ -95,7 +95,7 @@ let s = class extends f {
    */
   calculationStart(e) {
     return this._commandService.onCommandExecuted((t) => {
-      if (t.id === l.id) {
+      if (t.id === u.id) {
         const r = t.params;
         e(r.forceCalculation);
       }
@@ -149,12 +149,12 @@ let s = class extends f {
    * @deprecated Use `whenComputingCompleteAsync` instead.
    * @returns {Promise<void>} This method returns a promise that resolves when the calculation is complete.
    */
-  onCalculationEnd() {
-    return new Promise((e, t) => {
-      const r = setTimeout(() => {
-        t(new Error("Calculation end timeout"));
-      }, 3e4), i = this.calculationEnd(() => {
-        clearTimeout(r), i.dispose(), e();
+  onCalculationEnd(e) {
+    return new Promise((t, r) => {
+      const i = setTimeout(() => {
+        r(new Error("Calculation end timeout"));
+      }, e != null ? e : 3e4), n = this.calculationEnd(() => {
+        clearTimeout(i), n.dispose(), t();
       });
     });
   }
@@ -196,10 +196,10 @@ let s = class extends f {
   }
 };
 s = N([
-  n(0, c(p)),
-  n(1, c(_)),
-  n(2, c(v)),
-  n(3, C)
+  o(0, c(p)),
+  o(1, c(_)),
+  o(2, c(v)),
+  o(3, C)
 ], s);
 class O extends d {
   getFormula() {

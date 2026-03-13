@@ -7,5 +7,11 @@ export declare class Sumifs extends BaseFunction {
     maxParams: number;
     needsReferenceObject: boolean;
     calculate(sumRange: FunctionVariantType, ...variants: FunctionVariantType[]): BaseValueObject | ArrayValueObject;
+    /**
+     * Fast path: all criteria are scalar. Single pass over range data,
+     * accumulating the sum-range value when all criteria match.
+     */
+    private _scalarSumifs;
+    private _fallbackSumifs;
     private _aggregateResults;
 }

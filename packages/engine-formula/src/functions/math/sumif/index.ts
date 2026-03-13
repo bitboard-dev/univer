@@ -17,11 +17,27 @@
 import type { BaseReferenceObject, FunctionVariantType } from '../../../engine/reference-object/base-reference-object';
 import type { ArrayValueObject } from '../../../engine/value-object/array-value-object';
 import type { BaseValueObject } from '../../../engine/value-object/base-value-object';
+import { isFormulaHashCacheEnabled } from '../../../basics/common';
 import { ErrorType } from '../../../basics/error-type';
-import { valueObjectCompare } from '../../../engine/utils/object-compare';
+import { compareToken } from '../../../basics/token';
+import { findCompareToken, valueObjectCompare } from '../../../engine/utils/object-compare';
 import { filterSameValueObjectResult } from '../../../engine/utils/value-object';
 import { ErrorValueObject } from '../../../engine/value-object/base-value-object';
+import { NumberValueObject } from '../../../engine/value-object/primitive-object';
 import { BaseFunction } from '../../base-function';
+
+const SUMIF_HASH_CACHE = new Map<string, Map<string, number>>();
+
+export function clearSumifHashCache() {
+    SUMIF_HASH_CACHE.clear();
+}
+
+function typedKey(v: unknown): string {
+    if (typeof v === 'string') return `s${v}`;
+    if (typeof v === 'number') return `n${v}`;
+    if (typeof v === 'boolean') return v ? 'b1' : 'b0';
+    return 'x';
+}
 
 export class Sumif extends BaseFunction {
     override minParams = 2;
@@ -55,11 +71,26 @@ export class Sumif extends BaseFunction {
     }
 
     private _handleSingleObject(range: FunctionVariantType, criteria: BaseValueObject, sumRange?: FunctionVariantType): BaseValueObject {
+        if (!criteria.isError()) {
+            let op = compareToken.EQUALS;
+            let criteriaObj = criteria;
+            if (criteria.isString()) {
+                const [extractedOp, extractedObj] = findCompareToken(`${criteria.getValue()}`);
+                op = extractedOp;
+                criteriaObj = extractedObj;
+            }
+            const criteriaVal = criteriaObj.isString() ? `${criteriaObj.getValue()}` : '';
+            const hasWildcard = criteriaVal.includes('*') || criteriaVal.includes('?');
+            if (op === compareToken.EQUALS && isFormulaHashCacheEnabled() && !hasWildcard) {
+                const hashResult = this._hashSumif(range as BaseReferenceObject, criteriaObj, sumRange as BaseReferenceObject | undefined);
+                if (hashResult !== null) return hashResult;
+            }
+        }
+
         const _range = (range as BaseReferenceObject).toArrayValueObject();
 
         let resultArrayObject = valueObjectCompare(_range, criteria);
 
-        // When comparing non-numbers and numbers, it does not take the result
         resultArrayObject = filterSameValueObjectResult(resultArrayObject as ArrayValueObject, _range, criteria);
 
         const rangeRowCount = _range.getRowCount();
@@ -73,9 +104,6 @@ export class Sumif extends BaseFunction {
             const sumRangeRowCount = _sumRange.getRowCount();
             const sumRangeColumnCount = _sumRange.getColumnCount();
 
-            // sumRange has different dimensions than range, then adjust sumRange dimensions to match range dimensions
-            // TODO: @DR-Univer The current situation is that the cell value in the extended range changes,
-            // but it is not within the formula parameter range, so it will not trigger the formula to recalculate.
             if (rangeRowCount !== sumRangeRowCount || rangeColumnCount !== sumRangeColumnCount) {
                 const rangeData = (sumRange as BaseReferenceObject).getRangeData();
                 rangeData.endRow = rangeData.startRow + rangeRowCount - 1;
@@ -88,5 +116,44 @@ export class Sumif extends BaseFunction {
         }
 
         return _sumRange.pick(resultArrayObject as ArrayValueObject).sum();
+    }
+
+    private _hashSumif(range: BaseReferenceObject, criteria: BaseValueObject, sumRange?: BaseReferenceObject): BaseValueObject | null {
+        const _range = range.toArrayValueObject();
+        let _sumRange = _range;
+        if (sumRange) {
+            _sumRange = sumRange.toArrayValueObject();
+        }
+
+        const rangeRow = _range.getCurrentRow();
+        const rangeCol = _range.getCurrentColumn();
+        const sumRow = _sumRange.getCurrentRow();
+        const sumCol = _sumRange.getCurrentColumn();
+        const cacheKey = `${_range.getUnitId()}_${_range.getSheetId()}_${rangeRow}_${rangeCol}_${_range.getRowCount()}_${_range.getColumnCount()}_${sumRow}_${sumCol}`;
+
+        let hashMap = SUMIF_HASH_CACHE.get(cacheKey);
+        if (!hashMap) {
+            hashMap = new Map<string, number>();
+            const rowCount = _range.getRowCount();
+            const colCount = _range.getColumnCount();
+
+            for (let r = 0; r < rowCount; r++) {
+                for (let c = 0; c < colCount; c++) {
+                    const cell = _range.get(r, c);
+                    if (!cell || cell.isError()) continue;
+
+                    const sumCell = _sumRange.get(r, c);
+                    if (!sumCell || sumCell.isError() || !sumCell.isNumber()) continue;
+
+                    const key = typedKey(cell.getValue());
+                    const sumVal = sumCell.getValue() as number;
+                    hashMap.set(key, (hashMap.get(key) || 0) + sumVal);
+                }
+            }
+            SUMIF_HASH_CACHE.set(cacheKey, hashMap);
+        }
+
+        const lookupKey = typedKey(criteria.getValue());
+        return NumberValueObject.create(hashMap.get(lookupKey) || 0);
     }
 }

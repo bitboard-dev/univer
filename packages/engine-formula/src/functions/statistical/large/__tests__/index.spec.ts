@@ -15,6 +15,7 @@
  */
 
 import { describe, expect, it } from 'vitest';
+import { resetFormulaOptimizationRuntimeFlags, setFormulaOptimizationRuntimeFlags } from '../../../../basics/common';
 import { ErrorType } from '../../../../basics/error-type';
 import { ArrayValueObject, transformToValueObject } from '../../../../engine/value-object/array-value-object';
 import { ErrorValueObject } from '../../../../engine/value-object/base-value-object';
@@ -137,6 +138,31 @@ describe('Test large function', () => {
             const k8 = ArrayValueObject.create('{1}');
             const result8 = testFunction.calculate(array, k8);
             expect(getObjectValue(result8)).toStrictEqual(10);
+        });
+
+        it('returns the same result with sorted numeric cache enabled or disabled', () => {
+            const array = ArrayValueObject.create({
+                calculateValueList: transformToValueObject([
+                    [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+                ]),
+                rowCount: 1,
+                columnCount: 10,
+                unitId: '',
+                sheetId: '',
+                row: 0,
+                column: 0,
+            });
+            const k = NumberValueObject.create(3);
+
+            setFormulaOptimizationRuntimeFlags({ disableSortedNumericCache: false });
+            const optimized = getObjectValue(testFunction.calculate(array, k));
+
+            setFormulaOptimizationRuntimeFlags({ disableSortedNumericCache: true });
+            const unoptimized = getObjectValue(testFunction.calculate(array, k));
+
+            expect(optimized).toStrictEqual(8);
+            expect(unoptimized).toStrictEqual(8);
+            resetFormulaOptimizationRuntimeFlags();
         });
     });
 });

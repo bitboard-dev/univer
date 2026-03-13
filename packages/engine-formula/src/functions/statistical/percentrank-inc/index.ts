@@ -17,6 +17,7 @@
 import type { ArrayValueObject } from '../../../engine/value-object/array-value-object';
 import type { BaseValueObject } from '../../../engine/value-object/base-value-object';
 import { isRealNum } from '@univerjs/core';
+import { isSortedNumericCacheEnabled } from '../../../basics/common';
 import { ErrorType } from '../../../basics/error-type';
 import { expandArrayValueObject } from '../../../engine/utils/array-object';
 import { checkVariantsErrorIsStringToNumber } from '../../../engine/utils/check-variant-error';
@@ -133,6 +134,11 @@ export class PercentrankInc extends BaseFunction {
     }
 
     private _getValues(array: BaseValueObject): number[] | ErrorValueObject {
+        if (array.isArray() && isSortedNumericCacheEnabled()) {
+            const cached = (array as ArrayValueObject).getSortedNumericValues(false);
+            if (cached) return cached;
+        }
+
         const rowCount = array.isArray() ? (array as ArrayValueObject).getRowCount() : 1;
         const columnCount = array.isArray() ? (array as ArrayValueObject).getColumnCount() : 1;
 

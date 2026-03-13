@@ -16,7 +16,7 @@
 
 import type { Injector, Univer } from '@univerjs/core';
 import type { FUniver } from '@univerjs/core/facade';
-import { ICommandService } from '@univerjs/core/services/command/command.service.js';
+import { ICommandService } from '@univerjs/core';
 import { RemoveOtherFormulaMutation } from '@univerjs/engine-formula';
 import { SetSelectionsOperation } from '@univerjs/sheets';
 import {

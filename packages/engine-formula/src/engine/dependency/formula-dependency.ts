@@ -28,6 +28,7 @@ import type { PreCalculateNodeType } from '../utils/node-type';
 import type { IFormulaDependencyTree } from './dependency-tree';
 import { createIdentifier, Disposable, Inject, ObjectMatrix, RTree } from '@univerjs/core';
 
+import { isFillDownSharingEnabled } from '../../basics/common';
 import { prefixToken, suffixToken } from '../../basics/token';
 import { IFormulaCurrentConfigService } from '../../services/current-data.service';
 import { IDependencyManagerService } from '../../services/dependency-manager.service';
@@ -42,6 +43,15 @@ import { FORMULA_AST_CACHE, generateAstNode, includeDefinedName } from '../utils
 import { FormulaDependencyTree, FormulaDependencyTreeType, FormulaDependencyTreeVirtual } from './dependency-tree';
 
 const FORMULA_CACHE_LRU_COUNT = 5000;
+
+const FILL_DOWN_REF_RE = /([A-Z]+)(\d+)/g;
+
+export function normalizeFormulaTemplate(formula: string, excelRow: number): string {
+    return formula.replace(FILL_DOWN_REF_RE, (_match, colPart: string, rowDigits: string) => {
+        const delta = Number.parseInt(rowDigits, 10) - excelRow;
+        return `${colPart}{${delta}}`;
+    });
+}
 
 interface IFeatureFormulaParam {
     unitId: string;
@@ -253,37 +263,37 @@ export class FormulaDependencyGenerator extends Disposable {
         return hasFeatureCalculation;
     }
 
+    // READNOW: MEMORY HOTSPOT #5 — Rebuilds children and parents Sets for every
+    // tree node on each recalc pass. For 10K formulas, this allocates 20K new
+    // Sets per pass, iterates the old Sets, and discards them. This is the Set
+    // churn that shows up in the OOM stack trace as Runtime_SetGrow.
     private _clearFeatureCalculationNode(newTreeList: IFormulaDependencyTree[]) {
         const featureMap = this._featureCalculationManagerService.getReferenceExecutorMap();
 
         newTreeList.forEach((tree) => {
-            const newChildren = new Set<number>();
             for (const childTreeId of tree.children) {
                 const child = this._dependencyManagerService.getTreeById(childTreeId);
                 if (!child) {
+                    tree.children.delete(childTreeId);
                     continue;
                 }
-                if (!child.featureId) {
-                    newChildren.add(childTreeId);
-                } else if (!featureMap.get(tree.unitId)?.get(tree.subUnitId)?.has(child.featureId)) {
-                    newChildren.add(childTreeId);
+
+                if (child.featureId && featureMap.get(tree.unitId)?.get(tree.subUnitId)?.has(child.featureId)) {
+                    tree.children.delete(childTreeId);
                 }
             }
-            tree.children = newChildren;
 
-            const newParents = new Set<number>();
             for (const parentTreeId of tree.parents) {
                 const parent = this._dependencyManagerService.getTreeById(parentTreeId);
                 if (!parent) {
+                    tree.parents.delete(parentTreeId);
                     continue;
                 }
-                if (!parent.featureId) {
-                    newParents.add(parentTreeId);
-                } else if (!featureMap.get(tree.unitId)?.get(tree.subUnitId)?.has(parent.featureId)) {
-                    newParents.add(parentTreeId);
+
+                if (parent.featureId && featureMap.get(tree.unitId)?.get(tree.subUnitId)?.has(parent.featureId)) {
+                    tree.parents.delete(parentTreeId);
                 }
             }
-            tree.parents = newParents;
         });
     }
 
@@ -655,7 +665,13 @@ export class FormulaDependencyGenerator extends Disposable {
                     treeList.push(FDtree);
                 });
 
-                // Second pass: register offset cells and non-si formulas
+                // Second pass: register offset cells and non-si formulas.
+                // Fill-down detection: for non-si formulas in the same column,
+                // check if the formula is a row-shifted variant of a prior
+                // formula. If so, share the leader's AST via a virtual tree
+                // instead of parsing a duplicate AST per row.
+                const fillDownLeaders = new Map<number, { tree: FormulaDependencyTree; row: number; template: string }>();
+
                 matrixData.forValue((row, column, formulaDataItem) => {
                     if (formulaDataItem == null) {
                         return true;
@@ -672,9 +688,7 @@ export class FormulaDependencyGenerator extends Disposable {
                     if (existingTreeId != null) {
                         const existingTree = this._dependencyManagerService.getTreeById(existingTreeId);
                         if (existingTree) {
-                            // For virtual trees, check that the source si group hasn't changed
-                            const isVirtualMatch = existingTree.isVirtual && si && sIdCache.has(si);
-                            // For regular trees, check the formula string
+                            const isVirtualMatch = existingTree.isVirtual && (si ? sIdCache.has(si) : true);
                             const isRegularMatch = !existingTree.isVirtual && existingTree.formula === formulaDataItem.f;
                             if (isVirtualMatch || isRegularMatch) {
                                 existingTree.isCache = true;
@@ -690,7 +704,21 @@ export class FormulaDependencyGenerator extends Disposable {
                         const cache = sIdCache.get(si)!;
                         FDtree = this._createVirtualFDtree(cache as FormulaDependencyTree, formulaDataItem);
                     } else {
-                        FDtree = this._createFDtree(unitId, sheetId, row, column, unitData, formulaDataItem);
+                        const formula = formulaDataItem.f;
+                        const excelRow = row + 1;
+                        const template = normalizeFormulaTemplate(formula, excelRow);
+                        const leader = fillDownLeaders.get(column);
+
+                        if (leader && leader.template === template && isFillDownSharingEnabled()) {
+                            FDtree = this._createFillDownVirtualFDtree(leader.tree, row - leader.row);
+                        } else {
+                            FDtree = this._createFDtree(unitId, sheetId, row, column, unitData, formulaDataItem);
+                            fillDownLeaders.set(column, {
+                                tree: FDtree as FormulaDependencyTree,
+                                row,
+                                template,
+                            });
+                        }
                     }
 
                     if (existingTreeId != null) {
@@ -703,6 +731,7 @@ export class FormulaDependencyGenerator extends Disposable {
                     treeList.push(FDtree);
                 });
 
+                fillDownLeaders.clear();
                 sIdCache.clear();
             }
         }
@@ -741,6 +770,15 @@ export class FormulaDependencyGenerator extends Disposable {
         virtual.refOffsetX = x;
         virtual.refOffsetY = y;
 
+        return virtual;
+    }
+
+    protected _createFillDownVirtualFDtree(leader: FormulaDependencyTree, refOffsetY: number) {
+        const virtual = new FormulaDependencyTreeVirtual();
+        virtual.treeId = generateRandomDependencyTreeId(this._dependencyManagerService);
+        virtual.refTree = leader;
+        virtual.refOffsetX = 0;
+        virtual.refOffsetY = refOffsetY;
         return virtual;
     }
 

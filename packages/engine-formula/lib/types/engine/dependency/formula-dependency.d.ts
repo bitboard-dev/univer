@@ -12,6 +12,7 @@ import { IFormulaRuntimeService } from '../../services/runtime.service';
 import { Lexer } from '../analysis/lexer';
 import { AstTreeBuilder } from '../analysis/parser';
 import { Interpreter } from '../interpreter/interpreter';
+export declare function normalizeFormulaTemplate(formula: string, excelRow: number): string;
 export declare function generateRandomDependencyTreeId(dependencyManagerService: IDependencyManagerService): number;
 export interface IFormulaDependencyGenerator {
     generate(): Promise<IFormulaDependencyTree[]>;
@@ -27,6 +28,7 @@ export declare class FormulaDependencyGenerator extends Disposable {
     protected readonly _lexer: Lexer;
     protected readonly _dependencyManagerService: IDependencyManagerService;
     private _updateRangeFlattenCache;
+    private _hasBuiltDependencies;
     protected _dependencyRTreeCacheForAddressFunction: RTree;
     constructor(_currentConfigService: IFormulaCurrentConfigService, _runtimeService: IFormulaRuntimeService, _otherFormulaManagerService: IOtherFormulaManagerService, _featureCalculationManagerService: IFeatureCalculationManagerService, _interpreter: Interpreter, _astTreeBuilder: AstTreeBuilder, _lexer: Lexer, _dependencyManagerService: IDependencyManagerService);
     dispose(): void;
@@ -58,6 +60,7 @@ export declare class FormulaDependencyGenerator extends Disposable {
     protected _registerFormulas(formulaDataKeys: string[], formulaData: IFormulaData, unitData: IUnitData, treeList: IFormulaDependencyTree[]): void;
     protected _createFDtree(unitId: string, sheetId: string, row: number, column: number, unitData: IUnitData, formulaDataItem: IFormulaDataItem): FormulaDependencyTree;
     protected _createVirtualFDtree(tree: FormulaDependencyTree, formulaDataItem: IFormulaDataItem): FormulaDependencyTreeVirtual;
+    protected _createFillDownVirtualFDtree(leader: FormulaDependencyTree, refOffsetY: number): FormulaDependencyTreeVirtual;
     /**
      * Break down the dirty areas into ranges for subsequent matching.
      */

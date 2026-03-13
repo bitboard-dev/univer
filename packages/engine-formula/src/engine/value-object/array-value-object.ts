@@ -18,7 +18,7 @@ import type { Nullable } from '@univerjs/core';
 import type { callbackMapFnType, IArrayValueObject } from './base-value-object';
 
 import { isRealNum } from '@univerjs/core';
-import { BooleanValue } from '../../basics/common';
+import { BooleanValue, isTypedArrayOptimizationEnabled } from '../../basics/common';
 import { ERROR_TYPE_SET, ErrorType } from '../../basics/error-type';
 import { CELL_INVERTED_INDEX_CACHE } from '../../basics/inverted-index-cache';
 import { regexTestArrayValue } from '../../basics/regex';
@@ -131,7 +131,41 @@ export class ArrayValueObject extends BaseValueObject {
         return new ArrayValueObject(arrayValueObjectData);
     }
 
+    static createNumberArray(
+        data: Float64Array,
+        rowCount: number,
+        columnCount: number,
+        unitId: string = '',
+        sheetId: string = '',
+        row: number = -1,
+        column: number = -1
+    ): ArrayValueObject {
+        if (!isTypedArrayOptimizationEnabled()) {
+            const calculateValueList = ArrayValueObject._typedArrayToValueObjects(data, rowCount, columnCount);
+            return new ArrayValueObject({ calculateValueList, rowCount, columnCount, unitId, sheetId, row, column });
+        }
+        const obj = new ArrayValueObject({ calculateValueList: [], rowCount, columnCount, unitId, sheetId, row, column });
+        obj._values = [];
+        obj._numericData = data;
+        return obj;
+    }
+
+    private static _typedArrayToValueObjects(data: Float64Array, rowCount: number, columnCount: number): BaseValueObject[][] {
+        const values: BaseValueObject[][] = [];
+        for (let r = 0; r < rowCount; r++) {
+            const row: BaseValueObject[] = [];
+            const offset = r * columnCount;
+            for (let c = 0; c < columnCount; c++) {
+                row[c] = createNumberValueObjectByRawValue(data[offset + c]);
+            }
+            values[r] = row;
+        }
+        return values;
+    }
+
     private _values: Nullable<BaseValueObject>[][] = [];
+
+    private _numericData: Float64Array | null = null;
 
     private _rowCount: number = -1;
 
@@ -148,6 +182,10 @@ export class ArrayValueObject extends BaseValueObject {
     private _sliceCache = new Map<string, ArrayValueObject>();
 
     private _flattenCache: Nullable<ArrayValueObject>;
+    private _sortedNumericAsc: Nullable<number[]>;
+    private _sortedNumericDesc: Nullable<number[]>;
+    private _equalSearchFirstIndex: Nullable<Map<string | number | boolean, { row: number; column: number }>>;
+    private _equalSearchLastIndex: Nullable<Map<string | number | boolean, { row: number; column: number }>>;
 
     /**
      * The default value of the array, null values in comparison results support setting to false
@@ -168,19 +206,196 @@ export class ArrayValueObject extends BaseValueObject {
     }
 
     override dispose(): void {
-        // this._values.forEach((cells) => {
-        //     cells.forEach((cell) => {
-        //         cell?.dispose();
-        //     });
-        // });
-
         this._values = [];
-
+        this._numericData = null;
         this._defaultValue = null;
-
         this._flattenPosition = null;
-
         this._clearCache();
+    }
+
+    isNumericArray(): boolean {
+        return this._numericData !== null;
+    }
+
+    getNumericData(): Float64Array | null {
+        return this._numericData;
+    }
+
+    getSortedNumericValues(descending: boolean): number[] | null {
+        if (descending) {
+            if (this._sortedNumericDesc) return this._sortedNumericDesc;
+        } else {
+            if (this._sortedNumericAsc) return this._sortedNumericAsc;
+        }
+
+        let values: number[];
+        if (this._numericData) {
+            values = [];
+            for (let i = 0; i < this._numericData.length; i++) {
+                const v = this._numericData[i];
+                if (Number.isFinite(v)) values.push(v);
+            }
+        } else {
+            values = [];
+            for (let r = 0; r < this._rowCount; r++) {
+                const row = this._values[r];
+                if (!row) continue;
+                for (let c = 0; c < this._columnCount; c++) {
+                    const cell = row[c];
+                    if (!cell || cell.isNull()) continue;
+                    if (cell.isError()) return null;
+                    if (cell.isBoolean() || cell.isString()) continue;
+                    const v = cell.getValue() as number;
+                    if (Number.isFinite(v)) values.push(v);
+                }
+            }
+        }
+
+        if (values.length === 0) return null;
+
+        const asc = [...values].sort((a, b) => a - b);
+        this._sortedNumericAsc = asc;
+        this._sortedNumericDesc = [...asc].reverse();
+
+        return descending ? this._sortedNumericDesc : this._sortedNumericAsc;
+    }
+
+    getEqualSearchIndex(isFirst: boolean): Map<string | number | boolean, { row: number; column: number }> {
+        const cached = isFirst ? this._equalSearchFirstIndex : this._equalSearchLastIndex;
+        if (cached) return cached;
+
+        const index = new Map<string | number | boolean, { row: number; column: number }>();
+        const rowCount = this._rowCount;
+        const colCount = this._columnCount;
+
+        if (isFirst) {
+            for (let r = rowCount - 1; r >= 0; r--) {
+                for (let c = colCount - 1; c >= 0; c--) {
+                    const val = this._getRawValue(r, c);
+                    if (val !== null) {
+                        const key = typeof val === 'string' ? val.toLocaleLowerCase() : val;
+                        index.set(key, { row: r, column: c });
+                    }
+                }
+            }
+            this._equalSearchFirstIndex = index;
+        } else {
+            for (let r = 0; r < rowCount; r++) {
+                for (let c = 0; c < colCount; c++) {
+                    const val = this._getRawValue(r, c);
+                    if (val !== null) {
+                        const key = typeof val === 'string' ? val.toLocaleLowerCase() : val;
+                        index.set(key, { row: r, column: c });
+                    }
+                }
+            }
+            this._equalSearchLastIndex = index;
+        }
+        return index;
+    }
+
+    private _getRawValue(row: number, column: number): string | number | boolean | null {
+        if (this._numericData !== null) {
+            return this._numericData[row * this._columnCount + column];
+        }
+        const cell = this._values[row]?.[column];
+        if (!cell || cell.isNull() || cell.isError()) return null;
+        return cell.getValue() as string | number | boolean;
+    }
+
+    getNumberDirect(row: number, column: number): number {
+        if (this._numericData !== null) {
+            return this._numericData[row * this._columnCount + column];
+        }
+        const cell = this._values[row]?.[column];
+        return cell ? (cell.getValue() as number) : 0;
+    }
+
+    rawCompare(row: number, column: number, criteriaRaw: string | number | boolean, operator: compareToken): boolean {
+        if (this._numericData !== null) {
+            const cellVal = this._numericData[row * this._columnCount + column];
+            if (typeof criteriaRaw === 'number') {
+                return this._rawCompareNumbers(cellVal, criteriaRaw, operator);
+            }
+            if ((operator === compareToken.EQUALS || operator === compareToken.NOT_EQUAL) && typeof criteriaRaw === 'string') {
+                const criteriaNum = Number(criteriaRaw);
+                if (!Number.isNaN(criteriaNum)) {
+                    return this._rawCompareNumbers(cellVal, criteriaNum, operator);
+                }
+            }
+            return operator === compareToken.NOT_EQUAL;
+        }
+
+        const cell = this._values[row]?.[column];
+        if (!cell || cell.isNull() || cell.isError()) return false;
+
+        const cellRaw = cell.getValue();
+        if (typeof cellRaw === typeof criteriaRaw) {
+            if (typeof cellRaw === 'string' && typeof criteriaRaw === 'string') {
+                return this._rawCompareStrings(cellRaw.toLocaleLowerCase(), criteriaRaw.toLocaleLowerCase(), operator);
+            }
+            if (typeof cellRaw === 'number' && typeof criteriaRaw === 'number') {
+                return this._rawCompareNumbers(cellRaw, criteriaRaw, operator);
+            }
+        }
+
+        if (operator === compareToken.EQUALS || operator === compareToken.NOT_EQUAL) {
+            if (typeof cellRaw === 'number' && typeof criteriaRaw === 'string') {
+                const criteriaNum = Number(criteriaRaw);
+                if (!Number.isNaN(criteriaNum)) {
+                    return this._rawCompareNumbers(cellRaw, criteriaNum, operator);
+                }
+            }
+            if (typeof cellRaw === 'string' && typeof criteriaRaw === 'number') {
+                const cellNum = Number(cellRaw);
+                if (!Number.isNaN(cellNum)) {
+                    return this._rawCompareNumbers(cellNum, criteriaRaw, operator);
+                }
+            }
+        }
+        return operator === compareToken.NOT_EQUAL;
+    }
+
+    private _rawCompareNumbers(a: number, b: number, op: compareToken): boolean {
+        switch (op) {
+            case compareToken.EQUALS: return a === b;
+            case compareToken.NOT_EQUAL: return a !== b;
+            case compareToken.GREATER_THAN: return a > b;
+            case compareToken.GREATER_THAN_OR_EQUAL: return a >= b;
+            case compareToken.LESS_THAN: return a < b;
+            case compareToken.LESS_THAN_OR_EQUAL: return a <= b;
+        }
+    }
+
+    private _rawCompareStrings(a: string, b: string, op: compareToken): boolean {
+        switch (op) {
+            case compareToken.EQUALS: return a === b;
+            case compareToken.NOT_EQUAL: return a !== b;
+            case compareToken.GREATER_THAN: return a > b;
+            case compareToken.GREATER_THAN_OR_EQUAL: return a >= b;
+            case compareToken.LESS_THAN: return a < b;
+            case compareToken.LESS_THAN_OR_EQUAL: return a <= b;
+        }
+    }
+
+    private _materialize(): void {
+        if (this._numericData === null) {
+            return;
+        }
+        const data = this._numericData;
+        const rowCount = this._rowCount;
+        const columnCount = this._columnCount;
+        const result: BaseValueObject[][] = new Array(rowCount);
+        for (let r = 0; r < rowCount; r++) {
+            const row = new Array<BaseValueObject>(columnCount);
+            const offset = r * columnCount;
+            for (let c = 0; c < columnCount; c++) {
+                row[c] = NumberValueObject.create(data[offset + c]);
+            }
+            result[r] = row;
+        }
+        this._values = result;
+        this._numericData = null;
     }
 
     clone() {
@@ -235,11 +450,13 @@ export class ArrayValueObject extends BaseValueObject {
     }
 
     override getArrayValue() {
+        this._materialize();
         return this._values;
     }
 
     override setArrayValue(value: BaseValueObject[][]) {
         this._clearCache();
+        this._numericData = null;
         this._values = value;
     }
 
@@ -252,19 +469,24 @@ export class ArrayValueObject extends BaseValueObject {
     }
 
     get(row: number, column: number) {
-        // const rowValues = this._values[row];
-        // if (rowValues == null) {
-        //     return null;
-        // }
-
-        // const v = rowValues[column];
-        // if (v == null) {
-        //     return null;
-        // }
+        if (this._numericData !== null) {
+            const idx = row * this._columnCount + column;
+            if (idx >= 0 && idx < this._numericData.length) {
+                return NumberValueObject.create(this._numericData[idx]);
+            }
+            return this._defaultValue;
+        }
         return this._values[row]?.[column] || this._defaultValue;
     }
 
     getRealValue(row: number, column: number) {
+        if (this._numericData !== null) {
+            const idx = row * this._columnCount + column;
+            if (idx >= 0 && idx < this._numericData.length) {
+                return NumberValueObject.create(this._numericData[idx]);
+            }
+            return null;
+        }
         const rowValues = this._values[row];
         if (rowValues == null) {
             return null;
@@ -286,6 +508,7 @@ export class ArrayValueObject extends BaseValueObject {
             throw new Error('Exceeding array bounds.');
         }
 
+        this._materialize();
         this._clearCache();
 
         this._values[row][column] = value;
@@ -310,7 +533,21 @@ export class ArrayValueObject extends BaseValueObject {
     ) {
         const { startRow, endRow, startColumn, endColumn } = this.getRangePosition();
 
-        const valueList = this.getArrayValue();
+        if (this._numericData !== null) {
+            const data = this._numericData;
+            const cols = this._columnCount;
+            for (let r = startRow; r <= endRow; r++) {
+                const offset = r * cols;
+                for (let c = startColumn; c <= endColumn; c++) {
+                    if (callback(NumberValueObject.create(data[offset + c]), r, c) === false) {
+                        return;
+                    }
+                }
+            }
+            return;
+        }
+
+        const valueList = this._values;
 
         for (let r = startRow; r <= endRow; r++) {
             for (let c = startColumn; c <= endColumn; c++) {
@@ -326,7 +563,21 @@ export class ArrayValueObject extends BaseValueObject {
     ) {
         const { startRow, endRow, startColumn, endColumn } = this.getRangePosition();
 
-        const valueList = this.getArrayValue();
+        if (this._numericData !== null) {
+            const data = this._numericData;
+            const cols = this._columnCount;
+            for (let r = endRow; r >= startRow; r--) {
+                const offset = r * cols;
+                for (let c = endColumn; c >= startColumn; c--) {
+                    if (callback(NumberValueObject.create(data[offset + c]), r, c) === false) {
+                        return;
+                    }
+                }
+            }
+            return;
+        }
+
+        const valueList = this._values;
 
         for (let r = endRow; r >= startRow; r--) {
             for (let c = endColumn; c >= startColumn; c--) {
@@ -339,6 +590,17 @@ export class ArrayValueObject extends BaseValueObject {
 
     getLastTruePosition() {
         let rangeSingle: Nullable<{ row: number; column: number }>;
+
+        if (this._numericData !== null) {
+            const data = this._numericData;
+            const cols = this._columnCount;
+            for (let i = data.length - 1; i >= 0; i--) {
+                if (data[i] !== 0) {
+                    return { row: Math.floor(i / cols), column: i % cols };
+                }
+            }
+            return rangeSingle;
+        }
 
         this.iteratorReverse((value, rowIndex, columnIndex) => {
             if (value?.isBoolean() && (value as BaseValueObject).getValue() === true) {
@@ -356,6 +618,17 @@ export class ArrayValueObject extends BaseValueObject {
 
     getFirstTruePosition() {
         let rangeSingle: Nullable<{ row: number; column: number }>;
+
+        if (this._numericData !== null) {
+            const data = this._numericData;
+            const cols = this._columnCount;
+            for (let i = 0; i < data.length; i++) {
+                if (data[i] !== 0) {
+                    return { row: Math.floor(i / cols), column: i % cols };
+                }
+            }
+            return rangeSingle;
+        }
 
         this.iterator((value, rowIndex, columnIndex) => {
             if (value?.isBoolean() && (value as BaseValueObject).getValue() === true) {
@@ -414,7 +687,8 @@ export class ArrayValueObject extends BaseValueObject {
                     continue;
                 }
 
-                if ((takeCell as BaseValueObject).getValue() === true) {
+                const takeCellValue = (takeCell as BaseValueObject).getValue();
+                if (takeCellValue === true || takeCellValue === 1) {
                     const value = this.get(r, c);
                     newValue[0].push(value);
                 }
@@ -633,6 +907,14 @@ export class ArrayValueObject extends BaseValueObject {
         isDesc = false,
         isFuzzyMatching = false
     ) {
+        if (searchType === ArrayOrderSearchType.NORMAL && !isFuzzyMatching) {
+            const raw = valueObject.getValue() as string | number | boolean;
+            const target = typeof raw === 'string' ? raw.toLocaleLowerCase() : raw;
+            const index = this.getEqualSearchIndex(true);
+            const pos = index.get(target);
+            return pos || undefined;
+        }
+
         let result: Nullable<BaseValueObject>;
         let maxOrMin: Nullable<BaseValueObject>;
         let resultPosition: Nullable<{ row: number; column: number }>;
@@ -824,9 +1106,17 @@ export class ArrayValueObject extends BaseValueObject {
     }
 
     override sum() {
+        if (this._numericData !== null) {
+            const data = this._numericData;
+            let total = 0;
+            for (let i = 0, len = data.length; i < len; i++) {
+                total += data[i];
+            }
+            return NumberValueObject.create(total);
+        }
+
         let accumulatorAll: BaseValueObject = NumberValueObject.create(0);
         this.iterator((valueObject) => {
-            // 'test', ' ',  blank cell, TRUE and FALSE are ignored
             if (valueObject == null || valueObject.isString() || valueObject.isBoolean() || valueObject.isNull()) {
                 return true; // continue
             }
@@ -1004,14 +1294,33 @@ export class ArrayValueObject extends BaseValueObject {
         return this.mapValue(wrappedCallbackFn);
     }
 
+    // READNOW: MEMORY HOTSPOT #1 — mapValue allocates a full BaseValueObject[][]
+    // for every formula operation (comparison, arithmetic, etc.). With SUMPRODUCT
+    // over 10K rows, each sub-expression creates a 10K-element array. Nested
+    // operations (e.g. (A=B)*(C*D)) compound: each * and = creates its own copy.
+    // For 10K formulas each scanning 10K rows, this produces ~100M+ array objects.
+    // Root cause of OOM in ArrayValueObject allocation (99% of heap in profiling).
     override mapValue(callbackFn: callbackMapFnType): BaseValueObject {
         const rowCount = this._rowCount;
         const columnCount = this._columnCount;
 
-        const result: BaseValueObject[][] = [];
+        const result = new Array<BaseValueObject[]>(rowCount);
+
+        if (this._numericData !== null) {
+            const data = this._numericData;
+            for (let r = 0; r < rowCount; r++) {
+                const rowList = new Array<BaseValueObject>(columnCount);
+                const offset = r * columnCount;
+                for (let c = 0; c < columnCount; c++) {
+                    rowList[c] = callbackFn(NumberValueObject.create(data[offset + c]), r, c);
+                }
+                result[r] = rowList;
+            }
+            return this._createNewArray(result, rowCount, columnCount);
+        }
 
         for (let r = 0; r < rowCount; r++) {
-            const rowList: BaseValueObject[] = [];
+            const rowList = new Array<BaseValueObject>(columnCount);
             for (let c = 0; c < columnCount; c++) {
                 const row = this._values?.[r];
 
@@ -1027,7 +1336,7 @@ export class ArrayValueObject extends BaseValueObject {
                     }
                 }
             }
-            result.push(rowList);
+            result[r] = rowList;
         }
 
         return this._createNewArray(result, rowCount, columnCount);
@@ -1369,11 +1678,29 @@ export class ArrayValueObject extends BaseValueObject {
     }
 
     toValue() {
+        if (this._numericData !== null) {
+            const rows = this._rowCount;
+            const cols = this._columnCount;
+            const result: (string | number | boolean | null)[][] = new Array(rows);
+            for (let r = 0; r < rows; r++) {
+                const row: (string | number | boolean | null)[] = new Array(cols);
+                const offset = r * cols;
+                for (let c = 0; c < cols; c++) {
+                    row[c] = this._numericData[offset + c];
+                }
+                result[r] = row;
+            }
+            return result;
+        }
         return transformToValue(this._values);
     }
 
     private _clearCache() {
         this._flattenCache = null;
+        this._sortedNumericAsc = null;
+        this._sortedNumericDesc = null;
+        this._equalSearchFirstIndex = null;
+        this._equalSearchLastIndex = null;
         this._sliceCache.clear();
     }
 
@@ -1428,14 +1755,232 @@ export class ArrayValueObject extends BaseValueObject {
         return transposedArray;
     }
 
+    private _extractNumericData(): Float64Array | null {
+        if (!isTypedArrayOptimizationEnabled()) return null;
+        if (this._numericData !== null) return this._numericData;
+        const rowCount = this._rowCount;
+        const columnCount = this._columnCount;
+        const len = rowCount * columnCount;
+        const out = new Float64Array(len);
+        for (let r = 0; r < rowCount; r++) {
+            const row = this._values[r];
+            if (row == null) return null;
+            const offset = r * columnCount;
+            for (let c = 0; c < columnCount; c++) {
+                const cell = row[c] || this._defaultValue;
+                if (cell == null || cell.isNull() || cell.isError() || cell.isString()) return null;
+                out[offset + c] = cell.isBoolean() ? (cell.getValue() ? 1 : 0) : (cell.getValue() as number);
+            }
+        }
+        return out;
+    }
+
+    private _typedCompareEquals(scalarValue: BaseValueObject): ArrayValueObject | null {
+        const rowCount = this._rowCount;
+        const columnCount = this._columnCount;
+        const len = rowCount * columnCount;
+        const out = new Float64Array(len);
+        const target = scalarValue.getValue();
+
+        if (typeof target === 'string') return null;
+
+        if (this._numericData !== null) {
+            if (typeof target !== 'number') return null;
+            const src = this._numericData;
+            for (let i = 0; i < len; i++) {
+                out[i] = src[i] === target ? 1 : 0;
+            }
+        } else {
+            for (let r = 0; r < rowCount; r++) {
+                const row = this._values[r];
+                if (row == null) continue;
+                const offset = r * columnCount;
+                for (let c = 0; c < columnCount; c++) {
+                    const cell = row[c];
+                    if (cell == null || cell.isNull()) {
+                        out[offset + c] = target === '' || target === null ? 1 : 0;
+                    } else if (cell.isError()) {
+                        return null;
+                    } else {
+                        const cv = cell.getValue();
+                        if (cv === target) {
+                            out[offset + c] = 1;
+                        } else if (typeof cv === 'string' && typeof target === 'number') {
+                            out[offset + c] = Number(cv) === target ? 1 : 0;
+                        } else if (typeof cv === 'number' && typeof target === 'string') {
+                            out[offset + c] = cv === Number(target) ? 1 : 0;
+                        } else {
+                            out[offset + c] = 0;
+                        }
+                    }
+                }
+            }
+        }
+
+        return ArrayValueObject.createNumberArray(out, rowCount, columnCount, this._unitId, this._sheetId, this._currentRow, this._currentColumn);
+    }
+
+    private _typedArithmeticFromValues(scalar: number, batchOperatorType: BatchOperatorType): ArrayValueObject | null {
+        const rowCount = this._rowCount;
+        const columnCount = this._columnCount;
+        const len = rowCount * columnCount;
+        const out = new Float64Array(len);
+
+        for (let r = 0; r < rowCount; r++) {
+            const row = this._values[r];
+            if (row == null) return null;
+            const offset = r * columnCount;
+            for (let c = 0; c < columnCount; c++) {
+                const cell = row[c];
+                if (cell == null || cell.isNull() || cell.isError() || cell.isString()) return null;
+                const v = cell.isBoolean() ? (cell.getValue() ? 1 : 0) : (cell.getValue() as number);
+                switch (batchOperatorType) {
+                    case BatchOperatorType.MULTIPLY:
+                        out[offset + c] = v * scalar;
+                        break;
+                    case BatchOperatorType.PLUS:
+                        out[offset + c] = v + scalar;
+                        break;
+                    case BatchOperatorType.MINUS:
+                        out[offset + c] = v - scalar;
+                        break;
+                    case BatchOperatorType.DIVIDED:
+                        if (scalar === 0) return null;
+                        out[offset + c] = v / scalar;
+                        break;
+                    default: return null;
+                }
+            }
+        }
+        return ArrayValueObject.createNumberArray(out, rowCount, columnCount, this._unitId, this._sheetId, this._currentRow, this._currentColumn);
+    }
+
+    private _typedBinaryScalar(
+        scalar: number,
+        batchOperatorType: BatchOperatorType,
+        operator?: compareToken
+    ): ArrayValueObject | null {
+        const src = this._numericData;
+        if (src === null) {
+            return null;
+        }
+        const len = src.length;
+        const out = new Float64Array(len);
+        switch (batchOperatorType) {
+            case BatchOperatorType.MULTIPLY:
+                for (let i = 0; i < len; i++) out[i] = src[i] * scalar;
+                break;
+            case BatchOperatorType.PLUS:
+                for (let i = 0; i < len; i++) out[i] = src[i] + scalar;
+                break;
+            case BatchOperatorType.MINUS:
+                for (let i = 0; i < len; i++) out[i] = src[i] - scalar;
+                break;
+            case BatchOperatorType.DIVIDED:
+                if (scalar === 0) return null;
+                for (let i = 0; i < len; i++) out[i] = src[i] / scalar;
+                break;
+            case BatchOperatorType.COMPARE: {
+                if (!operator) return null;
+                let cmpFn: (a: number, b: number) => number;
+                switch (operator) {
+                    case compareToken.EQUALS:
+                        cmpFn = (a, b) => a === b ? 1 : 0;
+                        break;
+                    case compareToken.NOT_EQUAL:
+                        cmpFn = (a, b) => a !== b ? 1 : 0;
+                        break;
+                    case compareToken.GREATER_THAN:
+                        cmpFn = (a, b) => a > b ? 1 : 0;
+                        break;
+                    case compareToken.GREATER_THAN_OR_EQUAL:
+                        cmpFn = (a, b) => a >= b ? 1 : 0;
+                        break;
+                    case compareToken.LESS_THAN:
+                        cmpFn = (a, b) => a < b ? 1 : 0;
+                        break;
+                    case compareToken.LESS_THAN_OR_EQUAL:
+                        cmpFn = (a, b) => a <= b ? 1 : 0;
+                        break;
+                    default: return null;
+                }
+                for (let i = 0; i < len; i++) out[i] = cmpFn(src[i], scalar);
+                break;
+            }
+            default:
+                return null;
+        }
+        return ArrayValueObject.createNumberArray(out, this._rowCount, this._columnCount, this._unitId, this._sheetId, this._currentRow, this._currentColumn);
+    }
+
+    private _typedBinaryArray(
+        other: Float64Array,
+        otherRowCount: number,
+        otherColumnCount: number,
+        batchOperatorType: BatchOperatorType,
+        operator?: compareToken
+    ): ArrayValueObject | null {
+        const src = this._numericData;
+        if (src === null) {
+            return null;
+        }
+        if (this._rowCount !== otherRowCount || this._columnCount !== otherColumnCount) {
+            return null;
+        }
+        const len = src.length;
+        const out = new Float64Array(len);
+        switch (batchOperatorType) {
+            case BatchOperatorType.MULTIPLY:
+                for (let i = 0; i < len; i++) out[i] = src[i] * other[i];
+                break;
+            case BatchOperatorType.PLUS:
+                for (let i = 0; i < len; i++) out[i] = src[i] + other[i];
+                break;
+            case BatchOperatorType.MINUS:
+                for (let i = 0; i < len; i++) out[i] = src[i] - other[i];
+                break;
+            case BatchOperatorType.DIVIDED:
+                for (let i = 0; i < len; i++) out[i] = other[i] === 0 ? Number.NaN : src[i] / other[i];
+                break;
+            case BatchOperatorType.COMPARE: {
+                if (!operator) return null;
+                let cmpFn: (a: number, b: number) => number;
+                switch (operator) {
+                    case compareToken.EQUALS:
+                        cmpFn = (a, b) => a === b ? 1 : 0;
+                        break;
+                    case compareToken.NOT_EQUAL:
+                        cmpFn = (a, b) => a !== b ? 1 : 0;
+                        break;
+                    case compareToken.GREATER_THAN:
+                        cmpFn = (a, b) => a > b ? 1 : 0;
+                        break;
+                    case compareToken.GREATER_THAN_OR_EQUAL:
+                        cmpFn = (a, b) => a >= b ? 1 : 0;
+                        break;
+                    case compareToken.LESS_THAN:
+                        cmpFn = (a, b) => a < b ? 1 : 0;
+                        break;
+                    case compareToken.LESS_THAN_OR_EQUAL:
+                        cmpFn = (a, b) => a <= b ? 1 : 0;
+                        break;
+                    default: return null;
+                }
+                for (let i = 0; i < len; i++) out[i] = cmpFn(src[i], other[i]);
+                break;
+            }
+            default:
+                return null;
+        }
+        return ArrayValueObject.createNumberArray(out, this._rowCount, this._columnCount, this._unitId, this._sheetId, this._currentRow, this._currentColumn);
+    }
+
     private _batchOperator(
         valueObject: BaseValueObject,
         batchOperatorType: BatchOperatorType,
         operator?: compareToken,
         isCaseSensitive?: boolean
     ): BaseValueObject {
-        const valueList: BaseValueObject[] = [];
-
         let rowCount = this._rowCount;
         let columnCount = this._columnCount;
 
@@ -1445,48 +1990,133 @@ export class ArrayValueObject extends BaseValueObject {
 
             rowCount = Math.max(valueRowCount, rowCount);
             columnCount = Math.max(valueColumnCount, columnCount);
-            /**
-             * For computational scenarios where the array contains a single value,
-             * adopting calculations between the array and the value can effectively utilize an inverted index.
-             */
+
+            if (this._numericData !== null && (valueObject as ArrayValueObject)._numericData !== null) {
+                const typed = this._typedBinaryArray(
+                    (valueObject as ArrayValueObject)._numericData!,
+                    valueRowCount,
+                    valueColumnCount,
+                    batchOperatorType,
+                    operator
+                );
+                if (typed) return typed;
+            }
+
+            if (this._numericData !== null && (valueObject as ArrayValueObject)._numericData === null
+                && this._rowCount === valueRowCount && this._columnCount === valueColumnCount) {
+                const otherTyped = (valueObject as ArrayValueObject)._extractNumericData();
+                if (otherTyped) {
+                    const typed = this._typedBinaryArray(otherTyped, valueRowCount, valueColumnCount, batchOperatorType, operator);
+                    if (typed) return typed;
+                }
+            }
+
+            if (this._numericData === null && (valueObject as ArrayValueObject)._numericData !== null
+                && this._rowCount === valueRowCount && this._columnCount === valueColumnCount) {
+                const selfTyped = this._extractNumericData();
+                if (selfTyped) {
+                    const result = ArrayValueObject.createNumberArray(selfTyped, this._rowCount, this._columnCount, this._unitId, this._sheetId, this._currentRow, this._currentColumn);
+                    const typed = result._typedBinaryArray((valueObject as ArrayValueObject)._numericData!, valueRowCount, valueColumnCount, batchOperatorType, operator);
+                    if (typed) return typed;
+                }
+            }
+
             if (valueRowCount === 1 && valueColumnCount === 1) {
                 const v = (valueObject as ArrayValueObject).getFirstCell() as BaseValueObject;
-                for (let c = 0; c < columnCount; c++) {
-                    valueList.push(v);
+
+                if (this._numericData !== null && v.isNumber()) {
+                    const typed = this._typedBinaryScalar(v.getValue() as number, batchOperatorType, operator);
+                    if (typed) return typed;
                 }
+
+                if (batchOperatorType === BatchOperatorType.COMPARE && operator === compareToken.EQUALS && !isCaseSensitive) {
+                    const typed = this._typedCompareEquals(v);
+                    if (typed) return typed;
+                }
+
+                const valueList = new Array<BaseValueObject>(columnCount);
+                for (let c = 0; c < columnCount; c++) {
+                    valueList[c] = v;
+                }
+                const result = Array.from({ length: rowCount }, () => new Array<BaseValueObject>(columnCount));
+                for (let c = 0; c < columnCount; c++) {
+                    this._batchOperatorValue(
+                        valueList[c],
+                        c,
+                        result,
+                        batchOperatorType,
+                        operator,
+                        isCaseSensitive
+                    );
+                }
+
+                const newArray = this._createNewArray(result, rowCount, columnCount);
+                newArray.setDefaultValue(BooleanValueObject.create(false));
+                return newArray;
             } else if (valueRowCount === 1 && this._columnCount > 1) {
                 const list = (valueObject as ArrayValueObject).getArrayValue();
+                const valueList = new Array<BaseValueObject>(columnCount);
                 for (let c = 0; c < columnCount; c++) {
-                    valueList.push(list[0][c] as BaseValueObject);
+                    valueList[c] = list[0][c] as BaseValueObject;
                 }
+                const result = Array.from({ length: rowCount }, () => new Array<BaseValueObject>(columnCount));
+                for (let c = 0; c < columnCount; c++) {
+                    this._batchOperatorValue(
+                        valueList[c],
+                        c,
+                        result,
+                        batchOperatorType,
+                        operator,
+                        isCaseSensitive
+                    );
+                }
+
+                const newArray = this._createNewArray(result, rowCount, columnCount);
+                newArray.setDefaultValue(BooleanValueObject.create(false));
+                return newArray;
             } else {
                 return this._batchOperatorArray(valueObject, batchOperatorType, operator, isCaseSensitive);
             }
         } else {
-            for (let c = 0; c < columnCount; c++) {
-                valueList.push(valueObject);
+            if (this._numericData !== null && valueObject.isNumber()) {
+                const typed = this._typedBinaryScalar(valueObject.getValue() as number, batchOperatorType, operator);
+                if (typed) return typed;
             }
+
+            if (batchOperatorType === BatchOperatorType.COMPARE && operator === compareToken.EQUALS && !isCaseSensitive) {
+                const typed = this._typedCompareEquals(valueObject);
+                if (typed) return typed;
+            }
+
+            if (this._numericData === null && batchOperatorType !== BatchOperatorType.COMPARE
+                && batchOperatorType !== BatchOperatorType.CONCATENATE_FRONT
+                && batchOperatorType !== BatchOperatorType.CONCATENATE_BACK
+                && valueObject.isNumber()) {
+                const typed = this._typedArithmeticFromValues(valueObject.getValue() as number, batchOperatorType);
+                if (typed) return typed;
+            }
+
+            const valueList = new Array<BaseValueObject>(columnCount);
+            for (let c = 0; c < columnCount; c++) {
+                valueList[c] = valueObject;
+            }
+            const result = Array.from({ length: rowCount }, () => new Array<BaseValueObject>(columnCount));
+
+            for (let c = 0; c < columnCount; c++) {
+                this._batchOperatorValue(
+                    valueList[c],
+                    c,
+                    result,
+                    batchOperatorType,
+                    operator,
+                    isCaseSensitive
+                );
+            }
+
+            const newArray = this._createNewArray(result, rowCount, columnCount);
+            newArray.setDefaultValue(BooleanValueObject.create(false));
+            return newArray;
         }
-
-        const result: BaseValueObject[][] = [];
-
-        for (let c = 0; c < columnCount; c++) {
-            const value = valueList[c];
-            this._batchOperatorValue(
-                value,
-                c,
-                result,
-                batchOperatorType,
-                operator,
-                isCaseSensitive
-            );
-        }
-
-        const newArray = this._createNewArray(result, rowCount, columnCount);
-
-        // Mark empty values in the array as false
-        newArray.setDefaultValue(BooleanValueObject.create(false));
-        return newArray;
     }
 
     // eslint-disable-next-line max-lines-per-function
@@ -1765,14 +2395,14 @@ export class ArrayValueObject extends BaseValueObject {
             columnCount = this._columnCount;
         }
 
-        const result: BaseValueObject[][] = [];
+        const result = new Array<BaseValueObject[]>(rowCount);
 
         const currentCalculateType = this._checkArrayCalculateType(this as ArrayValueObject);
 
         const opCalculateType = this._checkArrayCalculateType(valueObject as ArrayValueObject);
 
         for (let r = 0; r < rowCount; r++) {
-            const rowList: BaseValueObject[] = [];
+            const rowList = new Array<BaseValueObject>(columnCount);
             for (let c = 0; c < columnCount; c++) {
                 let currentValue: Nullable<BaseValueObject>;
                 if (currentCalculateType === ArrayCalculateType.SINGLE) {
@@ -1858,7 +2488,7 @@ export class ArrayValueObject extends BaseValueObject {
                     rowList[c] = ErrorValueObject.create(ErrorType.NA);
                 }
             }
-            result.push(rowList);
+            result[r] = rowList;
         }
 
         return this._createNewArray(result, rowCount, columnCount);
@@ -1926,6 +2556,10 @@ export class ArrayValueObject extends BaseValueObject {
         return result;
     }
 
+    // READNOW: Every mapValue and _batchOperator call ends here, wrapping the
+    // intermediate BaseValueObject[][] in a new ArrayValueObject. The 2D array
+    // is held in calculateValueList and stays in memory until GC. No pooling
+    // or reuse — each operation allocates fresh.
     private _createNewArray(
         result: Nullable<BaseValueObject>[][],
         rowCount: number,

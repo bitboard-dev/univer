@@ -7,6 +7,5 @@ export default createConfig({
             path.resolve(__dirname, './jest.setup.ts'),
             path.resolve(__dirname, './vitest.setup.ts'),
         ],
-        environment: 'jsdom',
     },
 });

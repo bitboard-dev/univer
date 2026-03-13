@@ -18,7 +18,8 @@ import type { Injector, IWorkbookData } from '@univerjs/core';
 import type { LexerNode } from '../../../../engine/analysis/lexer-node';
 import type { BaseAstNode } from '../../../../engine/ast-node/base-ast-node';
 import { CellValueType, LocaleType } from '@univerjs/core';
-import { beforeEach, describe, expect, it } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it } from 'vitest';
+import { resetFormulaOptimizationRuntimeFlags, setFormulaOptimizationRuntimeFlags } from '../../../../basics/common';
 import { ErrorType } from '../../../../basics/error-type';
 import { Lexer } from '../../../../engine/analysis/lexer';
 import { AstTreeBuilder } from '../../../../engine/analysis/parser';
@@ -185,6 +186,10 @@ describe('Test countifs function', () => {
         };
     });
 
+    afterEach(() => {
+        resetFormulaOptimizationRuntimeFlags();
+    });
+
     describe('Countifs', () => {
         it('Value is normal', async () => {
             const result = await calculate('=COUNTIFS(A1:A4,">3")');
@@ -227,6 +232,19 @@ describe('Test countifs function', () => {
                 [2],
                 [1],
             ]);
+        });
+
+        it('returns the same result with hash cache enabled or disabled', async () => {
+            const formula = '=COUNTIFS(A1:A4,">2")';
+
+            setFormulaOptimizationRuntimeFlags({ disableFormulaHashCache: false });
+            const optimized = await calculate(formula);
+
+            setFormulaOptimizationRuntimeFlags({ disableFormulaHashCache: true });
+            const unoptimized = await calculate(formula);
+
+            expect(optimized).toBe(2);
+            expect(unoptimized).toBe(2);
         });
     });
 });

@@ -18,7 +18,10 @@ export declare class ArrayValueObject extends BaseValueObject {
      * @returns
      */
     static createByArray(array: Array<Array<number | string | boolean | null>>): ArrayValueObject;
+    static createNumberArray(data: Float64Array, rowCount: number, columnCount: number, unitId?: string, sheetId?: string, row?: number, column?: number): ArrayValueObject;
+    private static _typedArrayToValueObjects;
     private _values;
+    private _numericData;
     private _rowCount;
     private _columnCount;
     private _unitId;
@@ -27,6 +30,10 @@ export declare class ArrayValueObject extends BaseValueObject {
     private _currentColumn;
     private _sliceCache;
     private _flattenCache;
+    private _sortedNumericAsc;
+    private _sortedNumericDesc;
+    private _equalSearchFirstIndex;
+    private _equalSearchLastIndex;
     /**
      * The default value of the array, null values in comparison results support setting to false
      */
@@ -34,6 +41,19 @@ export declare class ArrayValueObject extends BaseValueObject {
     private _flattenPosition;
     constructor(rawValue: string | IArrayValueObject);
     dispose(): void;
+    isNumericArray(): boolean;
+    getNumericData(): Float64Array | null;
+    getSortedNumericValues(descending: boolean): number[] | null;
+    getEqualSearchIndex(isFirst: boolean): Map<string | number | boolean, {
+        row: number;
+        column: number;
+    }>;
+    private _getRawValue;
+    getNumberDirect(row: number, column: number): number;
+    rawCompare(row: number, column: number, criteriaRaw: string | number | boolean, operator: compareToken): boolean;
+    private _rawCompareNumbers;
+    private _rawCompareStrings;
+    private _materialize;
     clone(): ArrayValueObject;
     getRowCount(): number;
     setRowCount(rowCount: number): void;
@@ -216,6 +236,11 @@ export declare class ArrayValueObject extends BaseValueObject {
     private _clearCache;
     private _sort;
     private _transposeArray;
+    private _extractNumericData;
+    private _typedCompareEquals;
+    private _typedArithmeticFromValues;
+    private _typedBinaryScalar;
+    private _typedBinaryArray;
     private _batchOperator;
     private _batchOperatorValue;
     private __batchOperatorRowValue;
