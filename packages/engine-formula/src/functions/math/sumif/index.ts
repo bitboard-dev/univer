@@ -79,7 +79,9 @@ export class Sumif extends BaseFunction {
                 op = extractedOp;
                 criteriaObj = extractedObj;
             }
-            if (op === compareToken.EQUALS && isFormulaHashCacheEnabled()) {
+            const criteriaVal = criteriaObj.isString() ? `${criteriaObj.getValue()}` : '';
+            const hasWildcard = criteriaVal.includes('*') || criteriaVal.includes('?');
+            if (op === compareToken.EQUALS && isFormulaHashCacheEnabled() && !hasWildcard) {
                 const hashResult = this._hashSumif(range as BaseReferenceObject, criteriaObj, sumRange as BaseReferenceObject | undefined);
                 if (hashResult !== null) return hashResult;
             }

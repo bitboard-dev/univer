@@ -374,7 +374,8 @@ export class BaseFunction {
             return this.fuzzySearch(value, searchArray, resultArray, isFirst);
         }
 
-        const target = value.getValue();
+        const raw = value.getValue();
+        const target = typeof raw === 'string' ? (raw as string).toLocaleLowerCase() : raw;
         const index = searchArray.getEqualSearchIndex(isFirst);
         const pos = index.get(target as string | number | boolean);
         if (pos) {

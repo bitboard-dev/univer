@@ -272,7 +272,10 @@ export class ArrayValueObject extends BaseValueObject {
             for (let r = rowCount - 1; r >= 0; r--) {
                 for (let c = colCount - 1; c >= 0; c--) {
                     const val = this._getRawValue(r, c);
-                    if (val !== null) index.set(val, { row: r, column: c });
+                    if (val !== null) {
+                        const key = typeof val === 'string' ? val.toLocaleLowerCase() : val;
+                        index.set(key, { row: r, column: c });
+                    }
                 }
             }
             this._equalSearchFirstIndex = index;
@@ -280,7 +283,10 @@ export class ArrayValueObject extends BaseValueObject {
             for (let r = 0; r < rowCount; r++) {
                 for (let c = 0; c < colCount; c++) {
                     const val = this._getRawValue(r, c);
-                    if (val !== null) index.set(val, { row: r, column: c });
+                    if (val !== null) {
+                        const key = typeof val === 'string' ? val.toLocaleLowerCase() : val;
+                        index.set(key, { row: r, column: c });
+                    }
                 }
             }
             this._equalSearchLastIndex = index;
@@ -585,6 +591,17 @@ export class ArrayValueObject extends BaseValueObject {
     getLastTruePosition() {
         let rangeSingle: Nullable<{ row: number; column: number }>;
 
+        if (this._numericData !== null) {
+            const data = this._numericData;
+            const cols = this._columnCount;
+            for (let i = data.length - 1; i >= 0; i--) {
+                if (data[i] !== 0) {
+                    return { row: Math.floor(i / cols), column: i % cols };
+                }
+            }
+            return rangeSingle;
+        }
+
         this.iteratorReverse((value, rowIndex, columnIndex) => {
             if (value?.isBoolean() && (value as BaseValueObject).getValue() === true) {
                 rangeSingle = {
@@ -601,6 +618,17 @@ export class ArrayValueObject extends BaseValueObject {
 
     getFirstTruePosition() {
         let rangeSingle: Nullable<{ row: number; column: number }>;
+
+        if (this._numericData !== null) {
+            const data = this._numericData;
+            const cols = this._columnCount;
+            for (let i = 0; i < data.length; i++) {
+                if (data[i] !== 0) {
+                    return { row: Math.floor(i / cols), column: i % cols };
+                }
+            }
+            return rangeSingle;
+        }
 
         this.iterator((value, rowIndex, columnIndex) => {
             if (value?.isBoolean() && (value as BaseValueObject).getValue() === true) {
@@ -880,7 +908,8 @@ export class ArrayValueObject extends BaseValueObject {
         isFuzzyMatching = false
     ) {
         if (searchType === ArrayOrderSearchType.NORMAL && !isFuzzyMatching) {
-            const target = valueObject.getValue() as string | number | boolean;
+            const raw = valueObject.getValue() as string | number | boolean;
+            const target = typeof raw === 'string' ? raw.toLocaleLowerCase() : raw;
             const index = this.getEqualSearchIndex(true);
             const pos = index.get(target);
             return pos || undefined;
@@ -1649,6 +1678,20 @@ export class ArrayValueObject extends BaseValueObject {
     }
 
     toValue() {
+        if (this._numericData !== null) {
+            const rows = this._rowCount;
+            const cols = this._columnCount;
+            const result: (string | number | boolean | null)[][] = new Array(rows);
+            for (let r = 0; r < rows; r++) {
+                const row: (string | number | boolean | null)[] = new Array(cols);
+                const offset = r * cols;
+                for (let c = 0; c < cols; c++) {
+                    row[c] = this._numericData[offset + c];
+                }
+                result[r] = row;
+            }
+            return result;
+        }
         return transformToValue(this._values);
     }
 
@@ -1738,6 +1781,8 @@ export class ArrayValueObject extends BaseValueObject {
         const len = rowCount * columnCount;
         const out = new Float64Array(len);
         const target = scalarValue.getValue();
+
+        if (typeof target === 'string') return null;
 
         if (this._numericData !== null) {
             if (typeof target !== 'number') return null;
