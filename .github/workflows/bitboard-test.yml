@@ -9,9 +9,9 @@ permissions:
     contents: read
 
 jobs:
-    formula-tests:
+    test:
         runs-on: ubuntu-latest
-        timeout-minutes: 15
+        timeout-minutes: 30
 
         steps:
             - name: Checkout
@@ -20,8 +20,5 @@ jobs:
             - name: Setup Node.js
               uses: ./.github/actions/setup-node
 
-            - name: Run engine-formula tests
-              run: TZ=UTC pnpm --filter @univerjs/engine-formula test
-
-            - name: Run sheets tests
-              run: TZ=UTC pnpm --filter @univerjs/sheets test
+            - name: Run all tests
+              run: TZ=UTC pnpm test
