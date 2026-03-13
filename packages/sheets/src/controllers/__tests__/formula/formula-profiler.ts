@@ -126,8 +126,9 @@ export async function profileCalculation(
     }
 
     try {
+        const endPromise = formulaEngine.onCalculationEnd(timeoutMs);
         formulaEngine.executeCalculation();
-        await formulaEngine.onCalculationEnd(timeoutMs);
+        await endPromise;
     } finally {
         progressSub.unsubscribe();
     }

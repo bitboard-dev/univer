@@ -55,7 +55,7 @@ import { getFormulaReplayConfigFromEnv } from './replay-config';
 import '@univerjs/engine-formula/facade';
 
 const unitId = 'test';
-const RUN_ENV = 'RUN_FORMULA_BENCHMARK';
+const RUN_ENV = process.env.RUN_COMPOUND_PERF === '1' ? 'RUN_COMPOUND_PERF' : 'RUN_FORMULA_BENCHMARK';
 const DEFAULT_ROWS = 10000;
 
 const allFunctionRegistrations = [
@@ -208,8 +208,9 @@ describe('formula benchmark correctness', () => {
             const { testBed, formulaEngine, getCellValue } = setupTestBed(workbook);
 
             try {
+                const endPromise = formulaEngine.onCalculationEnd(60_000);
                 formulaEngine.executeCalculation();
-                await formulaEngine.onCalculationEnd(60_000);
+                await endPromise;
 
                 const errors: string[] = [];
                 for (let r = 1; r <= Math.min(rows, 10); r++) {

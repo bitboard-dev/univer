@@ -47,7 +47,7 @@ const opportunitiesSheetId = 'opportunities';
 const pipelineSummarySheetId = 'pipeline-summary';
 const dealScoringSheetId = 'deal-scoring';
 
-const RUN_ENV = 'RUN_SALES_PIPELINE_CRASH';
+const RUN_ENV = process.env.RUN_COMPOUND_PERF === '1' ? 'RUN_COMPOUND_PERF' : 'RUN_SALES_PIPELINE_CRASH';
 const numOpps = Number(process.env.SALES_PIPELINE_OPPS ?? '10000');
 const numReps = Number(process.env.SALES_PIPELINE_REPS ?? '50');
 const numAccounts = Number(process.env.SALES_PIPELINE_ACCOUNTS ?? '800');
@@ -281,8 +281,9 @@ async function runSalesPipelineScenario(options?: {
         return worksheet.getCellRaw(row, column)?.v;
     };
 
+    const endPromise = formulaEngine.onCalculationEnd(300_000);
     formulaEngine.executeCalculation();
-    await formulaEngine.onCalculationEnd(300_000);
+    await endPromise;
 
     return {
         totalCount: getCellValue(pipelineSummarySheetId, stages.length + 1, 1),

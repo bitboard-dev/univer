@@ -48,7 +48,7 @@ const opportunitiesSheetId = 'opportunities';
 const accountsSheetId = 'accounts';
 const dealAnalysisSheetId = 'deal-analysis';
 
-const RUN_ENV = 'RUN_DEAL_ANALYSIS_COVERAGE';
+const RUN_ENV = process.env.RUN_COMPOUND_PERF === '1' ? 'RUN_COMPOUND_PERF' : 'RUN_DEAL_ANALYSIS_COVERAGE';
 
 const stages = ['Prospecting', 'Qualification', 'Discovery', 'Proposal', 'Negotiation', 'Closed Won', 'Closed Lost'];
 const industries = ['Technology', 'Financial Services', 'Healthcare', 'Retail', 'Manufacturing', 'Media', 'Education', 'Government'];
@@ -273,8 +273,9 @@ describe('deal analysis formula coverage', () => {
         const numAccounts = 40;
         setup({ numOpps, numReps, numAccounts });
 
+        const endPromise = formulaEngine.onCalculationEnd(60_000);
         formulaEngine.executeCalculation();
-        await formulaEngine.onCalculationEnd(60_000);
+        await endPromise;
 
         const opps: { accountId: string; rep: string; stage: string; amount: number }[] = [];
         for (let i = 0; i < numOpps; i++) {

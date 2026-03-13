@@ -47,7 +47,7 @@ const unitId = 'test';
 const dealsSheetId = 'deals';
 const quotaSheetId = 'quota';
 const forecastSheetId = 'forecast';
-const RUN_ENV = 'RUN_REVENUE_FORECAST_COVERAGE';
+const RUN_ENV = process.env.RUN_COMPOUND_PERF === '1' ? 'RUN_COMPOUND_PERF' : 'RUN_REVENUE_FORECAST_COVERAGE';
 
 function buildWorkbookData(options: { numRows: number; numOwners: number; numAccounts: number }): IWorkbookData {
     const { numRows, numOwners, numAccounts } = options;
@@ -248,8 +248,9 @@ describe('revenue forecast formula coverage', () => {
         const numOwners = 12;
         setup({ numRows, numOwners, numAccounts: 40 });
 
+        const endPromise = formulaEngine.onCalculationEnd(60_000);
         formulaEngine.executeCalculation();
-        await formulaEngine.onCalculationEnd(60_000);
+        await endPromise;
 
         const rows = Array.from({ length: numRows }, (_, i) => {
             const idx = i + 1;
