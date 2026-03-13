@@ -1,0 +1,27 @@
+name: 🧪 Bitboard Formula Tests
+
+on:
+    pull_request:
+        branches:
+            - bitboard-v0.10.14
+
+permissions:
+    contents: read
+
+jobs:
+    formula-tests:
+        runs-on: ubuntu-latest
+        timeout-minutes: 15
+
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v4
+
+            - name: Setup Node.js
+              uses: ./.github/actions/setup-node
+
+            - name: Run engine-formula tests
+              run: TZ=UTC pnpm --filter @univerjs/engine-formula test
+
+            - name: Run sheets tests
+              run: TZ=UTC pnpm --filter @univerjs/sheets test
