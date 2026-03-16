@@ -118,3 +118,9 @@ typedoc.json
 
 # tsx
 **/tsx-0
+
+# Build output — built from source on Render and locally via pnpm build
+packages/*/lib/
+packages-experimental/*/lib/
+.formula-profiles/
+.bitboard-build-stamp

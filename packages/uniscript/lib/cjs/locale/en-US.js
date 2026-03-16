@@ -1,1 +1,0 @@
-"use strict";const e={"script-panel":{title:"Uniscript",tooltip:{"menu-button":"Toggle Uniscript Panel"},panel:{execute:"Execute Script"}},uniscript:{message:{success:"Execution Success",failed:"Execution Failed"}}};module.exports=e;
