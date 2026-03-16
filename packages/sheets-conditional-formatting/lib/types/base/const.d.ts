@@ -61,5 +61,5 @@ export declare enum CFValueType {
 export declare const DEFAULT_BG_COLOR = "#fff";
 export declare const DEFAULT_FONT_COLOR = "#000000";
 export declare const createDefaultRule: () => IConditionFormattingRule;
-export declare const createDefaultValue: (subType: CFSubRuleType, operator: CFTextOperator | CFNumberOperator | CFTimePeriodOperator) => "" | 10 | [number, number];
+export declare const createDefaultValue: (subType: CFSubRuleType, operator: CFTextOperator | CFNumberOperator | CFTimePeriodOperator) => "" | [number, number] | 10;
 export declare const createDefaultValueByValueType: (type: CFValueType, defaultValue?: number) => number | "" | "=";

@@ -30,11 +30,7 @@
             "import": "./lib/es/*",
             "require": "./lib/cjs/*"
         },
-        "./facade": {
-            "types": "./lib/types/facade/index.d.ts",
-            "import": "./lib/es/facade.js",
-            "require": "./lib/cjs/facade.js"
-        },
+        "./facade": "./src/facade/index.ts",
         "./lib/facade": {
             "types": "./lib/types/facade/index.d.ts",
             "import": "./lib/es/facade.js",

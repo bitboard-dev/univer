@@ -1,5 +1,5 @@
-import { compareToken } from '../../basics/token';
 import { BaseValueObject } from '../value-object/base-value-object';
+import { compareToken } from '../../basics/token';
 export declare function findCompareToken(str: string): [compareToken, BaseValueObject];
 /**
  * When it contains both comparison characters and wildcard characters

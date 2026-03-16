@@ -15,6 +15,7 @@
  */
 export { type ISortRangeCommandParams, SortRangeCommand } from './commands/commands/sheets-sort.command';
 export type { IUniverSheetsSortConfig } from './controllers/config.schema';
+export { SheetsSortController } from './controllers/sheets-sort.controller';
 export { UniverSheetsSortPlugin } from './plugin';
 export { type IOrderRule, type ISortOption, SortType } from './services/interface';
 export { SheetsSortService } from './services/sheets-sort.service';

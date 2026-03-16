@@ -38,21 +38,21 @@ export declare function calcPadding(cell: ICellWithCoord, font: IFontCacheItem, 
 };
 export declare const getCustomRangePosition: (injector: Injector, unitId: string, subUnitId: string, row: number, col: number, rangeId: string) => {
     rects: {
-        top: number;
-        bottom: number;
-        left: number;
-        right: number;
+        top: any;
+        bottom: any;
+        left: any;
+        right: any;
     }[] | undefined;
-    customRange: ICustomRange<Record<string, any>>;
-    label: string;
+    customRange: any;
+    label: any;
 } | null | undefined;
 export declare const getEditingCustomRangePosition: (injector: Injector, unitId: string, subUnitId: string, row: number, col: number, rangeId: string) => {
     rects: {
         top: number;
-        bottom: number;
-        left: number;
-        right: number;
+        bottom: any;
+        left: any;
+        right: any;
     }[] | undefined;
-    customRange: ICustomRange<Record<string, any>>;
-    label: string;
+    customRange: any;
+    label: any;
 } | null;

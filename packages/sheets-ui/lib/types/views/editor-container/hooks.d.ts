@@ -5,4 +5,4 @@ export declare function useKeyEventConfig(isRefSelecting: React.MutableRefObject
     }[];
     handler: (keycode: KeyCode) => void;
 };
-export declare function useIsFocusing(editorId: string): boolean | undefined;
+export declare function useIsFocusing(editorId: string): any;

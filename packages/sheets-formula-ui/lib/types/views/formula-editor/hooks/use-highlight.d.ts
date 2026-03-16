@@ -38,6 +38,7 @@ interface IColorMap {
     numberColor: string;
     stringColor: string;
     plainTextColor: string;
+    functionColor: string;
 }
 export declare function useColor(): IColorMap;
 export declare function buildTextRuns(descriptionService: IDescriptionService, colorMap: IColorMap, sequenceNodes: Array<ISequenceNode | string>): {

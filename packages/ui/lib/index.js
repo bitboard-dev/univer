@@ -5197,33 +5197,6 @@ const m5 = "UI_COLOR_PICKER_COMPONENT", b5 = (e) => {
   },
   {
     value: "Verdana"
-  },
-  {
-    value: "Microsoft YaHei"
-  },
-  {
-    value: "SimSun"
-  },
-  {
-    value: "SimHei"
-  },
-  {
-    value: "Kaiti"
-  },
-  {
-    value: "FangSong"
-  },
-  {
-    value: "NSimSun"
-  },
-  {
-    value: "STXinwei"
-  },
-  {
-    value: "STXingkai"
-  },
-  {
-    value: "STLiti"
   }
   // The following 3 fonts do not work, temporarily delete
   // {

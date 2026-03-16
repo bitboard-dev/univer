@@ -5499,14 +5499,20 @@ class G extends qt {
       for (let a = n - 1; a >= 0; a--)
         for (let u = s - 1; u >= 0; u--) {
           const c = this._getRawValue(a, u);
-          c !== null && r.set(c, { row: a, column: u });
+          if (c !== null) {
+            const l = typeof c == "string" ? c.toLocaleLowerCase() : c;
+            r.set(l, { row: a, column: u });
+          }
         }
       this._equalSearchFirstIndex = r;
     } else {
       for (let a = 0; a < n; a++)
         for (let u = 0; u < s; u++) {
           const c = this._getRawValue(a, u);
-          c !== null && r.set(c, { row: a, column: u });
+          if (c !== null) {
+            const l = typeof c == "string" ? c.toLocaleLowerCase() : c;
+            r.set(l, { row: a, column: u });
+          }
         }
       this._equalSearchLastIndex = r;
     }
@@ -5730,6 +5736,13 @@ class G extends qt {
   }
   getLastTruePosition() {
     let e;
+    if (this._numericData !== null) {
+      const t = this._numericData, r = this._columnCount;
+      for (let n = t.length - 1; n >= 0; n--)
+        if (t[n] !== 0)
+          return { row: Math.floor(n / r), column: n % r };
+      return e;
+    }
     return this.iteratorReverse((t, r, n) => {
       if (t != null && t.isBoolean() && t.getValue() === !0)
         return e = {
@@ -5740,6 +5753,13 @@ class G extends qt {
   }
   getFirstTruePosition() {
     let e;
+    if (this._numericData !== null) {
+      const t = this._numericData, r = this._columnCount;
+      for (let n = 0; n < t.length; n++)
+        if (t[n] !== 0)
+          return { row: Math.floor(n / r), column: n % r };
+      return e;
+    }
     return this.iterator((t, r, n) => {
       if (t != null && t.isBoolean() && t.getValue() === !0)
         return e = {
@@ -5878,8 +5898,8 @@ class G extends qt {
    */
   orderSearch(e, t = Se.MIN, r = !1, n = !1) {
     if (t === Se.NORMAL && !n) {
-      const f = e.getValue();
-      return this.getEqualSearchIndex(!0).get(f) || void 0;
+      const f = e.getValue(), h = typeof f == "string" ? f.toLocaleLowerCase() : f;
+      return this.getEqualSearchIndex(!0).get(h) || void 0;
     }
     let s, a, u, c;
     const l = (f, h, g) => {
@@ -6279,6 +6299,16 @@ class G extends qt {
     return this.map((t) => t.isError() ? t : e.ceil(t));
   }
   toValue() {
+    if (this._numericData !== null) {
+      const e = this._rowCount, t = this._columnCount, r = new Array(e);
+      for (let n = 0; n < e; n++) {
+        const s = new Array(t), a = n * t;
+        for (let u = 0; u < t; u++)
+          s[u] = this._numericData[a + u];
+        r[n] = s;
+      }
+      return r;
+    }
     return uh(this._values);
   }
   _clearCache() {
@@ -6321,6 +6351,7 @@ class G extends qt {
   }
   _typedCompareEquals(e) {
     const t = this._rowCount, r = this._columnCount, n = t * r, s = new Float64Array(n), a = e.getValue();
+    if (typeof a == "string") return null;
     if (this._numericData !== null) {
       if (typeof a != "number") return null;
       const u = this._numericData;
@@ -11070,8 +11101,8 @@ class V {
   equalSearch(o, e, t, r = !0) {
     if (!kc())
       return this.fuzzySearch(o, e, t, r);
-    const n = o.getValue(), a = e.getEqualSearchIndex(r).get(n);
-    return a && t.get(a.row, a.column) || d.create(m.NA);
+    const n = o.getValue(), s = typeof n == "string" ? n.toLocaleLowerCase() : n, u = e.getEqualSearchIndex(r).get(s);
+    return u && t.get(u.row, u.column) || d.create(m.NA);
   }
   fuzzySearch(o, e, t, r = !0) {
     const n = t.pickRaw(e.compare(o, x.EQUALS));
@@ -11172,12 +11203,13 @@ class hm extends V {
     if (!t.isError()) {
       let l = x.EQUALS, f = t;
       if (t.isString()) {
-        const [h, g] = Nt(`${t.getValue()}`);
-        l = h, f = g;
+        const [_, C] = Nt(`${t.getValue()}`);
+        l = _, f = C;
       }
-      if (l === x.EQUALS && ya()) {
-        const h = this._hashSumif(e, f, r);
-        if (h !== null) return h;
+      const h = f.isString() ? `${f.getValue()}` : "", g = h.includes("*") || h.includes("?");
+      if (l === x.EQUALS && ya() && !g) {
+        const _ = this._hashSumif(e, f, r);
+        if (_ !== null) return _;
       }
     }
     const n = e.toArrayValueObject();

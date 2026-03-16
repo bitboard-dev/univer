@@ -164,12 +164,11 @@ function me(e, t) {
     return 0;
   };
 }
-const fe = "sheets-sort.config", D = {};
-var ge = Object.getOwnPropertyDescriptor, de = (e, t, r, n) => {
-  for (var o = n > 1 ? void 0 : n ? ge(t, r) : t, s = e.length - 1, i; s >= 0; s--)
+var fe = Object.getOwnPropertyDescriptor, ge = (e, t, r, n) => {
+  for (var o = n > 1 ? void 0 : n ? fe(t, r) : t, s = e.length - 1, i; s >= 0; s--)
     (i = e[s]) && (o = i(o) || o);
   return o;
-}, E = (e, t) => (r, n) => t(r, n, e);
+}, D = (e, t) => (r, n) => t(r, n, e);
 let v = class extends P {
   constructor(e, t) {
     super(), this._commandService = e, this._sortService = t, this._initCommands(), this._registerCompareFns();
@@ -203,10 +202,11 @@ let v = class extends P {
     return t || ((e == null ? void 0 : e.t) === h.NUMBER ? Number.parseFloat(`${e.v}`) : (e == null ? void 0 : e.t) === h.STRING ? typeof e.v == "number" ? e.v : `${e.v}` : (e == null ? void 0 : e.t) === h.BOOLEAN ? `${e.v}` : (e == null ? void 0 : e.t) === h.FORCE_STRING ? Number.parseFloat(`${e.v}`) : `${e == null ? void 0 : e.v}`);
   }
 };
-v = de([
-  E(0, R),
-  E(1, w(g))
+v = ge([
+  D(0, R),
+  D(1, w(g))
 ], v);
+const de = "sheets-sort.config", E = {};
 var he = Object.defineProperty, ve = Object.getOwnPropertyDescriptor, Ce = (e, t, r) => t in e ? he(e, t, { enumerable: !0, configurable: !0, writable: !0, value: r }) : e[t] = r, _e = (e, t, r, n) => {
   for (var o = n > 1 ? void 0 : n ? ve(t, r) : t, s = e.length - 1, i; s >= 0; s--)
     (i = e[s]) && (o = i(o) || o);
@@ -214,14 +214,14 @@ var he = Object.defineProperty, ve = Object.getOwnPropertyDescriptor, Ce = (e, t
 }, y = (e, t) => (r, n) => t(r, n, e), x = (e, t, r) => Ce(e, typeof t != "symbol" ? t + "" : t, r);
 const Se = "SHEET_SORT_PLUGIN";
 let C = class extends X {
-  constructor(e = D, t, r) {
+  constructor(e = E, t, r) {
     super(), this._config = e, this._injector = t, this._configService = r;
     const { ...n } = Z(
       {},
-      D,
+      E,
       this._config
     );
-    this._configService.setConfig(fe, n);
+    this._configService.setConfig(de, n);
   }
   onStarting() {
     [
@@ -241,6 +241,7 @@ C = _e([
   y(2, Q)
 ], C);
 export {
+  v as SheetsSortController,
   g as SheetsSortService,
   M as SortRangeCommand,
   m as SortType,

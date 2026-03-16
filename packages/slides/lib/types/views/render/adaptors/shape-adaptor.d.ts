@@ -5,7 +5,7 @@ export declare class ShapeAdaptor extends ObjectAdaptor {
     zIndex: number;
     viewKey: PageElementType;
     check(type: PageElementType): this | undefined;
-    convert(pageElement: IPageElement): Circle | Rect<{
+    convert(pageElement: IPageElement): Rect<{
         fill: string;
         top: number;
         left: number;
@@ -20,7 +20,7 @@ export declare class ShapeAdaptor extends ObjectAdaptor {
         flipX: boolean | undefined;
         flipY: boolean | undefined;
         forceRender: true;
-    }> | undefined;
+    }> | Circle | undefined;
 }
 export declare class ShapeAdaptorFactory {
     readonly zIndex = 2;

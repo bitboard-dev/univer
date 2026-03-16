@@ -6109,9 +6109,9 @@ const $n = {
     let p, C, w, S;
     const { startRow: I, startColumn: R, rangeType: y } = h;
     if (y === z.ROW || t === 1)
-      p = I, w = I - f, C = -1, S = 0;
+      p = I + 1, w = I + 1 - f, C = -1, S = 0;
     else if (y === z.COLUMN || t === 2)
-      p = -1, w = 0, C = R, S = R - v;
+      p = -1, w = 0, C = R + 1, S = R + 1 - v;
     else if (y === z.NORMAL)
       p = I, w = I - f, C = R, S = R - v;
     else

@@ -1,19 +1,19 @@
 var $r = Object.defineProperty;
 var Pr = (t, e, n) => e in t ? $r(t, e, { enumerable: !0, configurable: !0, writable: !0, value: n }) : t[e] = n;
 var q = (t, e, n) => Pr(t, typeof e != "symbol" ? e + "" : e, n);
-import { CommandType as Te, ICommandService as me, createIdentifier as Ur, IContextService as Qt, IUniverInstanceService as ne, Rectangle as qn, DOCS_NORMAL_EDITOR_UNIT_ID_KEY as Jt, DOCS_FORMULA_BAR_EDITOR_UNIT_ID_KEY as jn, DEFAULT_EMPTY_DOCUMENT_VALUE as Kn, isRealNum as Wr, CellValueType as _n, getCellValueType as Vr, Inject as B, Disposable as rt, ObjectMatrix as Ae, Range as Hr, Tools as en, LocaleService as ot, isICellData as Br, isFormulaString as ke, isFormulaId as tt, generateRandomId as Lt, Direction as he, Injector as ft, UniverInstanceType as j, ThemeService as gt, ILogService as qr, toDisposable as Yn, ColorKit as tn, RxDisposable as jr, InterceptorEffectEnum as Kr, FOCUSING_DOC as Yr, FOCUSING_UNIVER_EDITOR as Zr, DisposableCollection as Be, RANGE_TYPE as Se, getBodySlice as Rn, EDITOR_ACTIVATED as En, createInternalEditorID as zr, BuildTextUtils as Gr, IConfigService as Zn, RichTextBuilder as Xr, DependentOn as Qr, Plugin as Jr, merge as eo, registerDependencies as to, touchDependencies as no } from "@univerjs/core";
-import { SheetPasteCommand as ro, PREDEFINED_HOOK_NAME as Je, IEditorBridgeService as nn, SetCellEditVisibleOperation as zn, HoverManagerService as oo, CellAlertManagerService as so, CellAlertType as io, IAutoFillService as co, APPLY_TYPE as lo, DATA_TYPE as In, ISheetClipboardService as ao, COPY_TYPE as Gn, SheetSkeletonManagerService as $t, attachSelectionWithCoord as Yt, SelectionControl as Xn, SELECTION_SHAPE_DEPTH as uo, useActiveWorkbook as ho, getCurrentRangeDisable$ as fo, PASTE_SPECIAL_MENU_ID as go, whenFormulaEditorActivated as mt, whenSheetEditorFocused as mo, SheetsUIPart as po, BaseSelectionRenderService as So, getCoordByOffset as bn, checkInHeaderRanges as yn, getAllSelection as vo, genNormalSelectionStyle as Qn, getSheetObject as Co, MoveSelectionCommand as Tn, JumpOver as xn, ExpandSelectionCommand as On, EMBEDDING_FORMULA_EDITOR as _o, IMarkSelectionService as Ro, RANGE_SELECTOR_COMPONENT_KEY as Eo, EMBEDDING_FORMULA_EDITOR_COMPONENT_KEY as Io } from "@univerjs/sheets-ui";
-import { sequenceNodeType as Q, serializeRange as ve, FormulaDataModel as pt, LexerTreeBuilder as Ce, ErrorType as ue, extractFormulaError as Jn, SetFormulaCalculationResultMutation as bo, SetArrayFormulaDataMutation as yo, SetFormulaCalculationStopMutation as To, FunctionType as er, matchToken as qe, deserializeRangeWithSheetWithCache as xo, matchRefDrawToken as Oo, isFormulaLexerToken as No, deserializeRangeWithSheet as st, serializeRangeToRefString as Mo, serializeRangeWithSheet as ht, serializeRangeWithSpreadsheet as wo, generateStringWithSequence as ko, operatorToken as tr, UniverFormulaEnginePlugin as Ao } from "@univerjs/engine-formula";
-import { Subject as ct, debounceTime as rn, combineLatestWith as Do, map as nr, switchMap as Fo, of as Nn, Observable as Lo, BehaviorSubject as rr, throttleTime as $o, filter as or, distinctUntilChanged as Po, merge as Uo } from "rxjs";
+import { CommandType as Te, ICommandService as me, createIdentifier as Ur, IContextService as Qt, IUniverInstanceService as ne, Rectangle as qn, DOCS_NORMAL_EDITOR_UNIT_ID_KEY as Jt, DOCS_FORMULA_BAR_EDITOR_UNIT_ID_KEY as jn, DEFAULT_EMPTY_DOCUMENT_VALUE as Kn, isRealNum as Wr, CellValueType as _n, getCellValueType as Vr, Inject as B, Disposable as rt, ObjectMatrix as Ae, Range as Hr, Tools as en, LocaleService as ot, isICellData as Br, isFormulaString as ke, isFormulaId as tt, generateRandomId as Ft, Direction as de, Injector as ft, UniverInstanceType as K, ThemeService as gt, ILogService as qr, toDisposable as Yn, ColorKit as tn, RxDisposable as jr, InterceptorEffectEnum as Kr, FOCUSING_DOC as Yr, FOCUSING_UNIVER_EDITOR as Zr, DisposableCollection as Be, RANGE_TYPE as Se, getBodySlice as Rn, EDITOR_ACTIVATED as En, createInternalEditorID as zr, BuildTextUtils as Gr, IConfigService as Zn, RichTextBuilder as Xr, DependentOn as Qr, Plugin as Jr, merge as eo, registerDependencies as to, touchDependencies as no } from "@univerjs/core";
+import { SheetPasteCommand as ro, PREDEFINED_HOOK_NAME as Je, IEditorBridgeService as nn, SetCellEditVisibleOperation as zn, HoverManagerService as oo, CellAlertManagerService as so, CellAlertType as io, IAutoFillService as co, APPLY_TYPE as ao, DATA_TYPE as In, ISheetClipboardService as lo, COPY_TYPE as Gn, SheetSkeletonManagerService as $t, attachSelectionWithCoord as Yt, SelectionControl as Xn, SELECTION_SHAPE_DEPTH as uo, useActiveWorkbook as ho, getCurrentRangeDisable$ as fo, PASTE_SPECIAL_MENU_ID as go, whenFormulaEditorActivated as mt, whenSheetEditorFocused as mo, SheetsUIPart as po, BaseSelectionRenderService as So, getCoordByOffset as bn, checkInHeaderRanges as yn, getAllSelection as vo, genNormalSelectionStyle as Qn, getSheetObject as Co, MoveSelectionCommand as Tn, JumpOver as xn, ExpandSelectionCommand as Nn, EMBEDDING_FORMULA_EDITOR as _o, IMarkSelectionService as Ro, RANGE_SELECTOR_COMPONENT_KEY as Eo, EMBEDDING_FORMULA_EDITOR_COMPONENT_KEY as Io } from "@univerjs/sheets-ui";
+import { sequenceNodeType as j, serializeRange as ve, FormulaDataModel as pt, LexerTreeBuilder as Ce, ErrorType as ue, extractFormulaError as Jn, SetFormulaCalculationResultMutation as bo, SetArrayFormulaDataMutation as yo, SetFormulaCalculationStopMutation as To, FunctionType as er, matchToken as qe, deserializeRangeWithSheetWithCache as xo, matchRefDrawToken as No, isFormulaLexerToken as Oo, deserializeRangeWithSheet as st, serializeRangeToRefString as Mo, serializeRangeWithSheet as dt, serializeRangeWithSpreadsheet as wo, generateStringWithSequence as ko, operatorToken as tr, UniverFormulaEnginePlugin as Ao } from "@univerjs/engine-formula";
+import { Subject as ct, debounceTime as rn, combineLatestWith as Do, map as nr, switchMap as Lo, of as On, Observable as Fo, BehaviorSubject as rr, throttleTime as $o, filter as or, distinctUntilChanged as Po, merge as Uo } from "rxjs";
 import { IEditorService as je, DocSelectionRenderService as sr, ReplaceTextRunsCommand as Mn, MoveSelectionOperation as Wo, MoveCursorOperation as Vo, useKeyboardEvent as Ho, useResize as Bo, DocBackScrollRenderController as qo, RichTextEditor as jo } from "@univerjs/docs-ui";
-import { DeviceInputEventType as xe, IRenderManagerService as Oe, ScrollTimerType as Bt, SHEET_VIEWPORT_KEY as wn, Vector2 as kn } from "@univerjs/engine-render";
+import { DeviceInputEventType as xe, IRenderManagerService as Ne, ScrollTimerType as Bt, SHEET_VIEWPORT_KEY as wn, Vector2 as kn } from "@univerjs/engine-render";
 import { SheetsSelectionsService as on, getSheetCommandTarget as ir, getCellAtRowCol as Ko, SetSelectionsOperation as sn, SheetInterceptorService as cn, ReorderRangeCommand as Yo, SetRangeValuesMutation as Tt, SetRangeValuesUndoMutationFactory as Zo, BEFORE_CELL_EDIT as zo, SetWorksheetRowAutoHeightMutation as Go, INTERCEPTOR_POINT as Xo, WorksheetSetCellValuePermission as Qo, WorksheetEditPermission as Jo, RangeProtectionPermissionEditPoint as es, WorkbookEditablePermission as ts, IRefSelectionsService as Pt, SelectionMoveType as qt, convertSelectionDataToRange as ns, setEndForRange as rs, REF_SELECTIONS_ENABLED as An, SetWorksheetActiveOperation as Dn } from "@univerjs/sheets";
 import { InsertFunctionCommand as os, TriggerCalculationController as ss, IDescriptionService as Ut, QuickSumCommand as is, UniverSheetsFormulaPlugin as cs } from "@univerjs/sheets-formula";
-import { ISidebarService as ln, IZenZoneService as ls, useDependency as T, useObservable as pe, ProgressBar as as, MenuItemType as us, IClipboardInterfaceService as Fn, KeyCode as L, MetaKeys as P, IMenuManagerService as hs, IShortcutService as Wt, IUIPartsService as cr, ComponentManager as lr, connectInjector as ar, useEvent as te, RectPopup as Zt, IContextMenuService as ds, useUpdateEffect as fs, BuiltInUIPart as gs } from "@univerjs/ui";
+import { ISidebarService as an, IZenZoneService as as, useDependency as T, useObservable as pe, ProgressBar as ls, MenuItemType as us, IClipboardInterfaceService as Ln, KeyCode as F, MetaKeys as P, IMenuManagerService as ds, IShortcutService as Wt, IUIPartsService as cr, ComponentManager as ar, connectInjector as lr, useEvent as te, RectPopup as Zt, IContextMenuService as hs, useUpdateEffect as fs, BuiltInUIPart as gs } from "@univerjs/ui";
 import { jsx as M, jsxs as V, Fragment as ms } from "react/jsx-runtime";
-import { useCallback as xt, useState as W, useRef as G, createElement as Ke, forwardRef as Fe, useEffect as $, useMemo as ie, useLayoutEffect as Ot, useImperativeHandle as ps } from "react";
-import { clsx as re, scrollbarClassName as nt, borderLeftClassName as Ss, Select as vs, Input as ur, borderClassName as an, Button as et, borderTopClassName as Cs, Tooltip as _s, Dialog as Rs } from "@univerjs/design";
-import { DocSelectionManagerService as hr } from "@univerjs/docs";
+import { useCallback as xt, useState as W, useRef as X, createElement as Ke, forwardRef as Le, useEffect as $, useMemo as ie, useLayoutEffect as Nt, useImperativeHandle as ps } from "react";
+import { clsx as re, scrollbarClassName as nt, borderLeftClassName as Ss, Select as vs, Input as ur, borderClassName as ln, Button as et, borderTopClassName as Cs, Tooltip as _s, Dialog as Rs } from "@univerjs/design";
+import { DocSelectionManagerService as dr } from "@univerjs/docs";
 import { debounceTime as Es } from "rxjs/operators";
 const un = {
   id: "sheet.command.paste-formula",
@@ -117,7 +117,7 @@ let zt = class {
    */
   updateSequenceRef(t, e) {
     const n = this._sequenceNodes[t];
-    if (typeof n == "string" || n.nodeType !== Q.REFERENCE)
+    if (typeof n == "string" || n.nodeType !== j.REFERENCE)
       return;
     const o = e.length - n.token.length, r = { ...n };
     r.token = e, r.endIndex += o, this._sequenceNodes[t] = r;
@@ -125,8 +125,8 @@ let zt = class {
       const c = this._sequenceNodes[s];
       if (typeof c == "string")
         continue;
-      const a = { ...c };
-      a.startIndex += o, a.endIndex += o, this._sequenceNodes[s] = a;
+      const l = { ...c };
+      l.startIndex += o, l.endIndex += o, this._sequenceNodes[s] = l;
     }
   }
   /**
@@ -141,7 +141,7 @@ let zt = class {
       token: e,
       startIndex: t,
       endIndex: t + n - 1,
-      nodeType: Q.REFERENCE
+      nodeType: j.REFERENCE
     });
     for (let r = o + 1, s = this._sequenceNodes.length; r < s; r++) {
       const i = this._sequenceNodes[r];
@@ -164,8 +164,8 @@ let zt = class {
       const c = this._sequenceNodes[s];
       if (typeof c == "string")
         continue;
-      const a = { ...c };
-      a.startIndex += r, a.endIndex += r, this._sequenceNodes[s] = a;
+      const l = { ...c };
+      l.startIndex += r, l.endIndex += r, this._sequenceNodes[s] = l;
     }
   }
   enableLockedSelectionChange() {
@@ -194,7 +194,7 @@ const xs = {
   id: "formula-ui.operation.help-function",
   type: Te.OPERATION,
   handler: async (t, e) => (t.get(Vt).help(e), !0)
-}, Os = {
+}, Ns = {
   id: "formula-ui.operation.insert-function",
   type: Te.OPERATION,
   // eslint-disable-next-line
@@ -205,25 +205,25 @@ const xs = {
       return !1;
     const s = ir(t.get(ne));
     if (!s) return !1;
-    const { worksheet: i, unitId: c, subUnitId: a } = s, g = i.getCellMatrix(), { value: m } = e, d = t.get(me);
+    const { worksheet: i, unitId: c, subUnitId: l } = s, m = i.getCellMatrix(), { value: g } = e, h = t.get(me);
     t.get(nn);
-    const h = [], u = [];
-    let l = null, v = 0, p = 0, S = "";
-    if (r.length === 1 && (ws(r[0].range) || ks(r[0].range) && $n(g, r[0].range))) {
+    const u = [], d = [];
+    let a = null, v = 0, S = 0, p = "";
+    if (r.length === 1 && (ws(r[0].range) || ks(r[0].range) && $n(m, r[0].range))) {
       const { range: I, primary: f } = r[0], b = (C = f == null ? void 0 : f.actualRow) != null ? C : I.startRow, y = (_ = f == null ? void 0 : f.actualColumn) != null ? _ : I.startColumn;
-      l = I, v = b, p = y;
-      const A = Ln(g, b, y);
-      A && (S = ve(A));
+      a = I, v = b, S = y;
+      const A = Fn(m, b, y);
+      A && (p = ve(A));
     } else
       r.some((I) => {
         var y, A;
         const { range: f, primary: b } = I;
-        if ($n(g, f)) {
-          const D = (y = b == null ? void 0 : b.actualRow) != null ? y : f.startRow, x = (A = b == null ? void 0 : b.actualColumn) != null ? A : f.startColumn, O = Ln(g, D, x);
-          if (!O)
-            return l = f, v = D, p = x, !0;
-          const k = ve(O), E = `=${m}(${k})`;
-          h.push({
+        if ($n(m, f)) {
+          const D = (y = b == null ? void 0 : b.actualRow) != null ? y : f.startRow, x = (A = b == null ? void 0 : b.actualColumn) != null ? A : f.startColumn, N = Fn(m, D, x);
+          if (!N)
+            return a = f, v = D, S = x, !0;
+          const k = ve(N), E = `=${g}(${k})`;
+          u.push({
             range: f,
             primary: {
               row: D,
@@ -232,15 +232,15 @@ const xs = {
             formula: E
           });
         } else {
-          const { startRow: D, startColumn: x, endRow: O, endColumn: k } = f;
-          if (D === O) {
-            const E = As(g, D, k, i.getColumnCount() - 1), N = E === k ? k - 1 : k, R = ve({
+          const { startRow: D, startColumn: x, endRow: N, endColumn: k } = f;
+          if (D === N) {
+            const E = As(m, D, k, i.getColumnCount() - 1), O = E === k ? k - 1 : k, R = ve({
               startRow: D,
-              endRow: O,
+              endRow: N,
               startColumn: x,
-              endColumn: N
-            }), w = `=${m}(${R})`;
-            u.push({
+              endColumn: O
+            }), w = `=${g}(${R})`;
+            d.push({
               range: f,
               primary: {
                 row: D,
@@ -251,66 +251,66 @@ const xs = {
           } else {
             let E = -1;
             for (let R = x; R <= k; R++) {
-              const w = Ds(g, R, O, i.getRowCount() - 1);
+              const w = Ds(m, R, N, i.getRowCount() - 1);
               E = Math.max(E, w);
             }
-            const N = E === O ? O - 1 : O;
+            const O = E === N ? N - 1 : N;
             for (let R = x; R <= k; R++) {
               const w = ve({
                 startRow: D,
-                endRow: N,
+                endRow: O,
                 startColumn: R,
                 endColumn: R
-              }), F = `=${m}(${w})`;
-              u.push({
+              }), L = `=${g}(${w})`;
+              d.push({
                 range: f,
                 primary: {
                   row: E,
                   column: R
                 },
-                formula: F
+                formula: L
               });
             }
           }
         }
         return !1;
       });
-    if (l) {
-      const I = Ko(v, p, i), f = {
-        range: qn.clone(l),
+    if (a) {
+      const I = Ko(v, S, i), f = {
+        range: qn.clone(a),
         primary: {
           startRow: I.startRow,
           startColumn: I.startColumn,
           endRow: I.endRow,
           endColumn: I.endColumn,
           actualRow: v,
-          actualColumn: p,
+          actualColumn: S,
           isMerged: I.isMerged,
-          isMergedMainCell: I.startRow === v && I.startColumn === p
+          isMergedMainCell: I.startRow === v && I.startColumn === S
         }
       }, b = {
         unitId: c,
-        subUnitId: a,
+        subUnitId: l,
         selections: [f]
       };
-      await d.executeCommand(sn.id, b);
+      await h.executeCommand(sn.id, b);
       const y = o.getEditor(Jt), A = o.getEditor(jn);
-      d.syncExecuteCommand(zn.id, {
+      h.syncExecuteCommand(zn.id, {
         visible: !0,
         unitId: c,
         eventType: xe.Dblclick
       });
-      const D = `=${m}(${S}`;
+      const D = `=${g}(${p}`;
       y == null || y.replaceText(D), A == null || A.replaceText(D, !1);
     }
-    return h.length === 0 && u.length === 0 ? !1 : d.executeCommand(os.id, {
-      list: h,
-      listOfRangeHasNumber: u
+    return u.length === 0 && d.length === 0 ? !1 : h.executeCommand(os.id, {
+      list: u,
+      listOfRangeHasNumber: d
     });
   }
 };
-function Ln(t, e, n) {
-  const o = Ns(t, e, n);
+function Fn(t, e, n) {
+  const o = Os(t, e, n);
   if (o !== e)
     return {
       startRow: o,
@@ -326,16 +326,16 @@ function Ln(t, e, n) {
     endColumn: n - 1
   } : null;
 }
-function Ns(t, e, n) {
+function Os(t, e, n) {
   let o = !1;
   if (e === 0) return e;
   for (let r = e - 1; r >= 0; r--) {
     const s = t.getValue(r, n);
-    if (dt(s) && !o) {
+    if (ht(s) && !o) {
       if (r === 0) return 0;
       o = !0;
     } else {
-      if (o && !dt(s))
+      if (o && !ht(s))
         return r + 1;
       if (o && r === 0)
         return 0;
@@ -348,11 +348,11 @@ function Ms(t, e, n) {
   if (n === 0) return n;
   for (let r = n - 1; r >= 0; r--) {
     const s = t.getValue(e, r);
-    if (dt(s) && !o) {
+    if (ht(s) && !o) {
       if (r === 0) return 0;
       o = !0;
     } else {
-      if (o && !dt(s))
+      if (o && !ht(s))
         return r + 1;
       if (o && r === 0)
         return 0;
@@ -360,7 +360,7 @@ function Ms(t, e, n) {
   }
   return n;
 }
-function dt(t) {
+function ht(t) {
   if (t != null && t.p) {
     const e = t == null ? void 0 : t.p.body;
     if (e == null)
@@ -379,7 +379,7 @@ function ks(t) {
 function $n(t, e) {
   for (let n = e.startRow; n <= e.endRow; n++)
     for (let o = e.startColumn; o <= e.endColumn; o++)
-      if (dt(t.getValue(n, o)))
+      if (ht(t.getValue(n, o)))
         return !1;
   return !0;
 }
@@ -395,10 +395,10 @@ function Ds(t, e, n, o) {
       return r;
   return o;
 }
-const dr = "SHEET_FORMULA_UI_PLUGIN", fr = `${dr}_MORE_FUNCTIONS_COMPONENT`, Fs = {
+const hr = "SHEET_FORMULA_UI_PLUGIN", fr = `${hr}_MORE_FUNCTIONS_COMPONENT`, Ls = {
   id: "formula-ui.operation.more-functions",
   type: Te.OPERATION,
-  handler: async (t) => (t.get(ln).open({
+  handler: async (t) => (t.get(an).open({
     header: { title: "formula.insert.tooltip" },
     children: { label: fr }
   }), !0)
@@ -406,7 +406,7 @@ const dr = "SHEET_FORMULA_UI_PLUGIN", fr = `${dr}_MORE_FUNCTIONS_COMPONENT`, Fs 
   id: "formula-ui.operation.change-ref-to-absolute",
   type: Te.OPERATION,
   handler: async (t) => !0
-}, Ls = {
+}, Fs = {
   id: "formula-ui.operation.search-function",
   type: Te.OPERATION,
   handler: async (t, e) => (t.get(Vt).search(e), !0)
@@ -416,7 +416,7 @@ var $s = Object.getOwnPropertyDescriptor, Ps = (t, e, n, o) => {
     (i = t[s]) && (r = i(r) || r);
   return r;
 }, It = (t, e) => (n, o) => e(n, o, t);
-let Nt = class extends rt {
+let Ot = class extends rt {
   constructor(t, e, n, o) {
     super(), this._sheetInterceptorService = t, this._univerInstanceService = e, this._formulaDataModel = n, this._lexerTreeBuilder = o, this._initialize();
   }
@@ -429,42 +429,42 @@ let Nt = class extends rt {
     }));
   }
   _reorderFormula(t) {
-    const e = [], n = [], { unitId: o, subUnitId: r, range: s, order: i } = t, c = this._univerInstanceService.getUniverSheetInstance(o), a = c == null ? void 0 : c.getSheetBySheetId(r);
-    if (!a)
+    const e = [], n = [], { unitId: o, subUnitId: r, range: s, order: i } = t, c = this._univerInstanceService.getUniverSheetInstance(o), l = c == null ? void 0 : c.getSheetBySheetId(r);
+    if (!l)
       return {
         redos: e,
         undos: n
       };
-    const g = a.getCellMatrix(), m = new Ae(), d = new Ae();
-    let h = !1;
-    return Hr.foreach(s, (u, l) => {
-      let v = u;
-      i.hasOwnProperty(u) && (v = i[u]);
-      const p = g.getValue(v, l);
-      if (p != null && p.f || p != null && p.si) {
-        h = !0;
-        const S = this._formulaDataModel.getFormulaStringByCell(v, l, r, o), C = this._lexerTreeBuilder.moveFormulaRefOffset(
-          S,
+    const m = l.getCellMatrix(), g = new Ae(), h = new Ae();
+    let u = !1;
+    return Hr.foreach(s, (d, a) => {
+      let v = d;
+      i.hasOwnProperty(d) && (v = i[d]);
+      const S = m.getValue(v, a);
+      if (S != null && S.f || S != null && S.si) {
+        u = !0;
+        const p = this._formulaDataModel.getFormulaStringByCell(v, a, r, o), C = this._lexerTreeBuilder.moveFormulaRefOffset(
+          p,
           0,
-          u - v
-        ), _ = en.deepClone(p);
-        _.f = C, _.si = null, m.setValue(u, l, _);
+          d - v
+        ), _ = en.deepClone(S);
+        _.f = C, _.si = null, g.setValue(d, a, _);
       } else
-        m.setValue(u, l, p);
-      d.setValue(u, l, g.getValue(u, l));
-    }), h ? (e.push({
+        g.setValue(d, a, S);
+      h.setValue(d, a, m.getValue(d, a));
+    }), u ? (e.push({
       id: Tt.id,
       params: {
         unitId: o,
         subUnitId: r,
-        cellValue: m.getMatrix()
+        cellValue: g.getMatrix()
       }
     }), n.push({
       id: Tt.id,
       params: {
         unitId: o,
         subUnitId: r,
-        cellValue: d.getMatrix()
+        cellValue: h.getMatrix()
       }
     }), {
       redos: e,
@@ -475,18 +475,18 @@ let Nt = class extends rt {
     };
   }
 };
-Nt = Ps([
+Ot = Ps([
   It(0, B(cn)),
   It(1, B(ne)),
   It(2, B(pt)),
   It(3, B(Ce))
-], Nt);
+], Ot);
 const mr = "sheets-formula-ui.base.config", Pn = {};
 var Us = Object.getOwnPropertyDescriptor, Ws = (t, e, n, o) => {
   for (var r = o > 1 ? void 0 : o ? Us(e, n) : e, s = t.length - 1, i; s >= 0; s--)
     (i = t[s]) && (r = i(r) || r);
   return r;
-}, lt = (t, e) => (n, o) => e(n, o, t);
+}, at = (t, e) => (n, o) => e(n, o, t);
 const jt = "SHEET_FORMULA_ALERT", Vs = {
   [ue.DIV_BY_ZERO]: "divByZero",
   [ue.NAME]: "name",
@@ -514,20 +514,20 @@ let Gt = class extends rt {
       if (t) {
         const c = this._context.unit.getActiveSheet();
         if (!c) return;
-        const a = c.getCell(t.location.row, t.location.col), g = (r = (o = (n = (e = this._formulaDataModel.getArrayFormulaCellData()) == null ? void 0 : e[t.location.unitId]) == null ? void 0 : n[t.location.subUnitId]) == null ? void 0 : o[t.location.row]) == null ? void 0 : r[t.location.col];
-        if (Br(a)) {
-          const m = Jn(a, !!g);
-          if (!m) {
+        const l = c.getCell(t.location.row, t.location.col), m = (r = (o = (n = (e = this._formulaDataModel.getArrayFormulaCellData()) == null ? void 0 : e[t.location.unitId]) == null ? void 0 : n[t.location.subUnitId]) == null ? void 0 : o[t.location.row]) == null ? void 0 : r[t.location.col];
+        if (Br(l)) {
+          const g = Jn(l, !!m);
+          if (!g) {
             this._hideAlert();
             return;
           }
-          const d = this._cellAlertManagerService.currentAlert.get(jt), h = (s = d == null ? void 0 : d.alert) == null ? void 0 : s.location;
-          if (h && h.row === t.location.row && h.col === t.location.col && h.subUnitId === t.location.subUnitId && h.unitId === t.location.unitId)
+          const h = this._cellAlertManagerService.currentAlert.get(jt), u = (s = h == null ? void 0 : h.alert) == null ? void 0 : s.location;
+          if (u && u.row === t.location.row && u.col === t.location.col && u.subUnitId === t.location.subUnitId && u.unitId === t.location.unitId)
             return;
           this._cellAlertManagerService.showAlert({
             type: io.ERROR,
             title: this._localeService.t("formula.error.title"),
-            message: this._localeService.t(`formula.error.${Vs[m]}`),
+            message: this._localeService.t(`formula.error.${Vs[g]}`),
             location: t.location,
             width: 200,
             height: 74,
@@ -549,11 +549,11 @@ let Gt = class extends rt {
   }
 };
 Gt = Ws([
-  lt(1, B(oo)),
-  lt(2, B(so)),
-  lt(3, B(ot)),
-  lt(4, B(pt)),
-  lt(5, ls)
+  at(1, B(oo)),
+  at(2, B(so)),
+  at(3, B(ot)),
+  at(4, B(pt)),
+  at(5, as)
 ], Gt);
 var Hs = Object.getOwnPropertyDescriptor, Bs = (t, e, n, o) => {
   for (var r = o > 1 ? void 0 : o ? Hs(e, n) : e, s = t.length - 1, i; s >= 0; s--)
@@ -571,7 +571,7 @@ let Mt = class extends rt {
       match: (e) => ke(e == null ? void 0 : e.f) || tt(e == null ? void 0 : e.si),
       isContinue: (e, n) => e.type === In.FORMULA,
       applyFunctions: {
-        [lo.COPY]: (e, n, o, r, s) => {
+        [ao.COPY]: (e, n, o, r, s) => {
           const { data: i, index: c } = e;
           return this._fillCopyFormula(i, n, o, c, r, s);
         }
@@ -580,28 +580,28 @@ let Mt = class extends rt {
     this._autoFillService.registerRule(t);
   }
   _fillCopyFormula(t, e, n, o, r, s) {
-    var g, m;
-    const i = js(r), c = [], a = /* @__PURE__ */ new Map();
-    for (let d = 1; d <= e; d++) {
-      const h = (d - 1) % t.length, u = o[h], l = en.deepClone(t[h]);
-      if (l) {
-        const v = ((g = t[h]) == null ? void 0 : g.f) || "", p = ((m = t[h]) == null ? void 0 : m.si) || "", S = ke(v);
-        if (tt(p))
-          l.si = p, l.f = null, l.v = null, l.p = null, l.t = null, c.push(l);
-        else if (S) {
-          let _ = a.get(h);
+    var m, g;
+    const i = js(r), c = [], l = /* @__PURE__ */ new Map();
+    for (let h = 1; h <= e; h++) {
+      const u = (h - 1) % t.length, d = o[u], a = en.deepClone(t[u]);
+      if (a) {
+        const v = ((m = t[u]) == null ? void 0 : m.f) || "", S = ((g = t[u]) == null ? void 0 : g.si) || "", p = ke(v);
+        if (tt(S))
+          a.si = S, a.f = null, a.v = null, a.p = null, a.t = null, c.push(a);
+        else if (p) {
+          let _ = l.get(u);
           if (_)
-            l.si = _, l.f = null, l.v = null, l.p = null, l.t = null;
+            a.si = _, a.f = null, a.v = null, a.p = null, a.t = null;
           else {
-            _ = Lt(6), a.set(h, _);
-            const { offsetX: I, offsetY: f } = qs(i, e, n, s, u), b = this._lexerTreeBuilder.moveFormulaRefOffset(
+            _ = Ft(6), l.set(u, _);
+            const { offsetX: I, offsetY: f } = qs(i, e, n, s, d), b = this._lexerTreeBuilder.moveFormulaRefOffset(
               v,
               I,
               f
             );
-            l.si = _, l.f = b, l.v = null, l.p = null, l.t = null;
+            a.si = _, a.f = b, a.v = null, a.p = null, a.t = null;
           }
-          c.push(l);
+          c.push(a);
         }
       }
     }
@@ -613,23 +613,23 @@ Mt = Bs([
   Un(1, B(Ce))
 ], Mt);
 function qs(t, e, n, o, r) {
-  const { source: s, target: i } = o, { rows: c } = i, { rows: a } = s;
-  let g = 0, m = 0;
+  const { source: s, target: i } = o, { rows: c } = i, { rows: l } = s;
+  let m = 0, g = 0;
   switch (n) {
-    case he.UP:
-      m = c[r] - a[r];
+    case de.UP:
+      g = c[r] - l[r];
       break;
-    case he.RIGHT:
-      g = t;
+    case de.RIGHT:
+      m = t;
       break;
-    case he.DOWN:
-      m = c[r] - a[r];
+    case de.DOWN:
+      g = c[r] - l[r];
       break;
-    case he.LEFT:
-      g = -t * e;
+    case de.LEFT:
+      m = -t * e;
       break;
   }
-  return { offsetX: g, offsetY: m };
+  return { offsetX: m, offsetY: g };
 }
 function js(t) {
   let e = 0;
@@ -643,7 +643,7 @@ var Ks = Object.getOwnPropertyDescriptor, Ys = (t, e, n, o) => {
   for (var r = o > 1 ? void 0 : o ? Ks(e, n) : e, s = t.length - 1, i; s >= 0; s--)
     (i = t[s]) && (r = i(r) || r);
   return r;
-}, at = (t, e) => (n, o) => e(n, o, t);
+}, lt = (t, e) => (n, o) => e(n, o, t);
 const Zs = "default-paste-formula";
 let wt = class extends rt {
   constructor(t, e, n, o, r) {
@@ -671,7 +671,7 @@ let wt = class extends rt {
     };
   }
   _onPasteCells(t, e, n, o, r) {
-    var h;
+    var u;
     if ([
       Je.SPECIAL_PASTE_FORMAT,
       Je.SPECIAL_PASTE_COL_WIDTH
@@ -680,24 +680,24 @@ let wt = class extends rt {
         undos: [],
         redos: []
       };
-    const i = this._currentUniverSheet.getCurrentUnitForType(j.UNIVER_SHEET), c = e.unitId || i.getUnitId(), a = e.subUnitId || ((h = i.getActiveSheet()) == null ? void 0 : h.getSheetId());
-    if (!c || !a)
+    const i = this._currentUniverSheet.getCurrentUnitForType(K.UNIVER_SHEET), c = e.unitId || i.getUnitId(), l = e.subUnitId || ((u = i.getActiveSheet()) == null ? void 0 : u.getSheetId());
+    if (!c || !l)
       return {
         undos: [],
         redos: []
       };
-    const g = e.range, m = n, d = {
+    const m = e.range, g = n, h = {
       copyType: o.copyType || Gn.COPY,
       copyRange: t == null ? void 0 : t.range,
       pasteType: o.pasteType
     };
-    return this._injector.invoke((u) => zs(
+    return this._injector.invoke((d) => zs(
       c,
-      a,
-      g,
+      l,
       m,
-      u,
+      g,
       d,
+      h,
       this._lexerTreeBuilder,
       this._formulaDataModel,
       r,
@@ -706,38 +706,38 @@ let wt = class extends rt {
   }
 };
 wt = Ys([
-  at(0, ne),
-  at(1, B(Ce)),
-  at(2, ao),
-  at(3, B(ft)),
-  at(4, B(pt))
+  lt(0, ne),
+  lt(1, B(Ce)),
+  lt(2, lo),
+  lt(3, B(ft)),
+  lt(4, B(pt))
 ], wt);
-function zs(t, e, n, o, r, s, i, c, a = !1, g) {
-  const m = [], d = [], h = Gs(t, e, n, o, s, i, c, g);
-  if (!h.hasValue())
+function zs(t, e, n, o, r, s, i, c, l = !1, m) {
+  const g = [], h = [], u = Gs(t, e, n, o, s, i, c, m);
+  if (!u.hasValue())
     return {
       undos: [],
       redos: []
     };
-  const u = {
+  const d = {
     unitId: t,
     subUnitId: e,
-    cellValue: h.getData()
+    cellValue: u.getData()
   };
-  m.push({
+  g.push({
     id: Tt.id,
-    params: u
+    params: d
   });
-  const l = Zo(
+  const a = Zo(
     r,
-    u
+    d
   );
-  return d.push({
+  return h.push({
     id: Tt.id,
-    params: l
+    params: a
   }), {
-    undos: d,
-    redos: m
+    undos: h,
+    redos: g
   };
 }
 function Gs(t, e, n, o, r, s, i, c) {
@@ -745,131 +745,131 @@ function Gs(t, e, n, o, r, s, i, c) {
 }
 function Xs(t, e, n, o, r) {
   const s = new Ae(), i = r.getSheetFormulaData(t, e);
-  return o.forValue((c, a, g) => {
-    var u;
-    const m = n.rows[c], d = n.cols[a], h = {};
-    ke(g.v) ? (h.v = null, h.f = `${g.v}`, h.si = null, h.p = null, s.setValue(m, d, h)) : (u = i == null ? void 0 : i[m]) != null && u[d] && (h.v = g.v, h.f = null, h.si = null, h.p = null, s.setValue(m, d, h));
+  return o.forValue((c, l, m) => {
+    var d;
+    const g = n.rows[c], h = n.cols[l], u = {};
+    ke(m.v) ? (u.v = null, u.f = `${m.v}`, u.si = null, u.p = null, s.setValue(g, h, u)) : (d = i == null ? void 0 : i[g]) != null && d[h] && (u.v = m.v, u.f = null, u.si = null, u.p = null, s.setValue(g, h, u));
   }), s;
 }
 function Qs(t, e, n, o, r, s) {
-  var g, m;
-  const i = new Ae(), c = (m = (g = r.getArrayFormulaCellData()) == null ? void 0 : g[s.unitId]) == null ? void 0 : m[s.subUnitId], a = r.getSheetFormulaData(t, e);
-  return o.forValue((d, h, u) => {
+  var m, g;
+  const i = new Ae(), c = (g = (m = r.getArrayFormulaCellData()) == null ? void 0 : m[s.unitId]) == null ? void 0 : g[s.subUnitId], l = r.getSheetFormulaData(t, e);
+  return o.forValue((h, u, d) => {
     var _, I;
-    const l = s.range.rows[d % s.range.rows.length], v = s.range.cols[h % s.range.cols.length], p = n.rows[d], S = n.cols[h], C = {};
-    if (ke(u.f) || tt(u.si))
-      C.v = u.v, C.f = null, C.si = null, C.p = null, i.setValue(p, S, C);
-    else if ((_ = c == null ? void 0 : c[l]) != null && _[v]) {
-      const f = c[l][v];
-      C.v = f.v, C.f = null, C.si = null, C.p = null, i.setValue(p, S, C);
-    } else if ((I = a == null ? void 0 : a[p]) != null && I[S]) {
-      if (C.v = u.v, C.f = null, C.si = null, C.p = null, u.p) {
-        const f = pr(u);
+    const a = s.range.rows[h % s.range.rows.length], v = s.range.cols[u % s.range.cols.length], S = n.rows[h], p = n.cols[u], C = {};
+    if (ke(d.f) || tt(d.si))
+      C.v = d.v, C.f = null, C.si = null, C.p = null, i.setValue(S, p, C);
+    else if ((_ = c == null ? void 0 : c[a]) != null && _[v]) {
+      const f = c[a][v];
+      C.v = f.v, C.f = null, C.si = null, C.p = null, i.setValue(S, p, C);
+    } else if ((I = l == null ? void 0 : l[S]) != null && I[p]) {
+      if (C.v = d.v, C.f = null, C.si = null, C.p = null, d.p) {
+        const f = pr(d);
         f && (C.v = f);
       }
-      i.setValue(p, S, C);
+      i.setValue(S, p, C);
     }
   }), i;
 }
 function Js(t, e, n, o, r, s, i) {
-  const c = new Ae(), a = /* @__PURE__ */ new Map();
-  return o.forValue((g, m, d) => {
-    const h = n.rows[g], u = n.cols[m], l = {};
-    if (tt(d.si)) {
+  const c = new Ae(), l = /* @__PURE__ */ new Map();
+  return o.forValue((m, g, h) => {
+    const u = n.rows[m], d = n.cols[g], a = {};
+    if (tt(h.si)) {
       if (i.unitId !== t || i.subUnitId !== e) {
         const v = s.getFormulaStringByCell(
-          i.range.rows[g % i.range.rows.length],
-          i.range.cols[m % i.range.cols.length],
+          i.range.rows[m % i.range.rows.length],
+          i.range.cols[g % i.range.cols.length],
           i.subUnitId,
           i.unitId
-        ), p = n.cols[m] - i.range.cols[m % i.range.cols.length], S = n.rows[g] - i.range.rows[g % i.range.rows.length], C = r.moveFormulaRefOffset(v || "", p, S);
-        l.si = null, l.f = C;
+        ), S = n.cols[g] - i.range.cols[g % i.range.cols.length], p = n.rows[m] - i.range.rows[m % i.range.rows.length], C = r.moveFormulaRefOffset(v || "", S, p);
+        a.si = null, a.f = C;
       } else
-        l.si = d.si, l.f = null;
-      l.v = null, l.p = null, c.setValue(h, u, l);
-    } else if (ke(d.f)) {
-      const v = `${g % i.range.rows.length}_${m % i.range.cols.length}`;
-      let p = a.get(v);
-      if (p)
-        l.si = p, l.f = null;
+        a.si = h.si, a.f = null;
+      a.v = null, a.p = null, c.setValue(u, d, a);
+    } else if (ke(h.f)) {
+      const v = `${m % i.range.rows.length}_${g % i.range.cols.length}`;
+      let S = l.get(v);
+      if (S)
+        a.si = S, a.f = null;
       else {
-        p = Lt(6), a.set(v, p);
-        const S = n.cols[m] - i.range.cols[m % i.range.cols.length], C = n.rows[g] - i.range.rows[g % i.range.rows.length], _ = r.moveFormulaRefOffset(d.f || "", S, C);
-        l.si = p, l.f = _;
+        S = Ft(6), l.set(v, S);
+        const p = n.cols[g] - i.range.cols[g % i.range.cols.length], C = n.rows[m] - i.range.rows[m % i.range.rows.length], _ = r.moveFormulaRefOffset(h.f || "", p, C);
+        a.si = S, a.f = _;
       }
-      l.v = null, l.p = null, c.setValue(h, u, l);
+      a.v = null, a.p = null, c.setValue(u, d, a);
     } else {
-      if (l.v = d.v, l.f = null, l.si = null, l.p = null, d.p) {
-        const v = pr(d);
-        v && (l.v = v);
+      if (a.v = h.v, a.f = null, a.si = null, a.p = null, h.p) {
+        const v = pr(h);
+        v && (a.v = v);
       }
-      c.setValue(h, u, l);
+      c.setValue(u, d, a);
     }
   }), c;
 }
 function ei(t, e, n, o, r, s, i, c) {
-  const a = new Ae(), g = /* @__PURE__ */ new Map(), m = i.getSheetFormulaData(t, e), d = [];
-  return r === Gn.CUT ? o.forValue((h, u, l) => {
-    const v = n.rows[h], p = n.cols[u], S = {};
-    if (tt(l.si)) {
-      if (ke(l.f))
-        d.push(l.si), S.f = l.f, S.si = l.si;
-      else if (d.includes(l.si))
-        S.f = null, S.si = l.si;
+  const l = new Ae(), m = /* @__PURE__ */ new Map(), g = i.getSheetFormulaData(t, e), h = [];
+  return r === Gn.CUT ? o.forValue((u, d, a) => {
+    const v = n.rows[u], S = n.cols[d], p = {};
+    if (tt(a.si)) {
+      if (ke(a.f))
+        h.push(a.si), p.f = a.f, p.si = a.si;
+      else if (h.includes(a.si))
+        p.f = null, p.si = a.si;
       else {
         const C = i.getFormulaStringByCell(
-          c.range.rows[h % c.range.rows.length],
-          c.range.cols[u % c.range.cols.length],
+          c.range.rows[u % c.range.rows.length],
+          c.range.cols[d % c.range.cols.length],
           c.subUnitId,
           c.unitId
         );
-        S.f = C, S.si = null;
+        p.f = C, p.si = null;
       }
-      S.v = null, S.p = null, a.setValue(v, p, S);
-    } else ke(l.f) && (S.f = l.f, S.si = null, S.v = null, S.p = null, a.setValue(v, p, S));
-  }) : o.forValue((h, u, l) => {
+      p.v = null, p.p = null, l.setValue(v, S, p);
+    } else ke(a.f) && (p.f = a.f, p.si = null, p.v = null, p.p = null, l.setValue(v, S, p));
+  }) : o.forValue((u, d, a) => {
     var C;
-    const v = n.rows[h], p = n.cols[u], S = {};
-    if (tt(l.si)) {
+    const v = n.rows[u], S = n.cols[d], p = {};
+    if (tt(a.si)) {
       if (c.unitId !== t || c.subUnitId !== e) {
         const _ = i.getFormulaStringByCell(
-          c.range.rows[h % c.range.rows.length],
-          c.range.cols[u % c.range.cols.length],
+          c.range.rows[u % c.range.rows.length],
+          c.range.cols[d % c.range.cols.length],
           c.subUnitId,
           c.unitId
-        ), I = n.cols[u] - c.range.cols[u % c.range.cols.length], f = n.rows[h] - c.range.rows[h % c.range.rows.length], b = s.moveFormulaRefOffset(_ || "", I, f);
-        S.si = null, S.f = b;
+        ), I = n.cols[d] - c.range.cols[d % c.range.cols.length], f = n.rows[u] - c.range.rows[u % c.range.rows.length], b = s.moveFormulaRefOffset(_ || "", I, f);
+        p.si = null, p.f = b;
       } else
-        S.si = l.si, S.f = null;
-      S.v = null, S.p = null, a.setValue(v, p, S);
-    } else if (ke(l.f)) {
-      const _ = `${h % c.range.rows.length}_${u % c.range.cols.length}`;
-      let I = g.get(_);
+        p.si = a.si, p.f = null;
+      p.v = null, p.p = null, l.setValue(v, S, p);
+    } else if (ke(a.f)) {
+      const _ = `${u % c.range.rows.length}_${d % c.range.cols.length}`;
+      let I = m.get(_);
       if (I)
-        S.si = I, S.f = null;
+        p.si = I, p.f = null;
       else {
-        I = Lt(6), g.set(_, I);
-        const f = n.cols[u] - c.range.cols[u % c.range.cols.length], b = n.rows[h] - c.range.rows[h % c.range.rows.length], y = s.moveFormulaRefOffset(l.f || "", f, b);
-        S.si = I, S.f = y;
+        I = Ft(6), m.set(_, I);
+        const f = n.cols[d] - c.range.cols[d % c.range.cols.length], b = n.rows[u] - c.range.rows[u % c.range.rows.length], y = s.moveFormulaRefOffset(a.f || "", f, b);
+        p.si = I, p.f = y;
       }
-      S.v = null, S.p = null, a.setValue(v, p, S);
-    } else (C = m == null ? void 0 : m[v]) != null && C[p] && (S.v = l.v, S.f = null, S.si = null, S.p = l.p, a.setValue(v, p, S));
-  }), d.length > 0 && new Ae(m).forValue((h, u, l) => {
-    if (!(c.range.rows.includes(h) && c.range.cols.includes(u)) && !(n.rows.includes(h) && n.cols.includes(u)) && d.includes(l == null ? void 0 : l.si)) {
+      p.v = null, p.p = null, l.setValue(v, S, p);
+    } else (C = g == null ? void 0 : g[v]) != null && C[S] && (p.v = a.v, p.f = null, p.si = null, p.p = a.p, l.setValue(v, S, p));
+  }), h.length > 0 && new Ae(g).forValue((u, d, a) => {
+    if (!(c.range.rows.includes(u) && c.range.cols.includes(d)) && !(n.rows.includes(u) && n.cols.includes(d)) && h.includes(a == null ? void 0 : a.si)) {
       const v = i.getFormulaStringByCell(
-        h,
         u,
+        d,
         c.subUnitId,
         c.unitId
       );
-      a.setValue(h, u, {
+      l.setValue(u, d, {
         f: v,
         si: null,
         v: null,
         p: null
       });
     }
-  }), a;
+  }), l;
 }
 function pr(t) {
   if (t != null && t.p) {
@@ -886,11 +886,11 @@ var ti = Object.getOwnPropertyDescriptor, ni = (t, e, n, o) => {
   return r;
 }, Ve = (t, e) => (n, o) => e(n, o, t);
 let kt = class extends rt {
-  constructor(e, n, o, r, s, i, c, a) {
+  constructor(e, n, o, r, s, i, c, l) {
     super();
     q(this, "_previousShape");
     q(this, "_skeleton");
-    this._context = e, this._sheetInterceptorService = n, this._formulaDataModel = o, this._themeService = r, this._renderManagerService = s, this._sheetSkeletonManagerService = i, this._commandService = c, this._logService = a, this._initSkeletonChangeListener(), this._initInterceptorEditorStart(), this._commandExecutedListener();
+    this._context = e, this._sheetInterceptorService = n, this._formulaDataModel = o, this._themeService = r, this._renderManagerService = s, this._sheetSkeletonManagerService = i, this._commandService = c, this._logService = l, this._initSkeletonChangeListener(), this._initInterceptorEditorStart(), this._commandExecutedListener();
   }
   _initSkeletonChangeListener() {
     this.disposeWithMe(
@@ -918,16 +918,16 @@ let kt = class extends rt {
       Yn(
         this._sheetInterceptorService.writeCellInterceptor.intercept(zo, {
           handler: (e, n, o) => {
-            var l, v, p, S;
-            const { row: r, col: s, unitId: i, subUnitId: c, worksheet: a } = n, g = this._formulaDataModel.getArrayFormulaRange(), m = this._formulaDataModel.getArrayFormulaCellData();
+            var a, v, S, p;
+            const { row: r, col: s, unitId: i, subUnitId: c, worksheet: l } = n, m = this._formulaDataModel.getArrayFormulaRange(), g = this._formulaDataModel.getArrayFormulaCellData();
             if (this._removeArrayFormulaRangeShape(), e == null)
               return o(e);
-            let d = null;
-            const h = this._formulaDataModel.getFormulaStringByCell(r, s, c, i);
-            if (h !== null && (d = { f: h }), e.v != null && e.v !== "" && ((p = (v = (l = m[i]) == null ? void 0 : l[c]) == null ? void 0 : v[r]) == null ? void 0 : p[s]) == null)
-              return d ? { ...e, ...d } : o(e);
-            const u = (S = g == null ? void 0 : g[i]) == null ? void 0 : S[c];
-            return u != null && (d = this._displayArrayFormulaRangeShape(u, r, s, i, c, a, d)), d ? { ...e, ...d } : o(e);
+            let h = null;
+            const u = this._formulaDataModel.getFormulaStringByCell(r, s, c, i);
+            if (u !== null && (h = { f: u }), e.v != null && e.v !== "" && ((S = (v = (a = g[i]) == null ? void 0 : a[c]) == null ? void 0 : v[r]) == null ? void 0 : S[s]) == null)
+              return h ? { ...e, ...h } : o(e);
+            const d = (p = m == null ? void 0 : m[i]) == null ? void 0 : p[c];
+            return d != null && (h = this._displayArrayFormulaRangeShape(d, r, s, i, c, l, h)), h ? { ...e, ...h } : o(e);
           }
         })
       )
@@ -946,23 +946,23 @@ let kt = class extends rt {
     );
   }
   _displayArrayFormulaRangeShape(e, n, o, r, s, i, c) {
-    const a = this._formulaDataModel.getSheetFormulaData(r, s);
-    return new Ae(e).forValue((g, m, d) => {
-      var p;
-      if (d == null)
+    const l = this._formulaDataModel.getSheetFormulaData(r, s);
+    return new Ae(e).forValue((m, g, h) => {
+      var S;
+      if (h == null)
         return !0;
-      const { startRow: h, startColumn: u, endRow: l, endColumn: v } = d;
-      if (g === n && m === o)
-        return this._createArrayFormulaRangeShape(d, r), !1;
-      if (n >= h && n <= l && o >= u && o <= v) {
-        const S = i.getCell(h, u);
-        if ((S == null ? void 0 : S.v) === ue.SPILL)
+      const { startRow: u, startColumn: d, endRow: a, endColumn: v } = h;
+      if (m === n && g === o)
+        return this._createArrayFormulaRangeShape(h, r), !1;
+      if (n >= u && n <= a && o >= d && o <= v) {
+        const p = i.getCell(u, d);
+        if ((p == null ? void 0 : p.v) === ue.SPILL)
           return;
-        const C = (p = a == null ? void 0 : a[g]) == null ? void 0 : p[m];
+        const C = (S = l == null ? void 0 : l[m]) == null ? void 0 : S[g];
         return C == null || C.f == null ? !0 : (c == null && (c = {
           f: C.f,
           isInArrayFormulaRange: !0
-        }), this._createArrayFormulaRangeShape(d, r), !1);
+        }), this._createArrayFormulaRangeShape(h, r), !1);
       }
     }), c;
   }
@@ -980,12 +980,12 @@ let kt = class extends rt {
         fill: new tn(this._themeService.getColorFromTheme("white")).setAlpha(0).toString(),
         widgets: {}
       }
-    }, c = Yt(i, r), { rowHeaderWidth: a, columnHeaderHeight: g } = r, m = new Xn(s, uo.FORMULA_EDITOR_SHOW, this._themeService, {
+    }, c = Yt(i, r), { rowHeaderWidth: l, columnHeaderHeight: m } = r, g = new Xn(s, uo.FORMULA_EDITOR_SHOW, this._themeService, {
       highlightHeader: !1,
-      rowHeaderWidth: a,
-      columnHeaderHeight: g
+      rowHeaderWidth: l,
+      columnHeaderHeight: m
     });
-    m.updateRangeBySelectionWithCoord(c), m.setEvent(!1), this._previousShape = m;
+    g.updateRangeBySelectionWithCoord(c), g.setEvent(!1), this._previousShape = g;
   }
   _removeArrayFormulaRangeShape() {
     this._previousShape != null && (this._previousShape.dispose(), this._previousShape = null);
@@ -1008,16 +1008,16 @@ let kt = class extends rt {
   _refreshArrayFormulaRangeShapeByRow(e, n, o) {
     if (!this._checkCurrentSheet(e, n) || !this._previousShape) return;
     const { startRow: r, endRow: s, startColumn: i, endColumn: c } = this._previousShape.getRange();
-    for (let a = 0; a < o.length; a++) {
-      const { row: g } = o[a];
-      if (r >= g) {
-        const m = {
+    for (let l = 0; l < o.length; l++) {
+      const { row: m } = o[l];
+      if (r >= m) {
+        const g = {
           startRow: r,
           endRow: s,
           startColumn: i,
           endColumn: c
         };
-        this._refreshArrayFormulaRangeShape(e, m);
+        this._refreshArrayFormulaRangeShape(e, g);
         break;
       }
     }
@@ -1027,7 +1027,7 @@ kt = ni([
   Ve(1, B(cn)),
   Ve(2, B(pt)),
   Ve(3, B(gt)),
-  Ve(4, Oe),
+  Ve(4, Ne),
   Ve(5, B($t)),
   Ve(6, me),
   Ve(7, qr)
@@ -1050,8 +1050,8 @@ let At = class extends jr {
       {
         effect: Kr.Style,
         handler: (n, o, r) => {
-          var c, a, g, m;
-          const s = (m = (g = (a = (c = this._formulaDataModel.getArrayFormulaCellData()) == null ? void 0 : c[o.unitId]) == null ? void 0 : a[o.subUnitId]) == null ? void 0 : g[o.row]) == null ? void 0 : m[o.col];
+          var c, l, m, g;
+          const s = (g = (m = (l = (c = this._formulaDataModel.getArrayFormulaCellData()) == null ? void 0 : c[o.unitId]) == null ? void 0 : l[o.subUnitId]) == null ? void 0 : m[o.row]) == null ? void 0 : g[o.col];
           return !Jn(n, !!s) || !n || (n === o.rawData && (n = { ...o.rawData }), n.markers = {
             ...n == null ? void 0 : n.markers,
             ...si
@@ -1072,7 +1072,7 @@ function ii() {
   }, [e]), r = xt(() => {
     t.clearProgress();
   }, [t]);
-  return /* @__PURE__ */ M(as, { progress: n, onTerminate: o, onClearProgress: r });
+  return /* @__PURE__ */ M(ls, { progress: n, onTerminate: o, onClearProgress: r });
 }
 function ci(t, e) {
   return Object.keys(t).filter((n) => isNaN(Number(n)) && n !== "DefinedName").map((n) => ({
@@ -1123,15 +1123,15 @@ function ut(t) {
     )
   ] });
 }
-function li(t) {
+function ai(t) {
   const { functionInfo: e, onChange: n } = t;
   if (!e) return null;
-  const [o, r] = W([]), [s, i] = W(e.functionParameter), [c, a] = W(-1);
+  const [o, r] = W([]), [s, i] = W(e.functionParameter), [c, l] = W(-1);
   return /* @__PURE__ */ V("div", { children: [
-    /* @__PURE__ */ M("div", { className: re("univer-h-[364px] univer-overflow-y-auto", nt), children: s.map((g, m) => /* @__PURE__ */ V("div", { children: [
-      /* @__PURE__ */ M("div", { className: "univer-text-sm", children: g.name }),
+    /* @__PURE__ */ M("div", { className: re("univer-h-[364px] univer-overflow-y-auto", nt), children: s.map((m, g) => /* @__PURE__ */ V("div", { children: [
+      /* @__PURE__ */ M("div", { className: "univer-text-sm", children: m.name }),
       /* @__PURE__ */ M("div", { className: "univer-mb-2 univer-mt-1" })
-    ] }, m)) }),
+    ] }, g)) }),
     /* @__PURE__ */ M("div", { className: re("univer-flex-1 univer-p-3", Ss), children: /* @__PURE__ */ M(
       ut,
       {
@@ -1142,10 +1142,10 @@ function li(t) {
   ] });
 }
 function Ye({ ref: t, ...e }) {
-  const { icon: n, id: o, className: r, extend: s, ...i } = e, c = `univerjs-icon univerjs-icon-${o} ${r || ""}`.trim(), a = G(`_${hi()}`);
+  const { icon: n, id: o, className: r, extend: s, ...i } = e, c = `univerjs-icon univerjs-icon-${o} ${r || ""}`.trim(), l = X(`_${di()}`);
   return Cr(n, `${o}`, {
     defIds: n.defIds,
-    idSuffix: a.current
+    idSuffix: l.current
   }, {
     ref: t,
     className: c,
@@ -1155,11 +1155,11 @@ function Ye({ ref: t, ...e }) {
 function Cr(t, e, n, o, r) {
   return Ke(t.tag, {
     key: e,
-    ...ai(t, n, r),
+    ...li(t, n, r),
     ...o
   }, (ui(t, n).children || []).map((s, i) => Cr(s, `${e}-${t.tag}-${i}`, n, void 0, r)));
 }
-function ai(t, e, n) {
+function li(t, e, n) {
   const o = { ...t.attrs };
   n != null && n.colorChannel1 && o.fill === "colorChannel1" && (o.fill = n.colorChannel1), t.tag === "mask" && o.id && (o.id = o.id + e.idSuffix), Object.entries(o).forEach(([s, i]) => {
     s === "mask" && typeof i == "string" && (o[s] = i.replace(/url\(#(.*)\)/, `url(#$1${e.idSuffix})`));
@@ -1183,11 +1183,11 @@ function ui(t, e) {
     } : r)
   } : t;
 }
-function hi() {
+function di() {
   return Math.random().toString(36).substring(2, 8);
 }
 Ye.displayName = "UniverIcon";
-const di = {
+const hi = {
   tag: "svg",
   attrs: {
     xmlns: "http://www.w3.org/2000/svg",
@@ -1205,11 +1205,11 @@ const di = {
       clipRule: "evenodd"
     }
   }]
-}, _r = Fe(function(e, n) {
+}, _r = Le(function(e, n) {
   return Ke(Ye, Object.assign({}, e, {
     id: "check-mark-icon",
     ref: n,
-    icon: di
+    icon: hi
   }));
 });
 _r.displayName = "CheckMarkIcon";
@@ -1229,7 +1229,7 @@ const fi = {
       d: "M3.71274 2.86421C3.47843 2.6299 3.09853 2.6299 2.86421 2.86421C2.6299 3.09853 2.6299 3.47843 2.86421 3.71274L7.15154 8.00007L2.86421 12.2874C2.6299 12.5217 2.6299 12.9016 2.86421 13.1359C3.09853 13.3702 3.47843 13.3702 3.71274 13.1359L8.00007 8.84859L12.2874 13.1359C12.5217 13.3702 12.9016 13.3702 13.1359 13.1359C13.3702 12.9016 13.3702 12.5217 13.1359 12.2874L8.84859 8.00007L13.1359 3.71274C13.3702 3.47843 13.3702 3.09853 13.1359 2.86421C12.9016 2.6299 12.5217 2.6299 12.2874 2.86421L8.00007 7.15154L3.71274 2.86421Z"
     }
   }]
-}, Rr = Fe(function(e, n) {
+}, Rr = Le(function(e, n) {
   return Ke(Ye, Object.assign({}, e, {
     id: "close-icon",
     ref: n,
@@ -1278,7 +1278,7 @@ const gi = {
       }
     }
   ]
-}, Er = Fe(function(e, n) {
+}, Er = Le(function(e, n) {
   return Ke(Ye, Object.assign({}, e, {
     id: "delete-icon",
     ref: n,
@@ -1302,7 +1302,7 @@ const mi = {
       d: "M8.6 1.99991C8.60001 1.66854 8.33138 1.39991 8.00001 1.3999C7.66864 1.3999 7.40001 1.66853 7.4 1.9999L7.39996 7.3999H1.9999C1.66853 7.3999 1.3999 7.66853 1.3999 7.9999C1.3999 8.33127 1.66853 8.5999 1.9999 8.5999H7.39995L7.3999 13.9999C7.3999 14.3313 7.66853 14.5999 7.9999 14.5999C8.33127 14.5999 8.5999 14.3313 8.5999 13.9999L8.59995 8.5999H13.9999C14.3313 8.5999 14.5999 8.33127 14.5999 7.9999C14.5999 7.66853 14.3313 7.3999 13.9999 7.3999H8.59996L8.6 1.99991Z"
     }
   }]
-}, Ir = Fe(function(e, n) {
+}, Ir = Le(function(e, n) {
   return Ke(Ye, Object.assign({}, e, {
     id: "increase-icon",
     ref: n,
@@ -1328,7 +1328,7 @@ const pi = {
       clipRule: "evenodd"
     }
   }]
-}, br = Fe(function(e, n) {
+}, br = Le(function(e, n) {
   return Ke(Ye, Object.assign({}, e, {
     id: "more-icon",
     ref: n,
@@ -1360,7 +1360,7 @@ const Si = {
       clipRule: "evenodd"
     }
   }]
-}, yr = Fe(function(e, n) {
+}, yr = Le(function(e, n) {
   return Ke(Ye, Object.assign({}, e, {
     id: "select-range-icon",
     ref: n,
@@ -1369,67 +1369,67 @@ const Si = {
 });
 yr.displayName = "SelectRangeIcon";
 function vi(t) {
-  const { onChange: e } = t, n = "-1", [o, r] = W(""), [s, i] = W([]), [c, a] = W(0), [g, m] = W(n), [d, h] = W(0), [u, l] = W(null), v = T(Ut), p = T(ot), S = T(ln), C = pe(S.sidebarOptions$), _ = ci(er, p);
+  const { onChange: e } = t, n = "-1", [o, r] = W(""), [s, i] = W([]), [c, l] = W(0), [m, g] = W(n), [h, u] = W(0), [d, a] = W(null), v = T(Ut), S = T(ot), p = T(an), C = pe(p.sidebarOptions$), _ = ci(er, S);
   _.unshift({
-    label: p.t("formula.moreFunctions.allFunctions"),
+    label: S.t("formula.moreFunctions.allFunctions"),
     value: n
   });
-  const I = p.t("formula.prompt.required"), f = p.t("formula.prompt.optional");
+  const I = S.t("formula.prompt.required"), f = S.t("formula.prompt.optional");
   $(() => {
     A(n);
   }, []), $(() => {
     y(0);
   }, [s]), $(() => {
-    C != null && C.visible && (r(""), i([]), a(0), m(n), h(0), l(null), A(n));
+    C != null && C.visible && (r(""), i([]), l(0), g(n), u(0), a(null), A(n));
   }, [C]);
   const b = (E) => {
     if (o.trim() === "") return E;
-    const N = new RegExp(`(${o.toLocaleUpperCase()})`);
-    return E.split(N).filter(Boolean).map((w, F) => w.match(N) ? /* @__PURE__ */ M("span", { className: "univer-text-red-500", children: w }, F) : w);
+    const O = new RegExp(`(${o.toLocaleUpperCase()})`);
+    return E.split(O).filter(Boolean).map((w, L) => w.match(O) ? /* @__PURE__ */ M("span", { className: "univer-text-red-500", children: w }, L) : w);
   }, y = (E) => {
     if (s.length === 0) {
-      l(null);
+      a(null);
       return;
     }
-    h(E);
-    const N = v.getFunctionInfo(s[E].name);
-    if (!N) {
-      l(null);
+    u(E);
+    const O = v.getFunctionInfo(s[E].name);
+    if (!O) {
+      a(null);
       return;
     }
-    l(N), e(N);
+    a(O), e(O);
   };
   function A(E) {
-    m(E);
-    const N = v.getSearchListByType(+E);
-    i(N);
+    g(E);
+    const O = v.getSearchListByType(+E);
+    i(O);
   }
   function D(E) {
     r(E);
-    const N = v.getSearchListByName(E);
-    i(N);
+    const O = v.getSearchListByName(E);
+    i(O);
   }
   function x(E) {
     if (E.stopPropagation(), E.key === "ArrowDown") {
-      const N = c + 1;
-      a(N === s.length ? 0 : N);
+      const O = c + 1;
+      l(O === s.length ? 0 : O);
     } else if (E.key === "ArrowUp") {
-      const N = c - 1;
-      a(N === -1 ? s.length - 1 : N);
+      const O = c - 1;
+      l(O === -1 ? s.length - 1 : O);
     } else E.key === "Enter" && y(c);
   }
-  const O = (E) => {
-    a(E);
+  const N = (E) => {
+    l(E);
   }, k = () => {
-    a(-1);
+    l(-1);
   };
   return /* @__PURE__ */ V("div", { children: [
     /* @__PURE__ */ V("div", { className: "univer-flex univer-items-center univer-justify-between univer-gap-2", children: [
-      /* @__PURE__ */ M(vs, { value: g, options: _, onChange: A }),
+      /* @__PURE__ */ M(vs, { value: m, options: _, onChange: A }),
       /* @__PURE__ */ M(
         ur,
         {
-          placeholder: p.t("formula.moreFunctions.searchFunctionPlaceholder"),
+          placeholder: S.t("formula.moreFunctions.searchFunctionPlaceholder"),
           onKeyDown: x,
           value: o,
           onChange: D,
@@ -1441,20 +1441,20 @@ function vi(t) {
     s.length > 0 && /* @__PURE__ */ M(
       "ul",
       {
-        className: re("univer-mb-0 univer-mt-2 univer-box-border univer-max-h-72 univer-w-full univer-select-none univer-list-none univer-overflow-y-auto univer-rounded univer-p-3 univer-outline-none", an, nt),
+        className: re("univer-mb-0 univer-mt-2 univer-box-border univer-max-h-72 univer-w-full univer-select-none univer-list-none univer-overflow-y-auto univer-rounded univer-p-3 univer-outline-none", ln, nt),
         onKeyDown: x,
         tabIndex: -1,
-        children: s.map(({ name: E }, N) => /* @__PURE__ */ V(
+        children: s.map(({ name: E }, O) => /* @__PURE__ */ V(
           "li",
           {
             className: re("univer-relative univer-box-border univer-cursor-pointer univer-rounded univer-px-7 univer-py-1 univer-text-sm univer-text-gray-900 univer-transition-colors dark:!univer-text-white", {
-              "univer-bg-gray-200 dark:!univer-bg-gray-600": c === N
+              "univer-bg-gray-200 dark:!univer-bg-gray-600": c === O
             }),
-            onMouseEnter: () => O(N),
+            onMouseEnter: () => N(O),
             onMouseLeave: k,
-            onClick: () => y(N),
+            onClick: () => y(O),
             children: [
-              d === N && /* @__PURE__ */ M(
+              h === O && /* @__PURE__ */ M(
                 _r,
                 {
                   className: "univer-absolute univer-left-1.5 univer-top-1/2 univer-inline-flex -univer-translate-y-1/2 univer-text-base univer-text-primary-600"
@@ -1463,27 +1463,27 @@ function vi(t) {
               /* @__PURE__ */ M("span", { className: "univer-block", children: b(E) })
             ]
           },
-          N
+          O
         ))
       }
     ),
-    u && /* @__PURE__ */ V("div", { className: re("univer-mx-0 univer-my-2 univer-overflow-y-auto", nt), children: [
-      /* @__PURE__ */ M(ut, { title: u.functionName, value: u.description }),
+    d && /* @__PURE__ */ V("div", { className: re("univer-mx-0 univer-my-2 univer-overflow-y-auto", nt), children: [
+      /* @__PURE__ */ M(ut, { title: d.functionName, value: d.description }),
       /* @__PURE__ */ M(
         ut,
         {
-          title: p.t("formula.moreFunctions.syntax"),
-          value: /* @__PURE__ */ M(vr, { prefix: u.functionName, value: u.functionParameter })
+          title: S.t("formula.moreFunctions.syntax"),
+          value: /* @__PURE__ */ M(vr, { prefix: d.functionName, value: d.functionParameter })
         }
       ),
       /* @__PURE__ */ M(
         ut,
         {
-          title: p.t("formula.prompt.helpExample"),
-          value: `${u.functionName}(${u.functionParameter.map((E) => E.example).join(",")})`
+          title: S.t("formula.prompt.helpExample"),
+          value: `${d.functionName}(${d.functionParameter.map((E) => E.example).join(",")})`
         }
       ),
-      u.functionParameter && u.functionParameter.map((E) => /* @__PURE__ */ M(
+      d.functionParameter && d.functionParameter.map((E) => /* @__PURE__ */ M(
         ut,
         {
           title: E.name,
@@ -1497,20 +1497,20 @@ function vi(t) {
 function Ci() {
   const t = ho(), [e, n] = W(!0), [o, r] = W(!1), [s, i] = W(null);
   T(nn);
-  const c = T(ot), a = T(je), g = T(ne), m = T(me);
-  function d() {
+  const c = T(ot), l = T(je), m = T(ne), g = T(me);
+  function h() {
     n(!e), r(!o);
   }
-  function h() {
-    const u = ir(g);
-    if (!u) return;
-    m.executeCommand(zn.id, {
+  function u() {
+    const d = ir(m);
+    if (!d) return;
+    g.executeCommand(zn.id, {
       visible: !0,
-      unitId: u.unitId,
+      unitId: d.unitId,
       eventType: xe.Dblclick
     });
-    const l = a.getEditor(Jt), v = a.getEditor(jn), p = `=${s == null ? void 0 : s.functionName}(`;
-    l == null || l.replaceText(p), v == null || v.replaceText(p, !1);
+    const a = l.getEditor(Jt), v = l.getEditor(jn), S = `=${s == null ? void 0 : s.functionName}(`;
+    a == null || a.replaceText(S), v == null || v.replaceText(S, !1);
   }
   return /* @__PURE__ */ V(
     "div",
@@ -1519,24 +1519,24 @@ function Ci() {
       className: "univer-box-border univer-flex univer-h-full univer-flex-col univer-justify-between univer-py-2",
       children: [
         e && /* @__PURE__ */ M(vi, { onChange: i }),
-        o && /* @__PURE__ */ M(li, { functionInfo: s, onChange: () => {
+        o && /* @__PURE__ */ M(ai, { functionInfo: s, onChange: () => {
         } }),
         /* @__PURE__ */ V("div", { className: "univer-flex univer-justify-end", children: [
           o && /* @__PURE__ */ M(
             et,
             {
               variant: "primary",
-              onClick: d,
+              onClick: h,
               className: "univer-mb-5 univer-ml-4 univer-mr-0 univer-mt-0",
               children: c.t("formula.moreFunctions.next")
             }
           ),
-          o && /* @__PURE__ */ M(et, { onClick: d, className: "univer-mb-5 univer-ml-4 univer-mr-0 univer-mt-0", children: c.t("formula.moreFunctions.prev") }),
+          o && /* @__PURE__ */ M(et, { onClick: h, className: "univer-mb-5 univer-ml-4 univer-mr-0 univer-mt-0", children: c.t("formula.moreFunctions.prev") }),
           e && !!t && /* @__PURE__ */ M(
             et,
             {
               variant: "primary",
-              onClick: h,
+              onClick: u,
               className: "univer-mb-5 univer-ml-4 univer-mr-0 univer-mt-0",
               children: c.t("formula.moreFunctions.confirm")
             }
@@ -1547,8 +1547,8 @@ function Ci() {
   );
 }
 function _i(t) {
-  return t.get(ne).getCurrentTypeOfUnit$(j.UNIVER_SHEET).pipe(
-    Fo((o) => o ? t.get(Fn) ? new Lo((s) => s.next(!t.get(Fn).supportClipboard)) : Nn(!0) : Nn(!0))
+  return t.get(ne).getCurrentTypeOfUnit$(K.UNIVER_SHEET).pipe(
+    Lo((o) => o ? t.get(Ln) ? new Fo((s) => s.next(!t.get(Ln).supportClipboard)) : On(!0) : On(!0))
   );
 }
 function Ri(t) {
@@ -1578,11 +1578,11 @@ function bi(t) {
   return t.getContextValue(Yr) && t.getContextValue(Zr);
 }
 const Ht = [
-  L.ARROW_DOWN,
-  L.ARROW_UP,
-  L.ARROW_LEFT,
-  L.ARROW_RIGHT
-], yi = [...Ht, L.ENTER, L.TAB, L.ESC];
+  F.ARROW_DOWN,
+  F.ARROW_UP,
+  F.ARROW_LEFT,
+  F.ARROW_RIGHT
+], yi = [...Ht, F.ENTER, F.TAB, F.ESC];
 function Ti() {
   const t = [];
   for (const e of yi)
@@ -1612,7 +1612,7 @@ function xi() {
     });
   return t;
 }
-function Oi() {
+function Ni() {
   const t = [];
   for (const e of Ht)
     t.push({
@@ -1627,7 +1627,7 @@ function Oi() {
     });
   return t;
 }
-function Ni() {
+function Oi() {
   const t = [];
   for (const e of Ht)
     t.push({
@@ -1644,12 +1644,12 @@ function Ni() {
 }
 const Mi = {
   id: gr.id,
-  binding: L.F4,
+  binding: F.F4,
   preconditions: (t) => mt(t)
 };
 function wi() {
   const t = [];
-  for (const e of [L.ENTER, L.TAB, L.ARROW_DOWN, L.ARROW_UP])
+  for (const e of [F.ENTER, F.TAB, F.ARROW_DOWN, F.ARROW_UP])
     t.push({
       id: it.id,
       binding: e,
@@ -1664,9 +1664,9 @@ function wi() {
 }
 const ki = {
   id: is.id,
-  binding: P.ALT | L.EQUAL,
+  binding: P.ALT | F.EQUAL,
   preconditions: mo,
-  mac: P.CTRL_COMMAND | P.ALT | L.EQUAL,
+  mac: P.CTRL_COMMAND | P.ALT | F.EQUAL,
   description: "shortcut.sheets-formula-ui.quick-sum",
   group: "4_sheet-edit"
 };
@@ -1688,9 +1688,9 @@ let Dt = class extends rt {
   _registerCommands() {
     [
       un,
-      Os,
-      Fs,
+      Ns,
       Ls,
+      Fs,
       xs,
       it,
       gr
@@ -1700,8 +1700,8 @@ let Dt = class extends rt {
     [
       ...Ti(),
       ...xi(),
-      ...Oi(),
       ...Ni(),
+      ...Oi(),
       ...wi(),
       ki,
       Mi
@@ -1710,20 +1710,20 @@ let Dt = class extends rt {
     });
   }
   _registerComponents() {
-    this.disposeWithMe(this._uiPartsService.registerComponent(po.FORMULA_AUX, () => ar(ii, this._injector))), this._componentManager.register(fr, Ci);
+    this.disposeWithMe(this._uiPartsService.registerComponent(po.FORMULA_AUX, () => lr(ii, this._injector))), this._componentManager.register(fr, Ci);
   }
   _registerRenderModules() {
-    this.disposeWithMe(this._renderManagerService.registerRenderModule(j.UNIVER_SHEET, [kt]));
+    this.disposeWithMe(this._renderManagerService.registerRenderModule(K.UNIVER_SHEET, [kt]));
   }
 };
 Dt = Di([
   He(0, B(ft)),
-  He(1, hs),
+  He(1, ds),
   He(2, me),
   He(3, Wt),
   He(4, cr),
-  He(5, Oe),
-  He(6, B(lr))
+  He(5, Ne),
+  He(6, B(ar))
 ], Dt);
 class Tr {
   constructor() {
@@ -1739,8 +1739,8 @@ class Tr {
     return this._currentSelector$.next(e), o;
   }
 }
-var Fi = Object.getOwnPropertyDescriptor, Li = (t, e, n, o) => {
-  for (var r = o > 1 ? void 0 : o ? Fi(e, n) : e, s = t.length - 1, i; s >= 0; s--)
+var Li = Object.getOwnPropertyDescriptor, Fi = (t, e, n, o) => {
+  for (var r = o > 1 ? void 0 : o ? Li(e, n) : e, s = t.length - 1, i; s >= 0; s--)
     (i = t[s]) && (r = i(r) || r);
   return r;
 }, Qe = (t, e) => (n, o) => e(n, o, t);
@@ -1790,26 +1790,26 @@ let De = class extends So {
   }
   _initCanvasEventListeners() {
     const e = this._getSheetObject(), { spreadsheetRowHeader: n, spreadsheetColumnHeader: o, spreadsheet: r, spreadsheetLeftTopPlaceholder: s } = e, { scene: i } = this._context, c = new Be();
-    return c.add(r == null ? void 0 : r.onPointerDown$.subscribeEvent((a, g) => {
-      this.inRefSelectionMode() && (this._onPointerDown(a, r.zIndex + 1, Se.NORMAL, this._getActiveViewport(a)), a.button !== 2 && g.stopPropagation());
+    return c.add(r == null ? void 0 : r.onPointerDown$.subscribeEvent((l, m) => {
+      this.inRefSelectionMode() && (this._onPointerDown(l, r.zIndex + 1, Se.NORMAL, this._getActiveViewport(l)), l.button !== 2 && m.stopPropagation());
     })), c.add(
-      n == null ? void 0 : n.onPointerDown$.subscribeEvent((a, g) => {
+      n == null ? void 0 : n.onPointerDown$.subscribeEvent((l, m) => {
         if (!this.inRefSelectionMode()) return;
-        const m = this._sheetSkeletonManagerService.getCurrent().skeleton, { row: d } = bn(a.offsetX, a.offsetY, i, m);
-        yn(this._workbookSelections.getCurrentSelections(), d, Se.ROW) || (this._onPointerDown(a, (r.zIndex || 1) + 1, Se.ROW, this._getActiveViewport(a), Bt.Y), a.button !== 2 && g.stopPropagation());
+        const g = this._sheetSkeletonManagerService.getCurrent().skeleton, { row: h } = bn(l.offsetX, l.offsetY, i, g);
+        yn(this._workbookSelections.getCurrentSelections(), h, Se.ROW) || (this._onPointerDown(l, (r.zIndex || 1) + 1, Se.ROW, this._getActiveViewport(l), Bt.Y), l.button !== 2 && m.stopPropagation());
       })
-    ), c.add(o == null ? void 0 : o.onPointerDown$.subscribeEvent((a, g) => {
+    ), c.add(o == null ? void 0 : o.onPointerDown$.subscribeEvent((l, m) => {
       if (!this.inRefSelectionMode()) return;
-      const m = this._sheetSkeletonManagerService.getCurrent().skeleton, { column: d } = bn(a.offsetX, a.offsetY, i, m);
-      yn(this._workbookSelections.getCurrentSelections(), d, Se.COLUMN) || (this._onPointerDown(a, (r.zIndex || 1) + 1, Se.COLUMN, this._getActiveViewport(a), Bt.X), a.button !== 2 && g.stopPropagation());
-    })), c.add(s == null ? void 0 : s.onPointerDown$.subscribeEvent((a, g) => {
+      const g = this._sheetSkeletonManagerService.getCurrent().skeleton, { column: h } = bn(l.offsetX, l.offsetY, i, g);
+      yn(this._workbookSelections.getCurrentSelections(), h, Se.COLUMN) || (this._onPointerDown(l, (r.zIndex || 1) + 1, Se.COLUMN, this._getActiveViewport(l), Bt.X), l.button !== 2 && m.stopPropagation());
+    })), c.add(s == null ? void 0 : s.onPointerDown$.subscribeEvent((l, m) => {
       if (this._reset(), !this.inRefSelectionMode()) return;
-      const m = this._sheetSkeletonManagerService.getCurrent().skeleton, d = vo(m);
-      this._addSelectionControlByModelData(d), this._selectionMoveStart$.next(this.getSelectionDataWithStyle());
-      const h = i.onPointerUp$.subscribeEvent(() => {
-        h.unsubscribe(), this._selectionMoveEnd$.next(this.getSelectionDataWithStyle());
+      const g = this._sheetSkeletonManagerService.getCurrent().skeleton, h = vo(g);
+      this._addSelectionControlByModelData(h), this._selectionMoveStart$.next(this.getSelectionDataWithStyle());
+      const u = i.onPointerUp$.subscribeEvent(() => {
+        u.unsubscribe(), this._selectionMoveEnd$.next(this.getSelectionDataWithStyle());
       });
-      a.button !== 2 && g.stopPropagation();
+      l.button !== 2 && m.stopPropagation();
     })), c;
   }
   /**
@@ -1883,38 +1883,38 @@ let De = class extends So {
     if (!c || !i)
       return;
     r && (this._activeViewport = r);
-    const { offsetX: a, offsetY: g } = e, m = c.getViewport(wn.VIEW_MAIN);
-    if (!m) return;
-    const d = c.getCoordRelativeToViewport(kn.FromArray([a, g])), { x: h, y: u } = d;
-    this._startViewportPosX = h, this._startViewportPosY = u;
-    const l = c.getScrollXYInfoByViewport(d), { scaleX: v, scaleY: p } = c.getAncestorScale(), S = this._skeleton.getCellByOffset(h, u, v, p, l);
-    if (!S) return;
+    const { offsetX: l, offsetY: m } = e, g = c.getViewport(wn.VIEW_MAIN);
+    if (!g) return;
+    const h = c.getCoordRelativeToViewport(kn.FromArray([l, m])), { x: u, y: d } = h;
+    this._startViewportPosX = u, this._startViewportPosY = d;
+    const a = c.getScrollXYInfoByViewport(h), { scaleX: v, scaleY: S } = c.getAncestorScale(), p = this._skeleton.getCellByOffset(u, d, v, S, a);
+    if (!p) return;
     switch (o) {
       case Se.NORMAL:
         break;
       case Se.ROW:
-        S.startColumn = 0, S.endColumn = this._skeleton.getColumnCount() - 1;
+        p.startColumn = 0, p.endColumn = this._skeleton.getColumnCount() - 1;
         break;
       case Se.COLUMN:
-        S.startRow = 0, S.endRow = this._skeleton.getRowCount() - 1;
+        p.startRow = 0, p.endRow = this._skeleton.getRowCount() - 1;
         break;
       case Se.ALL:
-        S.startRow = 0, S.startColumn = 0, S.endRow = this._skeleton.getRowCount() - 1, S.endColumn = this._skeleton.getColumnCount() - 1;
+        p.startRow = 0, p.startColumn = 0, p.endRow = this._skeleton.getRowCount() - 1, p.endColumn = this._skeleton.getColumnCount() - 1;
     }
-    const C = { range: S, primary: S, style: null };
+    const C = { range: p, primary: p, style: null };
     C.range.rangeType = o;
     const _ = Yt(C, this._skeleton);
     this._startRangeWhenPointerDown = { ..._.rangeWithCoord };
     const I = { ..._.rangeWithCoord, rangeType: o };
     let f = this.getActiveSelectionControl();
     const b = this.getSelectionControls();
-    for (const O of b) {
-      if (e.button === 2 && qn.contains(O.model, I)) {
-        f = O;
+    for (const N of b) {
+      if (e.button === 2 && qn.contains(N.model, I)) {
+        f = N;
         return;
       }
-      if (O.model.isEqual(I)) {
-        f = O;
+      if (N.model.isEqual(I)) {
+        f = N;
         break;
       }
     }
@@ -1928,11 +1928,11 @@ let De = class extends So {
       f
       // Get updated in this method
     ) : D && f ? f.updateRangeBySelectionWithCoord(_) : f = this.newSelectionControl(c, i, C);
-    for (let O = 0; O < this.getSelectionControls().length - 1; O++)
-      this.getSelectionControls()[O].clearHighlight();
-    this._selectionMoveStart$.next(this.getSelectionDataWithStyle()), c.disableObjectsEvent(), this._clearUpdatingListeners(), this._addEndingListeners(), (x = c.getTransformer()) == null || x.clearSelectedObjects(), this._setupPointerMoveListener(m, f, o, s, h, u), this._escapeShortcutDisposable = this._shortcutService.forceEscape(), this._scenePointerUpSub = c.onPointerUp$.subscribeEvent(() => {
-      var O;
-      this._clearUpdatingListeners(), this._selectionMoveEnd$.next(this.getSelectionDataWithStyle()), (O = this._escapeShortcutDisposable) == null || O.dispose(), this._escapeShortcutDisposable = null;
+    for (let N = 0; N < this.getSelectionControls().length - 1; N++)
+      this.getSelectionControls()[N].clearHighlight();
+    this._selectionMoveStart$.next(this.getSelectionDataWithStyle()), c.disableObjectsEvent(), this._clearUpdatingListeners(), this._addEndingListeners(), (x = c.getTransformer()) == null || x.clearSelectedObjects(), this._setupPointerMoveListener(g, f, o, s, u, d), this._escapeShortcutDisposable = this._shortcutService.forceEscape(), this._scenePointerUpSub = c.onPointerUp$.subscribeEvent(() => {
+      var N;
+      this._clearUpdatingListeners(), this._selectionMoveEnd$.next(this.getSelectionDataWithStyle()), (N = this._escapeShortcutDisposable) == null || N.dispose(), this._escapeShortcutDisposable = null;
     });
   }
   /**
@@ -1948,8 +1948,8 @@ let De = class extends So {
       enableAutoFill: !1,
       rowHeaderWidth: s,
       columnHeaderHeight: i
-    }), a = Yt(o, n);
-    return c.updateRangeBySelectionWithCoord(a), this._selectionControls.push(c), c.setControlExtension({
+    }), l = Yt(o, n);
+    return c.updateRangeBySelectionWithCoord(l), this._selectionControls.push(c), c.setControlExtension({
       skeleton: n,
       scene: e,
       themeService: this._themeService,
@@ -1962,7 +1962,7 @@ let De = class extends So {
     }), c;
   }
 };
-De = Li([
+De = Fi([
   Qe(1, B(ft)),
   Qe(2, B(gt)),
   Qe(3, Wt),
@@ -1974,7 +1974,7 @@ function $i(t) {
   const e = Qn(t);
   return e.widgets = { tl: !0, tc: !0, tr: !0, ml: !0, mr: !0, bl: !0, bc: !0, br: !0 }, e;
 }
-const hn = (t, e, n = !0) => {
+const dn = (t, e, n = !0) => {
   let o = -1;
   return t.reduce((r, s, i) => {
     if (r.isFinish)
@@ -1983,18 +1983,18 @@ const hn = (t, e, n = !0) => {
     if (typeof s != "string")
       r.currentIndex += s.token.length;
     else {
-      const a = s.length;
-      r.currentIndex += a;
+      const l = s.length;
+      r.currentIndex += l;
     }
     return (n ? r.currentIndex === e : e > c && e <= r.currentIndex) && (o = i, r.isFinish = !0), r;
   }, { currentIndex: 0, isFinish: !1 }), o;
 }, xr = (t, e) => {
   const n = t[e];
   let o = -1;
-  if (!n || typeof n == "string" || n.nodeType !== Q.REFERENCE) return -1;
+  if (!n || typeof n == "string" || n.nodeType !== j.REFERENCE) return -1;
   for (let r = 0; r <= e; r++) {
     const s = t[r];
-    typeof s != "string" && s.nodeType === Q.REFERENCE && o++;
+    typeof s != "string" && s.nodeType === j.REFERENCE && o++;
   }
   return o;
 }, Pi = (t, e = 100) => {
@@ -2010,82 +2010,82 @@ const hn = (t, e, n = !0) => {
     };
   }, [t, e]);
 };
-function Or(t, e, n) {
-  const o = T(je), r = ie(() => new rr({ left: -999, top: -999, right: -999, bottom: -999 }), []), s = T(ln), i = T(ne), c = te(() => {
+function Nr(t, e, n) {
+  const o = T(je), r = ie(() => new rr({ left: -999, top: -999, right: -999, bottom: -999 }), []), s = T(an), i = T(ne), c = te(() => {
     var _;
-    const a = o.getEditor(t);
-    if (!a)
+    const l = o.getEditor(t);
+    if (!l)
       return;
-    const g = a.getBoundingClientRect(), { marginTop: m = 0, marginBottom: d = 0 } = a.getDocumentData().documentStyle, h = a.getSkeleton();
-    if (!h) return;
-    const u = (_ = h.getSkeletonData()) == null ? void 0 : _.pages[0].height;
-    let { left: l, top: v, right: p, bottom: S } = g;
-    v = v + m, S = u ? v + u : S - d;
+    const m = l.getBoundingClientRect(), { marginTop: g = 0, marginBottom: h = 0 } = l.getDocumentData().documentStyle, u = l.getSkeleton();
+    if (!u) return;
+    const d = (_ = u.getSkeletonData()) == null ? void 0 : _.pages[0].height;
+    let { left: a, top: v, right: S, bottom: p } = m;
+    v = v + g, p = d ? v + d : p - h;
     const C = r.getValue();
-    if (!(C.left === l && C.top === v && C.right === p && C.bottom === S))
-      return r.next({ left: l - 1, right: p + 1, top: v - 1, bottom: S + 1 }), g;
+    if (!(C.left === a && C.top === v && C.right === S && C.bottom === p))
+      return r.next({ left: a - 1, right: S + 1, top: v - 1, bottom: p + 1 }), m;
   });
   return $(() => {
     e && c();
   }, [t, o, i.unitAdded$, c, e, ...n != null ? n : []]), Pi(c), $(() => {
-    const a = s.scrollEvent$.pipe($o(100)).subscribe(c);
+    const l = s.scrollEvent$.pipe($o(100)).subscribe(c);
     return () => {
-      a.unsubscribe();
+      l.unsubscribe();
     };
   }, []), [r, c];
 }
 const Ze = (t) => {
-  const e = G(t);
+  const e = X(t);
   return e.current = t, e;
 }, Ui = (t, e, n) => {
-  const o = T(Vt), r = T(Ut), s = T(Ce), [i, c] = W(), [a, g] = W(-1), [m, d] = W(!0), h = Ze(m), u = G(e);
-  u.current = e;
-  const l = () => {
-    c(void 0), g(-1), d(!1);
+  const o = T(Vt), r = T(Ut), s = T(Ce), [i, c] = W(), [l, m] = W(-1), [g, h] = W(!0), u = Ze(g), d = X(e);
+  d.current = e;
+  const a = () => {
+    c(void 0), m(-1), h(!1);
   };
   return $(() => {
     const v = s.sequenceNodesBuilder(e.slice(1));
     o.setSequenceNodes(v != null ? v : []);
   }, [e]), $(() => {
     if (n && t) {
-      const v = n.selectionChange$.pipe(rn(50)).subscribe((S) => {
-        if (S.textRanges.length === 1) {
-          const [C] = S.textRanges;
-          if (C.collapsed && h.current) {
+      const v = n.selectionChange$.pipe(rn(50)).subscribe((p) => {
+        if (p.textRanges.length === 1) {
+          const [C] = p.textRanges;
+          if (C.collapsed && u.current) {
             const { startOffset: _ } = C, I = o.getCurrentSequenceNodeIndex(_ - 2), f = o.getCurrentSequenceNodeByIndex(I), b = o.getCurrentSequenceNodeByIndex(I + 1);
             if (f)
               if (typeof f != "string" && f.nodeType === 3 && !r.hasDefinedNameDescription(f.token.trim()) && b === qe.OPEN_BRACKET) {
                 const y = r.getFunctionInfo(f.token);
-                c(y), g(-1);
+                c(y), m(-1);
                 return;
               } else {
-                const y = s.getFunctionAndParameter(`${u.current}A`, _ - 1);
+                const y = s.getFunctionAndParameter(`${d.current}A`, _ - 1);
                 if (y) {
                   const { functionName: A, paramIndex: D } = y, x = r.getFunctionInfo(A);
-                  c(x), g(D);
+                  c(x), m(D);
                   return;
                 }
               }
           }
         }
-        c(void 0), g(-1);
-      }), p = n.selectionChange$.pipe(
-        or((S) => S.textRanges.length === 1),
-        nr((S) => S.textRanges[0].startOffset),
+        c(void 0), m(-1);
+      }), S = n.selectionChange$.pipe(
+        or((p) => p.textRanges.length === 1),
+        nr((p) => p.textRanges[0].startOffset),
         Po()
       ).subscribe(() => {
-        d(!0);
+        h(!0);
       });
       return () => {
-        v.unsubscribe(), p.unsubscribe();
+        v.unsubscribe(), S.unsubscribe();
       };
     }
   }, [n, t]), $(() => {
-    t || l();
+    t || a();
   }, [t]), {
     functionInfo: i,
-    paramIndex: a,
-    reset: l
+    paramIndex: l,
+    reset: a
   };
 }, Wi = ({ onClick: t }) => /* @__PURE__ */ M(
   "div",
@@ -2132,19 +2132,19 @@ const Ze = (t) => {
 }, Vn = () => {
 };
 function Hi(t) {
-  const { onParamsSwitch: e = Vn, onClose: n = Vn, isFocus: o, editor: r, formulaText: s } = t, { functionInfo: i, paramIndex: c, reset: a } = Ui(o, s, r), g = T(nn), m = !pe(g.helpFunctionVisible$), [d, h] = W(!0), u = T(ot), l = u.t("formula.prompt.required"), v = u.t("formula.prompt.optional"), p = r.getEditorId(), [S] = Or(p, !!i, [i, c]);
+  const { onParamsSwitch: e = Vn, onClose: n = Vn, isFocus: o, editor: r, formulaText: s } = t, { functionInfo: i, paramIndex: c, reset: l } = Ui(o, s, r), m = T(nn), g = !pe(m.helpFunctionVisible$), [h, u] = W(!0), d = T(ot), a = d.t("formula.prompt.required"), v = d.t("formula.prompt.optional"), S = r.getEditorId(), [p] = Nr(S, !!i, [i, c]);
   function C(f) {
     e && e(f);
   }
   const _ = te((f) => {
-    g.helpFunctionVisible$.next(!f);
+    m.helpFunctionVisible$.next(!f);
   }), I = () => {
     _(!0), n();
   };
-  return i ? m ? /* @__PURE__ */ M(Zt, { portal: !0, anchorRect$: S, direction: "left-center", children: /* @__PURE__ */ M(Wi, { onClick: () => _(!1) }) }, "hidden") : /* @__PURE__ */ M(Zt, { portal: !0, onClickOutside: () => a(), anchorRect$: S, direction: "vertical", children: /* @__PURE__ */ V(
+  return i ? g ? /* @__PURE__ */ M(Zt, { portal: !0, anchorRect$: p, direction: "left-center", children: /* @__PURE__ */ M(Wi, { onClick: () => _(!1) }) }, "hidden") : /* @__PURE__ */ M(Zt, { portal: !0, onClickOutside: () => l(), anchorRect$: p, direction: "vertical", children: /* @__PURE__ */ V(
     "div",
     {
-      className: re("univer-m-0 univer-box-border univer-w-[250px] univer-select-none univer-list-none univer-rounded-lg univer-bg-white univer-leading-5 univer-shadow-md univer-outline-none dark:!univer-bg-gray-900", an),
+      className: re("univer-m-0 univer-box-border univer-w-[250px] univer-select-none univer-list-none univer-rounded-lg univer-bg-white univer-leading-5 univer-shadow-md univer-outline-none dark:!univer-bg-gray-900", ln),
       children: [
         /* @__PURE__ */ V(
           "div",
@@ -2165,8 +2165,8 @@ function Hi(t) {
                   "div",
                   {
                     className: "univer-ml-2 univer-flex univer-h-6 univer-w-6 univer-cursor-pointer univer-items-center univer-justify-center univer-rounded univer-bg-transparent univer-p-0 univer-text-xs univer-text-gray-500 univer-outline-none univer-transition-colors hover:univer-bg-gray-200 dark:hover:!univer-bg-gray-600",
-                    style: { transform: d ? "rotateZ(-90deg)" : "rotateZ(90deg)" },
-                    onClick: () => h(!d),
+                    style: { transform: h ? "rotateZ(-90deg)" : "rotateZ(90deg)" },
+                    onClick: () => u(!h),
                     children: /* @__PURE__ */ M(br, {})
                   }
                 ),
@@ -2187,21 +2187,21 @@ function Hi(t) {
           {
             className: re("univer-box-border univer-max-h-[350px] univer-overflow-y-auto univer-px-4 univer-pb-3 univer-pt-0", nt),
             style: {
-              height: d ? "unset" : 0,
-              padding: d ? "revert-layer" : 0
+              height: h ? "unset" : 0,
+              padding: h ? "revert-layer" : 0
             },
             children: /* @__PURE__ */ V("div", { className: "univer-mt-3", children: [
               /* @__PURE__ */ M(
                 Kt,
                 {
-                  title: u.t("formula.prompt.helpExample"),
+                  title: d.t("formula.prompt.helpExample"),
                   value: `${i.functionName}(${i.functionParameter.map((f) => f.example).join(",")})`
                 }
               ),
               /* @__PURE__ */ M(
                 Kt,
                 {
-                  title: u.t("formula.prompt.helpAbstract"),
+                  title: d.t("formula.prompt.helpAbstract"),
                   value: i.description
                 }
               ),
@@ -2210,7 +2210,7 @@ function Hi(t) {
                 {
                   className: c === b ? "univer-text-primary-500" : "",
                   title: f.name,
-                  value: `${f.require ? l : v} ${f.detail}`
+                  value: `${f.require ? a : v} ${f.detail}`
                 },
                 b
               ))
@@ -2232,8 +2232,8 @@ const Bi = (t) => {
         t.setSelectionRanges([{ startOffset: o, endOffset: o }]);
       else if (!i.length && !t.docSelectionRenderService.isOnPointerEvent) {
         const c = (s = (r = t.getDocumentData().body) == null ? void 0 : r.dataStream) != null ? s : `\r
-`, a = Math.max(c.length - 2, 0);
-        t.setSelectionRanges([{ startOffset: a, endOffset: a }]);
+`, l = Math.max(c.length - 2, 0);
+        t.setSelectionRanges([{ startOffset: l, endOffset: l }]);
       } else
         t.setSelectionRanges(i);
     }
@@ -2247,36 +2247,36 @@ function qi(t) {
 var ye = /* @__PURE__ */ ((t) => (t[t.NOT_SELECT = 0] = "NOT_SELECT", t[t.NEED_ADD = 1] = "NEED_ADD", t[t.CAN_EDIT = 2] = "CAN_EDIT", t[t.EDIT_OTHER_SHEET_REFERENCE = 3] = "EDIT_OTHER_SHEET_REFERENCE", t[t.EDIT_OTHER_WORKBOOK_REFERENCE = 4] = "EDIT_OTHER_WORKBOOK_REFERENCE", t))(ye || {});
 function ji(t) {
   var y;
-  const { editorId: e, isFocus: n, disableOnClick: o, unitId: r, subUnitId: s } = t, i = T(Oe), c = T(ne), a = i.getRenderById(r), g = i.getRenderById(e), m = g == null ? void 0 : g.with(sr), d = T(hr), h = T(ft), [u, l] = W(
+  const { editorId: e, isFocus: n, disableOnClick: o, unitId: r, subUnitId: s } = t, i = T(Ne), c = T(ne), l = i.getRenderById(r), m = i.getRenderById(e), g = m == null ? void 0 : m.with(sr), h = T(dr), u = T(ft), [d, a] = W(
     0
     /* NOT_SELECT */
-  ), v = T(Ce), p = G(!0), S = a == null ? void 0 : a.with(De), C = Ze(u), _ = c.getUnit(r, j.UNIVER_SHEET), I = _ == null ? void 0 : _.getSheetBySheetId(s), f = te((A) => {
-    S && S.setSkipLastEnabled(
+  ), v = T(Ce), S = X(!0), p = l == null ? void 0 : l.with(De), C = Ze(d), _ = c.getUnit(r, K.UNIVER_SHEET), I = _ == null ? void 0 : _.getSheetBySheetId(s), f = te((A) => {
+    p && p.setSkipLastEnabled(
       A === 1 || A === 3 || A === 4
       /* EDIT_OTHER_WORKBOOK_REFERENCE */
-    ), C.current = A, l(A);
+    ), C.current = A, a(A);
   }), b = te(() => {
-    var ce, le, de;
-    const A = c.getCurrentUnitOfType(j.UNIVER_SHEET);
+    var ce, ae, he;
+    const A = c.getCurrentUnitOfType(K.UNIVER_SHEET);
     if (!A) return;
-    const D = A.getActiveSheet(), x = m == null ? void 0 : m.getActiveTextRange(), O = x != null && x.collapsed ? x.startOffset : -1, k = qi(h);
+    const D = A.getActiveSheet(), x = g == null ? void 0 : g.getActiveTextRange(), N = x != null && x.collapsed ? x.startOffset : -1, k = qi(u);
     if (!k) return;
-    const E = (ce = k == null ? void 0 : k.dataStream) == null ? void 0 : ce.slice(0, -2), N = ((le = v.sequenceNodesBuilder(E)) != null ? le : []).map((K) => typeof K == "object" ? K.nodeType === Q.REFERENCE ? {
-      ...K,
-      range: xo(K.token)
+    const E = (ce = k == null ? void 0 : k.dataStream) == null ? void 0 : ce.slice(0, -2), O = ((ae = v.sequenceNodesBuilder(E)) != null ? ae : []).map((Y) => typeof Y == "object" ? Y.nodeType === j.REFERENCE ? {
+      ...Y,
+      range: xo(Y.token)
     } : {
-      ...K,
+      ...Y,
       range: void 0
-    } : K), R = E[O - 1], w = E[O], F = N.find((K) => typeof K == "object" && K.nodeType === Q.REFERENCE && O === K.endIndex + 2), U = R && Oo(R) && (!w || No(w) && w !== qe.OPEN_BRACKET), H = !!F;
+    } : Y), R = E[N - 1], w = E[N], L = O.find((Y) => typeof Y == "object" && Y.nodeType === j.REFERENCE && N === Y.endIndex + 2), U = R && No(R) && (!w || Oo(w) && w !== qe.OPEN_BRACKET), H = !!L;
     if ((E == null ? void 0 : E.substring(0, 1)) === "=" && (U || H))
       if (H) {
-        if (p.current)
+        if (S.current)
           return;
-        const { sheetName: K, unitId: J } = F.range, ze = (de = c.getCurrentUnitOfType(j.UNIVER_SHEET)) == null ? void 0 : de.getUnitId();
+        const { sheetName: Y, unitId: J } = L.range, ze = (he = c.getCurrentUnitOfType(K.UNIVER_SHEET)) == null ? void 0 : he.getUnitId();
         J && J !== ze ? f(
           4
           /* EDIT_OTHER_WORKBOOK_REFERENCE */
-        ) : !K && D.getSheetId() === (I == null ? void 0 : I.getSheetId()) || K === D.getName() ? f(
+        ) : !Y && D.getSheetId() === (I == null ? void 0 : I.getSheetId()) || Y === D.getName() ? f(
           2
           /* CAN_EDIT */
         ) : f(
@@ -2284,7 +2284,7 @@ function ji(t) {
           /* EDIT_OTHER_SHEET_REFERENCE */
         );
       } else
-        p.current = !1, f(
+        S.current = !1, f(
           1
           /* NEED_ADD */
         );
@@ -2295,36 +2295,36 @@ function ji(t) {
       );
   });
   return $(() => {
-    const A = d.textSelection$.pipe(or((D) => D.unitId === e)).subscribe(() => {
+    const A = h.textSelection$.pipe(or((D) => D.unitId === e)).subscribe(() => {
       b();
     });
     return () => A.unsubscribe();
-  }, [b, d.textSelection$, e]), $(() => {
+  }, [b, h.textSelection$, e]), $(() => {
     n || (f(
       0
       /* NOT_SELECT */
-    ), p.current = !0);
+    ), S.current = !0);
   }, [n, f]), $(() => {
     var D;
     if (!o) return;
-    const A = (D = g == null ? void 0 : g.mainComponent) == null ? void 0 : D.onPointerDown$.subscribeEvent(() => {
+    const A = (D = m == null ? void 0 : m.mainComponent) == null ? void 0 : D.onPointerDown$.subscribeEvent(() => {
       f(
         0
         /* NOT_SELECT */
-      ), p.current = !0;
+      ), S.current = !0;
     });
     return () => A == null ? void 0 : A.unsubscribe();
-  }, [o, (y = g == null ? void 0 : g.mainComponent) == null ? void 0 : y.onPointerDown$, f]), $(() => {
+  }, [o, (y = m == null ? void 0 : m.mainComponent) == null ? void 0 : y.onPointerDown$, f]), $(() => {
     if (!n) return;
     const A = _ == null ? void 0 : _.activeSheet$.subscribe(() => {
       b();
-    }), D = c.getCurrentTypeOfUnit$(j.UNIVER_SHEET).subscribe(() => {
+    }), D = c.getCurrentTypeOfUnit$(K.UNIVER_SHEET).subscribe(() => {
       b();
     });
     return () => {
       A == null || A.unsubscribe(), D == null || D.unsubscribe();
     };
-  }, [b, n, _ == null ? void 0 : _.activeSheet$, c.getCurrentTypeOfUnit$]), { isSelecting: u, isSelectingRef: C };
+  }, [b, n, _ == null ? void 0 : _.activeSheet$, c.getCurrentTypeOfUnit$]), { isSelecting: d, isSelectingRef: C };
 }
 const Ki = () => {
   const t = T(Ce);
@@ -2343,7 +2343,7 @@ function Yi(t, e, n) {
     widgetStroke: t.getColorFromTheme("white")
   };
 }
-function Nr(t) {
+function Or(t) {
   var _, I, f;
   const {
     unitId: e,
@@ -2353,117 +2353,114 @@ function Nr(t) {
     editor: s,
     refSelectionsService: i,
     refSelectionsRenderService: c,
-    sheetSkeletonManagerService: a,
-    themeService: g,
-    univerInstanceService: m
-  } = t, d = o.getUnitId(), h = m.getUnit(e, j.UNIVER_SHEET), u = h == null ? void 0 : h.getActiveSheet(), l = [];
-  if (!h || !u) {
-    i.setSelections(l);
+    sheetSkeletonManagerService: l,
+    themeService: m,
+    univerInstanceService: g
+  } = t, h = o.getUnitId(), u = g.getUnit(e, K.UNIVER_SHEET), d = u == null ? void 0 : u.getActiveSheet(), a = [];
+  if (!u || !d) {
+    i.setSelections(a);
     return;
   }
-  const v = u.getSheetId(), p = (b) => {
+  const v = d.getSheetId(), S = (b) => {
     var y;
-    return (y = h == null ? void 0 : h.getSheetBySheetName(b)) == null ? void 0 : y.getSheetId();
+    return (y = u == null ? void 0 : u.getSheetBySheetName(b)) == null ? void 0 : y.getSheetId();
   };
-  if (!((_ = a == null ? void 0 : a.getWorksheetSkeleton(v)) == null ? void 0 : _.skeleton)) return;
+  if (!((_ = l == null ? void 0 : l.getWorksheetSkeleton(v)) == null ? void 0 : _.skeleton)) return;
   const C = [];
   for (let b = 0, y = r.length; b < y; b++) {
-    const A = r[b], { themeColor: D, token: x, refIndex: O, endIndex: k } = A, E = st(x), { unitId: N, sheetName: R, range: w } = E, F = p(R);
-    if (!F && R || d !== e && N !== d || N && N !== d || F && F !== v || !F && v !== n)
+    const A = r[b], { themeColor: D, token: x, refIndex: N, endIndex: k } = A, E = st(x), { unitId: O, sheetName: R, range: w } = E, L = S(R);
+    if (!L && R || h !== e && O !== h || O && O !== h || L && L !== v || !L && v !== n)
       continue;
-    const U = rs(w, u.getRowCount(), u.getColumnCount());
-    U.unitId = e, U.sheetId = v, l.push({
+    const U = rs(w, d.getRowCount(), d.getColumnCount());
+    U.unitId = e, U.sheetId = v, a.push({
       range: U,
       primary: null,
-      style: Yi(g, D, O.toString())
+      style: Yi(m, D, N.toString())
     }), C.push(k);
   }
   if (s) {
     const b = (f = (I = s.getSelectionRanges()) == null ? void 0 : I[0]) == null ? void 0 : f.startOffset, y = C.findIndex((A) => A + 2 === b);
     y !== -1 ? c == null || c.setActiveSelectionIndex(y) : c == null || c.resetActiveSelectionIndex();
   }
-  return l;
+  return a;
 }
 function Zi(t, e) {
-  const n = T(ne), o = T(gt), r = T(Pt), s = T(Oe), i = pe(ie(() => n.getCurrentTypeOfUnit$(j.UNIVER_SHEET), [n])), c = i ? s.getRenderById(i.getUnitId()) : null, a = c == null ? void 0 : c.with(De), g = c == null ? void 0 : c.with($t), m = te((d, h) => {
-    const u = n.getCurrentUnitOfType(j.UNIVER_SHEET);
-    if (!u || a != null && a.selectionMoving) return;
-    const l = Nr({
+  const n = T(ne), o = T(gt), r = T(Pt), s = T(Ne), i = pe(ie(() => n.getCurrentTypeOfUnit$(K.UNIVER_SHEET), [n])), c = i ? s.getRenderById(i.getUnitId()) : null, l = c == null ? void 0 : c.with(De), m = c == null ? void 0 : c.with($t), g = te((h, u) => {
+    const d = n.getCurrentUnitOfType(K.UNIVER_SHEET);
+    if (!d || l != null && l.selectionMoving) return;
+    const a = Or({
       unitId: t,
       subUnitId: e,
-      currentWorkbook: u,
-      refSelections: d,
-      editor: h,
+      currentWorkbook: d,
+      refSelections: h,
+      editor: u,
       refSelectionsService: r,
-      refSelectionsRenderService: a,
-      sheetSkeletonManagerService: g,
+      refSelectionsRenderService: l,
+      sheetSkeletonManagerService: m,
       themeService: o,
       univerInstanceService: n
     });
-    if (!l) return;
-    ((a == null ? void 0 : a.getSelectionControls()) || []).length === l.length ? a == null || a.resetSelectionsByModelData(l) : r.setSelections(l);
+    if (!a) return;
+    ((l == null ? void 0 : l.getSelectionControls()) || []).length === a.length ? l == null || l.resetSelectionsByModelData(a) : r.setSelections(a);
   });
   return $(() => () => {
-    a == null || a.resetActiveSelectionIndex();
-  }, [a]), m;
+    l == null || l.resetActiveSelectionIndex();
+  }, [l]), g;
 }
 function Mr(t = "") {
   const e = T(Ut), n = zi(), o = T(me), r = ie(() => t.length, [t]);
-  return te((i, c, a = !0, g) => {
-    const m = i.getDocumentData(), d = i.getEditorId();
-    if (!m)
+  return te((i, c, l = !0, m) => {
+    const g = i.getDocumentData(), h = i.getEditorId();
+    if (!g)
       return [];
-    const h = m.body;
-    if (!h)
+    const u = g.body;
+    if (!u)
       return [];
-    const u = h.dataStream.slice(0, h.dataStream.length - 2), l = { dataStream: "", ...m.body };
-    if (!u.startsWith(t)) return [];
+    const d = u.dataStream.slice(0, u.dataStream.length - 2), a = { dataStream: "", ...g.body };
+    if (!d.startsWith(t)) return [];
     if (c == null || c.length === 0)
-      return l.textRuns = [], o.syncExecuteCommand(Mn.id, {
-        unitId: d,
-        body: Rn(l, 0, l.dataStream.length - 2)
+      return a.textRuns = [], o.syncExecuteCommand(Mn.id, {
+        unitId: h,
+        body: Rn(a, 0, a.dataStream.length - 2)
       }), [];
     {
-      const { textRuns: v, refSelections: p } = Gi(e, n, c);
+      const { textRuns: v, refSelections: S } = Gi(e, n, c);
       r && v.forEach((_) => {
         _.ed = _.ed + r, _.st = _.st + r;
-      }), l.textRuns = [{ st: 0, ed: 1, ts: { fs: 11 } }, ...v];
-      const S = c.reduce((_, I) => typeof I == "string" ? `${_}${I}` : `${_}${I.token}`, "");
-      l.dataStream = `${t}${S}\r
+      }), a.textRuns = [{ st: 0, ed: 1, ts: { fs: 11 } }, ...v];
+      const p = c.reduce((_, I) => typeof I == "string" ? `${_}${I}` : `${_}${I.token}`, "");
+      a.dataStream = `${t}${p}\r
 `;
       let C;
-      if (a) {
+      if (l) {
         C = i.getSelectionRanges();
-        const _ = l.dataStream.length - 2 + r;
+        const _ = a.dataStream.length - 2 + r;
         C.forEach((I) => {
           I.startOffset = Math.max(0, Math.min(I.startOffset, _)), I.endOffset = Math.max(0, Math.min(I.endOffset, _));
         });
       }
       return o.syncExecuteCommand(Mn.id, {
-        unitId: d,
-        body: Rn(l, 0, l.dataStream.length - 2),
-        textRanges: g != null ? g : C
-      }), p;
+        unitId: h,
+        body: Rn(a, 0, a.dataStream.length - 2),
+        textRanges: m != null ? m : C
+      }), S;
     }
   });
 }
 function zi() {
   const t = T(gt), e = t.getCurrentTheme();
-  return ie(() => {
-    const o = ["#B87333", "#8A9A5B", "#3D3831"], r = "#3D3831", s = "#7C3F2A", i = "#3D3831", c = "#3D3831";
-    return { formulaRefColors: o, numberColor: r, stringColor: s, plainTextColor: i, functionColor: c };
-  }, [e, t]);
+  return ie(() => ({ formulaRefColors: ["#B87333", "#8A9A5B", "#3D3831"], numberColor: "#3D3831", stringColor: "#7C3F2A", plainTextColor: "#3D3831", functionColor: "#3D3831" }), [e, t]);
 }
 function Gi(t, e, n) {
-  const { formulaRefColors: o, numberColor: r, stringColor: s, plainTextColor: i, functionColor: c } = e, a = [], g = [], m = /* @__PURE__ */ new Map();
-  let d = 0;
-  for (let h = 0, u = n.length; h < u; h++) {
-    const _ = n[h];
-    if (typeof _ == "string") {
-      const I = a[a.length - 1], f = I ? I.ed : 0, x = f + _.length;
-      a.push({
+  const { formulaRefColors: o, numberColor: r, stringColor: s, plainTextColor: i, functionColor: c } = e, l = [], m = [], g = /* @__PURE__ */ new Map();
+  let h = 0;
+  for (let u = 0, d = n.length; u < d; u++) {
+    const a = n[u];
+    if (typeof a == "string") {
+      const I = l[l.length - 1], f = I ? I.ed : 0, b = f + a.length;
+      l.push({
         st: f,
-        ed: x,
+        ed: b,
         ts: {
           cl: {
             rgb: i
@@ -2473,10 +2470,10 @@ function Gi(t, e, n) {
       });
       continue;
     }
-    if (t.hasDefinedNameDescription(_.token.trim())) {
-      a.push({
-        st: _.startIndex,
-        ed: _.endIndex + 1,
+    if (t.hasDefinedNameDescription(a.token.trim())) {
+      l.push({
+        st: a.startIndex,
+        ed: a.endIndex + 1,
         ts: {
           cl: {
             rgb: i
@@ -2487,37 +2484,37 @@ function Gi(t, e, n) {
       });
       continue;
     }
-    const { startIndex: l, endIndex: v, nodeType: p, token: S } = _;
-    let C = "";
-    if (p === Q.REFERENCE) {
-      if (m.has(S))
-        C = m.get(S);
+    const { startIndex: v, endIndex: S, nodeType: p, token: C } = a;
+    let _ = "";
+    if (p === j.REFERENCE) {
+      if (g.has(C))
+        _ = g.get(C);
       else {
-        const I = d % o.length;
-        C = o[I], m.set(S, C), d++;
+        const I = h % o.length;
+        _ = o[I], g.set(C, _), h++;
       }
-      g.push({
-        refIndex: h,
-        themeColor: C,
-        token: S,
-        startIndex: _.startIndex,
-        endIndex: _.endIndex,
-        index: g.length
+      m.push({
+        refIndex: u,
+        themeColor: _,
+        token: C,
+        startIndex: a.startIndex,
+        endIndex: a.endIndex,
+        index: m.length
       });
-    } else p === Q.NUMBER ? C = r : p === Q.FUNCTION ? C = c : (p === Q.STRING || p === Q.ARRAY) && (C = s);
-    C && C.length > 0 ? a.push({
-      st: l,
-      ed: v + 1,
+    } else p === j.NUMBER ? _ = r : p === j.STRING || p === j.ARRAY ? _ = s : p === j.FUNCTION && (_ = c);
+    _ && _.length > 0 ? l.push({
+      st: v,
+      ed: S + 1,
       ts: {
         cl: {
-          rgb: C
+          rgb: _
         },
         fs: 11,
-        ...p === Q.REFERENCE || p === Q.FUNCTION ? { bl: 1 } : {}
+        ...p === j.REFERENCE || p === j.FUNCTION ? { bl: 1 } : {}
       }
-    }) : a.push({
-      st: l,
-      ed: v + 1,
+    }) : l.push({
+      st: v,
+      ed: S + 1,
       ts: {
         cl: {
           rgb: i
@@ -2526,211 +2523,211 @@ function Gi(t, e, n) {
       }
     });
   }
-  return { textRuns: a, refSelections: g };
+  return { textRuns: l, refSelections: m };
 }
 const Xi = (t, e, n, o) => {
-  const r = T(me), s = T(Wt), i = G(e);
+  const r = T(me), s = T(Wt), i = X(e);
   i.current = e;
-  const c = G(o);
+  const c = X(o);
   c.current = o, $(() => {
     if (!n || !t)
       return;
-    const g = `sheet.formula-embedding-editor.${n.getEditorId()}`, m = new Be(), d = (l, v) => {
+    const m = `sheet.formula-embedding-editor.${n.getEditorId()}`, g = new Be(), h = (a, v) => {
       if (c.current) {
-        c.current(l, v);
+        c.current(a, v);
         return;
       }
-      let p = he.LEFT;
-      l === L.ARROW_DOWN ? p = he.DOWN : l === L.ARROW_UP ? p = he.UP : l === L.ARROW_RIGHT && (p = he.RIGHT), v === P.SHIFT ? r.executeCommand(Wo.id, {
-        direction: p
+      let S = de.LEFT;
+      a === F.ARROW_DOWN ? S = de.DOWN : a === F.ARROW_UP ? S = de.UP : a === F.ARROW_RIGHT && (S = de.RIGHT), v === P.SHIFT ? r.executeCommand(Wo.id, {
+        direction: S
       }) : r.executeCommand(Vo.id, {
-        direction: p
+        direction: S
       });
-    }, h = (l, v) => {
-      let p = he.DOWN;
-      l === L.ARROW_DOWN ? p = he.DOWN : l === L.ARROW_UP ? p = he.UP : l === L.ARROW_LEFT ? p = he.LEFT : l === L.ARROW_RIGHT && (p = he.RIGHT), i.current ? v === P.CTRL_COMMAND ? r.executeCommand(Tn.id, {
-        direction: p,
+    }, u = (a, v) => {
+      let S = de.DOWN;
+      a === F.ARROW_DOWN ? S = de.DOWN : a === F.ARROW_UP ? S = de.UP : a === F.ARROW_LEFT ? S = de.LEFT : a === F.ARROW_RIGHT && (S = de.RIGHT), i.current ? v === P.CTRL_COMMAND ? r.executeCommand(Tn.id, {
+        direction: S,
         jumpOver: xn.moveGap,
         extra: "formula-editor",
         fromCurrentSelection: i.current === ye.NEED_ADD || i.current === ye.EDIT_OTHER_SHEET_REFERENCE
-      }) : v === P.SHIFT ? r.executeCommand(On.id, {
-        direction: p,
+      }) : v === P.SHIFT ? r.executeCommand(Nn.id, {
+        direction: S,
         extra: "formula-editor"
-      }) : v === (P.CTRL_COMMAND | P.SHIFT) ? r.executeCommand(On.id, {
-        direction: p,
+      }) : v === (P.CTRL_COMMAND | P.SHIFT) ? r.executeCommand(Nn.id, {
+        direction: S,
         jumpOver: xn.moveGap,
         extra: "formula-editor"
       }) : r.executeCommand(Tn.id, {
-        direction: p,
+        direction: S,
         extra: "formula-editor",
         fromCurrentSelection: i.current === ye.NEED_ADD || i.current === ye.EDIT_OTHER_SHEET_REFERENCE
-      }) : d(l, v);
+      }) : h(a, v);
     };
-    return m.add(r.registerCommand({
-      id: g,
+    return g.add(r.registerCommand({
+      id: m,
       type: Te.OPERATION,
-      handler(l, v) {
-        const { keyCode: p, metaKey: S } = v;
-        h(p, S);
+      handler(a, v) {
+        const { keyCode: S, metaKey: p } = v;
+        u(S, p);
       }
     })), [
-      { keyCode: L.ARROW_DOWN },
-      { keyCode: L.ARROW_LEFT },
-      { keyCode: L.ARROW_RIGHT },
-      { keyCode: L.ARROW_UP },
-      { keyCode: L.ARROW_DOWN, metaKey: P.SHIFT },
-      { keyCode: L.ARROW_LEFT, metaKey: P.SHIFT },
-      { keyCode: L.ARROW_RIGHT, metaKey: P.SHIFT },
-      { keyCode: L.ARROW_UP, metaKey: P.SHIFT },
-      { keyCode: L.ARROW_DOWN, metaKey: P.CTRL_COMMAND },
-      { keyCode: L.ARROW_LEFT, metaKey: P.CTRL_COMMAND },
-      { keyCode: L.ARROW_RIGHT, metaKey: P.CTRL_COMMAND },
-      { keyCode: L.ARROW_UP, metaKey: P.CTRL_COMMAND },
-      { keyCode: L.ARROW_DOWN, metaKey: P.CTRL_COMMAND | P.SHIFT },
-      { keyCode: L.ARROW_LEFT, metaKey: P.CTRL_COMMAND | P.SHIFT },
-      { keyCode: L.ARROW_RIGHT, metaKey: P.CTRL_COMMAND | P.SHIFT },
-      { keyCode: L.ARROW_UP, metaKey: P.CTRL_COMMAND | P.SHIFT }
-    ].map(({ keyCode: l, metaKey: v }) => ({
-      id: g,
-      binding: v ? l | v : l,
+      { keyCode: F.ARROW_DOWN },
+      { keyCode: F.ARROW_LEFT },
+      { keyCode: F.ARROW_RIGHT },
+      { keyCode: F.ARROW_UP },
+      { keyCode: F.ARROW_DOWN, metaKey: P.SHIFT },
+      { keyCode: F.ARROW_LEFT, metaKey: P.SHIFT },
+      { keyCode: F.ARROW_RIGHT, metaKey: P.SHIFT },
+      { keyCode: F.ARROW_UP, metaKey: P.SHIFT },
+      { keyCode: F.ARROW_DOWN, metaKey: P.CTRL_COMMAND },
+      { keyCode: F.ARROW_LEFT, metaKey: P.CTRL_COMMAND },
+      { keyCode: F.ARROW_RIGHT, metaKey: P.CTRL_COMMAND },
+      { keyCode: F.ARROW_UP, metaKey: P.CTRL_COMMAND },
+      { keyCode: F.ARROW_DOWN, metaKey: P.CTRL_COMMAND | P.SHIFT },
+      { keyCode: F.ARROW_LEFT, metaKey: P.CTRL_COMMAND | P.SHIFT },
+      { keyCode: F.ARROW_RIGHT, metaKey: P.CTRL_COMMAND | P.SHIFT },
+      { keyCode: F.ARROW_UP, metaKey: P.CTRL_COMMAND | P.SHIFT }
+    ].map(({ keyCode: a, metaKey: v }) => ({
+      id: m,
+      binding: v ? a | v : a,
       preconditions: () => !0,
       priority: 900,
       staticParameters: {
         eventType: xe.Keyboard,
-        keyCode: l,
+        keyCode: a,
         metaKey: v
       }
-    })).forEach((l) => {
-      m.add(s.registerShortcut(l));
+    })).forEach((a) => {
+      g.add(s.registerShortcut(a));
     }), () => {
-      m.dispose();
+      g.dispose();
     };
   }, [r, n, t, s]);
 }, Qi = (t, e, n, o, r = !0) => {
-  var u;
-  const s = T(Oe), i = T(Qt), c = T(ds), a = T(Pt), g = T(ne), m = pe(ie(() => g.getCurrentTypeOfUnit$(j.UNIVER_SHEET), [g])), d = s.getRenderById((u = m == null ? void 0 : m.getUnitId()) != null ? u : ""), h = d == null ? void 0 : d.with(De);
-  Ot(() => {
+  var d;
+  const s = T(Ne), i = T(Qt), c = T(hs), l = T(Pt), m = T(ne), g = pe(ie(() => m.getCurrentTypeOfUnit$(K.UNIVER_SHEET), [m])), h = s.getRenderById((d = g == null ? void 0 : g.getUnitId()) != null ? d : ""), u = h == null ? void 0 : h.with(De);
+  Nt(() => {
     if (t)
       return i.setContextValue(En, !0), r && c.disable(), () => {
-        const l = g.getCurrentUnitOfType(j.UNIVER_DOC);
-        (l == null ? void 0 : l.getUnitId()) === o && i.setContextValue(En, !1), r && c.enable(), a.clear();
+        const a = m.getCurrentUnitOfType(K.UNIVER_DOC);
+        (a == null ? void 0 : a.getUnitId()) === o && i.setContextValue(En, !1), r && c.enable(), l.clear();
       };
-  }, [i, t, a, r, o]), Ot(() => {
+  }, [i, t, l, r, o]), Nt(() => {
     if (t && e) {
-      const l = h == null ? void 0 : h.enableSelectionChanging();
+      const a = u == null ? void 0 : u.enableSelectionChanging();
       return i.setContextValue(An, !0), () => {
-        i.setContextValue(An, !1), l == null || l.dispose();
+        i.setContextValue(An, !1), a == null || a.dispose();
       };
     }
-  }, [i, t, h, e]), $(() => {
-    t && (h == null || h.setSkipLastEnabled(!1));
-  }, [t, h]);
+  }, [i, t, u, e]), $(() => {
+    t && (u == null || u.setSkipLastEnabled(!1));
+  }, [t, u]);
 }, Ji = (t, e, n) => {
   const o = T(ne), r = T(on);
   return xt(() => {
     if (t) {
-      const i = [...r.getWorkbookSelections(e).getSelectionsOfWorksheet(n)], c = o.getCurrentUnitForType(j.UNIVER_SHEET), a = c == null ? void 0 : c.getActiveSheet();
-      (c == null ? void 0 : c.getUnitId()) !== e && o.setCurrentUnitForType(e), a && a.getSheetId() === n && r.setSelections(i);
+      const i = [...r.getWorkbookSelections(e).getSelectionsOfWorksheet(n)], c = o.getCurrentUnitForType(K.UNIVER_SHEET), l = c == null ? void 0 : c.getActiveSheet();
+      (c == null ? void 0 : c.getUnitId()) !== e && o.setCurrentUnitForType(e), l && l.getSheetId() === n && r.setSelections(i);
     }
   }, [t, r, n, e, o]);
-}, ec = (t) => t.reduce((e, n) => typeof n == "string" ? e + n.length : e + n.token.length, 0), Xt = (t) => t.map((e) => typeof e == "string" ? e : e.token).join(""), bt = (t, e = !1, n = "", o = !1) => !e && !o ? t.map((r) => ve(r.range)) : t.map((r) => o ? Mo(r) : r.sheetName !== "" && r.sheetName !== n ? ht(r.sheetName, r.range) : ve(r.range)), tc = (t) => {
-  var m, d, h;
+}, ec = (t) => t.reduce((e, n) => typeof n == "string" ? e + n.length : e + n.token.length, 0), Xt = (t) => t.map((e) => typeof e == "string" ? e : e.token).join(""), bt = (t, e = !1, n = "", o = !1) => !e && !o ? t.map((r) => ve(r.range)) : t.map((r) => o ? Mo(r) : r.sheetName !== "" && r.sheetName !== n ? dt(r.sheetName, r.range) : ve(r.range)), tc = (t) => {
+  var g, h, u;
   const { editor: e, lexerTreeBuilder: n } = t, o = e == null ? void 0 : e.getSelectionRanges();
   if ((o == null ? void 0 : o.length) !== 1)
     return;
-  const s = o[0].startOffset - 1, i = ((d = (m = e == null ? void 0 : e.getDocumentData().body) == null ? void 0 : m.dataStream) != null ? d : `\r
-`).slice(0, -2), c = (h = n.sequenceNodesBuilder(i.slice(1))) != null ? h : [], a = hn(c, s, !1), g = xr(c, a);
+  const s = o[0].startOffset - 1, i = ((h = (g = e == null ? void 0 : e.getDocumentData().body) == null ? void 0 : g.dataStream) != null ? h : `\r
+`).slice(0, -2), c = (u = n.sequenceNodesBuilder(i.slice(1))) != null ? u : [], l = dn(c, s, !1), m = xr(c, l);
   return {
-    nodeIndex: a,
-    updatingRefIndex: g,
+    nodeIndex: l,
+    updatingRefIndex: m,
     sequenceNodes: c,
     offset: s
   };
 }, nc = (() => {
-}), rc = (t, e, n, o, r, s, i, c, a, g = nc) => {
-  var O;
-  const m = T(Oe), d = T(ne), h = T(me), u = T(hr), l = T(gt), v = T(Ce), p = d.getUnit(o), S = te((k, E) => {
-    var N, R, w;
-    return (w = (R = (N = d.getUnit(k)) == null ? void 0 : N.getSheetBySheetId(E)) == null ? void 0 : R.getName()) != null ? w : "";
-  }), C = ie(() => S(o, r), [S, r, o]), _ = pe(p == null ? void 0 : p.activeSheet$), I = Ze({ activeSheet: _, sheetName: C }), f = pe(ie(() => d.getCurrentTypeOfUnit$(j.UNIVER_SHEET), [d])), b = m.getRenderById((O = f == null ? void 0 : f.getUnitId()) != null ? O : ""), y = b == null ? void 0 : b.with(De), A = b == null ? void 0 : b.with($t), D = T(Pt), x = te((k, E) => {
-    var H, ce, le, de, K, J, ze, Ge, St, _e;
-    const N = tc({ editor: a, lexerTreeBuilder: v });
-    if (!N) return;
-    const { nodeIndex: R, updatingRefIndex: w, sequenceNodes: F, offset: U } = N;
+}), rc = (t, e, n, o, r, s, i, c, l, m = nc) => {
+  var N;
+  const g = T(Ne), h = T(ne), u = T(me), d = T(dr), a = T(gt), v = T(Ce), S = h.getUnit(o), p = te((k, E) => {
+    var O, R, w;
+    return (w = (R = (O = h.getUnit(k)) == null ? void 0 : O.getSheetBySheetId(E)) == null ? void 0 : R.getName()) != null ? w : "";
+  }), C = ie(() => p(o, r), [p, r, o]), _ = pe(S == null ? void 0 : S.activeSheet$), I = Ze({ activeSheet: _, sheetName: C }), f = pe(ie(() => h.getCurrentTypeOfUnit$(K.UNIVER_SHEET), [h])), b = g.getRenderById((N = f == null ? void 0 : f.getUnitId()) != null ? N : ""), y = b == null ? void 0 : b.with(De), A = b == null ? void 0 : b.with($t), D = T(Pt), x = te((k, E) => {
+    var H, ce, ae, he, Y, J, ze, Ge, St, _e;
+    const O = tc({ editor: l, lexerTreeBuilder: v });
+    if (!O) return;
+    const { nodeIndex: R, updatingRefIndex: w, sequenceNodes: L, offset: U } = O;
     if (n.current === ye.NEED_ADD)
       if (U !== 0) {
-        if (R === -1 && F.length)
+        if (R === -1 && L.length)
           return;
-        const Y = k[k.length - 1], X = F.splice(R + 1), Re = (H = Y.sheetId) != null ? H : r, fe = {
-          range: Y,
-          unitId: (ce = Y.unitId) != null ? ce : f.getUnitId(),
-          sheetName: S((le = Y.unitId) != null ? le : f.getUnitId(), Re)
-        }, ee = Re !== r, ae = (f == null ? void 0 : f.getUnitId()) !== o, Ee = bt([fe], i && (ee || ae), C, ae);
-        F.push({ token: Ee[0], nodeType: Q.REFERENCE });
-        const Le = [...F, ...X], Ne = Xt(Le);
-        g(Ne, ec(F), E);
+        const Z = k[k.length - 1], Q = L.splice(R + 1), Re = (H = Z.sheetId) != null ? H : r, fe = {
+          range: Z,
+          unitId: (ce = Z.unitId) != null ? ce : f.getUnitId(),
+          sheetName: p((ae = Z.unitId) != null ? ae : f.getUnitId(), Re)
+        }, ee = Re !== r, le = (f == null ? void 0 : f.getUnitId()) !== o, Ee = bt([fe], i && (ee || le), C, le);
+        L.push({ token: Ee[0], nodeType: j.REFERENCE });
+        const Fe = [...L, ...Q], Oe = Xt(Fe);
+        m(Oe, ec(L), E);
       } else {
-        const Y = k[k.length - 1], X = (de = Y.sheetId) != null ? de : r, Re = {
-          range: Y,
-          unitId: (K = Y.unitId) != null ? K : f.getUnitId(),
-          sheetName: S((J = Y.unitId) != null ? J : f.getUnitId(), X)
-        }, fe = X !== r, ee = (f == null ? void 0 : f.getUnitId()) !== o, ae = bt([Re], i && (fe || ee), C, ee);
-        F.unshift({ token: ae[0], nodeType: Q.REFERENCE });
-        const Ee = Xt(F);
-        g(Ee, ae[0].length, E);
+        const Z = k[k.length - 1], Q = (he = Z.sheetId) != null ? he : r, Re = {
+          range: Z,
+          unitId: (Y = Z.unitId) != null ? Y : f.getUnitId(),
+          sheetName: p((J = Z.unitId) != null ? J : f.getUnitId(), Q)
+        }, fe = Q !== r, ee = (f == null ? void 0 : f.getUnitId()) !== o, le = bt([Re], i && (fe || ee), C, ee);
+        L.unshift({ token: le[0], nodeType: j.REFERENCE });
+        const Ee = Xt(L);
+        m(Ee, le[0].length, E);
       }
     else if (n.current === ye.EDIT_OTHER_SHEET_REFERENCE || n.current === ye.EDIT_OTHER_WORKBOOK_REFERENCE) {
-      const Y = k.pop();
-      if (!Y) return;
-      const X = F[R];
-      if (typeof X == "object" && X.nodeType === Q.REFERENCE) {
-        const Re = X.token;
-        (f == null ? void 0 : f.getUnitId()) !== o ? X.token = wo((ze = f == null ? void 0 : f.getUnitId()) != null ? ze : "", C, Y) : X.token = C === (_ == null ? void 0 : _.getName()) ? ve(Y) : ht(_.getName(), Y);
-        const ee = U + (X.token.length - Re.length);
-        g(ko(F), ee, E);
+      const Z = k.pop();
+      if (!Z) return;
+      const Q = L[R];
+      if (typeof Q == "object" && Q.nodeType === j.REFERENCE) {
+        const Re = Q.token;
+        (f == null ? void 0 : f.getUnitId()) !== o ? Q.token = wo((ze = f == null ? void 0 : f.getUnitId()) != null ? ze : "", C, Z) : Q.token = C === (_ == null ? void 0 : _.getName()) ? ve(Z) : dt(_.getName(), Z);
+        const ee = U + (Q.token.length - Re.length);
+        m(ko(L), ee, E);
       }
     } else {
-      const Y = [...k];
+      const Z = [...k];
       if (w !== -1) {
-        const Z = Y.pop();
-        Z && Y.splice(w, 0, Z);
+        const z = Z.pop();
+        z && Z.splice(w, 0, z);
       }
-      let X = 0;
-      const Re = F.map((Z) => {
+      let Q = 0;
+      const Re = L.map((z) => {
         var ge, Xe, $e, Pe;
-        if (typeof Z == "string")
-          return Z;
-        if (Z.nodeType === Q.REFERENCE) {
-          const Ue = st(Z.token);
+        if (typeof z == "string")
+          return z;
+        if (z.nodeType === j.REFERENCE) {
+          const Ue = st(z.token);
           if (Ue.sheetName || (Ue.sheetName = C), (Ue.unitId || o) !== (f == null ? void 0 : f.getUnitId()) || i && ((ge = I.current.activeSheet) == null ? void 0 : ge.getName()) !== Ue.sheetName)
-            return Z.token;
-          const oe = Y[X];
-          if (X++, !oe)
+            return z.token;
+          const oe = Z[Q];
+          if (Q++, !oe)
             return "";
           const Ie = (Xe = oe.sheetId) != null ? Xe : r, vt = {
             range: oe,
             unitId: ($e = oe.unitId) != null ? $e : f.getUnitId(),
-            sheetName: S((Pe = oe.unitId) != null ? Pe : f.getUnitId(), Ie)
+            sheetName: p((Pe = oe.unitId) != null ? Pe : f.getUnitId(), Ie)
           }, Ct = (f == null ? void 0 : f.getUnitId()) !== o;
           return bt([vt], i && (Ie !== r || Ct), C, Ct)[0];
         }
-        return Z.token;
+        return z.token;
       });
       let fe = "", ee;
-      Re.forEach((Z, ge) => {
-        fe += Z, ge === R && (ee = fe.length);
+      Re.forEach((z, ge) => {
+        fe += z, ge === R && (ee = fe.length);
       });
-      const ae = [];
-      for (let Z = X; Z <= k.length - 1; Z++) {
-        const ge = k[Z], Xe = (Ge = ge.sheetId) != null ? Ge : r, $e = {
+      const le = [];
+      for (let z = Q; z <= k.length - 1; z++) {
+        const ge = k[z], Xe = (Ge = ge.sheetId) != null ? Ge : r, $e = {
           range: ge,
           unitId: (St = ge.unitId) != null ? St : f.getUnitId(),
-          sheetName: S((_e = ge.unitId) != null ? _e : f.getUnitId(), Xe)
+          sheetName: p((_e = ge.unitId) != null ? _e : f.getUnitId(), Xe)
         }, Pe = (f == null ? void 0 : f.getUnitId()) !== o, oe = bt([$e], i && (Xe !== r || Pe), C, Pe);
-        ae.push(oe[0]);
+        le.push(oe[0]);
       }
-      const Ee = F[F.length - 1], Le = Ee && (typeof Ee == "string" ? !1 : Ee.nodeType === Q.REFERENCE), Ne = `${fe}${ae.length && Le ? "," : ""}${ae.join(",")}`;
-      g(Ne, !ae.length && ee ? ee : Ne.length, E);
+      const Ee = L[L.length - 1], Fe = Ee && (typeof Ee == "string" ? !1 : Ee.nodeType === j.REFERENCE), Oe = `${fe}${le.length && Fe ? "," : ""}${le.join(",")}`;
+      m(Oe, !le.length && ee ? ee : Oe.length, E);
     }
   });
   $(() => {
@@ -2741,34 +2738,34 @@ const Xi = (t, e, n, o) => {
           k = !1;
           return;
         }
-        x(R.map((F) => F.rangeWithCoord), w);
-      }, N = new Be();
-      return N.add(y.selectionMoving$.subscribe((R) => {
+        x(R.map((L) => L.rangeWithCoord), w);
+      }, O = new Be();
+      return O.add(y.selectionMoving$.subscribe((R) => {
         E(R, !1);
-      })), N.add(y.selectionMoveEnd$.subscribe((R) => {
+      })), O.add(y.selectionMoveEnd$.subscribe((R) => {
         E(R, !0);
       })), () => {
-        N.dispose();
+        O.dispose();
       };
     }
   }, [t, x, y]), $(() => {
-    if (e && y && a) {
+    if (e && y && l) {
       const k = new Be(), E = () => {
-        k.dispose(), y.getSelectionControls().forEach((w, F) => {
+        k.dispose(), y.getSelectionControls().forEach((w, L) => {
           k.add(
             w.selectionScaling$.subscribe((U) => {
-              const H = y.getSelectionDataWithStyle().map((le) => le.rangeWithCoord), ce = H[F];
-              U.sheetId = ce.sheetId, U.unitId = ce.unitId, H[F] = U, x(H, !1);
+              const H = y.getSelectionDataWithStyle().map((ae) => ae.rangeWithCoord), ce = H[L];
+              U.sheetId = ce.sheetId, U.unitId = ce.unitId, H[L] = U, x(H, !1);
             })
           ), k.add(
             w.selectionMoving$.subscribe((U) => {
-              const H = y.getSelectionDataWithStyle().map((le) => le.rangeWithCoord), ce = H[F];
-              U.sheetId = ce.sheetId, U.unitId = ce.unitId, H[F] = U, x(H, !0);
+              const H = y.getSelectionDataWithStyle().map((ae) => ae.rangeWithCoord), ce = H[L];
+              U.sheetId = ce.sheetId, U.unitId = ce.unitId, H[L] = U, x(H, !0);
             })
           );
         });
-      }, N = Uo(
-        a.input$,
+      }, O = Uo(
+        l.input$,
         D.selectionSet$,
         y.selectionMoveEnd$
       ).pipe(
@@ -2777,21 +2774,21 @@ const Xi = (t, e, n, o) => {
         E();
       });
       return () => {
-        N.unsubscribe(), k.dispose();
+        O.unsubscribe(), k.dispose();
       };
     }
-  }, [a, e, x, y, D.selectionSet$]), y == null || y.getSelectionDataWithStyle(), $(() => {
+  }, [l, e, x, y, D.selectionSet$]), y == null || y.getSelectionDataWithStyle(), $(() => {
     if (c) {
-      const k = h.onCommandExecuted((E) => {
+      const k = u.onCommandExecuted((E) => {
         var R;
         if (E.id !== sn.id)
           return;
-        const N = E.params;
-        if (N.extra === "formula-editor" && N.selections.length) {
-          const w = N.selections[N.selections.length - 1];
+        const O = E.params;
+        if (O.extra === "formula-editor" && O.selections.length) {
+          const w = O.selections[O.selections.length - 1];
           if (w) {
-            const F = n.current === ye.NEED_ADD, U = ((R = y == null ? void 0 : y.getSelectionDataWithStyle()) != null ? R : []).map((H) => H.rangeWithCoord);
-            F ? U.push(w.range) : U[U.length - 1] = w.range, x(U, !0);
+            const L = n.current === ye.NEED_ADD, U = ((R = y == null ? void 0 : y.getSelectionDataWithStyle()) != null ? R : []).map((H) => H.rangeWithCoord);
+            L ? U.push(w.range) : U[U.length - 1] = w.range, x(U, !0);
           }
         }
       });
@@ -2799,60 +2796,60 @@ const Xi = (t, e, n, o) => {
         k.dispose();
       };
     }
-  }, [h, a, n, v, c, x, y]), $(() => {
-    if (!a)
+  }, [u, l, n, v, c, x, y]), $(() => {
+    if (!l)
       return;
-    const k = u.textSelection$.subscribe((E) => {
-      E.unitId === a.getEditorId() && Nr({
+    const k = d.textSelection$.subscribe((E) => {
+      E.unitId === l.getEditorId() && Or({
         unitId: o,
         subUnitId: r,
         refSelections: s.current,
-        editor: a,
+        editor: l,
         refSelectionsService: D,
         refSelectionsRenderService: y,
         sheetSkeletonManagerService: A,
-        themeService: l,
-        univerInstanceService: d,
+        themeService: a,
+        univerInstanceService: h,
         currentWorkbook: f
       });
     });
     return () => k.unsubscribe();
-  }, [u.textSelection$, a, s, y, D, A, r, l, o, d]);
+  }, [d.textSelection$, l, s, y, D, A, r, a, o, h]);
 }, oc = (t, e, n, o, r, s) => {
-  const i = T(me), c = T(je), g = T(Oe).getRenderById(e), m = T(ne), d = g == null ? void 0 : g.with(De);
+  const i = T(me), c = T(je), m = T(Ne).getRenderById(e), g = T(ne), h = m == null ? void 0 : m.with(De);
   $(() => {
-    if (t && d)
+    if (t && h)
       if (n) {
-        const h = () => {
-          const v = d.getSelectionControls().length;
-          for (let p = 1; p <= v; p++)
-            d.clearLastSelection();
+        const u = () => {
+          const v = h.getSelectionControls().length;
+          for (let S = 1; S <= v; S++)
+            h.clearLastSelection();
           return setTimeout(() => {
             s();
           }, 30);
-        }, u = i.onCommandExecuted((v) => {
-          v.id === Dn.id && h();
-        }), l = m.getCurrentTypeOfUnit$(j.UNIVER_SHEET).subscribe((v) => {
-          h();
+        }, d = i.onCommandExecuted((v) => {
+          v.id === Dn.id && u();
+        }), a = g.getCurrentTypeOfUnit$(K.UNIVER_SHEET).subscribe((v) => {
+          u();
         });
         return () => {
-          u.dispose(), l.unsubscribe();
+          d.dispose(), a.unsubscribe();
         };
       } else {
-        const h = i.beforeCommandExecuted((u) => {
-          if (u.id === Dn.id) {
+        const u = i.beforeCommandExecuted((d) => {
+          if (d.id === Dn.id) {
             o(!1), r(), s();
-            const l = c.getEditor(Jt);
-            l == null || l.focus();
+            const a = c.getEditor(Jt);
+            a == null || a.focus();
           }
         });
         return () => {
-          h.dispose();
+          u.dispose();
         };
       }
-  }, [t, d]);
+  }, [t, h]);
 }, sc = (t, e, n) => {
-  const o = T(Ce), r = G(!0);
+  const o = T(Ce), r = X(!0);
   $(() => {
     if (t) {
       const s = setTimeout(() => {
@@ -2869,101 +2866,101 @@ const Xi = (t, e, n, o) => {
     }
   }, [n, e]);
 }, ic = (t, e = [], n) => {
-  const o = T(Ut), [r, s] = W([]), [i, c] = W(""), a = G(-1), g = Ze({ nodes: e }), m = () => {
-    s([]), c(""), a.current = -1;
+  const o = T(Ut), [r, s] = W([]), [i, c] = W(""), l = X(-1), m = Ze({ nodes: e }), g = () => {
+    s([]), c(""), l.current = -1;
   };
   return $(() => {
     if (n && t) {
-      const h = n.input$.pipe(rn(300)).subscribe(() => {
-        const u = n.getSelectionRanges();
-        if (u.length === 1) {
-          const l = g.current.nodes, v = u[0];
+      const u = n.input$.pipe(rn(300)).subscribe(() => {
+        const d = n.getSelectionRanges();
+        if (d.length === 1) {
+          const a = m.current.nodes, v = d[0];
           if (v.collapsed) {
-            const p = hn(l, v.startOffset - 1, !1);
-            a.current = p;
-            const S = l[p];
-            if (S && typeof S != "string" && S.nodeType === Q.FUNCTION) {
-              a.current = p;
-              const C = S.token, _ = o.getSearchListByNameFirstLetter(C);
+            const S = dn(a, v.startOffset - 1, !1);
+            l.current = S;
+            const p = a[S];
+            if (p && typeof p != "string" && p.nodeType === j.FUNCTION) {
+              l.current = S;
+              const C = p.token, _ = o.getSearchListByNameFirstLetter(C);
               s(_), c(C);
               return;
             }
           }
         }
-        a.current = -1, c(""), s((l) => l != null && l.length ? [] : l);
+        l.current = -1, c(""), s((a) => a != null && a.length ? [] : a);
       });
       return () => {
-        h.unsubscribe();
+        u.unsubscribe();
       };
     }
   }, [n, t]), $(() => {
-    t || m();
+    t || g();
   }, [t]), {
     searchList: r,
     searchText: i,
-    handlerFormulaReplace: (h, u) => {
-      const l = [...g.current.nodes];
-      if (a.current !== -1) {
-        const v = l.splice(a.current + 1), p = l.pop() || "";
-        let S = (typeof p == "string" ? p.length : p.token.length) - h.length;
-        return l.push(h), v[0] !== qe.OPEN_BRACKET && u !== er.DefinedName && (l.push(qe.OPEN_BRACKET), S--), { text: Xt([...l, ...v]), offset: S };
+    handlerFormulaReplace: (u, d) => {
+      const a = [...m.current.nodes];
+      if (l.current !== -1) {
+        const v = a.splice(l.current + 1), S = a.pop() || "";
+        let p = (typeof S == "string" ? S.length : S.token.length) - u.length;
+        return a.push(u), v[0] !== qe.OPEN_BRACKET && d !== er.DefinedName && (a.push(qe.OPEN_BRACKET), p--), { text: Xt([...a, ...v]), offset: p };
       }
     },
-    reset: m
+    reset: g
   };
 }, cc = () => {
-}, lc = Fe(ac);
-function ac(t, e) {
-  const { isFocus: n, sequenceNodes: o, onSelect: r, editor: s, onClose: i = cc } = t, c = s.getEditorId(), a = T(Wt), g = T(me), { searchList: m, searchText: d, handlerFormulaReplace: h, reset: u } = ic(n, o, s), l = ie(() => !!m.length, [m]), v = G(void 0), [p, S] = W(0), C = G(!1), [_] = Or(c, l, [d, m]), I = Ze({ searchList: m, active: p }), f = (x, O) => {
-    const k = h(x, O);
-    k && (u(), r(k));
+}, ac = Le(lc);
+function lc(t, e) {
+  const { isFocus: n, sequenceNodes: o, onSelect: r, editor: s, onClose: i = cc } = t, c = s.getEditorId(), l = T(Wt), m = T(me), { searchList: g, searchText: h, handlerFormulaReplace: u, reset: d } = ic(n, o, s), a = ie(() => !!g.length, [g]), v = X(void 0), [S, p] = W(0), C = X(!1), [_] = Nr(c, a, [h, g]), I = Ze({ searchList: g, active: S }), f = (x, N) => {
+    const k = u(x, N);
+    k && (d(), r(k));
   };
   function b(x) {
-    C.current && S(x);
+    C.current && p(x);
   }
   function y() {
-    C.current && S(-1);
+    C.current && p(-1);
   }
   $(() => {
-    if (!m.length)
+    if (!g.length)
       return;
-    const x = `sheet.formula-embedding-editor.search_function.${c}`, O = new Be(), k = (E) => {
-      const { searchList: N, active: R } = I.current;
+    const x = `sheet.formula-embedding-editor.search_function.${c}`, N = new Be(), k = (E) => {
+      const { searchList: O, active: R } = I.current;
       switch (E) {
-        case L.ARROW_UP: {
-          S((w) => {
-            const F = Math.max(0, w - 1);
-            return A(F), F;
+        case F.ARROW_UP: {
+          p((w) => {
+            const L = Math.max(0, w - 1);
+            return A(L), L;
           });
           break;
         }
-        case L.ARROW_DOWN: {
-          S((w) => {
-            const F = Math.min(N.length - 1, w + 1);
-            return A(F), F;
+        case F.ARROW_DOWN: {
+          p((w) => {
+            const L = Math.min(O.length - 1, w + 1);
+            return A(L), L;
           });
           break;
         }
-        case L.TAB:
-        case L.ENTER: {
-          const w = N[R];
+        case F.TAB:
+        case F.ENTER: {
+          const w = O[R];
           f(w.name, w.functionType);
           break;
         }
-        case L.ESC: {
-          u(), i();
+        case F.ESC: {
+          d(), i();
           break;
         }
       }
     };
-    return O.add(g.registerCommand({
+    return N.add(m.registerCommand({
       id: x,
       type: Te.OPERATION,
-      handler(E, N) {
-        const { keyCode: R } = N;
+      handler(E, O) {
+        const { keyCode: R } = O;
         k(R);
       }
-    })), [L.ARROW_UP, L.ARROW_DOWN, L.ENTER, L.ESC, L.TAB].map((E) => ({
+    })), [F.ARROW_UP, F.ARROW_DOWN, F.ENTER, F.ESC, F.TAB].map((E) => ({
       id: x,
       binding: E,
       preconditions: () => !0,
@@ -2973,21 +2970,21 @@ function ac(t, e) {
         keyCode: E
       }
     })).forEach((E) => {
-      O.add(a.registerShortcut(E));
+      N.add(l.registerShortcut(E));
     }), () => {
-      O.dispose();
+      N.dispose();
     };
-  }, [m]);
+  }, [g]);
   function A(x) {
-    const O = v.current;
-    if (!O) return;
-    const k = O.children[x];
+    const N = v.current;
+    if (!N) return;
+    const k = N.children[x];
     if (!k) return;
-    const N = O.getBoundingClientRect().top, R = O.offsetHeight, w = k.getBoundingClientRect(), F = w.top, U = w.height;
-    if (F >= 0 && F > N && F - N + U <= R)
+    const O = N.getBoundingClientRect().top, R = N.offsetHeight, w = k.getBoundingClientRect(), L = w.top, U = w.height;
+    if (L >= 0 && L > O && L - O + U <= R)
       return;
     const H = k.offsetTop - (R - U) / 2;
-    O.scrollTo({
+    N.scrollTo({
       top: H,
       behavior: "smooth"
     });
@@ -3000,21 +2997,21 @@ function ac(t, e) {
       }, 300);
     };
   }, []);
-  return m.length > 0 && l && /* @__PURE__ */ M(Zt, { portal: !0, anchorRect$: _, direction: "vertical", children: /* @__PURE__ */ M(
+  return g.length > 0 && a && /* @__PURE__ */ M(Zt, { portal: !0, anchorRect$: _, direction: "vertical", children: /* @__PURE__ */ M(
     "ul",
     {
       ref: (x) => {
         v.current = x, e && (e.current = x);
       },
       "data-u-comp": "sheets-formula-editor",
-      className: re("univer-m-0 univer-box-border univer-max-h-[400px] univer-w-[250px] univer-list-none univer-overflow-y-auto univer-rounded-lg univer-bg-white univer-p-2 univer-leading-5 univer-shadow-md univer-outline-none dark:!univer-bg-gray-900", an, nt),
-      children: m.map((x, O) => /* @__PURE__ */ V(
+      className: re("univer-m-0 univer-box-border univer-max-h-[400px] univer-w-[250px] univer-list-none univer-overflow-y-auto univer-rounded-lg univer-bg-white univer-p-2 univer-leading-5 univer-shadow-md univer-outline-none dark:!univer-bg-gray-900", ln, nt),
+      children: g.map((x, N) => /* @__PURE__ */ V(
         "li",
         {
           className: re("univer-box-border univer-cursor-pointer univer-rounded univer-px-2 univer-py-1 univer-text-gray-900 univer-transition-colors dark:!univer-text-white", {
-            "univer-bg-gray-200 dark:!univer-bg-gray-600": p === O
+            "univer-bg-gray-200 dark:!univer-bg-gray-600": S === N
           }),
-          onMouseEnter: () => b(O),
+          onMouseEnter: () => b(N),
           onMouseLeave: y,
           onMouseMove: D,
           onClick: () => {
@@ -3022,8 +3019,8 @@ function ac(t, e) {
           },
           children: [
             /* @__PURE__ */ V("span", { className: "univer-block univer-overflow-x-hidden univer-text-ellipsis univer-text-xs", children: [
-              /* @__PURE__ */ M("span", { className: "univer-text-red-500", children: x.name.substring(0, d.length) }),
-              /* @__PURE__ */ M("span", { children: x.name.slice(d.length) })
+              /* @__PURE__ */ M("span", { className: "univer-text-red-500", children: x.name.substring(0, h.length) }),
+              /* @__PURE__ */ M("span", { children: x.name.slice(h.length) })
             ] }),
             /* @__PURE__ */ M(
               "span",
@@ -3040,7 +3037,7 @@ function ac(t, e) {
   ) });
 }
 const uc = (t) => t.startsWith(tr.EQUALS) ? t.slice(1) : "", Hn = () => {
-}, hc = Fe((t, e) => {
+}, dc = Le((t, e) => {
   var gn, mn, pn, Sn;
   const {
     errorText: n,
@@ -3049,16 +3046,16 @@ const uc = (t) => t.startsWith(tr.EQUALS) ? t.slice(1) : "", Hn = () => {
     subUnitId: s,
     isFocus: i = !0,
     isSupportAcrossSheet: c = !1,
-    onFocus: a = Hn,
-    onBlur: g = Hn,
-    onChange: m,
-    onVerify: d,
-    className: h,
-    editorId: u,
-    moveCursor: l = !0,
+    onFocus: l = Hn,
+    onBlur: m = Hn,
+    onChange: g,
+    onVerify: h,
+    className: u,
+    editorId: d,
+    moveCursor: a = !0,
     onFormulaSelectingChange: v,
-    keyboardEventConfig: p,
-    onMoveInEditor: S,
+    keyboardEventConfig: S,
+    onMoveInEditor: p,
     resetSelectionOnBlur: C = !0,
     autoScrollbar: _ = !0,
     isSingle: I = !0,
@@ -3066,53 +3063,53 @@ const uc = (t) => t.startsWith(tr.EQUALS) ? t.slice(1) : "", Hn = () => {
     autofocus: b = !0,
     disableContextMenu: y,
     style: A
-  } = t, D = T(je), x = G(null), O = te(m);
+  } = t, D = T(je), x = X(null), N = te(g);
   ps(e, () => ({
-    isClickOutSide: (z) => x.current ? !x.current.contains(z.target) : !1
+    isClickOutSide: (G) => x.current ? !x.current.contains(G.target) : !1
   }));
-  const k = te(v), E = G(null), N = G(void 0), R = N.current, [w, F] = W(i), U = G(null), H = ie(() => u != null ? u : zr(`${_o}-${Lt(4)}`), []), ce = ie(() => n !== void 0, [n]), le = T(ne), de = le.getUnit(H);
-  pe(de == null ? void 0 : de.change$);
-  const K = Ki(), J = Gr.transform.getPlainText((mn = (gn = de == null ? void 0 : de.getBody()) == null ? void 0 : gn.dataStream) != null ? mn : ""), ze = Ze(J), Ge = ie(() => uc(J), [J]), St = ie(() => K(Ge), [Ge, K]), { isSelecting: _e, isSelectingRef: Y } = ji({ unitId: r, subUnitId: s, editorId: H, isFocus: w, disableOnClick: f }), X = G(""), fe = T(Oe).getRenderById(H), ee = fe == null ? void 0 : fe.with(sr), ae = ee == null ? void 0 : ee.isFocusing, Ee = ie(() => le.getCurrentTypeOfUnit$(j.UNIVER_DOC), [le]), Le = pe(Ee), Ne = (Le == null ? void 0 : Le.getUnitId()) === H, Z = G([]), ge = _e, $e = (Sn = (pn = T(Zn).getConfig(mr)) == null ? void 0 : pn.functionScreenTips) != null ? Sn : !0;
+  const k = te(v), E = X(null), O = X(void 0), R = O.current, [w, L] = W(i), U = X(null), H = ie(() => d != null ? d : zr(`${_o}-${Ft(4)}`), []), ce = ie(() => n !== void 0, [n]), ae = T(ne), he = ae.getUnit(H);
+  pe(he == null ? void 0 : he.change$);
+  const Y = Ki(), J = Gr.transform.getPlainText((mn = (gn = he == null ? void 0 : he.getBody()) == null ? void 0 : gn.dataStream) != null ? mn : ""), ze = Ze(J), Ge = ie(() => uc(J), [J]), St = ie(() => Y(Ge), [Ge, Y]), { isSelecting: _e, isSelectingRef: Z } = ji({ unitId: r, subUnitId: s, editorId: H, isFocus: w, disableOnClick: f }), Q = X(""), fe = T(Ne).getRenderById(H), ee = fe == null ? void 0 : fe.with(sr), le = ee == null ? void 0 : ee.isFocusing, Ee = ie(() => ae.getCurrentTypeOfUnit$(K.UNIVER_DOC), [ae]), Fe = pe(Ee), Oe = (Fe == null ? void 0 : Fe.getUnitId()) === H, z = X([]), ge = _e, $e = (Sn = (pn = T(Zn).getConfig(mr)) == null ? void 0 : pn.functionScreenTips) != null ? Sn : !0;
   fs(() => {
-    O(J);
-  }, [J, O]);
-  const Pe = Mr("="), Ue = Zi(r, s), oe = te((z, se = !0, Me, be) => {
-    if (!N.current) return;
-    X.current = z;
-    const _t = z[0] === "=" ? z.slice(1) : "", we = K(_t), Dr = we.reduce((We, Et) => typeof Et == "object" ? `${We}${Et.token}` : `${We}${Et}`, ""), Rt = Pe(
-      N.current,
+    N(J);
+  }, [J, N]);
+  const Pe = Mr("="), Ue = Zi(r, s), oe = te((G, se = !0, Me, be) => {
+    if (!O.current) return;
+    Q.current = G;
+    const _t = G[0] === "=" ? G.slice(1) : "", we = Y(_t), Dr = we.reduce((We, Et) => typeof Et == "object" ? `${We}${Et.token}` : `${We}${Et}`, ""), Rt = Pe(
+      O.current,
       Dr === _t ? we : [],
       se,
       be
     );
-    if (Z.current = Rt, Me) {
+    if (z.current = Rt, Me) {
       const We = be != null ? be : R == null ? void 0 : R.getSelectionRanges();
       if ((We == null ? void 0 : We.length) !== 1)
         return;
-      const Fr = We[0].startOffset - 1, Lr = hn(we, Fr, !1), vn = xr(we, Lr);
+      const Lr = We[0].startOffset - 1, Fr = dn(we, Lr, !1), vn = xr(we, Fr);
       if (vn >= 0) {
         const Cn = Rt.splice(vn, 1)[0];
         Cn && Rt.push(Cn);
       }
-      Ue(w ? Rt : [], N.current);
+      Ue(w ? Rt : [], O.current);
     }
   });
   $(() => {
     w && oe(J, !1, !0);
   }, [w]), $(() => {
     if (w) {
-      if (X.current === J) return;
+      if (Q.current === J) return;
       oe(J, !1, !0);
     }
-  }, [J]), sc(w, d, J);
+  }, [J]), sc(w, h, J);
   const Ie = Bi(R), vt = Ji(w, r, s);
   $(() => {
-    var z;
-    k(_e, (z = ee == null ? void 0 : ee.isFocusing) != null ? z : !0);
-  }, [k, _e]), Ho(w, p, R), Ot(() => {
-    let z;
+    var G;
+    k(_e, (G = ee == null ? void 0 : ee.isFocusing) != null ? G : !0);
+  }, [k, _e]), Ho(w, S, R), Nt(() => {
+    let G;
     if (U.current) {
-      z = D.register({
+      G = D.register({
         autofocus: b,
         editorUnitId: H,
         initialSnapshot: {
@@ -3129,57 +3126,57 @@ const uc = (t) => t.startsWith(tr.EQUALS) ? t.slice(1) : "", Hn = () => {
         }
       }, U.current);
       const se = D.getEditor(H);
-      N.current = se, oe(o, !1, !0);
+      O.current = se, oe(o, !1, !0);
     }
     return () => {
-      z == null || z.dispose();
+      G == null || G.dispose();
     };
-  }, []), Ot(() => {
-    i ? (F(i), Ie()) : (C && (R == null || R.blur(), vt()), F(i));
+  }, []), Nt(() => {
+    i ? (L(i), Ie()) : (C && (R == null || R.blur(), vt()), L(i));
   }, [i, R, Ie, vt, C]);
   const { checkScrollBar: Ct } = Bo(R, I, _);
-  Qi(w, !!(_e && Ne), r, H, y), Xi(!!(w && ae && l), ge, R, S);
-  const dn = te((z, se, Me) => {
-    if (!ae)
+  Qi(w, !!(_e && Oe), r, H, y), Xi(!!(w && le && a), ge, R, p);
+  const hn = te((G, se, Me) => {
+    if (!le)
       return;
     const be = se !== -1 ? [{ startOffset: se + 1, endOffset: se + 1, collapsed: !0 }] : void 0;
-    oe(`=${z}`, !0, Me, be), Me && (Ie(), se !== -1 && setTimeout(() => {
+    oe(`=${G}`, !0, Me, be), Me && (Ie(), se !== -1 && setTimeout(() => {
       const _t = { startOffset: se + 1, endOffset: se + 1 }, we = R == null ? void 0 : R.render.with(qo);
       we == null || we.scrollToRange({ ..._t, collapsed: !0 });
     }, 50), Ct());
   });
   rc(
-    w && !!(_e && Ne),
+    w && !!(_e && Oe),
     w,
-    Y,
+    Z,
     r,
     s,
-    Z,
+    z,
     c,
     !!ge,
     R,
-    dn
-  ), oc(w && !!(_e && Ne), r, c, F, g, () => {
+    hn
+  ), oc(w && !!(_e && Oe), r, c, L, m, () => {
     oe(ze.current, !1, !0);
   });
-  const fn = (z) => {
-    if (z) {
+  const fn = (G) => {
+    if (G) {
       const se = R == null ? void 0 : R.getSelectionRanges();
       if (se && se.length === 1) {
         const Me = se[0];
         if (Me.collapsed) {
-          const be = z.offset;
+          const be = G.offset;
           setTimeout(() => {
             R == null || R.setSelectionRanges([{ startOffset: Me.startOffset - be, endOffset: Me.endOffset - be }]);
           }, 30);
         }
       }
-      Ie(), oe(`=${z.text}`);
+      Ie(), oe(`=${G.text}`);
     }
   }, Ar = () => {
-    F(!0), a(), Ie();
+    L(!0), l(), Ie();
   };
-  return /* @__PURE__ */ V("div", { className: h, children: [
+  return /* @__PURE__ */ V("div", { className: u, children: [
     /* @__PURE__ */ M(
       "div",
       {
@@ -3209,7 +3206,7 @@ const uc = (t) => t.startsWith(tr.EQUALS) ? t.slice(1) : "", Hn = () => {
       }
     ),
     $e && !!R && /* @__PURE__ */ M(
-      lc,
+      ac,
       {
         isFocus: w,
         sequenceNodes: St,
@@ -3220,80 +3217,80 @@ const uc = (t) => t.startsWith(tr.EQUALS) ? t.slice(1) : "", Hn = () => {
     )
   ] });
 });
-function dc(t, e, n, o) {
-  const r = T(Ce), s = Mr(""), i = pe(t == null ? void 0 : t.getDocumentDataModel().change$), [c, a] = W([]), g = T(Ro), m = G(""), d = T(ne);
+function hc(t, e, n, o) {
+  const r = T(Ce), s = Mr(""), i = pe(t == null ? void 0 : t.getDocumentDataModel().change$), [c, l] = W([]), m = T(Ro), g = X(""), h = T(ne);
   return $(() => {
     if (!t) return;
-    const h = t.getDocumentDataModel().getPlainText();
-    if (m.current === h)
+    const u = t.getDocumentDataModel().getPlainText();
+    if (g.current === u)
       return;
-    m.current = h;
-    const u = r.sequenceNodesBuilder(h);
-    a(u != null ? u : []);
+    g.current = u;
+    const d = r.sequenceNodesBuilder(u);
+    l(d != null ? d : []);
   }, [i, t, r]), $(() => {
-    var l, v;
+    var a, v;
     if (!t) return;
     if (!e) {
-      const p = t.getDocumentData();
+      const S = t.getDocumentData();
       t.setDocumentData({
-        ...p,
+        ...S,
         body: {
-          ...p.body,
-          dataStream: (v = (l = p.body) == null ? void 0 : l.dataStream) != null ? v : "",
+          ...S.body,
+          dataStream: (v = (a = S.body) == null ? void 0 : a.dataStream) != null ? v : "",
           textRuns: []
         }
       });
       return;
     }
-    const h = s(t, c, !1), u = new Be();
-    return h.forEach((p) => {
-      const S = st(p.token), C = d.getCurrentUnitForType(j.UNIVER_SHEET), _ = C == null ? void 0 : C.getActiveSheet();
-      if (!S.sheetName && o !== (_ == null ? void 0 : _.getSheetId()) || S.sheetName && (_ == null ? void 0 : _.getName()) !== S.sheetName)
+    const u = s(t, c, !1), d = new Be();
+    return u.forEach((S) => {
+      const p = st(S.token), C = h.getCurrentUnitForType(K.UNIVER_SHEET), _ = C == null ? void 0 : C.getActiveSheet();
+      if (!p.sheetName && o !== (_ == null ? void 0 : _.getSheetId()) || p.sheetName && (_ == null ? void 0 : _.getName()) !== p.sheetName)
         return;
-      const I = new tn(p.themeColor).toRgb(), f = g.addShape({
-        range: S.range,
+      const I = new tn(S.themeColor).toRgb(), f = m.addShape({
+        range: p.range,
         style: {
-          stroke: p.themeColor,
+          stroke: S.themeColor,
           fill: `rgba(${I.r}, ${I.g}, ${I.b}, 0.1)`,
           strokeDash: 12
         },
         primary: null
       });
-      f && u.add(() => g.removeShape(f));
+      f && d.add(() => m.removeShape(f));
     }), () => {
-      u.dispose();
-    };
-  }, [t, e, s, g, c]), { sequenceNodes: c };
-}
-function fc(t) {
-  const e = T(on), { supportAcrossSheet: n = !1, keepSheetReference: o = !1, unitId: r, subUnitId: s, onChange: i } = t, a = T(ne).getUnit(r, j.UNIVER_SHEET), g = te(i), m = te((d, h) => {
-    const u = a == null ? void 0 : a.getActiveSheet();
-    if (!u || !n && u.getSheetId() !== s || !(d != null && d.length)) return;
-    const l = o ? u.getName() : u.getSheetId() === s ? "" : u.getName(), v = d.map((p) => ({
-      range: p.range,
-      unitId: r,
-      sheetName: l
-    }));
-    g(v, h);
-  });
-  $(() => {
-    const d = new Be();
-    return d.add(e.selectionMoveStart$.subscribe((h) => {
-      m(h, !0);
-    })), d.add(e.selectionMoving$.subscribe((h) => {
-      m(h, !1);
-    })), d.add(e.selectionMoveEnd$.subscribe((h) => {
-      m(h, !1);
-    })), () => {
       d.dispose();
     };
-  }, [m, e.selectionMoveEnd$, e.selectionMoveStart$, e.selectionMoving$]);
+  }, [t, e, s, m, c]), { sequenceNodes: c };
+}
+function fc(t) {
+  const e = T(on), { supportAcrossSheet: n = !1, keepSheetReference: o = !1, unitId: r, subUnitId: s, onChange: i } = t, l = T(ne).getUnit(r, K.UNIVER_SHEET), m = te(i), g = te((h, u) => {
+    const d = l == null ? void 0 : l.getActiveSheet();
+    if (!d || !n && d.getSheetId() !== s || !(h != null && h.length)) return;
+    const a = o ? d.getName() : d.getSheetId() === s ? "" : d.getName(), v = h.map((S) => ({
+      range: S.range,
+      unitId: r,
+      sheetName: a
+    }));
+    m(v, u);
+  });
+  $(() => {
+    const h = new Be();
+    return h.add(e.selectionMoveStart$.subscribe((u) => {
+      g(u, !0);
+    })), h.add(e.selectionMoving$.subscribe((u) => {
+      g(u, !1);
+    })), h.add(e.selectionMoveEnd$.subscribe((u) => {
+      g(u, !1);
+    })), () => {
+      h.dispose();
+    };
+  }, [g, e.selectionMoveEnd$, e.selectionMoveStart$, e.selectionMoving$]);
 }
 const Bn = (t) => !t.some((n) => {
   if (typeof n == "string") {
     if (n !== qe.COMMA)
       return !0;
-  } else if (n.nodeType !== Q.REFERENCE)
+  } else if (n.nodeType !== j.REFERENCE)
     return !0;
   return !1;
 }), gc = (t) => {
@@ -3316,24 +3313,24 @@ function mc(t) {
     maxRangeCount: s = 1 / 0,
     supportAcrossSheet: i,
     keepSheetReference: c,
-    onConfirm: a,
-    onClose: g,
-    onShowBySelection: m
-  } = t, d = T(ot), h = T(Ce), [u, l] = W([]), [v, p] = W(0), S = G(null);
+    onConfirm: l,
+    onClose: m,
+    onShowBySelection: g
+  } = t, h = T(ot), u = T(Ce), [d, a] = W([]), [v, S] = W(0), p = X(null);
   $(() => {
     if (e && n.length) {
-      const f = n.map((b) => b.sheetName ? ht(b.sheetName, b.range) : ve(b.range));
-      l(f), p(f.length - 1);
+      const f = n.map((b) => b.sheetName ? dt(b.sheetName, b.range) : ve(b.range));
+      a(f), S(f.length - 1);
     } else
-      l([""]), p(0);
+      a([""]), S(0);
   }, [e]);
   const C = (f, b) => {
-    const y = [...u];
-    y[f] = b, l(y);
+    const y = [...d];
+    y[f] = b, a(y);
   }, _ = () => {
-    l([...u, ""]), p(u.length);
+    a([...d, ""]), S(d.length);
   }, I = (f) => {
-    u.splice(f, 1), l([...u]);
+    d.splice(f, 1), a([...d]);
   };
   return fc({
     unitId: o,
@@ -3341,22 +3338,22 @@ function mc(t) {
     supportAcrossSheet: i,
     keepSheetReference: c,
     onChange: (f, b) => {
-      if (!e && m != null && m(f))
+      if (!e && g != null && g(f))
         return;
-      const y = new Set(u), A = f.map((O) => O.sheetName ? ht(O.sheetName, O.range) : ve(O.range)), D = A.filter((O) => !y.has(O));
+      const y = new Set(d), A = f.map((N) => N.sheetName ? dt(N.sheetName, N.range) : ve(N.range)), D = A.filter((N) => !y.has(N));
       if (!D.length) return;
-      const x = [...u];
+      const x = [...d];
       if (A.length > 1) {
         b || x.splice(v, 1), x.push(...D);
-        const O = x.slice(0, s);
-        l(O), p(O.length - 1), requestAnimationFrame(() => {
+        const N = x.slice(0, s);
+        a(N), S(N.length - 1), requestAnimationFrame(() => {
           var k;
-          (k = S.current) == null || k.scrollTo({ top: S.current.scrollHeight });
+          (k = p.current) == null || k.scrollTo({ top: p.current.scrollHeight });
         });
       } else {
         x.splice(v, 1, ...D);
-        const O = x.slice(0, s);
-        l(O), p(v + D.length - 1);
+        const N = x.slice(0, s);
+        a(N), S(v + D.length - 1);
       }
     }
   }), /* @__PURE__ */ M(
@@ -3364,36 +3361,36 @@ function mc(t) {
     {
       width: "328px",
       open: e,
-      title: d.t("rangeSelector.title"),
+      title: h.t("rangeSelector.title"),
       draggable: !0,
       mask: !1,
       maskClosable: !1,
       footer: /* @__PURE__ */ V("footer", { className: "univer-flex univer-gap-2", children: [
-        /* @__PURE__ */ M(et, { onClick: g, children: d.t("rangeSelector.cancel") }),
+        /* @__PURE__ */ M(et, { onClick: m, children: h.t("rangeSelector.cancel") }),
         /* @__PURE__ */ M(
           et,
           {
             variant: "primary",
             onClick: () => {
-              a(
-                u.filter((f) => {
-                  const b = h.sequenceNodesBuilder(f);
-                  return b && b.length === 1 && typeof b[0] != "string" && b[0].nodeType === Q.REFERENCE;
+              l(
+                d.filter((f) => {
+                  const b = u.sequenceNodesBuilder(f);
+                  return b && b.length === 1 && typeof b[0] != "string" && b[0].nodeType === j.REFERENCE;
                 }).map((f) => st(f)).map((f) => ({ ...f, range: gc(f.range) }))
               );
             },
-            children: d.t("rangeSelector.confirm")
+            children: h.t("rangeSelector.confirm")
           }
         )
       ] }),
-      onClose: g,
+      onClose: m,
       children: /* @__PURE__ */ V(
         "div",
         {
-          ref: S,
+          ref: p,
           className: re("-univer-mx-6 univer-max-h-60 univer-overflow-y-auto univer-px-6", nt),
           children: [
-            u.map((f, b) => /* @__PURE__ */ V(
+            d.map((f, b) => /* @__PURE__ */ V(
               "div",
               {
                 className: "univer-mb-2 univer-flex univer-items-center univer-gap-4",
@@ -3404,13 +3401,13 @@ function mc(t) {
                       className: re("univer-w-full", {
                         "univer-border-primary-600": v === b
                       }),
-                      placeholder: d.t("rangeSelector.placeHolder"),
-                      onFocus: () => p(b),
+                      placeholder: h.t("rangeSelector.placeHolder"),
+                      onFocus: () => S(b),
                       value: f,
                       onChange: (y) => C(b, y)
                     }
                   ),
-                  u.length > 1 && /* @__PURE__ */ M(
+                  d.length > 1 && /* @__PURE__ */ M(
                     Er,
                     {
                       className: "univer-cursor-pointer",
@@ -3421,9 +3418,9 @@ function mc(t) {
               },
               b
             )),
-            u.length < s && /* @__PURE__ */ M("div", { children: /* @__PURE__ */ V(et, { variant: "link", onClick: _, children: [
+            d.length < s && /* @__PURE__ */ M("div", { children: /* @__PURE__ */ V(et, { variant: "link", onClick: _, children: [
               /* @__PURE__ */ M(Ir, {}),
-              /* @__PURE__ */ M("span", { children: d.t("rangeSelector.addAnotherRange") })
+              /* @__PURE__ */ M("span", { children: h.t("rangeSelector.addAnotherRange") })
             ] }) })
           ]
         }
@@ -3435,7 +3432,7 @@ function pc(t) {
   return t.split(qe.COMMA).filter((e) => !!e).map((e) => st(e));
 }
 function Sc(t) {
-  return t.map((e) => e.sheetName ? ht(e.sheetName, e.range) : ve(e.range)).join(qe.COMMA);
+  return t.map((e) => e.sheetName ? dt(e.sheetName, e.range) : ve(e.range)).join(qe.COMMA);
 }
 function wr(t) {
   const [e, n] = W(null), {
@@ -3444,19 +3441,19 @@ function wr(t) {
     unitId: s,
     subUnitId: i,
     maxRangeCount: c,
-    supportAcrossSheet: a,
-    keepSheetReference: g,
-    autoFocus: m,
-    onChange: d,
-    onRangeSelectorDialogVisibleChange: h,
-    onClickOutside: u,
-    onFocusChange: l,
+    supportAcrossSheet: l,
+    keepSheetReference: m,
+    autoFocus: g,
+    onChange: h,
+    onRangeSelectorDialogVisibleChange: u,
+    onClickOutside: d,
+    onFocusChange: a,
     forceShowDialogWhenSelectionChanged: v,
-    hideEditor: p,
-    resetRange: S
-  } = t, [C, _] = W(m != null ? m : !1), [I, f] = W(!1), [b, y] = W([]), A = T(ot), D = T(je), { sequenceNodes: x } = dc(e, C, s, i), O = Ze(x), k = T(me), E = te(() => {
+    hideEditor: S,
+    resetRange: p
+  } = t, [C, _] = W(g != null ? g : !1), [I, f] = W(!1), [b, y] = W([]), A = T(ot), D = T(je), { sequenceNodes: x } = hc(e, C, s, i), N = Ze(x), k = T(me), E = te(() => {
     e == null || e.setSelectionRanges([]), e == null || e.blur(), D.blur();
-  }), N = te(() => {
+  }), O = te(() => {
     var R;
     E(), y(pc((R = e == null ? void 0 : e.getDocumentDataModel().getPlainText()) != null ? R : "")), f(!0);
   });
@@ -3469,7 +3466,7 @@ function wr(t) {
         D.focus(e.getEditorId());
       },
       blur: E,
-      verify: () => Bn(O.current),
+      verify: () => Bn(N.current),
       showDialog: (R) => {
         E(), y(R), f(!0);
       },
@@ -3481,39 +3478,39 @@ function wr(t) {
         return (R = e == null ? void 0 : e.getDocumentDataModel().getPlainText()) != null ? R : "";
       }
     });
-  }, [E, e, D, r, O]), $(() => {
+  }, [E, e, D, r, N]), $(() => {
     var R;
     o == null || o(Bn(x), (R = e == null ? void 0 : e.getDocumentDataModel().getPlainText()) != null ? R : "");
   }, [x]), $(() => {
-    h == null || h(I);
+    u == null || u(I);
   }, [I]), $(() => {
-    if (I && S)
+    if (I && p)
       return () => {
         const R = {
           unitId: s,
           subUnitId: i,
-          selections: S
+          selections: p
         };
         k.executeCommand(sn.id, R);
       };
   }, [I]), /* @__PURE__ */ V(ms, { children: [
-    p ? null : /* @__PURE__ */ M(
+    S ? null : /* @__PURE__ */ M(
       jo,
       {
         isSingle: !0,
         ...t,
         onFocusChange: (R, w) => {
-          _(R), l == null || l(R, w);
+          _(R), a == null || a(R, w);
         },
         editorRef: n,
         onClickOutside: () => {
-          _(!1), E(), u == null || u();
+          _(!1), E(), d == null || d();
         },
         icon: /* @__PURE__ */ M(_s, { title: A.t("rangeSelector.buttonTooltip"), placement: "bottom", children: /* @__PURE__ */ M(
           yr,
           {
             className: "univer-cursor-pointer dark:!univer-text-gray-300",
-            onClick: N
+            onClick: O
           }
         ) })
       }
@@ -3527,16 +3524,16 @@ function wr(t) {
         visible: I,
         maxRangeCount: c,
         onConfirm: (R) => {
-          const w = Sc(R), F = Xr.newEmptyData();
-          F.body.dataStream = w, e == null || e.replaceText(w, !1), d == null || d(F, w), f(!1), y([]), requestAnimationFrame(() => {
+          const w = Sc(R), L = Xr.newEmptyData();
+          L.body.dataStream = w, e == null || e.replaceText(w, !1), h == null || h(L, w), f(!1), y([]), requestAnimationFrame(() => {
             E();
           });
         },
         onClose: () => {
           f(!1), y([]);
         },
-        supportAcrossSheet: a,
-        keepSheetReference: g,
+        supportAcrossSheet: l,
+        keepSheetReference: m,
         onShowBySelection: (R) => C || v ? (y(R), f(!0), !1) : !0
       }
     )
@@ -3544,7 +3541,7 @@ function wr(t) {
 }
 const vc = () => {
   var o, r;
-  const t = T(Tr), e = pe(t.currentSelector$), n = G(null);
+  const t = T(Tr), e = pe(t.currentSelector$), n = X(null);
   return $(() => {
     var s, i;
     if (e)
@@ -3561,7 +3558,7 @@ const vc = () => {
       selectorRef: n,
       onChange: (s, i) => {
         var c;
-        e == null || e.callback((c = i == null ? void 0 : i.split(",").map((a) => st(a))) != null ? c : []);
+        e == null || e.callback((c = i == null ? void 0 : i.split(",").map((l) => st(l))) != null ? c : []);
       }
     }
   );
@@ -3571,7 +3568,7 @@ var Cc = Object.defineProperty, _c = Object.getOwnPropertyDescriptor, Rc = (t, e
     (i = t[s]) && (r = i(r) || r);
   return r;
 }, yt = (t, e) => (n, o) => e(n, o, t), kr = (t, e, n) => Rc(t, typeof e != "symbol" ? e + "" : e, n);
-let Ft = class extends Jr {
+let Lt = class extends Jr {
   constructor(t = Pn, e, n, o, r) {
     super(), this._config = t, this._injector = e, this._renderManagerService = n, this._configService = o, this._uiPartsService = r;
     const { menu: s, ...i } = eo(
@@ -3589,21 +3586,21 @@ let Ft = class extends Jr {
       [wt],
       [kt],
       [At],
-      [Nt]
+      [Ot]
     ]), this._initUIPart();
   }
   onReady() {
     [
       [De]
     ].forEach((t) => {
-      this.disposeWithMe(this._renderManagerService.registerRenderModule(j.UNIVER_SHEET, t));
+      this.disposeWithMe(this._renderManagerService.registerRenderModule(K.UNIVER_SHEET, t));
     });
   }
   onRendered() {
     [
       [Gt]
     ].forEach((t) => {
-      this.disposeWithMe(this._renderManagerService.registerRenderModule(j.UNIVER_SHEET, t));
+      this.disposeWithMe(this._renderManagerService.registerRenderModule(K.UNIVER_SHEET, t));
     }), no(this._injector, [
       [Dt],
       // FormulaProgressBar relies on TriggerCalculationController, but it is necessary to ensure that the formula calculation is done after rendered.
@@ -3612,35 +3609,35 @@ let Ft = class extends Jr {
     ]);
   }
   onSteady() {
-    this._injector.get(Mt), this._injector.get(Nt);
+    this._injector.get(Mt), this._injector.get(Ot);
   }
   _initUIPart() {
-    const t = this._injector.get(lr);
-    this.disposeWithMe(t.register(Eo, wr)), this.disposeWithMe(t.register(Io, hc)), this.disposeWithMe(this._uiPartsService.registerComponent(gs.GLOBAL, () => ar(vc, this._injector)));
+    const t = this._injector.get(ar);
+    this.disposeWithMe(t.register(Eo, wr)), this.disposeWithMe(t.register(Io, dc)), this.disposeWithMe(this._uiPartsService.registerComponent(gs.GLOBAL, () => lr(vc, this._injector)));
   }
 };
-kr(Ft, "pluginName", dr);
-kr(Ft, "type", j.UNIVER_SHEET);
-Ft = Ec([
+kr(Lt, "pluginName", hr);
+kr(Lt, "type", K.UNIVER_SHEET);
+Lt = Ec([
   Qr(Ao, cs),
   yt(1, B(ft)),
-  yt(2, Oe),
+  yt(2, Ne),
   yt(3, Zn),
   yt(4, cr)
-], Ft);
+], Lt);
 export {
   Ts as FORMULA_PROMPT_ACTIVATED,
-  hc as FormulaEditor,
-  Nt as FormulaReorderController,
+  dc as FormulaEditor,
+  Ot as FormulaReorderController,
   Tr as GlobalRangeSelectorService,
   xs as HelpFunctionOperation,
-  Os as InsertFunctionOperation,
-  Fs as MoreFunctionsOperation,
+  Ns as InsertFunctionOperation,
+  Ls as MoreFunctionsOperation,
   wr as RangeSelector,
   De as RefSelectionsRenderService,
   gr as ReferenceAbsoluteOperation,
-  Ls as SearchFunctionOperation,
+  Fs as SearchFunctionOperation,
   it as SelectEditorFormulaOperation,
   un as SheetOnlyPasteFormulaCommand,
-  Ft as UniverSheetsFormulaUIPlugin
+  Lt as UniverSheetsFormulaUIPlugin
 };

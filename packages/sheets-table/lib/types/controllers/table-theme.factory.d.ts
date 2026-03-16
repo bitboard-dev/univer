@@ -16,9 +16,9 @@ export declare const processStyleWithBorderStyle: (key: keyof Omit<IRangeThemeSt
     ht?: import('@univerjs/core').Nullable<import('@univerjs/core').HorizontalAlign>;
     vt?: import('@univerjs/core').Nullable<import('@univerjs/core').VerticalAlign>;
     bg?: import('@univerjs/core').Nullable<import('@univerjs/core').IColorStyle>;
-    cl?: import('@univerjs/core').Nullable<import('@univerjs/core').IColorStyle>;
     bl?: import('@univerjs/core').BooleanNumber | undefined;
     ol?: import('@univerjs/core').ITextDecoration | undefined;
+    cl?: import('@univerjs/core').Nullable<import('@univerjs/core').IColorStyle>;
 } | {
     bd: {
         b: {
@@ -34,9 +34,9 @@ export declare const processStyleWithBorderStyle: (key: keyof Omit<IRangeThemeSt
     ht?: import('@univerjs/core').Nullable<import('@univerjs/core').HorizontalAlign>;
     vt?: import('@univerjs/core').Nullable<import('@univerjs/core').VerticalAlign>;
     bg?: import('@univerjs/core').Nullable<import('@univerjs/core').IColorStyle>;
-    cl?: import('@univerjs/core').Nullable<import('@univerjs/core').IColorStyle>;
     bl?: import('@univerjs/core').BooleanNumber | undefined;
     ol?: import('@univerjs/core').ITextDecoration | undefined;
+    cl?: import('@univerjs/core').Nullable<import('@univerjs/core').IColorStyle>;
 } | {
     bd: {
         r: {
@@ -52,9 +52,9 @@ export declare const processStyleWithBorderStyle: (key: keyof Omit<IRangeThemeSt
     ht?: import('@univerjs/core').Nullable<import('@univerjs/core').HorizontalAlign>;
     vt?: import('@univerjs/core').Nullable<import('@univerjs/core').VerticalAlign>;
     bg?: import('@univerjs/core').Nullable<import('@univerjs/core').IColorStyle>;
-    cl?: import('@univerjs/core').Nullable<import('@univerjs/core').IColorStyle>;
     bl?: import('@univerjs/core').BooleanNumber | undefined;
     ol?: import('@univerjs/core').ITextDecoration | undefined;
+    cl?: import('@univerjs/core').Nullable<import('@univerjs/core').IColorStyle>;
 } | {
     bd: {
         l: {
@@ -70,8 +70,8 @@ export declare const processStyleWithBorderStyle: (key: keyof Omit<IRangeThemeSt
     ht?: import('@univerjs/core').Nullable<import('@univerjs/core').HorizontalAlign>;
     vt?: import('@univerjs/core').Nullable<import('@univerjs/core').VerticalAlign>;
     bg?: import('@univerjs/core').Nullable<import('@univerjs/core').IColorStyle>;
-    cl?: import('@univerjs/core').Nullable<import('@univerjs/core').IColorStyle>;
     bl?: import('@univerjs/core').BooleanNumber | undefined;
     ol?: import('@univerjs/core').ITextDecoration | undefined;
+    cl?: import('@univerjs/core').Nullable<import('@univerjs/core').IColorStyle>;
 };
 export declare const tableThemeConfig: ITableDefaultThemeStyle[];

@@ -6,7 +6,7 @@ export declare const zenEditorInsertLinkMenuFactory: (accessor: IAccessor) => IM
 export declare const insertLinkMenuToolbarFactory: (accessor: IAccessor) => {
     id: string;
     hidden$: import('rxjs').Observable<boolean>;
-    disabled$: import('rxjs').Observable<boolean>;
+    disabled$: any;
     tooltip: string;
     commandId: string;
     type: MenuItemType;
@@ -15,7 +15,7 @@ export declare const insertLinkMenuToolbarFactory: (accessor: IAccessor) => {
 export declare const zenEditorInsertLinkMenuToolbarFactory: (accessor: IAccessor) => {
     id: string;
     hidden$: import('rxjs').Observable<boolean>;
-    disabled$: import('rxjs').Observable<boolean>;
+    disabled$: any;
     tooltip: string;
     commandId: string;
     type: MenuItemType;

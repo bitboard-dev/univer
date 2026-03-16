@@ -105,7 +105,7 @@ export declare class Editor extends Disposable implements IEditor {
     getBoundingClientRect(): DOMRect;
     get editorDOM(): HTMLDivElement;
     isVisible(): boolean | undefined;
-    getSkeleton(): import('@univerjs/engine-render').DocumentSkeleton | undefined;
+    getSkeleton(): any;
     isSheetEditor(): boolean;
     /**
      * @deprecated use getDocumentData.
